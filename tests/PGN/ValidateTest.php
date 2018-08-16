@@ -3,6 +3,7 @@
 namespace PGNChess\Tests\PGN;
 
 use PGNChess\PGN\Symbol;
+use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate;
 use PHPUnit\Framework\TestCase;
 
@@ -75,5 +76,47 @@ class ValidateTest extends TestCase
     public function square_e4()
     {
         $this->assertEquals(Validate::square('e4'), 'e4');
+    }
+
+    /**
+     * @test
+     */
+    public function tag_foo_throws_exception()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        Validate::tag('foo');
+    }
+
+    /**
+     * @test
+     */
+    public function tag_event_Sharjah_Rapid_2018()
+    {
+        $tag = Validate::tag('[Event "Sharjah Rapid 2018"]');
+
+        $this->assertEquals('Event', $tag->name);
+        $this->assertEquals('Sharjah Rapid 2018', $tag->value);
+    }
+
+    /**
+     * @test
+     */
+    public function tag_event_Vladimir_Dvorkovich_Cup()
+    {
+        $tag = Validate::tag('[Event "Vladimir Dvorkovich Cup"]');
+
+        $this->assertEquals('Event', $tag->name);
+        $this->assertEquals('Vladimir Dvorkovich Cup', $tag->value);
+    }
+
+    /**
+     * @test
+     */
+    public function tag_site_Pleven_BUL()
+    {
+        $tag = Validate::tag('[Site "Pleven BUL"]');
+
+        $this->assertEquals('Site', $tag->name);
+        $this->assertEquals('Pleven BUL', $tag->value);
     }
 }
