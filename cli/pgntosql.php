@@ -1,18 +1,11 @@
 <?php
 
-use PGNChess\PGN\Tag;
+namespace PGNChess\Cli;
 
-$file = fopen($argv[1], "r") or exit("Unable to open file!");
+use PGNChess\PGN\Parse;
 
-while(!feof($file))
-{
-    // echo fgets($file). "<br>";
+require_once __DIR__ . '/../vendor/autoload.php';
 
-    if () {
+$sql = (new Parse($argv[1]))->toSql();
 
-    } else {
-        
-    }
-}
-
-fclose($file);
+echo $sql;
