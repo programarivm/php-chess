@@ -45,18 +45,18 @@ class ToMySql
 					if ($this->startsMovetext($line)) {
 						$movetext .=  $line;
 					} elseif ($this->endsMovetext($line)) {
-					foreach ($tags as $key => $value) {
-						if (isset($value)) {
-							$value = MySql::getInstance()->escape($value);
-							$sql .= "'$value', ";
-						} else {
-							$sql .= "null, ";
+						foreach ($tags as $key => $value) {
+							if (isset($value)) {
+								$value = MySql::getInstance()->escape($value);
+								$sql .= "'$value', ";
+							} else {
+								$sql .= "null, ";
+							}
 						}
-					}
-					$movetext = MySql::getInstance()->escape($movetext.$line);
-					$sql .= "'$movetext'),(";
-					$tags = $this->resetTags();
-					$movetext = '';
+						$movetext = MySql::getInstance()->escape($movetext.$line);
+						$sql .= "'$movetext'),(";
+						$tags = $this->resetTags();
+						$movetext = '';
 					} else {
 						$movetext .= $line;
 					}
