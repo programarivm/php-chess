@@ -39,11 +39,32 @@ class ToMySqlTest extends TestCase
         $this->assertNotEquals(false, $result);
     }
 
+    /**
+     * @dataProvider textData
+     * @test
+     */
+    public function convert_text($filename)
+    {
+        $sql = (new PgnFileToMySql(self::PGN_FOLDER."/$filename"))->convert();
+
+        $this->assertEquals(null, $sql);
+    }
+
     public function pgnData()
     {
         $data = [];
         for ($i = 1; $i <= 10; ++$i) {
             $i <= 9 ? $data[] = ["0$i-games.pgn"] : $data[] = ["$i-games.pgn"];
+        }
+
+        return $data;
+    }
+
+    public function textData()
+    {
+        $data = [];
+        for ($i = 1; $i <= 3; ++$i) {
+            $i <= 9 ? $data[] = ["0$i-text.pgn"] : $data[] = ["$i-text.pgn"];
         }
 
         return $data;
