@@ -25,9 +25,7 @@ class ToMySql
 	public function convert()
 	{
 		$sql = "INSERT INTO games (";
-		$tagClass = new \ReflectionClass(new Tag);
-		$constants = $tagClass->getConstants();
-		foreach ($constants as $key => $value) {
+		foreach (Tag::getConstants() as $key => $value) {
 			$sql .= $value . ', ';
 		}
 		$sql .= 'movetext) VALUES (';
@@ -46,12 +44,7 @@ class ToMySql
 						$movetext .=  $line;
 					} elseif ($this->endsMovetext($line)) {
 						foreach ($tags as $key => $value) {
-							if (isset($value)) {
-								$value = MySql::getInstance()->escape($value);
-								$sql .= "'$value', ";
-							} else {
-								$sql .= "null, ";
-							}
+							isset($value) ? $sql .= "'" . MySql::getInstance()->escape($value) . "', " : $sql .= "null, ";
 						}
 						$movetext = MySql::getInstance()->escape($movetext.$line);
 						$sql .= "'$movetext'),(";
@@ -92,9 +85,7 @@ class ToMySql
 
 	private function resetTags()
 	{
-		$tagClass = new \ReflectionClass(new Tag);
-		$constants = $tagClass->getConstants();
-		foreach ($constants as $key => $value) {
+		foreach (Tag::getConstants() as $key => $value) {
 			$tags[$value] = null;
 		}
 

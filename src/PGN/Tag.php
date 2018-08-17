@@ -65,4 +65,9 @@ class Tag
 	const ANNOTATOR = 'Annotator';
 	const MODE = 'Mode';
 	const PLY_COUNT = 'PlyCount';
+
+    public static function getConstants()
+    {
+        return (new \ReflectionClass(get_called_class()))->getConstants();
+    }
 }
