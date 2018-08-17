@@ -61,6 +61,17 @@ class ToMySqlTest extends TestCase
         $this->assertEquals(null, $sql);
     }
 
+    /**
+     * @dataProvider nonStrGamesData
+     * @test
+     */
+    public function convert_non_str_games($filename)
+    {
+        $sql = (new PgnFileToMySql(self::PGN_FOLDER."/$filename"))->convert();
+
+        $this->assertEquals(null, $sql);
+    }
+
     public function pgnData()
     {
         $data = [];
@@ -86,6 +97,16 @@ class ToMySqlTest extends TestCase
         $data = [];
         for ($i = 1; $i <= 3; ++$i) {
             $i <= 9 ? $data[] = ["0$i-text-with-non-str-games.pgn"] : $data[] = ["$i-text-with-non-str-games.pgn"];
+        }
+
+        return $data;
+    }
+
+    public function nonStrGamesData()
+    {
+        $data = [];
+        for ($i = 1; $i <= 3; ++$i) {
+            $i <= 9 ? $data[] = ["0$i-non-str-games.pgn"] : $data[] = ["$i-non-str-games.pgn"];
         }
 
         return $data;
