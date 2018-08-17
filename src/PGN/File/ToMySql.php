@@ -3,6 +3,7 @@
 namespace PGNChess\PGN\File;
 
 use PGNChess\Db\MySql;
+use PGNChess\PGN\File\Syntax as PgnFileSyntax;
 use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate;
 
@@ -17,14 +18,21 @@ class ToMySql
 {
     private $filepath;
 
-    private $hasPgn;
-
     public function __construct($filepath)
     {
+        (new PgnFileSyntax)->check($filepath);
+
         $this->filepath = $filepath;
-        $this->isPgn = false;
     }
 
+    /**
+     * Converts a pgn file into MySql code.
+     *
+     * Precondition: the input file is valid pgn.
+     *
+     * @return string The MySQL code
+     * @throws \PGNChess\Exception\UnknownNotationException
+     */
     public function convert()
     {
         $sql = 'INSERT INTO games (';
@@ -45,8 +53,7 @@ class ToMySql
                 } catch (\Exception $e) {
                     if ($this->startsMovetext($line)) {
                         $movetext .= $line;
-                    } elseif ($this->endsMovetext($line) && $this->hasStrTags($tags)) {
-                        $this->hasPgn = true;
+                    } elseif ($this->endsMovetext($line)) {
                         foreach ($tags as $key => $value) {
                             isset($value) ? $sql .= "'".MySql::getInstance()->escape($value)."', " : $sql .= 'null, ';
                         }
@@ -63,11 +70,7 @@ class ToMySql
         }
         $sql = substr($sql, 0, -2).';'.PHP_EOL;
 
-        if ($this->hasPgn) {
-            return $sql;
-        } else {
-            return;
-        }
+        return $sql;
     }
 
     private function startsMovetext($line)
@@ -97,16 +100,5 @@ class ToMySql
         }
 
         return $tags;
-    }
-
-    private function hasStrTags($tags)
-    {
-        return isset($tags[Tag::EVENT]) &&
-            isset($tags[Tag::SITE]) &&
-            isset($tags[Tag::DATE]) &&
-            isset($tags[Tag::ROUND]) &&
-            isset($tags[Tag::WHITE]) &&
-            isset($tags[Tag::BLACK]) &&
-            isset($tags[Tag::RESULT]);
     }
 }
