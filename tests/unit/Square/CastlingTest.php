@@ -1,6 +1,6 @@
 <?php
 
-namespace PGNChess\Tests\Square;
+namespace PGNChess\Tests\Unit\Square;
 
 use PGNChess\Square\Castling;
 use PGNChess\PGN\Symbol;
@@ -61,7 +61,7 @@ class CastlingTest extends TestCase
     public function black_short_castling_info()
     {
         $castlingInfo = Castling::info(Symbol::BLACK);
-        
+
         $this->assertEquals($castlingInfo->{Symbol::KING}->{Symbol::CASTLING_SHORT}->squares->f, 'f8');
         $this->assertEquals($castlingInfo->{Symbol::KING}->{Symbol::CASTLING_SHORT}->squares->g, 'g8');
         $this->assertEquals($castlingInfo->{Symbol::KING}->{Symbol::CASTLING_SHORT}->position->current, 'e8');

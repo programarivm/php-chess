@@ -1,6 +1,6 @@
 <?php
 
-namespace PGNChess\Tests\Board;
+namespace PGNChess\Tests\Unit\Board;
 
 use PGNChess\Board;
 use PGNChess\Exception\BoardException;

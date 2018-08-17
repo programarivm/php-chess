@@ -1,13 +1,13 @@
 <?php
 
-namespace PGNChess\Tests\Game;
+namespace PGNChess\Tests\Unit\Game;
 
 use PGNChess\Game;
 use PHPUnit\Framework\TestCase;
 
 class ExamplesTest extends TestCase
 {
-    const EXAMPLES_FOLDER = __DIR__.'/../../examples';
+    const EXAMPLES_FOLDER = __DIR__.'/../../../examples';
 
     protected $game;
 

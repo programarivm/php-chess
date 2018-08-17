@@ -1,6 +1,6 @@
 <?php
 
-namespace PGNChess\Tests\PGN;
+namespace PGNChess\Tests\Unit\PGN;
 
 use PGNChess\Exception\UnknownNotationException;
 use PGNChess\Square\Castling;

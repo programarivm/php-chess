@@ -1,6 +1,6 @@
 <?php
 
-namespace PGNChess\Tests\Game;
+namespace PGNChess\Tests\Unit\Game;
 
 use PGNChess\Game;
 use PGNChess\PGN\Convert;

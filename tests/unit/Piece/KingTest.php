@@ -1,6 +1,6 @@
 <?php
 
-namespace PGNChess\Tests\Piece;
+namespace PGNChess\Tests\Unit\Piece;
 
 use PGNChess\PGN\Symbol;
 use PGNChess\Piece\King;

@@ -1,6 +1,6 @@
 <?php
 
-namespace PGNChess\Tests\PGN;
+namespace PGNChess\Tests\Unit\PGN;
 
 use PGNChess\PGN\Symbol;
 use PGNChess\PGN\Tag;
