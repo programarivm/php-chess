@@ -77,9 +77,7 @@ class MySql
      */
     public function query($sql)
     {
-        return $this->mysqli->query(
-            $this->escape($sql)
-        );
+        return $this->mysqli->query($sql);
     }
 
     /**
@@ -88,7 +86,7 @@ class MySql
      * @param string The string to be escaped
      * @return string The escaped string
      */
-    private function escape($data)
+    public function escape($data)
     {
         return $this->mysqli->real_escape_string($data);
     }

@@ -3,7 +3,6 @@
 namespace PGNChess\Cli;
 
 use Dotenv\Dotenv;
-use PGNChess\Db\MySql;
 use PGNChess\PGN\Tag;
 
 require_once __DIR__ . '/../vendor/autoload.php';
