@@ -18,6 +18,11 @@ class ToMySql
 {
     private $filepath;
 
+    /**
+     * Constructor.
+     *
+     * @throws \PGNChess\Exception\UnknownNotationException
+     */
     public function __construct($filepath)
     {
         (new PgnFileSyntax)->check($filepath);
@@ -31,7 +36,6 @@ class ToMySql
      * Precondition: the input file is valid pgn.
      *
      * @return string The MySQL code
-     * @throws \PGNChess\Exception\UnknownNotationException
      */
     public function convert()
     {
