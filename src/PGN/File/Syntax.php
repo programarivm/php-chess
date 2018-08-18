@@ -13,13 +13,11 @@ use PGNChess\PGN\Validate;
  */
 class Syntax extends AbstractFile
 {
-    private $invalid;
+    private $invalid = [];
 
     public function __construct($filepath)
     {
         parent::__construct($filepath);
-
-        $invalid = [];
     }
 
     /**
@@ -31,7 +29,6 @@ class Syntax extends AbstractFile
     {
         $tags = $this->resetTags();
         $movetext = '';
-
         if ($file = fopen($this->filepath, 'r')) {
             while (!feof($file)) {
                 $line = preg_replace('~[[:cntrl:]]~', '', fgets($file));
@@ -39,19 +36,24 @@ class Syntax extends AbstractFile
                     $tag = Validate::tag($line);
                     $tags[$tag->name] = $tag->value;
                 } catch (\Exception $e) {
-                    if ($this->startsMovetext($line) && !$this->hasStrTags($tags)) {
-                        $this->invalid[] = $tags;
-                        $tags = $this->resetTags();
-                        $movetext = '';
-                    } elseif ($this->startsMovetext($line) && $this->hasStrTags($tags)) {
-                        $movetext .= $line;
-                    } elseif ($this->endsMovetext($line)) {
-                        $movetext .= $line;
-                        // play movetext
-                        $tags = $this->resetTags();
-                        $movetext = '';
-                    } else {
-                        $movetext .= $line;
+                    switch (true) {
+                        case $this->startsMovetext($line) && !$this->hasStrTags($tags):
+                            $this->invalid[] = $tags;
+                            $tags = $this->resetTags();
+                            $movetext = '';
+                            break;
+                        case $this->startsMovetext($line) && $this->hasStrTags($tags):
+                            $movetext .= $line;
+                            break;
+                        case $this->endsMovetext($line) && $this->hasStrTags($tags):
+                            $movetext .= $line;
+                            Validate::movetext($movetext) ? true : $this->invalid[] = $tags;
+                            $tags = $this->resetTags();
+                            $movetext = '';
+                            break;
+                        case $this->hasStrTags($tags):
+                            $movetext .= $line;
+                            break;
                     }
                 }
             }
