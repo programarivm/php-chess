@@ -5,7 +5,7 @@
     bootstrap="vendor/autoload.php"
 >
     <php>
-        <env name="APP_ENV" value="env"/>
+        <env name="APP_ENV" value="test"/>
         <env name="DB_HOST" value="localhost"/>
         <env name="DB_USER" value="root"/>
         <env name="DB_PASSWORD" value="root"/>
