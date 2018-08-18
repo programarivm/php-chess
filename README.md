@@ -5,9 +5,9 @@
 
 ![PGN Chess](/resources/chess-move.jpg?raw=true)
 
-This is a simple, friendly, and powerful PGN (Portable Game Notation) library for running chess games from within PHP applications. It is a chess board representation that can be used in chess engines, chess applications and chess algorithms because it understands the rules of chess.
+This is a simple, friendly, and powerful PGN (Portable Game Notation) library for running chess games from within PHP applications. It is a chess board representation that can be used in chess engines, chess applications and chess algorithms.
 
-PGN Chess is capable of validating and playing PGN notated games, and comes to the rescue in the following scenarios:
+PGN Chess can play and validate PGN notated games, and comes to the rescue in the following scenarios:
 
 - Develop APIs on the server side for validating chess games
 - Create funny, random games for fun
@@ -755,32 +755,28 @@ Will generate this `$captures` array:
 
     )
 
-### 4. About the PGN format
+### 4. Command Line Interface (CLI)
 
-Need some more examples? Look at the format used in the following moves, they all will be processed OK by PGN Chess.
+#### 4.1. `createdb.php`
 
-    1. e4 e5 2. Nc3 Nf6 3. f4 exf4 4. d4 Bb4 5. e5 Bxc3+ 6. bxc3 Nd5 7. c4 Qh4+
-    8. g3 fxg3 9. Nf3 Qe4+ 10. Qe2 Qxe2+ 11. Bxe2 gxh2 12. cxd5 d6 13. Rxh2 Bg4
-    14. Ba3 dxe5 15. dxe5 Nd7 16. Rg2 Bxf3 17. Bxf3 Nxe5 18. Re2 f6 19. d6 O-O-O
-    20. Bg2 cxd6 21. Rd1 Kc7 22. Red2 Rd7 23. Bxd6+ Kc8 24. Rd4 Rhd8 25. Bh3
-    Nf3+ 26. Kf2 Nxd4 27. Bxd7+ Rxd7 28. Rxd4 Rxd6 29. Rxd6 Kc7 30. Rd3 b6 31.
-    Ke3 g6 32. Rd5 h5 33. c4 g5 34. Kf3 h4 35. Kg4 Kc6 36. Kf5 b5 37. Kxf6 bxc4
-    38. Rd1 g4 39. Kg5 g3 40. Kxh4 g2 41. Rg1 c3 42. Rxg2 a5 43. Rc2 Kb5 44.
-    Rxc3 Kb4 45. Rg3 a4 46. Kg4 Kc4 47. Kf4 Kd4 48. Kf5 Kc4 49. Ke5 Kb4 50. Kd5
-    Kb5 51. Kd4 Kb4 52. Ke4 Kc4 53. Ke5 Kb4 54. Kd5 Kb5 55. Rg4 a3 56. Rg3 Kb4
-    57. Kd6 Ka4 58. Kc5 Ka5 59. Rxa3# {Black checkmated} 1-0
+Creates a MySQL PGN Chess database.
 
-    1. e4 c5 2. Nc3 Nc6 3. Bb5 g6 4. Bxc6 bxc6 5. d3 Bg7 6. f4 e6 7. Nf3 Ne7 8.
-    O-O O-O 9. Qe1 d5 10. Qh4 d4 11. Ne2 Qc7 12. g4 e5 13. f5 gxf5 14. gxf5 Qd6
-    15. Bh6 Bxh6 16. Qg3+ Bg7 17. Nh4 Qh6 18. f6 Ng6 19. fxg7 Kxg7 20. Nf5+ Bxf5
-    21. exf5 Qe3+ 22. Qxe3 dxe3 23. fxg6 fxg6 24. Rxf8 Rxf8 25. Rf1 Rb8 26. Rf3
-    Rxb2 27. Rxe3 Rxc2 28. a4 Ra2 29. Rxe5 Rxa4 30. Rxc5 Ra3 31. Rxc6 Rxd3 32.
-    Kf2 Rd7 33. Ra6 h5 34. Nf4 Rf7 35. Ke3 Re7+ 36. Kf3 Rf7 37. Ke4 Re7+ 38. Re6
-    Rxe6+ 39. Nxe6+ Kf6 40. Nd4 g5 41. h3 a5 42. Nc6 a4 43. Nb4 a3 44. Na2 g4
-    45. hxg4 Kg5 46. Ke3 hxg4 47. Kf2 Kf4 48. Kg2 g3 49. Nc3 Kg4 50. Na2 Kf4 51.
-    Nc3 Kg4 52. Na2 Kf4 53. Nc1 Ke3 54. Kxg3 Kd2 55. Nb3+ Kc2 56. Kf3 a2 57. Ke3
-    Kb2 58. Kd2 Kxb3 59. Kc1 Ka3 60. Kd2 Kb2 61. Kd3 a1=Q 62. Kc4 Ka3 63. Kc5
-    Qb2 64. Kd6 Qc2 65. Ke6 Qd2 {White forfeits on time} 0-1
+    php cli/createdb.php
+    This will remove the current PGN Chess database and the data will be lost.
+    Do you want to proceed? (Y/N): y
+
+#### 4.2. `pgntomysql.php`
+
+Converts a PGN file into a MySQL `INSERT` statement.
+
+    php cli/pgntomysql.php example.pgn
+    INSERT INTO games (Event, Site, Date, Round, White, Black, Result, WhiteTitle, BlackTitle, WhiteElo, BlackElo, WhiteUSCF, BlackUSCF, WhiteNA, BlackNA, WhiteType, BlackType, EventDate, EventSponsor, Section, Stage, Board, Opening, Variation, SubVariation, ECO, NIC, Time, UTCTime, UTCDate, TimeControl, SetUp, FEN, Termination, Annotator, Mode, PlyCount, movetext) VALUES ('TCh-FRA Top 12 2018', 'Brest FRA', '2018.05.28', '3.3', 'Dornbusch, Tatiana', 'Feller, Sebastien', '0-1', null, null, '2290', '2574', null, null, null, null, null, null, '2018.05.26', null, null, null, null, null, null, null, 'E11', null, null, null, null, null, null, null, null, null, null, null, '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5 8.d5 e59.O-O Nbd7 10.b4 a5 11.b5 g6 12.Nb1 Nh5 13.Bh6 Ng7 14.Qc2 Nb6 15.Nbd2 Bd716.Kh1 Qc7 17.Rae1 Rae8 18.Ng1 Bc8 19.f4 exf4 20.Qc3 f6 21.Rxf4 Nd7 22.Bc2Ne5 23.h3 Nf7 24.Bxg7 Kxg7 25.Rf2 Kg8 26.Ngf3 Ne5 27.Ref1 Bd8 28.Kg1 Qg729.Nb3 b6 30.Nbd2 Qh6 31.Nxe5 fxe5 32.Rxf8+ Rxf8 33.Rxf8+ Kxf8 34.a4 Kg735.Bd1 Qh4 36.Kf1 Qf4+ 37.Bf3 h5 38.Ke2 Kh6 39.Qe3 g5 40.Qxf4 exf4 41.e5dxe5 42.d6 Be6 43.Bc6 g4 44.hxg4 hxg4 45.Kd3 Kg5 46.Ke4 Kf6 47.Be8 Bg8 48.Bd7 Be6 49.Bc6 Bf5+ 50.Kd5 f3 51.g3 f2 52.Be8 e4 53.Nf1 Be6+ 54.Kc6 Ke555.Bh5 Kd4 0-1'),('11. KIIT Elite Open 2018', 'Bhubaneswar IND', '2018.05.28', '5.3', 'Nitin, S', 'Amonatov, Farrukh', '0-1', null, null, '2432', '2608', null, null, null, null, null, null, '2018.05.25', null, null, null, null, null, null, null, 'B90', null, null, null, null, null, null, null, null, null, null, null, '1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e5 7.Nb3 Be7 8.h3 b59.a4 b4 10.Nd5 Nbd7 11.Nxe7 Kxe7 12.Qd2 a5 13.O-O-O Qc7 14.f3 Bb7 15.g4Rhc8 16.Bb5 Bc6 17.Bxc6 Qxc6 18.Bg5 Ra6 19.Qe2 Nb6 20.Bxf6+ gxf6 21.f4 Qc422.Rd3 Nxa4 23.g5 fxg5 24.fxe5 dxe5 25.Rhd1 Rac6 26.R1d2 Nc5 27.Nxc5 Qxc528.Qg4 Kf8 29.Rf3 Kg8 30.Qf5 Rf8 31.Rg3 Rg6 32.Rd5 Qc4 33.Rxg5 b3 34.Rd2bxc2 35.Rxc2 Qd4 36.Rcg2 Rd8 37.Rxg6+ hxg6 38.Rxg6+ Kf8 39.Qf3 Qa4 40.Rg2Qa1+ 41.Kc2 Rc8+ 42.Kd3 Qc1 43.Qf6 Qc4+ 44.Ke3 Qd4+ 45.Kf3 Qd3+ 46.Kg4Qxe4+ 47.Kg3 Qg6+ 48.Qxg6 fxg6 49.Kf3 Kf7 50.Ke4 Kf6 51.Rf2+ Ke6 52.Rg2Rc4+ 53.Ke3 Kf5 54.Rf2+ Rf4 55.Rc2 Rh4 56.Rf2+ Ke6 57.Rf3 Rb4 0-1');
+
+#### 4.3. `pgnsyntax.php`
+
+Checks if the syntax of PGN file is valid.
+
+    // TODO
 
 ### 5. License
 
