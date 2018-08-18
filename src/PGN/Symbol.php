@@ -1,4 +1,5 @@
 <?php
+
 namespace PGNChess\PGN;
 
 /**
@@ -24,11 +25,14 @@ class Symbol
     const CASTLING_LONG = 'O-O-O';
     const SQUARE = '[a-h]{1}[1-8]{1}';
     const CHECK = '[\+\#]{0,1}';
-    
-    
+
+    const RESULT_WHITE_WINS = '1-0';
+    const RESULT_BLACK_WINS = '0-1';
+    const RESULT_DRAW = '1/2-1/2';
+
     /**
      * Gets the opposite color.
-     * 
+     *
      * @param string $color
      * @return type
      */
@@ -38,6 +42,6 @@ class Symbol
             return Symbol::BLACK;
         } else {
             return Symbol::WHITE;
-        }        
+        }
     }
 }
