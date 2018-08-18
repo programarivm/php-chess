@@ -17,5 +17,13 @@ class SyntaxTest extends TestCase
         $dotenv->load();
     }
 
-    // TODO ...
+    /**
+     * @test
+     */
+    public function todo()
+    {
+        // TODO ...
+
+        $this->assertTrue(true);
+    }
 }
