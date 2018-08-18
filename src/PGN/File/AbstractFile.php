@@ -15,6 +15,11 @@ abstract class AbstractFile
 {
     protected $filepath;
 
+    public function __construct($filepath)
+    {
+        $this->filepath = $filepath;
+    }
+
     protected function startsMovetext($line)
     {
         return $this->startsWith($line, '1.');

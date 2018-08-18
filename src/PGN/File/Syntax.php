@@ -16,8 +16,10 @@ class Syntax extends AbstractFile
 {
     private $invalid;
 
-    public function __construct()
+    public function __construct($filepath)
     {
+        parent::__construct($filepath);
+
         $invalid = [];
     }
 

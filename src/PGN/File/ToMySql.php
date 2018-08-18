@@ -23,9 +23,9 @@ class ToMySql extends AbstractFile
      */
     public function __construct($filepath)
     {
-        (new PgnFileSyntax)->check($filepath);
+        parent::__construct($filepath);
 
-        $this->filepath = $filepath;
+        (new PgnFileSyntax($filepath))->check();
     }
 
     /**
