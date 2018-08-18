@@ -14,10 +14,8 @@ use PGNChess\PGN\Validate;
  * @link https://programarivm.com
  * @license GPL
  */
-class ToMySql
+class ToMySql extends AbstractFile
 {
-    private $filepath;
-
     /**
      * Constructor.
      *
@@ -75,34 +73,5 @@ class ToMySql
         $sql = substr($sql, 0, -2).';'.PHP_EOL;
 
         return $sql;
-    }
-
-    private function startsMovetext($line)
-    {
-        return $this->startsWith($line, '1.');
-    }
-
-    private function endsMovetext($line)
-    {
-        return $this->endsWith($line, '0-1') || $this->endsWith($line, '1-0') || $this->endsWith($line, '1/2-1/2');
-    }
-
-    public function startsWith($haystack, $needle)
-    {
-        return strcasecmp(substr($haystack, 0, strlen($needle)), $needle) === 0;
-    }
-
-    private function endsWith($haystack, $needle)
-    {
-        return strcasecmp(substr($haystack, strlen($haystack) - strlen($needle)), $needle) === 0;
-    }
-
-    private function resetTags()
-    {
-        foreach (Tag::getConstants() as $key => $value) {
-            $tags[$value] = null;
-        }
-
-        return $tags;
     }
 }
