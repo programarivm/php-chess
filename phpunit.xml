@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="true"
-         colors="true"
-         stopOnFailure="false"
-         stderr="true">
-  <testsuites>
-    <testsuite name="FuzzyMatching tests">
-      <directory>tests</directory>
-    </testsuite>
-  </testsuites>
+<phpunit
+    backupGlobals="false"
+    colors="true"
+    bootstrap="vendor/autoload.php"
+>
+    <php>
+        <env name="APP_ENV" value="env"/>
+        <env name="DB_HOST" value="localhost"/>
+        <env name="DB_USER" value="root"/>
+        <env name="DB_PASSWORD" value="root"/>
+        <env name="DB_NAME" value="pgn_chess"/>
+        <env name="DB_PORT" value="3306"/>
+    </php>
+    <testsuites>
+        <testsuite name="unit">
+            <directory>tests/unit</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>tests/integration</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
