@@ -150,4 +150,17 @@ class Validate
 
         return $result;
     }
+
+    /**
+     * Validates a PGN movetext.
+     *
+     * @param \PGNChess\Game $game
+     * @return bool true if the movetext is valid; otherwise false
+     */
+    public static function movetext($game)
+    {
+        // TODO ...
+
+        return true;
+    }
 }

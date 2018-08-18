@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class SyntaxTest extends TestCase
 {
-    const PGN_FOLDER = __DIR__.'/data';
+    const PGN_FOLDER = __DIR__.'/data/non-str-games';
 
     /**
      * @dataProvider pgnNonStrGames
