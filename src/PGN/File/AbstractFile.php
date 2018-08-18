@@ -40,7 +40,7 @@ abstract class AbstractFile
         return strcasecmp(substr($haystack, strlen($haystack) - strlen($needle)), $needle) === 0;
     }
 
-    private function hasStrTags($tags)
+    protected function hasStrTags($tags)
     {
         return isset($tags[Tag::EVENT]) &&
             isset($tags[Tag::SITE]) &&

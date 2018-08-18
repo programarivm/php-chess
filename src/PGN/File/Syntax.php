@@ -2,7 +2,6 @@
 
 namespace PGNChess\PGN\File;
 
-use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate;
 
 /**
@@ -30,8 +29,35 @@ class Syntax extends AbstractFile
      */
     public function check()
     {
-        // TODO ...
+        $tags = $this->resetTags();
+        $movetext = '';
 
-        return true;
+        if ($file = fopen($this->filepath, 'r')) {
+            while (!feof($file)) {
+                $line = preg_replace('~[[:cntrl:]]~', '', fgets($file));
+                try {
+                    $tag = Validate::tag($line);
+                    $tags[$tag->name] = $tag->value;
+                } catch (\Exception $e) {
+                    if ($this->startsMovetext($line) && !$this->hasStrTags($tags)) {
+                        $this->invalid[] = $tags;
+                        $tags = $this->resetTags();
+                        $movetext = '';
+                    } elseif ($this->startsMovetext($line) && $this->hasStrTags($tags)) {
+                        $movetext .= $line;
+                    } elseif ($this->endsMovetext($line)) {
+                        $movetext .= $line;
+                        // play movetext
+                        $tags = $this->resetTags();
+                        $movetext = '';
+                    } else {
+                        $movetext .= $line;
+                    }
+                }
+            }
+            fclose($file);
+        }
+
+        return $this->invalid;
     }
 }
