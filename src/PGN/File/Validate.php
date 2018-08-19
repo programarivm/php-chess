@@ -13,11 +13,16 @@ use PGNChess\PGN\Validate as PgnValidate;
  */
 class Validate extends AbstractFile
 {
-    private $invalid = [];
+    private $result = [];
 
     public function __construct($filepath)
     {
         parent::__construct($filepath);
+
+        $this->result = (object) [
+            'valid' => 0,
+            'errors' => []
+        ];
     }
 
     /**
@@ -38,7 +43,7 @@ class Validate extends AbstractFile
                 } catch (\Exception $e) {
                     switch (true) {
                         case $this->startsMovetext($line) && !$this->hasStrTags($tags):
-                            $this->invalid[] = ['tags' => array_filter($tags)];
+                            $this->result->errors[] = ['tags' => array_filter($tags)];
                             $tags = $this->resetTags();
                             $movetext = '';
                             break;
@@ -48,10 +53,12 @@ class Validate extends AbstractFile
                         case $this->endsMovetext($line) && $this->hasStrTags($tags):
                             $movetext .= $line;
                             if (!PgnValidate::movetext($movetext)) {
-                                $this->invalid[] = [
+                                $this->result->errors[] = [
                                     'tags' => array_filter($tags),
                                     'movetext' => $movetext
                                 ];
+                            } else {
+                                $this->result->valid += 1;
                             }
                             $tags = $this->resetTags();
                             $movetext = '';
@@ -65,6 +72,6 @@ class Validate extends AbstractFile
             fclose($file);
         }
 
-        return $this->invalid;
+        return $this->result;
     }
 }
