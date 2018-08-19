@@ -42,28 +42,13 @@ class Validate extends AbstractFile
                     $tags[$tag->name] = $tag->value;
                 } catch (\Exception $e) {
                     switch (true) {
-                        case $this->startsMovetext($line) && !$this->hasStrTags($tags):
+                        case !$this->hasStrTags($tags) && $this->startsMovetext($line):
                             $this->result->errors[] = ['tags' => array_filter($tags)];
                             $tags = $this->resetTags();
                             $movetext = '';
                             break;
-                        case $this->startsMovetext($line) && $this->endsMovetext($line) && $this->hasStrTags($tags):
-                            $movetext .= ' ' . $line;
-                            if (!PgnValidate::movetext($movetext)) {
-                                $this->result->errors[] = [
-                                    'tags' => array_filter($tags),
-                                    'movetext' => trim($movetext)
-                                ];
-                            } else {
-                                $this->result->valid += 1;
-                            }
-                            $tags = $this->resetTags();
-                            $movetext = '';
-                            break;
-                        case $this->startsMovetext($line) && $this->hasStrTags($tags):
-                            $movetext .= ' ' . $line;
-                            break;
-                        case $this->endsMovetext($line) && $this->hasStrTags($tags):
+                        case $this->hasStrTags($tags) &&
+                            (($this->startsMovetext($line) && $this->endsMovetext($line)) || $this->endsMovetext($line)):
                             $movetext .= ' ' . $line;
                             if (!PgnValidate::movetext($movetext)) {
                                 $this->result->errors[] = [
