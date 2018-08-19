@@ -1,9 +1,10 @@
 <?php
+
 namespace PGNChess\PGN;
 
 use PGNChess\Exception\UnknownNotationException;
 use PGNChess\Square\Castling;
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\Piece\Bishop;
 use PGNChess\Piece\King;
 use PGNChess\Piece\Knight;
@@ -39,7 +40,7 @@ class Convert
                     'isCapture' => false,
                     'isCheck' => $isCheck,
                     'type' => Move::KING,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::KING,
                     'position' => (object) [
                         'current' => null,
@@ -53,7 +54,7 @@ class Convert
                     'isCapture' => false,
                     'isCheck' => $isCheck,
                     'type' => Move::KING_CASTLING_SHORT,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::KING,
                     'position' => Castling::info($color)->{Symbol::KING}->{Symbol::CASTLING_SHORT}->position
                 ];
@@ -65,7 +66,7 @@ class Convert
                     'isCapture' => false,
                     'isCheck' => $isCheck,
                     'type' => Move::KING_CASTLING_LONG,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::KING,
                     'position' => Castling::info($color)->{Symbol::KING}->{Symbol::CASTLING_LONG}->position
                 ];
@@ -77,7 +78,7 @@ class Convert
                     'isCapture' => true,
                     'isCheck' => $isCheck,
                     'type' => Move::KING_CAPTURES,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::KING,
                     'position' => (object) [
                         'current' => null,
@@ -98,7 +99,7 @@ class Convert
                     'isCapture' => false,
                     'isCheck' => $isCheck,
                     'type' => Move::PIECE,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => mb_substr($pgn, 0, 1),
                     'position' => (object) [
                         'current' => $currentPosition,
@@ -112,7 +113,7 @@ class Convert
                     'isCapture' => true,
                     'isCheck' => $isCheck,
                     'type' => Move::PIECE_CAPTURES,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => mb_substr($pgn, 0, 1),
                     'position' => (object) [
                         'current' => !$isCheck ? mb_substr(mb_substr($pgn, 0, -3), 1) : mb_substr(mb_substr($pgn, 0, -4), 1),
@@ -133,7 +134,7 @@ class Convert
                     'isCapture' => false,
                     'isCheck' => $isCheck,
                     'type' => Move::KNIGHT,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::KNIGHT,
                     'position' => (object) [
                         'current' => $currentPosition,
@@ -147,7 +148,7 @@ class Convert
                     'isCapture' => true,
                     'isCheck' => $isCheck,
                     'type' => Move::KNIGHT_CAPTURES,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::KNIGHT,
                     'position' => (object) [
                         'current' => !$isCheck ? mb_substr(mb_substr($pgn, 0, -3), 1) : mb_substr(mb_substr($pgn, 0, -4), 1),
@@ -161,7 +162,7 @@ class Convert
                     'isCapture' => false,
                     'isCheck' => $isCheck,
                     'type' => Move::PAWN,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::PAWN,
                     'position' => (object) [
                         'current' => mb_substr($pgn, 0, 1),
@@ -175,7 +176,7 @@ class Convert
                     'isCapture' => true,
                     'isCheck' => $isCheck,
                     'type' => Move::PAWN_CAPTURES,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::PAWN,
                     'position' => (object) [
                         'current' => mb_substr($pgn, 0, 1),
@@ -189,7 +190,7 @@ class Convert
                     'isCapture' => false,
                     'isCheck' => $isCheck,
                     'type' => Move::PAWN_PROMOTES,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::PAWN,
                     'newIdentity' => !$isCheck ? mb_substr($pgn, -1) : mb_substr($pgn, -2, -1),
                     'position' => (object) [
@@ -204,7 +205,7 @@ class Convert
                     'isCapture' => true,
                     'isCheck' => $isCheck,
                     'type' => Move::PAWN_CAPTURES_AND_PROMOTES,
-                    'color' => Validate::color($color),
+                    'color' => PgnValidate::color($color),
                     'identity' => Symbol::PAWN,
                     'newIdentity' => !$isCheck ? mb_substr($pgn, -1) : mb_substr($pgn, -2, -1),
                     'position' => (object) [

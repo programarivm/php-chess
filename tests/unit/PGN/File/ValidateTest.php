@@ -1,12 +1,12 @@
 <?php
 
-namespace PGNChess\Tests\Integration\PGN\File;
+namespace PGNChess\Tests\Unit\PGN\File;
 
 use PGNChess\Db\MySql;
-use PGNChess\PGN\File\Syntax as PgnFileSyntax;
+use PGNChess\PGN\File\Validate as PgnFileValidate;
 use PHPUnit\Framework\TestCase;
 
-class SyntaxTest extends TestCase
+class ValidateTest extends TestCase
 {
     const PGN_FOLDER = __DIR__.'/data/non-str-games';
 
@@ -14,9 +14,9 @@ class SyntaxTest extends TestCase
      * @dataProvider pgnNonStrGames
      * @test
      */
-    public function check_non_str_games($filename, $invalid)
+    public function syntax_non_str_games($filename, $invalid)
     {
-        $result = (new PgnFileSyntax(self::PGN_FOLDER."/$filename"))->check();
+        $result = (new PgnFileValidate(self::PGN_FOLDER."/$filename"))->syntax();
 
         $this->assertEquals($invalid, count($result));
     }

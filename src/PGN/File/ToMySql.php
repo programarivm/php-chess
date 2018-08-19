@@ -3,9 +3,9 @@
 namespace PGNChess\PGN\File;
 
 use PGNChess\Db\MySql;
-use PGNChess\PGN\File\Syntax as PgnFileSyntax;
+use PGNChess\PGN\File\Validate as PgnFileValidate;
 use PGNChess\PGN\Tag;
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 
 /**
  * ToMySql class.
@@ -25,7 +25,7 @@ class ToMySql extends AbstractFile
     {
         parent::__construct($filepath);
 
-        (new PgnFileSyntax($filepath))->check();
+        (new PgnFileValidate($filepath))->syntax();
     }
 
     /**
@@ -50,7 +50,7 @@ class ToMySql extends AbstractFile
             while (!feof($file)) {
                 $line = preg_replace('~[[:cntrl:]]~', '', fgets($file));
                 try {
-                    $tag = Validate::tag($line);
+                    $tag = PgnValidate::tag($line);
                     $tags[$tag->name] = $tag->value;
                 } catch (\Exception $e) {
                     if ($this->startsMovetext($line)) {

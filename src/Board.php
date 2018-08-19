@@ -8,7 +8,7 @@ use PGNChess\Square\Stats;
 use PGNChess\PGN\Convert;
 use PGNChess\PGN\Move;
 use PGNChess\PGN\Symbol;
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\Piece\AbstractPiece;
 use PGNChess\Piece\Bishop;
 use PGNChess\Piece\King;
@@ -163,7 +163,7 @@ final class Board extends \SplObjectStorage
      */
     public function setTurn($color)
     {
-        $this->turn = Validate::color($color);
+        $this->turn = PgnValidate::color($color);
 
         return $this;
     }

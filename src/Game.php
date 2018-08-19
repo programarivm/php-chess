@@ -3,7 +3,7 @@
 namespace PGNChess;
 
 use PGNChess\PGN\Convert;
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 
 /**
  * Game class.
@@ -93,7 +93,7 @@ class Game
     {
         $result = [];
 
-        $pieces = $this->board->getPiecesByColor(Validate::color($color));
+        $pieces = $this->board->getPiecesByColor(PgnValidate::color($color));
 
         foreach ($pieces as $piece) {
             $result[] = (object) [
@@ -114,7 +114,7 @@ class Game
      */
     public function piece($square)
     {
-        $piece = $this->board->getPieceByPosition(Validate::square($square));
+        $piece = $this->board->getPieceByPosition(PgnValidate::square($square));
 
         if ($piece === null) {
             return null;

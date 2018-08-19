@@ -2,16 +2,16 @@
 
 namespace PGNChess\PGN\File;
 
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 
 /**
- * Syntax class.
+ * Validate class.
  *
  * @author Jordi Bassagañas <info@programarivm.com>
  * @link https://programarivm.com
  * @license GPL
  */
-class Syntax extends AbstractFile
+class Validate extends AbstractFile
 {
     private $invalid = [];
 
@@ -25,7 +25,7 @@ class Syntax extends AbstractFile
      *
      * @return mixed array|bool
      */
-    public function check()
+    public function syntax()
     {
         $tags = $this->resetTags();
         $movetext = '';
@@ -33,7 +33,7 @@ class Syntax extends AbstractFile
             while (!feof($file)) {
                 $line = preg_replace('~[[:cntrl:]]~', '', fgets($file));
                 try {
-                    $tag = Validate::tag($line);
+                    $tag = PgnValidate::tag($line);
                     $tags[$tag->name] = $tag->value;
                 } catch (\Exception $e) {
                     switch (true) {
@@ -47,7 +47,7 @@ class Syntax extends AbstractFile
                             break;
                         case $this->endsMovetext($line) && $this->hasStrTags($tags):
                             $movetext .= $line;
-                            if (!Validate::movetext($movetext)) {
+                            if (!PgnValidate::movetext($movetext)) {
                                 $this->invalid[] = [
                                     'tags' => array_filter($tags),
                                     'movetext' => $movetext

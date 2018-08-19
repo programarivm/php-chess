@@ -1,10 +1,11 @@
 <?php
+
 namespace PGNChess\Piece;
 
 use PGNChess\Exception\PieceTypeException;
 use PGNChess\Exception\UnknownNotationException;
 use PGNChess\PGN\Symbol;
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\Piece\AbstractPiece;
 use PGNChess\Piece\Type\RookType;
 
@@ -71,7 +72,7 @@ class Rook extends Slider
         try {
             $file = $this->position[0];
             $rank = (int)$this->position[1] + 1;
-            while (Validate::square($file.$rank)) {
+            while (PgnValidate::square($file.$rank)) {
                 $this->scope->up[] = $file . $rank;
                 $rank = (int)$rank + 1;
             }
@@ -83,7 +84,7 @@ class Rook extends Slider
         try {
             $file = $this->position[0];
             $rank = (int)$this->position[1] - 1;
-            while (Validate::square($file.$rank)) {
+            while (PgnValidate::square($file.$rank)) {
                 $this->scope->bottom[] = $file . $rank;
                 $rank = (int)$rank - 1;
             }
@@ -95,7 +96,7 @@ class Rook extends Slider
         try {
             $file = chr(ord($this->position[0]) - 1);
             $rank = (int)$this->position[1];
-            while (Validate::square($file.$rank)) {
+            while (PgnValidate::square($file.$rank)) {
                 $this->scope->left[] = $file . $rank;
                 $file = chr(ord($file) - 1);
             }
@@ -107,7 +108,7 @@ class Rook extends Slider
         try {
             $file = chr(ord($this->position[0]) + 1);
             $rank = (int)$this->position[1];
-            while (Validate::square($file.$rank)) {
+            while (PgnValidate::square($file.$rank)) {
                 $this->scope->right[] = $file . $rank;
                 $file = chr(ord($file) + 1);
             }

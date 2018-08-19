@@ -1,9 +1,10 @@
 <?php
+
 namespace PGNChess\Piece;
 
 use PGNChess\Piece\Piece;
 use PGNChess\PGN\Symbol;
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 
 /**
  * Class that represents a chess piece.
@@ -27,7 +28,7 @@ abstract class AbstractPiece implements Piece
      * @var \stdClass
      */
     protected $position;
-    
+
     /**
      * The piece's scope.
      *
@@ -62,11 +63,11 @@ abstract class AbstractPiece implements Piece
      * @var \stdClass
      */
     protected static $boardStatus;
-    
+
     /**
      * Chess board control accessible by all pieces.
-     * 
-     * @var \stdClass 
+     *
+     * @var \stdClass
      */
     protected static $boardControl;
 
@@ -79,8 +80,8 @@ abstract class AbstractPiece implements Piece
      */
     public function __construct($color, $square, $identity)
     {
-        $this->color = Validate::color($color);
-        $this->position = Validate::square($square);
+        $this->color = PgnValidate::color($color);
+        $this->position = PgnValidate::square($square);
         $this->scope = [];
         $this->identity = $identity;
     }
@@ -123,7 +124,7 @@ abstract class AbstractPiece implements Piece
     {
         return $this->position;
     }
-    
+
     /**
      * Gets the piece's scope.
      *
@@ -169,7 +170,7 @@ abstract class AbstractPiece implements Piece
     public function setMove(\stdClass $move)
     {
         $this->move = $move;
-        
+
         return $this;
     }
 
@@ -182,7 +183,7 @@ abstract class AbstractPiece implements Piece
     {
         self::$boardStatus = $boardStatus;
     }
-    
+
     /**
      * Sets the board control property.
      *

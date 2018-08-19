@@ -1,9 +1,10 @@
 <?php
+
 namespace PGNChess\Piece;
 
 use PGNChess\Exception\UnknownNotationException;
 use PGNChess\PGN\Symbol;
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\Piece\AbstractPiece;
 
 /**
@@ -24,14 +25,14 @@ class Pawn extends AbstractPiece
      * @var array
      */
     private $ranks;
-    
+
     /**
-     * @var array 
+     * @var array
      */
     private $captureSquares;
-    
+
     /**
-     * @var string 
+     * @var string
      */
     private $enPassantSquare;
 
@@ -48,7 +49,7 @@ class Pawn extends AbstractPiece
         $this->file = $this->position[0];
 
         switch ($this->color) {
-            
+
             case Symbol::WHITE:
                 $this->ranks = (object) [
                     'initial' => 2,
@@ -65,9 +66,9 @@ class Pawn extends AbstractPiece
                 ];
                 break;
         }
-        
+
         $this->captureSquares = [];
-        
+
         $this->scope = (object)[
             'up' => []
         ];
@@ -84,27 +85,27 @@ class Pawn extends AbstractPiece
     {
         return $this->file;
     }
-    
+
     /**
      * Gets the capture squares.
-     * 
+     *
      * @return array
      */
     public function getCaptureSquares()
     {
         return $this->captureSquares;
     }
-    
+
     /**
      * Gets the en passant square.
-     * 
+     *
      * @return string
      */
     public function getEnPassantSquare()
     {
         return $this->enPassantSquare;
     }
-    
+
     /**
      * Calculates the pawn's scope.
      */
@@ -112,7 +113,7 @@ class Pawn extends AbstractPiece
     {
         // next rank
         try {
-            if (Validate::square($this->file . $this->ranks->next, true)) {
+            if (PgnValidate::square($this->file . $this->ranks->next, true)) {
                 $this->scope->up[] = $this->file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
@@ -130,7 +131,7 @@ class Pawn extends AbstractPiece
         // capture square
         try {
             $file = chr(ord($this->file) - 1);
-            if (Validate::square($file.$this->ranks->next, true)) {
+            if (PgnValidate::square($file.$this->ranks->next, true)) {
                 $this->captureSquares[] = $file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
@@ -140,7 +141,7 @@ class Pawn extends AbstractPiece
         // capture square
         try {
             $file = chr(ord($this->file) + 1);
-            if (Validate::square($file.$this->ranks->next, true)) {
+            if (PgnValidate::square($file.$this->ranks->next, true)) {
                 $this->captureSquares[] = $file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
@@ -153,7 +154,7 @@ class Pawn extends AbstractPiece
         $moves = [];
 
         // add up squares
-        
+
         foreach($this->scope->up as $square) {
             if (in_array($square, self::$boardStatus->squares->free)) {
                 $moves[] = $square;
@@ -163,7 +164,7 @@ class Pawn extends AbstractPiece
         }
 
         // add capture squares
-        
+
         foreach($this->captureSquares as $square) {
             if (in_array($square, self::$boardStatus->squares->used->{$this->getOppositeColor()})) {
                 $moves[] = $square;
@@ -171,26 +172,26 @@ class Pawn extends AbstractPiece
         }
 
         // en passant implementation
-        
+
         if (isset(self::$boardStatus->lastHistoryEntry) &&
-            self::$boardStatus->lastHistoryEntry->move->identity === Symbol::PAWN && 
+            self::$boardStatus->lastHistoryEntry->move->identity === Symbol::PAWN &&
             self::$boardStatus->lastHistoryEntry->move->color === $this->getOppositeColor()) {
-            
+
             switch ($this->getColor()) {
 
                 case Symbol::WHITE:
 
                     if ((int)$this->position[1] === 5) {
-                        
-                        $captureSquare = 
-                            self::$boardStatus->lastHistoryEntry->move->position->next[0] . 
+
+                        $captureSquare =
+                            self::$boardStatus->lastHistoryEntry->move->position->next[0] .
                             (self::$boardStatus->lastHistoryEntry->move->position->next[1]+1);
-                            
+
                         if (in_array($captureSquare, $this->captureSquares)) {
                             $this->enPassantSquare = self::$boardStatus->lastHistoryEntry->move->position->next;
-                            $moves[] = $captureSquare;                            
+                            $moves[] = $captureSquare;
                         }
-                        
+
                     }
 
                     break;
@@ -198,27 +199,27 @@ class Pawn extends AbstractPiece
                 case Symbol::BLACK:
 
                     if ((int)$this->position[1] === 4) {
-                        
-                        $captureSquare = 
-                            self::$boardStatus->lastHistoryEntry->move->position->next[0] . 
+
+                        $captureSquare =
+                            self::$boardStatus->lastHistoryEntry->move->position->next[0] .
                             (self::$boardStatus->lastHistoryEntry->move->position->next[1]-1);
-                        
+
                         if (in_array($captureSquare, $this->captureSquares)) {
                             $this->enPassantSquare = self::$boardStatus->lastHistoryEntry->move->position->next;
-                            $moves[] = $captureSquare;                            
+                            $moves[] = $captureSquare;
                         }
 
                     }
 
                     break;
-                    
+
             }
 
         }
 
         return $moves;
     }
-    
+
     /**
      * Checks whether the pawn is promoted.
      *

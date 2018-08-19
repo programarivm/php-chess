@@ -1,9 +1,10 @@
 <?php
+
 namespace PGNChess\Piece;
 
 use PGNChess\Exception\UnknownNotationException;
 use PGNChess\PGN\Symbol;
-use PGNChess\PGN\Validate;
+use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\Piece\AbstractPiece;
 
 /**
@@ -44,7 +45,7 @@ class Bishop extends Slider
         try {
             $file = chr(ord($this->position[0]) - 1);
             $rank = (int)$this->position[1] + 1;
-            while (Validate::square($file.$rank)) {
+            while (PgnValidate::square($file.$rank)) {
                 $this->scope->upLeft[] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank + 1;
@@ -57,7 +58,7 @@ class Bishop extends Slider
         try {
             $file = chr(ord($this->position[0]) + 1);
             $rank = (int)$this->position[1] + 1;
-            while (Validate::square($file.$rank)) {
+            while (PgnValidate::square($file.$rank)) {
                 $this->scope->upRight[] = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank + 1;
@@ -70,7 +71,7 @@ class Bishop extends Slider
         try {
             $file = chr(ord($this->position[0]) - 1);
             $rank = (int)$this->position[1] - 1;
-            while (Validate::square($file.$rank))
+            while (PgnValidate::square($file.$rank))
             {
                 $this->scope->bottomLeft[] = $file . $rank;
                 $file = chr(ord($file) - 1);
@@ -84,7 +85,7 @@ class Bishop extends Slider
         try {
             $file = chr(ord($this->position[0]) + 1);
             $rank = (int)$this->position[1] - 1;
-            while (Validate::square($file.$rank))
+            while (PgnValidate::square($file.$rank))
             {
                 $this->scope->bottomRight[] = $file . $rank;
                 $file = chr(ord($file) + 1);
