@@ -70,6 +70,10 @@ class Validate extends AbstractFile
             fclose($file);
         }
 
+        if (empty($this->result->errors)) {
+            unset($this->result->errors);
+        }
+
         return $this->result;
     }
 }

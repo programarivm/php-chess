@@ -10,6 +10,25 @@ class ValidateTest extends TestCase
     const DATA_FOLDER = __DIR__.'/data';
 
     /**
+     * @dataProvider gamesWithThreeInvalidData
+     * @test
+     */
+    public function syntax_games_with_three_invalid($filename)
+    {
+        $result = (new PgnFileValidate(self::DATA_FOLDER."/$filename"))->syntax();
+
+        $this->assertTrue($result->valid > 0);
+        $this->assertEquals(3, count($result->errors));
+    }
+
+    public function gamesWithThreeInvalidData()
+    {
+        return [
+            ['games-01-with-three-invalid.pgn'],
+        ];
+    }
+
+    /**
      * @dataProvider gamesData
      * @test
      */
@@ -17,7 +36,8 @@ class ValidateTest extends TestCase
     {
         $result = (new PgnFileValidate(self::DATA_FOLDER."/$filename"))->syntax();
 
-        $this->assertEquals(0, count($result->errors));
+        $this->assertTrue($result->valid > 0);
+        $this->assertTrue(!isset($result->errors));
     }
 
     public function gamesData()
@@ -58,7 +78,7 @@ class ValidateTest extends TestCase
         $result = (new PgnFileValidate(self::DATA_FOLDER."/$filename"))->syntax();
 
         $this->assertEquals(0, $result->valid);
-        $this->assertEquals(0, count($result->errors));
+        $this->assertTrue(!isset($result->errors));
     }
 
     public function textData()
