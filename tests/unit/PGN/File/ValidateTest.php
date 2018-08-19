@@ -2,7 +2,6 @@
 
 namespace PGNChess\Tests\Unit\PGN\File;
 
-use PGNChess\Db\MySql;
 use PGNChess\PGN\File\Validate as PgnFileValidate;
 use PHPUnit\Framework\TestCase;
 
