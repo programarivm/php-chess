@@ -757,6 +757,16 @@ Will generate this `$captures` array:
 
 ### 4. Command Line Interface (CLI)
 
+Make sure to have an `.env` file in your app's root folder:
+
+    APP_ENV=dev
+
+    DB_HOST=localhost
+    DB_USER=root
+    DB_PASSWORD=root
+    DB_NAME=pgn_chess
+    DB_PORT=3306
+
 #### 4.1. `createdb.php`
 
 Creates a MySQL PGN Chess database.
