@@ -789,7 +789,7 @@ This is the output generated.
 
 Checks if the syntax of a PGN file is valid.
 
-    php pgnsyntax.php games-01-with-three-invalid.pgn 
+    php pgnsyntax.php games.pgn 
     Whoops! Sorry but this is not a valid PGN file.
     --------------------------------------------------------
     Site: Bhubaneswar IND
