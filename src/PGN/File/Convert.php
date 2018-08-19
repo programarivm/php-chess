@@ -33,9 +33,7 @@ class Convert extends AbstractFile
     }
 
     /**
-     * Converts a pgn file into MySql code.
-     *
-     * Precondition: the input file is valid pgn.
+     * Converts a valid pgn file into a MySQL INSERT statement.
      *
      * @return string The MySQL code
      */

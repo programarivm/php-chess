@@ -26,9 +26,9 @@ class Validate extends AbstractFile
     }
 
     /**
-     * Checks if the syntax of a PGN file is valid.
+     * Checks the syntax of a PGN file.
      *
-     * @return mixed array|bool
+     * @return \stdClass
      */
     public function syntax()
     {

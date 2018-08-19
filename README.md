@@ -787,9 +787,9 @@ This is the output generated.
 
 #### 4.3. `pgnsyntax.php`
 
-Checks if the syntax of a PGN file is valid.
+Checks the syntax of a PGN file.
 
-    php pgnsyntax.php games.pgn 
+    php pgnsyntax.php games.pgn
     Whoops! Sorry but this is not a valid PGN file.
     --------------------------------------------------------
     Site: Bhubaneswar IND
