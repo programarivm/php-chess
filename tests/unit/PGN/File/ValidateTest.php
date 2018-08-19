@@ -11,7 +11,27 @@ class ValidateTest extends TestCase
     const DATA_FOLDER = __DIR__.'/data';
 
     /**
-     * @dataProvider pgnNonStrGamesData
+     * @dataProvider gamesData
+     * @test
+     */
+    public function syntax_games($filename)
+    {
+        $result = (new PgnFileValidate(self::DATA_FOLDER."/$filename"))->syntax();
+
+        $this->assertEquals(0, count($result->errors));
+    }
+
+    public function gamesData()
+    {
+        return [
+            ['games-01.pgn'],
+            ['games-02.pgn'],
+            ['games-03.pgn'],
+        ];
+    }
+
+    /**
+     * @dataProvider nonStrGamesData
      * @test
      */
     public function syntax_non_str_games($filename, $invalid)
@@ -21,7 +41,7 @@ class ValidateTest extends TestCase
         $this->assertEquals($invalid, count($result->errors));
     }
 
-    public function pgnNonStrGamesData()
+    public function nonStrGamesData()
     {
         return [
             ['non-str-games-01.pgn', 8],

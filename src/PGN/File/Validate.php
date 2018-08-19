@@ -47,15 +47,28 @@ class Validate extends AbstractFile
                             $tags = $this->resetTags();
                             $movetext = '';
                             break;
-                        case $this->startsMovetext($line) && $this->hasStrTags($tags):
-                            $movetext .= $line;
-                            break;
-                        case $this->endsMovetext($line) && $this->hasStrTags($tags):
-                            $movetext .= $line;
+                        case $this->startsMovetext($line) && $this->endsMovetext($line) && $this->hasStrTags($tags):
+                            $movetext .= ' ' . $line;
                             if (!PgnValidate::movetext($movetext)) {
                                 $this->result->errors[] = [
                                     'tags' => array_filter($tags),
-                                    'movetext' => $movetext
+                                    'movetext' => trim($movetext)
+                                ];
+                            } else {
+                                $this->result->valid += 1;
+                            }
+                            $tags = $this->resetTags();
+                            $movetext = '';
+                            break;
+                        case $this->startsMovetext($line) && $this->hasStrTags($tags):
+                            $movetext .= ' ' . $line;
+                            break;
+                        case $this->endsMovetext($line) && $this->hasStrTags($tags):
+                            $movetext .= ' ' . $line;
+                            if (!PgnValidate::movetext($movetext)) {
+                                $this->result->errors[] = [
+                                    'tags' => array_filter($tags),
+                                    'movetext' => trim($movetext)
                                 ];
                             } else {
                                 $this->result->valid += 1;
@@ -64,7 +77,7 @@ class Validate extends AbstractFile
                             $movetext = '';
                             break;
                         case $this->hasStrTags($tags):
-                            $movetext .= $line;
+                            $movetext .= ' ' . $line;
                             break;
                     }
                 }

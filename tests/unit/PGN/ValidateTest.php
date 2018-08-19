@@ -308,6 +308,7 @@ class ValidateTest extends TestCase
             ['movetext-01.txt'],
             ['movetext-02.txt'],
             ['movetext-03.txt'],
+            ['movetext-04.txt'],
         ];
     }
 }

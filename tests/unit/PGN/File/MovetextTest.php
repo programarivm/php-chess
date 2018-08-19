@@ -28,6 +28,7 @@ class MovetextTest extends TestCase
             ['movetext-01.pgn', 'movetext-01.txt'],
             ['movetext-02.pgn', 'movetext-02.txt'],
             ['movetext-03.pgn', 'movetext-03.txt'],
+            ['movetext-04.pgn', 'movetext-04.txt'],
         ];
     }
 }
