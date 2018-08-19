@@ -25,7 +25,7 @@ class MovetextTest extends TestCase
     public function movetextData()
     {
         $data = [];
-        for ($i = 1; $i <= 2; ++$i) {
+        for ($i = 1; $i <= 3; ++$i) {
             $i <= 9
                 ? $data[] = ["0$i-movetext.pgn", "0$i-string.pgn"]
                 : $data[] = ["$i-movetext.pgn", "$i-string.pgn"];
