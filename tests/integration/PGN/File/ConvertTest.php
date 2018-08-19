@@ -3,10 +3,10 @@
 namespace PGNChess\Tests\Integration\PGN\File;
 
 use PGNChess\Db\MySql;
-use PGNChess\PGN\File\ToMySql as PgnFileToMySql;
+use PGNChess\PGN\File\Convert as PgnFileConvert;
 use PHPUnit\Framework\TestCase;
 
-class ToMySqlTest extends TestCase
+class ConvertTest extends TestCase
 {
     const PGN_FOLDER = __DIR__.'/data';
 
@@ -29,7 +29,7 @@ class ToMySqlTest extends TestCase
      */
     public function convert_games($filename)
     {
-        $sql = (new PgnFileToMySql(self::PGN_FOLDER."/$filename"))->convert();
+        $sql = (new PgnFileConvert(self::PGN_FOLDER."/$filename"))->toMySql();
         $result = MySql::getInstance()->query($sql);
 
         $this->assertNotEquals(false, $result);

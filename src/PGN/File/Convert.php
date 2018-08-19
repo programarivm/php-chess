@@ -3,18 +3,18 @@
 namespace PGNChess\PGN\File;
 
 use PGNChess\Db\MySql;
-use PGNChess\PGN\File\Validate as PgnFileValidate;
 use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate as PgnValidate;
+use PGNChess\PGN\File\Validate as PgnFileValidate;
 
 /**
- * ToMySql class.
+ * Convert class.
  *
  * @author Jordi Bassagañas <info@programarivm.com>
  * @link https://programarivm.com
  * @license GPL
  */
-class ToMySql extends AbstractFile
+class Convert extends AbstractFile
 {
     /**
      * Constructor.
@@ -35,7 +35,7 @@ class ToMySql extends AbstractFile
      *
      * @return string The MySQL code
      */
-    public function convert()
+    public function toMySql()
     {
         $sql = 'INSERT INTO games (';
         foreach (Tag::getConstants() as $key => $value) {
