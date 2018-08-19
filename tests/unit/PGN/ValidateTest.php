@@ -10,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 class ValidateTest extends TestCase
 {
+    const PGN_FOLDER = __DIR__.'/File/data';
+
     /**
      * @test
      */
@@ -287,5 +289,25 @@ class ValidateTest extends TestCase
         $this->assertFalse(PgnValidate::movetext(
             '1.Nf3 Nf6 2.c4 c5 3.g3 BAR 4.Bg2 FOO 5.O-O e6 6.FOOBAR 7.d4 cxd4 8.Qxd4 d6'
         ));
+    }
+
+    /**
+     * @dataProvider movetextData
+     * @test
+     */
+    public function movetexts_data($filename)
+    {
+        $string = preg_replace('~[[:cntrl:]]~', '', file_get_contents(self::PGN_FOLDER."/movetext/$filename"));
+
+        $this->assertTrue(PgnValidate::movetext($string));
+    }
+
+    public function movetextData()
+    {
+        return [
+            ['01-string.pgn'],
+            ['02-string.pgn'],
+            ['03-string.pgn'],
+        ];
     }
 }
