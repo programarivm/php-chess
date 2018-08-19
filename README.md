@@ -789,7 +789,47 @@ This is the output generated.
 
 Checks if the syntax of a PGN file is valid.
 
-    // TODO
+    php pgnsyntax.php games-01-with-three-invalid.pgn 
+    Whoops! Sorry but this is not a valid PGN file.
+    --------------------------------------------------------
+    Site: Bhubaneswar IND
+    Date: 2018.05.28
+    Round: 5.3
+    White: Nitin, S
+    Black: Amonatov, Farrukh
+    Result: 0-1
+    WhiteElo: 2432
+    BlackElo: 2608
+    EventDate: 2018.05.25
+    ECO: B90
+    --------------------------------------------------------
+    Event: 11. KIIT Elite Open 2018
+    Site: Bhubaneswar IND
+    Date: 2018.05.28
+    Round: 5.17
+    White: Raahul, V S
+    Black: Neverov, Valeriy
+    Result: 1/2-1/2
+    WhiteElo: 2231
+    BlackElo: 2496
+    EventDate: 2018.05.25
+    ECO: A25
+    1.foo f5 2.Nc3 Nf6 3.g3 e5 4.Bg2 Nc6 5.e3 Bb4 6.Nge2 O-O 7.O-O d6 8.Nd5 Nxd5 9.cxd5 Ne7 10.d4 Ba5 11.b4 Bb6 12.dxe5 dxe5 13.Qb3 Kh8 14.a4 a6 15. Bb2 Ng6 16.a5 Ba7 17.Qc3 Re8 18.Nf4 Re7 19.Nxg6+ hxg6 20.Rac1 Rb8 21.b5 b6 22.Ba3 Rf7 23.axb6 Rxb6 24.Bc5 e4 25.Bxb6 Bxb6 26.bxa6 Bxa6 27.Rfd1 Rd7 28.Qe5 Rd6 29.Bf1 Bxf1 30.Kxf1 c6 31.Kg2 Kh7 32.h4 cxd5 33.h5 Qd7 34.Rh1 g5 35.Rc8 f4 36.h6 f3+ 37.Kg1 Rxh6 38.Rh8+ Kg6 39.R1xh6+ gxh6 40.Rg8+ Kh5 41.Qf6 Bxe3 42.fxe3 Qc7 43.Qg6+ Kg4 44.Qe6+ Kxg3 45.Rc8 Qa7 46.Qd6+ Kg4 47.Qe6+ Kg3 48.Qd6+ Kg4 1/2-1/2
+    --------------------------------------------------------
+    Event: TCh-FRA Top 12 2018
+    Site: Brest FRA
+    Date: 2018.05.28
+    Round: 3.6
+    White: Eljanov, Pavel
+    Black: Ragger, Markus
+    Result: 1/2-1/2
+    WhiteElo: 2702
+    BlackElo: 2672
+    EventDate: 2018.05.26
+    ECO: A34
+    1.Nf3 Nf6 20.c4 c5 3.Nc3 d5 4.cxd5 Nxd5 5.e3 e6 6.Bb5+ Bd7 7.Be2 Nc6 8.O-O Be7 9.d4 cxd4 10.Nxd5 exd5 11.exd4 O-O 12.Ne5 Bf5 13.Be3 Bf6 14.Nxc6 bxc6 15.Bd3 Bxd3 16.Qxd3 Qb6 17.Rfc1 Rfe8 18.Qc3 1/2-1/2
+    --------------------------------------------------------
+    Please check these games. Do they provide the STR (Seven Tag Roster)? Is the movetext valid?
 
 ### 5. License
 
