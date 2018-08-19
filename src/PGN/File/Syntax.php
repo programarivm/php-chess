@@ -38,7 +38,7 @@ class Syntax extends AbstractFile
                 } catch (\Exception $e) {
                     switch (true) {
                         case $this->startsMovetext($line) && !$this->hasStrTags($tags):
-                            $this->invalid[] = $tags;
+                            $this->invalid[] = ['tags' => array_filter($tags)];
                             $tags = $this->resetTags();
                             $movetext = '';
                             break;
@@ -47,7 +47,12 @@ class Syntax extends AbstractFile
                             break;
                         case $this->endsMovetext($line) && $this->hasStrTags($tags):
                             $movetext .= $line;
-                            Validate::movetext($movetext) ? true : $this->invalid[] = $tags;
+                            if (!Validate::movetext($movetext)) {
+                                $this->invalid[] = [
+                                    'tags' => array_filter($tags),
+                                    'movetext' => $movetext
+                                ];
+                            }
                             $tags = $this->resetTags();
                             $movetext = '';
                             break;
