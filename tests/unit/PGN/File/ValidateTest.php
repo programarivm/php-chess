@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class ValidateTest extends TestCase
 {
-    const PGN_FOLDER = __DIR__.'/data';
+    const DATA_FOLDER = __DIR__.'/data';
 
     /**
      * @dataProvider pgnNonStrGamesData
@@ -16,7 +16,7 @@ class ValidateTest extends TestCase
      */
     public function syntax_non_str_games($filename, $invalid)
     {
-        $result = (new PgnFileValidate(self::PGN_FOLDER."/non-str-games/$filename"))->syntax();
+        $result = (new PgnFileValidate(self::DATA_FOLDER."/$filename"))->syntax();
 
         $this->assertEquals($invalid, count($result->errors));
     }
@@ -24,9 +24,9 @@ class ValidateTest extends TestCase
     public function pgnNonStrGamesData()
     {
         return [
-            ['01-non-str-games.pgn', 8],
-            ['02-non-str-games.pgn', 17],
-            ['03-non-str-games.pgn', 15],
+            ['non-str-games-01.pgn', 8],
+            ['non-str-games-02.pgn', 17],
+            ['non-str-games-03.pgn', 15],
         ];
     }
 
@@ -36,7 +36,7 @@ class ValidateTest extends TestCase
      */
     public function syntax_text($filename)
     {
-        $result = (new PgnFileValidate(self::PGN_FOLDER."/text/$filename"))->syntax();
+        $result = (new PgnFileValidate(self::DATA_FOLDER."/$filename"))->syntax();
 
         $this->assertEquals(0, $result->valid);
         $this->assertEquals(0, count($result->errors));
@@ -45,9 +45,9 @@ class ValidateTest extends TestCase
     public function textData()
     {
         return [
-            ['01-text.pgn'],
-            ['02-text.pgn'],
-            ['03-text.pgn'],
+            ['text-01.pgn'],
+            ['text-02.pgn'],
+            ['text-03.pgn'],
         ];
     }
 }

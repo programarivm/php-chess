@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class ValidateTest extends TestCase
 {
-    const PGN_FOLDER = __DIR__.'/File/data';
+    const DATA_FOLDER = __DIR__.'/File/data';
 
     /**
      * @test
@@ -297,7 +297,7 @@ class ValidateTest extends TestCase
      */
     public function movetexts_data($filename)
     {
-        $string = preg_replace('~[[:cntrl:]]~', '', file_get_contents(self::PGN_FOLDER."/movetext/$filename"));
+        $string = preg_replace('~[[:cntrl:]]~', '', file_get_contents(self::DATA_FOLDER."/$filename"));
 
         $this->assertTrue(PgnValidate::movetext($string));
     }
@@ -305,9 +305,9 @@ class ValidateTest extends TestCase
     public function movetextData()
     {
         return [
-            ['01-string.pgn'],
-            ['02-string.pgn'],
-            ['03-string.pgn'],
+            ['movetext-01.txt'],
+            ['movetext-02.txt'],
+            ['movetext-03.txt'],
         ];
     }
 }

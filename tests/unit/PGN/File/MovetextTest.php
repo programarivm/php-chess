@@ -8,29 +8,26 @@ use PHPUnit\Framework\TestCase;
 
 class MovetextTest extends TestCase
 {
-    const PGN_FOLDER = __DIR__.'/data/movetext';
+    const DATA_FOLDER = __DIR__.'/data';
 
     /**
      * @dataProvider movetextData
      * @test
      */
-    public function to_string($movetext, $string)
+    public function to_string($pgn, $txt)
     {
-        $movetextToString = (new PgnFileMovetext(self::PGN_FOLDER."/$movetext"))->toString();
-        $string = preg_replace('~[[:cntrl:]]~', '', file_get_contents(self::PGN_FOLDER."/$string"));
+        $movetextToTxt = (new PgnFileMovetext(self::DATA_FOLDER."/$pgn"))->toString();
+        $string = preg_replace('~[[:cntrl:]]~', '', file_get_contents(self::DATA_FOLDER."/$txt"));
 
-        $this->assertEquals($movetextToString, $string);
+        $this->assertEquals($movetextToTxt, $string);
     }
 
     public function movetextData()
     {
-        $data = [];
-        for ($i = 1; $i <= 3; ++$i) {
-            $i <= 9
-                ? $data[] = ["0$i-movetext.pgn", "0$i-string.pgn"]
-                : $data[] = ["$i-movetext.pgn", "$i-string.pgn"];
-        }
-
-        return $data;
+        return [
+            ['movetext-01.pgn', 'movetext-01.txt'],
+            ['movetext-02.pgn', 'movetext-02.txt'],
+            ['movetext-03.pgn', 'movetext-03.txt'],
+        ];
     }
 }
