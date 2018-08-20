@@ -62,7 +62,7 @@ class Convert extends AbstractFile
                             isset($value) ? $sql .= "'".MySql::getInstance()->escape($value)."', " : $sql .= 'null, ';
                         }
                         $movetext = MySql::getInstance()->escape($movetext.$line);
-                        $sql .= "'$movetext'),(";
+                        $sql .= "'$movetext'),(" . PHP_EOL;
                         $tags = $this->resetTags();
                         $movetext = '';
                     } else {
@@ -72,7 +72,7 @@ class Convert extends AbstractFile
             }
             fclose($file);
         }
-        $sql = substr($sql, 0, -2).';'.PHP_EOL;
+        $sql = substr($sql, 0, -3).';'.PHP_EOL;
 
         return $sql;
     }
