@@ -1,3 +1,32 @@
+[Event "8. Amplico AIG Life Rapid"]
+[Site "Warsaw POL"]
+[Date "2008.12.20"]
+[Round "8"]
+[White "Schmidt, Wlodzimierz"]
+[Black "Muzychuk, Anna"]
+[Result "*"]
+[WhiteElo "2399"]
+[BlackElo "2508"]
+[ECO "A81"]
+[EventDate "2008.12.20"]
+
+1.d4 f5 2.Nf3 Nf6 3.g3 g6 4.Bg2 Bg7 5.b4 O-O 6.Bb2 d6 7.c4 e5 8.dxe5 Nfd7
+9.O-O Nc6 10.Qb3 Ndxe5 11.Nbd2 Be6 12.Rac1 a6 13.e3 Qe7 14.Nd4 Bf7 15.a3
+Rae8 16.Qc2 Nd8 17.Rfe1 c5 18.N4b3 b6 19.h3 g5 20.f4 Ng6 21.Bxg7 Kxg7 22.
+Nf3 h6 23.Rcd1 Be6 24.Qc3+ Kh7 25.Nbd2 Nf7 26.e4 Qd7 27.exf5 Bxf5 28.g4
+Nxf4 29.gxf5 Ne2+ 30.Rxe2 Rxe2 31.Nf1 Qxf5 32.Ng3 Qc2 33.Nxe2 Qxd1+ 34.Qe1
+Qxe1+ 35.Nxe1 Ne5 36.Bd5 cxb4 37.axb4 a5 38.Nc2 Rc8 39.bxa5 bxa5 40.Na3
+Rf8 41.Nd4 Kg6 42.Nab5 Rf6 43.Kg2 h5 44.Ne6 a4 45.Nxd6 a3 46.c5 Nd3 47.c6
+Rxe6 48.c7 Re2+ 49.Kf3 Rc2 50.Nc4 Rf2+ 51.Ke3 Rf8 52.Nxa3 Nc5 53.Nb5 Rc8
+54.Kd4 Na6 55.Be6 Rxc7 56.Nxc7 Nxc7 57.Bd7 Kf6 58.Ke4 Ne6 59.Bc8 Nc5+ 60.
+Kd5 Nd3 61.Ke4 Ne5 62.Kd5 Nf7 63.Bd7 Ne5 64.Bc8 Nf3 65.Bd7 Nd2 66.Bc8 Nf1
+67.Bd7 Ng3 68.Be8 Kf5 69.Bd7+ Kf4 70.Ke6 Ne4 71.Kf7 Nf2 72.Kg6 h4 73.Kh5
+Ne4 74.Kg6 Nc5 75.Bc8 Nd3 76.Be6 Nf2 77.Kh5 Ne4 78.Kg6 Nd2 79.Kh5 Nf1 80.
+Bc8 Ng3+ 81.Kg6 Nh1 82.Kh5 Nf2 83.Bd7 Nd3 84.Bc8 Nb4 85.Bd7 Nd5 86.Bc8 Ne7
+87.Bd7 Nf5 88.Bc8 Ne3 89.Bd7 Nd1 90.Bc8 Nc3 91.Bd7 Ne4 92.Bc8 Nf6+ 93.Kg6
+Ng8 94.Kh5 Ne7 95.Bd7 Nf5 96.Bc8 Nd6 97.Bd7 Nf7 98.Be6 Ne5 99.Bc8 g4 100.
+Bxg4 Nxg4 101.Kxh4 *
+
 [Event "TCh-FRA Top 12 2018"]
 [Site "Brest FRA"]
 [Date "2018.05.28"]

@@ -18,6 +18,26 @@ exf4 16.Bxf4 Bg4 17.c5 Bxf3 18.Bxf3 Bh4 19.Qb3+ Qf7 20.Qd5 Kh8 21.Qf5 Qg6+
 Rd8+ Re8 35.Rd6 Kg8 36.a4 Kf7 37.a5 Re6 38.Rd8 a6 39.Rb8 Re7 40.Rc8 Nd5
 41.c6 Nxb4 42.c7 Ke6 0-1
 
+[Event "Open A"]
+[Site "Prague CZE"]
+[Date "2008.01.12"]
+[Round "2"]
+[White "Krischke, Arnold"]
+[Black "Gross, Georg"]
+[Result "*"]
+[WhiteElo "2089"]
+[BlackElo "2303"]
+[ECO "A86"]
+[EventDate "2008.01.11"]
+
+1.c4 f5 2.Nc3 Nf6 3.g3 g6 4.Bg2 Bg7 5.d4 O-O 6.Nh3 d6 7.d5 Na6 8.O-O Nc5
+9.Be3 Nfe4 10.Nxe4 Nxe4 11.Qc1 c6 12.Ng5 cxd5 13.cxd5 Nxg5 14.Bxg5 Bd7 15.
+Qe3 Rf7 16.Qd2 Bf6 17.Bf4 a5 18.Rac1 Rf8 19.Rc2 Qb6 20.Be3 Qb5 21.Rfc1 a4
+22.Bd4 Bxd4 23.Qxd4 Rac8 24.e3 Rxc2 25.Rxc2 Rc8 26.Bf1 Qa5 27.Rxc8+ Bxc8
+28.Qc3 Qxc3 29.bxc3 a3 30.Bc4 Kf7 31.Kf1 Ke8 32.Ke2 Kd8 33.Kd3 Kc7 34.Bb5
+Kb6 35.Kc4 e6 36.Kb4 exd5 37.Bd3 Be6 38.Kxa3 Kc5 39.Kb2 Bd7 40.h4 Ba4 41.
+h5 Bd1 42.h6 Bf3 43.a4 d4 44.exd4+ Kb6 45.Bc4 Bc6 46.Bf7 *
+
 [Event "TCh-FRA Top 12 2018"]
 [Site "Brest FRA"]
 [Date "2018.05.26"]

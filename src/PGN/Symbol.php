@@ -29,6 +29,7 @@ class Symbol
     const RESULT_WHITE_WINS = '1-0';
     const RESULT_BLACK_WINS = '0-1';
     const RESULT_DRAW = '1/2-1/2';
+    const RESULT_UNKNOWN = '*';
 
     /**
      * Gets the opposite color.

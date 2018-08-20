@@ -2,6 +2,7 @@
 
 namespace PGNChess\PGN\File;
 
+use PGNChess\PGN\Symbol;
 use PGNChess\PGN\Tag;
 
 /**
@@ -27,7 +28,10 @@ abstract class AbstractFile
 
     protected function endsMovetext($line)
     {
-        return $this->endsWith($line, '0-1') || $this->endsWith($line, '1-0') || $this->endsWith($line, '1/2-1/2');
+        return $this->endsWith($line, Symbol::RESULT_WHITE_WINS) ||
+            $this->endsWith($line, Symbol::RESULT_BLACK_WINS) ||
+            $this->endsWith($line, Symbol::RESULT_DRAW) ||
+            $this->endsWith($line, Symbol::RESULT_UNKNOWN);
     }
 
     protected function startsWith($haystack, $needle)

@@ -48,7 +48,7 @@ class Validate
 
         return $square;
     }
-    
+
     /**
      * Validates a tag.
      *
@@ -116,7 +116,8 @@ class Validate
         foreach ($notations as $move) {
             if ($move !== Symbol::RESULT_WHITE_WINS &&
                 $move !== Symbol::RESULT_BLACK_WINS &&
-                $move !== Symbol::RESULT_DRAW
+                $move !== Symbol::RESULT_DRAW &&
+                $move !== Symbol::RESULT_UNKNOWN
             ) {
                 try {
                     Convert::toObject(Symbol::WHITE, $move);

@@ -95,6 +95,25 @@ Bd6 9.O-O O-O 10.b3 Na5 11.Nf4 Bxf4 12.exf4 b6 13.Ba6 c6 14.Re1 Rfe8 15.a4
 Qd6 16.g3 Bf7 17.Qd3 Re7 18.Rxe7 Qxe7 19.Kf1 Re8 20.Qd2 Qb4 21.Ne4 Qe7 22.
 Nc3 Qb4 23.Ne4 Qe7 24.Nc3 1/2-1/2
 
+[Event "St.op ;EXT 91op"]
+[Site "St.Martin op ;EXT 91op"]
+[Date "1991.??.??"]
+[Round "4"]
+[White "Gurevich, D."]
+[Black "Moskalenko, V."]
+[Result "*"]
+[WhiteElo "2460"]
+[BlackElo "2525"]
+[ECO "A80"]
+[EventDate "1991.??.??"]
+
+1.Nf3 e6 2.d4 f5 3.d5 Nf6 4.dxe6 dxe6 5.Qxd8+ Kxd8 6.Bf4 Bd6 7.e3 Nc6 8.
+Nc3 e5 9.Bg5 Be6 10.Bxf6+ gxf6 11.g3 Ke7 12.Bh3 Bb4 13.Nh4 f4 14.Bxe6 Kxe6
+15.exf4 exf4 16.O-O-O Bxc3 17.bxc3 Rad8 18.gxf4 Rxd1+ 19.Rxd1 Rg8 20.h3
+Rd8 21.Rd3 Rxd3 22.cxd3 Ne7 23.Kd2 c5 24.Ng2 b5 25.c4 b4 26.Kc2 Nc6 27.Kb3
+Nd4+ 28.Ka4 Ne2 29.a3 bxa3 30.Kxa3 Nc1 31.Ne1 Ne2 32.Ng2 Kd6 33.Kb3 Ng1
+34.h4 Nh3 *
+
 [Event "93. ch-ARG Semi-Final"]
 [Site "Buenos Aires ARG"]
 [Date "2018.05.20"]
