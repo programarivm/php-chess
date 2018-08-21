@@ -60,8 +60,15 @@ class Seed extends AbstractFile
                                     'movetext' => trim($movetext)
                                 ];
                             } else {
-                                $this->result->valid += 1;
-                                Pdo::getInstance()->query($this->sql(), $this->values($tags, $movetext));
+                                try {
+                                    Pdo::getInstance()->query($this->sql(), $this->values($tags, $movetext));
+                                    $this->result->valid += 1;
+                                } catch (\Exception $e) {
+                                    $this->result->errors[] = [
+                                        'tags' => array_filter($tags),
+                                        'movetext' => trim($movetext)
+                                    ];
+                                }
                             }
                             $tags = $this->resetTags();
                             $movetext = '';
