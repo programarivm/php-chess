@@ -70,4 +70,23 @@ class Tag
     {
         return (new \ReflectionClass(get_called_class()))->getConstants();
     }
+
+    public static function isStr($tags)
+    {
+        return isset($tags[Tag::EVENT]) &&
+            isset($tags[Tag::SITE]) &&
+            isset($tags[Tag::DATE]) &&
+            isset($tags[Tag::ROUND]) &&
+            isset($tags[Tag::WHITE]) &&
+            isset($tags[Tag::BLACK]) &&
+            isset($tags[Tag::RESULT]);
+    }
+
+    public static function reset(&$tags)
+    {
+        $tags = [];
+        foreach (Tag::getConstants() as $key => $value) {
+            $tags[$value] = null;
+        }
+    }
 }

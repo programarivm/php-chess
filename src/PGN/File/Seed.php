@@ -8,13 +8,6 @@ use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\PGN\File\Validate as PgnFileValidate;
 
-/**
- * Seed class.
- *
- * @author Jordi Bassagañas <info@programarivm.com>
- * @link https://programarivm.com
- * @license GPL
- */
 class Seed extends AbstractFile
 {
     private $result = [];
@@ -29,14 +22,9 @@ class Seed extends AbstractFile
         ];
     }
 
-    /**
-     * Seeds the database with valid pgn games.
-     *
-     * @return string The MySQL code
-     */
     public function db()
     {
-        $tags = $this->resetTags();
+        $tags = [];
         $movetext = '';
         if ($file = fopen($this->filepath, 'r')) {
             while (!feof($file)) {
@@ -45,37 +33,31 @@ class Seed extends AbstractFile
                     $tag = PgnValidate::tag($line);
                     $tags[$tag->name] = $tag->value;
                 } catch (\Exception $e) {
-                    switch (true) {
-                        case !$this->hasStrTags($tags) && $this->startsMovetext($line):
-                            $this->result->errors[] = ['tags' => array_filter($tags)];
-                            $tags = $this->resetTags();
-                            $movetext = '';
-                            break;
-                        case $this->hasStrTags($tags) &&
-                            (($this->startsMovetext($line) && $this->endsMovetext($line)) || $this->endsMovetext($line)):
-                            $movetext .= ' ' . $line;
-                            if (!PgnValidate::movetext($movetext)) {
+                    if (!Tag::isStr($tags) && $this->line->startsMovetext($line)) {
+                        $this->result->errors[] = ['tags' => array_filter($tags)];
+                        Tag::reset($tags);
+                        $movetext = '';
+                    } elseif (Tag::isStr($tags) && (($this->line->isMovetext($line) || $this->line->endsMovetext($line)))) {
+                        if (!PgnValidate::movetext($movetext)) {
+                            $this->result->errors[] = [
+                                'tags' => array_filter($tags),
+                                'movetext' => trim($movetext)
+                            ];
+                        } else {
+                            try {
+                                Pdo::getInstance()->query($this->sql(), $this->values($tags, $movetext));
+                                $this->result->valid += 1;
+                            } catch (\Exception $e) {
                                 $this->result->errors[] = [
                                     'tags' => array_filter($tags),
                                     'movetext' => trim($movetext)
                                 ];
-                            } else {
-                                try {
-                                    Pdo::getInstance()->query($this->sql(), $this->values($tags, $movetext));
-                                    $this->result->valid += 1;
-                                } catch (\Exception $e) {
-                                    $this->result->errors[] = [
-                                        'tags' => array_filter($tags),
-                                        'movetext' => trim($movetext)
-                                    ];
-                                }
                             }
-                            $tags = $this->resetTags();
-                            $movetext = '';
-                            break;
-                        case $this->hasStrTags($tags):
-                            $movetext .= ' ' . $line;
-                            break;
+                        }
+                        Tag::reset($tags);
+                        $movetext = '';
+                    } elseif (Tag::isStr($tags)) {
+                        $movetext .= ' ' . $line;
                     }
                 }
             }

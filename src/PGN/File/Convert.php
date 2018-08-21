@@ -8,35 +8,19 @@ use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\PGN\File\Validate as PgnFileValidate;
 
-/**
- * Convert class.
- *
- * @author Jordi Bassagañas <info@programarivm.com>
- * @link https://programarivm.com
- * @license GPL
- */
 class Convert extends AbstractFile
 {
-    /**
-     * Constructor.
-     *
-     * @throws \PGNChess\Exception\PgnFileSyntaxException
-     */
     public function __construct($filepath)
     {
         parent::__construct($filepath);
 
         $result = (new PgnFileValidate($filepath))->syntax();
+
         if ($result->valid === 0 || !empty($result->errors)) {
             throw new PgnFileSyntaxException('Invalid PGN file.', $result->errors);
         }
     }
 
-    /**
-     * Converts a valid pgn file into a MySQL INSERT statement.
-     *
-     * @return string The MySQL code
-     */
     public function toMySqlScript()
     {
         $sql = 'INSERT INTO games (';
@@ -45,7 +29,7 @@ class Convert extends AbstractFile
         }
         $sql .= 'movetext) VALUES (';
 
-        $tags = $this->resetTags();
+        $tags = [];
         $movetext = '';
 
         if ($file = fopen($this->filepath, 'r')) {
@@ -55,15 +39,15 @@ class Convert extends AbstractFile
                     $tag = PgnValidate::tag($line);
                     $tags[$tag->name] = $tag->value;
                 } catch (\Exception $e) {
-                    if ($this->startsMovetext($line)) {
+                    if ($this->line->startsMovetext($line)) {
                         $movetext .= $line;
-                    } elseif ($this->endsMovetext($line)) {
+                    } elseif ($this->line->endsMovetext($line)) {
                         foreach ($tags as $key => $value) {
                             isset($value) ? $sql .= "'".MySql::getInstance()->escape($value)."', " : $sql .= 'null, ';
                         }
                         $movetext = MySql::getInstance()->escape($movetext.$line);
                         $sql .= "'$movetext'),(" . PHP_EOL;
-                        $tags = $this->resetTags();
+                        Tag::reset($tags);
                         $movetext = '';
                     } else {
                         $movetext .= $line;

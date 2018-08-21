@@ -2,15 +2,9 @@
 
 namespace PGNChess\PGN\File;
 
+use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate as PgnValidate;
 
-/**
- * Validate class.
- *
- * @author Jordi Bassagañas <info@programarivm.com>
- * @link https://programarivm.com
- * @license GPL
- */
 class Validate extends AbstractFile
 {
     private $result = [];
@@ -25,14 +19,9 @@ class Validate extends AbstractFile
         ];
     }
 
-    /**
-     * Checks the syntax of a PGN file.
-     *
-     * @return \stdClass
-     */
     public function syntax()
     {
-        $tags = $this->resetTags();
+        $tags = [];
         $movetext = '';
         if ($file = fopen($this->filepath, 'r')) {
             while (!feof($file)) {
@@ -41,29 +30,21 @@ class Validate extends AbstractFile
                     $tag = PgnValidate::tag($line);
                     $tags[$tag->name] = $tag->value;
                 } catch (\Exception $e) {
-                    switch (true) {
-                        case !$this->hasStrTags($tags) && $this->startsMovetext($line):
-                            $this->result->errors[] = ['tags' => array_filter($tags)];
-                            $tags = $this->resetTags();
-                            $movetext = '';
-                            break;
-                        case $this->hasStrTags($tags) &&
-                            (($this->startsMovetext($line) && $this->endsMovetext($line)) || $this->endsMovetext($line)):
-                            $movetext .= ' ' . $line;
-                            if (!PgnValidate::movetext($movetext)) {
-                                $this->result->errors[] = [
-                                    'tags' => array_filter($tags),
-                                    'movetext' => trim($movetext)
-                                ];
-                            } else {
-                                $this->result->valid += 1;
-                            }
-                            $tags = $this->resetTags();
-                            $movetext = '';
-                            break;
-                        case $this->hasStrTags($tags):
-                            $movetext .= ' ' . $line;
-                            break;
+                    if (!Tag::isStr($tags) && $this->line->startsMovetext($line)) {
+                        $this->result->errors[] = ['tags' => array_filter($tags)];
+                        Tag::reset($tags);
+                        $movetext = '';
+                    } elseif (Tag::isStr($tags) && (($this->line->isMovetext($line) || $this->line->endsMovetext($line)))) {
+                        $movetext .= ' ' . $line;
+                        !PgnValidate::movetext($movetext)
+                            ? $this->result->errors[] = [
+                                'tags' => array_filter($tags),
+                                'movetext' => trim($movetext)]
+                            : $this->result->valid += 1;
+                        Tag::reset($tags);
+                        $movetext = '';
+                    } elseif (Tag::isStr($tags)) {
+                        $movetext .= ' ' . $line;
                     }
                 }
             }
