@@ -3,7 +3,7 @@
 namespace PGNChess\PGN\File;
 
 use PGNChess\Db\Pdo;
-use PGNChess\Exception\InvalidPgnFileSyntaxException;
+use PGNChess\Exception\PgnFileSyntaxException;
 use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\PGN\File\Validate as PgnFileValidate;

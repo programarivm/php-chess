@@ -11,7 +11,7 @@ use PGNChess\Exception;
  * @link https://programarivm.com
  * @license GPL
  */
-final class InvalidPgnFileSyntaxException extends \InvalidArgumentException implements Exception
+final class PgnFileSyntaxException extends \InvalidArgumentException implements Exception
 {
     private $result;
 

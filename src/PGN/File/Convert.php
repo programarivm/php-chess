@@ -3,7 +3,7 @@
 namespace PGNChess\PGN\File;
 
 use PGNChess\Db\MySql;
-use PGNChess\Exception\InvalidPgnFileSyntaxException;
+use PGNChess\Exception\PgnFileSyntaxException;
 use PGNChess\PGN\Tag;
 use PGNChess\PGN\Validate as PgnValidate;
 use PGNChess\PGN\File\Validate as PgnFileValidate;
@@ -20,7 +20,7 @@ class Convert extends AbstractFile
     /**
      * Constructor.
      *
-     * @throws \PGNChess\Exception\InvalidPgnFileSyntaxException
+     * @throws \PGNChess\Exception\PgnFileSyntaxException
      */
     public function __construct($filepath)
     {
@@ -28,7 +28,7 @@ class Convert extends AbstractFile
 
         $result = (new PgnFileValidate($filepath))->syntax();
         if ($result->valid === 0 || !empty($result->errors)) {
-            throw new InvalidPgnFileSyntaxException('Invalid PGN file.', $result->errors);
+            throw new PgnFileSyntaxException('Invalid PGN file.', $result->errors);
         }
     }
 

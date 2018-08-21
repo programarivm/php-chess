@@ -3,7 +3,7 @@
 namespace PGNChess\Tests\Integration\PGN\File;
 
 use PGNChess\Db\Pdo;
-use PGNChess\Exception\InvalidPgnFileSyntaxException;
+use PGNChess\Exception\PgnFileSyntaxException;
 use PGNChess\PGN\File\Convert as PgnFileConvert;
 use PHPUnit\Framework\TestCase;
 
