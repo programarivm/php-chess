@@ -837,7 +837,7 @@ Checks the syntax of a PGN file.
 Seeds the database with PGN games.
 
     php db-seed.php Alekhine.pgn
-    Good! This is a valid PGN file and all games were inserted into the database.
+    Good! This is a valid PGN file. 2702 games were inserted into the database.
 
 ### 5. License
 
