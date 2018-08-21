@@ -21,9 +21,9 @@ abstract class AbstractFile
     {
         $content = file_get_contents($filepath);
         $encoding = mb_detect_encoding($content);
-        if ($encoding !== 'UTF-8') {
+        if ($encoding !== 'ASCII' && $encoding !== 'UTF-8') {
             throw new PgnFileCharacterEncodingException(
-                "Character encoding detected: $encoding. Needs to be converted to UTF-8."
+                "Character encoding detected: $encoding. Needs to be UTF-8."
             );
         }
 
