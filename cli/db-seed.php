@@ -3,6 +3,7 @@
 namespace PGNChess\Cli;
 
 use Dotenv\Dotenv;
+use PGNChess\Exception\PgnFileCharacterEncodingException;
 use PGNChess\PGN\File\Seed as PgnFileSeed;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -21,7 +22,12 @@ if (trim($line) != 'Y' && trim($line) != 'y') {
 }
 fclose($handle);
 
-$result = (new PgnFileSeed($argv[1]))->db();
+try {
+    $result = (new PgnFileSeed($argv[1]))->db();
+} catch (PgnFileCharacterEncodingException $e) {
+    echo $e->getMessage() . PHP_EOL;
+    exit;
+}
 
 if ($result->valid === 0) {
     echo 'Whoops! It seems as if no games are valid in this file.' . PHP_EOL;

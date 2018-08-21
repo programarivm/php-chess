@@ -2,6 +2,7 @@
 
 namespace PGNChess\PGN\File;
 
+use PGNChess\Exception\PgnFileCharacterEncodingException;
 use PGNChess\PGN\Symbol;
 use PGNChess\PGN\Tag;
 
@@ -18,6 +19,14 @@ abstract class AbstractFile
 
     public function __construct($filepath)
     {
+        $content = file_get_contents($filepath);
+        $encoding = mb_detect_encoding($content);
+        if ($encoding !== 'UTF-8') {
+            throw new PgnFileCharacterEncodingException(
+                "Character encoding detected: $encoding. Needs to be converted to UTF-8."
+            );
+        }
+
         $this->filepath = $filepath;
     }
 
