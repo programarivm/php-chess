@@ -89,7 +89,7 @@ class Pdo
             $stmt->bindValue(
                 $value['parameter'],
                 $value['value'],
-                $value['data_type'] ?? null
+                $value['type'] ?? null
             );
         }
 
