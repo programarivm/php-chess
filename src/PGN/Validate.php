@@ -81,6 +81,45 @@ class Validate
     }
 
     /**
+     * Validates a PGN move.
+     *
+     * @param string $move
+     * @return bool
+     * @throws UnknownNotationException
+     */
+    public static function move($move)
+    {
+        switch(true) {
+            case preg_match('/^' . Move::KING . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::KING_CASTLING_SHORT . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::KING_CASTLING_LONG . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::KING_CAPTURES . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::PIECE . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::PIECE_CAPTURES . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::KNIGHT . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::KNIGHT_CAPTURES . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::PAWN . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::PAWN_CAPTURES . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::PAWN_PROMOTES . '$/', $move):
+                return true;
+            case preg_match('/^' . Move::PAWN_CAPTURES_AND_PROMOTES . '$/', $move):
+                return true;
+            default:
+                throw new UnknownNotationException("Unknown PGN notation.");
+        }
+    }
+
+    /**
      * Validates a PGN movetext.
      *
      * @param string $movetext
@@ -120,7 +159,7 @@ class Validate
                 $move !== Symbol::RESULT_UNKNOWN
             ) {
                 try {
-                    Convert::toObject(Symbol::WHITE, $move);
+                    self::move($move);
                 } catch (UnknownNotationException $e) {
                     return false;
                 }
