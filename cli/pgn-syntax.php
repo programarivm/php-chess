@@ -11,7 +11,7 @@ $dotenv = new Dotenv(__DIR__.'/../');
 $dotenv->load();
 
 echo 'This will search for syntax errors in the PGN file.' . PHP_EOL;
-echo 'Large files (for example 50MB) may take a few seconds to be processed.' . PHP_EOL;
+echo 'Large files (for example 50MB) may take a few seconds to be parsed.' . PHP_EOL;
 echo 'Do you want to proceed? (Y/N): ';
 
 $handle = fopen ('php://stdin','r');

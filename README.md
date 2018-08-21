@@ -791,6 +791,9 @@ This is the output generated.
 Checks the syntax of a PGN file.
 
     php pgnsyntax.php games.pgn
+    This will search for syntax errors in the PGN file.
+    Large files (for example 50MB) may take a few seconds to be parsed.
+    Do you want to proceed? (Y/N): y
     Whoops! Sorry but this is not a valid PGN file.
     --------------------------------------------------------
     Site: Bhubaneswar IND
