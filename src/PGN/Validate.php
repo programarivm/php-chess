@@ -69,13 +69,12 @@ class Validate
             throw new UnknownNotationException("This tag is not valid: $tag.");
         }
 
-        $result = (object) [
-            'name' => null,
-            'value' => null,
-        ];
         $exploded = explode(' "', $tag);
-        $result->name = substr($exploded[0], 1);
-        $result->value = substr($exploded[1], 0, -2);
+
+        $result = (object) [
+            'name' => substr($exploded[0], 1),
+            'value' => substr($exploded[1], 0, -2),
+        ];
 
         return $result;
     }
