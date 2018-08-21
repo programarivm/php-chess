@@ -834,10 +834,13 @@ Checks the syntax of a PGN file.
 
 #### 4.4. `db-seed.php`
 
-Seeds the database with PGN games.
+Seeds the PGN Chess database with games.
 
     php db-seed.php Alekhine.pgn
-    Good! This is a valid PGN file. 2702 games were inserted into the database.
+    This will search for valid PGN games in the file.
+    Large files (for example 50MB) may take a few seconds to be inserted into the database.
+    Do you want to proceed? (Y/N): y
+    Good! This is a valid PGN file. 3201 games were inserted into the database.
 
 ### 5. License
 
