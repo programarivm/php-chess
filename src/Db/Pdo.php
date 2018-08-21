@@ -3,27 +3,34 @@
 namespace PGNChess\Db;
 
 /**
- * MySql class.
+ * Pdo class.
  *
  * @author Jordi Bassagañas <info@programarivm.com>
  * @link https://programarivm.com
  * @license GPL
  */
-class MySql
+class Pdo
 {
     /**
-     * Reference to the MySql instance.
+     * Reference to the Pdo instance.
      *
-     * @var MySql
+     * @var \PGNChess\Db\Pdo
      */
     private static $instance;
 
     /**
-     * Db handler.
+     * DSN.
      *
-     * @var mysqli
+     * @var string
      */
-    private $mysqli;
+    private $dsn;
+
+    /**
+     * PDO handler.
+     *
+     * @var PDO
+     */
+    private $pdo;
 
     /**
      * Returns the current instance.
@@ -44,15 +51,13 @@ class MySql
      */
     protected function __construct()
     {
-        $this->mysqli = new \MySQLI(
-            getenv('DB_HOST'),
+        $this->dsn = getenv('DB_DRIVER') . ':host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_NAME');
+        $this->pdo = new \PDO(
+            $this->dsn,
             getenv('DB_USER'),
-            getenv('DB_PASSWORD'),
-            getenv('DB_NAME'),
-            getenv('DB_PORT')
+            getenv('DB_PASSWORD')
         );
-
-        $this->mysqli->set_charset('utf8');
+        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     /**
@@ -73,21 +78,21 @@ class MySql
      * Queries the database.
      *
      * @param string
-     * @return false|mysqli_result
+     * @param array
+     * @return bool
      */
-    public function query($sql)
+    public function query($sql, $values = [])
     {
-        return $this->mysqli->query($sql);
-    }
+        $stmt = $this->pdo->prepare($sql);
 
-    /**
-     * Escapes the data to prevent sql injections.
-     *
-     * @param string
-     * @return string
-     */
-    public function escape($data)
-    {
-        return $this->mysqli->real_escape_string($data);
+        foreach ($values as $value) {
+            $stmt->bindValue(
+                $value['parameter'],
+                $value['value'],
+                $value['data_type'] ?? null
+            );
+        }
+
+        $stmt->execute();
     }
 }

@@ -37,7 +37,7 @@ class Convert extends AbstractFile
      *
      * @return string The MySQL code
      */
-    public function toMySql()
+    public function toMySqlScript()
     {
         $sql = 'INSERT INTO games (';
         foreach (Tag::getConstants() as $key => $value) {

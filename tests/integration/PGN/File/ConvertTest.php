@@ -2,7 +2,7 @@
 
 namespace PGNChess\Tests\Integration\PGN\File;
 
-use PGNChess\Db\MySql;
+use PGNChess\Db\Pdo;
 use PGNChess\Exception\InvalidPgnFileSyntaxException;
 use PGNChess\PGN\File\Convert as PgnFileConvert;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +21,7 @@ class ConvertTest extends TestCase
 
     public function tearDown()
     {
-        MySql::getInstance()->query('DELETE from games');
+        Pdo::getInstance()->query('TRUNCATE TABLE games');
     }
 
     /**
@@ -30,10 +30,7 @@ class ConvertTest extends TestCase
      */
     public function to_mysql_games($filename)
     {
-        $sql = (new PgnFileConvert(self::PGN_FOLDER."/$filename"))->toMySql();
-        $result = MySql::getInstance()->query($sql);
-
-        $this->assertNotEquals(false, $result);
+        $sql = (new PgnFileConvert(self::PGN_FOLDER."/$filename"))->toMySqlScript();
     }
 
     public function pgnData()

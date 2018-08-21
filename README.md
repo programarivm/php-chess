@@ -761,6 +761,7 @@ Make sure to have an `.env` file in your app's root folder:
 
     APP_ENV=dev
 
+    DB_DRIVER=mysql
     DB_HOST=localhost
     DB_USER=root
     DB_PASSWORD=password

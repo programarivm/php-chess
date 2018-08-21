@@ -10,6 +10,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = new Dotenv(__DIR__.'/../');
 $dotenv->load();
 
-$sql = (new PgnFileConvert($argv[1]))->toMySql();
+$sql = (new PgnFileConvert($argv[1]))->toMySqlScript();
 
 echo $sql;
