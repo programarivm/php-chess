@@ -45,7 +45,13 @@ class Seed extends AbstractFile
                             ];
                         } else {
                             try {
-                                Pdo::getInstance()->query($this->sql(), $this->values($tags, $movetext));
+                                $preparedTags = [];
+                                Tag::reset($preparedTags);
+                                Pdo::getInstance()->query(
+                                    $this->sql(),
+                                    $this->values(array_replace($preparedTags, $tags),
+                                    trim($movetext))
+                                );
                                 $this->result->valid += 1;
                             } catch (\Exception $e) {
                                 $this->result->errors[] = [
