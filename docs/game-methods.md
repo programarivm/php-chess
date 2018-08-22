@@ -1,9 +1,5 @@
 ### Game methods
 
-<p align="center">
-	<img src="https://github.com/programarivm/pgn-chess/blob/master/resources/black-chess-pieces.jpg" />
-</p>
-
 #### `isCheck()`
 
 Finds out if the game is in check.

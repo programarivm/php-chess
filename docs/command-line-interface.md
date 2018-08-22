@@ -1,9 +1,5 @@
 ### Command Line Interface (CLI)
 
-<p align="center">
-	<img src="https://github.com/programarivm/pgn-chess/blob/master/resources/white-chess-pieces.jpg" />
-</p>
-
 Make sure to have an `.env` file in your app's root folder:
 
     APP_ENV=dev
