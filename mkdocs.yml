@@ -1,0 +1,6 @@
+site_name: PGN Chess
+pages:
+  - Home: index.md
+  - Game Methods: game-methods.md
+  - Command Line Interface: command-line-interface.md
+theme: readthedocs
