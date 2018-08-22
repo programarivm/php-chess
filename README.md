@@ -38,11 +38,9 @@ All action takes place in the `$game` object. The call to the `$board->play` met
 
 It is up to you how to process the moves accordingly -- go into a loop till the player runs a valid move, ask them to please try again, play a sound, exit the game or whatever thing you consider appropriate. The important thing is that PGN Chess understands chess rules, internally replicating the game being played on the board.
 
-> **Side note**: PGN Chess games are actually run in the computer's memory. So, if it turns out that for whatever reason a player forgets to append the + symbol to their check moves, PGN Chess will anyway understand that it is a check move. The same thing goes for checkmate moves.
-
 ### Documentation
 
-Please see the [Documentation](https://pgn-chess.readthedocs.io/en/latest/).
+For further information please read the [Documentation](https://pgn-chess.readthedocs.io/en/latest/).
 
 ### License
 
