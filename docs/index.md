@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.org/programarivm/pgn-chess.svg?branch=master)](https://travis-ci.org/programarivm/pgn-chess)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-![PGN Chess](/resources/chess-move.jpg?raw=true)
+<p align="center">
+	<img src="https://github.com/programarivm/pgn-chess/tree/master/resources/chess-move.jpg" />
+</p>
 
 This is a simple, friendly, and powerful PGN (Portable Game Notation) library for running chess games from within PHP applications. It is a chess board representation that can be used in chess engines, chess applications and chess algorithms.
 

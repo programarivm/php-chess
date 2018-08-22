@@ -1,6 +1,7 @@
 ## PGN Chess
 
 [![Build Status](https://travis-ci.org/programarivm/pgn-chess.svg?branch=master)](https://travis-ci.org/programarivm/pgn-chess)
+[![Documentation Status](https://readthedocs.org/projects/pgn-chess/badge/?version=latest)](https://pgn-chess.readthedocs.io/en/latest/?badge=latest)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ![PGN Chess](/resources/chess-move.jpg?raw=true)
