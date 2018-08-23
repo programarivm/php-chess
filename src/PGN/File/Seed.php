@@ -12,7 +12,7 @@ class Seed extends AbstractFile
 {
     private $result = [];
 
-    public function __construct($filepath)
+    public function __construct(string $filepath)
     {
         parent::__construct($filepath);
 
@@ -22,7 +22,7 @@ class Seed extends AbstractFile
         ];
     }
 
-    public function db()
+    public function db(): \stdClass
     {
         $tags = [];
         $movetext = '';
@@ -77,7 +77,7 @@ class Seed extends AbstractFile
         return $this->result;
     }
 
-    protected function sql()
+    protected function sql(): string
     {
         $sql = 'INSERT INTO games (';
 
@@ -96,7 +96,7 @@ class Seed extends AbstractFile
         return $sql;
     }
 
-    protected function values($tags, $movetext)
+    protected function values(array $tags, string $movetext): array
     {
         $values = [];
 

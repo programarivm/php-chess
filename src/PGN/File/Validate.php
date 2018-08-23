@@ -9,7 +9,7 @@ class Validate extends AbstractFile
 {
     private $result = [];
 
-    public function __construct($filepath)
+    public function __construct(string $filepath)
     {
         parent::__construct($filepath);
 
@@ -19,7 +19,7 @@ class Validate extends AbstractFile
         ];
     }
 
-    public function syntax()
+    public function syntax(): \stdClass
     {
         $tags = [];
         $movetext = '';

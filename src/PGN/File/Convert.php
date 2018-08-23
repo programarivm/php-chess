@@ -10,7 +10,7 @@ use PGNChess\PGN\File\Validate as PgnFileValidate;
 
 class Convert extends AbstractFile
 {
-    public function __construct($filepath)
+    public function __construct(string $filepath)
     {
         parent::__construct($filepath);
 
@@ -21,7 +21,7 @@ class Convert extends AbstractFile
         }
     }
 
-    public function toMySqlScript()
+    public function toMySqlScript(): string
     {
         $sql = 'INSERT INTO games (';
         foreach (Tag::getConstants() as $key => $value) {

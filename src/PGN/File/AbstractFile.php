@@ -10,7 +10,7 @@ abstract class AbstractFile
 
     protected $line;
 
-    public function __construct($filepath)
+    public function __construct(string $filepath)
     {
         $content = file_get_contents($filepath);
         $encoding = mb_detect_encoding($content);
