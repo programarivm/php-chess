@@ -15,12 +15,12 @@ final class PgnFileSyntaxException extends \InvalidArgumentException implements 
 {
     private $result;
 
-    public function __construct($message, $result)
+    public function __construct(string $message, \stdClass $result)
     {
         $this->result = $result;
     }
 
-    public function getResult()
+    public function getResult(): \stdClass
     {
         return $this->result;
     }
