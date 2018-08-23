@@ -3,10 +3,9 @@
 namespace PGNChess\PGN;
 
 use PGNChess\Exception\UnknownNotationException;
+use PGNChess\PGN\Movetext;
 use PGNChess\PGN\Symbol;
 use PGNChess\PGN\Tag;
-
-use PGNChess\PGN\Convert;
 
 /**
  * Validates PGN symbols.
@@ -88,7 +87,7 @@ class Validate
      */
     public static function move($move)
     {
-        switch(true) {
+        switch (true) {
             case preg_match('/^' . Move::KING . '$/', $move):
                 return true;
             case preg_match('/^' . Move::KING_CASTLING_SHORT . '$/', $move):
@@ -127,36 +126,22 @@ class Validate
      */
     public static function movetext($movetext)
     {
-        $numbers = [];
-        $notations = [];
-        $moves = array_filter(explode(' ', $movetext));
-
-        foreach ($moves as $move) {
-            if (preg_match('/^[1-9][0-9]*\.(.*)$/', $move)) {
-                $moveExploded = explode('.', $move);
-                $numbers[] = $moveExploded[0];
-                $notations[] = $moveExploded[1];
-            } else {
-                $notations[] = $move;
-            }
-        }
+        $movetext = Movetext::init($movetext)->toArray();
 
         $areConsecutiveNumbers = 1;
-        for ($i = 0; $i < count($numbers); $i++) {
-            $areConsecutiveNumbers *= (int) $numbers[$i] == $i + 1;
+        for ($i = 0; $i < count($movetext->numbers); $i++) {
+            $areConsecutiveNumbers *= (int) $movetext->numbers[$i] == $i + 1;
         }
-
         if (!$areConsecutiveNumbers) {
             return false;
         }
 
-        $notations = array_filter($notations);
-        foreach ($notations as $move) {
+        foreach ($movetext->notations as $move) {
             if ($move !== Symbol::RESULT_WHITE_WINS &&
                 $move !== Symbol::RESULT_BLACK_WINS &&
                 $move !== Symbol::RESULT_DRAW &&
                 $move !== Symbol::RESULT_UNKNOWN
-            ) {
+               ) {
                 try {
                     self::move($move);
                 } catch (UnknownNotationException $e) {
