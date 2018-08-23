@@ -22,7 +22,7 @@ class Bishop extends Slider
      * @param string $color
      * @param string $square
      */
-    public function __construct($color, $square)
+    public function __construct(string $color, string $square)
     {
         parent::__construct($color, $square, Symbol::BISHOP);
 
@@ -39,7 +39,7 @@ class Bishop extends Slider
     /**
      * Calculates the bishop's scope.
      */
-    protected function scope()
+    protected function scope(): void
     {
         // top left diagonal
         try {

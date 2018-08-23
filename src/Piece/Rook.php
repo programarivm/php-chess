@@ -28,10 +28,10 @@ class Rook extends Slider
      *
      * @param string $color
      * @param string $square
-     * @param string $castling
+     * @param string $type
      * @throws \PGNChess\Exception\PieceTypeException
      */
-    public function __construct($color, $square, $type)
+    public function __construct(string $color, string $square, $type)
     {
         if (!in_array($type, RookType::getChoices())) {
             throw new PieceTypeException(
@@ -66,7 +66,7 @@ class Rook extends Slider
     /**
      * Calculates the rook's scope.
      */
-    protected function scope()
+    protected function scope(): void
     {
         // up
         try {

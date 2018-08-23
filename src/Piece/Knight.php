@@ -22,7 +22,7 @@ class Knight extends AbstractPiece
      * @param string $color
      * @param string $square
      */
-    public function __construct($color, $square)
+    public function __construct(string $color, string $square)
     {
         parent::__construct($color, $square, Symbol::KNIGHT);
 
@@ -36,7 +36,7 @@ class Knight extends AbstractPiece
     /**
      * Calculates the knight's scope.
      */
-    protected function scope()
+    protected function scope(): void
     {
         try {
             $file = chr(ord($this->position[0]) - 1);
@@ -121,7 +121,7 @@ class Knight extends AbstractPiece
 
     }
 
-    public function getLegalMoves()
+    public function getLegalMoves(): array
     {
         $moves = [];
 

@@ -78,7 +78,7 @@ abstract class AbstractPiece implements Piece
      * @param string $square
      * @param string $identity
      */
-    public function __construct($color, $square, $identity)
+    public function __construct(string $color, string $square, string $identity)
     {
         $this->color = PgnValidate::color($color);
         $this->position = PgnValidate::square($square);
@@ -89,14 +89,14 @@ abstract class AbstractPiece implements Piece
     /**
      * Calculates the piece's scope.
      */
-    abstract protected function scope();
+    abstract protected function scope(): void;
 
     /**
      * Gets the piece's color.
      *
      * @return string
      */
-    public function getColor()
+    public function getColor(): string
     {
         return $this->color;
     }
@@ -106,7 +106,7 @@ abstract class AbstractPiece implements Piece
      *
      * @return string
      */
-    public function getOppositeColor()
+    public function getOppositeColor(): string
     {
         if ($this->color == Symbol::WHITE) {
             return Symbol::BLACK;
@@ -118,9 +118,9 @@ abstract class AbstractPiece implements Piece
     /**
      * Gets the piece's position on the board.
      *
-     * @return \stdClass
+     * @return string
      */
-    public function getPosition()
+    public function getPosition(): string
     {
         return $this->position;
     }
@@ -130,7 +130,7 @@ abstract class AbstractPiece implements Piece
      *
      * @return \stdClass
      */
-    public function getScope()
+    public function getScope(): \stdClass
     {
         return $this->scope;
     }
@@ -140,7 +140,7 @@ abstract class AbstractPiece implements Piece
      *
      * @return string
      */
-    public function getIdentity()
+    public function getIdentity(): string
     {
         return $this->identity;
     }
@@ -160,14 +160,14 @@ abstract class AbstractPiece implements Piece
      *
      * @return array The legal moves that the piece can perform.
      */
-    abstract public function getLegalMoves();
+    abstract public function getLegalMoves(): array;
 
     /**
      * Sets the piece's next move.
      *
      * @param \stdClass $move
      */
-    public function setMove(\stdClass $move)
+    public function setMove(\stdClass $move): Piece
     {
         $this->move = $move;
 
@@ -179,7 +179,7 @@ abstract class AbstractPiece implements Piece
      *
      * @param \stdClass $boardStatus
      */
-    public static function setBoardStatus(\stdClass $boardStatus)
+    public static function setBoardStatus(\stdClass $boardStatus): void
     {
         self::$boardStatus = $boardStatus;
     }
@@ -189,7 +189,7 @@ abstract class AbstractPiece implements Piece
      *
      * @param \stdClass $boardStatus
      */
-    public static function setBoardControl(\stdClass $boardControl)
+    public static function setBoardControl(\stdClass $boardControl): void
     {
         self::$boardControl = $boardControl;
     }
@@ -199,7 +199,7 @@ abstract class AbstractPiece implements Piece
      *
      * @return boolean true if the piece can be moved; otherwise false
      */
-    public function isMovable()
+    public function isMovable(): bool
     {
         if (isset($this->move)) {
             return in_array($this->move->position->next, $this->getLegalMoves());

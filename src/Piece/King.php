@@ -34,7 +34,7 @@ class King extends AbstractPiece
      * @param string $color
      * @param string $square
      */
-    public function __construct($color, $square)
+    public function __construct(string $color, string $square)
     {
         parent::__construct($color, $square, Symbol::KING);
 
@@ -68,7 +68,7 @@ class King extends AbstractPiece
     /**
      * Calculates the king's scope.
      */
-    protected function scope()
+    protected function scope(): void
     {
         $scope =  array_merge(
             (array) $this->rook->getScope(),
@@ -87,7 +87,7 @@ class King extends AbstractPiece
      *
      * @return array
      */
-    public function getLegalMoves()
+    public function getLegalMoves(): array
     {
         $movesKing = array_values(
             array_intersect(
@@ -110,7 +110,7 @@ class King extends AbstractPiece
             in_array($castlingShort->squares->f, self::$boardStatus->squares->free) &&
             in_array($castlingShort->squares->g, self::$boardStatus->squares->free) &&
             !in_array($castlingShort->squares->f, self::$boardControl->space->{$this->getOppositeColor()}) &&
-            !in_array($castlingShort->squares->g, self::$boardControl->space->{$this->getOppositeColor()})                    
+            !in_array($castlingShort->squares->g, self::$boardControl->space->{$this->getOppositeColor()})
         ) {
             $movesCastlingShort = [$castlingShort->position->next];
         }
@@ -126,7 +126,7 @@ class King extends AbstractPiece
             in_array($castlingLong->squares->d, self::$boardStatus->squares->free) &&
             !in_array($castlingLong->squares->b, self::$boardControl->space->{$this->getOppositeColor()}) &&
             !in_array($castlingLong->squares->c, self::$boardControl->space->{$this->getOppositeColor()}) &&
-            !in_array($castlingLong->squares->d, self::$boardControl->space->{$this->getOppositeColor()})                    
+            !in_array($castlingLong->squares->d, self::$boardControl->space->{$this->getOppositeColor()})
         ) {
             $movesCastlingLong = [$castlingLong->position->next];
         }

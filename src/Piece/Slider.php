@@ -20,7 +20,7 @@ abstract class Slider extends AbstractPiece
      * @param $square
      * @param $identity
      */
-    public function __construct($color, $square, $identity)
+    public function __construct(string $color, string $square, string $identity)
     {
         parent::__construct($color, $square, $identity);
     }
@@ -30,7 +30,7 @@ abstract class Slider extends AbstractPiece
      *
      * @return array The slider piece's (BRQ) legal moves.
      */
-    public function getLegalMoves()
+    public function getLegalMoves(): array
     {
         $moves = [];
         foreach ($this->scope as $direction) {

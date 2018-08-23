@@ -42,7 +42,7 @@ class Pawn extends AbstractPiece
      * @param string $color
      * @param string $square
      */
-    public function __construct($color, $square)
+    public function __construct(string $color, string $square)
     {
         parent::__construct($color, $square, Symbol::PAWN);
 
@@ -81,7 +81,7 @@ class Pawn extends AbstractPiece
      *
      * @return string
      */
-    public function getFile()
+    public function getFile(): string
     {
         return $this->file;
     }
@@ -91,7 +91,7 @@ class Pawn extends AbstractPiece
      *
      * @return array
      */
-    public function getCaptureSquares()
+    public function getCaptureSquares(): array
     {
         return $this->captureSquares;
     }
@@ -109,7 +109,7 @@ class Pawn extends AbstractPiece
     /**
      * Calculates the pawn's scope.
      */
-    protected function scope()
+    protected function scope(): void
     {
         // next rank
         try {
@@ -149,7 +149,7 @@ class Pawn extends AbstractPiece
         }
     }
 
-    public function getLegalMoves()
+    public function getLegalMoves(): array
     {
         $moves = [];
 
@@ -225,7 +225,7 @@ class Pawn extends AbstractPiece
      *
      * @return boolean
      */
-    public function isPromoted()
+    public function isPromoted(): bool
     {
         return isset($this->move->newIdentity) && (int)$this->getMove()->position->next[1] === $this->ranks->promotion;
     }
