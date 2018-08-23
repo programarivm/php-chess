@@ -150,7 +150,7 @@ final class Board extends \SplObjectStorage
      *
      * @return string
      */
-    public function getTurn()
+    public function getTurn(): string
     {
         return $this->turn;
     }
@@ -161,7 +161,7 @@ final class Board extends \SplObjectStorage
      * @param string $color
      * @return \PGNChess\Board
      */
-    public function setTurn($color)
+    public function setTurn(string $color): Board
     {
         $this->turn = PgnValidate::color($color);
 
@@ -173,7 +173,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getSquares()
+    public function getSquares(): \stdClass
     {
         return $this->squares;
     }
@@ -184,7 +184,7 @@ final class Board extends \SplObjectStorage
      * @param \stdClass $squares
      * @return \PGNChess\Board
      */
-    private function setSquares(\stdClass $squares)
+    private function setSquares(\stdClass $squares): Board
     {
         $this->squares = $squares;
 
@@ -196,7 +196,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getControl()
+    public function getControl(): \stdClass
     {
         return $this->control;
     }
@@ -207,7 +207,7 @@ final class Board extends \SplObjectStorage
      * @param \stdClass $control
      * @return \PGNChess\Board
      */
-    private function setControl(\stdClass $control)
+    private function setControl(\stdClass $control): Board
     {
         $this->control = $control;
 
@@ -219,7 +219,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getCastling()
+    public function getCastling(): ?\stdClass
     {
         return $this->castling;
     }
@@ -229,7 +229,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getCaptures()
+    public function getCaptures(): \stdClass
     {
         return $this->captures;
     }
@@ -241,7 +241,7 @@ final class Board extends \SplObjectStorage
      * @param \stdClass $capture
      * @return \PGNChess\Board
      */
-    private function pushCapture($color, \stdClass $capture)
+    private function pushCapture(string $color, \stdClass $capture): Board
     {
         $this->captures->{$color}[] = $capture;
 
@@ -253,7 +253,7 @@ final class Board extends \SplObjectStorage
      *
      * @param string $color
      */
-    private function popCapture($color)
+    private function popCapture(string $color): Board
     {
         array_pop($this->captures->{$color});
 
@@ -265,7 +265,7 @@ final class Board extends \SplObjectStorage
      *
      * @return array
      */
-    public function getHistory()
+    public function getHistory(): array
     {
         return $this->history;
     }
@@ -276,7 +276,7 @@ final class Board extends \SplObjectStorage
      * @param \stdClass $piece The piece's previous position along with a move object
      * @return \PGNChess\Board
      */
-    private function pushHistory(Piece $piece)
+    private function pushHistory(Piece $piece): Board
     {
         $entry = (object) [
             'position' => $piece->getPosition(),
@@ -295,7 +295,7 @@ final class Board extends \SplObjectStorage
      *
      * @param string $color
      */
-    private function popHistory()
+    private function popHistory(): Board
     {
         array_pop($this->history);
 
@@ -309,7 +309,7 @@ final class Board extends \SplObjectStorage
      * @param string $identity
      * @return mixed \PGNChess\Piece\Piece|null
      */
-    public function getPiece($color, $identity)
+    public function getPiece(string $color, string $identity): ?Piece
     {
         $this->rewind();
 
@@ -330,7 +330,7 @@ final class Board extends \SplObjectStorage
      * @param string $color
      * @return array
      */
-    public function getPiecesByColor($color)
+    public function getPiecesByColor(string $color): array
     {
         $pieces = [];
         $this->rewind();
@@ -350,7 +350,7 @@ final class Board extends \SplObjectStorage
      * @param string $square
      * @return mixed \PGNChess\Piece\Piece|null
      */
-    public function getPieceByPosition($square)
+    public function getPieceByPosition(string $square): ?Piece
     {
         $this->rewind();
 
@@ -410,7 +410,7 @@ final class Board extends \SplObjectStorage
      * @param \PGNChess\Piece\Piece $piece
      * @return \PGNChess\Board
      */
-    private function capture(Piece $piece)
+    private function capture(Piece $piece): Board
     {
         $piece->getLegalMoves(); // this creates the enPassantSquare property in the pawn's position object
 
@@ -457,7 +457,7 @@ final class Board extends \SplObjectStorage
      * @param \PGNChess\Piece\Pawn $pawn
      * @return \PGNChess\Board
      */
-    private function promote(Pawn $pawn)
+    private function promote(Pawn $pawn): Board
     {
         $this->detach($this->getPieceByPosition($pawn->getMove()->position->next));
 
@@ -485,7 +485,7 @@ final class Board extends \SplObjectStorage
      * @param \stdClass $move
      * @return bool true if the move is successfully run; otherwise false
      */
-    public function play(\stdClass $move)
+    public function play(\stdClass $move): bool
     {
         if ($move->color !== $this->turn) {
             return false;
@@ -526,7 +526,7 @@ final class Board extends \SplObjectStorage
      * @param string $color
      * @return bool
      */
-    private function canCastleShort($color)
+    private function canCastleShort(string $color): bool
     {
         return $this->castling->{$color}->{Symbol::CASTLING_SHORT} &&
             !(in_array(
@@ -545,7 +545,7 @@ final class Board extends \SplObjectStorage
      * @param string $color
      * @return bool
      */
-    private function canCastleLong($color)
+    private function canCastleLong(string $color): bool
     {
         return $this->castling->{$color}->{Symbol::CASTLING_LONG} &&
             !(in_array(
@@ -568,7 +568,7 @@ final class Board extends \SplObjectStorage
      * @param \PGNChess\Piece\King $king
      * @return bool true if the castling is successfully run; otherwise false
      */
-    private function castle(King $king)
+    private function castle(King $king): bool
     {
         $rook = $king->getCastlingRook(iterator_to_array($this, false));
 
@@ -600,7 +600,7 @@ final class Board extends \SplObjectStorage
      * @param \stdClass $previousCastling
      * @return \PGNChess\Board
      */
-    private function undoCastle($previousCastling)
+    private function undoCastle(\stdClass $previousCastling): Board
     {
         $previous = end($this->history);
 
@@ -668,7 +668,7 @@ final class Board extends \SplObjectStorage
      * @return \PGNChess\Board
      * @throws \PGNChess\Exception\BoardException
      */
-    private function trackCastling($castling = false, Piece $pieceMoved = null)
+    private function trackCastling(bool $castling = false, Piece $pieceMoved = null): Board
     {
         if ($castling && isset($pieceMoved)) {
             throw new BoardException("Error while tracking {$this->turn} king's ability to castle");
@@ -705,7 +705,7 @@ final class Board extends \SplObjectStorage
      * @param \PGNChess\Piece\Piece $piece
      * @return bool true if the move is successfully run; otherwise false
      */
-    private function move(Piece $piece)
+    private function move(Piece $piece): bool
     {
         if ($piece->getMove()->isCapture) {
             $this->capture($piece);
@@ -740,7 +740,7 @@ final class Board extends \SplObjectStorage
      * @param \stdClass $previousCastling
      * @return \PGNChess\Board
      */
-    private function undoMove($previousCastling)
+    private function undoMove(\stdClass $previousCastling): Board
     {
         $previous = end($this->history);
 
@@ -790,7 +790,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \PGNChess\Board
      */
-    private function refresh()
+    private function refresh(): Board
     {
         $this->turn = Symbol::oppositeColor($this->turn);
         $this->squares = Stats::calc(iterator_to_array($this, false));
@@ -813,7 +813,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    private function control()
+    private function control(): \stdClass
     {
         $control = (object) [
             'space' => (object) [
@@ -901,7 +901,7 @@ final class Board extends \SplObjectStorage
      * @param \PGNChess\Piece\Piece $piece
      * @return bool
      */
-    private function leavesInCheck(Piece $piece)
+    private function leavesInCheck(Piece $piece): bool
     {
         $previousCastling = unserialize(serialize($this->castling));
 
@@ -926,7 +926,7 @@ final class Board extends \SplObjectStorage
      *
      * @return bool
      */
-    public function isCheck()
+    public function isCheck(): bool
     {
         $king = $this->getPiece($this->turn, Symbol::KING);
 
@@ -941,7 +941,7 @@ final class Board extends \SplObjectStorage
      *
      * @return bool
      */
-    public function isMate()
+    public function isMate(): bool
     {
         $escape = 0;
 

@@ -38,7 +38,7 @@ class Game
      *
      * @return \stdClass
      */
-    public function status()
+    public function status(): \stdClass
     {
         return (object) [
             'turn' => $this->board->getTurn(),
@@ -53,7 +53,7 @@ class Game
      *
      * @return array
      */
-    public function history()
+    public function history(): array
     {
         $history = [];
 
@@ -78,7 +78,7 @@ class Game
      *
      * @return array
      */
-    public function captures()
+    public function captures(): array
     {
         return $this->board->getCaptures();
     }
@@ -89,7 +89,7 @@ class Game
      * @param string $color
      * @return array
      */
-    public function pieces($color)
+    public function pieces(string $color): array
     {
         $result = [];
 
@@ -112,7 +112,7 @@ class Game
      * @param string $square
      * @return mixed null|\stdClass
      */
-    public function piece($square)
+    public function piece(string $square): ?\stdClass
     {
         $piece = $this->board->getPieceByPosition(PgnValidate::square($square));
 
@@ -133,7 +133,7 @@ class Game
      *
      * @return bool
      */
-    public function isCheck()
+    public function isCheck(): bool
     {
         return $this->board->isCheck();
     }
@@ -143,7 +143,7 @@ class Game
      *
      * @return bool
      */
-    public function isMate()
+    public function isMate(): bool
     {
         return $this->board->isMate();
     }
@@ -155,7 +155,7 @@ class Game
      * @param string $pgn
      * @return bool
      */
-    public function play($color, $pgn)
+    public function play(string $color, string $pgn): bool
     {
         return $this->board->play(Convert::toObject($color, $pgn));
     }

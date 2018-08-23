@@ -17,12 +17,12 @@ class Analyze
 {
     /**
      * Validates a board's castling object.
-     * 
+     *
      * @param Board $board
      * @return boolean
      * @throws CastlingException
      */
-    public static function castling($board)
+    public static function castling(Board $board): bool
     {
         $castlingArr = (array)$board->getCastling();
 
