@@ -8,7 +8,7 @@
 	<img src="https://github.com/programarivm/pgn-chess/blob/master/resources/chess-move.jpg" />
 </p>
 
-This is a PGN (Portable Game Notation) tool for running chess games (player vs player) in PHP applications. It is a chess board representation to play and validate PGN games.
+PGN Chess is a chess board representation to play and validate PGN games (player vs player). It also provides with a PHP CLI command to seed a database with PGN games.
 
 ### Install
 
