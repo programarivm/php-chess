@@ -94,5 +94,7 @@ class Pdo
         }
 
         $stmt->execute();
+
+        return $stmt;
     }
 }
