@@ -16,9 +16,9 @@ class Stats
      * Calculates the free/used squares.
      *
      * @param array $pieces
-     * @return stdClass
+     * @return \stdClass
      */
-    public static function calc(array $pieces)
+    public static function calc(array $pieces): \stdClass
     {
         return (object) [
             'used' => self::getUsed($pieces),
@@ -31,7 +31,7 @@ class Stats
      *
      * @return array
      */
-    private static function getAll()
+    private static function getAll(): array
     {
         $squares = [];
 
@@ -49,7 +49,7 @@ class Stats
      *
      * @return array
      */
-    private static function getUsed(array $pieces)
+    private static function getUsed(array $pieces): \stdClass
     {
         $squares = (object) [
             Symbol::WHITE => [],
@@ -68,7 +68,7 @@ class Stats
      *
      * @return array
      */
-    private static function getFree(array $pieces)
+    private static function getFree(array $pieces): array
     {
         $usedSquares = self::getUsed($pieces);
 

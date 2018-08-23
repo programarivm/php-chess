@@ -16,9 +16,9 @@ class Castling
      * Stores the board's castling information.
      *
      * @param string $color
-     * @return stdClass
+     * @return \stdClass
      */
-    public static function info($color)
+    public static function info(string $color): \stdClass
     {
         switch ($color) {
             case Symbol::WHITE:
