@@ -37,7 +37,7 @@ class Symbol
      * @param string $color
      * @return type
      */
-    static public function oppositeColor($color)
+    public static function oppositeColor($color)
     {
         if ($color == Symbol::WHITE) {
             return Symbol::BLACK;
