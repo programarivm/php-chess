@@ -23,7 +23,7 @@ class Validate
      * @return string if the color is valid
      * @throws UnknownNotationException
      */
-    public static function color($color)
+    public static function color(string $color): string
     {
         if ($color !== Symbol::WHITE && $color !== Symbol::BLACK) {
             throw new UnknownNotationException("This is not a valid color: $color.");
@@ -39,7 +39,7 @@ class Validate
      * @return string if the square is valid
      * @throws UnknownNotationException
      */
-    public static function square($square)
+    public static function square(string $square): string
     {
         if (!preg_match('/^' . Symbol::SQUARE . '$/', $square)) {
             throw new UnknownNotationException("This square is not valid: $square.");
@@ -55,7 +55,7 @@ class Validate
      * @return \stdClass if the tag is valid
      * @throws UnknownNotationException
      */
-    public static function tag($tag)
+    public static function tag(string $tag): \stdClass
     {
         $isValid = false;
         foreach (Tag::getConstants() as $key => $val) {
@@ -85,7 +85,7 @@ class Validate
      * @return bool
      * @throws UnknownNotationException
      */
-    public static function move($move)
+    public static function move(string $move): bool
     {
         switch (true) {
             case preg_match('/^' . Move::KING . '$/', $move):
@@ -124,7 +124,7 @@ class Validate
      * @return bool true if the movetext is valid; otherwise false
      * @throws \PGNChess\Exception\UnknownNotationException
      */
-    public static function movetext($movetext)
+    public static function movetext(string $movetext): bool
     {
         $movetext = Movetext::init($movetext)->toArray();
 

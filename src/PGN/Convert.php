@@ -29,7 +29,7 @@ class Convert
      * @return \stdClass
      * @throws \PGNChess\Exception\UnknownNotationException
      */
-    public static function toObject($color, $pgn)
+    public static function toObject(string $color, string $pgn): \stdClass
     {
         $isCheck = substr($pgn, -1) === '+' || substr($pgn, -1) === '#';
 
@@ -226,7 +226,7 @@ class Convert
      * @param string $identity
      * @return string
      */
-    public static function toClassName($identity)
+    public static function toClassName(string $identity): string
     {
         switch($identity) {
             case Symbol::BISHOP:

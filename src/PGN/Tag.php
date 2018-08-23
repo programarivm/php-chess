@@ -66,12 +66,12 @@ class Tag
 	const MODE = 'Mode';
 	const PLY_COUNT = 'PlyCount';
 
-    public static function getConstants()
+    public static function getConstants(): array
     {
         return (new \ReflectionClass(get_called_class()))->getConstants();
     }
 
-    public static function isStr($tags)
+    public static function isStr(array $tags): bool
     {
         return isset($tags[Tag::EVENT]) &&
             isset($tags[Tag::SITE]) &&
@@ -82,7 +82,7 @@ class Tag
             isset($tags[Tag::RESULT]);
     }
 
-    public static function reset(&$tags)
+    public static function reset(array &$tags)
     {
         $tags = [];
         foreach (Tag::getConstants() as $key => $value) {

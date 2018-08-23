@@ -13,7 +13,7 @@ final class Movetext
 {
     protected static $movetext;
 
-    public static function init($text)
+    public static function init(string $text): Movetext
     {
         self::$movetext = (object) [
             'numbers' => [],
@@ -37,7 +37,7 @@ final class Movetext
         return new static;
     }
 
-    public static function toArray()
+    public static function toArray(): \stdClass
     {
         return self::$movetext;
     }
