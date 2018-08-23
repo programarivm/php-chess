@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class ConvertTest extends TestCase
 {
-    const PGN_FOLDER = __DIR__.'/data';
+    const DATA_FOLDER = __DIR__.'/data';
 
     public static function setUpBeforeClass()
     {
@@ -30,7 +30,7 @@ class ConvertTest extends TestCase
      */
     public function to_mysql_games($filename)
     {
-        $sql = (new PgnFileConvert(self::PGN_FOLDER."/$filename"))->toMySqlScript();
+        $sql = (new PgnFileConvert(self::DATA_FOLDER."/$filename"))->toMySqlScript();
     }
 
     public function pgnData()
