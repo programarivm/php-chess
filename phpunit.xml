@@ -9,7 +9,7 @@
         <env name="DB_DRIVER" value="mysql"/>
         <env name="DB_HOST" value="localhost"/>
         <env name="DB_USER" value="root"/>
-        <env name="DB_PASSWORD" value="password"/>
+        <env name="DB_PASSWORD" value=""/>
         <env name="DB_NAME" value="pgn_chess_test"/>
         <env name="DB_PORT" value="3306"/>
     </php>

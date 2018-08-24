@@ -1,8 +1,8 @@
-CREATE USER 'test'@'localhost' IDENTIFIED BY 'password';
-GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON *.* TO 'test'@'localhost';
-
 CREATE DATABASE IF NOT EXISTS `pgn_chess_test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `pgn_chess_test`;
+
+CREATE USER 'test'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP ON pgn_chess_test.* TO 'test'@'localhost';
 
 CREATE TABLE games (
     Event VARCHAR(64) NULL, # STR (Seven Tag Roster)
