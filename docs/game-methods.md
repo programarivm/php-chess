@@ -705,3 +705,61 @@ Will generate this `$captures` array:
             )
 
     )
+
+#### `metadata()`
+
+Fetches from the database random metadata of the current game.
+
+    $metadata = $game->metadata();
+
+The following sequence of moves:
+
+```php
+<?php
+
+$game = new Game;
+
+$game->play('w', 'd4');
+$game->play('b', 'd5');
+$game->play('w', 'Bf4');
+
+$metadata = $game->metadata();
+```
+
+Might return a `$metadata` array as the described below.
+
+    Array
+    (
+        [Event] => 11. KIIT Elite Open 2018
+        [Site] => Bhubaneswar IND
+        [Date] => 2018.05.28
+        [Round] => 6.5
+        [White] => Kravtsiv, Martyn
+        [Black] => Das, Sayantan
+        [Result] => 1-0
+        [WhiteElo] => 2655
+        [BlackElo] => 2437
+        [EventDate] => 2018.05.25
+        [ECO] => D02
+        [movetext] => 1.d4 d5 2.Bf4 Nf6 3.Nf3 c5 4.e3 Nc6 5.Nbd2 e6 6.c3 Bd6 7.Bg3 O-O 8.Bd3 b6 9.e4 dxe4 10.Nxe4 Be7 11.Nxf6+ Bxf6 12.dxc5 bxc5 13.Qc2 h6 14.h4 Qe7 15.O-O-O Rd8 16.Bh7+ Kh8 17.Rxd8+ Nxd8 18.Be4 Bb7 19.Rd1 Rc8 20.Qa4 Bxe4 21.Qxe4 Nc6 22.Bd6 Qe8 23.Bxc5 Na5 24.Qb4 Nc6 25.Qa4 e5 26.Qe4 Na5 27.Rd5 Qb5 28.Bb4 Qf1+ 29.Rd1 Qb5 30.Bxa5 Qxa5 31.a3 Qb5 32.g3 Rc4 33.Qd5 Qb3 34.Nxe5 Rxc3+ 35.bxc3 Qxc3+ 36.Kb1 Bxe5 37.Qd8+ Kh7 38.Qd3+ Qxd3+ 39.Rxd3 Kg6 40.Kc2 Bc7 41.Rd5 Bb6 42.f3 h5 43.Kd3 f6 44.Ke2 Bc7 45.g4 hxg4 46.fxg4 Bb6 47.a4 1-0
+    )
+
+The random `$metadata` will vary in subsequent calls according to the chess games stored in the particular database.
+
+    Array
+    (
+        [Event] => 1. Longtou Cup 2018
+        [Site] => Qinhuangdao CHN
+        [Date] => 2018.05.28
+        [Round] => 3.2
+        [White] => Antipov, Mikhail Al
+        [Black] => Dai, Changren
+        [Result] => 1/2-1/2
+        [WhiteElo] => 2597
+        [BlackElo] => 2436
+        [EventDate] => 2018.05.26
+        [ECO] => D00
+        [movetext] => 1.d4 d5 2.Bf4 Nf6 3.e3 e6 4.Nd2 c5 5.c3 Nc6 6.Ngf3 Bd6 7.Bg3 O-O 8.Bb5 h6 9.Qe2 Bxg3 10.hxg3 Qb6 11.Rb1 Bd7 12.Bd3 Ng4 13.Nh4 f5 14.f3 Nf6 15.Ng6 Rfe8 16.f4 Kf7 17.Ne5+ Nxe5 18.fxe5 Ng4 19.Nf3 Qd8 20.Nh2 Nxh2 21.Rxh2 Qg5 22.Kf2 Kg8 23.Rh5 Qg6 24.dxc5 Rec8 25.Rbh1 Rxc5 26.R1h4 Rf8 27.g4 fxg4+ 28.Kg1 Bb5 29.Bxb5 Rxb5 30.Rxh6 Qb1+ 31.Kh2 1/2-1/2
+    )
+
+For further information on how to seed the PGN Chess database read the section [Command Line Interface (CLI)](https://pgn-chess.readthedocs.io/en/latest/command-line-interface/).
