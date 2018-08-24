@@ -9,4 +9,4 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - vendor/bin/phpunit --testsuite unit
+  - vendor/bin/phpunit
