@@ -28,6 +28,10 @@ class SeedTest extends TestCase
     public function db($filename)
     {
         (new PgnFileSeed(self::DATA_FOLDER."/$filename"))->db();
+
+        $result = Pdo::getInstance()->query('SELECT count(*) as count FROM games')->fetch(\PDO::FETCH_ASSOC);
+
+        $this->assertEquals(512, $result['count']);
     }
 
     public function pgnData()
