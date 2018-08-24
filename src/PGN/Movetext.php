@@ -42,19 +42,26 @@ final class Movetext
         return self::$movetext;
     }
 
+    /**
+     * Filters a movetext.
+     *
+     *      Example:
+     *
+     *          1.e4  e5 2.  f4 exf4 3. Bc4 d5 4.Bxd5 Qh4+
+     *
+     *      is transformed into:
+     *
+     *          1.e4 e5 2.f4 exf4 3.Bc4 d5 4.Bxd5 Qh4+
+     *
+     * @return string
+     */
     public static function filter(): string
     {
         $text = '';
-        for ($i = 0; $i < count(self::$movetext->numbers) - 1; $i++) {
-            if ($i === 0) {
-                $text .= self::$movetext->numbers[$i] . '.' .
-                    self::$movetext->notations[$i] . ' ' .
-                    self::$movetext->notations[$i+1] . ' ';
-            } else {
-                $text .= self::$movetext->numbers[$i] . '.' .
-                    self::$movetext->notations[$i*2] . ' ' .
-                    self::$movetext->notations[$i*2+1] . ' ';
-            }
+        for ($i = 0; $i < count(self::$movetext->numbers); $i++) {
+            $text .= self::$movetext->numbers[$i] . '.' .
+                self::$movetext->notations[$i*2] . ' ' .
+                self::$movetext->notations[$i*2+1] . ' ';
         }
 
         return trim($text);
