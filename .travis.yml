@@ -4,6 +4,9 @@ php:
   - 7.1
   - 7.2
 
+before_install:
+  - mysql -u root --password="" < tests/integration/travis.sql
+
 before_script:
   - composer install --no-interaction
 

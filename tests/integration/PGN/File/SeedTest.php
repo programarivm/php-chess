@@ -17,6 +17,8 @@ class SeedTest extends TestCase
             echo 'The integration tests can run on test environment only.' . PHP_EOL;
             exit;
         }
+
+        Pdo::getInstance()->query('TRUNCATE TABLE games');
     }
 
     /**
