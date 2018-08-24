@@ -41,4 +41,22 @@ final class Movetext
     {
         return self::$movetext;
     }
+
+    public static function filter(): string
+    {
+        $text = '';
+        for ($i = 0; $i < count(self::$movetext->numbers) - 1; $i++) {
+            if ($i === 0) {
+                $text .= self::$movetext->numbers[$i] . '.' .
+                    self::$movetext->notations[$i] . ' ' .
+                    self::$movetext->notations[$i+1] . ' ';
+            } else {
+                $text .= self::$movetext->numbers[$i] . '.' .
+                    self::$movetext->notations[$i*2] . ' ' .
+                    self::$movetext->notations[$i*2+1] . ' ';
+            }
+        }
+
+        return trim($text);
+    }
 }
