@@ -4,10 +4,10 @@ namespace PGNChess\Tests\Integration\PGN\File;
 
 use PGNChess\Db\Pdo;
 use PGNChess\Exception\PgnFileSyntaxException;
-use PGNChess\PGN\File\Convert as PgnFileConvert;
+use PGNChess\PGN\File\Seed as PgnFileSeed;
 use PHPUnit\Framework\TestCase;
 
-class ConvertTest extends TestCase
+class SeedTest extends TestCase
 {
     const DATA_FOLDER = __DIR__.'/../../data';
 
@@ -23,9 +23,9 @@ class ConvertTest extends TestCase
      * @dataProvider pgnData
      * @test
      */
-    public function to_mysql_games($filename)
+    public function db($filename)
     {
-        $sql = (new PgnFileConvert(self::DATA_FOLDER."/$filename"))->toMySqlScript();
+        (new PgnFileSeed(self::DATA_FOLDER."/$filename"))->db();
     }
 
     public function pgnData()

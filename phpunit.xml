@@ -18,7 +18,9 @@
             <directory>tests/unit</directory>
         </testsuite>
         <testsuite name="integration">
-            <directory>tests/integration</directory>
+            <directory>tests/integration/PGN/File/SeedTest.php</directory>
+            <directory>tests/integration/Board/StatusTest.php</directory>
+            <directory>tests/integration/PGN/File/ConvertTest.php</directory>
         </testsuite>
     </testsuites>
 </phpunit>

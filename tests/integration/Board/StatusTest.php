@@ -36,12 +36,12 @@ class StatusTest extends TestCase
     /**
      * @test
      */
-    public function play_d4_c6()
+    public function play_d4_d5()
     {
         $board = new Board;
 
         $board->play(Convert::toObject(Symbol::WHITE, 'd4'));
-        $board->play(Convert::toObject(Symbol::BLACK, 'c6'));
+        $board->play(Convert::toObject(Symbol::BLACK, 'd5'));
 
         $this->assertTrue(is_array($board->metadata()));
         $this->assertNotNull($board->metadata());
@@ -50,13 +50,13 @@ class StatusTest extends TestCase
     /**
      * @test
      */
-    public function play_d4_c6_c4()
+    public function play_d4_d5_Bf4()
     {
         $board = new Board;
 
         $board->play(Convert::toObject(Symbol::WHITE, 'd4'));
-        $board->play(Convert::toObject(Symbol::BLACK, 'c6'));
-        $board->play(Convert::toObject(Symbol::WHITE, 'c4'));
+        $board->play(Convert::toObject(Symbol::BLACK, 'd5'));
+        $board->play(Convert::toObject(Symbol::WHITE, 'Bf4'));
 
         $this->assertTrue(is_array($board->metadata()));
         $this->assertNotNull($board->metadata());
