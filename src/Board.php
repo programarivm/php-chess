@@ -2,6 +2,7 @@
 
 namespace PGNChess;
 
+use PGNChess\Db\Pdo;
 use PGNChess\Exception\BoardException;
 use PGNChess\Square\Castling;
 use PGNChess\Square\Stats;
@@ -998,5 +999,31 @@ final class Board extends \SplObjectStorage
         }
 
         return $escape === 0;
+    }
+
+    /**
+     * Fetches from the database the metadata of the game being played.
+     *
+     * @return array|bool
+     */
+    public function metadata()
+    {
+        $n = 1;
+        $movetext = '';
+        foreach ($this->history as $key => $val) {
+            if ($key % 2 === 0) {
+                $movetext .= "$n.{$val->move->pgn} ";
+                $n++;
+            } else {
+                $movetext .= "{$val->move->pgn} ";
+            }
+        }
+        $movetext = trim($movetext);
+        $result = Pdo::getInstance()
+                    ->query("SELECT * FROM games WHERE movetext LIKE '$movetext%' ORDER BY RAND() LIMIT 1")
+                    ->fetch(\PDO::FETCH_ASSOC);
+        is_array($result) ? $result = array_filter($result) : $result = null;
+
+        return $result;
     }
 }
