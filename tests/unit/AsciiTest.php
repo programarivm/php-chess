@@ -16,7 +16,7 @@ class AsciiTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function e4_e5()
+    public function e4_e5_to_array()
     {
         $board = new Board();
         $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
@@ -41,7 +41,7 @@ class AsciiTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function benko_gambit()
+    public function benko_gambit_to_array()
     {
         $board = (new BenkoGambit(new Board()))->play();
 
@@ -64,7 +64,7 @@ class AsciiTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function ruy_lopez_exchange()
+    public function ruy_lopez_exchange_to_array()
     {
         $board = (new RuyLopezExchange(new Board()))->play();
 

@@ -37,6 +37,13 @@ class Ascii
         return $array;
     }
 
+    public function toBoard(array $array)
+    {
+        // TODO
+        
+        return $board;
+    }
+
     public function print(Board $board): string
     {
         $ascii = '';
