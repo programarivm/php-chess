@@ -22,7 +22,7 @@ class AsciiTest extends AbstractUnitTestCase
         $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
         $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
 
-        $array = (new Ascii($board))->toArray();
+        $array = (new Ascii())->toArray($board);
 
         $expected = [
             7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -45,7 +45,7 @@ class AsciiTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit(new Board()))->play();
 
-        $array = (new Ascii($board))->toArray();
+        $array = (new Ascii())->toArray($board);
 
         $expected = [
             7 => [ ' r ', ' n ', ' . ', ' q ', ' k ', ' b ', ' . ', ' r ' ],
@@ -68,7 +68,7 @@ class AsciiTest extends AbstractUnitTestCase
     {
         $board = (new RuyLopezExchange(new Board()))->play();
 
-        $array = (new Ascii($board))->toArray();
+        $array = (new Ascii())->toArray($board);
 
         $expected = [
             7 => [ ' r ', ' . ', ' b ', ' . ', ' k ', ' b ', ' n ', ' r ' ],
@@ -91,7 +91,7 @@ class AsciiTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $array = (new Ascii($board))->toArray();
+        $array = (new Ascii())->toArray($board);
 
         $expected = [
             7 => [ ' r ', ' . ', ' b ', ' q ', ' k ', ' . ', ' n ', ' r ' ],

@@ -25,7 +25,7 @@ class BoardToString
     public function create(): string
     {
         $string = '';
-        $array = (new Ascii($this->board))->toArray();
+        $array = (new Ascii())->toArray($this->board);
         for ($i = 7; $i >= 0; $i--) {
             $string .= str_replace(' ', '', implode('', $array[$i]));
             if ($i != 0) {

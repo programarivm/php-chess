@@ -12,15 +12,9 @@ use Chess\PGN\Symbol;
  */
 class Ascii
 {
-    private $board;
-
-    private $array;
-
-    public function __construct(Board $board)
+    public function toArray(Board $board)
     {
-        $this->board = $board;
-
-        $this->array = [
+        $array = [
             7 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
             6 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
             5 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
@@ -31,38 +25,29 @@ class Ascii
             0 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
         ];
 
-        $this->build();
+        foreach ($board->getPieces() as $piece) {
+            $position = $piece->getPosition();
+            $rank = $position[0];
+            $file = $position[1] - 1;
+            Symbol::WHITE === $piece->getColor()
+                ? $array[$file][ord($rank)-97] = ' '.$piece->getIdentity().' '
+                : $array[$file][ord($rank)-97] = ' '.strtolower($piece->getIdentity()).' ';
+        }
+
+        return $array;
     }
 
-    public function toArray()
-    {
-        return $this->array;
-    }
-
-    public function print(): string
+    public function print(Board $board): string
     {
         $ascii = '';
-        foreach ($this->array as $i => $rank) {
+        $array = $this->toArray($board);
+        foreach ($array as $i => $rank) {
             foreach ($rank as $j => $file) {
-                $ascii .= $this->array[$i][$j];
+                $ascii .= $array[$i][$j];
             }
             $ascii .= PHP_EOL;
         }
 
         return $ascii;
-    }
-
-    protected function build()
-    {
-        foreach ($this->board->getPieces() as $piece) {
-            $position = $piece->getPosition();
-            $rank = $position[0];
-            $file = $position[1] - 1;
-            if (Symbol::WHITE === $piece->getColor()) {
-                $this->array[$file][ord($rank)-97] = ' '.$piece->getIdentity().' ';
-            } else {
-                $this->array[$file][ord($rank)-97] = ' '.strtolower($piece->getIdentity()).' ';
-            }
-        }
     }
 }

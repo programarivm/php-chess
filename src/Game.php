@@ -245,7 +245,7 @@ class Game
 
     public function ascii(): string
     {
-        return (new Ascii($this->board))->print();
+        return (new Ascii())->print($this->board);
     }
 
     public function fen(): string
