@@ -158,6 +158,41 @@ class AsciiTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function ruy_lopez_exchange_to_board()
+    {
+        $expected = [
+            7 => [ ' r ', ' . ', ' b ', ' . ', ' k ', ' b ', ' n ', ' r ' ],
+            6 => [ ' . ', ' p ', ' p ', ' . ', ' . ', ' p ', ' p ', ' p ' ],
+            5 => [ ' p ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' N ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
+            0 => [ ' R ', ' N ', ' B ', ' . ', ' K ', ' . ', ' . ', ' R ' ],
+        ];
+
+        $castling = [
+            Symbol::WHITE => [
+                CastlingRule::IS_CASTLED => false,
+                Symbol::CASTLING_SHORT => true,
+                Symbol::CASTLING_LONG => true,
+            ],
+            Symbol::BLACK => [
+                CastlingRule::IS_CASTLED => false,
+                Symbol::CASTLING_SHORT => true,
+                Symbol::CASTLING_LONG => true,
+            ],
+        ];
+
+        $board = (new Ascii())->toBoard($expected, Symbol::WHITE, $castling);
+        $array = (new Ascii())->toArray($board);
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
     public function closed_sicilian()
     {
         $board = (new ClosedSicilian(new Board()))->play();
