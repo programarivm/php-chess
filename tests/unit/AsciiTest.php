@@ -253,7 +253,7 @@ class AsciiTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_0_0()
     {
-        $this->assertEquals('a8', (new Ascii())->fromIndexToAlgebraic(0, 0));
+        $this->assertEquals('a1', (new Ascii())->fromIndexToAlgebraic(0, 0));
     }
 
     /**
@@ -261,7 +261,7 @@ class AsciiTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_1_0()
     {
-        $this->assertEquals('a7', (new Ascii())->fromIndexToAlgebraic(1, 0));
+        $this->assertEquals('a2', (new Ascii())->fromIndexToAlgebraic(1, 0));
     }
 
     /**
@@ -269,7 +269,7 @@ class AsciiTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_6_7()
     {
-        $this->assertEquals('h2', (new Ascii())->fromIndexToAlgebraic(6, 7));
+        $this->assertEquals('h7', (new Ascii())->fromIndexToAlgebraic(6, 7));
     }
 
     /**
@@ -277,38 +277,38 @@ class AsciiTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_7_7()
     {
-        $this->assertEquals('h1', (new Ascii())->fromIndexToAlgebraic(7, 7));
+        $this->assertEquals('h8', (new Ascii())->fromIndexToAlgebraic(7, 7));
     }
 
     /**
      * @test
      */
-    public function from_algebraic_to_index_a8()
+    public function from_algebraic_to_index_a1()
     {
-        $this->assertEquals([0, 0], (new Ascii())->fromAlgebraicToIndex('a8'));
+        $this->assertEquals([0, 0], (new Ascii())->fromAlgebraicToIndex('a1'));
     }
 
     /**
      * @test
      */
-    public function from_algebraic_to_index_a7()
+    public function from_algebraic_to_index_a2()
     {
-        $this->assertEquals([1, 0], (new Ascii())->fromAlgebraicToIndex('a7'));
+        $this->assertEquals([1, 0], (new Ascii())->fromAlgebraicToIndex('a2'));
     }
 
     /**
      * @test
      */
-    public function from_algebraic_to_index_h2()
+    public function from_algebraic_to_index_h7()
     {
-        $this->assertEquals([6, 7], (new Ascii())->fromAlgebraicToIndex('h2'));
+        $this->assertEquals([6, 7], (new Ascii())->fromAlgebraicToIndex('h7'));
     }
 
     /**
      * @test
      */
-    public function from_algebraic_to_index_h1()
+    public function from_algebraic_to_index_h8()
     {
-        $this->assertEquals([7, 7], (new Ascii())->fromAlgebraicToIndex('h1'));
+        $this->assertEquals([7, 7], (new Ascii())->fromAlgebraicToIndex('h8'));
     }
 }

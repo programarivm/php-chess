@@ -83,7 +83,7 @@ class Ascii
 
     public function fromAlgebraicToIndex(string $square)
     {
-        $i = 8 - $square[1];
+        $i = $square[1] - 1;
         $j = ord($square[0]) - 97;
 
         return [
@@ -95,7 +95,7 @@ class Ascii
     public function fromIndexToAlgebraic(int $i, int $j)
     {
         $file = chr(97 + $j);
-        $rank = 8 - $i;
+        $rank = $i + 1;
 
         return $file.$rank;
     }
