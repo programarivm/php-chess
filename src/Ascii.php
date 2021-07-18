@@ -100,6 +100,14 @@ class Ascii
         return $file.$rank;
     }
 
+    public function setArrayElem(string $piece, string $square, &$array)
+    {
+        $index = $this->fromAlgebraicToIndex($square);
+        $array[$index[0]][$index[1]] = $piece;
+
+        return $this;
+    }
+
     private function pushPiece($color, $char, $square, $castling, &$pieces)
     {
         switch ($char) {
