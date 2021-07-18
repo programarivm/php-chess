@@ -4,6 +4,7 @@ namespace Chess\Tests\Unit\Fen;
 
 use Chess\Ascii;
 use Chess\Board;
+use Chess\Castling\Rule as CastlingRule;
 use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
@@ -34,6 +35,41 @@ class AsciiTest extends AbstractUnitTestCase
             1 => [ ' P ', ' P ', ' P ', ' P ', ' . ', ' P ', ' P ', ' P ' ],
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
+    public function e4_e5_to_board()
+    {
+        $expected = [
+            7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
+            6 => [ ' p ', ' p ', ' p ', ' p ', ' . ', ' p ', ' p ', ' p ' ],
+            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' P ', ' P ', ' P ', ' P ', ' . ', ' P ', ' P ', ' P ' ],
+            0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
+        ];
+
+        $castling = [
+            Symbol::WHITE => [
+                CastlingRule::IS_CASTLED => false,
+                Symbol::CASTLING_SHORT => true,
+                Symbol::CASTLING_LONG => true,
+            ],
+            Symbol::BLACK => [
+                CastlingRule::IS_CASTLED => false,
+                Symbol::CASTLING_SHORT => true,
+                Symbol::CASTLING_LONG => true,
+            ],
+        ];
+
+        $board = (new Ascii())->toBoard($expected, Symbol::WHITE, $castling);
+        $array = (new Ascii())->toArray($board);
 
         $this->assertEquals($expected, $array);
     }
