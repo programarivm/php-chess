@@ -81,6 +81,17 @@ class Ascii
         return $ascii;
     }
 
+    public function fromAlgebraicToIndex(string $square)
+    {
+        $i = 8 - $square[1];
+        $j = ord($square[0]) - 97;
+
+        return [
+            $i,
+            $j,
+        ];
+    }
+
     public function fromIndexToAlgebraic(int $i, int $j)
     {
         $file = chr(97 + $j);
