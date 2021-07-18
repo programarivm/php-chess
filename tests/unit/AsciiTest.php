@@ -100,6 +100,41 @@ class AsciiTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function benko_gambit_to_board()
+    {
+        $expected = [
+            7 => [ ' r ', ' n ', ' . ', ' q ', ' k ', ' b ', ' . ', ' r ' ],
+            6 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' p ', ' . ', ' p ' ],
+            5 => [ ' . ', ' . ', ' . ', ' p ', ' . ', ' n ', ' p ', ' . ' ],
+            4 => [ ' . ', ' . ', ' p ', ' P ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' N ', ' . ', ' . ', ' . ', ' P ', ' . ' ],
+            1 => [ ' P ', ' P ', ' . ', ' . ', ' . ', ' P ', ' . ', ' P ' ],
+            0 => [ ' R ', ' . ', ' B ', ' Q ', ' . ', ' K ', ' N ', ' R ' ],
+        ];
+
+        $castling = [
+            Symbol::WHITE => [
+                CastlingRule::IS_CASTLED => false,
+                Symbol::CASTLING_SHORT => false,
+                Symbol::CASTLING_LONG => false,
+            ],
+            Symbol::BLACK => [
+                CastlingRule::IS_CASTLED => false,
+                Symbol::CASTLING_SHORT => true,
+                Symbol::CASTLING_LONG => true,
+            ],
+        ];
+
+        $board = (new Ascii())->toBoard($expected, Symbol::WHITE, $castling);
+        $array = (new Ascii())->toArray($board);
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
     public function ruy_lopez_exchange_to_array()
     {
         $board = (new RuyLopezExchange(new Board()))->play();
