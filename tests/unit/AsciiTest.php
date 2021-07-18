@@ -126,7 +126,7 @@ class AsciiTest extends AbstractUnitTestCase
             ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::WHITE, $castling);
+        $board = (new Ascii())->toBoard($expected, Symbol::BLACK, $castling);
         $array = (new Ascii())->toArray($board);
 
         $this->assertEquals($expected, $array);
@@ -184,7 +184,7 @@ class AsciiTest extends AbstractUnitTestCase
             ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::WHITE, $castling);
+        $board = (new Ascii())->toBoard($expected, Symbol::BLACK, $castling);
         $array = (new Ascii())->toArray($board);
 
         $this->assertEquals($expected, $array);
