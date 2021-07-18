@@ -81,7 +81,7 @@ class Ascii
         return $ascii;
     }
 
-    public function fromIndextoAlgebraic(int $i, int $j)
+    public function fromIndexToAlgebraic(int $i, int $j)
     {
         $file = chr(97 + $j);
         $rank = 8 - $i;

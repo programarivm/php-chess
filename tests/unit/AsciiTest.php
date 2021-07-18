@@ -253,7 +253,7 @@ class AsciiTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_0_0()
     {
-        $this->assertEquals('a8', (new Ascii())->fromIndextoAlgebraic(0, 0));
+        $this->assertEquals('a8', (new Ascii())->fromIndexToAlgebraic(0, 0));
     }
 
     /**
@@ -261,7 +261,7 @@ class AsciiTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_1_0()
     {
-        $this->assertEquals('a7', (new Ascii())->fromIndextoAlgebraic(1, 0));
+        $this->assertEquals('a7', (new Ascii())->fromIndexToAlgebraic(1, 0));
     }
 
     /**
@@ -269,7 +269,7 @@ class AsciiTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_6_7()
     {
-        $this->assertEquals('h2', (new Ascii())->fromIndextoAlgebraic(6, 7));
+        $this->assertEquals('h2', (new Ascii())->fromIndexToAlgebraic(6, 7));
     }
 
     /**
@@ -277,6 +277,6 @@ class AsciiTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_7_7()
     {
-        $this->assertEquals('h1', (new Ascii())->fromIndextoAlgebraic(7, 7));
+        $this->assertEquals('h1', (new Ascii())->fromIndexToAlgebraic(7, 7));
     }
 }
