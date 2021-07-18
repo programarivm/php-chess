@@ -67,6 +67,28 @@ class Ascii
         return $board;
     }
 
+    public function print(Board $board): string
+    {
+        $ascii = '';
+        $array = $this->toArray($board);
+        foreach ($array as $i => $rank) {
+            foreach ($rank as $j => $file) {
+                $ascii .= $array[$i][$j];
+            }
+            $ascii .= PHP_EOL;
+        }
+
+        return $ascii;
+    }
+
+    public function fromIndextoAlgebraic(int $i, int $j)
+    {
+        $file = chr(97 + $j);
+        $rank = 8 - $i;
+
+        return $file.$rank;
+    }
+
     private function pushPiece($color, $char, $square, $castling, &$pieces)
     {
         switch ($char) {
@@ -120,19 +142,5 @@ class Ascii
         }
 
         return $pieces;
-    }
-
-    public function print(Board $board): string
-    {
-        $ascii = '';
-        $array = $this->toArray($board);
-        foreach ($array as $i => $rank) {
-            foreach ($rank as $j => $file) {
-                $ascii .= $array[$i][$j];
-            }
-            $ascii .= PHP_EOL;
-        }
-
-        return $ascii;
     }
 }

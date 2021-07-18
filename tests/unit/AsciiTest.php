@@ -247,4 +247,36 @@ class AsciiTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $array);
     }
+
+    /**
+     * @test
+     */
+    public function from_index_to_algebraic_0_0()
+    {
+        $this->assertEquals('a8', (new Ascii())->fromIndextoAlgebraic(0, 0));
+    }
+
+    /**
+     * @test
+     */
+    public function from_index_to_algebraic_1_0()
+    {
+        $this->assertEquals('a7', (new Ascii())->fromIndextoAlgebraic(1, 0));
+    }
+
+    /**
+     * @test
+     */
+    public function from_index_to_algebraic_6_7()
+    {
+        $this->assertEquals('h2', (new Ascii())->fromIndextoAlgebraic(6, 7));
+    }
+
+    /**
+     * @test
+     */
+    public function from_index_to_algebraic_7_7()
+    {
+        $this->assertEquals('h1', (new Ascii())->fromIndextoAlgebraic(7, 7));
+    }
 }
