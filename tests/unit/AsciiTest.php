@@ -193,7 +193,7 @@ class AsciiTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function closed_sicilian()
+    public function closed_sicilian_to_array()
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
@@ -209,6 +209,41 @@ class AsciiTest extends AbstractUnitTestCase
             1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' B ', ' P ' ],
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' . ', ' N ', ' R ' ],
         ];
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
+    public function closed_sicilian_to_board()
+    {
+        $expected = [
+            7 => [ ' r ', ' . ', ' b ', ' q ', ' k ', ' . ', ' n ', ' r ' ],
+            6 => [ ' p ', ' p ', ' . ', ' . ', ' p ', ' p ', ' b ', ' p ' ],
+            5 => [ ' . ', ' . ', ' n ', ' p ', ' . ', ' . ', ' p ', ' . ' ],
+            4 => [ ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' N ', ' P ', ' . ', ' . ', ' P ', ' . ' ],
+            1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' B ', ' P ' ],
+            0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' . ', ' N ', ' R ' ],
+        ];
+
+        $castling = [
+            Symbol::WHITE => [
+                CastlingRule::IS_CASTLED => false,
+                Symbol::CASTLING_SHORT => true,
+                Symbol::CASTLING_LONG => true,
+            ],
+            Symbol::BLACK => [
+                CastlingRule::IS_CASTLED => false,
+                Symbol::CASTLING_SHORT => true,
+                Symbol::CASTLING_LONG => true,
+            ],
+        ];
+
+        $board = (new Ascii())->toBoard($expected, Symbol::WHITE, $castling);
+        $array = (new Ascii())->toArray($board);
 
         $this->assertEquals($expected, $array);
     }
