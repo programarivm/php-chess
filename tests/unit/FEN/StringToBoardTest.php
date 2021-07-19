@@ -194,4 +194,15 @@ class StringToBoardTest extends AbstractUnitTestCase
         $this->assertEquals($expected, $array);
         $this->assertEquals($legalMoves, ['e6' , 'f6']);
     }
+
+    /**
+     * @test
+     */
+    public function e4_c5_e5_f5_play_exf6()
+    {
+        $board = (new StringToBoard('rnbqkbnr/pp1pp1pp/8/2p1Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3'))
+            ->create();
+
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'exf6')));
+    }
 }
