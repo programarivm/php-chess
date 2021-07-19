@@ -2,8 +2,10 @@
 
 namespace Chess\FEN;
 
+use Chess\Ascii;
 use Chess\Board;
 use Chess\Castling\Initialization as CastlingInit;
+use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Piece\Bishop;
 use Chess\Piece\King;
@@ -64,6 +66,10 @@ class StringToBoard
         }
         $board = (new Board($this->pieces, $this->castling))
             ->setTurn($this->fields[1]);
+
+        if ($this->fields[3] !== '-') {
+            $board = $this->doublePawnPush($board);
+        }
 
         return $board;
     }
@@ -154,5 +160,32 @@ class StringToBoard
                 // do nothing
                 break;
         }
+    }
+
+    protected function doublePawnPush(Board $board)
+    {
+        $ascii = new Ascii();
+        $array = $ascii->toArray($board);
+        $file = $this->fields[3][0];
+        $rank = $this->fields[3][1];
+        if ($this->fields[1] === Symbol::WHITE) {
+            $piece = ' p ';
+            $fromRank = $rank + 1;
+            $toRank = $rank - 1;
+            $turn = Symbol::BLACK;
+        } else {
+            $piece = ' P ';
+            $fromRank = $rank - 1;
+            $toRank = $rank + 1;
+            $turn = Symbol::WHITE;
+        }
+        $fromSquare = $file.$fromRank;
+        $toSquare = $file.$toRank;
+        $ascii->setArrayElem($piece, $fromSquare, $array)
+            ->setArrayElem(' . ', $toSquare, $array);
+        $board = $ascii->toBoard($array, $turn);
+        $board->play(Convert::toStdObj($turn, $toSquare));
+
+        return $board;
     }
 }

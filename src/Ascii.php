@@ -2,6 +2,7 @@
 
 namespace Chess;
 
+use Chess\Castling\Rule as CastlingRule;
 use Chess\PGN\Symbol;
 use Chess\Piece\Bishop;
 use Chess\Piece\King;
@@ -45,8 +46,22 @@ class Ascii
         return $array;
     }
 
-    public function toBoard(array $array, string $turn, array $castling)
+    public function toBoard(array $array, string $turn, $castling = null)
     {
+        if (!$castling) {
+            $castling = [
+                Symbol::WHITE => [
+                    CastlingRule::IS_CASTLED => false,
+                    Symbol::CASTLING_SHORT => false,
+                    Symbol::CASTLING_LONG => false,
+                ],
+                Symbol::BLACK => [
+                    CastlingRule::IS_CASTLED => false,
+                    Symbol::CASTLING_SHORT => false,
+                    Symbol::CASTLING_LONG => false,
+                ],
+            ];
+        }
         $pieces = [];
         foreach ($array as $i => $row) {
             $file = 'a';
