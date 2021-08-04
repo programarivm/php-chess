@@ -142,4 +142,18 @@ class PlayTest extends AbstractUnitTestCase
         $this->assertEquals($expected, $game->playFen('rnbqkbnr/pp1pp1pp/8/2p1Pp2/8/8/PPPP1PPP/RNBQKBNR w'));
         $this->assertEquals($expected, $game->playFen('rnbqkbnr/pp1pp1pp/5P2/2p5/8/8/PPPP1PPP/RNBQKBNR b'));
     }
+
+    /**
+     * @test
+     */
+    public function Nf3_Nf6_d3_d6_Nfd2()
+    {
+        $game = new Game();
+
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pppppppp/8/8/8/5N2/PPPPPPPP/RNBQKB1R b'));
+        $this->assertEquals(true, $game->playFen('rnbqkb1r/pppppppp/5n2/8/8/5N2/PPPPPPPP/RNBQKB1R w'));
+        $this->assertEquals(true, $game->playFen('rnbqkb1r/pppppppp/5n2/8/8/3P1N2/PPP1PPPP/RNBQKB1R b'));
+        $this->assertEquals(true, $game->playFen('rnbqkb1r/ppp1pppp/3p1n2/8/8/3P1N2/PPP1PPPP/RNBQKB1R w'));
+        $this->assertEquals(true, $game->playFen('rnbqkb1r/ppp1pppp/3p1n2/8/8/3P4/PPPNPPPP/RNBQKB1R b'));
+    }
 }
