@@ -56,11 +56,11 @@ abstract class AbstractStringToPgn
                     default:
                         if ($clone->play(Convert::toStdObj($color, $piece->getIdentity().$square))) {
                             $legal[] = [
-                                $piece->getIdentity().$square => (new BoardToString($clone))->create()
+                                $piece->getIdentity().$piece->getPosition().$square => (new BoardToString($clone))->create()
                             ];
                         } elseif ($clone->play(Convert::toStdObj($color, "{$piece->getIdentity()}x$square"))) {
                             $legal[] = [
-                                "{$piece->getIdentity()}x$square" => (new BoardToString($clone))->create()
+                                "{$piece->getIdentity()}{$piece->getPosition()}x$square" => (new BoardToString($clone))->create()
                             ];
                         }
                         break;

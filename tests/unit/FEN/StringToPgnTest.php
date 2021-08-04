@@ -36,7 +36,7 @@ class StringToPgnTest extends AbstractUnitTestCase
         ))->create();
 
         $expected = [
-            Symbol::WHITE => 'Nf3',
+            Symbol::WHITE => 'Ng1f3',
         ];
 
         $this->assertEquals($expected, $pgn);
