@@ -328,4 +328,15 @@ class Game
 
         return false;
     }
+
+    public function heuristicPicture($balanced = false)
+    {
+        $movetext = $this->board->getMovetext();
+
+        if ($balanced) {
+            return (new HeuristicPicture($movetext))->take()->getBalance();
+        }
+
+        return (new HeuristicPicture($movetext))->take()->getPicture();
+    }
 }
