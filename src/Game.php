@@ -329,7 +329,7 @@ class Game
         return false;
     }
 
-    public function heuristicPicture($balanced = false)
+    public function heuristicPicture($balanced = false): array
     {
         $movetext = $this->board->getMovetext();
 

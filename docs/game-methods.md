@@ -153,6 +153,51 @@ Output:
 rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1PPP/RNBQKBNR w KQkq -
 ```
 
+#### `heuristicPicture($balanced = false): array`
+
+Gets the game's heuristic picture as an array.
+
+```php
+$heuristicPicture = $game->heuristicPicture(true);
+
+var_export($heuristicPicture);
+```
+
+Output:
+
+```text
+array (
+  0 =>
+  array (
+    0 => 0.0,
+    1 => 0.0,
+    2 => -0.25,
+    3 => 0.17,
+    4 => 0.0,
+    5 => 0.0,
+    6 => -1.0,
+    7 => -1.0,
+  ),
+  1 =>
+  array (
+    0 => 0.0,
+    1 => -1.0,
+    2 => 0.75,
+    3 => -0.92,
+    4 => -1.0,
+    5 => -1.0,
+    6 => 0.0,
+    7 => 0.0,
+  ),
+)
+```
+
+For further information please visit:
+
+- [What Are Some Healthy Tips to Reduce Cognitive Load?](https://medium.com/geekculture/what-are-some-healthy-tips-to-reduce-cognitive-load-4f91b695a3cb)
+- [How to Take Normalized Heuristic Pictures](https://medium.com/geekculture/how-to-take-normalized-heuristic-pictures-79ca0df4cdec)
+- [Equilibrium, Yin-Yang Chess](https://medium.com/geekculture/equilibrium-yin-yang-chess-292e044be46b)
+
 #### `history(): array`
 
 Gets the game's history as an array of `stdClass` objects.
