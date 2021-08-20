@@ -174,9 +174,9 @@ class Game
                         }
                         break;
                     case Symbol::PAWN:
-                        if ($clone->play(Convert::toStdObj($color, $square))) {
+                        if ($clone->play(Convert::toStdObj($color, $piece->getFile()."x$square"))) {
                             $moves[] = $square;
-                        } elseif ($clone->play(Convert::toStdObj($color, $piece->getFile()."x$square"))) {
+                        } elseif ($clone->play(Convert::toStdObj($color, $square))) {
                             $moves[] = $square;
                         }
                         break;
