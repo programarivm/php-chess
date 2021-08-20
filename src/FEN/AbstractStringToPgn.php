@@ -46,11 +46,14 @@ abstract class AbstractStringToPgn
                         }
                         break;
                     case Symbol::PAWN:
-                        if ($clone->play(Convert::toStdObj($color, $square))) {
-                            $legal[] = [
-                                $square => (new BoardToString($clone))->create()
-                            ];
-                        } elseif ($clone->play(Convert::toStdObj($color, $piece->getFile()."x$square"))) {
+                        try {
+                            if ($clone->play(Convert::toStdObj($color, $square))) {
+                                $legal[] = [
+                                    $square => (new BoardToString($clone))->create()
+                                ];
+                            }
+                        } catch (\Exception $e) {}
+                        if ($clone->play(Convert::toStdObj($color, $piece->getFile()."x$square"))) {
                             $legal[] = [
                                 $piece->getFile()."x$square" => (new BoardToString($clone))->create()
                             ];
