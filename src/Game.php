@@ -323,7 +323,10 @@ class Game
         $result = current($pgn);
 
         if ($result) {
-            return $this->board->play(Convert::toStdObj($color, $result));
+            $clone = unserialize(serialize($this->board));
+            $clone->play(Convert::toStdObj($color, $result));
+            $clone->isMate() ? $check = '#' : ($clone->isCheck() ? $check = '+' : $check = '');
+            return $this->board->play(Convert::toStdObj($color, $result.$check));
         }
 
         return false;
