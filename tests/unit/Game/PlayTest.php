@@ -214,4 +214,20 @@ class PlayTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $game->movetext());
     }
+
+    /**
+     * @test
+     */
+    public function e4_c5_Nf3_d6_d4_cxd4_Nxd4_Nf6_Nc3()
+    {
+        $game = new Game();
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b'));
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w'));
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b'));
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pp2pppp/3p4/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w'));
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pp2pppp/3p4/2p5/3PP3/5N2/PPP2PPP/RNBQKB1R b'));
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pp2pppp/3p4/8/3pP3/5N2/PPP2PPP/RNBQKB1R w'));
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pp2pppp/3p4/8/3NP3/8/PPP2PPP/RNBQKB1R b'));
+        $this->assertEquals(true, $game->playFen('rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w'));
+    }
 }
