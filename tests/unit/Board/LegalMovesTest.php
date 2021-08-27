@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Board;
 
+use Chess\Ascii;
 use Chess\Board;
 use Chess\Castling\Rule as CastlingRule;
 use Chess\PGN\Convert;
@@ -1128,5 +1129,23 @@ class LegalMovesTest extends AbstractUnitTestCase
         $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6')));
         $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Nc3')));
         $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6')));
+    }
+
+    /**
+     * @test
+     */
+    public function e4_c5_Nf3_d6_d4_cxd4_Nxd4_Nf6_then_get_piece()
+    {
+        $board = new Board();
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'c5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'd6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'd4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'cxd4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Nxd4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6')));
+
+        $this->assertNotEmpty($board->getPieceByPosition('b1')->getLegalMoves());
     }
 }
