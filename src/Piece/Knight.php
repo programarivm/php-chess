@@ -123,25 +123,21 @@ class Knight extends AbstractPiece
     public function getLegalMoves(): array
     {
         $moves = [];
-
         foreach ($this->scope->jumps as $square) {
-
-            switch(true) {
-                case null != $this->getMove() && !$this->getMove()->isCapture:
+            switch (true) {
+                case $this->getMove() && !$this->getMove()->isCapture:
                     if (in_array($square, $this->boardStatus->squares->free)) {
                         $moves[] = $square;
                     } elseif (in_array($square, $this->boardStatus->squares->used->{$this->getOppColor()})) {
                         $moves[] = $square;
                     }
                     break;
-
-                case null != $this->getMove() && $this->getMove()->isCapture:
+                case $this->getMove() && $this->getMove()->isCapture:
                     if (in_array($square, $this->boardStatus->squares->used->{$this->getOppColor()})) {
                         $moves[] = $square;
                     }
                     break;
-
-                case null == $this->getMove():
+                case !$this->getMove():
                     if (in_array($square, $this->boardStatus->squares->free)) {
                         $moves[] = $square;
                     } elseif (in_array($square, $this->boardStatus->squares->used->{$this->getOppColor()})) {
