@@ -1115,7 +1115,7 @@ class LegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function e4_c5_Nf3_d6_d4_cxd4_Nxd4_Nf6()
+    public function e4_c5_Nf3_d6_d4_cxd4_Nxd4_Nf6_Nc3_Nc6()
     {
         $board = new Board();
         $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
@@ -1126,5 +1126,7 @@ class LegalMovesTest extends AbstractUnitTestCase
         $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'cxd4')));
         $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Nxd4')));
         $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Nc3')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6')));
     }
 }
