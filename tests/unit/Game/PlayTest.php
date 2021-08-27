@@ -218,7 +218,7 @@ class PlayTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function e4_c5_Nf3_d6_d4_cxd4_Nxd4_Nf6_Nc3()
+    public function e4_c5_Nf3_d6_d4_cxd4_Nxd4_Nf6()
     {
         $game = new Game();
         $this->assertEquals(true, $game->playFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b'));
