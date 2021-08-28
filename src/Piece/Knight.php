@@ -124,26 +124,10 @@ class Knight extends AbstractPiece
     {
         $moves = [];
         foreach ($this->scope->jumps as $square) {
-            switch (true) {
-                case $this->getMove() && !$this->getMove()->isCapture:
-                    if (in_array($square, $this->boardStatus->squares->free)) {
-                        $moves[] = $square;
-                    } elseif (in_array($square, $this->boardStatus->squares->used->{$this->getOppColor()})) {
-                        $moves[] = $square;
-                    }
-                    break;
-                case $this->getMove() && $this->getMove()->isCapture:
-                    if (in_array($square, $this->boardStatus->squares->used->{$this->getOppColor()})) {
-                        $moves[] = $square;
-                    }
-                    break;
-                case !$this->getMove():
-                    if (in_array($square, $this->boardStatus->squares->free)) {
-                        $moves[] = $square;
-                    } elseif (in_array($square, $this->boardStatus->squares->used->{$this->getOppColor()})) {
-                        $moves[] = $square;
-                    }
-                    break;
+            if (in_array($square, $this->boardStatus->squares->free)) {
+                $moves[] = $square;
+            } elseif (in_array($square, $this->boardStatus->squares->used->{$this->getOppColor()})) {
+                $moves[] = $square;
             }
         }
 
