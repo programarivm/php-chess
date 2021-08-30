@@ -3,10 +3,10 @@
 namespace Chess;
 
 use Chess\Ascii;
-use Chess\StringToBoard;
 use Chess\HeuristicPicture;
 use Chess\FEN\BoardToString;
 use Chess\FEN\ShortenedStringToPgn;
+use Chess\FEN\StringToBoard;
 use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\PGN\Validate;
