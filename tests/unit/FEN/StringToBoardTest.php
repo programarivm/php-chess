@@ -205,4 +205,28 @@ class StringToBoardTest extends AbstractUnitTestCase
 
         $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'exf6')));
     }
+
+    /**
+     * @test
+     */
+    public function kaufman_01()
+    {
+        $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
+            ->create();
+
+        $array = (new Ascii())->toArray($board);
+
+        $expected = [
+            7 => [ ' . ', ' r ', ' b ', ' q ', ' . ', ' r ', ' k ', ' . ' ],
+            6 => [ ' p ', ' . ', ' b ', ' . ', ' n ', ' p ', ' p ', ' p ' ],
+            5 => [ ' . ', ' p ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' B ', ' . ', ' p ', ' N ', ' . ', ' . ', ' . ' ],
+            2 => [ ' P ', ' . ', ' . ', ' B ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' . ', ' P ', ' . ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
+            0 => [ ' . ', ' . ', ' R ', ' Q ', ' . ', ' R ', ' . ', ' K ' ],
+        ];
+
+        $this->assertEquals($expected, $array);
+    }
 }
