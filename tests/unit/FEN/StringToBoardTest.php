@@ -282,4 +282,21 @@ class StringToBoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $array);
     }
+
+    /**
+     * @test
+     */
+    public function kaufman_01_Qg4_then_get_piece()
+    {
+        $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
+            ->create();
+
+        $board->play(Convert::toStdObj(Symbol::WHITE, 'Qg4'));
+
+        $legalMoves = $board->getPieceByPosition('a7')->getLegalMoves();
+
+        $expected = ['a6', 'a5'];
+
+        $this->assertEquals($expected, $legalMoves);
+    }
 }
