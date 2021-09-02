@@ -278,7 +278,6 @@ class PlayTest extends AbstractUnitTestCase
     public function kaufman_01_Qg4()
     {
         $game = new Game();
-
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
         $game->play('w', 'Qg4');
 
@@ -302,7 +301,6 @@ class PlayTest extends AbstractUnitTestCase
     public function kaufman_01_Qg4_a5()
     {
         $game = new Game();
-
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
         $game->play('w', 'Qg4');
         $game->play('b', 'a5');
@@ -319,5 +317,26 @@ class PlayTest extends AbstractUnitTestCase
                     " .  .  R  .  .  R  .  K \n";
 
         $this->assertEquals($expected, $ascii);
+    }
+
+    /**
+     * @test
+     */
+    public function kaufman_01_Qg4_then_get_piece()
+    {
+        $game = new Game();
+        $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
+        $game->play('w', 'Qg4');
+
+        $piece = $game->piece('a7');
+
+        $expected = (object) [
+            'color' => 'b',
+            'identity' => 'P',
+            'position' => 'a7',
+            'moves' => [ 'a6', 'a5' ],
+        ];
+
+        $this->assertEquals($expected, $piece);
     }
 }
