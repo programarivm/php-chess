@@ -256,7 +256,6 @@ class PlayTest extends AbstractUnitTestCase
     public function kaufman_01()
     {
         $game = new Game();
-
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
 
         $ascii = $game->ascii();
@@ -269,6 +268,30 @@ class PlayTest extends AbstractUnitTestCase
                     " P  .  .  B  .  .  .  . \n" .
                     " .  P  .  .  .  P  P  P \n" .
                     " .  .  R  Q  .  R  .  K \n";
+
+        $this->assertEquals($expected, $ascii);
+    }
+
+    /**
+     * @test
+     */
+    public function kaufman_01_Qg4()
+    {
+        $game = new Game();
+
+        $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
+        $game->play('w', 'Qg4');
+
+        $ascii = $game->ascii();
+
+        $expected = " .  r  b  q  .  r  k  . \n" .
+                    " p  .  b  .  n  p  p  p \n" .
+                    " .  p  .  .  p  .  .  . \n" .
+                    " .  .  .  .  .  .  .  . \n" .
+                    " .  B  .  p  N  .  Q  . \n" .
+                    " P  .  .  B  .  .  .  . \n" .
+                    " .  P  .  .  .  P  P  P \n" .
+                    " .  .  R  .  .  R  .  K \n";
 
         $this->assertEquals($expected, $ascii);
     }
