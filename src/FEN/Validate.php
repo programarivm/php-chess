@@ -13,9 +13,9 @@ use Chess\PGN\Validate as PgnValidate;
  */
 class Validate
 {
-    public static function length(string $fen): bool
+    public static function length(array $fields): bool
     {
-        if (count(explode(' ', $fen)) === 6) {
+        if (count($fields) === 6) {
             return true;
         }
 
@@ -48,7 +48,7 @@ class Validate
     {
         $fields = explode(' ', $string);
 
-        return self::length($string) &&
+        return self::length($fields) &&
             self::color($fields[1]) &&
             self::castling($fields[2]);
     }
