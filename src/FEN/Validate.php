@@ -13,10 +13,10 @@ use Chess\PGN\Validate as PgnValidate;
  */
 class Validate
 {
-    public static function length(array $fields): bool
+    public static function length(array $fields): int
     {
-        if (count($fields) === 6) {
-            return true;
+        if ($count = count($fields) === 6) {
+            return $count;
         }
 
         throw new UnknownNotationException(
@@ -29,13 +29,11 @@ class Validate
         return PgnValidate::color($color);
     }
 
-    public static function castling(string $ability): bool
+    public static function castling(string $ability): string
     {
         if ($ability) {
-            if ('-' === $ability) {
-                return true;
-            } elseif (preg_match('/^K?Q?k?q?$/', $ability)) {
-                return true;
+            if ('-' === $ability || preg_match('/^K?Q?k?q?$/', $ability)) {
+                return $ability;
             }
         }
 

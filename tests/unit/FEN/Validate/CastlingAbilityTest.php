@@ -15,7 +15,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        $this->assertTrue(Validate::castling('foobar'));
+        Validate::castling('foobar');
     }
 
     /**
@@ -25,7 +25,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        $this->assertTrue(Validate::castling('kqKQ'));
+        Validate::castling('kqKQ');
     }
 
     /**
@@ -35,71 +35,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        $this->assertTrue(Validate::castling('KkQq'));
-    }
-
-    /**
-     * @test
-     */
-    public function start_w_KQkq()
-    {
-        $this->assertTrue(Validate::castling('KQkq'));
-    }
-
-    /**
-     * @test
-     */
-    public function w_k()
-    {
-        $this->assertTrue(Validate::castling('K'));
-    }
-
-    /**
-     * @test
-     */
-    public function w_q()
-    {
-        $this->assertTrue(Validate::castling('Q'));
-    }
-
-    /**
-     * @test
-     */
-    public function b_k()
-    {
-        $this->assertTrue(Validate::castling('k'));
-    }
-
-    /**
-     * @test
-     */
-    public function b_q()
-    {
-        $this->assertTrue(Validate::castling('q'));
-    }
-
-    /**
-     * @test
-     */
-    public function w_kq()
-    {
-        $this->assertTrue(Validate::castling('KQ'));
-    }
-
-    /**
-     * @test
-     */
-    public function b_kq()
-    {
-        $this->assertTrue(Validate::castling('kq'));
-    }
-
-    /**
-     * @test
-     */
-    public function hyphen()
-    {
-        $this->assertTrue(Validate::castling('-'));
+        Validate::castling('KkQq');
     }
 
     /**
@@ -109,7 +45,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        $this->assertTrue(Validate::castling('--'));
+        Validate::castling('--');
     }
 
     /**
@@ -119,7 +55,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        $this->assertTrue(Validate::castling('k-'));
+        Validate::castling('k-');
     }
 
     /**
@@ -129,6 +65,70 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        $this->assertTrue(Validate::castling(''));
+        Validate::castling('');
+    }
+
+    /**
+     * @test
+     */
+    public function start_w_KQkq()
+    {
+        $this->assertEquals('KQkq', Validate::castling('KQkq'));
+    }
+
+    /**
+     * @test
+     */
+    public function w_k()
+    {
+        $this->assertEquals('K', Validate::castling('K'));
+    }
+
+    /**
+     * @test
+     */
+    public function w_q()
+    {
+        $this->assertEquals('Q', Validate::castling('Q'));
+    }
+
+    /**
+     * @test
+     */
+    public function b_k()
+    {
+        $this->assertEquals('k', Validate::castling('k'));
+    }
+
+    /**
+     * @test
+     */
+    public function b_q()
+    {
+        $this->assertEquals('q', Validate::castling('q'));
+    }
+
+    /**
+     * @test
+     */
+    public function w_kq()
+    {
+        $this->assertEquals('KQ', Validate::castling('KQ'));
+    }
+
+    /**
+     * @test
+     */
+    public function b_kq()
+    {
+        $this->assertEquals('kq', Validate::castling('kq'));
+    }
+
+    /**
+     * @test
+     */
+    public function hyphen()
+    {
+        $this->assertEquals('-', Validate::castling('-'));
     }
 }
