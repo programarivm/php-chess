@@ -5,6 +5,7 @@ namespace Chess\FEN;
 use Chess\Ascii;
 use Chess\Board;
 use Chess\Castling\Initialization as CastlingInit;
+use Chess\Exception\UnknownNotationException;
 use Chess\FEN\Validate;
 use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
@@ -49,28 +50,34 @@ class StringToBoard
     public function create(): Board
     {
         Validate::fen("{$this->fields[0]} {$this->fields[1]} {$this->fields[2]} {$this->fields[3]}");
-        $fields = array_filter(explode('/', $this->fields[0]));
-        foreach ($fields as $key => $field) {
-            $file = 'a';
-            $rank = 8 - $key;
-            foreach (str_split($field) as $char) {
-                if (ctype_lower($char)) {
-                    $char = strtoupper($char);
-                    $this->pushPiece(Symbol::BLACK, $char, $file.$rank);
-                    $file = chr(ord($file) + 1);
-                } elseif (ctype_upper($char)) {
-                    $this->pushPiece(Symbol::WHITE, $char, $file.$rank);
-                    $file = chr(ord($file) + 1);
-                } elseif (is_numeric($char)) {
-                    $file = chr(ord($file) + $char);
+        try {
+            $fields = array_filter(explode('/', $this->fields[0]));
+            foreach ($fields as $key => $field) {
+                $file = 'a';
+                $rank = 8 - $key;
+                foreach (str_split($field) as $char) {
+                    if (ctype_lower($char)) {
+                        $char = strtoupper($char);
+                        $this->pushPiece(Symbol::BLACK, $char, $file.$rank);
+                        $file = chr(ord($file) + 1);
+                    } elseif (ctype_upper($char)) {
+                        $this->pushPiece(Symbol::WHITE, $char, $file.$rank);
+                        $file = chr(ord($file) + 1);
+                    } elseif (is_numeric($char)) {
+                        $file = chr(ord($file) + $char);
+                    }
                 }
             }
-        }
-        $board = (new Board($this->pieces, $this->castling))
-            ->setTurn($this->fields[1]);
+            $board = (new Board($this->pieces, $this->castling))
+                ->setTurn($this->fields[1]);
 
-        if ($this->fields[3] !== '-') {
-            $board = $this->doublePawnPush($board);
+            if ($this->fields[3] !== '-') {
+                $board = $this->doublePawnPush($board);
+            }
+        } catch (\Throwable $e) {
+            throw new UnknownNotationException(
+                "A chessboard cannot be created from this FEN string."
+            );
         }
 
         return $board;
