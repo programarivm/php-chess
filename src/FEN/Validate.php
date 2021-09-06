@@ -13,17 +13,6 @@ use Chess\PGN\Validate as PgnValidate;
  */
 class Validate
 {
-    public static function length(array $fields): int
-    {
-        if ($count = count($fields) === 6) {
-            return $count;
-        }
-
-        throw new UnknownNotationException(
-            "The FEN string should consist of six fields separated by a space char."
-        );
-    }
-
     public static function pieces(string $placement): string
     {
         $fields = explode('/', $placement);
@@ -68,7 +57,6 @@ class Validate
     {
         $fields = explode(' ', $string);
 
-        self::length($fields);
         self::pieces($fields[0]);
         self::color($fields[1]);
         self::castling($fields[2]);

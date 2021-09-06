@@ -5,6 +5,7 @@ namespace Chess\FEN;
 use Chess\Ascii;
 use Chess\Board;
 use Chess\Castling\Initialization as CastlingInit;
+use Chess\FEN\Validate;
 use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Piece\Bishop;
@@ -47,11 +48,12 @@ class StringToBoard
 
     public function create(): Board
     {
-        $rows = array_filter(explode('/', $this->fields[0]));
-        foreach ($rows as $key => $row) {
+        Validate::fen("{$this->fields[0]} {$this->fields[1]} {$this->fields[2]} {$this->fields[3]}");
+        $fields = array_filter(explode('/', $this->fields[0]));
+        foreach ($fields as $key => $field) {
             $file = 'a';
             $rank = 8 - $key;
-            foreach (str_split($row) as $char) {
+            foreach (str_split($field) as $char) {
                 if (ctype_lower($char)) {
                     $char = strtoupper($char);
                     $this->pushPiece(Symbol::BLACK, $char, $file.$rank);
