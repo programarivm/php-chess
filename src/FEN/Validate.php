@@ -51,13 +51,15 @@ class Validate
         return PgnValidate::square($square);
     }
 
-    public static function fen(string $string): bool
+    public static function fen(string $string): string
     {
         $fields = explode(' ', $string);
 
-        return self::length($fields) &&
-            self::color($fields[1]) &&
-            self::castling($fields[2]) &&
-            self::square($fields[3]);
+        self::length($fields);
+        self::color($fields[1]);
+        self::castling($fields[2]);
+        self::square($fields[3]);
+
+        return $string;
     }
 }
