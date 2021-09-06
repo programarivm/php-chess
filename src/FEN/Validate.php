@@ -37,4 +37,9 @@ class Validate
             "This FEN string does not contain a valid castling ability."
         );
     }
+
+    public static function fen(string $string): bool
+    {
+        return self::length($string) && self::castling($string);
+    }
 }
