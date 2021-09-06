@@ -24,6 +24,19 @@ class Validate
         );
     }
 
+    public static function pieces(string $placement): string
+    {
+        $fields = explode('/', $placement);
+
+        if ($count = count($fields) === 8) {
+            return $placement;
+        }
+
+        throw new UnknownNotationException(
+            "The FEN string should contain a valid piece placement."
+        );
+    }
+
     public static function color(string $color): string
     {
         return PgnValidate::color($color);
@@ -56,6 +69,7 @@ class Validate
         $fields = explode(' ', $string);
 
         self::length($fields);
+        self::pieces($fields[0]);
         self::color($fields[1]);
         self::castling($fields[2]);
         self::square($fields[3]);
