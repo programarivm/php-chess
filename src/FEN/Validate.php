@@ -3,6 +3,7 @@
 namespace Chess\FEN;
 
 use Chess\Exception\UnknownNotationException;
+use Chess\PGN\Validate as PgnValidate;
 
 /**
  * Validation class.
@@ -38,8 +39,17 @@ class Validate
         );
     }
 
+    public static function color(string $color): string
+    {
+        return PgnValidate::color($color);
+    }
+
     public static function fen(string $string): bool
     {
-        return self::length($string) && self::castling($string);
+        $fields = explode(' ', $string);
+
+        return self::length($string) &&
+            self::color($fields[1]) &&
+            self::castling($fields[2]);
     }
 }
