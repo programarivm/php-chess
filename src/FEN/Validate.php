@@ -24,6 +24,11 @@ class Validate
         );
     }
 
+    public static function color(string $color): string
+    {
+        return PgnValidate::color($color);
+    }
+
     public static function castling(string $ability): bool
     {
         if ($ability) {
@@ -39,9 +44,13 @@ class Validate
         );
     }
 
-    public static function color(string $color): string
+    public static function square(string $square): string
     {
-        return PgnValidate::color($color);
+        if ('-' === $square) {
+            return $square;
+        }
+
+        return PgnValidate::square($square);
     }
 
     public static function fen(string $string): bool
@@ -50,6 +59,7 @@ class Validate
 
         return self::length($fields) &&
             self::color($fields[1]) &&
-            self::castling($fields[2]);
+            self::castling($fields[2]) &&
+            self::square($fields[3]);
     }
 }
