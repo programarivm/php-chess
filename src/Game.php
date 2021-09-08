@@ -337,9 +337,9 @@ class Game
         $movetext = $this->board->getMovetext();
 
         if ($balanced) {
-            return (new HeuristicPicture($movetext))->take()->getBalance();
+            return (new HeuristicPicture($movetext, $this->board))->take()->getBalance();
         }
 
-        return (new HeuristicPicture($movetext))->take()->getPicture();
+        return (new HeuristicPicture($movetext, $this->board))->take()->getPicture();
     }
 }

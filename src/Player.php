@@ -20,9 +20,10 @@ class Player
 
     protected $moves;
 
-    public function __construct(string $movetext)
+    public function __construct(string $movetext, Board $board = null)
     {
-        $this->board = new Board;
+        $board ? $this->board = $board : $this->board = new Board();
+
         $this->moves = $this->extract($this->filter($movetext));
     }
 
