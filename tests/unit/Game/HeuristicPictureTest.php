@@ -67,4 +67,21 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $balance);
     }
+
+    /**
+     * @test
+     */
+    public function e4_e5_f4_f5_Nc3_Nc6()
+    {
+        $game = new Game();
+        $game->loadFen('r1bqkbnr/pppp2pp/2n5/4pp2/4PP2/2N5/PPPP2PP/R1BQKBNR w KQkq - 2 4');
+
+        $expected = [
+            [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+        ];
+
+        $balance = $game->heuristicPicture(true);
+
+        $this->assertEquals($expected, $balance);
+    }
 }
