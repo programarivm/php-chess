@@ -11,6 +11,7 @@ use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 use Chess\Tests\Sample\Opening\RuyLopez\Exchange as ExchangeRuyLopez;
 use Chess\Tests\Sample\Opening\RuyLopez\LucenaDefense as LucenaDefense;
 use Chess\Tests\Sample\Opening\Sicilian\Open as OpenSicilian;
+use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
 
 class StatusTest extends AbstractUnitTestCase
 {
@@ -128,7 +129,7 @@ class StatusTest extends AbstractUnitTestCase
             ],
             (object) [
                 'position' => 'e7',
-                'move' =>  (object) [
+                'move' => (object) [
                     'pgn' => 'e5',
                     'isCapture' => false,
                     'isCheck' => false,
@@ -229,6 +230,31 @@ class StatusTest extends AbstractUnitTestCase
 
         $this->assertEquals(14, count($board->getPiecesByColor(Symbol::WHITE)));
         $this->assertEquals(13, count($board->getPiecesByColor(Symbol::BLACK)));
+    }
+
+    /**
+     * @test
+     */
+    public function queens_legal_moves_in_fianchetto_variation()
+    {
+        $board = (new BenoniFianchettoVariation(new Board()))->play();
+
+        $queen = $board->getPieceByPosition('d1');
+
+        $expected = [ 'e1', 'c2', 'b3' ];
+
+        $this->assertEquals($expected, $queen->getLegalMoves());
+    }
+
+    /**
+     * @test
+     */
+    public function count_pieces_in_fianchetto_variation()
+    {
+        $board = (new BenoniFianchettoVariation(new Board()))->play();
+
+        $this->assertEquals(15, count($board->getPiecesByColor(Symbol::WHITE)));
+        $this->assertEquals(15, count($board->getPiecesByColor(Symbol::BLACK)));
     }
 
     /**
