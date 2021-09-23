@@ -7,6 +7,8 @@ use Chess\PGN\Symbol;
 
 class DoubledPawnEvaluation extends AbstractEvaluation
 {
+    const NAME = 'doubled_pawn';
+
     public function __construct(Board $board)
     {
         parent::__construct($board);
