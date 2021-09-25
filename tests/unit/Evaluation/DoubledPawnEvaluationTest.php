@@ -12,6 +12,34 @@ class DoubledPawnEvaluationTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function kaufman_16()
+    {
+        $position = [
+            7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            6 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
+            5 => [ ' p ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' p ', ' P ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' P ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' P ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
+            1 => [ ' . ', ' P ', ' . ', ' K ', ' . ', ' . ', ' . ', ' . ' ],
+            0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+        ];
+
+        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+
+        $expected = [
+            Symbol::WHITE => 1,
+            Symbol::BLACK => 0,
+        ];
+
+        $doubledPawnEvald = (new DoubledPawnEvaluation($board))->evaluate();
+
+        $this->assertEquals($expected, $doubledPawnEvald);
+    }
+
+    /**
+     * @test
+     */
     public function kaufman_17()
     {
         $position = [
