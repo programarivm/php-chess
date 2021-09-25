@@ -86,6 +86,16 @@ class Pawn extends AbstractPiece
     }
 
     /**
+     * Gets the pawn's rank info.
+     *
+     * @return stdClass
+     */
+    public function getRanks(): \stdClass
+    {
+        return $this->ranks;
+    }
+
+    /**
      * Gets the capture squares.
      *
      * @return array
