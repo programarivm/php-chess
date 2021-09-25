@@ -21,7 +21,18 @@ class DoubledPawnEvaluation extends AbstractEvaluation
 
     public function evaluate($feature = null): array
     {
-        // TODO
+        foreach ($this->board->getPieces() as $piece) {
+            $color = $piece->getColor();
+            if ($piece->getIdentity() === Symbol::PAWN) {
+                $file = $piece->getFile();
+                $ranks = $piece->getRanks();
+                if ($nextPiece = $this->board->getPieceByPosition($file.$ranks->next)) {
+                    if ($nextPiece->getIdentity() === Symbol::PAWN && $nextPiece->getColor() === $color) {
+                        $this->result[$color] += 1;
+                    }
+                }
+            }
+        }
 
         return $this->result;
     }
