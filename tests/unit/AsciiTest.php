@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Tests\Unit\Fen;
+namespace Chess\Tests\Unit;
 
 use Chess\Ascii;
 use Chess\Board;
