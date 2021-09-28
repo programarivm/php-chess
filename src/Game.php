@@ -342,4 +342,9 @@ class Game
 
         return (new HeuristicPicture($movetext, $this->board))->take()->getPicture();
     }
+
+    public function undoMove()
+    {
+        $this->board->undoMove($this->board->getCastling());
+    }
 }
