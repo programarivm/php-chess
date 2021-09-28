@@ -239,6 +239,55 @@ class AsciiTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function ruy_lopez_exchange_undo_move_to_array()
+    {
+        $board = (new RuyLopezExchange(new Board()))->play();
+        $board = $board->undoMove($board->getCastling());
+
+        $array = (new Ascii())->toArray($board);
+
+        $expected = [
+            7 => [ ' r ', ' . ', ' b ', ' . ', ' k ', ' b ', ' n ', ' r ' ],
+            6 => [ ' . ', ' p ', ' p ', ' . ', ' . ', ' p ', ' p ', ' p ' ],
+            5 => [ ' p ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' q ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' N ', ' . ', ' . ' ],
+            1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
+            0 => [ ' R ', ' N ', ' B ', ' . ', ' K ', ' . ', ' . ', ' R ' ],
+        ];
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
+    public function ruy_lopez_exchange_undo_two_moves_to_array()
+    {
+        $board = (new RuyLopezExchange(new Board()))->play();
+        $board = $board->undoMove($board->getCastling());
+        $board = $board->undoMove($board->getCastling());
+
+        $array = (new Ascii())->toArray($board);
+
+        $expected = [
+            7 => [ ' r ', ' . ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
+            6 => [ ' . ', ' p ', ' p ', ' . ', ' . ', ' p ', ' p ', ' p ' ],
+            5 => [ ' p ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' Q ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' N ', ' . ', ' . ' ],
+            1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
+            0 => [ ' R ', ' N ', ' B ', ' . ', ' K ', ' . ', ' . ', ' R ' ],
+        ];
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
     public function closed_sicilian_to_array()
     {
         $board = (new ClosedSicilian(new Board()))->play();

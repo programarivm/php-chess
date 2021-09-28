@@ -607,31 +607,28 @@ final class Board extends \SplObjectStorage
         $kingUndone = new King($prev->move->color, $prev->position);
         $this->detach($king);
         $this->attach($kingUndone);
-        switch ($prev->move->type) {
-            case Move::KING_CASTLING_SHORT:
-                $rook = $this->getPieceByPosition(
-                    CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['position']['next']
-                );
-                $rookUndone = new Rook(
-                    $prev->move->color,
-                    CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['position']['current'],
-                    $rook->getType()
-                );
-                $this->detach($rook);
-                $this->attach($rookUndone);
-                break;
-            case Move::KING_CASTLING_LONG:
-                $rook = $this->getPieceByPosition(
-                    CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['position']['next']
-                );
-                $rookUndone = new Rook(
-                    $prev->move->color,
-                    CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['position']['current'],
-                    $rook->getType()
-                );
-                $this->detach($rook);
-                $this->attach($rookUndone);
-                break;
+        if (Move::KING_CASTLING_SHORT === $prev->move->type) {
+            $rook = $this->getPieceByPosition(
+                CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['position']['next']
+            );
+            $rookUndone = new Rook(
+                $prev->move->color,
+                CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['position']['current'],
+                $rook->getType()
+            );
+            $this->detach($rook);
+            $this->attach($rookUndone);
+        } elseif (Move::KING_CASTLING_LONG === $prev->move->type) {
+            $rook = $this->getPieceByPosition(
+                CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['position']['next']
+            );
+            $rookUndone = new Rook(
+                $prev->move->color,
+                CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['position']['current'],
+                $rook->getType()
+            );
+            $this->detach($rook);
+            $this->attach($rookUndone);
         }
         $this->castling = $prevCastling;
         $this->popHistory()->refresh();
@@ -716,7 +713,7 @@ final class Board extends \SplObjectStorage
      * @param array $prevCastling
      * @return \Chess\Board
      */
-    private function undoMove(array $prevCastling): Board
+    public function undoMove(array $prevCastling): Board
     {
         $prev = end($this->history);
         $piece = $this->getPieceByPosition($prev->move->position->next);
@@ -809,7 +806,7 @@ final class Board extends \SplObjectStorage
      */
     private function leavesInCheck(Piece $piece): bool
     {
-        $prevCastling = unserialize(serialize($this->castling));
+        $prevCastling = $this->castling;
         if ($piece->getMove()->type === Move::KING_CASTLING_SHORT ||
             $piece->getMove()->type === Move::KING_CASTLING_LONG) {
             $this->castle($piece);
