@@ -547,3 +547,26 @@ $game->status()->space;
 // castling status of both players
 $game->status()->castling;
 ```
+
+#### `undoMove()`
+
+Undoes the last move.
+
+```php
+$game->undoMove();
+
+echo $game->ascii();
+```
+
+Output:
+
+```text
+ r  n  b  q  k  b  n  r
+ p  p  p  .  p  p  p  p
+ .  .  .  .  .  .  .  .
+ .  .  .  P  .  .  .  .
+ .  .  .  .  .  .  .  .
+ .  .  .  .  .  .  .  .
+ P  P  P  P  .  P  P  P
+ R  N  B  Q  K  B  N  R
+```
