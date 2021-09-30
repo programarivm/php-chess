@@ -25,6 +25,8 @@ class BoardToPng
 
     public function output(string $filepath)
     {
+        $array = (new Ascii())->toArray($this->board);
+
         $wPawn = $this->imagine->open(self::FILEPATH . '/pieces/wPawn.png');
         $chessboard = $this->imagine->open(self::FILEPATH . '/chessboard.png');
 
