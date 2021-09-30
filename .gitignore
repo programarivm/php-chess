@@ -1,4 +1,4 @@
 /composer.lock
 /vendor/
 .env
-/tests/data/*.svg
+/tests/data/*.png
