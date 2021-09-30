@@ -6,6 +6,7 @@ use Chess\Board;
 use Chess\FEN\StringToBoard;
 use Chess\Image\BoardToPng;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
 
 class BoardToPngTest extends AbstractUnitTestCase
 {
@@ -60,6 +61,21 @@ class BoardToPngTest extends AbstractUnitTestCase
         $this->assertEquals(
             md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
             md5(file_get_contents(self::DATA_FOLDER . '/img/02_kaufman.png'))
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function output_benoni_fianchetto_variation()
+    {
+        $board = (new BenoniFianchettoVariation(new Board()))->play();
+
+        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+
+        $this->assertEquals(
+            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
+            md5(file_get_contents(self::DATA_FOLDER . '/img/benoni_fianchetto_variation.png'))
         );
     }
 }
