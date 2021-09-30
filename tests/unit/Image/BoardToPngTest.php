@@ -11,6 +11,11 @@ class BoardToPngTest extends AbstractUnitTestCase
 {
     const OUTPUT_FOLDER = __DIR__.'/../../output';
 
+    public static function tearDownAfterClass(): void
+    {
+        unlink(self::OUTPUT_FOLDER . '/tmp.png');
+    }
+
     /**
      * @test
      */
