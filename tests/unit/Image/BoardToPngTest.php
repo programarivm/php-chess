@@ -36,8 +36,6 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_01_kaufman()
     {
-        $board = new Board();
-
         $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
@@ -54,8 +52,6 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_02_kaufman()
     {
-        $board = new Board();
-
         $board = (new StringToBoard('3r2k1/p2r1p1p/1p2p1p1/q4n2/3P4/PQ5P/1P1RNPP1/3R2K1 b - - bm Nxd4'))
             ->create();
 
