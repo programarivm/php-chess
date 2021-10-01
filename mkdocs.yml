@@ -4,6 +4,7 @@ pages:
   - Chess\Game: game.md
   - Chess\FEN\BoardToString: fen-board-to-string.md
   - Chess\FEN\StringToBoard: fen-string-to-board.md
+  - Chess\FEN\Validate: fen-validate.md
   - Chess\Image\BoardToPng: image-board-to-png.md
   - Command Line Interface: cli.md
   - Usage: usage.md
