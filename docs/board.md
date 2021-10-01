@@ -14,6 +14,82 @@ $board->play(Convert::toStdObj('w', 'exd5'));
 $board->play(Convert::toStdObj('b', 'Qxd5'));
 ```
 
+#### `getCaptures(): array`
+
+Gets the pieces captured by both players as an array of `stdClass` objects.
+
+```php
+$captures = $board->getCaptures();
+
+var_export($captures);
+```
+
+Output:
+
+```text
+array (
+  'w' =>
+  array (
+    0 =>
+    (object) array(
+       'capturing' =>
+      (object) array(
+         'identity' => 'P',
+         'position' => 'e4',
+      ),
+       'captured' =>
+      (object) array(
+         'identity' => 'P',
+         'position' => 'd5',
+      ),
+    ),
+  ),
+  'b' =>
+  array (
+    0 =>
+    (object) array(
+       'capturing' =>
+      (object) array(
+         'identity' => 'Q',
+         'position' => 'd8',
+      ),
+       'captured' =>
+      (object) array(
+         'identity' => 'P',
+         'position' => 'd5',
+      ),
+    ),
+  ),
+)
+```
+
+#### `getCastling(): ?array`
+
+Gets the castling status.
+
+```php
+$castling = $board->getCastling();
+
+var_export($castling);
+```
+
+```text
+array (
+  'w' =>
+  array (
+    'castled' => false,
+    'O-O' => true,
+    'O-O-O' => true,
+  ),
+  'b' =>
+  array (
+    'castled' => false,
+    'O-O' => true,
+    'O-O-O' => true,
+  ),
+)
+```
+
 #### `getMovetext(): string`
 
 Gets the movetext in text format.
