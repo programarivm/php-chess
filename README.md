@@ -12,6 +12,16 @@ Via composer:
 
     $ composer require chesslablab/php-chess
 
+### Documentation
+
+Read the latest docs [here](https://php-chess.readthedocs.io/en/latest/).
+
+### Demo
+
+PHP Chess is being used on [Redux Chess](https://github.com/chesslablab/redux-chess), which is a React chessboard connected to a [PHP Chess Server](https://github.com/chesslablab/chess-server). Check out [this demo](https://programarivm.github.io/demo-redux-chess).
+
+> Please note the sandbox server might not be up and running all the time.
+
 ### Play Chess
 
 ```php
@@ -47,14 +57,6 @@ $game->play('b', $game->response());
 $game->play('w', 'e5');
 $game->play('b', $game->response());
 ```
-
-### Documentation
-
-Read the latest docs [here](https://php-chess.readthedocs.io/en/latest/).
-
-### Demo
-
-PHP Chess is currently used on [Redux Chess](https://github.com/chesslablab/redux-chess), which is a React chessboard connected to a [PHP Chess server](https://github.com/chesslablab/chess-server). Check out [this demo](https://programarivm.github.io/demo-redux-chess) but please note the sandbox server might not be up and running all the time.
 
 ### License
 

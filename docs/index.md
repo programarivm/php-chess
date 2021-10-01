@@ -50,11 +50,9 @@ $game->play('w', 'e5');
 $game->play('b', $game->response());
 ```
 
-Currently a few machine learning models are being built with the [Rubix ML](https://github.com/RubixML/ML) library at [chesslablab/chess-data](https://github.com/chesslablab/chess-data). The supervised learning process is all about using suitable heuristics such as king safety, pressure, material or connectivity, among others.
+---
 
-But how can the efficiency of a chess heuristic be measured? This is where plotting data on nice charts comes to the rescue! A live demo is available at [Heuristics Quest](https://programarivm.github.io/heuristics-quest/).
-
-For further information you're all invited to read my learning journey:
+For further information you're invited to read my learning journey:
 
 - [Demystifying AI Through a Human-Like Chess Engine](https://medium.com/geekculture/demystifying-ai-through-a-human-like-chess-engine-5f71e3896cc9)
 - [Two Things That My AI Project Required](https://medium.com/geekculture/two-things-that-my-ai-project-required-50000297053b)
