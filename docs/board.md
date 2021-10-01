@@ -90,6 +90,59 @@ array (
 )
 ```
 
+#### `getHistory(): array`
+
+Gets the history as an array of `stdClass` objects.
+
+```php
+$history = $board->getHistory();
+
+var_export($history);
+```
+
+Output:
+
+```text
+array (
+  0 =>
+  (object) array(
+     'pgn' => 'e4',
+     'color' => 'w',
+     'identity' => 'P',
+     'position' => 'e2',
+     'isCapture' => false,
+     'isCheck' => false,
+  ),
+  1 =>
+  (object) array(
+     'pgn' => 'd5',
+     'color' => 'b',
+     'identity' => 'P',
+     'position' => 'd7',
+     'isCapture' => false,
+     'isCheck' => false,
+  ),
+  2 =>
+  (object) array(
+     'pgn' => 'exd5',
+     'color' => 'w',
+     'identity' => 'P',
+     'position' => 'e4',
+     'isCapture' => true,
+     'isCheck' => false,
+  ),
+  3 =>
+  (object) array(
+     'pgn' => 'Qxd5',
+     'color' => 'b',
+     'identity' => 'Q',
+     'position' => 'd8',
+     'isCapture' => true,
+     'isCheck' => false,
+  ),
+)
+```
+
 #### `getMovetext(): string`
 
 Gets the movetext in text format.
@@ -120,6 +173,38 @@ Output:
 
 ```text
 'w'
+```
+
+#### `isCheck(): bool`
+
+Finds out if a player is in check.
+
+```php
+$isCheck = $board->isCheck();
+
+var_export($isCheck);
+```
+
+Output:
+
+```text
+false
+```
+
+#### `isMate(): bool`
+
+Finds out if a player is checkmated.
+
+```php
+$isMate = $board->isMate();
+
+var_export($isMate);
+```
+
+Output:
+
+```text
+false
 ```
 
 #### `play(\stdClass $move): bool`
