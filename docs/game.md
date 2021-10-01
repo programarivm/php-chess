@@ -1,3 +1,5 @@
+The `Chess\Game` class is essentially a wrapper for the `Chess\Board` class and has been specifically designed to be the main component of the [PHP Chess Server](https://github.com/chesslablab/chess-server). Thus, there is a one-to-one correspondence between the `Chess\Game` methods and the `ChessServer\Command` [commands available](https://github.com/chesslablab/chess-server/tree/master/src/Command).
+
 Let's look at the [`Chess\Game`](https://github.com/chesslablab/php-chess/blob/master/src/Game.php) methods available through the following example:
 
 ```php
@@ -192,11 +194,10 @@ array (
 )
 ```
 
-For further information please visit:
+For further information on taking heuristic pictures, please visit:
 
-- [What Are Some Healthy Tips to Reduce Cognitive Load?](https://medium.com/geekculture/what-are-some-healthy-tips-to-reduce-cognitive-load-4f91b695a3cb)
 - [How to Take Normalized Heuristic Pictures](https://medium.com/geekculture/how-to-take-normalized-heuristic-pictures-79ca0df4cdec)
-- [Equilibrium, Yin-Yang Chess](https://medium.com/geekculture/equilibrium-yin-yang-chess-292e044be46b)
+- [Visualizing Chess Openings Before MLP Classification](https://medium.com/geekculture/visualizing-chess-openings-before-mlp-classification-fd2a3e8c266)
 
 #### `history(): array`
 
