@@ -4,7 +4,10 @@ namespace ChessData\Cli;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Chess\Ascii;
+use Chess\FEN\StringToBoard;
 use Chess\Game;
+use Chess\PGN\Convert;
 use splitbrain\phpcli\CLI;
 use splitbrain\phpcli\Options;
 
@@ -20,6 +23,18 @@ class ModelPlayCli extends CLI
 
     protected function main(Options $options)
     {
+        $board = (new StringToBoard('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'))
+            ->create();
+
+        $board->play(Convert::toStdObj('b', 'e5'));
+
+        $ascii = (new Ascii())->print($board);
+
+        print_r($ascii);
+
+        exit;
+
+
         $game = new Game(Game::MODE_AI, $options->getArgs()[0]);
 
         do {
