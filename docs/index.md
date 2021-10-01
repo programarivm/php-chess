@@ -6,7 +6,9 @@
 
 A chess library for PHP.
 
-> PHP Chess is currently used on [Redux Chess](https://github.com/chesslablab/redux-chess), which is a React chessboard connected to a [PHP Chess server](https://github.com/chesslablab/chess-server). Check out this [demo](https://programarivm.github.io/demo-redux-chess) but please note the sandbox server might not be up and running all the time.
+Currently used on [Redux Chess](https://github.com/chesslablab/redux-chess), which is a React chessboard connected to a [PHP Chess server](https://github.com/chesslablab/chess-server). Check out [this demo](https://programarivm.github.io/demo-redux-chess).
+
+> Please note the sandbox server might not be up and running all the time.
 
 ### Install
 
