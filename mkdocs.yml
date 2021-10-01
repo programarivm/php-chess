@@ -1,6 +1,7 @@
 site_name: PHP Chess
 pages:
   - Home: index.md
+  - Chess\Board: board.md
   - Chess\Game: game.md
   - Chess\FEN\BoardToString: fen-board-to-string.md
   - Chess\FEN\StringToBoard: fen-string-to-board.md
