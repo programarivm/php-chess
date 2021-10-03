@@ -12,6 +12,7 @@ use Chess\Tests\Sample\Opening\RuyLopez\Exchange as ExchangeRuyLopez;
 use Chess\Tests\Sample\Opening\RuyLopez\LucenaDefense as LucenaDefense;
 use Chess\Tests\Sample\Opening\Sicilian\Open as OpenSicilian;
 use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
+use Chess\Tests\Sample\Opening\QueensGambit\SymmectricalDefense as SymmectricalDefense;
 
 class StatusTest extends AbstractUnitTestCase
 {
@@ -102,6 +103,79 @@ class StatusTest extends AbstractUnitTestCase
         $expected = '1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Bxc6 dxc6 5.d4 exd4 6.Qxd4 Qxd4 7.Nxd4';
 
         $this->assertEquals($expected, $board->getMovetext());
+    }
+
+    /**
+     * @test
+     */
+    public function history_in_symmectrical_defense()
+    {
+        $board = (new SymmectricalDefense(new Board()))->play();
+
+        $expected = [
+            (object) [
+                'position' => 'd2',
+                'move' => (object) [
+                    'pgn' => 'd4',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::PAWN,
+                    'color' => Symbol::WHITE,
+                    'identity' => Symbol::PAWN,
+                    'position' => (object) [
+                        'current' => 'd',
+                        'next' => 'd4',
+                    ],
+                ],
+            ],
+            (object) [
+                'position' => 'd7',
+                'move' => (object) [
+                    'pgn' => 'd5',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::PAWN,
+                    'color' => Symbol::BLACK,
+                    'identity' => Symbol::PAWN,
+                    'position' => (object) [
+                        'current' => 'd',
+                        'next' => 'd5',
+                    ],
+                ],
+            ],
+            (object) [
+                'position' => 'c2',
+                'move' => (object) [
+                    'pgn' => 'c4',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::PAWN,
+                    'color' => Symbol::WHITE,
+                    'identity' => Symbol::PAWN,
+                    'position' => (object) [
+                        'current' => 'c',
+                        'next' => 'c4',
+                    ],
+                ],
+            ],
+            (object) [
+                'position' => 'c7',
+                'move' => (object) [
+                    'pgn' => 'c5',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::PAWN,
+                    'color' => Symbol::BLACK,
+                    'identity' => Symbol::PAWN,
+                    'position' => (object) [
+                        'current' => 'c',
+                        'next' => 'c5',
+                    ],
+                ],
+            ],
+        ];
+
+        $this->assertEquals($expected, $board->getHistory());
     }
 
     /**
