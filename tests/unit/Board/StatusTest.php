@@ -12,7 +12,7 @@ use Chess\Tests\Sample\Opening\RuyLopez\Exchange as ExchangeRuyLopez;
 use Chess\Tests\Sample\Opening\RuyLopez\LucenaDefense as LucenaDefense;
 use Chess\Tests\Sample\Opening\Sicilian\Open as OpenSicilian;
 use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
-use Chess\Tests\Sample\Opening\QueensGambit\SymmectricalDefense as SymmectricalDefense;
+use Chess\Tests\Sample\Opening\QueensGambit\SymmetricalDefense as SymmetricalDefense;
 
 class StatusTest extends AbstractUnitTestCase
 {
@@ -108,9 +108,9 @@ class StatusTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function history_in_symmectrical_defense()
+    public function history_in_symmetrical_defense()
     {
-        $board = (new SymmectricalDefense(new Board()))->play();
+        $board = (new SymmetricalDefense(new Board()))->play();
 
         $expected = [
             (object) [
