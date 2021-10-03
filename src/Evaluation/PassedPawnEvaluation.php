@@ -1,79 +1,95 @@
 <?php
 
-namespace Chess\Evaluation;
+namespace Chess\Tests\Unit\Evaluation;
 
-use Chess\Board;
+use Chess\Ascii;
+use Chess\Evaluation\PassedPawnEvaluation;
 use Chess\PGN\Symbol;
-use Chess\Piece\Pawn;
+use Chess\Tests\AbstractUnitTestCase;
 
-class PassedPawnEvaluation extends AbstractEvaluation
+class PassedPawnEvaluationTest extends AbstractUnitTestCase
 {
-    const NAME = 'doubled_pawn';
-
-    public function __construct(Board $board)
+    /**
+     * @test
+     */
+    public function kaufman_13()
     {
-        parent::__construct($board);
+        $position = [
+            7 => [ ' . ', ' r ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
+            6 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' p ' ],
+            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' n ', ' p ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' n ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' N ', ' B ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' P ' ],
+            0 => [ ' . ', ' . ', ' . ', ' N ', ' . ', ' R ', ' K ', ' . ' ],
+        ];
 
-        $this->result = [
+        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+
+        $expected = [
             Symbol::WHITE => 0,
+            Symbol::BLACK => 4,
+        ];
+
+        $passedPawnEvald = (new PassedPawnEvaluation($board))->evaluate();
+
+        $this->assertEquals($expected, $passedPawnEvald);
+    }
+
+    /**
+     * @test
+     */
+    public function kaufman_14()
+    {
+        $position = [
+            7 => [ ' . ', ' r ', ' . ', ' . ', ' r ', ' . ', ' k ', ' . ' ],
+            6 => [ ' p ', ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' p ' ],
+            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' p ', ' B ' ],
+            4 => [ ' q ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' Q ', ' . ', ' . ', ' P ', ' . ' ],
+            1 => [ ' P ', ' b ', ' P ', ' . ', ' . ', ' P ', ' K ', ' P ' ],
+            0 => [ ' . ', ' R ', ' . ', ' . ', ' . ', ' R ', ' . ', ' . ' ],
+        ];
+
+        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+
+        $expected = [
+            Symbol::WHITE => 2,
             Symbol::BLACK => 0,
         ];
+
+        $passedPawnEvald = (new PassedPawnEvaluation($board))->evaluate();
+
+        $this->assertEquals($expected, $passedPawnEvald);
     }
 
-    public function evaluate($feature = null): array
+    /**
+     * @test
+     */
+    public function kaufman_21()
     {
-        foreach ($this->board->getPieces() as $piece) {
-            $color = $piece->getColor();
-            /** @var Pawn $piece */
-            if ($piece->getIdentity() === Symbol::PAWN) {
-                $this->result[ $color ] += $this->getThreatPassedPawn($piece);
-            }
-        }
-        return $this->result;
-    }
+        $position = [
+            7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            6 => [ ' . ', ' B ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' K ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' p ', ' . ', ' . ', ' b ', ' n ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ', ' . ' ],
+            0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+        ];
 
-    private function getThreatPassedPawn(Pawn $pawn): int
-    {
-        $color = $pawn->getColor();
-        $pawnFile = $pawn->getFile();
-        $ranks = $pawn->getRanks();
+        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
 
-        $prevFile = chr(ord($pawnFile) - 1);
-        $nextFile = chr(ord($pawnFile) + 1);
+        $expected = [
+            Symbol::WHITE => 0,
+            Symbol::BLACK => 11,
+        ];
 
-        $squares = [];
-        foreach ([ $prevFile, $pawnFile, $nextFile ] as $file) {
-            if ($file < 'a' || $file > 'h') {
-                continue;
-            }
-            if ($color === Symbol::WHITE) {
-                $listRanks = range($ranks->next, $ranks->promotion - 1);
-            } else {
-                $listRanks = range($ranks->next, $ranks->promotion + 1);
-            }
-            $squaresFile = array_map(function($rank) use ($file){
-                return $file . $rank;
-            }, $listRanks);
-            $squares = array_merge($squares, $squaresFile);
-        }
-        $passedPawn = true;
-        foreach ($squares as $square) {
-            if ($nextPiece = $this->board->getPieceByPosition($square)) {
-                if ($nextPiece->getIdentity() === Symbol::PAWN && $nextPiece->getColor() !== $color) {
-                    $passedPawn = false;
-                    break;
-                }
-            }
-        }
-        if ($passedPawn) {
-            $position = $pawn->getPosition();
-            if ($color === Symbol::WHITE) {
-                return $position[ 1 ];
-            } else {
-                return 9 - $position[ 1 ];
-            }
-        }
+        $passedPawnEvald = (new PassedPawnEvaluation($board))->evaluate();
 
-        return 0;
+        $this->assertEquals($expected, $passedPawnEvald);
     }
 }
