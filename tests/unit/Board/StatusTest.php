@@ -13,6 +13,7 @@ use Chess\Tests\Sample\Opening\RuyLopez\LucenaDefense as LucenaDefense;
 use Chess\Tests\Sample\Opening\Sicilian\Open as OpenSicilian;
 use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
 use Chess\Tests\Sample\Opening\QueensGambit\SymmetricalDefense as SymmetricalDefense;
+use Chess\Tests\Sample\Opening\FrenchDefense\Classical as ClassicalFrenchDefense;
 
 class StatusTest extends AbstractUnitTestCase
 {
@@ -340,5 +341,108 @@ class StatusTest extends AbstractUnitTestCase
 
         $this->assertEquals(15, count($board->getPiecesByColor(Symbol::WHITE)));
         $this->assertEquals(15, count($board->getPiecesByColor(Symbol::BLACK)));
+    }
+
+    /**
+     * @test
+     */
+    public function history_in_classical_french_defense()
+    {
+        $board = (new ClassicalFrenchDefense(new Board()))->play();
+
+        $expected = [
+            (object) [
+                'position' => 'e2',
+                'move' => (object) [
+                    'pgn' => 'e4',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::PAWN,
+                    'color' => Symbol::WHITE,
+                    'identity' => Symbol::PAWN,
+                    'position' => (object) [
+                        'current' => 'e',
+                        'next' => 'e4',
+                    ],
+                ],
+            ],
+            (object) [
+                'position' => 'e7',
+                'move' => (object) [
+                    'pgn' => 'e6',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::PAWN,
+                    'color' => Symbol::BLACK,
+                    'identity' => Symbol::PAWN,
+                    'position' => (object) [
+                        'current' => 'e',
+                        'next' => 'e5',
+                    ],
+                ],
+            ],
+            (object) [
+                'position' => 'd2',
+                'move' => (object) [
+                    'pgn' => 'd4',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::PAWN,
+                    'color' => Symbol::WHITE,
+                    'identity' => Symbol::PAWN,
+                    'position' => (object) [
+                        'current' => 'd',
+                        'next' => 'd4',
+                    ],
+                ],
+            ],
+            (object) [
+                'position' => 'd2',
+                'move' => (object) [
+                    'pgn' => 'd5',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::PAWN,
+                    'color' => Symbol::BLACK,
+                    'identity' => Symbol::PAWN,
+                    'position' => (object) [
+                        'current' => 'd',
+                        'next' => 'd5',
+                    ],
+                ],
+            ],
+            (object) [
+                'position' => 'b1',
+                'move' => (object) [
+                    'pgn' => 'Nc3',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::KNIGHT,
+                    'color' => Symbol::WHITE,
+                    'identity' => Symbol::KNIGHT,
+                    'position' => (object) [
+                        'current' => null,
+                        'next' => 'c3',
+                    ],
+                ],
+            ],
+            (object) [
+                'position' => 'g8',
+                'move' => (object) [
+                    'pgn' => 'Nf6',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'type' => Move::KNIGHT,
+                    'color' => Symbol::BLACK,
+                    'identity' => Symbol::KNIGHT,
+                    'position' => (object) [
+                        'current' => null,
+                        'next' => 'g8',
+                    ],
+                ],
+            ],
+        ];
+
+        $this->assertEquals($expected, $board->getHistory());
     }
 }
