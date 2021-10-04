@@ -437,7 +437,7 @@ class StatusTest extends AbstractUnitTestCase
                     'identity' => Symbol::KNIGHT,
                     'position' => (object) [
                         'current' => null,
-                        'next' => 'g8',
+                        'next' => 'f6',
                     ],
                 ],
             ],
