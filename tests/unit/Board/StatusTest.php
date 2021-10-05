@@ -397,7 +397,7 @@ class StatusTest extends AbstractUnitTestCase
                 ],
             ],
             (object) [
-                'position' => 'd2',
+                'position' => 'd7',
                 'move' => (object) [
                     'pgn' => 'd5',
                     'isCapture' => false,
