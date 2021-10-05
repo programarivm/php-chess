@@ -377,7 +377,7 @@ class StatusTest extends AbstractUnitTestCase
                     'identity' => Symbol::PAWN,
                     'position' => (object) [
                         'current' => 'e',
-                        'next' => 'e5',
+                        'next' => 'e6',
                     ],
                 ],
             ],
