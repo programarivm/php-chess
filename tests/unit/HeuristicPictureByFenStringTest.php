@@ -2,25 +2,20 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\HeuristicFenStringToBoardPicture;
-use Chess\FEN\StringToBoard;
+use Chess\HeuristicPictureByFenString;
 use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 
-class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
+class HeuristicPictureByFenStringTest extends AbstractUnitTestCase
 {
     /**
      * @test
      */
     public function e4_e5_take_get_picture()
     {
-        $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
-            ->create();
+        $fen = 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2';
 
-        $pic = (new HeuristicFenStringToBoardPicture($board))
-            ->take()
-            ->getPicture();
+        $pic = (new HeuristicPictureByFenString($fen))->take()->getPicture();
 
         $expected = [
             Symbol::WHITE => [ 1, 0.05, 0.4, 0.4, 0, 0.02, 0, 0 ],
@@ -35,12 +30,9 @@ class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
      */
     public function e4_e5_take_get_balance()
     {
-        $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
-            ->create();
+        $fen = 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2';
 
-        $balance = (new HeuristicFenStringToBoardPicture($board))
-            ->take()
-            ->getBalance();
+        $balance = (new HeuristicPictureByFenString($fen))->take()->getBalance();
 
         $expected = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
 
@@ -52,10 +44,9 @@ class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
      */
     public function e4_e5_evaluate()
     {
-        $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
-            ->create();
+        $fen = 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2';
 
-        $evaluation = (new HeuristicFenStringToBoardPicture($board))->evaluate();
+        $evaluation = (new HeuristicPictureByFenString($fen))->evaluate();
 
         $expected = [
             Symbol::WHITE => 43.21,
@@ -70,12 +61,9 @@ class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
      */
     public function e4_e5_Nf3_Nf6_take_get_picture()
     {
-        $board = (new StringToBoard('rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3'))
-            ->create();
+        $fen = 'rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3';
 
-        $pic = (new HeuristicFenStringToBoardPicture($board))
-            ->take()
-            ->getPicture();
+        $pic = (new HeuristicPictureByFenString($fen))->take()->getPicture();
 
         $expected = [
             Symbol::WHITE => [ 1, 0.05, 0.51, 0.41, 0, 0, 0, 0 ],
@@ -90,12 +78,9 @@ class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
      */
     public function e4_e5_Nf3_Nf6_take_get_balance()
     {
-        $board = (new StringToBoard('rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3'))
-            ->create();
+        $fen = 'rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3';
 
-        $balance = (new HeuristicFenStringToBoardPicture($board))
-            ->take()
-            ->getBalance();
+        $balance = (new HeuristicPictureByFenString($fen))->take()->getBalance();
 
         $expected = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
 
@@ -107,10 +92,9 @@ class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
      */
     public function e4_e5_Nf3_Nf6_evaluate()
     {
-        $board = (new StringToBoard('rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3'))
-            ->create();
+        $fen = 'rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3';
 
-        $evaluation = (new HeuristicFenStringToBoardPicture($board))->evaluate();
+        $evaluation = (new HeuristicPictureByFenString($fen))->evaluate();
 
         $expected = [
             Symbol::WHITE => 44.56,
@@ -125,12 +109,9 @@ class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
      */
     public function benko_gambit_take_get_picture()
     {
-        $board = (new StringToBoard('rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9'))
-            ->create();
+        $fen = 'rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9';
 
-        $pic = (new HeuristicFenStringToBoardPicture($board))
-            ->take()
-            ->getPicture();
+        $pic = (new HeuristicPictureByFenString($fen))->take()->getPicture();
 
         $expected = [
             Symbol::WHITE => [ 1, 0.08, 0.5, 0.67, 0, 0.03, 0, 0 ],
@@ -145,12 +126,9 @@ class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
      */
     public function benko_gambit_take_get_balance()
     {
-        $board = (new StringToBoard('rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9'))
-            ->create();
+        $fen = 'rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9';
 
-        $balance = (new HeuristicFenStringToBoardPicture($board))
-            ->take()
-            ->getBalance();
+        $balance = (new HeuristicPictureByFenString($fen))->take()->getBalance();
 
         $expected = [ 0.03, 0.02, -0.03, 0.11, -0.08, 0, 0, 0 ];
 
@@ -162,10 +140,9 @@ class HeuristicFenStringToBoardPictureTest extends AbstractUnitTestCase
      */
     public function benko_gambit_evaluate()
     {
-        $board = (new StringToBoard('rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9'))
-            ->create();
+        $fen = 'rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9';
 
-        $evaluation = (new HeuristicFenStringToBoardPicture($board))->evaluate();
+        $evaluation = (new HeuristicPictureByFenString($fen))->evaluate();
 
         $expected = [
             Symbol::WHITE => 47.14,

@@ -11,9 +11,10 @@ use Chess\Evaluation\MaterialEvaluation;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
 use Chess\Evaluation\TacticsEvaluation;
+use Chess\FEN\StringToBoard;
 use Chess\PGN\Symbol;
 
-class HeuristicFenStringToBoardPicture
+class HeuristicPictureByFenString
 {
     protected $board;
 
@@ -35,9 +36,9 @@ class HeuristicFenStringToBoardPicture
 
     protected $balance = [];
 
-    public function __construct(Board $board)
+    public function __construct(string $fen)
     {
-        $this->board = $board;
+        $this->board = (new StringToBoard($fen))->create();
     }
 
     public function getDimensions(): array
@@ -45,7 +46,7 @@ class HeuristicFenStringToBoardPicture
         return $this->dimensions;
     }
 
-    public function setDimensions(array $dimensions): HeuristicFenStringToBoardPicture
+    public function setDimensions(array $dimensions): HeuristicPictureByFenString
     {
         $this->dimensions = $dimensions;
 
@@ -65,9 +66,9 @@ class HeuristicFenStringToBoardPicture
     /**
      * Takes a normalized, balanced heuristic picture.
      *
-     * @return \Chess\Heuristic\HeuristicFenStringToBoardPicture
+     * @return \Chess\Heuristic\HeuristicPictureByFenString
      */
-    public function take(): HeuristicFenStringToBoardPicture
+    public function take(): HeuristicPictureByFenString
     {
         $item = [];
         foreach ($this->dimensions as $dimension => $w) {
@@ -108,7 +109,7 @@ class HeuristicFenStringToBoardPicture
         return $result;
     }
 
-    protected function normalize(): HeuristicFenStringToBoardPicture
+    protected function normalize(): HeuristicPictureByFenString
     {
         $normalization = [];
 
@@ -135,7 +136,7 @@ class HeuristicFenStringToBoardPicture
         return $this;
     }
 
-    protected function balance(): HeuristicFenStringToBoardPicture
+    protected function balance(): HeuristicPictureByFenString
     {
         foreach ($this->picture[Symbol::WHITE] as $key => $val) {
             $this->balance[$key] = $this->picture[Symbol::WHITE][$key] - $this->picture[Symbol::BLACK][$key];
