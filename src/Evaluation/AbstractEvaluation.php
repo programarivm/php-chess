@@ -3,7 +3,7 @@
 namespace Chess\Evaluation;
 
 use Chess\Board;
-use Chess\Evaluation\System;
+use Chess\PGN\Symbol;
 
 /**
  * Abstract evaluation.
@@ -15,7 +15,7 @@ abstract class AbstractEvaluation
 {
     protected $board;
 
-    protected $system;
+    protected $value;
 
     protected $result;
 
@@ -23,7 +23,13 @@ abstract class AbstractEvaluation
     {
         $this->board = $board;
 
-        $this->system = (new System())->get();
+        $this->value = [
+          Symbol::PAWN => 1,
+          Symbol::KNIGHT => 3.2,
+          Symbol::BISHOP => 3.33,
+          Symbol::ROOK => 5.1,
+          Symbol::QUEEN => 8.8,
+        ];
     }
 
     abstract public function evaluate($feature = null): array;

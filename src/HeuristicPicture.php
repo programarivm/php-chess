@@ -12,7 +12,6 @@ use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
 use Chess\Evaluation\SquareEvaluation;
 use Chess\Evaluation\TacticsEvaluation;
-use Chess\Evaluation\System;
 use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 
@@ -77,7 +76,7 @@ class HeuristicPicture extends Player
             }
             $item = [];
             foreach ($this->dimensions as $dimension => $w) {
-                $evald = (new $dimension($this->board))->evaluate(System::SYSTEM_BERLINER);
+                $evald = (new $dimension($this->board))->evaluate();
                 is_array($evald[Symbol::WHITE])
                     ? $item[] = [
                         Symbol::WHITE => count($evald[Symbol::WHITE]),

@@ -4,7 +4,6 @@ namespace Chess\Evaluation;
 
 use Chess\Board;
 use Chess\Evaluation\TacticsEvaluation;
-use Chess\Evaluation\System;
 use Chess\PGN\Symbol;
 
 /**
@@ -37,7 +36,7 @@ class AttackEvaluation extends AbstractEvaluation
             foreach ($squares as $square) {
                 $identity = $this->board->getPieceByPosition($square)->getIdentity();
                 if ($identity !== Symbol::KING) {
-                    $this->result[$color] += $this->system[System::SYSTEM_BERLINER][$identity];
+                    $this->result[$color] += $this->value[$identity];
                 }
             }
         }

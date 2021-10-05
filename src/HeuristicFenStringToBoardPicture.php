@@ -11,7 +11,6 @@ use Chess\Evaluation\MaterialEvaluation;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
 use Chess\Evaluation\TacticsEvaluation;
-use Chess\Evaluation\System;
 use Chess\PGN\Symbol;
 
 class HeuristicFenStringToBoardPicture
@@ -72,7 +71,7 @@ class HeuristicFenStringToBoardPicture
     {
         $item = [];
         foreach ($this->dimensions as $dimension => $w) {
-            $evald = (new $dimension($this->board))->evaluate(System::SYSTEM_BERLINER);
+            $evald = (new $dimension($this->board))->evaluate();
             is_array($evald[Symbol::WHITE])
                 ? $item[] = [
                     Symbol::WHITE => count($evald[Symbol::WHITE]),

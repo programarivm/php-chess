@@ -33,7 +33,7 @@ class CenterEvaluation extends AbstractEvaluation
         foreach ($this->center as $square) {
             if ($piece = $this->board->getPieceByPosition($square)) {
                 if (Symbol::KING !== $piece->getIdentity()) {
-                    $this->result[$piece->getColor()] += $this->system[$feature][$piece->getIdentity()];
+                    $this->result[$piece->getColor()] += $this->value[$piece->getIdentity()];
                 }
             }
         }

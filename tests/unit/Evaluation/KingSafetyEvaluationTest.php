@@ -5,7 +5,6 @@ namespace Chess\Tests\Unit\Evaluation;
 use Chess\Board;
 use Chess\PGN\Symbol;
 use Chess\Evaluation\KingSafetyEvaluation;
-use Chess\Evaluation\System;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Sicilian\Closed as ClosedSicilian;
 use Chess\Tests\Sample\Opening\Sicilian\Open as OpenSicilian;
@@ -17,7 +16,7 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $kSafetyEvald = (new KingSafetyEvaluation(new Board()))->evaluate(System::SYSTEM_BERLINER);
+        $kSafetyEvald = (new KingSafetyEvaluation(new Board()))->evaluate();
 
         $expected = [
             Symbol::WHITE => 1,
@@ -34,7 +33,7 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $kSafetyEvald = (new KingSafetyEvaluation($board))->evaluate(System::SYSTEM_BERLINER);
+        $kSafetyEvald = (new KingSafetyEvaluation($board))->evaluate();
 
         $expected = [
             Symbol::WHITE => 1,
@@ -51,7 +50,7 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $kSafetyEvald = (new KingSafetyEvaluation($board))->evaluate(System::SYSTEM_BERLINER);
+        $kSafetyEvald = (new KingSafetyEvaluation($board))->evaluate();
 
         $expected = [
             Symbol::WHITE => 1,
