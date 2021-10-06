@@ -13,7 +13,7 @@ class BackwardPawnEvaluationTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function it_evaluates_backward_pawns()
+    public function kaufman_16()
     {
         $position = [
             7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
@@ -41,7 +41,7 @@ class BackwardPawnEvaluationTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function it_recognizes_defended_pawns(): void
+    public function kaufman_16_recognizes_defended_pawns(): void
     {
         $position = [
             7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
