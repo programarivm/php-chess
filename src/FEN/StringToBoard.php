@@ -34,11 +34,10 @@ class StringToBoard
 
     public function __construct(string $string)
     {
-        $this->string = $string;
+        $this->string = Validate::fen($string);
 
-        $fields = array_filter(explode(' ', $this->string));
-        Validate::fen(implode(' ', $fields));
-        $this->fields = $fields;
+        $this->fields = array_filter(explode(' ', $this->string));
+
         $this->castling = CastlingInit::$initialState;
 
         $this->pieces = [];
@@ -48,7 +47,6 @@ class StringToBoard
 
     public function create(): Board
     {
-        Validate::fen("{$this->fields[0]} {$this->fields[1]} {$this->fields[2]} {$this->fields[3]}");
         try {
             $fields = array_filter(explode('/', $this->fields[0]));
             foreach ($fields as $key => $field) {
