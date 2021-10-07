@@ -3,10 +3,12 @@
 namespace Chess\Tests\Unit\FEN;
 
 use Chess\Ascii;
+use Chess\Exception\UnknownNotationException;
 use Chess\FEN\StringToBoard;
 use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
+use Generator;
 
 class StringToBoardTest extends AbstractUnitTestCase
 {
@@ -298,5 +300,24 @@ class StringToBoardTest extends AbstractUnitTestCase
         $expected = ['a6', 'a5'];
 
         $this->assertEquals($expected, $legalMoves);
+    }
+
+    /**
+     * @test
+     * @dataProvider provideInvalidFen
+     */
+    public function it_throws_for_invalid_fen(string $invalidFen): void
+    {
+        $this->expectException(UnknownNotationException::class);
+        $this->expectExceptionMessage('The FEN string should contain a valid piece placement.');
+
+        (new StringToBoard($invalidFen))
+            ->create();
+    }
+
+    public function provideInvalidFen(): Generator
+    {
+        yield ['foo'];
+        yield ['foo bar dont panic'];
     }
 }

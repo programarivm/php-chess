@@ -38,8 +38,9 @@ class StringToBoard
     {
         $this->string = $string;
 
-        $this->fields = array_filter(explode(' ', $this->string));
-
+        $fields = array_filter(explode(' ', $this->string));
+        Validate::fen(implode(' ', $fields));
+        $this->fields = $fields;
         $this->castling = CastlingInit::$initialState;
 
         $this->pieces = [];
