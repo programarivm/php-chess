@@ -17,7 +17,7 @@ class BoardToPngTest extends AbstractUnitTestCase
 
     public static function tearDownAfterClass(): void
     {
-//        unlink(self::OUTPUT_FOLDER . '/tmp.png');
+        unlink(self::OUTPUT_FOLDER . '/tmp.png');
     }
 
     /**
