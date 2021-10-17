@@ -87,6 +87,21 @@ class BoardToPngTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function output_benoni_fianchetto_variation_flip()
+    {
+        $board = (new BenoniFianchettoVariation(new Board()))->play();
+
+        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+
+        $this->assertEquals(
+            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
+            md5(file_get_contents(self::DATA_FOLDER . '/img/benoni_fianchetto_variation_flip.png'))
+        );
+    }
+
+    /**
+     * @test
+     */
     public function output_open_sicilian()
     {
         $board = (new OpenSicilian())->play();
