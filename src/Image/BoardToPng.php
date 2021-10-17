@@ -9,23 +9,27 @@ use Imagine\Image\Point;
 
 class BoardToPng
 {
-    const FILEPATH = __DIR__.'/../../img';
+    const FILEPATH = __DIR__ . '/../../img';
 
     protected $board;
 
     protected $imagine;
 
-    public function __construct(Board $board)
+    protected $flip;
+
+    public function __construct(Board $board, bool $flip = false)
     {
         $this->board = $board;
 
         $this->imagine = new Imagine();
+
+        $this->flip = $flip;
     }
 
     public function output(string $filepath)
     {
         $chessboard = $this->imagine->open(self::FILEPATH . '/chessboard.png');
-        $array = (new Ascii())->toArray($this->board);
+        $array = (new Ascii())->toArray($this->board, $this->flip);
         $x = $y = 0;
         foreach ($array as $i => $rank) {
             foreach ($rank as $j => $piece) {

@@ -21,7 +21,7 @@ use Chess\Piece\Type\RookType;
  */
 class Ascii
 {
-    public function toArray(Board $board): array
+    public function toArray(Board $board, bool $flip = false): array
     {
         $array = [
             7 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
@@ -36,11 +36,14 @@ class Ascii
 
         foreach ($board->getPieces() as $piece) {
             $position = $piece->getPosition();
-            $rank = $position[0];
-            $file = $position[1] - 1;
+            list($file, $rank) = $this->fromAlgebraicToIndex($position);
+            if ($flip) {
+                $file = 7 - $file;
+                $rank = 7 - $rank;
+            }
             Symbol::WHITE === $piece->getColor()
-                ? $array[$file][ord($rank)-97] = ' '.$piece->getIdentity().' '
-                : $array[$file][ord($rank)-97] = ' '.strtolower($piece->getIdentity()).' ';
+                ? $array[$file][$rank] = ' ' . $piece->getIdentity() . ' '
+                : $array[$file][$rank] = ' ' . strtolower($piece->getIdentity()) . ' ';
         }
 
         return $array;

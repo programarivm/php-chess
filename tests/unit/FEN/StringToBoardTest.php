@@ -63,6 +63,30 @@ class StringToBoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function e4_e5_flip()
+    {
+        $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
+            ->create();
+
+        $array = (new Ascii())->toArray($board, true);
+
+        $expected = [
+            7 => [' R ', ' N ', ' B ', ' K ', ' Q ', ' B ', ' N ', ' R '],
+            6 => [' P ', ' P ', ' P ', ' . ', ' P ', ' P ', ' P ', ' P '],
+            5 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            4 => [' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ', ' . '],
+            3 => [' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . '],
+            2 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            1 => [' p ', ' p ', ' p ', ' . ', ' p ', ' p ', ' p ', ' p '],
+            0 => [' r ', ' n ', ' b ', ' k ', ' q ', ' b ', ' n ', ' r '],
+        ];
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
     public function benko_gambit()
     {
         $board = (new StringToBoard('rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9'))
@@ -127,6 +151,30 @@ class StringToBoardTest extends AbstractUnitTestCase
             2 => [ ' . ', ' . ', ' N ', ' P ', ' . ', ' . ', ' P ', ' . ' ],
             1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' B ', ' P ' ],
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' . ', ' N ', ' R ' ],
+        ];
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
+    public function closed_sicilian_flip()
+    {
+        $board = (new StringToBoard('r1bqk1nr/pp2ppbp/2np2p1/2p5/4P3/2NP2P1/PPP2PBP/R1BQK1NR w KQkq - 0 6'))
+            ->create();
+
+        $array = (new Ascii())->toArray($board,true);
+
+        $expected = [
+            7 => [' R ', ' N ', ' . ', ' K ', ' Q ', ' B ', ' . ', ' R '],
+            6 => [' P ', ' B ', ' P ', ' . ', ' . ', ' P ', ' P ', ' P '],
+            5 => [' . ', ' P ', ' . ', ' . ', ' P ', ' N ', ' . ', ' . '],
+            4 => [' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ', ' . '],
+            3 => [' . ', ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . '],
+            2 => [' . ', ' p ', ' . ', ' . ', ' p ', ' n ', ' . ', ' . '],
+            1 => [' p ', ' b ', ' p ', ' p ', ' . ', ' . ', ' p ', ' p '],
+            0 => [' r ', ' n ', ' . ', ' k ', ' q ', ' b ', ' . ', ' r '],
         ];
 
         $this->assertEquals($expected, $array);
