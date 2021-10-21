@@ -27,7 +27,7 @@ class Player
         $this->moves = $this->extract($this->filter($movetext));
     }
 
-    public function getBoard()
+    public function getBoard(): Board
     {
         return $this->board;
     }
@@ -37,7 +37,7 @@ class Player
         return $this->moves;
     }
 
-    public function play()
+    public function play(): Player
     {
         foreach ($this->getMoves() as $move) {
             $this->getBoard()->play(Convert::toStdObj(Symbol::WHITE, $move[0]));

@@ -8,6 +8,7 @@ pages:
   - Chess\FEN\StringToBoard: fen-string-to-board.md
   - Chess\FEN\Validate: fen-validate.md
   - Chess\Image\BoardToPng: image-board-to-png.md
+  - Chess\Player: player.md
   - Command Line Interface: cli.md
   - Usage: usage.md
 theme: readthedocs
