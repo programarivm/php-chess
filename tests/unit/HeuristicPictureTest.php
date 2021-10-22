@@ -40,10 +40,10 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $expected = [
             Symbol::WHITE => [
-                [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+                [ 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
             Symbol::BLACK => [
-                [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+                [ 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
         ];
 
@@ -62,8 +62,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
-            Symbol::BLACK => [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+            Symbol::WHITE => [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+            Symbol::BLACK => [ 0, 0, 0, 0, 0, 0, 0, 0 ],
         ];
 
         $this->assertEquals($expected, $end);

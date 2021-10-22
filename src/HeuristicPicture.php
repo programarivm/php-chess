@@ -137,7 +137,7 @@ class HeuristicPicture extends Player
                 }
             }
         } else {
-            $normalization[Symbol::WHITE][] = $normalization[Symbol::BLACK][] = array_fill(0, count($this->dimensions), 0.5);
+            $normalization[Symbol::WHITE][] = $normalization[Symbol::BLACK][] = array_fill(0, count($this->dimensions), 0);
         }
 
         $this->picture = $normalization;
