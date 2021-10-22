@@ -436,4 +436,22 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $pic);
     }
+
+    /**
+     * @test
+     */
+    public function w_e4_b_Nf6_take_get_balance()
+    {
+        $movetext = '1.e4 Nf6';
+
+        $balance = (new HeuristicPicture($movetext))
+            ->take()
+            ->getBalance();
+
+        $expected = [
+            [ 0, 1, -1, 1, -1, 0, -1, -1 ],
+        ];
+
+        $this->assertEquals($expected, $balance);
+    }
 }
