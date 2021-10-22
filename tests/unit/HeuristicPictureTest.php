@@ -92,12 +92,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function w_e4_b_e5_take_get_picture()
     {
-        $board = new Board();
+        $movetext = '1.e4 e5';
 
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
-
-        $pic = (new HeuristicPicture($board->getMovetext()))
+        $pic = (new HeuristicPicture($movetext))
             ->take()
             ->getPicture();
 
@@ -118,11 +115,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function w_e4_b_e5_take_end()
     {
-        $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
+        $movetext = '1.e4 e5';
 
-        $end = (new HeuristicPicture($board->getMovetext()))
+        $end = (new HeuristicPicture($movetext))
             ->take()
             ->end();
 
@@ -139,12 +134,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function w_e4_b_e5_take_get_balance()
     {
-        $board = new Board();
+        $movetext = '1.e4 e5';
 
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
-
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new HeuristicPicture($movetext))
             ->take()
             ->getBalance();
 
@@ -257,11 +249,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function e4_e6_take_get_balance()
     {
-        $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e6'));
+        $movetext = '1.e4 e6';
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new HeuristicPicture($movetext))
             ->take()
             ->getBalance();
 
@@ -277,13 +267,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function e4_e6_d4_d5_take_get_balance()
     {
-        $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'd4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'd5'));
+        $movetext = '1.e4 e6 2.d4 d5';
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new HeuristicPicture($movetext))
             ->take()
             ->getBalance();
 
@@ -300,15 +286,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function e4_e6_d4_d5_Nd2_Nf6_take_get_balance()
     {
-        $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'd4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'd5'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nd2'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6'));
+        $movetext = '1.e4 e6 2.d4 d5 3.Nd2 Nf6';
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new HeuristicPicture($movetext))
             ->take()
             ->getBalance();
 
@@ -326,17 +306,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function e4_e6_d4_d5_Nd2_Nf6_e5_Nfd7_take_get_balance()
     {
-        $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'd4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'd5'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nd2'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e5'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nfd7'));
+        $movetext = '1.e4 e6 2.d4 d5 3.Nd2 Nf6 4.e5 Nfd7';
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new HeuristicPicture($movetext))
             ->take()
             ->getBalance();
 
@@ -355,11 +327,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function e4_e6_take_get_picture()
     {
-        $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e6'));
+        $movetext = '1.e4 e6';
 
-        $pic = (new HeuristicPicture($board->getMovetext()))
+        $pic = (new HeuristicPicture($movetext))
             ->take()
             ->getPicture();
 
@@ -380,13 +350,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function e4_e6_d4_d5_take_get_picture()
     {
-        $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'd4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'd5'));
+        $movetext = '1.e4 e6 2.d4 d5';
 
-        $pic = (new HeuristicPicture($board->getMovetext()))
+        $pic = (new HeuristicPicture($movetext))
             ->take()
             ->getPicture();
 
@@ -409,15 +375,9 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function e4_e6_d4_d5_Nd2_Nf6_take_get_picture()
     {
-        $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'd4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'd5'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nd2'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6'));
+        $movetext = '1.e4 e6 2.d4 d5 3.Nd2 Nf6';
 
-        $pic = (new HeuristicPicture($board->getMovetext()))
+        $pic = (new HeuristicPicture($movetext))
             ->take()
             ->getPicture();
 
