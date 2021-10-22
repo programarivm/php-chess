@@ -124,8 +124,8 @@ class HeuristicPicture extends Player
                     array_column($this->picture[Symbol::WHITE], $i),
                     array_column($this->picture[Symbol::BLACK], $i)
                 );
-                $min = min($values);
-                $max = max($values);
+                $min = round(min($values), 2);
+                $max = round(max($values), 2);
                 for ($j = 0; $j < count($this->picture[Symbol::WHITE]); $j++) {
                     if ($max - $min > 0) {
                         $normalization[Symbol::WHITE][$j][$i] = round(($this->picture[Symbol::WHITE][$j][$i] - $min) / ($max - $min), 2);

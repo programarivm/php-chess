@@ -159,8 +159,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 0, 0, 0.9, 0.2, 0, 0, 0.25, 0.25 ],
-            Symbol::BLACK => [ 1, 1, 0, 1, 1, 1, 0.25, 0.25 ],
+            Symbol::WHITE => [ 0.25, 0, 0.9, 0.2, 0, 0, 0.25, 0.25 ],
+            Symbol::BLACK => [ 0.25, 1, 0, 1, 1, 1, 0.25, 0.25 ],
         ];
 
         $this->assertEquals($expected, $end);
@@ -179,7 +179,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $expected = [
             [ 0, -1, 0.6, -0.6, 0, 0, 0, 0 ],
-            [ -1, -1, 0.9, -0.8, -1, -1, 0, 0 ],
+            [ 0, -1, 0.9, -0.8, -1, -1, 0, 0 ],
         ];
 
         $this->assertEquals($expected, $balance);
@@ -383,14 +383,14 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $expected = [
             Symbol::WHITE => [
-                [ 0, 0.5, 0.38, 0.17, 0, 0.17, 0, 0 ],
-                [ 0, 1, 0, 1, 0.5, 0.17, 0, 0 ],
-                [ 1, 1, 0.5, 0.5, 0.5, 0.17, 0, 0 ],
+                [ 0.17, 0.5, 0.38, 0.17, 0, 0.17, 0, 0 ],
+                [ 0.17, 1, 0, 1, 0.5, 0.17, 0, 0 ],
+                [ 0.17, 1, 0.5, 0.5, 0.5, 0.17, 0, 0 ],
             ],
             Symbol::BLACK => [
-                [ 0, 0, 0.63, 0, 0, 0.17, 0, 0 ],
-                [ 0, 0, 0.38, 0.17, 0.5, 0.17, 0.5, 0.5 ],
-                [ 1, 0, 1, 0.17, 1, 0.17, 1, 1 ],
+                [ 0.17, 0, 0.63, 0, 0, 0.17, 0, 0 ],
+                [ 0.17, 0, 0.38, 0.17, 0.5, 0.17, 0.5, 0.5 ],
+                [ 0.17, 0, 1, 0.17, 1, 0.17, 1, 1 ],
             ],
         ];
 
