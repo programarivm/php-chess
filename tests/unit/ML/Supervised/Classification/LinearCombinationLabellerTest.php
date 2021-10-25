@@ -94,8 +94,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            Symbol::WHITE => 29,
-            Symbol::BLACK => 67,
+            Symbol::WHITE => 8,
+            Symbol::BLACK => 94,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -119,8 +119,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            Symbol::WHITE => 15,
-            Symbol::BLACK => 2,
+            Symbol::WHITE => 13,
+            Symbol::BLACK => 6,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -142,8 +142,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            Symbol::WHITE => 157,
-            Symbol::BLACK => 86,
+            Symbol::WHITE => 204,
+            Symbol::BLACK => 39,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -165,8 +165,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            Symbol::WHITE => 84,
-            Symbol::BLACK => 154,
+            Symbol::WHITE => 38,
+            Symbol::BLACK => 203,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -188,7 +188,7 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            Symbol::WHITE => 4,
+            Symbol::WHITE => 24,
             Symbol::BLACK => 108,
         ];
 
@@ -211,8 +211,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            Symbol::WHITE => 4,
-            Symbol::BLACK => 55,
+            Symbol::WHITE => 24,
+            Symbol::BLACK => 45,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);

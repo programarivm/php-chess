@@ -19,10 +19,10 @@ use Chess\Evaluation\DoubledPawnEvaluation;
 class HeuristicPicture extends Player
 {
     protected $dimensions = [
-        MaterialEvaluation::class => 26,
+        MaterialEvaluation::class => 21,
         CenterEvaluation::class => 13,
         ConnectivityEvaluation::class => 13,
-        SpaceEvaluation::class => 8,
+        SpaceEvaluation::class => 13,
         PressureEvaluation::class => 8,
         KingSafetyEvaluation::class => 8,
         TacticsEvaluation::class => 8,

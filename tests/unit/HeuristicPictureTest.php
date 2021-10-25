@@ -237,8 +237,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
         $evaluation = $heuristicPicture->evaluate();
 
         $expected = [
-            Symbol::WHITE => 37.67,
-            Symbol::BLACK => 24.78,
+            Symbol::WHITE => 41.72,
+            Symbol::BLACK => 28.13,
         ];
 
         $this->assertEquals($expected, $evaluation);
