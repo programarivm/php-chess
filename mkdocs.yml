@@ -3,6 +3,7 @@ pages:
   - Home: index.md
   - Chess\Ascii: ascii.md
   - Chess\Board: board.md
+  - Chess\Combinatorics\RestrictedPermutationWithRepetition: combinatorics-restricted-permutation-with-repetition.md
   - Chess\Game: game.md
   - Chess\Player: player.md
   - Chess\FEN\BoardToString: fen-board-to-string.md
