@@ -133,6 +133,21 @@ class BoardToPngTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function output_closed_sicilian()
+    {
+        $board = (new ClosedSicilian())->play();
+
+        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+
+        $this->assertEquals(
+            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
+            md5(file_get_contents(self::DATA_FOLDER . '/img/closed_sicilian.png'))
+        );
+    }
+
+    /**
+     * @test
+     */
     public function output_lucena_defense()
     {
         $board = (new LucenaDefense())->play();
