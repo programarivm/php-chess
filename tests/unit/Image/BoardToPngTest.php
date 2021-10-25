@@ -193,6 +193,21 @@ class BoardToPngTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function output_symmetrical_defense_to_the_queens_gambit_flip()
+    {
+        $board = (new QueensGambitSymmetricalDefense())->play();
+
+        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+
+        $this->assertEquals(
+            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
+            md5(file_get_contents(self::DATA_FOLDER . '/img/symmetrical_defense_to_the_queens_gambit_flip.png'))
+        );
+    }
+
+    /**
+     * @test
+     */
     public function output_benko_gambit()
     {
         $board = (new BenkoGambit())->play();
