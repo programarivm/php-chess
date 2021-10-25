@@ -204,4 +204,19 @@ class BoardToPngTest extends AbstractUnitTestCase
             md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png'))
         );
     }
+
+    /**
+     * @test
+     */
+    public function output_benko_gambit_flip()
+    {
+        $board = (new BenkoGambit())->play();
+
+        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+
+        $this->assertEquals(
+            md5(file_get_contents(self::DATA_FOLDER . '/img/benko_gambit_flip.png')),
+            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png'))
+        );
+    }
 }
