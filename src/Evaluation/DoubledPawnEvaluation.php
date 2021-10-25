@@ -28,7 +28,7 @@ class DoubledPawnEvaluation extends AbstractEvaluation
                 $ranks = $piece->getRanks();
                 if ($nextPiece = $this->board->getPieceByPosition($file.$ranks->next)) {
                     if ($nextPiece->getIdentity() === Symbol::PAWN && $nextPiece->getColor() === $color) {
-                        $this->result[$color] += 1;
+                        $this->result[$color] -= 1;
                     }
                 }
             }

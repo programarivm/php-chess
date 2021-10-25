@@ -60,7 +60,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
         $game->play('b', 'gxf6');
 
         $expected = [
-            [ -1, -1, -1, 1, 1, 0, 0, 0, -1 ],
+            [ -1, -1, -1, 1, 1, 0, 0, 0, 1 ],
         ];
 
         $balance = $game->heuristicPicture(true);
