@@ -15,19 +15,21 @@ use Chess\Evaluation\TacticsEvaluation;
 use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Evaluation\DoubledPawnEvaluation;
+use Chess\Evaluation\PassedPawnEvaluation;
 
 class HeuristicPicture extends Player
 {
     protected $dimensions = [
-        MaterialEvaluation::class => 21,
-        CenterEvaluation::class => 13,
-        ConnectivityEvaluation::class => 13,
-        SpaceEvaluation::class => 13,
+        MaterialEvaluation::class => 34,
+        CenterEvaluation::class => 8,
+        ConnectivityEvaluation::class => 8,
+        SpaceEvaluation::class => 8,
         PressureEvaluation::class => 8,
         KingSafetyEvaluation::class => 8,
         TacticsEvaluation::class => 8,
         AttackEvaluation::class => 8,
-        DoubledPawnEvaluation::class => 8,
+        DoubledPawnEvaluation::class => 5,
+        PassedPawnEvaluation::class => 5,
     ];
 
     protected $picture = [];
