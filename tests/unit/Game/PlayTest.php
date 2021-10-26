@@ -278,7 +278,7 @@ class PlayTest extends AbstractUnitTestCase
      */
     public function kaufman_01()
     {
-        $game = new Game();
+        $game = new Game(Game::MODE_LOAD_FEN);
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
 
         $ascii = $game->ascii();
@@ -300,7 +300,7 @@ class PlayTest extends AbstractUnitTestCase
      */
     public function kaufman_01_play_Qg4()
     {
-        $game = new Game();
+        $game = new Game(Game::MODE_LOAD_FEN);
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
         $game->play('w', 'Qg4');
 
@@ -323,7 +323,7 @@ class PlayTest extends AbstractUnitTestCase
      */
     public function kaufman_01_playFen_Qg4()
     {
-        $game = new Game();
+        $game = new Game(Game::MODE_LOAD_FEN);
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
         $game->playFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN1Q1/P2B4/1P3PPP/2R2R1K b');
 
@@ -346,7 +346,7 @@ class PlayTest extends AbstractUnitTestCase
      */
     public function kaufman_01_play_Qg4_a5()
     {
-        $game = new Game();
+        $game = new Game(Game::MODE_LOAD_FEN);
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
         $game->play('w', 'Qg4');
         $game->play('b', 'a5');
@@ -370,7 +370,7 @@ class PlayTest extends AbstractUnitTestCase
      */
     public function kaufman_01_play_Qg4_get_piece_a7()
     {
-        $game = new Game();
+        $game = new Game(Game::MODE_LOAD_FEN);
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
         $game->play('w', 'Qg4');
 

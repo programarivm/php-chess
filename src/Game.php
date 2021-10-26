@@ -30,6 +30,8 @@ class Game
 
     const MODE_ANALYSIS     =  'MODE_ANALYSIS';
 
+    const MODE_LOAD_FEN     =  'MODE_LOAD_FEN';
+
     const MODEL_FOLDER      = __DIR__.'/../model/';
 
     /**
@@ -336,11 +338,17 @@ class Game
     {
         $movetext = $this->board->getMovetext();
 
-        if ($balanced) {
-            return (new HeuristicPicture($movetext, $this->board))->take()->getBalance();
+        if ($this->mode === self::MODE_LOAD_FEN) {
+            $heuristicPicture = new HeuristicPicture($movetext, $this->board);
+        } else {
+            $heuristicPicture = new HeuristicPicture($movetext);
         }
 
-        return (new HeuristicPicture($movetext, $this->board))->take()->getPicture();
+        if ($balanced) {
+            return $heuristicPicture->take()->getBalance();
+        }
+
+        return $heuristicPicture->take()->getPicture();
     }
 
     public function undoMove(): ?\stdClass

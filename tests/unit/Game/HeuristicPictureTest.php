@@ -54,7 +54,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function kaufman_01_play_Nf6_gxf6()
     {
-        $game = new Game();
+        $game = new Game(Game::MODE_LOAD_FEN);
         $game->loadFen('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
         $game->play('w', 'Nf6');
         $game->play('b', 'gxf6');
@@ -73,7 +73,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
      */
     public function e4_e5_f4_f5_Nc3_Nc6()
     {
-        $game = new Game();
+        $game = new Game(Game::MODE_LOAD_FEN);
         $game->loadFen('r1bqkbnr/pppp2pp/2n5/4pp2/4PP2/2N5/PPPP2PP/R1BQKBNR w KQkq - 2 4');
 
         $expected = [
