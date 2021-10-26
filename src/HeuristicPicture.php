@@ -135,8 +135,8 @@ class HeuristicPicture extends Player
                         $normalization[Symbol::WHITE][$j][$i] = round(($this->picture[Symbol::WHITE][$j][$i] - $min) / ($max - $min), 2);
                         $normalization[Symbol::BLACK][$j][$i] = round(($this->picture[Symbol::BLACK][$j][$i] - $min) / ($max - $min), 2);
                     } elseif ($max == $min) {
-                        $normalization[Symbol::WHITE][$j][$i] = round(1 / count($values), 2);
-                        $normalization[Symbol::BLACK][$j][$i] = round(1 / count($values), 2);
+                        $normalization[Symbol::WHITE][$j][$i] = 0;
+                        $normalization[Symbol::BLACK][$j][$i] = 0;
                     }
                 }
             }

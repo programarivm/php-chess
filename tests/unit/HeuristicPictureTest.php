@@ -100,10 +100,10 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $expected = [
             Symbol::WHITE => [
-                [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+                [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
             Symbol::BLACK => [
-                [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+                [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
         ];
 
@@ -122,8 +122,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
-            Symbol::BLACK => [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+            Symbol::WHITE => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            Symbol::BLACK => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         ];
 
         $this->assertEquals($expected, $end);
@@ -159,8 +159,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 0.25, 0, 0.9, 0.2, 0, 0, 0.25, 0.25, 0.25, 0.25 ],
-            Symbol::BLACK => [ 0.25, 1, 0, 1, 1, 1, 0.25, 0.25, 0.25, 0.25 ],
+            Symbol::WHITE => [ 0, 0, 0.9, 0.2, 0, 0, 0, 0, 0, 0 ],
+            Symbol::BLACK => [ 0, 1, 0, 1, 1, 1, 0, 0, 0, 0 ],
         ];
 
         $this->assertEquals($expected, $end);
@@ -197,8 +197,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 1, 0, 0.07, 0.8, 1, 1, 0, 0, 0.13, 0.13 ],
-            Symbol::BLACK => [ 0, 1, 0.93, 0.4, 0.4, 0, 0.5, 0.1, 0.13, 0.13 ],
+            Symbol::WHITE => [ 1, 0, 0.07, 0.8, 1, 1, 0, 0, 0, 0 ],
+            Symbol::BLACK => [ 0, 1, 0.93, 0.4, 0.4, 0, 0.5, 0.1, 0, 0 ],
         ];
 
         $this->assertEquals($expected, $end);
@@ -237,8 +237,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
         $evaluation = $heuristicPicture->evaluate();
 
         $expected = [
-            Symbol::WHITE => 37.76,
-            Symbol::BLACK => 22.7,
+            Symbol::WHITE => 37.46,
+            Symbol::BLACK => 22.4,
         ];
 
         $this->assertEquals($expected, $evaluation);
@@ -335,10 +335,10 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $expected = [
             Symbol::WHITE => [
-                [ 0.5, 1, 0, 1, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+                [ 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ],
             ],
             Symbol::BLACK => [
-                [ 0.5, 0, 1, 0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ],
+                [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
             ],
         ];
 
@@ -358,12 +358,12 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $expected = [
             Symbol::WHITE => [
-                [ 0.25, 0.5, 0.6, 0.17, 0, 0.25, 0, 0, 0.25, 0.25 ],
-                [ 0.25, 1, 0, 1, 1, 0.25, 0, 0, 0.25, 0.25 ],
+                [ 0, 0.5, 0.6, 0.17, 0, 0, 0, 0, 0, 0 ],
+                [ 0, 1, 0, 1, 1, 0, 0, 0, 0, 0 ],
             ],
             Symbol::BLACK => [
-                [ 0.25, 0, 1, 0, 0, 0.25, 0, 0, 0.25, 0.25 ],
-                [ 0.25, 0, 0.6, 0.17, 1, 0.25, 1, 1, 0.25, 0.25 ],
+                [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+                [ 0, 0, 0.6, 0.17, 1, 0, 1, 1, 0, 0 ],
             ],
         ];
 
@@ -383,14 +383,14 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $expected = [
             Symbol::WHITE => [
-                [ 0.17, 0.5, 0.38, 0.17, 0, 0.17, 0, 0, 0.17, 0.17 ],
-                [ 0.17, 1, 0, 1, 0.5, 0.17, 0, 0, 0.17, 0.17 ],
-                [ 0.17, 1, 0.5, 0.5, 0.5, 0.17, 0, 0, 0.17, 0.17 ],
+                [ 0, 0.5, 0.38, 0.17, 0, 0, 0, 0, 0, 0 ],
+                [ 0, 1, 0, 1, 0.5, 0, 0, 0, 0, 0 ],
+                [ 0, 1, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0 ],
             ],
             Symbol::BLACK => [
-                [ 0.17, 0, 0.63, 0, 0, 0.17, 0, 0, 0.17, 0.17 ],
-                [ 0.17, 0, 0.38, 0.17, 0.5, 0.17, 0.5, 0.5, 0.17, 0.17 ],
-                [ 0.17, 0, 1, 0.17, 1, 0.17, 1, 1, 0.17, 0.17 ],
+                [ 0, 0, 0.63, 0, 0, 0, 0, 0, 0, 0 ],
+                [ 0, 0, 0.38, 0.17, 0.5, 0, 0.5, 0.5, 0, 0 ],
+                [ 0, 0, 1, 0.17, 1, 0, 1, 1, 0, 0 ],
             ],
         ];
 
