@@ -32,6 +32,8 @@ class Game
 
     const MODE_LOAD_FEN     =  'MODE_LOAD_FEN';
 
+    const MODE_PLAY_FRIEND     =  'MODE_PLAY_FRIEND';
+
     const MODEL_FOLDER      = __DIR__.'/../model/';
 
     /**
