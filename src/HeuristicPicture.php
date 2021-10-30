@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\Player;
+use Chess\Evaluation\IsolatedPawnEvaluation;
 use Chess\Evaluation\AttackEvaluation;
 use Chess\Evaluation\CenterEvaluation;
 use Chess\Evaluation\ConnectivityEvaluation;
@@ -20,16 +20,17 @@ use Chess\Evaluation\PassedPawnEvaluation;
 class HeuristicPicture extends Player
 {
     protected $dimensions = [
-        MaterialEvaluation::class => 34,
-        CenterEvaluation::class => 8,
+        MaterialEvaluation::class => 21,
+        CenterEvaluation::class => 13,
         ConnectivityEvaluation::class => 8,
         SpaceEvaluation::class => 8,
         PressureEvaluation::class => 8,
         KingSafetyEvaluation::class => 8,
         TacticsEvaluation::class => 8,
         AttackEvaluation::class => 8,
-        DoubledPawnEvaluation::class => 5,
+        DoubledPawnEvaluation::class => 8,
         PassedPawnEvaluation::class => 5,
+        IsolatedPawnEvaluation::class => 5,
     ];
 
     protected $picture = [];
