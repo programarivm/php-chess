@@ -24,7 +24,7 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
 
         self::$permutations = (new RestrictedPermutationWithRepetition())
             ->get(
-                [ 5, 8, 13, 21, 34],
+                [ 5, 8, 13, 21 ],
                 count($dimensions),
                 100
             );
@@ -90,8 +90,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => 60.0,
-            Symbol::BLACK => 34.0,
+            Symbol::WHITE => 55.0,
+            Symbol::BLACK => 21.0,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))
@@ -114,8 +114,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => 34.0,
-            Symbol::BLACK => 34.0,
+            Symbol::WHITE => 21.0,
+            Symbol::BLACK => 21.0,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -135,8 +135,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => 34.8,
-            Symbol::BLACK => 65.0,
+            Symbol::WHITE => 23.1,
+            Symbol::BLACK => 60.0,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -156,8 +156,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => 64.35,
-            Symbol::BLACK => 60.53,
+            Symbol::WHITE => 59.35,
+            Symbol::BLACK => 51.53,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -178,7 +178,7 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
 
         $expected = [
             Symbol::WHITE => 67.2,
-            Symbol::BLACK => 55.0,
+            Symbol::BLACK => 47.36,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -198,8 +198,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => 57.85,
-            Symbol::BLACK => 43.04,
+            Symbol::WHITE => 51.91,
+            Symbol::BLACK => 38.36,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
