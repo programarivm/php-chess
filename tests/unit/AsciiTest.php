@@ -13,6 +13,7 @@ use Chess\Tests\Sample\Opening\RuyLopez\Exchange as RuyLopezExchange;
 use Chess\Tests\Sample\Opening\Sicilian\Closed as ClosedSicilian;
 use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
 use Chess\Tests\Sample\Opening\FrenchDefense\Classical as FrenchDefenseClassical;
+use Chess\Tests\Sample\Opening\FrenchDefense\Exchange as FrenchDefenseExchange;
 use Chess\Tests\Sample\Opening\QueensGambit\SymmetricalDefense as QueensGambitSymmetricalDefense;
 
 class AsciiTest extends AbstractUnitTestCase
@@ -211,6 +212,29 @@ class AsciiTest extends AbstractUnitTestCase
             2 => [ ' . ', ' . ', ' N ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
             1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
+        ];
+
+        $this->assertEquals($expected, $array);
+    }
+
+    /**
+     * @test
+     */
+    public function french_defense_exchange_to_array()
+    {
+        $board = (new FrenchDefenseExchange(new Board()))->play();
+
+        $array = (new Ascii())->toArray($board);
+
+        $expected = [
+            7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
+            6 => [ ' p ', ' p ', ' p ', ' . ', ' . ', ' p ', ' p ', ' p ' ],
+            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
+            0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
         $this->assertEquals($expected, $array);
