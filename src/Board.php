@@ -913,4 +913,48 @@ final class Board extends \SplObjectStorage
             ],
         ];
     }
+
+    public function getPossibleMoves()
+    {
+        $possibleMoves = [];
+        $color = $this->getTurn();
+        foreach ($this->getPiecesByColor($color) as $piece) {
+            foreach ($piece->getLegalMoves() as $square) {
+                $clone = unserialize(serialize($this));
+                switch ($piece->getIdentity()) {
+                    case Symbol::KING:
+                        if ($clone->play(Convert::toStdObj($color, Symbol::KING.$square))) {
+                            $possibleMoves[] = Symbol::KING.$square;
+                        } elseif ($clone->play(Convert::toStdObj($color, Symbol::KING.'x'.$square))) {
+                            $possibleMoves[] = Symbol::KING.'x'.$square;
+                        }
+                        break;
+                    case Symbol::PAWN:
+                        if ($clone->play(Convert::toStdObj($color, $square))) {
+                            $possibleMoves[] = $square;
+                        } elseif ($clone->play(Convert::toStdObj($color, $piece->getFile()."x$square"))) {
+                            $possibleMoves[] = $piece->getFile()."x$square";
+                        }
+                        break;
+                    default:
+                        if ($clone->play(Convert::toStdObj($color, $piece->getIdentity().$square))) {
+                            $possibleMoves[] = $piece->getIdentity().$square;
+                        } elseif ($clone->play(Convert::toStdObj($color, "{$piece->getIdentity()}x$square"))) {
+                            $possibleMoves[] = "{$piece->getIdentity()}x$square";
+                        }
+                        break;
+                }
+            }
+        }
+
+        $clone = unserialize(serialize($this));
+        
+        if ($clone->play(Convert::toStdObj($color, Symbol::CASTLING_SHORT))) {
+            $possibleMoves[] = Symbol::CASTLING_SHORT;
+        } elseif ($clone->play(Convert::toStdObj($color, Symbol::CASTLING_LONG))) {
+            $possibleMoves[] = Symbol::CASTLING_LONG;
+        }
+
+        return $possibleMoves;
+    }
 }
