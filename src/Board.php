@@ -923,7 +923,17 @@ final class Board extends \SplObjectStorage
                 $clone = unserialize(serialize($this));
                 switch ($piece->getIdentity()) {
                     case Symbol::KING:
-                        if ($clone->play(Convert::toStdObj($color, Symbol::KING.$square))) {
+                        if (
+                            CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['position']['next'] === $square &&
+                            $clone->play(Convert::toStdObj($color, Symbol::CASTLING_SHORT))
+                        ) {
+                            $possibleMoves[] = Symbol::CASTLING_SHORT;
+                        } elseif (
+                            CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['position']['next'] === $square &&
+                            $clone->play(Convert::toStdObj($color, Symbol::CASTLING_LONG))
+                        ) {
+                            $possibleMoves[] = Symbol::CASTLING_LONG;
+                        } elseif ($clone->play(Convert::toStdObj($color, Symbol::KING.$square))) {
                             $possibleMoves[] = Symbol::KING.$square;
                         } elseif ($clone->play(Convert::toStdObj($color, Symbol::KING.'x'.$square))) {
                             $possibleMoves[] = Symbol::KING.'x'.$square;
@@ -945,14 +955,6 @@ final class Board extends \SplObjectStorage
                         break;
                 }
             }
-        }
-
-        $clone = unserialize(serialize($this));
-        
-        if ($clone->play(Convert::toStdObj($color, Symbol::CASTLING_SHORT))) {
-            $possibleMoves[] = Symbol::CASTLING_SHORT;
-        } elseif ($clone->play(Convert::toStdObj($color, Symbol::CASTLING_LONG))) {
-            $possibleMoves[] = Symbol::CASTLING_LONG;
         }
 
         return $possibleMoves;
