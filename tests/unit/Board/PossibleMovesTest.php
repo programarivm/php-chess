@@ -16,6 +16,7 @@ class PossibleMovesTest extends AbstractUnitTestCase
     {
         $board = new Board();
         $possibleMoves = $board->getPossibleMoves();
+
         $expected = [
             'Na3',
             'Nc3',
@@ -37,6 +38,41 @@ class PossibleMovesTest extends AbstractUnitTestCase
             'g4',
             'h3',
             'h4',
+        ];
+
+        $this->assertEquals($expected, $possibleMoves);
+    }
+
+    /**
+     * @test
+     */
+    public function e4()
+    {
+        $board = new Board();
+        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
+        $possibleMoves = $board->getPossibleMoves();
+
+        $expected = [
+            'Na6',
+            'Nc6',
+            'Nf6',
+            'Nh6',
+            'a6',
+            'a5',
+            'b6',
+            'b5',
+            'c6',
+            'c5',
+            'd6',
+            'd5',
+            'e6',
+            'e5',
+            'f6',
+            'f5',
+            'g6',
+            'g5',
+            'h6',
+            'h5',
         ];
 
         $this->assertEquals($expected, $possibleMoves);
