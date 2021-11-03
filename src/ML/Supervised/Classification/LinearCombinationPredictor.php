@@ -28,41 +28,10 @@ class LinearCombinationPredictor extends AbstractLinearCombinationPredictor
     public function predict(): string
     {
         $color = $this->board->getTurn();
-        foreach ($this->board->getPiecesByColor($color) as $piece) {
-            foreach ($piece->getLegalMoves() as $square) {
-                $clone = unserialize(serialize($this->board));
-                switch ($piece->getIdentity()) {
-                    case Symbol::KING:
-                        if ($clone->play(Convert::toStdObj($color, Symbol::KING.$square))) {
-                            $this->result[] = [ Symbol::KING.$square => $this->evaluate($clone) ];
-                        } elseif ($clone->play(Convert::toStdObj($color, Symbol::KING.'x'.$square))) {
-                            $this->result[] = [ Symbol::KING.'x'.$square => $this->evaluate($clone) ];
-                        }
-                        break;
-                    case Symbol::PAWN:
-                        if ($clone->play(Convert::toStdObj($color, $square))) {
-                            $this->result[] = [ $square => $this->evaluate($clone) ];
-                        } elseif ($clone->play(Convert::toStdObj($color, $piece->getFile()."x$square"))) {
-                            $this->result[] = [ $piece->getFile()."x$square" => $this->evaluate($clone) ];
-                        }
-                        break;
-                    default:
-                        if ($clone->play(Convert::toStdObj($color, $piece->getIdentity().$square))) {
-                            $this->result[] = [ $piece->getIdentity().$square => $this->evaluate($clone) ];
-                        } elseif ($clone->play(Convert::toStdObj($color, "{$piece->getIdentity()}x$square"))) {
-                            $this->result[] = [ "{$piece->getIdentity()}x$square" => $this->evaluate($clone) ];
-                        }
-                        break;
-                }
-            }
-        }
-
-        $clone = unserialize(serialize($this->board));
-
-        if ($clone->play(Convert::toStdObj($color, Symbol::CASTLING_SHORT))) {
-            $this->result[] = [ Symbol::CASTLING_SHORT => $this->evaluate($clone) ];
-        } elseif ($clone->play(Convert::toStdObj($color, Symbol::CASTLING_LONG))) {
-            $this->result[] = [ Symbol::CASTLING_LONG => $this->evaluate($clone) ];
+        foreach ($this->board->getPossibleMoves() as $possibleMove) {
+            $clone = unserialize(serialize($this->board));
+            $clone->play(Convert::toStdObj($this->board->getTurn(), $possibleMove));
+            $this->result[] = [ $possibleMove => $this->evaluate($clone) ];
         }
 
         $prediction = $this->prediction();
