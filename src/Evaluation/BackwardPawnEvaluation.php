@@ -26,7 +26,7 @@ class BackwardPawnEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         $captureSquares = [];
         $nextMoves = [];

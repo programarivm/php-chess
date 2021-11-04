@@ -25,7 +25,7 @@ class MaterialEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         foreach ($this->board->getPiecesByColor(Symbol::WHITE) as $piece) {
             if ($piece->getIdentity() !== Symbol::KING) {

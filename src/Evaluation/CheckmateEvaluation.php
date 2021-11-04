@@ -26,7 +26,7 @@ class CheckmateEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         foreach ($this->board->getPossibleMoves() as $level1Move) {
             $this->board->play(Convert::toStdObj($this->board->getTurn(), $level1Move));

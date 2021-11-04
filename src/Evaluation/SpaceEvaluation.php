@@ -35,7 +35,7 @@ class SpaceEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         $this->result = [
             Symbol::WHITE => [],

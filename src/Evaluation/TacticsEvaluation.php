@@ -61,7 +61,7 @@ class TacticsEvaluation extends AbstractEvaluation
      *
      * @return array
      */
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         foreach ($this->target as $color => $squares) {
             foreach ($squares as $square) {

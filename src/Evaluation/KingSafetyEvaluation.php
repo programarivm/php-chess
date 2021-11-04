@@ -27,7 +27,7 @@ class KingSafetyEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         $pressEvald = (new PressureEvaluation($this->board))->evaluate();
         $spEvald = (new SpaceEvaluation($this->board))->evaluate();

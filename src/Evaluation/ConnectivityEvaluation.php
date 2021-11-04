@@ -35,7 +35,7 @@ class ConnectivityEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         $this->color(Symbol::WHITE);
         $this->color(Symbol::BLACK);

@@ -28,7 +28,7 @@ class CenterEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         foreach ($this->center as $square) {
             if ($piece = $this->board->getPieceByPosition($square)) {

@@ -20,7 +20,7 @@ class IsolatedPawnEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();

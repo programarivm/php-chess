@@ -50,7 +50,7 @@ class PressureEvaluation extends AbstractEvaluation
      *
      * @return array
      */
-    public function evaluate($feature = null): array
+    public function evaluate(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             switch ($piece->getIdentity()) {

@@ -24,13 +24,11 @@ abstract class AbstractEvaluation
         $this->board = $board;
 
         $this->value = [
-          Symbol::PAWN => 1,
-          Symbol::KNIGHT => 3.2,
-          Symbol::BISHOP => 3.33,
-          Symbol::ROOK => 5.1,
-          Symbol::QUEEN => 8.8,
+            Symbol::PAWN => 1,
+            Symbol::KNIGHT => 3.2,
+            Symbol::BISHOP => 3.33,
+            Symbol::ROOK => 5.1,
+            Symbol::QUEEN => 8.8,
         ];
     }
-
-    abstract public function evaluate($feature = null): array;
 }
