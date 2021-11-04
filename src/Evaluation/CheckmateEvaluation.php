@@ -7,7 +7,7 @@ use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 
 /**
- * Checkmate.
+ * Checkmate in one.
  *
  * @author Jordi Bassagañas
  * @license GPL
@@ -28,29 +28,14 @@ class CheckmateEvaluation extends AbstractEvaluation
 
     public function evaluate(): array
     {
-        foreach ($this->board->getPossibleMoves() as $level1Move) {
-            $this->board->play(Convert::toStdObj($this->board->getTurn(), $level1Move));
+        foreach ($this->board->getPossibleMoves() as $move) {
+            $this->board->play(Convert::toStdObj($this->board->getTurn(), $move));
             if ($this->board->isMate()) {
                 $this->result[$this->board->getTurn()] = 1;
                 return $this->result;
-            }
-            foreach ($this->board->getPossibleMoves() as $level2Move) {
-                $this->board->play(Convert::toStdObj(Symbol::oppColor($this->board->getTurn()), $level2Move));
-                if ($this->board->isMate()) {
-                    $this->result[Symbol::oppColor($this->board->getTurn())] = 1;
-                    return $this->result;
-                }
-                foreach ($this->board->getPossibleMoves() as $level3Move) {
-                    $this->board->play(Convert::toStdObj($this->board->getTurn(), $level3Move));
-                    if ($this->board->isMate()) {
-                        $this->result[$this->board->getTurn()] = 1;
-                        return $this->result;
-                    }
-                    $this->board->undoMove($this->board->getCastling());
-                }
+            } else {
                 $this->board->undoMove($this->board->getCastling());
             }
-            $this->board->undoMove($this->board->getCastling());
         }
 
         return $this->result;
