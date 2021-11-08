@@ -16,11 +16,17 @@ class ModelPlayCli extends CLI
     {
         $options->setHelp('Play with an AI.');
         $options->registerArgument('model', 'AI model name. The AIs are stored in the model folder.', true);
+        $options->registerArgument('fen', 'FEN string.', false);
     }
 
     protected function main(Options $options)
     {
-        $game = new Game(Game::MODE_AI, $options->getArgs()[0]);
+        if (isset($options->getArgs()[1])) {
+            $game = new Game(Game::MODE_LOAD_FEN, $options->getArgs()[0]);
+            $game->loadFen($options->getArgs()[1]);
+        } else {
+            $game = new Game(Game::MODE_AI, $options->getArgs()[0]);
+        }
 
         do {
             $move = readline(self::PROMPT);
