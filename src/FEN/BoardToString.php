@@ -42,18 +42,16 @@ class BoardToString
         $strSplit = str_split($string);
         $n = 1;
         for ($i = 0; $i < count($strSplit); $i++) {
-            if ($strSplit[$i] === '.' && isset($strSplit[$i+1])) {
-                if ($strSplit[$i+1] === '.') {
+            if ($strSplit[$i] === '.') {
+                if (isset($strSplit[$i+1]) && $strSplit[$i+1] === '.') {
                     $n++;
                 } else {
                     $filtered .= $n;
                     $n = 1;
                 }
-            } elseif ($strSplit[$i] !== '.') {
+            } else {
                 $filtered .= $strSplit[$i];
                 $n = 1;
-            } else {
-                $filtered .= 1;
             }
         }
 
