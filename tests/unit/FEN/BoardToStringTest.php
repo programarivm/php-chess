@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\FEN;
 
 use Chess\Board;
-use Chess\FEN\BoardToString;;
+use Chess\FEN\BoardToString;
 use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
@@ -88,6 +88,31 @@ class BoardToStringTest extends AbstractUnitTestCase
         $boardToString = (new BoardToString($board))->create();
 
         $expected = 'r1bqk1nr/ppppbppp/2n5/4p3/4P3/5N2/PPPPBPPP/RNBQ1RK1 b kq -';
+
+        $this->assertEquals($expected, $boardToString);
+    }
+
+    /**
+     * @test
+     */
+    public function e4_e5_Nf3_Nc6_Bc4_h6_h4_g5_hxg5_hxg5_Rxh8()
+    {
+        $board = new Board();
+        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
+        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
+        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3'));
+        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6'));
+        $board->play(Convert::toStdObj(Symbol::WHITE, 'Bc4'));
+        $board->play(Convert::toStdObj(Symbol::BLACK, 'h6'));
+        $board->play(Convert::toStdObj(Symbol::WHITE, 'h4'));
+        $board->play(Convert::toStdObj(Symbol::BLACK, 'g5'));
+        $board->play(Convert::toStdObj(Symbol::WHITE, 'hxg5'));
+        $board->play(Convert::toStdObj(Symbol::BLACK, 'hxg5'));
+        $board->play(Convert::toStdObj(Symbol::WHITE, 'Rxh8'));
+
+        $boardToString = (new BoardToString($board))->create();
+
+        $expected = 'r1bqkbnR/pppp1p2/2n5/4p1p1/2B1P3/5N2/PPPP1PP1/RNBQK3 b Qq -';
 
         $this->assertEquals($expected, $boardToString);
     }
