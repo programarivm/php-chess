@@ -2,6 +2,7 @@
 
 namespace Chess\FEN;
 
+use Chess\Castling\Rule as CastlingRule;
 use Chess\FEN\BoardToString;
 use Chess\FEN\StringToBoard;
 use Chess\PGN\Convert;
@@ -35,7 +36,23 @@ abstract class AbstractStringToPgn
                 $position = $piece->getPosition();
                 switch ($identity) {
                     case Symbol::KING:
-                        if ($clone->play(Convert::toStdObj($color, Symbol::KING.$square))) {
+                        if ($square ===
+                            CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['position']['next']
+                        ) {
+                            if ($clone->play(Convert::toStdObj($color, $square))) {
+                                $legal[] = [
+                                    Symbol::CASTLING_SHORT => (new BoardToString($clone))->create()
+                                ];
+                            }
+                        } elseif ($square ===
+                            CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['position']['next']
+                        ) {
+                            if ($clone->play(Convert::toStdObj($color, $square))) {
+                                $legal[] = [
+                                    Symbol::CASTLING_LONG => (new BoardToString($clone))->create()
+                                ];
+                            }
+                        } elseif ($clone->play(Convert::toStdObj($color, Symbol::KING.$square))) {
                             $legal[] = [
                                 Symbol::KING.$square => (new BoardToString($clone))->create()
                             ];
@@ -83,22 +100,6 @@ abstract class AbstractStringToPgn
                         }
                         break;
                 }
-            }
-        }
-
-        $clone = unserialize(serialize($this->board));
-
-        if ($this->board->getCastling()[$color][Symbol::CASTLING_SHORT]) {
-            if ($clone->play(Convert::toStdObj($color, Symbol::CASTLING_SHORT))) {
-                $legal[] = [
-                    Symbol::CASTLING_SHORT => (new BoardToString($clone))->create()
-                ];
-            }
-        } elseif ($this->board->getCastling()[$color][Symbol::CASTLING_LONG]) {
-            if ($clone->play(Convert::toStdObj($color, Symbol::CASTLING_LONG))) {
-                $legal[] = [
-                    Symbol::CASTLING_LONG => (new BoardToString($clone))->create()
-                ];
             }
         }
 
