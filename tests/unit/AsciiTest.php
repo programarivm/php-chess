@@ -543,4 +543,49 @@ class AsciiTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $array);
     }
+
+    /**
+     * @test
+     */
+    public function e4_e5_Nf3_Nc6_Bb5_a6_Ba4_b5_Bb3_Bb7_a4_Nf6_Nc3_g6_Qe2_d6_d3_Be7_Bg5_Qd7_O_O_O_O_O()
+    {
+        $board = new Board();
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'e5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Bb5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'a6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Ba4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'b5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Bb3')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Bb7')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'a4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Nc3')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'g6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Qe2')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'd6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'd3')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Be7')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Bg5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Qd7')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'O-O-O')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'O-O')));
+
+        $array = (new Ascii())->toArray($board);
+
+        $expected = [
+            7 => [ ' r ', ' . ', ' . ', ' . ', ' . ', ' r ', ' k ', ' . ' ],
+            6 => [ ' . ', ' b ', ' p ', ' q ', ' b ', ' p ', ' . ', ' p ' ],
+            5 => [ ' p ', ' . ', ' n ', ' p ', ' . ', ' n ', ' p ', ' . ' ],
+            4 => [ ' . ', ' p ', ' . ', ' . ', ' p ', ' . ', ' B ', ' . ' ],
+            3 => [ ' P ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' B ', ' N ', ' P ', ' . ', ' N ', ' . ', ' . ' ],
+            1 => [ ' . ', ' P ', ' P ', ' . ', ' Q ', ' P ', ' P ', ' P ' ],
+            0 => [ ' . ', ' . ', ' K ', ' R ', ' . ', ' . ', ' . ', ' R ' ],
+        ];
+
+        $this->assertEquals($expected, $array);
+    }
 }
