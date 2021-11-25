@@ -298,7 +298,7 @@ class Game
 
         if (
           'K2R' === substr($fromRanks[7], -3) &&
-          '2KR' === substr($toRanks[7], -3) &&
+          'KR' === substr($toRanks[7], -2) &&
           $this->board->play(Convert::toStdObj(Symbol::WHITE, Symbol::CASTLING_SHORT))
         ) {
             return Symbol::CASTLING_SHORT;
@@ -310,7 +310,7 @@ class Game
             return Symbol::CASTLING_LONG;
         } elseif (
           'k2r' === substr($fromRanks[0], -3) &&
-          '2kr' === substr($toRanks[0], -3) &&
+          'kr' === substr($toRanks[0], -2) &&
           $this->board->play(Convert::toStdObj(Symbol::BLACK, Symbol::CASTLING_SHORT))
         ) {
             return Symbol::CASTLING_SHORT;

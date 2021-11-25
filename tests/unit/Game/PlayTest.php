@@ -459,7 +459,7 @@ class PlayTest extends AbstractUnitTestCase
 
         $ascii = $game->ascii();
 
-        $expected = " r  .  .  .  .  .  k  r \n" .
+        $expected = " r  .  .  .  .  r  k  . \n" .
                     " .  b  p  q  b  p  .  p \n" .
                     " p  .  n  p  .  n  p  . \n" .
                     " .  p  .  .  p  .  B  . \n" .
