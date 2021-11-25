@@ -470,4 +470,42 @@ class PlayTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $ascii);
     }
+
+    /**
+     * @test
+     */
+    public function e4_e5_Nf3_Nc6_Bc4_h6_h4_g5_hxg5_hxg5_Rxh8_Bg7_d3_Bxh8_Qe2_Nge7_c3()
+    {
+        $game = new Game();
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b'));
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w'));
+        $this->assertEquals(true, $game->playFen('rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b'));
+        $this->assertEquals(true, $game->playFen('r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w'));
+        $this->assertEquals(true, $game->playFen('r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b'));
+        $this->assertEquals(true, $game->playFen('r1bqkbnr/pppp1pp1/2n4p/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w'));
+        $this->assertEquals(true, $game->playFen('r1bqkbnr/pppp1pp1/2n4p/4p3/2B1P2P/5N2/PPPP1PP1/RNBQK2R b'));
+        $this->assertEquals(true, $game->playFen('r1bqkbnr/pppp1p2/2n4p/4p1p1/2B1P2P/5N2/PPPP1PP1/RNBQK2R w'));
+        $this->assertEquals(true, $game->playFen('r1bqkbnr/pppp1p2/2n4p/4p1P1/2B1P3/5N2/PPPP1PP1/RNBQK2R b'));
+        $this->assertEquals(true, $game->playFen('r1bqkbnr/pppp1p2/2n5/4p1p1/2B1P3/5N2/PPPP1PP1/RNBQK2R w'));
+        $this->assertEquals(true, $game->playFen('r1bqkbnR/pppp1p2/2n5/4p1p1/2B1P3/5N2/PPPP1PP1/RNBQK3 b'));
+        $this->assertEquals(true, $game->playFen('r1bqk1nR/pppp1pb1/2n5/4p1p1/2B1P3/5N2/PPPP1PP1/RNBQK3 w'));
+        $this->assertEquals(true, $game->playFen('r1bqk1nR/pppp1pb1/2n5/4p1p1/2B1P3/3P1N2/PPP2PP1/RNBQK3 b'));
+        $this->assertEquals(true, $game->playFen('r1bqk1nb/pppp1p2/2n5/4p1p1/2B1P3/3P1N2/PPP2PP1/RNBQK3 w'));
+        $this->assertEquals(true, $game->playFen('r1bqk1nb/pppp1p2/2n5/4p1p1/2B1P3/3P1N2/PPP1QPP1/RNB1K3 b'));
+        $this->assertEquals(true, $game->playFen('r1bqk2b/ppppnp2/2n5/4p1p1/2B1P3/3P1N2/PPP1QPP1/RNB1K3 w'));
+        $this->assertEquals(true, $game->playFen('r1bqk2b/ppppnp2/2n5/4p1p1/2B1P3/2PP1N2/PP2QPP1/RNB1K3 b'));
+
+        $ascii = $game->ascii();
+
+        $expected = " r  .  b  q  k  .  .  b \n" .
+                    " p  p  p  p  n  p  .  . \n" .
+                    " .  .  n  .  .  .  .  . \n" .
+                    " .  .  .  .  p  .  p  . \n" .
+                    " .  .  B  .  P  .  .  . \n" .
+                    " .  .  P  P  .  N  .  . \n" .
+                    " P  P  .  .  Q  P  P  . \n" .
+                    " R  N  B  .  K  .  .  . \n";
+
+        $this->assertEquals($expected, $ascii);
+    }
 }
