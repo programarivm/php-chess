@@ -642,24 +642,41 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Updates the king's ability to castle.
+     * Updates the castling property.
      *
      * @param \Chess\Piece\Piece $pieceMoved
      * @return \Chess\Board
      */
-    private function trackCastling(Piece $pieceMoved): Board
+    private function updateCastling(Piece $pieceMoved): Board
     {
-        if ($pieceMoved->getIdentity() === Symbol::KING) {
-            $this->castling[$this->turn] = [
-                CastlingRule::IS_CASTLED => false,
-                Symbol::CASTLING_SHORT => false,
-                Symbol::CASTLING_LONG => false,
-            ];
-        } elseif ($pieceMoved->getIdentity() === Symbol::ROOK) {
-            if ($pieceMoved->getType() === RookType::CASTLING_SHORT) {
-                $this->castling[$this->turn][Symbol::CASTLING_SHORT] = false;
-            } elseif ($pieceMoved->getType() === RookType::CASTLING_LONG) {
-                $this->castling[$this->turn][Symbol::CASTLING_LONG] = false;
+        if (!$this->castling[$this->turn][CastlingRule::IS_CASTLED]) {
+            if ($pieceMoved->getIdentity() === Symbol::KING) {
+                $this->castling[$this->turn] = [
+                    CastlingRule::IS_CASTLED => false,
+                    Symbol::CASTLING_SHORT => false,
+                    Symbol::CASTLING_LONG => false,
+                ];
+            } elseif ($pieceMoved->getIdentity() === Symbol::ROOK) {
+                if ($pieceMoved->getType() === RookType::CASTLING_SHORT) {
+                    $this->castling[$this->turn][Symbol::CASTLING_SHORT] = false;
+                } elseif ($pieceMoved->getType() === RookType::CASTLING_LONG) {
+                    $this->castling[$this->turn][Symbol::CASTLING_LONG] = false;
+                }
+            }
+        }
+        $oppColor = Symbol::oppColor($this->turn);
+        if (!$this->castling[$oppColor][CastlingRule::IS_CASTLED]) {
+            if ($pieceMoved->getMove()->isCapture) {
+                if ($pieceMoved->getMove()->position->next ===
+                    CastlingRule::color($oppColor)[Symbol::ROOK][Symbol::CASTLING_SHORT]['position']['current']
+                ) {
+                    $this->castling[$oppColor][Symbol::CASTLING_SHORT] = false;
+                } elseif (
+                    $pieceMoved->getMove()->position->next ===
+                    CastlingRule::color($oppColor)[Symbol::ROOK][Symbol::CASTLING_LONG]['position']['current']
+                ) {
+                    $this->castling[$oppColor][Symbol::CASTLING_LONG] = false;
+                }
             }
         }
 
@@ -691,10 +708,7 @@ final class Board extends \SplObjectStorage
                 $this->promote($piece);
             }
         }
-        if (!$this->castling[$piece->getColor()][CastlingRule::IS_CASTLED]) {
-            $this->trackCastling($piece);
-        }
-        $this->pushHistory($piece)->refresh();
+        $this->updateCastling($piece)->pushHistory($piece)->refresh();
 
         return true;
     }
