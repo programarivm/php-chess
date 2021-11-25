@@ -588,4 +588,44 @@ class AsciiTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $array);
     }
+
+    /**
+     * @test
+     */
+    public function e4_e5_Nf3_Nc6_Bc4_h6_h4_g5_hxg5_hxg5_Rxh8_Bg7_d3_Bxh8_Qe2_Nge7_c3()
+    {
+        $board = new Board();
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'e5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Bc4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'h6')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'h4')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'g5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'hxg5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'hxg5')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Rxh8')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Bg7')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'd3')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Bxh8')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'Qe2')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::BLACK, 'Nge7')));
+        $this->assertEquals(true, $board->play(Convert::toStdObj(Symbol::WHITE, 'c3')));
+
+        $array = (new Ascii())->toArray($board);
+
+        $expected = [
+            7 => [ ' r ', ' . ', ' b ', ' q ', ' k ', ' . ', ' . ', ' b ' ],
+            6 => [ ' p ', ' p ', ' p ', ' p ', ' n ', ' p ', ' . ', ' . ' ],
+            5 => [ ' . ', ' . ', ' n ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' p ', ' . ' ],
+            3 => [ ' . ', ' . ', ' B ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' P ', ' P ', ' . ', ' N ', ' . ', ' . ' ],
+            1 => [ ' P ', ' P ', ' . ', ' . ', ' Q ', ' P ', ' P ', ' . ' ],
+            0 => [ ' R ', ' N ', ' B ', ' . ', ' K ', ' . ', ' . ', ' . ' ],
+        ];
+
+        $this->assertEquals($expected, $array);
+    }
 }
