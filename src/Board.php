@@ -587,7 +587,12 @@ final class Board extends \SplObjectStorage
                     $rook->getIdentity() === Symbol::ROOK
                 )
             );
-            $this->trackCastling(true)->pushHistory($king)->refresh();
+            $this->castling[$this->turn] = [
+                CastlingRule::IS_CASTLED => true,
+                Symbol::CASTLING_SHORT => false,
+                Symbol::CASTLING_LONG => false,
+            ];
+            $this->pushHistory($king)->refresh();
             return true;
         } else {
             return false;
@@ -639,35 +644,22 @@ final class Board extends \SplObjectStorage
     /**
      * Updates the king's ability to castle.
      *
-     * @param bool $castling
      * @param \Chess\Piece\Piece $pieceMoved
      * @return \Chess\Board
-     * @throws \Chess\Exception\BoardException
      */
-    private function trackCastling(bool $castling = false, Piece $pieceMoved = null): Board
+    private function trackCastling(Piece $pieceMoved): Board
     {
-        if ($castling && isset($pieceMoved)) {
-            throw new BoardException("Error while tracking {$this->turn} king's ability to castle");
-        }
-        if ($castling) {
+        if ($pieceMoved->getIdentity() === Symbol::KING) {
             $this->castling[$this->turn] = [
-                CastlingRule::IS_CASTLED => true,
+                CastlingRule::IS_CASTLED => false,
                 Symbol::CASTLING_SHORT => false,
                 Symbol::CASTLING_LONG => false,
             ];
-        } elseif (isset($pieceMoved)) {
-            if ($pieceMoved->getIdentity() === Symbol::KING) {
-                $this->castling[$this->turn] = [
-                    CastlingRule::IS_CASTLED => false,
-                    Symbol::CASTLING_SHORT => false,
-                    Symbol::CASTLING_LONG => false,
-                ];
-            } elseif ($pieceMoved->getIdentity() === Symbol::ROOK) {
-                if ($pieceMoved->getType() === RookType::CASTLING_SHORT) {
-                    $this->castling[$this->turn][Symbol::CASTLING_SHORT] = false;
-                } elseif ($pieceMoved->getType() === RookType::CASTLING_LONG) {
-                    $this->castling[$this->turn][Symbol::CASTLING_LONG] = false;
-                }
+        } elseif ($pieceMoved->getIdentity() === Symbol::ROOK) {
+            if ($pieceMoved->getType() === RookType::CASTLING_SHORT) {
+                $this->castling[$this->turn][Symbol::CASTLING_SHORT] = false;
+            } elseif ($pieceMoved->getType() === RookType::CASTLING_LONG) {
+                $this->castling[$this->turn][Symbol::CASTLING_LONG] = false;
             }
         }
 
@@ -700,7 +692,7 @@ final class Board extends \SplObjectStorage
             }
         }
         if (!$this->castling[$piece->getColor()][CastlingRule::IS_CASTLED]) {
-            $this->trackCastling(false, $piece);
+            $this->trackCastling($piece);
         }
         $this->pushHistory($piece)->refresh();
 
