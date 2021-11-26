@@ -60,11 +60,13 @@ class Game
     /**
      * Constructor.
      */
-    public function __construct(string $mode = null, string $model = 'a1.model')
+    public function __construct(string $mode = null, string $model = null)
     {
         $this->board = new Board();
         $this->mode = $mode ?? self::MODE_ANALYSIS;
-        $this->estimator = PersistentModel::load(new Filesystem(self::MODEL_FOLDER.$model));
+        if ($model) {
+            $this->estimator = PersistentModel::load(new Filesystem(self::MODEL_FOLDER.$model));
+        }
     }
 
     /**
