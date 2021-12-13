@@ -3,8 +3,6 @@
 namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Sicilian\Closed as ClosedSicilian;
@@ -20,8 +18,8 @@ class PressureEvaluationTest extends AbstractUnitTestCase
         $pressEvald = (new PressureEvaluation(new Board()))->evaluate();
 
         $expected = [
-            Symbol::WHITE => [],
-            Symbol::BLACK => [],
+            'w' => [],
+            'b' => [],
         ];
 
         $this->assertSame($expected, $pressEvald);
@@ -37,8 +35,8 @@ class PressureEvaluationTest extends AbstractUnitTestCase
         $pressEvald = (new PressureEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => [],
-            Symbol::BLACK => ['e4'],
+            'w' => [],
+            'b' => ['e4'],
         ];
 
         $this->assertSame($expected, $pressEvald);
@@ -54,8 +52,8 @@ class PressureEvaluationTest extends AbstractUnitTestCase
         $pressEvald = (new PressureEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => [],
-            Symbol::BLACK => ['c3'],
+            'w' => [],
+            'b' => ['c3'],
         ];
 
         $this->assertSame($expected, $pressEvald);
@@ -78,8 +76,8 @@ class PressureEvaluationTest extends AbstractUnitTestCase
         $pressEvald = (new PressureEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => ['a6', 'c6', 'c6', 'd7', 'f7'],
-            Symbol::BLACK => ['b5', 'e5'],
+            'w' => ['a6', 'c6', 'c6', 'd7', 'f7'],
+            'b' => ['b5', 'e5'],
         ];
 
         $this->assertSame($expected, $pressEvald);
