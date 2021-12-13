@@ -24,8 +24,8 @@ class AsciiTest extends AbstractUnitTestCase
     public function e4_e5_to_array()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
+        $board->play('w', 'e4');
+        $board->play('b', 'e5');
 
         $array = (new Ascii())->toArray($board);
 
@@ -550,28 +550,28 @@ class AsciiTest extends AbstractUnitTestCase
     public function e4_e5_Nf3_Nc6_Bb5_a6_Ba4_b5_Bb3_Bb7_a4_Nf6_Nc3_g6_Qe2_d6_d3_Be7_Bg5_Qd7_O_O_O_O_O()
     {
         $board = new Board();
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'e5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Bb5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'a6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Ba4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'b5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Bb3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Bb7')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'a4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Nc3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'g6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Qe2')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'd6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'd3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Be7')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Bg5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Qd7')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'O-O-O')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'O-O')));
+        $this->assertTrue($board->play('w', 'e4'));
+        $this->assertTrue($board->play('b', 'e5'));
+        $this->assertTrue($board->play('w', 'Nf3'));
+        $this->assertTrue($board->play('b', 'Nc6'));
+        $this->assertTrue($board->play('w', 'Bb5'));
+        $this->assertTrue($board->play('b', 'a6'));
+        $this->assertTrue($board->play('w', 'Ba4'));
+        $this->assertTrue($board->play('b', 'b5'));
+        $this->assertTrue($board->play('w', 'Bb3'));
+        $this->assertTrue($board->play('b', 'Bb7'));
+        $this->assertTrue($board->play('w', 'a4'));
+        $this->assertTrue($board->play('b', 'Nf6'));
+        $this->assertTrue($board->play('w', 'Nc3'));
+        $this->assertTrue($board->play('b', 'g6'));
+        $this->assertTrue($board->play('w', 'Qe2'));
+        $this->assertTrue($board->play('b', 'd6'));
+        $this->assertTrue($board->play('w', 'd3'));
+        $this->assertTrue($board->play('b', 'Be7'));
+        $this->assertTrue($board->play('w', 'Bg5'));
+        $this->assertTrue($board->play('b', 'Qd7'));
+        $this->assertTrue($board->play('w', 'O-O-O'));
+        $this->assertTrue($board->play('b', 'O-O'));
 
         $array = (new Ascii())->toArray($board);
 
@@ -595,23 +595,23 @@ class AsciiTest extends AbstractUnitTestCase
     public function e4_e5_Nf3_Nc6_Bc4_h6_h4_g5_hxg5_hxg5_Rxh8_Bg7_d3_Bxh8_Qe2_Nge7_c3()
     {
         $board = new Board();
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'e5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Bc4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'h6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'h4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'g5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'hxg5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'hxg5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Rxh8')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Bg7')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'd3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Bxh8')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Qe2')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Nge7')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'c3')));
+        $this->assertTrue($board->play('w', 'e4'));
+        $this->assertTrue($board->play('b', 'e5'));
+        $this->assertTrue($board->play('w', 'Nf3'));
+        $this->assertTrue($board->play('b', 'Nc6'));
+        $this->assertTrue($board->play('w', 'Bc4'));
+        $this->assertTrue($board->play('b', 'h6'));
+        $this->assertTrue($board->play('w', 'h4'));
+        $this->assertTrue($board->play('b', 'g5'));
+        $this->assertTrue($board->play('w', 'hxg5'));
+        $this->assertTrue($board->play('b', 'hxg5'));
+        $this->assertTrue($board->play('w', 'Rxh8'));
+        $this->assertTrue($board->play('b', 'Bg7'));
+        $this->assertTrue($board->play('w', 'd3'));
+        $this->assertTrue($board->play('b', 'Bxh8'));
+        $this->assertTrue($board->play('w', 'Qe2'));
+        $this->assertTrue($board->play('b', 'Nge7'));
+        $this->assertTrue($board->play('w', 'c3'));
 
         $array = (new Ascii())->toArray($board);
 
@@ -635,24 +635,24 @@ class AsciiTest extends AbstractUnitTestCase
     public function e4_e5_Nf3_Nc6_Bc4_h6_h4_g5_hxg5_hxg5_Rxh8_Bg7_d3_Bxh8_Qe2_Nge7_c3_g4()
     {
         $board = new Board();
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'e5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Bc4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'h6')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'h4')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'g5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'hxg5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'hxg5')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Rxh8')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Bg7')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'd3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Bxh8')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Qe2')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'Nge7')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'c3')));
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::BLACK, 'g4')));
+        $this->assertTrue($board->play('w', 'e4'));
+        $this->assertTrue($board->play('b', 'e5'));
+        $this->assertTrue($board->play('w', 'Nf3'));
+        $this->assertTrue($board->play('b', 'Nc6'));
+        $this->assertTrue($board->play('w', 'Bc4'));
+        $this->assertTrue($board->play('b', 'h6'));
+        $this->assertTrue($board->play('w', 'h4'));
+        $this->assertTrue($board->play('b', 'g5'));
+        $this->assertTrue($board->play('w', 'hxg5'));
+        $this->assertTrue($board->play('b', 'hxg5'));
+        $this->assertTrue($board->play('w', 'Rxh8'));
+        $this->assertTrue($board->play('b', 'Bg7'));
+        $this->assertTrue($board->play('w', 'd3'));
+        $this->assertTrue($board->play('b', 'Bxh8'));
+        $this->assertTrue($board->play('w', 'Qe2'));
+        $this->assertTrue($board->play('b', 'Nge7'));
+        $this->assertTrue($board->play('w', 'c3'));
+        $this->assertTrue($board->play('b', 'g4'));
 
 
         $array = (new Ascii())->toArray($board);
