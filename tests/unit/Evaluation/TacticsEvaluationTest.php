@@ -3,8 +3,6 @@
 namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Evaluation\TacticsEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Sicilian\Closed as ClosedSicilian;
@@ -20,8 +18,8 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new TacticsEvaluation(new Board()))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 0,
+            'w' => 0,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $attEvald);
@@ -39,8 +37,8 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $tacticsEvald = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 1,
+            'w' => 0,
+            'b' => 1,
         ];
 
         $this->assertSame($expected, $tacticsEvald);
@@ -56,8 +54,8 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 0,
+            'w' => 0,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $attEvald);
@@ -73,8 +71,8 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 0,
+            'w' => 0,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $attEvald);
@@ -97,8 +95,8 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $tacticsEvald = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 6.53,
+            'w' => 0,
+            'b' => 6.53,
         ];
 
         $this->assertSame($expected, $tacticsEvald);
@@ -121,8 +119,8 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $tacticsEvald = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 4.2,
-            Symbol::BLACK => 0,
+            'w' => 4.2,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $tacticsEvald);
