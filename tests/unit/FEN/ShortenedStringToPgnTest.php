@@ -3,7 +3,6 @@
 namespace Chess\Tests\Unit\Fen;
 
 use Chess\FEN\ShortenedStringToPgn;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class ShortenedStringToPgnTest extends AbstractUnitTestCase
@@ -19,7 +18,7 @@ class ShortenedStringToPgnTest extends AbstractUnitTestCase
         ))->create();
 
         $expected = [
-            Symbol::WHITE => 'e4',
+            'w' => 'e4',
         ];
 
         $this->assertSame($expected, $pgn);
@@ -36,7 +35,7 @@ class ShortenedStringToPgnTest extends AbstractUnitTestCase
         ))->create();
 
         $expected = [
-            Symbol::WHITE => 'Nf3',
+            'w' => 'Nf3',
         ];
 
         $this->assertSame($expected, $pgn);
@@ -53,7 +52,7 @@ class ShortenedStringToPgnTest extends AbstractUnitTestCase
         ))->create();
 
         $expected = [
-            Symbol::WHITE => 'Qg4',
+            'w' => 'Qg4',
         ];
 
         $this->assertSame($expected, $pgn);

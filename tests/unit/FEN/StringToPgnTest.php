@@ -3,7 +3,6 @@
 namespace Chess\Tests\Unit\Fen;
 
 use Chess\FEN\StringToPgn;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class StringToPgnTest extends AbstractUnitTestCase
@@ -19,7 +18,7 @@ class StringToPgnTest extends AbstractUnitTestCase
         ))->create();
 
         $expected = [
-            Symbol::WHITE => 'e4',
+            'w' => 'e4',
         ];
 
         $this->assertSame($expected, $pgn);
@@ -36,7 +35,7 @@ class StringToPgnTest extends AbstractUnitTestCase
         ))->create();
 
         $expected = [
-            Symbol::WHITE => 'Nf3',
+            'w' => 'Nf3',
         ];
 
         $this->assertSame($expected, $pgn);

@@ -3,7 +3,6 @@
 namespace Chess\Tests\Unit\FEN\Validate;
 
 use Chess\FEN\Validate;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class SquareTest extends AbstractUnitTestCase
