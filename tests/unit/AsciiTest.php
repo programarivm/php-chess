@@ -5,8 +5,6 @@ namespace Chess\Tests\Unit;
 use Chess\Ascii;
 use Chess\Board;
 use Chess\Castling\Rule as CastlingRule;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 use Chess\Tests\Sample\Opening\RuyLopez\Exchange as RuyLopezExchange;
@@ -60,19 +58,19 @@ class AsciiTest extends AbstractUnitTestCase
         ];
 
         $castling = [
-            Symbol::WHITE => [
-                CastlingRule::IS_CASTLED => false,
-                Symbol::CASTLING_SHORT => true,
-                Symbol::CASTLING_LONG => true,
+            'w' => [
+                'castled' => false,
+                'O-O' => true,
+                'O-O-O' => true,
             ],
-            Symbol::BLACK => [
-                CastlingRule::IS_CASTLED => false,
-                Symbol::CASTLING_SHORT => true,
-                Symbol::CASTLING_LONG => true,
+            'b' => [
+                'castled' => false,
+                'O-O' => true,
+                'O-O-O' => true,
             ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::WHITE, $castling);
+        $board = (new Ascii())->toBoard($expected, 'w', $castling);
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -118,19 +116,19 @@ class AsciiTest extends AbstractUnitTestCase
         ];
 
         $castling = [
-            Symbol::WHITE => [
-                CastlingRule::IS_CASTLED => false,
-                Symbol::CASTLING_SHORT => false,
-                Symbol::CASTLING_LONG => false,
+            'w' => [
+                'castled' => false,
+                'O-O' => false,
+                'O-O-O' => false,
             ],
-            Symbol::BLACK => [
-                CastlingRule::IS_CASTLED => false,
-                Symbol::CASTLING_SHORT => true,
-                Symbol::CASTLING_LONG => true,
+            'b' => [
+                'castled' => false,
+                'O-O' => true,
+                'O-O-O' => true,
             ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::BLACK, $castling);
+        $board = (new Ascii())->toBoard($expected, 'b', $castling);
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -176,19 +174,19 @@ class AsciiTest extends AbstractUnitTestCase
         ];
 
         $castling = [
-            Symbol::WHITE => [
-                CastlingRule::IS_CASTLED => true,
-                Symbol::CASTLING_SHORT => false,
-                Symbol::CASTLING_LONG => false,
+            'w' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false,
             ],
-            Symbol::BLACK => [
-                CastlingRule::IS_CASTLED => true,
-                Symbol::CASTLING_SHORT => false,
-                Symbol::CASTLING_LONG => false,
+            'b' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false,
             ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::BLACK, $castling);
+        $board = (new Ascii())->toBoard($expected, 'b', $castling);
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -256,7 +254,7 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($expected, 'w');
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -301,7 +299,7 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($expected, 'w');
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -346,7 +344,7 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' . ', ' K ', ' . ', ' . ', ' R ' ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::BLACK);
+        $board = (new Ascii())->toBoard($expected, 'b');
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -440,7 +438,7 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' . ', ' N ', ' R ' ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($expected, 'w');
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
