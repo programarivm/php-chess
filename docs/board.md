@@ -4,14 +4,13 @@ Let's look at some relevant [`Chess\Board`](https://github.com/chesslablab/php-c
 
 ```php
 use Chess\Board;
-use Chess\PGN\Convert;
 
 $board = new Board();
 
-$board->play(Convert::toStdObj('w', 'e4'));
-$board->play(Convert::toStdObj('b', 'd5'));
-$board->play(Convert::toStdObj('w', 'exd5'));
-$board->play(Convert::toStdObj('b', 'Qxd5'));
+$board->play('w', 'e4');
+$board->play('b', 'd5');
+$board->play('w', 'exd5');
+$board->play('b', 'Qxd5');
 ```
 
 #### `getCaptures(): array`
@@ -212,7 +211,7 @@ false
 Plays a chess move.
 
 ```php
-$board->play(Convert::toStdObj('w', 'Nc3'));
+$board->play('w', 'Nc3');
 
 var_export($board->getMovetext());
 ```

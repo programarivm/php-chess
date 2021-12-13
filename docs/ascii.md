@@ -5,11 +5,10 @@ Returns an ASCII array from a `Chess\Board` object.
 ```php
 use Chess\Ascii;
 use Chess\Board;
-use Chess\PGN\Convert;
 
 $board = new Board();
-$board->play(Convert::toStdObj('w', 'e4'));
-$board->play(Convert::toStdObj('b', 'e5'));
+$board->play('w', 'e4');
+$board->play('b', 'e5');
 
 $array = (new Ascii())->toArray($board);
 
@@ -163,11 +162,10 @@ Returns an ASCII string from a `Chess\Board` object.
 ```php
 use Chess\Ascii;
 use Chess\Board;
-use Chess\PGN\Convert;
 
 $board = new Board();
-$board->play(Convert::toStdObj('w', 'e4'));
-$board->play(Convert::toStdObj('b', 'e5'));
+$board->play('w', 'e4');
+$board->play('b', 'e5');
 
 $string = (new Ascii())->print($board);
 
@@ -233,7 +231,6 @@ Sets a piece in a specific square in the given ASCII array.
 
 ```php
 use Chess\Ascii;
-use Chess\PGN\Convert;
 
 $position = [
     7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -252,7 +249,7 @@ $board = $ascii->setArrayElem(' . ', 'g1', $position)
             ->setArrayElem(' N ', 'f3', $position)
             ->toBoard($position, 'b');
 
-$board->play(Convert::toStdObj('b', 'Nc6'));
+$board->play('b', 'Nc6');
 
 $string = (new Ascii())->print($board);
 

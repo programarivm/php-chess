@@ -5,12 +5,11 @@ Creates a `Chess\Board` object from a FEN string.
 ```php
 use Chess\Ascii;
 use Chess\FEN\StringToBoard;
-use Chess\PGN\Convert;
 
 $board = (new StringToBoard('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'))
     ->create();
 
-$board->play(Convert::toStdObj('b', 'e5'));
+$board->play('b', 'e5');
 
 $ascii = (new Ascii())->print($board);
 
