@@ -3,7 +3,6 @@
 namespace Chess\Evaluation;
 
 use Chess\Board;
-use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 
 /**
@@ -29,7 +28,7 @@ class CheckmateInOneEvaluation extends AbstractEvaluation
     public function evaluate(): array
     {
         foreach ($this->board->getPossibleMoves() as $move) {
-            $this->board->play(Convert::toStdObj($this->board->getTurn(), $move));
+            $this->board->play($this->board->getTurn(), $move);
             if ($this->board->isMate()) {
                 $this->result[$this->board->getTurn()] = 1;
                 return $this->result;

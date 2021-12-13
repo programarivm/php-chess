@@ -51,8 +51,8 @@ class MaterialEvaluationTest extends AbstractUnitTestCase
     public function w_e4_b_Nf6()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nf6'));
+        $board->play('w', 'e4');
+        $board->play('b', 'Nf6');
 
         $expected = [
             Symbol::WHITE => 40.06,

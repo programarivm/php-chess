@@ -67,13 +67,13 @@ class PressureEvaluationTest extends AbstractUnitTestCase
     public function e4_e5_Nf3_Nc6_Bb5_a6_Nxe5()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Bb5'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'a6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nxe5'));
+        $board->play('w', 'e4');
+        $board->play('b', 'e5');
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nc6');
+        $board->play('w', 'Bb5');
+        $board->play('b', 'a6');
+        $board->play('w', 'Nxe5');
 
         $pressEvald = (new PressureEvaluation($board))->evaluate();
 
