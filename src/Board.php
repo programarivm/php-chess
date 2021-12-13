@@ -552,14 +552,16 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Runs a chess move on the board.
+     * Makes a move.
      *
-     * @param \stdClass $move
-     * @return bool true if the move is successfully run; otherwise false
+     * @param string $color
+     * @param string $pgn
      */
-    public function play(\stdClass $move): bool
+    public function play(string $color, string $pgn): bool
     {
-        return $this->isValidMove($move) && $this->isLegalMove($move);
+        $stdObj = Convert::toStdObj($color, $pgn);
+
+        return $this->isValidMove($stdObj) && $this->isLegalMove($stdObj);
     }
 
     /**
