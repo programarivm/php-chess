@@ -3,8 +3,6 @@
 namespace Chess\Tests\Unit\Board;
 
 use Chess\Board;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class PossibleMovesTest extends AbstractUnitTestCase
