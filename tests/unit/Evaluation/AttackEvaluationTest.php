@@ -3,8 +3,6 @@
 namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Evaluation\AttackEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Sicilian\Closed as ClosedSicilian;
@@ -20,8 +18,8 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new AttackEvaluation(new Board()))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 0,
+            'w' => 0,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $attEvald);
@@ -37,8 +35,8 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 0,
+            'w' => 0,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $attEvald);
@@ -54,8 +52,8 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 0,
+            'w' => 0,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $attEvald);
@@ -78,8 +76,8 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 2.33,
+            'w' => 0,
+            'b' => 2.33,
         ];
 
         $this->assertSame($expected, $attEvald);
@@ -102,8 +100,8 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 2.2,
-            Symbol::BLACK => 0,
+            'w' => 2.2,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $attEvald);
@@ -122,8 +120,8 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $attEvald = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 2.2,
-            Symbol::BLACK => 0,
+            'w' => 2.2,
+            'b' => 0,
         ];
 
         $this->assertSame($expected, $attEvald);
