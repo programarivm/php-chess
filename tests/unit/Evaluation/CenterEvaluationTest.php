@@ -4,7 +4,6 @@ namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
 use Chess\Evaluation\CenterEvaluation;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\RuyLopez\LucenaDefense as RuyLopezLucenaDefense;
 use Chess\Tests\Sample\Opening\Sicilian\Closed as ClosedSicilian;
@@ -20,8 +19,8 @@ class CenterEvaluationTest extends AbstractUnitTestCase
         $board = (new RuyLopezLucenaDefense(new Board()))->play();
 
         $expected = [
-            Symbol::WHITE => 3,
-            Symbol::BLACK => 2,
+            'w' => 3,
+            'b' => 2,
         ];
 
         $ctrEvald = (new CenterEvaluation($board))->evaluate();
@@ -37,8 +36,8 @@ class CenterEvaluationTest extends AbstractUnitTestCase
         $board = (new OpenSicilian(new Board()))->play();
 
         $expected = [
-            Symbol::WHITE => 5.2,
-            Symbol::BLACK => 2,
+            'w' => 5.2,
+            'b' => 2,
         ];
 
         $ctrEvald = (new CenterEvaluation($board))->evaluate();
@@ -54,8 +53,8 @@ class CenterEvaluationTest extends AbstractUnitTestCase
         $board = (new ClosedSicilian(new Board()))->play();
 
         $expected = [
-            Symbol::WHITE => 2,
-            Symbol::BLACK => 2,
+            'w' => 2,
+            'b' => 2,
         ];
 
         $ctrEvald = (new CenterEvaluation($board))->evaluate();
