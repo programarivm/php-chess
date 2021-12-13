@@ -6,7 +6,6 @@ use Chess\Ascii;
 use Chess\Board;
 use Chess\Castling\Initialization as CastlingInit;
 use Chess\Exception\UnknownNotationException;
-use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Piece\Bishop;
 use Chess\Piece\King;
@@ -190,7 +189,7 @@ class StringToBoard
         $ascii->setArrayElem($piece, $fromSquare, $array)
             ->setArrayElem(' . ', $toSquare, $array);
         $board = $ascii->toBoard($array, $turn, $board->getCastling());
-        $board->play(Convert::toStdObj($turn, $toSquare));
+        $board->play($turn, $toSquare);
 
         return $board;
     }

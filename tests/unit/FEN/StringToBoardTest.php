@@ -5,8 +5,6 @@ namespace Chess\Tests\Unit\FEN;
 use Chess\Ascii;
 use Chess\Exception\UnknownNotationException;
 use Chess\FEN\StringToBoard;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 use Generator;
 
@@ -188,8 +186,8 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
             ->create();
 
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6'));
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nc6');
 
         $array = (new Ascii())->toArray($board);
 
@@ -215,7 +213,7 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
             ->create();
 
-        $this->assertFalse($board->play(Convert::toStdObj(Symbol::WHITE, 'Nc6')));
+        $this->assertFalse($board->play('w', 'Nc6'));
     }
 
     /**
@@ -253,7 +251,7 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('rnbqkbnr/pp1pp1pp/8/2p1Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3'))
             ->create();
 
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'exf6')));
+        $this->assertTrue($board->play('w', 'exf6'));
     }
 
     /**
@@ -288,7 +286,7 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Qg4'));
+        $board->play('w', 'Qg4');
 
         $array = (new Ascii())->toArray($board);
 
@@ -314,8 +312,8 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Qg4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'a5'));
+        $board->play('w', 'Qg4');
+        $board->play('b', 'a5');
 
         $array = (new Ascii())->toArray($board);
 
@@ -341,7 +339,7 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Qg4'));
+        $board->play('w', 'Qg4');
 
         $legalMoves = $board->getPieceByPosition('a7')->getLegalMoves();
 
