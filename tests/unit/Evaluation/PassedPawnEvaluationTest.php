@@ -4,7 +4,6 @@ namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Ascii;
 use Chess\Evaluation\PassedPawnEvaluation;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class PassedPawnEvaluationTest extends AbstractUnitTestCase
@@ -25,11 +24,11 @@ class PassedPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' N ', ' . ', ' R ', ' K ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($position, 'w');
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 4,
+            'w' => 0,
+            'b' => 4,
         ];
 
         $passedPawnEvald = (new PassedPawnEvaluation($board))->evaluate();
@@ -53,11 +52,11 @@ class PassedPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' R ', ' . ', ' . ', ' . ', ' R ', ' . ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($position, 'w');
 
         $expected = [
-            Symbol::WHITE => 2,
-            Symbol::BLACK => 0,
+            'w' => 2,
+            'b' => 0,
         ];
 
         $passedPawnEvald = (new PassedPawnEvaluation($board))->evaluate();
@@ -81,11 +80,11 @@ class PassedPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($position, 'w');
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 11,
+            'w' => 0,
+            'b' => 11,
         ];
 
         $passedPawnEvald = (new PassedPawnEvaluation($board))->evaluate();
