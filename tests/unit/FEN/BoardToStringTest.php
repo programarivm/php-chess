@@ -4,8 +4,6 @@ namespace Chess\Tests\Unit\FEN;
 
 use Chess\Board;
 use Chess\FEN\BoardToString;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 use Chess\Tests\Sample\Opening\RuyLopez\Exchange as RuyLopezExchange;
@@ -18,7 +16,7 @@ class BoardToStringTest extends AbstractUnitTestCase
     public function e4()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
+        $board->play('w', 'e4');
 
         $boardToString = (new BoardToString($board))->create();
 
@@ -33,8 +31,8 @@ class BoardToStringTest extends AbstractUnitTestCase
     public function e4_e5()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
+        $board->play('w', 'e4');
+        $board->play('b', 'e5');
 
         $boardToString = (new BoardToString($board))->create();
 
@@ -77,13 +75,13 @@ class BoardToStringTest extends AbstractUnitTestCase
     public function castling_short()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Be2'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Be7'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'O-O'));
+        $board->play('w', 'e4');
+        $board->play('b', 'e5');
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nc6');
+        $board->play('w', 'Be2');
+        $board->play('b', 'Be7');
+        $board->play('w', 'O-O');
 
         $boardToString = (new BoardToString($board))->create();
 
@@ -98,17 +96,17 @@ class BoardToStringTest extends AbstractUnitTestCase
     public function e4_e5_Nf3_Nc6_Bc4_h6_h4_g5_hxg5_hxg5_Rxh8()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Nf3'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Bc4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'h6'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'h4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'g5'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'hxg5'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'hxg5'));
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'Rxh8'));
+        $board->play('w', 'e4');
+        $board->play('b', 'e5');
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nc6');
+        $board->play('w', 'Bc4');
+        $board->play('b', 'h6');
+        $board->play('w', 'h4');
+        $board->play('b', 'g5');
+        $board->play('w', 'hxg5');
+        $board->play('b', 'hxg5');
+        $board->play('w', 'Rxh8');
 
         $boardToString = (new BoardToString($board))->create();
 
