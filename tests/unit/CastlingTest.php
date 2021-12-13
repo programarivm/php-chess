@@ -85,15 +85,15 @@ class CastlingTest extends AbstractUnitTestCase
         $board = (new OpenRuyLopez(new Board()))->play();
 
         $expected = [
-            Symbol::WHITE => [
-                CastlingRule::IS_CASTLED => true,
-                Symbol::CASTLING_SHORT => false,
-                Symbol::CASTLING_LONG => false,
+            'w' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false,
             ],
-            Symbol::BLACK => [
-                CastlingRule::IS_CASTLED => false,
-                Symbol::CASTLING_SHORT => true,
-                Symbol::CASTLING_LONG => true,
+            'b' => [
+                'castled' => false,
+                'O-O' => true,
+                'O-O-O' => true,
             ],
         ];
 

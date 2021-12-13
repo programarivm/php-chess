@@ -4,7 +4,6 @@ namespace Chess\Tests\Unit;
 
 use Chess\Ascii;
 use Chess\Board;
-use Chess\Castling\Rule as CastlingRule;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 use Chess\Tests\Sample\Opening\RuyLopez\Exchange as RuyLopezExchange;

@@ -4,8 +4,6 @@ namespace Chess\Tests\Unit;
 
 use Chess\Board;
 use Chess\HeuristicPicture;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Checkmate\Fool as FoolCheckmate;
 use Chess\Tests\Sample\Checkmate\Scholar as ScholarCheckmate;
@@ -39,10 +37,10 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->getPicture();
 
         $expected = [
-            Symbol::WHITE => [
+            'w' => [
                 [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
-            Symbol::BLACK => [
+            'b' => [
                 [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
         ];
@@ -62,8 +60,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            Symbol::BLACK => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            'w' => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            'b' => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         ];
 
         $this->assertSame($expected, $end);
@@ -99,10 +97,10 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->getPicture();
 
         $expected = [
-            Symbol::WHITE => [
+            'w' => [
                 [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
-            Symbol::BLACK => [
+            'b' => [
                 [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
         ];
@@ -122,8 +120,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            Symbol::BLACK => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            'w' => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            'b' => [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         ];
 
         $this->assertSame($expected, $end);
@@ -159,8 +157,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 0, 0, 0.9, 0.2, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            Symbol::BLACK => [ 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 ],
+            'w' => [ 0, 0, 0.9, 0.2, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            'b' => [ 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0 ],
         ];
 
         $this->assertEquals($expected, $end);
@@ -197,8 +195,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->end();
 
         $expected = [
-            Symbol::WHITE => [ 1, 0, 0.07, 0.8, 1, 1, 0, 0, 0, 0, 0, 0 ],
-            Symbol::BLACK => [ 0, 1, 0.93, 0.4, 0.4, 0, 0.1, 0, 0, 0, 0, 0 ],
+            'w' => [ 1, 0, 0.07, 0.8, 1, 1, 0, 0, 0, 0, 0, 0 ],
+            'b' => [ 0, 1, 0.93, 0.4, 0.4, 0, 0.1, 0, 0, 0, 0, 0 ],
         ];
 
         $this->assertEquals($expected, $end);
@@ -237,8 +235,8 @@ class HeuristicPictureTest extends AbstractUnitTestCase
         $evaluation = $heuristicPicture->evaluate();
 
         $expected = [
-            Symbol::WHITE => 48.24,
-            Symbol::BLACK => 17.04,
+            'w' => 48.24,
+            'b' => 17.04,
         ];
 
         $this->assertSame($expected, $evaluation);
@@ -334,10 +332,10 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->getPicture();
 
         $expected = [
-            Symbol::WHITE => [
+            'w' => [
                 [ 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
-            Symbol::BLACK => [
+            'b' => [
                 [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
         ];
@@ -357,11 +355,11 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->getPicture();
 
         $expected = [
-            Symbol::WHITE => [
+            'w' => [
                 [ 0, 0.5, 0.6, 0.17, 0, 0, 0, 0, 0, 0, 0, 0 ],
                 [ 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0 ],
             ],
-            Symbol::BLACK => [
+            'b' => [
                 [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
                 [ 0, 0, 0.6, 0.17, 1, 0, 1, 0, 0, 0, 0, 1 ],
             ],
@@ -382,12 +380,12 @@ class HeuristicPictureTest extends AbstractUnitTestCase
             ->getPicture();
 
         $expected = [
-            Symbol::WHITE => [
+            'w' => [
                 [ 0, 0.5, 0.38, 0.17, 0, 0, 0, 0, 0, 0, 0, 0 ],
                 [ 0, 1, 0, 1, 0.5, 0, 0, 0, 0, 0, 0, 0 ],
                 [ 0, 1, 0.5, 0.5, 0.5, 0, 0, 0, 0, 0, 0, 0 ],
             ],
-            Symbol::BLACK => [
+            'b' => [
                 [ 0, 0, 0.63, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
                 [ 0, 0, 0.38, 0.17, 0.5, 0, 0.5, 0, 0, 0, 0, 1 ],
                 [ 0, 0, 1, 0.17, 1, 0, 1, 0, 0, 0, 0, 1 ],
