@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\Piece;
 
-use Chess\PGN\Symbol;
 use Chess\Piece\Knight;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -13,7 +12,7 @@ class KnightTest extends AbstractUnitTestCase
      */
     public function scope_d4()
     {
-        $knight = new Knight(Symbol::WHITE, 'd4');
+        $knight = new Knight('w', 'd4');
         $jumps = [
             'c6',
             'b5',
@@ -33,7 +32,7 @@ class KnightTest extends AbstractUnitTestCase
      */
     public function scope_h1()
     {
-        $knight = new Knight(Symbol::WHITE, 'h1');
+        $knight = new Knight('w', 'h1');
         $jumps = [
             'g3',
             'f2'
@@ -47,7 +46,7 @@ class KnightTest extends AbstractUnitTestCase
      */
     public function scope_b1()
     {
-        $knight = new Knight(Symbol::WHITE, 'b1');
+        $knight = new Knight('w', 'b1');
         $jumps = [
             'a3',
             'd2',

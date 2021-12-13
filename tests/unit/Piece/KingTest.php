@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\Piece;
 
-use Chess\PGN\Symbol;
 use Chess\Piece\King;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -13,7 +12,7 @@ class KingTest extends AbstractUnitTestCase
      */
     public function scope_a2()
     {
-        $king = new King(Symbol::WHITE, 'a2');
+        $king = new King('w', 'a2');
         $scope = (object) [
             'up' => 'a3',
             'bottom' => 'a1',
@@ -29,7 +28,7 @@ class KingTest extends AbstractUnitTestCase
      */
     public function scope_d5()
     {
-        $king = new King(Symbol::WHITE, 'd5');
+        $king = new King('w', 'd5');
         $scope = (object) [
             'up' => 'd6',
             'bottom' => 'd4',

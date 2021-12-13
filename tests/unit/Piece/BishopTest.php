@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\Piece;
 
-use Chess\PGN\Symbol;
 use Chess\Piece\Bishop;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -13,7 +12,7 @@ class BishopTest extends AbstractUnitTestCase
      */
     public function scope_a2()
     {
-        $bishop = new Bishop(Symbol::WHITE, 'a2');
+        $bishop = new Bishop('w', 'a2');
         $scope = (object) [
             'upLeft' => [],
             'upRight' => ['b3', 'c4', 'd5', 'e6', 'f7', 'g8'],
@@ -29,7 +28,7 @@ class BishopTest extends AbstractUnitTestCase
      */
     public function scope_d5()
     {
-        $bishop = new Bishop(Symbol::WHITE, 'd5');
+        $bishop = new Bishop('w', 'd5');
         $scope = (object) [
             'upLeft' => ['c6', 'b7', 'a8'],
             'upRight' => ['e6', 'f7', 'g8'],
@@ -45,7 +44,7 @@ class BishopTest extends AbstractUnitTestCase
      */
     public function scope_a8()
     {
-        $bishop = new Bishop(Symbol::WHITE, 'a8');
+        $bishop = new Bishop('w', 'a8');
         $scope = (object) [
             'upLeft' => [],
             'upRight' => [],

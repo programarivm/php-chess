@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\Piece;
 
-use Chess\PGN\Symbol;
 use Chess\Piece\Queen;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -13,7 +12,7 @@ class QueenTest extends AbstractUnitTestCase
      */
     public function scope_a2()
     {
-        $queen = new Queen(Symbol::WHITE, 'a2');
+        $queen = new Queen('w', 'a2');
         $scope = (object) [
             'up' => ['a3', 'a4', 'a5', 'a6', 'a7', 'a8'],
             'bottom' => ['a1'],
@@ -33,7 +32,7 @@ class QueenTest extends AbstractUnitTestCase
      */
     public function scope_d5()
     {
-        $queen = new Queen(Symbol::WHITE, 'd5');
+        $queen = new Queen('w', 'd5');
         $scope = (object) [
             'up' => ['d6', 'd7', 'd8'],
             'bottom' => ['d4', 'd3', 'd2', 'd1'],

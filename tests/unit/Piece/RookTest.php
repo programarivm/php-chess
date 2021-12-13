@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\Piece;
 
-use Chess\PGN\Symbol;
 use Chess\Piece\Rook;
 use Chess\Piece\Type\RookType;
 use Chess\Tests\AbstractUnitTestCase;
@@ -14,7 +13,7 @@ class RookTest extends AbstractUnitTestCase
      */
     public function scope_a2()
     {
-        $rook = new Rook(Symbol::WHITE, 'a2', RookType::PROMOTED);
+        $rook = new Rook('w', 'a2', RookType::PROMOTED);
         $scope = (object) [
             'up' => ['a3', 'a4', 'a5', 'a6', 'a7', 'a8'],
             'bottom' => ['a1'],
@@ -30,7 +29,7 @@ class RookTest extends AbstractUnitTestCase
      */
     public function scope_d5()
     {
-        $rook = new Rook(Symbol::WHITE, 'd5', RookType::PROMOTED);
+        $rook = new Rook('w', 'd5', RookType::PROMOTED);
         $scope = (object) [
             'up' => ['d6', 'd7', 'd8'],
             'bottom' => ['d4', 'd3', 'd2', 'd1'],
