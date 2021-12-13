@@ -3,7 +3,6 @@
 namespace Chess\Tests\Unit\Game;
 
 use Chess\Game;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class HeuristicPictureTest extends AbstractUnitTestCase
@@ -18,10 +17,10 @@ class HeuristicPictureTest extends AbstractUnitTestCase
         $game->playFen('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w');
 
         $expected = [
-            Symbol::WHITE => [
+            'w' => [
                 [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
-            Symbol::BLACK => [
+            'b' => [
                 [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             ],
         ];
