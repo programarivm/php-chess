@@ -6,7 +6,6 @@ use Chess\Board;
 use Chess\Combinatorics\RestrictedPermutationWithRepetition;
 use Chess\HeuristicPicture;
 use Chess\ML\Supervised\Classification\LinearCombinationLabeller;
-use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Checkmate\Fool as FoolCheckmate;
@@ -59,8 +58,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
     public function w_e4_b_e5_labelled()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'e5'));
+        $board->play('w', 'e4');
+        $board->play('b', 'e5');
 
         $balance = (new HeuristicPicture($board->getMovetext()))
             ->take()
@@ -84,8 +83,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
     public function w_e4_b_Na6_labelled()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Na6'));
+        $board->play('w', 'e4');
+        $board->play('b', 'Na6');
 
         $balance = (new HeuristicPicture($board->getMovetext()))
             ->take()
@@ -109,8 +108,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
     public function w_e4_b_Nc6_labelled()
     {
         $board = new Board();
-        $board->play(Convert::toStdObj(Symbol::WHITE, 'e4'));
-        $board->play(Convert::toStdObj(Symbol::BLACK, 'Nc6'));
+        $board->play('w', 'e4');
+        $board->play('b', 'Nc6');
 
         $balance = (new HeuristicPicture($board->getMovetext()))
             ->take()
