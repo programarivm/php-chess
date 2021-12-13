@@ -3,7 +3,6 @@
 namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
-use Chess\PGN\Symbol;
 use Chess\Evaluation\KingSafetyEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Sicilian\Closed as ClosedSicilian;
@@ -19,8 +18,8 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
         $kSafetyEvald = (new KingSafetyEvaluation(new Board()))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 1,
-            Symbol::BLACK => 1,
+            'w' => 1,
+            'b' => 1,
         ];
 
         $this->assertSame($expected, $kSafetyEvald);
@@ -36,8 +35,8 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
         $kSafetyEvald = (new KingSafetyEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 1,
-            Symbol::BLACK => 1,
+            'w' => 1,
+            'b' => 1,
         ];
 
         $this->assertSame($expected, $kSafetyEvald);
@@ -53,8 +52,8 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
         $kSafetyEvald = (new KingSafetyEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 1,
-            Symbol::BLACK => 1,
+            'w' => 1,
+            'b' => 1,
         ];
 
         $this->assertSame($expected, $kSafetyEvald);
