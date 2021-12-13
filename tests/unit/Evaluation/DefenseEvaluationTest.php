@@ -3,8 +3,6 @@
 namespace Chess\Tests\Unit\Board;
 
 use Chess\Board;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Evaluation\DefenseEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -27,11 +25,11 @@ class DefenseEvaluationTest extends AbstractUnitTestCase
         $defenseEvald = (new DefenseEvaluation($board))->evaluate();
 
         $expected = [
-            Symbol::WHITE => [
+            'w' => [
                 'a2', 'b1', 'b2', 'c1', 'c2', 'd1', 'd2', 'd2', 'd2', 'd2',
                 'e1', 'e1', 'f2', 'h2',
             ],
-            Symbol::BLACK => [
+            'b' => [
                 'a6', 'a6', 'b7', 'c6', 'c6', 'c7', 'c8', 'c8', 'd7', 'd7',
                 'd7', 'd8', 'd8', 'e8', 'f7', 'f8', 'g7', 'g8', 'h7',
             ],
