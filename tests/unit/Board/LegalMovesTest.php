@@ -70,7 +70,7 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $board = new Board($pieces, $castling);
 
-        $this->assertTrue($board->play(Convert::toStdObj(Symbol::WHITE, 'Ra6')));
+        $this->assertTrue($board->play('w', 'Ra6'));
     }
 
     /**
