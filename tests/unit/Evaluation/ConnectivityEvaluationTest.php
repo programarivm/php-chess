@@ -4,7 +4,6 @@ namespace Chess\Tests\Unit\Evaluation\Material;
 
 use Chess\Board;
 use Chess\Evaluation\ConnectivityEvaluation;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\RuyLopez\LucenaDefense as RuyLopezLucenaDefense;
 
@@ -18,8 +17,8 @@ class ConnectivityEvaluationTest extends AbstractUnitTestCase
         $connEvald = (new ConnectivityEvaluation(new Board()))->evaluate();
 
         $expected = [
-            Symbol::WHITE => 20,
-            Symbol::BLACK => 20,
+            'w' => 20,
+            'b' => 20,
         ];
 
         $this->assertSame($expected, $connEvald);
@@ -33,8 +32,8 @@ class ConnectivityEvaluationTest extends AbstractUnitTestCase
         $board = (new RuyLopezLucenaDefense(new Board()))->play();
 
         $expected = [
-            Symbol::WHITE => 19,
-            Symbol::BLACK => 23,
+            'w' => 19,
+            'b' => 23,
         ];
 
         $connEvald = (new ConnectivityEvaluation($board))->evaluate();
