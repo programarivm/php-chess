@@ -7,7 +7,6 @@ use Chess\HeuristicPicture;
 use Chess\FEN\BoardToString;
 use Chess\FEN\ShortenedStringToPgn;
 use Chess\FEN\StringToBoard;
-use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\PGN\Validate;
 use Chess\Evaluation\PressureEvaluation;
@@ -173,23 +172,23 @@ class Game
                 $clone = unserialize(serialize($this->board));
                 switch ($piece->getIdentity()) {
                     case Symbol::KING:
-                        if ($clone->play(Convert::toStdObj($color, Symbol::KING.$square))) {
+                        if ($clone->play($color, Symbol::KING.$square)) {
                             $moves[] = $square;
-                        } elseif ($clone->play(Convert::toStdObj($color, Symbol::KING.'x'.$square))) {
+                        } elseif ($clone->play($color, Symbol::KING.'x'.$square)) {
                             $moves[] = $square;
                         }
                         break;
                     case Symbol::PAWN:
-                        if ($clone->play(Convert::toStdObj($color, $piece->getFile()."x$square"))) {
+                        if ($clone->play($color, $piece->getFile()."x$square")) {
                             $moves[] = $square;
-                        } elseif ($clone->play(Convert::toStdObj($color, $square))) {
+                        } elseif ($clone->play($color, $square)) {
                             $moves[] = $square;
                         }
                         break;
                     default:
-                        if ($clone->play(Convert::toStdObj($color, $piece->getIdentity().$square))) {
+                        if ($clone->play($color, $piece->getIdentity().$square)) {
                             $moves[] = $square;
-                        } elseif ($clone->play(Convert::toStdObj($color, "{$piece->getIdentity()}x$square"))) {
+                        } elseif ($clone->play($color, "{$piece->getIdentity()}x$square")) {
                             $moves[] = $square;
                         }
                         break;
@@ -241,7 +240,7 @@ class Game
      */
     public function play(string $color, string $pgn): bool
     {
-        return $this->board->play(Convert::toStdObj($color, $pgn));
+        return $this->board->play($color, $pgn);
     }
 
     /**
@@ -301,25 +300,25 @@ class Game
         if (
           'K2R' === substr($fromRanks[7], -3) &&
           'KR' === substr($toRanks[7], -2) &&
-          $this->board->play(Convert::toStdObj(Symbol::WHITE, Symbol::CASTLING_SHORT))
+          $this->board->play(Symbol::WHITE, Symbol::CASTLING_SHORT)
         ) {
             return Symbol::CASTLING_SHORT;
         } elseif (
           'R3K' === substr($fromRanks[7], 0, 3) &&
           'R1K' === substr($toRanks[7], 0, 3) &&
-          $this->board->play(Convert::toStdObj(Symbol::WHITE, Symbol::CASTLING_LONG))
+          $this->board->play(Symbol::WHITE, Symbol::CASTLING_LONG)
         ) {
             return Symbol::CASTLING_LONG;
         } elseif (
           'k2r' === substr($fromRanks[0], -3) &&
           'kr' === substr($toRanks[0], -2) &&
-          $this->board->play(Convert::toStdObj(Symbol::BLACK, Symbol::CASTLING_SHORT))
+          $this->board->play(Symbol::BLACK, Symbol::CASTLING_SHORT)
         ) {
             return Symbol::CASTLING_SHORT;
         } elseif (
           'r3k' === substr($fromRanks[0], 0, 3) &&
           'r1k' === substr($toRanks[0], 0, 3) &&
-          $this->board->play(Convert::toStdObj(Symbol::BLACK, Symbol::CASTLING_LONG))
+          $this->board->play(Symbol::BLACK, Symbol::CASTLING_LONG)
         ) {
             return Symbol::CASTLING_LONG;
         }
@@ -330,9 +329,9 @@ class Game
 
         if ($result) {
             $clone = unserialize(serialize($this->board));
-            $clone->play(Convert::toStdObj($color, $result));
+            $clone->play($color, $result);
             $clone->isMate() ? $check = '#' : ($clone->isCheck() ? $check = '+' : $check = '');
-            return $this->board->play(Convert::toStdObj($color, $result.$check));
+            return $this->board->play($color, $result.$check);
         }
 
         return false;
