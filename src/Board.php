@@ -9,11 +9,6 @@ use Chess\Exception\BoardException;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
 use Chess\Evaluation\SquareEvaluation;
-use Chess\Event\Check as CheckEvent;
-use Chess\Event\MajorPieceThreatenedByPawn as MajorPieceThreatenedByPawnEvent;
-use Chess\Event\MinorPieceThreatenedByPawn as MinorPieceThreatenedByPawnEvent;
-use Chess\Event\PieceCapture as PieceCaptureEvent;
-use Chess\Event\Promotion as PromotionEvent;
 use Chess\PGN\Convert;
 use Chess\PGN\Move;
 use Chess\PGN\Symbol;
@@ -897,31 +892,6 @@ final class Board extends \SplObjectStorage
         }
 
         return $escape === 0;
-    }
-
-    /**
-     * Gets the events taking place on the board.
-     *
-     * @return \stdClass
-     */
-    public function events(): \stdClass
-    {
-        return (object) [
-            Symbol::WHITE => [
-                CheckEvent::DESC => (new CheckEvent($this))->capture(Symbol::WHITE),
-                PieceCaptureEvent::DESC => (new PieceCaptureEvent($this))->capture(Symbol::WHITE),
-                MajorPieceThreatenedByPawnEvent::DESC => (new MajorPieceThreatenedByPawnEvent($this))->capture(Symbol::WHITE),
-                MinorPieceThreatenedByPawnEvent::DESC => (new MinorPieceThreatenedByPawnEvent($this))->capture(Symbol::WHITE),
-                PromotionEvent::DESC => (new PromotionEvent($this))->capture(Symbol::WHITE),
-            ],
-            Symbol::BLACK => [
-                CheckEvent::DESC => (new CheckEvent($this))->capture(Symbol::BLACK),
-                PieceCaptureEvent::DESC => (new PieceCaptureEvent($this))->capture(Symbol::BLACK),
-                MajorPieceThreatenedByPawnEvent::DESC => (new MajorPieceThreatenedByPawnEvent($this))->capture(Symbol::BLACK),
-                MinorPieceThreatenedByPawnEvent::DESC => (new MinorPieceThreatenedByPawnEvent($this))->capture(Symbol::BLACK),
-                PromotionEvent::DESC => (new PromotionEvent($this))->capture(Symbol::BLACK),
-            ],
-        ];
     }
 
     public function getPossibleMoves()
