@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\PGN\Validate;
 
-use Chess\PGN\Symbol;
 use Chess\PGN\Tag;
 use Chess\PGN\Validate;
 use Chess\Tests\AbstractUnitTestCase;
