@@ -3,7 +3,6 @@
 namespace Chess;
 
 use Chess\Board;
-use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 
 /**
@@ -40,9 +39,9 @@ class Player
     public function play(): Player
     {
         foreach ($this->getMoves() as $move) {
-            $this->getBoard()->play(Convert::toStdObj(Symbol::WHITE, $move[0]));
+            $this->getBoard()->play('w', $move[0]);
             if (isset($move[1])) {
-                $this->getBoard()->play(Convert::toStdObj(Symbol::BLACK, $move[1]));
+                $this->getBoard()->play('b', $move[1]);
             }
         }
 
