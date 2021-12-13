@@ -3,8 +3,6 @@
 namespace Chess\Tests\Unit;
 
 use Chess\Board;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class ArrayOfBoardsTest extends AbstractUnitTestCase
@@ -18,17 +16,17 @@ class ArrayOfBoardsTest extends AbstractUnitTestCase
         $boards[] = new Board();
         $boards[] = new Board();
 
-        $this->assertTrue($boards[0]->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
-        $this->assertTrue($boards[1]->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
+        $this->assertTrue($boards[0]->play('w', 'e4'));
+        $this->assertTrue($boards[1]->play('w', 'e4'));
 
-        $this->assertTrue($boards[0]->play(Convert::toStdObj(Symbol::BLACK, 'e5')));
-        $this->assertTrue($boards[1]->play(Convert::toStdObj(Symbol::BLACK, 'e5')));
+        $this->assertTrue($boards[0]->play('b', 'e5'));
+        $this->assertTrue($boards[1]->play('b', 'e5'));
 
-        $this->assertTrue($boards[0]->play(Convert::toStdObj(Symbol::WHITE, 'd4')));
-        $this->assertTrue($boards[1]->play(Convert::toStdObj(Symbol::WHITE, 'd4')));
+        $this->assertTrue($boards[0]->play('w', 'd4'));
+        $this->assertTrue($boards[1]->play('w', 'd4'));
 
-        $this->assertTrue($boards[0]->play(Convert::toStdObj(Symbol::BLACK, 'exd4')));
-        $this->assertTrue($boards[1]->play(Convert::toStdObj(Symbol::BLACK, 'exd4')));
+        $this->assertTrue($boards[0]->play('b', 'exd4'));
+        $this->assertTrue($boards[1]->play('b', 'exd4'));
     }
 
     /**
@@ -42,24 +40,24 @@ class ArrayOfBoardsTest extends AbstractUnitTestCase
         $boards[] = new Board();
         $boards[] = new Board();
 
-        $this->assertTrue($boards[0]->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
-        $this->assertTrue($boards[1]->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
-        $this->assertTrue($boards[2]->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
-        $this->assertTrue($boards[3]->play(Convert::toStdObj(Symbol::WHITE, 'e4')));
+        $this->assertTrue($boards[0]->play('w', 'e4'));
+        $this->assertTrue($boards[1]->play('w', 'e4'));
+        $this->assertTrue($boards[2]->play('w', 'e4'));
+        $this->assertTrue($boards[3]->play('w', 'e4'));
 
-        $this->assertTrue($boards[0]->play(Convert::toStdObj(Symbol::BLACK, 'c5')));
-        $this->assertTrue($boards[1]->play(Convert::toStdObj(Symbol::BLACK, 'c5')));
-        $this->assertTrue($boards[2]->play(Convert::toStdObj(Symbol::BLACK, 'c5')));
-        $this->assertTrue($boards[3]->play(Convert::toStdObj(Symbol::BLACK, 'c5')));
+        $this->assertTrue($boards[0]->play('b', 'c5'));
+        $this->assertTrue($boards[1]->play('b', 'c5'));
+        $this->assertTrue($boards[2]->play('b', 'c5'));
+        $this->assertTrue($boards[3]->play('b', 'c5'));
 
-        $this->assertTrue($boards[0]->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
-        $this->assertTrue($boards[1]->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
-        $this->assertTrue($boards[2]->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
-        $this->assertTrue($boards[3]->play(Convert::toStdObj(Symbol::WHITE, 'Nf3')));
+        $this->assertTrue($boards[0]->play('w', 'Nf3'));
+        $this->assertTrue($boards[1]->play('w', 'Nf3'));
+        $this->assertTrue($boards[2]->play('w', 'Nf3'));
+        $this->assertTrue($boards[3]->play('w', 'Nf3'));
 
-        $this->assertTrue($boards[0]->play(Convert::toStdObj(Symbol::BLACK, 'd6')));
-        $this->assertTrue($boards[1]->play(Convert::toStdObj(Symbol::BLACK, 'd6')));
-        $this->assertTrue($boards[2]->play(Convert::toStdObj(Symbol::BLACK, 'd6')));
-        $this->assertTrue($boards[3]->play(Convert::toStdObj(Symbol::BLACK, 'd6')));
+        $this->assertTrue($boards[0]->play('b', 'd6'));
+        $this->assertTrue($boards[1]->play('b', 'd6'));
+        $this->assertTrue($boards[2]->play('b', 'd6'));
+        $this->assertTrue($boards[3]->play('b', 'd6'));
     }
 }
