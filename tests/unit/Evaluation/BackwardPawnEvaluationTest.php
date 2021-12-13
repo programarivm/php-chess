@@ -5,7 +5,6 @@ namespace Chess\Tests\Unit\Evaluation;
 use Chess\Ascii;
 use Chess\Evaluation\BackwardPawnEvaluation;
 use Chess\Evaluation\DoubledPawnEvaluation;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class BackwardPawnEvaluationTest extends AbstractUnitTestCase
@@ -26,11 +25,11 @@ class BackwardPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($position, 'w');
 
         $expected = [
-            Symbol::WHITE => 2,
-            Symbol::BLACK => 1,
+            'w' => 2,
+            'b' => 1,
         ];
 
         $backwardPawnEvald = (new BackwardPawnEvaluation($board))->evaluate();
@@ -54,11 +53,11 @@ class BackwardPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($position, 'w');
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 1,
+            'w' => 0,
+            'b' => 1,
         ];
 
         $backwardPawnEvald = (new BackwardPawnEvaluation($board))->evaluate();
