@@ -4,7 +4,6 @@ namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Ascii;
 use Chess\Evaluation\DoubledPawnEvaluation;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class DoubledPawnEvaluationTest extends AbstractUnitTestCase
@@ -25,11 +24,11 @@ class DoubledPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($position, 'w');
 
         $expected = [
-            Symbol::WHITE => -1,
-            Symbol::BLACK => 0,
+            'w' => -1,
+            'b' => 0,
         ];
 
         $doubledPawnEvald = (new DoubledPawnEvaluation($board))->evaluate();
@@ -53,11 +52,11 @@ class DoubledPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' R ', ' . ', ' R ', ' K ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, Symbol::WHITE);
+        $board = (new Ascii())->toBoard($position, 'w');
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => -1,
+            'w' => 0,
+            'b' => -1,
         ];
 
         $doubledPawnEvald = (new DoubledPawnEvaluation($board))->evaluate();
