@@ -4,8 +4,6 @@ namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
 use Chess\Evaluation\CheckmateInOneEvaluation;
-use Chess\PGN\Convert;
-use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
 
 class CheckmateInOneEvaluationTest extends AbstractUnitTestCase
@@ -18,8 +16,8 @@ class CheckmateInOneEvaluationTest extends AbstractUnitTestCase
         $board = new Board();
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 0,
+            'w' => 0,
+            'b' => 0,
         ];
 
         $checkmateEvald = (new CheckmateInOneEvaluation($board))->evaluate();
@@ -38,8 +36,8 @@ class CheckmateInOneEvaluationTest extends AbstractUnitTestCase
         $board->play('w', 'g4');
 
         $expected = [
-            Symbol::WHITE => 1,
-            Symbol::BLACK => 0,
+            'w' => 1,
+            'b' => 0,
         ];
 
         $checkmateEvald = (new CheckmateInOneEvaluation($board))->evaluate();
@@ -61,8 +59,8 @@ class CheckmateInOneEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'Nf6');
 
         $expected = [
-            Symbol::WHITE => 0,
-            Symbol::BLACK => 1,
+            'w' => 0,
+            'b' => 1,
         ];
 
         $checkmateEvald = (new CheckmateInOneEvaluation($board))->evaluate();
