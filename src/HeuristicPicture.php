@@ -13,7 +13,6 @@ use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
 use Chess\Evaluation\SquareEvaluation;
 use Chess\Evaluation\TacticsEvaluation;
-use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 use Chess\Evaluation\DoubledPawnEvaluation;
 use Chess\Evaluation\PassedPawnEvaluation;
@@ -77,9 +76,9 @@ class HeuristicPicture extends Player
     public function take(): HeuristicPicture
     {
         foreach ($this->moves as $move) {
-            $this->board->play(Convert::toStdObj(Symbol::WHITE, $move[0]));
+            $this->board->play(Symbol::WHITE, $move[0]);
             if (isset($move[1])) {
-                $this->board->play(Convert::toStdObj(Symbol::BLACK, $move[1]));
+                $this->board->play(Symbol::BLACK, $move[1]);
             }
             $item = [];
             foreach ($this->dimensions as $dimension => $w) {
