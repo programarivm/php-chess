@@ -4,6 +4,7 @@ namespace Chess;
 
 use Chess\Ascii;
 use Chess\HeuristicPicture;
+use Chess\Player;
 use Chess\FEN\BoardToString;
 use Chess\FEN\ShortenedStringToPgn;
 use Chess\FEN\StringToBoard;
@@ -288,6 +289,11 @@ class Game
     public function loadFen(string $string)
     {
         $this->board = (new StringToBoard($string))->create();
+    }
+
+    public function loadPgn(string $movetext)
+    {
+        $this->board = (new Player($movetext))->play()->getBoard();
     }
 
     public function playFen(string $toShortenedFen)
