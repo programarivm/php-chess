@@ -25,6 +25,15 @@ class MovetextTest extends AbstractUnitTestCase
     }
 
     /**
+     * @dataProvider validFIDEData
+     * @test
+     */
+    public function validFIDE($movetext)
+    {
+        $this->assertSame($movetext, Validate::movetext($movetext));
+    }
+
+    /**
      * @dataProvider commentsRemovedData
      * @test
      */
@@ -116,6 +125,17 @@ class MovetextTest extends AbstractUnitTestCase
                 '1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 O-O 5.a3 Bxc3+ 6.bxc3 b6 7.Bd3 Bb7 8.f3 BAR',
                 '1.Nf3 Nf6 2.c4 c5 3.g3 BAR 4.Bg2 FOO 5.O-O e6 6.FOOBAR 7.d4 cxd4 8.Qxd4 d6',
             ],
+        ];
+    }
+
+    public function validFIDEData()
+    {
+        return [
+            [
+                '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 0-0 5.a3 Be7 6.e4 d6 7.Bd3 c5',
+                '1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3 0-0 5.a3 Bxc3+ 6.bxc3 b6 7.Bd3 Bb7 8.f3 c5',
+                '1.Nf3 Nf6 2.c4 c5 3.g3 b6 4.Bg2 Bb7 5.0-0 e6 6.Nc3 a6 7.d4 cxd4 8.Qxd4 d6',
+            ]
         ];
     }
 }
