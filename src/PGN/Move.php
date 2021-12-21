@@ -15,6 +15,8 @@ class Move
     const KING = 'K' . Symbol::SQUARE . Symbol::CHECK;
     const KING_CASTLING_SHORT = Symbol::CASTLING_SHORT . Symbol::CHECK;
     const KING_CASTLING_LONG = Symbol::CASTLING_LONG . Symbol::CHECK;
+    const KING_CASTLING_SHORT_FIDE = Symbol::CASTLING_SHORT_FIDE . Symbol::CHECK;
+    const KING_CASTLING_LONG_FIDE = Symbol::CASTLING_LONG_FIDE . Symbol::CHECK;
     const KING_CAPTURES = 'Kx' . Symbol::SQUARE . Symbol::CHECK;
     const PIECE = '[BRQ]{1}[a-h]{0,1}[1-8]{0,1}' . Symbol::SQUARE . Symbol::CHECK;
     const PIECE_CAPTURES = '[BRQ]{1}[a-h]{0,1}[1-8]{0,1}x' . Symbol::SQUARE . Symbol::CHECK;
