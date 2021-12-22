@@ -82,12 +82,31 @@ class HeuristicPicture extends Player
             }
             $item = [];
             foreach ($this->dimensions as $dimension => $w) {
-                $evald = (new $dimension($this->board))->evaluate();
-                is_array($evald[Symbol::WHITE])
-                    ? $item[] = [
-                        Symbol::WHITE => count($evald[Symbol::WHITE]),
-                        Symbol::BLACK => count($evald[Symbol::BLACK])]
-                    : $item[] = $evald;
+                // get instance of dimension
+                $dimension = new $dimension($this->board);
+                $evald = $dimension->evaluate();
+
+                if (is_array($evald[Symbol::WHITE])) {
+                    if ($dimension::$isInverselyCorrelated) {
+                        $item[] = [
+                            Symbol::WHITE => count($evald[Symbol::BLACK]),
+                            Symbol::BLACK => count($evald[Symbol::WHITE])
+                        ];
+                    } else {
+                        $item[] = [
+                            Symbol::WHITE => count($evald[Symbol::WHITE]),
+                            Symbol::BLACK => count($evald[Symbol::BLACK])];
+                    }
+                } else {
+                    if ($dimension::$isInverselyCorrelated) {
+                        $item[] = [
+                            Symbol::WHITE => $evald[Symbol::BLACK],
+                            Symbol::BLACK => $evald[Symbol::WHITE]
+                        ];
+                    } else {
+                        $item[] = $evald;
+                    }
+                }
             }
             $this->picture[Symbol::WHITE][] = array_column($item, Symbol::WHITE);
             $this->picture[Symbol::BLACK][] = array_column($item, Symbol::BLACK);
