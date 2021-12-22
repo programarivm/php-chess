@@ -81,31 +81,26 @@ class HeuristicPicture extends Player
                 $this->board->play(Symbol::BLACK, $move[1]);
             }
             $item = [];
-            foreach ($this->dimensions as $dimension => $w) {
-                // get instance of dimension
-                $dimension = new $dimension($this->board);
+            foreach ($this->dimensions as $className => $weight) {
+                $dimension = new $className($this->board);
                 $evald = $dimension->evaluate();
-
                 if (is_array($evald[Symbol::WHITE])) {
-                    if ($dimension::$isInverselyCorrelated) {
-                        $item[] = [
+                    $dimension->isInversed()
+                        ? $item[] = [
                             Symbol::WHITE => count($evald[Symbol::BLACK]),
-                            Symbol::BLACK => count($evald[Symbol::WHITE])
-                        ];
-                    } else {
-                        $item[] = [
+                            Symbol::BLACK => count($evald[Symbol::WHITE]),
+                        ]
+                        : $item[] = [
                             Symbol::WHITE => count($evald[Symbol::WHITE]),
-                            Symbol::BLACK => count($evald[Symbol::BLACK])];
-                    }
-                } else {
-                    if ($dimension::$isInverselyCorrelated) {
-                        $item[] = [
-                            Symbol::WHITE => $evald[Symbol::BLACK],
-                            Symbol::BLACK => $evald[Symbol::WHITE]
+                            Symbol::BLACK => count($evald[Symbol::BLACK]),
                         ];
-                    } else {
-                        $item[] = $evald;
-                    }
+                } else {
+                    $dimension->isInversed()
+                        ? $item[] = [
+                            Symbol::WHITE => $evald[Symbol::BLACK],
+                            Symbol::BLACK => $evald[Symbol::WHITE],
+                        ]
+                        : $item[] = $evald;
                 }
             }
             $this->picture[Symbol::WHITE][] = array_column($item, Symbol::WHITE);
