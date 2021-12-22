@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\Game;
 
-use Chess\Evaluation\IsolatedPawnEvaluation;
 use Chess\Game;
 use Chess\Tests\AbstractUnitTestCase;
 
