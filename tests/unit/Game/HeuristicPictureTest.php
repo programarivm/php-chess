@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Game;
 
+use Chess\Evaluation\IsolatedPawnEvaluation;
 use Chess\Game;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -58,8 +59,11 @@ class HeuristicPictureTest extends AbstractUnitTestCase
         $game->play('w', 'Nf6');
         $game->play('b', 'gxf6');
 
+        // in this configuration black has one isolated pawn in h7, white has no isolated pawns
+        // the heuristic picture has an advantage of white in terms of isolated pawns so second-last value
+        // of expected must be 1 instead of -1
         $expected = [
-            [ -1, -1, -1, 1, 1, 0, 0, 0, 1, -1, -1, 0 ],
+            [ -1, -1, -1, 1, 1, 0, 0, 0, 1, -1, 1, 0 ],
         ];
 
         $balance = $game->heuristicPicture(true);
