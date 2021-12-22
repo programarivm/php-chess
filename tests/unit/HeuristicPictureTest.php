@@ -3,6 +3,7 @@
 namespace Chess\Tests\Unit;
 
 use Chess\Board;
+use Chess\Evaluation\IsolatedPawnEvaluation;
 use Chess\HeuristicPicture;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Checkmate\Fool as FoolCheckmate;
@@ -408,6 +409,29 @@ class HeuristicPictureTest extends AbstractUnitTestCase
 
         $expected = [
             [ 0, 1, -1, 1, -1, 0, -1, 0, 0, 0, 0, 0 ],
+        ];
+
+        $this->assertEquals($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
+    public function isolated_pawn_take_get_balance()
+    {
+        $movetext = '1.d4 d5 2.e4 e5 3.f4 f5 4.exd5 exd4 5.c3 dxc3 6.Nxc3';
+
+        $heuristicPicture = new HeuristicPicture($movetext);
+        // let's test only this heuristic
+        $heuristicPicture->setDimensions(
+            [IsolatedPawnEvaluation::class => 5]
+        );
+
+        $balance = $heuristicPicture->take()
+            ->getBalance();
+
+        $expected = [
+            [0], [0], [0], [0], [-1], [-1]
         ];
 
         $this->assertEquals($expected, $balance);
