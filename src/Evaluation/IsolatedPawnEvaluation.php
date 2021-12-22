@@ -10,11 +10,11 @@ class IsolatedPawnEvaluation extends AbstractEvaluation
 {
     const NAME = 'isolated_pawn';
 
-    public static $isInverselyCorrelated = true;
-
     public function __construct(Board $board)
     {
         parent::__construct($board);
+
+        $this->isInversed = true;
 
         $this->result = [
             Symbol::WHITE => 0,
