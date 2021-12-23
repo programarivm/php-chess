@@ -14,7 +14,7 @@ class IsolatedPawnEvaluation extends AbstractEvaluation
     {
         parent::__construct($board);
 
-        $this->isInversed = true;
+        $this->isInverse = true;
 
         $this->result = [
             Symbol::WHITE => 0,
