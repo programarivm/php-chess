@@ -13,18 +13,16 @@ use Chess\PGN\Symbol;
  */
 abstract class AbstractEvaluation
 {
-    protected $isInversed;
-
     protected $board;
 
     protected $value;
 
     protected $result;
 
+    protected $isInverse;
+
     public function __construct(Board $board)
     {
-        $this->isInversed = false;
-
         $this->board = $board;
 
         $this->value = [
@@ -34,10 +32,12 @@ abstract class AbstractEvaluation
             Symbol::ROOK => 5.1,
             Symbol::QUEEN => 8.8,
         ];
+
+        $this->isInverse = false;
     }
 
-    public function isInversed()
+    public function isInverse()
     {
-        return $this->isInversed;
+        return $this->isInverse;
     }
 }
