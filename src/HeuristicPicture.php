@@ -85,7 +85,7 @@ class HeuristicPicture extends Player
                 $dimension = new $className($this->board);
                 $evald = $dimension->evaluate();
                 if (is_array($evald[Symbol::WHITE])) {
-                    $dimension->isInversed()
+                    $dimension->isInverse()
                         ? $item[] = [
                             Symbol::WHITE => count($evald[Symbol::BLACK]),
                             Symbol::BLACK => count($evald[Symbol::WHITE]),
@@ -95,7 +95,7 @@ class HeuristicPicture extends Player
                             Symbol::BLACK => count($evald[Symbol::BLACK]),
                         ];
                 } else {
-                    $dimension->isInversed()
+                    $dimension->isInverse()
                         ? $item[] = [
                             Symbol::WHITE => $evald[Symbol::BLACK],
                             Symbol::BLACK => $evald[Symbol::WHITE],
