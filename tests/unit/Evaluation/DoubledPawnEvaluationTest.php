@@ -27,7 +27,7 @@ class DoubledPawnEvaluationTest extends AbstractUnitTestCase
         $board = (new Ascii())->toBoard($position, 'w');
 
         $expected = [
-            'w' => -1,
+            'w' => 1,
             'b' => 0,
         ];
 
@@ -56,7 +56,7 @@ class DoubledPawnEvaluationTest extends AbstractUnitTestCase
 
         $expected = [
             'w' => 0,
-            'b' => -1,
+            'b' => 1,
         ];
 
         $doubledPawnEvald = (new DoubledPawnEvaluation($board))->evaluate();

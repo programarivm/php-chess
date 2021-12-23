@@ -13,6 +13,8 @@ class DoubledPawnEvaluation extends AbstractEvaluation
     {
         parent::__construct($board);
 
+        $this->isInverse = true;
+
         $this->result = [
             Symbol::WHITE => 0,
             Symbol::BLACK => 0,
@@ -28,7 +30,7 @@ class DoubledPawnEvaluation extends AbstractEvaluation
                 $ranks = $piece->getRanks();
                 if ($nextPiece = $this->board->getPieceByPosition($file.$ranks->next)) {
                     if ($nextPiece->getIdentity() === Symbol::PAWN && $nextPiece->getColor() === $color) {
-                        $this->result[$color] -= 1;
+                        $this->result[$color] += 1;
                     }
                 }
             }
