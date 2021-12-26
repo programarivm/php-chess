@@ -186,8 +186,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            'w' => 7229,
-            'b' => 91,
+            'w' => 1431,
+            'b' => 7970,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
