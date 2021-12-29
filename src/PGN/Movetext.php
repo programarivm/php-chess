@@ -91,8 +91,10 @@ class Movetext
 
     protected function build()
     {
-        // remove comments
+        // remove curly braces
         $text = preg_replace("/\{[^)]+\}/", '', $this->text);
+        // remove parentheses
+        $text = preg_replace("/\([^)]+\)/", '', $text);
         // remove spaces between dots
         $text = preg_replace('/\s+\./', '.', $text);
         $moves = array_filter(explode(' ', $text));
