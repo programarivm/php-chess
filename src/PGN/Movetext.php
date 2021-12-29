@@ -95,6 +95,10 @@ class Movetext
         $text = preg_replace("/\{[^)]+\}/", '', $this->text);
         // remove parentheses
         $text = preg_replace("/\([^)]+\)/", '', $text);
+        // replace fide long castling
+        $text = preg_replace("/0-0/", 'O-O', $text);
+        // replace fide short castling
+        $text = preg_replace("/0-0-0/", 'O-O-O', $text);
         // remove spaces between dots
         $text = preg_replace('/\s+\./', '.', $text);
         $moves = array_filter(explode(' ', $text));
