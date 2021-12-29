@@ -25,10 +25,10 @@ class MovetextTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider commentsRemovedData
+     * @dataProvider curlyBracesRemovedData
      * @test
      */
-    public function comments_removed($expected, $movetext)
+    public function curly_braces_removed($expected, $movetext)
     {
         $this->assertSame($expected, Validate::movetext($movetext));
     }
@@ -76,7 +76,7 @@ class MovetextTest extends AbstractUnitTestCase
         ];
     }
 
-    public function commentsRemovedData()
+    public function curlyBracesRemovedData()
     {
         return [
             [
