@@ -22,8 +22,6 @@ class Symbol
 
     const CASTLING_SHORT = 'O-O';
     const CASTLING_LONG = 'O-O-O';
-    const CASTLING_SHORT_FIDE = '0-0';
-    const CASTLING_LONG_FIDE = '0-0-0';
     const SQUARE = '[a-h]{1}[1-8]{1}';
     const CHECK = '[\+\#]{0,1}';
 

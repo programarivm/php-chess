@@ -90,10 +90,6 @@ class Validate
                 return true;
             case preg_match('/^' . Move::KING_CASTLING_LONG . '$/', $move):
                 return true;
-            case preg_match('/^' . Move::KING_CASTLING_SHORT_FIDE . '$/', $move):
-                return true;
-            case preg_match('/^' . Move::KING_CASTLING_LONG_FIDE . '$/', $move):
-                return true;
             case preg_match('/^' . Move::KING_CAPTURES . '$/', $move):
                 return true;
             case preg_match('/^' . Move::PIECE . '$/', $move):
