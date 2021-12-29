@@ -25,19 +25,19 @@ class MovetextTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider curlyBracesRemovedData
+     * @dataProvider curlyBracesFilteredData
      * @test
      */
-    public function curly_braces_removed($expected, $movetext)
+    public function curly_braces_filtered($expected, $movetext)
     {
         $this->assertSame($expected, Validate::movetext($movetext));
     }
 
     /**
-     * @dataProvider parenthesesRemovedData
+     * @dataProvider parenthesesFilteredData
      * @test
      */
-    public function parentheses_removed($expected, $movetext)
+    public function parentheses_filtered($expected, $movetext)
     {
         $this->assertSame($expected, Validate::movetext($movetext));
     }
@@ -85,7 +85,7 @@ class MovetextTest extends AbstractUnitTestCase
         ];
     }
 
-    public function curlyBracesRemovedData()
+    public function curlyBracesFilteredData()
     {
         return [
             [
@@ -98,7 +98,7 @@ class MovetextTest extends AbstractUnitTestCase
         ];
     }
 
-    public function parenthesesRemovedData()
+    public function parenthesesFilteredData()
     {
         return [
             [
