@@ -26,17 +26,19 @@ use Rubix\ML\Persisters\Filesystem;
  */
 class Game
 {
-    const MODE_AI             = 'MODE_AI';
+    const MODE_AI = 'MODE_AI';
 
-    const MODE_ANALYSIS       = 'MODE_ANALYSIS';
+    const MODE_ANALYSIS = 'MODE_ANALYSIS';
 
-    const MODE_LOAD_FEN       = 'MODE_LOAD_FEN';
+    const MODE_GRANDMASTER = 'MODE_GRANDMASTER';
 
-    const MODE_LOAD_PGN       = 'MODE_LOAD_PGN';
+    const MODE_LOAD_FEN = 'MODE_LOAD_FEN';
 
-    const MODE_PLAY_FRIEND    = 'MODE_PLAY_FRIEND';
+    const MODE_LOAD_PGN = 'MODE_LOAD_PGN';
 
-    const MODEL_FOLDER        = __DIR__.'/../model/';
+    const MODE_PLAY_FRIEND = 'MODE_PLAY_FRIEND';
+
+    const MODEL_FOLDER = __DIR__.'/../model/';
 
     /**
      * Chess board.
@@ -247,23 +249,26 @@ class Game
     }
 
     /**
-     * AI model response to the current position.
+     * Computer response to the current position.
      *
      * @return string
      */
     public function response()
     {
-        $response = (new Grandmaster())
-            ->response($this->board->getMovetext());
+        $response = (new Grandmaster())->response($this->board->getMovetext());
 
-        if ($response) {
+        if ($this->mode === Game::MODE_AI) {
+            if ($response) {
+                return $response;
+            } else {
+                $response = (new LinearCombinationPredictor($this->board, $this->estimator))->predict();
+                return $response;
+            }
+        } elseif ($this->mode === Game::MODE_GRANDMASTER) {
             return $response;
         }
 
-        $response = (new LinearCombinationPredictor($this->board, $this->estimator))
-            ->predict();
-
-        return $response;
+        return null;
     }
 
     public function ascii(): string
