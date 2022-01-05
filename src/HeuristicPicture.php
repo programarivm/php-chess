@@ -17,8 +17,39 @@ use Chess\PGN\Symbol;
 use Chess\Evaluation\DoubledPawnEvaluation;
 use Chess\Evaluation\PassedPawnEvaluation;
 
+/**
+ * HeuristicPicture
+ *
+ * A chess game can be thought of in terms of snapshots describing what's going on
+ * the board as reported by a number of evaluation features. Thus, it can be plotted
+ * in terms of balance. +1 is the best possible evaluation for White and -1 the
+ * best possible evaluation for Black. Both forces being set to 0 means they're
+ * actually offset and, therefore, balanced.
+ */
 class HeuristicPicture extends Player
 {
+    /**
+     * The evaluation features that make up a heuristic picture.
+     *
+     * Weights are Fibonacci numbers (5, 13, 21) the sum of which equals to 100
+     * as per a multiple-criteria decision analysis (MCDA) based on the point
+     * allocation method. This allows to label input vectors for further machine
+     * learning purposes.
+     *
+     * The order in which the different chess evaluation features are arranged as
+     * a dimension really doesn't matter.
+     *
+     * The first Fibonacci permutation e.g. [ 21, 21, 13, 5, 5, 5, 5, 5, 5, 5, 5, 5 ]
+     * is used to somehow highlight that a particular dimension is a restricted
+     * permutation actually.
+     *
+     * Let the grandmasters label chess positions. Once a particular position is
+     * successfully transformed into an input vector of numbers, then it can be
+     * labeled on the assumption that the best possible move that could be made
+     * was made — by a chess grandmaster.
+     *
+     * @var array
+     */
     protected $dimensions = [
         MaterialEvaluation::class => 21,
         CenterEvaluation::class => 21,
@@ -34,15 +65,36 @@ class HeuristicPicture extends Player
         BackwardPawnEvaluation::class => 5,
     ];
 
+    /**
+     * The heuristic picture of $this->board.
+     *
+     * @var array
+     */
     protected $picture = [];
 
+    /**
+     * The balanced heuristic picture of $this->board.
+     *
+     * @var array
+     */
     protected $balance = [];
 
+    /**
+     * Returns the weighted dimensions.
+     *
+     * @return array
+     */
     public function getDimensions(): array
     {
         return $this->dimensions;
     }
 
+    /**
+     * Sets the dimensions.
+     *
+     * @param array $dimensions
+     * @return \Chess\HeuristicPicture
+     */
     public function setDimensions(array $dimensions): HeuristicPicture
     {
         $this->dimensions = $dimensions;
@@ -50,11 +102,21 @@ class HeuristicPicture extends Player
         return $this;
     }
 
+    /**
+     * Returns the heuristic picture.
+     *
+     * @return array
+     */
     public function getPicture(): array
     {
         return $this->picture;
     }
 
+    /**
+     * Returns the last element of the heuristic picture.
+     *
+     * @return array
+     */
     public function end(): array
     {
         return [
@@ -63,6 +125,11 @@ class HeuristicPicture extends Player
         ];
     }
 
+    /**
+     * Returns the balanced heuristic picture.
+     *
+     * @return array
+     */
     public function getBalance(): array
     {
         return $this->balance;
@@ -71,7 +138,7 @@ class HeuristicPicture extends Player
     /**
      * Takes a normalized, balanced heuristic picture.
      *
-     * @return \Chess\Heuristic\HeuristicPicture
+     * @return \Chess\HeuristicPicture
      */
     public function take(): HeuristicPicture
     {
@@ -112,6 +179,13 @@ class HeuristicPicture extends Player
         return $this;
     }
 
+    /**
+     * Returns the current evaluation of $this->board.
+     *
+     * The result obtained suggests which player is probably better.
+     *
+     * @return array
+     */
     public function evaluate(): array
     {
         $result = [
@@ -134,6 +208,19 @@ class HeuristicPicture extends Player
         return $result;
     }
 
+    /**
+     * Normalizes the heuristic picture of $this->board.
+     *
+     * The dimensions are normalized meaning that the chess features (Material,
+     * Center, Connectivity, Space, Pressure, King safety, Tactics, and so on)
+     * are evaluated and scaled to have values between 0 and 1.
+     *
+     * It is worth noting that a normalized heuristic picture changes with every
+     * chess move that is made because it is recalculated or zoomed out, if you like,
+     * to fit within a 0–1 range.
+     *
+     * @return \Chess\HeuristicPicture
+     */
     protected function normalize(): HeuristicPicture
     {
         $normalization = [];
@@ -148,8 +235,10 @@ class HeuristicPicture extends Player
                 $max = round(max($values), 2);
                 for ($j = 0; $j < count($this->picture[Symbol::WHITE]); $j++) {
                     if ($max - $min > 0) {
-                        $normalization[Symbol::WHITE][$j][$i] = round(($this->picture[Symbol::WHITE][$j][$i] - $min) / ($max - $min), 2);
-                        $normalization[Symbol::BLACK][$j][$i] = round(($this->picture[Symbol::BLACK][$j][$i] - $min) / ($max - $min), 2);
+                        $normalization[Symbol::WHITE][$j][$i] =
+                            round(($this->picture[Symbol::WHITE][$j][$i] - $min) / ($max - $min), 2);
+                        $normalization[Symbol::BLACK][$j][$i] =
+                            round(($this->picture[Symbol::BLACK][$j][$i] - $min) / ($max - $min), 2);
                     } elseif ($max == $min) {
                         $normalization[Symbol::WHITE][$j][$i] = 0;
                         $normalization[Symbol::BLACK][$j][$i] = 0;
@@ -157,7 +246,8 @@ class HeuristicPicture extends Player
                 }
             }
         } else {
-            $normalization[Symbol::WHITE][] = $normalization[Symbol::BLACK][] = array_fill(0, count($this->dimensions), 0);
+            $normalization[Symbol::WHITE][] =
+                $normalization[Symbol::BLACK][] = array_fill(0, count($this->dimensions), 0);
         }
 
         $this->picture = $normalization;
@@ -165,11 +255,21 @@ class HeuristicPicture extends Player
         return $this;
     }
 
+    /**
+     * Balances the heuristic picture of $this->board.
+     *
+     * A chess game can be plotted in terms of balance. +1 is the best possible
+     * evaluation for White and -1 the best possible evaluation for Black. Both
+     * forces being set to 0 means they're actually offset and, therefore, balanced.
+     *
+     * @return \Chess\HeuristicPicture
+     */
     protected function balance(): HeuristicPicture
     {
         foreach ($this->picture[Symbol::WHITE] as $i => $color) {
             foreach ($color as $j => $val) {
-                $this->balance[$i][$j] = $this->picture[Symbol::WHITE][$i][$j] - $this->picture[Symbol::BLACK][$i][$j];
+                $this->balance[$i][$j] =
+                    $this->picture[Symbol::WHITE][$i][$j] - $this->picture[Symbol::BLACK][$i][$j];
             }
         }
 
