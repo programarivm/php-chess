@@ -17,4 +17,15 @@ class PlayerTest extends AbstractUnitTestCase
 
         $this->assertSame($movetext, $board->getMovetext());
     }
+
+    /**
+     * @test
+     */
+    public function e4_e4()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        $movetext = '1.e4 e4';
+        $board = (new Player($movetext))->play()->getBoard();
+    }
 }
