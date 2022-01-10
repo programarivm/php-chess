@@ -41,11 +41,11 @@ class Player
     {
         foreach ($this->getMoves() as $move) {
             if (!$this->getBoard()->play('w', $move[0])) {
-                throw new MovetextException('This is not a valid movetext.');
+                throw new MovetextException("This move is not allowed: {$move[0]}");
             }
             if (isset($move[1])) {
                 if (!$this->getBoard()->play('b', $move[1])) {
-                    throw new MovetextException('This is not a valid movetext.');
+                    throw new MovetextException("This move is not allowed: {$move[1]}");
                 }
             }
         }
