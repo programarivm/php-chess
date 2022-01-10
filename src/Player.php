@@ -3,6 +3,7 @@
 namespace Chess;
 
 use Chess\Board;
+use Chess\Exception\MovetextException;
 use Chess\PGN\Symbol;
 
 /**
@@ -39,9 +40,13 @@ class Player
     public function play(): Player
     {
         foreach ($this->getMoves() as $move) {
-            $this->getBoard()->play('w', $move[0]);
+            if (!$this->getBoard()->play('w', $move[0])) {
+                throw new MovetextException('This is not a valid movetext.');
+            }
             if (isset($move[1])) {
-                $this->getBoard()->play('b', $move[1]);
+                if (!$this->getBoard()->play('b', $move[1])) {
+                    throw new MovetextException('This is not a valid movetext.');
+                }
             }
         }
 
