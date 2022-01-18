@@ -86,6 +86,16 @@ class Movetext
             }
         }
 
+        $end = end($this->order->move);
+
+        if ($end === Symbol::RESULT_WHITE_WINS ||
+            $end === Symbol::RESULT_BLACK_WINS ||
+            $end === Symbol::RESULT_DRAW ||
+            $end === Symbol::RESULT_UNKNOWN
+        ) {
+            $filtered .= $end;
+        }
+
         return trim($filtered);
     }
 
