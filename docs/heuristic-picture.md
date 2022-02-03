@@ -45,9 +45,9 @@ Array
 )
 ```
 
-Weights are Fibonacci numbers (5, 13, 21) the sum of which equals to 100 as per a multiple-criteria decision analysis (MCDA) based on the point allocation method. This allows to label input vectors for further machine learning purposes.
+The sum of the weights equals to 100 as per a multiple-criteria decision analysis (MCDA) based on the point allocation method. This allows to label input vectors for further machine learning purposes.
 
-The order in which the different chess evaluation features are arranged as a dimension really doesn't matter. The first Fibonacci permutation e.g. [ 21, 21, 13, 5, 5, 5, 5, 5, 5, 5, 5, 5 ] is used to somehow highlight that a particular dimension is a restricted permutation actually. Let the grandmasters label the chess positions. Once a particular position is successfully transformed into an input vector of numbers, then it can be labeled on the assumption that the best possible move that could be made was made — by a chess grandmaster.
+The order in which the different chess evaluation features are arranged as a dimension really doesn't matter. The first permutation e.g. [ 15, 15, 15, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5 ] is used to somehow highlight that a particular dimension is a restricted permutation actually. Let the grandmasters label the chess positions. Once a particular position is successfully transformed into an input vector of numbers, then it can be labeled on the assumption that the best possible move that could be made was made — by a chess grandmaster.
 
 #### `function getPicture(): array`
 
