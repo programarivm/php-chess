@@ -17,7 +17,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_8_13_21_34_count()
+    public function permutation_8_13_21_34_count_size_8()
     {
         $set = self::$permutation->get([8, 13, 21, 34], 8, 100);
         $count = count($set);
@@ -30,7 +30,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_8_13_21_34_first()
+    public function permutation_8_13_21_34_first_size_8()
     {
         $set = self::$permutation->get([8, 13, 21, 34], 8, 100);
         $first = $set[0];
@@ -43,7 +43,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_8_13_21_34_last()
+    public function permutation_8_13_21_34_last_size_8()
     {
         $set = self::$permutation->get([8, 13, 21, 34], 8, 100);
         $last = end($set);
@@ -56,7 +56,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_8_13_21_34_start()
+    public function permutation_8_13_21_34_start_size_8()
     {
         $set = self::$permutation->get([8, 13, 21, 34], 8, 100);
         $start = array_slice($set, 0, 5);
@@ -75,7 +75,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_8_13_21_34_end()
+    public function permutation_8_13_21_34_end_size_8()
     {
         $set = self::$permutation->get([8, 13, 21, 34], 8, 100);
         $end = array_slice($set, -6);
@@ -95,7 +95,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_3_5_8_13_21_count()
+    public function permutation_3_5_8_13_21_count_size_9()
     {
         $set = self::$permutation->get([3, 5, 8, 13, 21], 9, 100);
         $count = count($set);
@@ -108,7 +108,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_3_5_8_13_21_first()
+    public function permutation_3_5_8_13_21_first_size_9()
     {
         $set = self::$permutation->get([3, 5, 8, 13, 21], 9, 100);
         $first = $set[0];
@@ -121,7 +121,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_3_5_8_13_21_last()
+    public function permutation_3_5_8_13_21_last_size_9()
     {
         $set = self::$permutation->get([3, 5, 8, 13, 21], 9, 100);
         $last = end($set);
@@ -134,7 +134,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_5_10_15_count()
+    public function permutation_5_10_15_count_size_13()
     {
         $set = self::$permutation->get([5, 10, 15], 13, 100);
         $count = count($set);
@@ -147,7 +147,7 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function permutation_5_10_15_first()
+    public function permutation_5_10_15_first_size_13()
     {
         $set = self::$permutation->get([5, 10, 15], 13, 100);
         $first = $set[0];
