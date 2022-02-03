@@ -32,15 +32,14 @@ class HeuristicPicture extends Player
     /**
      * The evaluation features that make up a heuristic picture.
      *
-     * Weights are Fibonacci numbers (5, 13, 21) the sum of which equals to 100
-     * as per a multiple-criteria decision analysis (MCDA) based on the point
-     * allocation method. This allows to label input vectors for further machine
-     * learning purposes.
+     * The sum of the weights equals to 100 as per a multiple-criteria decision analysis
+     * (MCDA) based on the point allocation method. This allows to label input vectors
+     * for further machine learning purposes.
      *
      * The order in which the different chess evaluation features are arranged as
      * a dimension really doesn't matter.
      *
-     * The first Fibonacci permutation e.g. [ 21, 21, 13, 5, 5, 5, 5, 5, 5, 5, 5, 5 ]
+     * The first permutation e.g. [ 15, 15, 15, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5 ]
      * is used to somehow highlight that a particular dimension is a restricted
      * permutation actually.
      *
@@ -52,10 +51,10 @@ class HeuristicPicture extends Player
      * @var array
      */
     protected $dimensions = [
-        MaterialEvaluation::class => 21,
-        CenterEvaluation::class => 21,
-        ConnectivityEvaluation::class => 13,
-        SpaceEvaluation::class => 5,
+        MaterialEvaluation::class => 15,
+        CenterEvaluation::class => 15,
+        ConnectivityEvaluation::class => 15,
+        SpaceEvaluation::class => 10,
         PressureEvaluation::class => 5,
         KingSafetyEvaluation::class => 5,
         TacticsEvaluation::class => 5,
