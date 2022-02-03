@@ -130,4 +130,30 @@ class RestrictedPermutationWithRepetitionTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $last);
     }
+
+    /**
+     * @test
+     */
+    public function permutation_5_10_15_count()
+    {
+        $set = self::$permutation->get([5, 10, 15], 13, 100);
+        $count = count($set);
+
+        $expected = 27742;
+
+        $this->assertSame($expected, $count);
+    }
+
+    /**
+     * @test
+     */
+    public function permutation_5_10_15_first()
+    {
+        $set = self::$permutation->get([5, 10, 15], 13, 100);
+        $first = $set[0];
+
+        $expected = [ 15, 15, 15, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5 ];
+
+        $this->assertSame($expected, $first);
+    }
 }
