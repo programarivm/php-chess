@@ -5,7 +5,6 @@ namespace Chess;
 use Chess\Evaluation\AttackEvaluation;
 use Chess\Evaluation\BackwardPawnEvaluation;
 use Chess\Evaluation\CenterEvaluation;
-use Chess\Evaluation\CheckEvaluation;
 use Chess\Evaluation\ConnectivityEvaluation;
 use Chess\Evaluation\IsolatedPawnEvaluation;
 use Chess\Evaluation\KingSafetyEvaluation;
@@ -55,7 +54,7 @@ class HeuristicPicture extends Player
         CenterEvaluation::class => 15,
         ConnectivityEvaluation::class => 15,
         SpaceEvaluation::class => 10,
-        PressureEvaluation::class => 5,
+        PressureEvaluation::class => 10,
         KingSafetyEvaluation::class => 5,
         TacticsEvaluation::class => 5,
         AttackEvaluation::class => 5,
@@ -63,7 +62,6 @@ class HeuristicPicture extends Player
         PassedPawnEvaluation::class => 5,
         IsolatedPawnEvaluation::class => 5,
         BackwardPawnEvaluation::class => 5,
-        CheckEvaluation::class => 5,
     ];
 
     /**
