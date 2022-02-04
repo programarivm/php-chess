@@ -3,16 +3,15 @@
 namespace Chess\Evaluation;
 
 use Chess\Board;
-use Chess\Evaluation\SpaceEvaluation;
 use Chess\PGN\Symbol;
 
 /**
- * Check.
+ * Check evaluation.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-class CheckEvaluation extends AbstractEvaluation
+class CheckEvaluation extends AbstractEvaluation implements CheckEvaluationInterface
 {
     const NAME = 'check';
 
