@@ -5,15 +5,13 @@ namespace Chess\Evaluation;
 use Chess\Board;
 use Chess\PGN\Symbol;
 
-class DoubledPawnEvaluation extends AbstractEvaluation
+class DoubledPawnEvaluation extends AbstractEvaluation implements InverseEvaluationInterface
 {
     const NAME = 'doubled_pawn';
 
     public function __construct(Board $board)
     {
         parent::__construct($board);
-
-        $this->isInverse = true;
 
         $this->result = [
             Symbol::WHITE => 0,

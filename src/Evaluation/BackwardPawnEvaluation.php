@@ -12,15 +12,13 @@ use Chess\PGN\Symbol;
  * @author Boas Falke
  * @license GPL
  */
-class BackwardPawnEvaluation extends AbstractEvaluation
+class BackwardPawnEvaluation extends AbstractEvaluation implements InverseEvaluationInterface
 {
     const NAME = 'backward_pawn';
 
     public function __construct(Board $board)
     {
         parent::__construct($board);
-
-        $this->isInverse = true;
 
         $this->result = [
             Symbol::WHITE => 0,

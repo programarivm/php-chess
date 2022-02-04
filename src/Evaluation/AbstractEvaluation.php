@@ -19,8 +19,6 @@ abstract class AbstractEvaluation
 
     protected $result;
 
-    protected $isInverse;
-
     public function __construct(Board $board)
     {
         $this->board = $board;
@@ -32,12 +30,5 @@ abstract class AbstractEvaluation
             Symbol::ROOK => 5.1,
             Symbol::QUEEN => 8.8,
         ];
-
-        $this->isInverse = false;
-    }
-
-    public function isInverse()
-    {
-        return $this->isInverse;
     }
 }

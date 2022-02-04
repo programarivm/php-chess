@@ -6,15 +6,13 @@ use Chess\Board;
 use Chess\PGN\Symbol;
 use Chess\Piece\Pawn;
 
-class IsolatedPawnEvaluation extends AbstractEvaluation
+class IsolatedPawnEvaluation extends AbstractEvaluation implements InverseEvaluationInterface
 {
     const NAME = 'isolated_pawn';
 
     public function __construct(Board $board)
     {
         parent::__construct($board);
-
-        $this->isInverse = true;
 
         $this->result = [
             Symbol::WHITE => 0,

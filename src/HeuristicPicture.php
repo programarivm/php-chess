@@ -12,11 +12,11 @@ use Chess\Evaluation\KingSafetyEvaluation;
 use Chess\Evaluation\MaterialEvaluation;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
-use Chess\Evaluation\SquareEvaluation;
 use Chess\Evaluation\TacticsEvaluation;
-use Chess\PGN\Symbol;
 use Chess\Evaluation\DoubledPawnEvaluation;
 use Chess\Evaluation\PassedPawnEvaluation;
+use Chess\Evaluation\InverseEvaluationInterface;
+use Chess\PGN\Symbol;
 
 /**
  * HeuristicPicture
@@ -153,7 +153,7 @@ class HeuristicPicture extends Player
                 $dimension = new $className($this->board);
                 $evald = $dimension->evaluate();
                 if (is_array($evald[Symbol::WHITE])) {
-                    $dimension->isInverse()
+                    $dimension instanceof InverseEvaluationInterface
                         ? $item[] = [
                             Symbol::WHITE => count($evald[Symbol::BLACK]),
                             Symbol::BLACK => count($evald[Symbol::WHITE]),
@@ -163,7 +163,7 @@ class HeuristicPicture extends Player
                             Symbol::BLACK => count($evald[Symbol::BLACK]),
                         ];
                 } else {
-                    $dimension->isInverse()
+                    $dimension instanceof InverseEvaluationInterface
                         ? $item[] = [
                             Symbol::WHITE => $evald[Symbol::BLACK],
                             Symbol::BLACK => $evald[Symbol::WHITE],
