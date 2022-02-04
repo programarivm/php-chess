@@ -152,8 +152,9 @@ class HeuristicPicture extends Player
             foreach ($this->dimensions as $className => $weight) {
                 $dimension = new $className($this->board);
                 $evald = $dimension->evaluate();
+                $interfaces = class_implements($className);
                 if (is_array($evald[Symbol::WHITE])) {
-                    $dimension instanceof InverseEvaluationInterface
+                    isset($interfaces['InverseEvaluationInterface'])
                         ? $item[] = [
                             Symbol::WHITE => count($evald[Symbol::BLACK]),
                             Symbol::BLACK => count($evald[Symbol::WHITE]),
@@ -163,7 +164,7 @@ class HeuristicPicture extends Player
                             Symbol::BLACK => count($evald[Symbol::BLACK]),
                         ];
                 } else {
-                    $dimension instanceof InverseEvaluationInterface
+                    isset($interfaces['InverseEvaluationInterface'])
                         ? $item[] = [
                             Symbol::WHITE => $evald[Symbol::BLACK],
                             Symbol::BLACK => $evald[Symbol::WHITE],
