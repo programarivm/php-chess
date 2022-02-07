@@ -939,4 +939,12 @@ final class Board extends \SplObjectStorage
 
         return $possibleMoves;
     }
+
+    public function deletePieceByPosition(string $square)
+    {
+        $piece = $this->getPieceByPosition($square);
+        $this->detach($piece);
+        
+        $this->refresh();
+    }
 }
