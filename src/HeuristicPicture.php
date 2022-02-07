@@ -15,6 +15,7 @@ use Chess\Evaluation\TacticsEvaluation;
 use Chess\Evaluation\DoubledPawnEvaluation;
 use Chess\Evaluation\PassedPawnEvaluation;
 use Chess\Evaluation\InverseEvaluationInterface;
+use Chess\Evaluation\AbsolutePinEvaluation;
 use Chess\PGN\Symbol;
 
 /**
@@ -54,7 +55,7 @@ class HeuristicPicture extends Player
         CenterEvaluation::class => 15,
         ConnectivityEvaluation::class => 15,
         SpaceEvaluation::class => 10,
-        PressureEvaluation::class => 10,
+        PressureEvaluation::class => 5,
         KingSafetyEvaluation::class => 5,
         TacticsEvaluation::class => 5,
         AttackEvaluation::class => 5,
@@ -62,6 +63,7 @@ class HeuristicPicture extends Player
         PassedPawnEvaluation::class => 5,
         IsolatedPawnEvaluation::class => 5,
         BackwardPawnEvaluation::class => 5,
+        AbsolutePinEvaluation::class => 5,
     ];
 
     /**
