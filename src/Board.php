@@ -756,7 +756,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \Chess\Board
      */
-    private function refresh(): Board
+    public function refresh(): Board
     {
         $this->turn = Symbol::oppColor($this->turn);
         $this->squares = (object) [
@@ -938,13 +938,5 @@ final class Board extends \SplObjectStorage
         }
 
         return $possibleMoves;
-    }
-
-    public function deletePieceByPosition(string $square)
-    {
-        $piece = $this->getPieceByPosition($square);
-        $this->detach($piece);
-        
-        $this->refresh();
     }
 }
