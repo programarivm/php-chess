@@ -23,9 +23,8 @@ class AbsolutePinEvaluation extends AbstractEvaluation implements InverseEvaluat
     public function evaluate(): array
     {
         foreach ($this->board->getPieces() as $piece) {
-            $clone = unserialize(serialize($this->board));
             if ($piece->getIdentity() !== Symbol::KING) {
-                $composition = (new Composition($clone))
+                $composition = (new Composition($this->board))
                     ->setTurn($piece->getOppColor())
                     ->deletePieceByPosition($piece->getPosition())
                     ->getBoard();

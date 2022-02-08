@@ -10,7 +10,7 @@ class Composition
 
     public function __construct(Board $board)
     {
-        $this->board = $board;
+        $this->board = unserialize(serialize($board));
     }
 
     public function getBoard()
