@@ -98,4 +98,22 @@ class RelativePinEvaluationTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $relPinEvald);
     }
+
+    /**
+     * @test
+     */
+    public function pinnig_bishop_pinned_knight_shielded_rook_and_attacked_rock()
+    {
+        $board = (new StringToBoard('4r1k1/8/2n5/8/B2R4/8/8/6K1 w - -'))
+            ->create();
+
+        $expected = [
+            'w' => 1.77,
+            'b' => 0,
+        ];
+
+        $relPinEvald = (new RelativePinEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $relPinEvald);
+    }
 }
