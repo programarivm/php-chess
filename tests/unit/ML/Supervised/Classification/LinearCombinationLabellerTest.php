@@ -22,7 +22,7 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
 
         self::$permutations = (new RestrictedPermutationWithRepetition())
             ->get(
-                [ 5, 8, 13, 21 ],
+                [ 5, 10, 15 ],
                 count($dimensions),
                 100
             );
@@ -92,8 +92,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            'w' => 39,
-            'b' => 98,
+            'w' => 41,
+            'b' => 99,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -117,8 +117,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            'w' => 15,
-            'b' => 1,
+            'w' => 4,
+            'b' => 0,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -140,8 +140,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            'w' => 273,
-            'b' => 132,
+            'w' => 270,
+            'b' => 133,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -163,8 +163,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            'w' => 11295,
-            'b' => 275,
+            'w' => 11581,
+            'b' => 272,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -186,8 +186,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            'w' => 3837,
-            'b' => 10663,
+            'w' => 2451,
+            'b' => 7234,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);
@@ -209,8 +209,8 @@ class LinearCombinationLabellerTest extends AbstractUnitTestCase
         $end = end($balance);
 
         $expected = [
-            'w' => 16,
-            'b' => 78,
+            'w' => 4,
+            'b' => 29,
         ];
 
         $label = (new LinearCombinationLabeller(self::$permutations))->label($end);

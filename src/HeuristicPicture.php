@@ -16,6 +16,7 @@ use Chess\Evaluation\DoubledPawnEvaluation;
 use Chess\Evaluation\PassedPawnEvaluation;
 use Chess\Evaluation\InverseEvaluationInterface;
 use Chess\Evaluation\AbsolutePinEvaluation;
+use Chess\Evaluation\RelativePinEvaluation;
 use Chess\PGN\Symbol;
 
 /**
@@ -53,7 +54,7 @@ class HeuristicPicture extends Player
     protected $dimensions = [
         MaterialEvaluation::class => 15,
         CenterEvaluation::class => 15,
-        ConnectivityEvaluation::class => 15,
+        ConnectivityEvaluation::class => 10,
         SpaceEvaluation::class => 10,
         PressureEvaluation::class => 5,
         KingSafetyEvaluation::class => 5,
@@ -64,6 +65,7 @@ class HeuristicPicture extends Player
         IsolatedPawnEvaluation::class => 5,
         BackwardPawnEvaluation::class => 5,
         AbsolutePinEvaluation::class => 5,
+        RelativePinEvaluation::class => 5,
     ];
 
     /**
