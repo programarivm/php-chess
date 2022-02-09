@@ -134,4 +134,58 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $absForkEvald);
     }
+
+    /**
+     * @test
+     */
+    public function bishop_forks_king_and_rook()
+    {
+        $board = (new StringToBoard('8/8/2k5/5b2/6R1/8/2K5/8 w - -'))
+            ->create();
+
+        $expected = [
+            'w' => 0,
+            'b' => 5.1,
+        ];
+
+        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $absForkEvald);
+    }
+
+    /**
+     * @test
+     */
+    public function bishop_forks_king_and_queen()
+    {
+        $board = (new StringToBoard('8/8/2k5/5b2/6Q1/8/2K5/8 w - -'))
+            ->create();
+
+        $expected = [
+            'w' => 0,
+            'b' => 8.8,
+        ];
+
+        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $absForkEvald);
+    }
+
+    /**
+     * @test
+     */
+    public function bishop_forks_king_and_knight()
+    {
+        $board = (new StringToBoard('8/8/2k5/5b2/6N1/8/2K5/8 w - -'))
+            ->create();
+
+        $expected = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $absForkEvald);
+    }
 }
