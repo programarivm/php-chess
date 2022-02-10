@@ -18,6 +18,7 @@ use Chess\Evaluation\InverseEvaluationInterface;
 use Chess\Evaluation\AbsolutePinEvaluation;
 use Chess\Evaluation\RelativePinEvaluation;
 use Chess\Evaluation\AbsoluteForkEvaluation;
+use Chess\Evaluation\RelativeForkEvaluation;
 use Chess\PGN\Symbol;
 
 /**
@@ -41,7 +42,7 @@ class HeuristicPicture extends Player
      * The order in which the different chess evaluation features are arranged as
      * a dimension really doesn't matter.
      *
-     * The first permutation e.g. [ 15, 15, 15, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5 ]
+     * The first permutation e.g. [ 15, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 ]
      * is used to somehow highlight that a particular dimension is a restricted
      * permutation actually.
      *
@@ -54,7 +55,7 @@ class HeuristicPicture extends Player
      */
     protected $dimensions = [
         MaterialEvaluation::class => 15,
-        CenterEvaluation::class => 15,
+        CenterEvaluation::class => 10,
         ConnectivityEvaluation::class => 10,
         SpaceEvaluation::class => 5,
         PressureEvaluation::class => 5,
@@ -68,6 +69,7 @@ class HeuristicPicture extends Player
         AbsolutePinEvaluation::class => 5,
         RelativePinEvaluation::class => 5,
         AbsoluteForkEvaluation::class => 5,
+        RelativeForkEvaluation::class => 5,
     ];
 
     /**
