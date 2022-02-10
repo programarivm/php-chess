@@ -3,11 +3,11 @@
 namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
-use Chess\Evaluation\AbsoluteForkEvaluation;
+use Chess\Evaluation\RelativeForkEvaluation;
 use Chess\FEN\StringToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
-class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
+class RelativeForkEvaluationTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -22,7 +22,7 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -36,11 +36,11 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             ->create();
 
         $expected = [
-            'w' => 0,
+            'w' => 6.53,
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -54,11 +54,11 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             ->create();
 
         $expected = [
-            'w' => 3.2,
+            'w' => 0,
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -72,11 +72,11 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             ->create();
 
         $expected = [
-            'w' => 5.1,
+            'w' => 0,
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -90,11 +90,11 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             ->create();
 
         $expected = [
-            'w' => 8.8,
+            'w' => 0,
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -108,11 +108,11 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             ->create();
 
         $expected = [
-            'w' => 3.33,
+            'w' => 0,
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -130,7 +130,7 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -145,10 +145,10 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
 
         $expected = [
             'w' => 0,
-            'b' => 5.1,
+            'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -163,10 +163,10 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
 
         $expected = [
             'w' => 0,
-            'b' => 8.8,
+            'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -184,7 +184,7 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -198,11 +198,11 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             ->create();
 
         $expected = [
-            'w' => 0,
+            'w' => 10.2,
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
@@ -217,10 +217,10 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
 
         $expected = [
             'w' => 0,
-            'b' => 0,
+            'b' => 13.9,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
 
         $this->assertSame($expected, $absForkEvald);
     }
