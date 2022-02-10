@@ -4,9 +4,8 @@ namespace Chess\Evaluation;
 
 use Chess\Board;
 use Chess\PGN\Symbol;
-use Chess\Piece\Piece;
 
-class AbsoluteForkEvaluation extends AbstractEvaluation
+class AbsoluteForkEvaluation extends AbstractForkEvaluation
 {
     const NAME = 'absolute_fork';
 
@@ -32,46 +31,5 @@ class AbsoluteForkEvaluation extends AbstractEvaluation
         }
 
         return $this->result;
-    }
-
-    private function attackedPieces(Piece $piece)
-    {
-        $attackedPieces = [];
-        foreach ($legalMoves = $piece->getLegalMoves() as $legalMove) {
-            if ($attackedPiece = $this->board->getPieceByPosition($legalMove)) {
-                if ($attackedPiece->getIdentity() !== Symbol::PAWN) {
-                    $attackedPieces[] = $attackedPiece;
-                }
-            }
-        }
-
-        return $attackedPieces;
-    }
-
-    private function isKingAttacked(array $attackedPieces)
-    {
-        foreach ($attackedPieces as $attackedPiece) {
-            if ($attackedPiece->getIdentity() === Symbol::KING) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private function sumValues(Piece $piece, array $attackedPieces)
-    {
-        $values = 0;
-        $pieceValue = $this->value[$piece->getIdentity()];
-        foreach ($attackedPieces as $attackedPiece) {
-            if ($attackedPiece->getIdentity() !== Symbol::KING) {
-                $attackedPieceValue = $this->value[$attackedPiece->getIdentity()];
-                if ($pieceValue < $attackedPieceValue) {
-                    $values += $attackedPieceValue;
-                }
-            }
-        }
-
-        return $values;
     }
 }
