@@ -3,15 +3,9 @@
 namespace Chess\Tests\Unit\Image;
 
 use Chess\Board;
-use Chess\FEN\StringToBoard;
 use Chess\Image\BoardToGif;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
-use Chess\Tests\Sample\Opening\RuyLopez\LucenaDefense;
-use Chess\Tests\Sample\Opening\Sicilian\Closed as ClosedSicilian;
-use Chess\Tests\Sample\Opening\Sicilian\Open as OpenSicilian;
-use Chess\Tests\Sample\Opening\QueensGambit\SymmetricalDefense as QueensGambitSymmetricalDefense;
 
 class BoardToGifTest extends AbstractUnitTestCase
 {
@@ -19,7 +13,8 @@ class BoardToGifTest extends AbstractUnitTestCase
 
     public static function tearDownAfterClass(): void
     {
-        // unlink(self::OUTPUT_FOLDER . '/tmp.png');
+        unlink(self::OUTPUT_FOLDER . '/tmp.gif');
+        array_map('unlink', glob(self::OUTPUT_FOLDER . '/*.png'));
     }
 
     /**
@@ -29,8 +24,26 @@ class BoardToGifTest extends AbstractUnitTestCase
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
-        (new BoardToGif($board))->output(self::OUTPUT_FOLDER, '/tmp.gif');
+        (new BoardToGif($board))->output(self::OUTPUT_FOLDER, 'tmp');
 
-        // TODO
+        $this->assertSame(
+            md5_file(self::OUTPUT_FOLDER . '/tmp.gif'),
+            md5_file(self::DATA_FOLDER . '/gif/benoni_fianchetto_variation.gif')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function output_benoni_fianchetto_variation_flip()
+    {
+        $board = (new BenoniFianchettoVariation(new Board()))->play();
+
+        (new BoardToGif($board, $flip = true))->output(self::OUTPUT_FOLDER, 'tmp');
+
+        $this->assertSame(
+            md5_file(self::OUTPUT_FOLDER . '/tmp.gif'),
+            md5_file(self::DATA_FOLDER . '/gif/benoni_fianchetto_variation_flip.gif')
+        );
     }
 }
