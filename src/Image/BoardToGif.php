@@ -24,14 +24,15 @@ class BoardToGif
             ->cleanup($foldername, $filename);
     }
 
-    private function png($foldername, $filename)
+    private function png(string $foldername, string $filename)
     {
+        $uniqid = uniqid();
         $board = new Board();
         $boardToPng = new BoardToPng($board, $this->flip);
         foreach ($this->board->getHistory() as $key => $item) {
             $n = sprintf("%02d", $key);
             $board->play($item->move->color, $item->move->pgn);
-            $boardToPng->setBoard($board)->output("{$foldername}/{$n}_{$filename}.png");
+            $boardToPng->setBoard($board)->output("{$foldername}/{$n}_{$filename}_{$uniqid}.png");
         }
 
         return $this;
@@ -44,7 +45,7 @@ class BoardToGif
         return $this;
     }
 
-    private function cleanup($foldername, $filename)
+    private function cleanup(string $foldername, string $filename)
     {
         if (file_exists("{$foldername}/{$filename}.gif")) {
             array_map('unlink', glob($foldername . '/*.png'));
