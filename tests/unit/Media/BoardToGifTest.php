@@ -13,7 +13,7 @@ class BoardToGifTest extends AbstractUnitTestCase
 
     public static function tearDownAfterClass(): void
     {
-        unlink(self::OUTPUT_FOLDER . '/tmp.gif');
+        array_map('unlink', glob(self::OUTPUT_FOLDER . '/*.gif'));
     }
 
     /**
@@ -25,7 +25,7 @@ class BoardToGifTest extends AbstractUnitTestCase
 
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
-        (new BoardToGif($board))->output('foo', 'tmp');
+        $filename = (new BoardToGif($board))->output('foo');
     }
 
     /**
@@ -35,11 +35,11 @@ class BoardToGifTest extends AbstractUnitTestCase
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
-        (new BoardToGif($board))->output(self::OUTPUT_FOLDER, 'tmp');
+        $filename = (new BoardToGif($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5_file(self::OUTPUT_FOLDER . '/tmp.gif'),
-            md5_file(self::DATA_FOLDER . '/gif/benoni_fianchetto_variation.gif')
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/gif/benoni_fianchetto_variation.gif')
         );
     }
 
@@ -50,10 +50,10 @@ class BoardToGifTest extends AbstractUnitTestCase
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
-        (new BoardToGif($board, $flip = true))->output(self::OUTPUT_FOLDER, 'tmp');
+        $filename = (new BoardToGif($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5_file(self::OUTPUT_FOLDER . '/tmp.gif'),
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
             md5_file(self::DATA_FOLDER . '/gif/benoni_fianchetto_variation_flip.gif')
         );
     }
