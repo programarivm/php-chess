@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Tests\Unit\Image;
+namespace Chess\Tests\Unit\Media;
 
 use Chess\Board;
 use Chess\FEN\StringToBoard;
-use Chess\Image\BoardToPng;
+use Chess\Media\BoardToPng;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;

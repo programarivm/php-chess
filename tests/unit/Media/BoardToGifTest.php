@@ -1,9 +1,9 @@
 <?php
 
-namespace Chess\Tests\Unit\Image;
+namespace Chess\Tests\Unit\Media;
 
 use Chess\Board;
-use Chess\Image\BoardToGif;
+use Chess\Media\BoardToGif;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Image;
+namespace Chess\Media;
 
 use Chess\Ascii;
 use Chess\Board;
