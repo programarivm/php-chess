@@ -33,7 +33,7 @@ class BoardToPng
         return $this;
     }
 
-    public function output(string $filepath)
+    public function output(string $filepath, string $salt = '')
     {
         $chessboard = $this->imagine->open(self::FILEPATH . '/chessboard.png');
         $array = (new Ascii())->toArray($this->board, $this->flip);
@@ -50,7 +50,13 @@ class BoardToPng
             $x = 0;
             $y += 90;
         }
-        $filename = uniqid().'.png';
+
+        if ($salt) {
+            $filename = $salt.'_'.uniqid().'.png';
+        } else {
+            $filename = uniqid().'.png';
+        }
+
         $chessboard->save("{$filepath}/{$filename}");
 
         return $filename;

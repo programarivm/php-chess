@@ -36,12 +36,13 @@ class BoardToGif
 
     private function frames(string $foldername, string $filename)
     {
+        $salt = uniqid();
         $board = new Board();
         $boardToPng = new BoardToPng($board, $this->flip);
         foreach ($this->board->getHistory() as $key => $item) {
             $n = sprintf("%02d", $key);
             $board->play($item->move->color, $item->move->pgn);
-            $this->frames[] = $boardToPng->setBoard($board)->output($foldername);
+            $this->frames[] = $boardToPng->setBoard($board)->output($foldername, $filename);
         }
 
         return $this;
@@ -49,7 +50,7 @@ class BoardToGif
 
     private function animate(string $foldername, string $filename)
     {
-        exec("convert -delay 100 -loop 0 {$foldername}/*.png {$foldername}/{$filename}.gif");
+        exec("convert -delay 100 -loop 0 {$foldername}/{$filename}*.png {$foldername}/{$filename}.gif");
 
         return $this;
     }
