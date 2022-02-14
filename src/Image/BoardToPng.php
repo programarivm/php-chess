@@ -26,6 +26,13 @@ class BoardToPng
         $this->flip = $flip;
     }
 
+    public function setBoard(Board $board)
+    {
+        $this->board = $board;
+
+        return $this;
+    }
+
     public function output(string $filepath)
     {
         $chessboard = $this->imagine->open(self::FILEPATH . '/chessboard.png');
