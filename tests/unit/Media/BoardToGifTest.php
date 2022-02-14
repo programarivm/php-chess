@@ -52,6 +52,8 @@ class BoardToGifTest extends AbstractUnitTestCase
 
         $filename = (new BoardToGif($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
+        echo $filename . PHP_EOL;
+
         $this->assertSame(
             md5_file(self::OUTPUT_FOLDER.'/'.$filename),
             md5_file(self::DATA_FOLDER . '/gif/benoni_fianchetto_variation_flip.gif')

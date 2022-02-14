@@ -25,16 +25,16 @@ class BoardToGif
             throw new \InvalidArgumentException('The folder does not exist.');
         }
 
-        $filename = uniqid().'.gif';
+        $filename = uniqid();
 
-        $this->frames($foldername)
+        $this->frames($foldername, $filename)
             ->animate($foldername, $filename)
             ->cleanup($foldername, $filename);
 
-        return $filename;
+        return $filename.'.gif';
     }
 
-    private function frames(string $foldername)
+    private function frames(string $foldername, string $filename)
     {
         $board = new Board();
         $boardToPng = new BoardToPng($board, $this->flip);
@@ -49,14 +49,14 @@ class BoardToGif
 
     private function animate(string $foldername, string $filename)
     {
-        exec("convert -delay 100 -loop 0 {$foldername}/*.png {$foldername}/{$filename}");
+        exec("convert -delay 100 -loop 0 {$foldername}/*.png {$foldername}/{$filename}.gif");
 
         return $this;
     }
 
     private function cleanup(string $foldername, string $filename)
     {
-        if (file_exists("{$foldername}/$filename")) {
+        if (file_exists("{$foldername}/$filename.gif")) {
             array_map('unlink', glob($foldername . '/*.png'));
         }
     }
