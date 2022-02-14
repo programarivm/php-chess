@@ -19,6 +19,13 @@ class BoardToGif
 
     public function output(string $foldername, string $filename)
     {
+        $this->png($foldername, $filename)
+            ->animate($foldername, $filename)
+            ->cleanup($foldername, $filename);
+    }
+
+    private function png($foldername, $filename)
+    {
         $board = new Board();
         $boardToPng = new BoardToPng($board, $this->flip);
         foreach ($this->board->getHistory() as $key => $item) {
@@ -27,11 +34,20 @@ class BoardToGif
             $boardToPng->setBoard($board)->output("{$foldername}/{$n}_{$filename}.png");
         }
 
-        $this->animate($foldername, $filename);
+        return $this;
     }
 
     private function animate(string $foldername, string $filename)
     {
         exec("convert -delay 100 -loop 0 {$foldername}/*.png {$foldername}/{$filename}.gif");
+
+        return $this;
+    }
+
+    private function cleanup($foldername, $filename)
+    {
+        if (file_exists("{$foldername}/{$filename}.gif")) {
+            array_map('unlink', glob($foldername . '/*.png'));
+        }
     }
 }

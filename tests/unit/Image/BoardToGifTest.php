@@ -14,7 +14,6 @@ class BoardToGifTest extends AbstractUnitTestCase
     public static function tearDownAfterClass(): void
     {
         unlink(self::OUTPUT_FOLDER . '/tmp.gif');
-        array_map('unlink', glob(self::OUTPUT_FOLDER . '/*.png'));
     }
 
     /**
