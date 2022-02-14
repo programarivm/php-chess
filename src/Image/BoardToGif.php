@@ -19,6 +19,10 @@ class BoardToGif
 
     public function output(string $foldername, string $filename)
     {
+        if (!file_exists($foldername)) {
+            throw new \InvalidArgumentException('The folder does not exist.');
+        }
+
         $this->png($foldername, $filename)
             ->animate($foldername, $filename)
             ->cleanup($foldername, $filename);

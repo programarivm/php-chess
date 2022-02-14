@@ -19,6 +19,18 @@ class BoardToGifTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function folder_does_not_exist()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $board = (new BenoniFianchettoVariation(new Board()))->play();
+
+        (new BoardToGif($board))->output('foo', 'tmp');
+    }
+
+    /**
+     * @test
+     */
     public function output_benoni_fianchetto_variation()
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
