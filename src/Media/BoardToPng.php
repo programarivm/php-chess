@@ -50,7 +50,9 @@ class BoardToPng
             $x = 0;
             $y += 90;
         }
+        $filename = uniqid().'.png';
+        $chessboard->save("{$filepath}/{$filename}");
 
-        $chessboard->save($filepath);
+        return $filename;
     }
 }

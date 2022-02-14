@@ -19,7 +19,7 @@ class BoardToPngTest extends AbstractUnitTestCase
 
     public static function tearDownAfterClass(): void
     {
-        unlink(self::OUTPUT_FOLDER . '/tmp.png');
+        array_map('unlink', glob(self::OUTPUT_FOLDER . '/*.png'));
     }
 
     /**
@@ -29,11 +29,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/00_starting.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/00_starting.png')
         );
     }
 
@@ -45,11 +45,11 @@ class BoardToPngTest extends AbstractUnitTestCase
         $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/01_kaufman.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/01_kaufman.png')
         );
     }
 
@@ -61,11 +61,11 @@ class BoardToPngTest extends AbstractUnitTestCase
         $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
-        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/01_kaufman_flip.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/01_kaufman_flip.png')
         );
     }
 
@@ -77,11 +77,11 @@ class BoardToPngTest extends AbstractUnitTestCase
         $board = (new StringToBoard('3r2k1/p2r1p1p/1p2p1p1/q4n2/3P4/PQ5P/1P1RNPP1/3R2K1 b - - bm Nxd4'))
             ->create();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/02_kaufman.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/02_kaufman.png')
         );
     }
 
@@ -92,11 +92,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/benoni_fianchetto_variation.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/benoni_fianchetto_variation.png')
         );
     }
 
@@ -107,11 +107,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
-        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/benoni_fianchetto_variation_flip.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/benoni_fianchetto_variation_flip.png')
         );
     }
 
@@ -122,11 +122,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian())->play();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/open_sicilian.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/open_sicilian.png')
         );
     }
 
@@ -137,11 +137,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian())->play();
 
-        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/open_sicilian_flip.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/open_sicilian_flip.png')
         );
     }
 
@@ -152,11 +152,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian())->play();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/closed_sicilian.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/closed_sicilian.png')
         );
     }
 
@@ -167,11 +167,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian())->play();
 
-        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/closed_sicilian_flip.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/closed_sicilian_flip.png')
         );
     }
 
@@ -182,11 +182,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new LucenaDefense())->play();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/lucena_defense.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/lucena_defense.png')
         );
     }
 
@@ -197,11 +197,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new QueensGambitSymmetricalDefense())->play();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/symmetrical_defense_to_the_queens_gambit.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/symmetrical_defense_to_the_queens_gambit.png')
         );
     }
 
@@ -212,11 +212,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new QueensGambitSymmetricalDefense())->play();
 
-        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png')),
-            md5(file_get_contents(self::DATA_FOLDER . '/img/symmetrical_defense_to_the_queens_gambit_flip.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/symmetrical_defense_to_the_queens_gambit_flip.png')
         );
     }
 
@@ -227,11 +227,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit())->play();
 
-        (new BoardToPng($board))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::DATA_FOLDER . '/img/benko_gambit.png')),
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/benko_gambit.png')
         );
     }
 
@@ -242,11 +242,11 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit())->play();
 
-        (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER . '/tmp.png');
+        $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
         $this->assertSame(
-            md5(file_get_contents(self::DATA_FOLDER . '/img/benko_gambit_flip.png')),
-            md5(file_get_contents(self::OUTPUT_FOLDER . '/tmp.png'))
+            md5_file(self::OUTPUT_FOLDER.'/'.$filename),
+            md5_file(self::DATA_FOLDER.'/img/benko_gambit_flip.png')
         );
     }
 }
