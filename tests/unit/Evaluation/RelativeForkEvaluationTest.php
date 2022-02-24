@@ -260,4 +260,22 @@ class RelativeForkEvaluationTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $absForkEvald);
     }
+
+    /**
+     * @test
+     */
+    public function d44_semi_slav_defense_botvinnik_variation_szabo_variation()
+    {
+        $board = (new StringToBoard('rnbqkb1r/p4p2/2p1pn1p/1p2P1p1/2pP3B/2N2N2/PP3PPP/R2QKB1R w KQkq g6'))
+            ->create();
+
+        $expected = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $absForkEvald);
+    }
 }
