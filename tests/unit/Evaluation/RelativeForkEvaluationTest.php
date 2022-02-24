@@ -242,4 +242,22 @@ class RelativeForkEvaluationTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $absForkEvald);
     }
+
+    /**
+     * @test
+     */
+    public function b17_caro_kann_defense_karpov_variation_modern_main_line()
+    {
+        $board = (new StringToBoard('r1bqk2r/pp1n1pp1/2pbpn1p/6N1/3P4/3B1N2/PPP1QPPP/R1B1K2R w KQkq -'))
+            ->create();
+
+        $expected = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $absForkEvald);
+    }
 }
