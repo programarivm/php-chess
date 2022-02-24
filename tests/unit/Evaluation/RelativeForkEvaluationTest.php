@@ -224,4 +224,22 @@ class RelativeForkEvaluationTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $absForkEvald);
     }
+
+    /**
+     * @test
+     */
+    public function a30_english_opening_symmetrical_hedgehog_flexible_formation()
+    {
+        $board = (new StringToBoard('rn1qk2r/pb1pbppp/1p2pn2/8/2Pp4/2N2NP1/PP2PPBP/R1BQ1RK1 w kq -'))
+            ->create();
+
+        $expected = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $absForkEvald = (new RelativeForkEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $absForkEvald);
+    }
 }
