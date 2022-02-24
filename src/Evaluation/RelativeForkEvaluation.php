@@ -24,7 +24,7 @@ class RelativeForkEvaluation extends AbstractForkEvaluation
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getIdentity() !== Symbol::KING) {
                 $attackedPieces = $this->attackedPieces($piece);
-                if (!$this->isKingAttacked($attackedPieces)) {
+                if (count($attackedPieces) >= 2 && !$this->isKingAttacked($attackedPieces)) {
                     $this->result[$piece->getColor()] = $this->sumValues($piece, $attackedPieces);
                 }
             }
