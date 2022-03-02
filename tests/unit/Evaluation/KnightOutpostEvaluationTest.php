@@ -48,6 +48,19 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         $this->assertSame($expected, $knightOutpostEvald);
     }
 
+    /**
+     * @dataProvider bKnightAdvancingAlongAFileAttackedByAPawnData
+     * @test
+     */
+    public function b_knight_advancing_along_a_file_attacked_by_a_pawn($expected, $fen)
+    {
+        $board = (new StringToBoard($fen))->create();
+
+        $knightOutpostEvald = (new KnightOutpostEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $knightOutpostEvald);
+    }
+
     public function wKnightAdvancingAlongAFileData()
     {
         return [
@@ -174,6 +187,40 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
                     'b' => 0,
                 ],
                 '8/8/8/8/8/8/K6p/2k3n1 w - -',
+            ],
+        ];
+    }
+
+    public function bKnightAdvancingAlongAFileAttackedByAPawnData()
+    {
+        return [
+            [
+                [
+                    'w' => 0,
+                    'b' => 0,
+                ],
+                '8/7p/6n1/5P2/8/8/K7/2k5 w - -',
+            ],
+            [
+                [
+                    'w' => 0,
+                    'b' => 0,
+                ],
+                '8/8/7p/6n1/5P2/8/K7/2k5 w - -',
+            ],
+            [
+                [
+                    'w' => 0,
+                    'b' => 0,
+                ],
+                '8/8/8/7p/6n1/5P2/K7/2k5 w - -',
+            ],
+            [
+                [
+                    'w' => 0,
+                    'b' => 0,
+                ],
+                '8/8/8/8/7p/6n1/K4P2/2k5 w - -',
             ],
         ];
     }
