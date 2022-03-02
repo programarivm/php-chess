@@ -5,7 +5,7 @@ namespace Chess\Evaluation;
 use Chess\Board;
 use Chess\PGN\Symbol;
 
-class SquareOutpostEvaluation extends AbstractOutpostEvaluation
+class SquareOutpostEvaluation extends AbstractEvaluation
 {
     const NAME = 'square_outpost';
 
