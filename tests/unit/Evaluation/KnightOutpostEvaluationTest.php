@@ -3,11 +3,11 @@
 namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
-use Chess\Evaluation\OutpostEvaluation;
+use Chess\Evaluation\KnightOutpostEvaluation;
 use Chess\FEN\StringToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
-class OutpostEvaluationTest extends AbstractUnitTestCase
+class KnightOutpostEvaluationTest extends AbstractUnitTestCase
 {
     /**
      * @dataProvider wKnightAdvancingAlongAFileData
@@ -17,9 +17,9 @@ class OutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $outpostEvald = (new OutpostEvaluation($board))->evaluate();
+        $knightOutpostEvald = (new KnightOutpostEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $outpostEvald);
+        $this->assertSame($expected, $knightOutpostEvald);
     }
 
     /**
@@ -30,9 +30,9 @@ class OutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $outpostEvald = (new OutpostEvaluation($board))->evaluate();
+        $knightOutpostEvald = (new KnightOutpostEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $outpostEvald);
+        $this->assertSame($expected, $knightOutpostEvald);
     }
 
     public function wKnightAdvancingAlongAFileData()

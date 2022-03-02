@@ -5,9 +5,9 @@ namespace Chess\Evaluation;
 use Chess\Board;
 use Chess\PGN\Symbol;
 
-class OutpostEvaluation extends AbstractEvaluation
+class KnightOutpostEvaluation extends AbstractOutpostEvaluation
 {
-    const NAME = 'outpost';
+    const NAME = 'knigt_outpost';
 
     public function __construct(Board $board)
     {
