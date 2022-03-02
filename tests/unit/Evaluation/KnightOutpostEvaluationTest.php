@@ -10,10 +10,10 @@ use Chess\Tests\AbstractUnitTestCase;
 class KnightOutpostEvaluationTest extends AbstractUnitTestCase
 {
     /**
-     * @dataProvider wKnightAdvancingAlongAFileData
+     * @dataProvider wKnightAdvancingData
      * @test
      */
-    public function w_knight_advancing_along_a_file($expected, $fen)
+    public function w_knight_advancing($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -23,10 +23,10 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider wKnightAdvancingAlongAFileAttackedByAPawnData
+     * @dataProvider wKnightAdvancingUnderAttackData
      * @test
      */
-    public function w_knight_advancing_along_a_file_attacked_by_a_pawn($expected, $fen)
+    public function w_knight_advancing_under_attack($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -36,10 +36,10 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider bKnightAdvancingAlongAFileData
+     * @dataProvider bKnightAdvancingData
      * @test
      */
-    public function b_knight_advancing_along_a_file($expected, $fen)
+    public function b_knight_advancing($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -49,10 +49,10 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider bKnightAdvancingAlongAFileAttackedByAPawnData
+     * @dataProvider bKnightAdvancingUnderAttackData
      * @test
      */
-    public function b_knight_advancing_along_a_file_attacked_by_a_pawn($expected, $fen)
+    public function b_knight_advancing_under_attack($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -61,7 +61,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         $this->assertSame($expected, $knightOutpostEvald);
     }
 
-    public function wKnightAdvancingAlongAFileData()
+    public function wKnightAdvancingData()
     {
         return [
             [
@@ -109,7 +109,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         ];
     }
 
-    public function wKnightAdvancingAlongAFileAttackedByAPawnData()
+    public function wKnightAdvancingUnderAttackData()
     {
         return [
             [
@@ -143,7 +143,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         ];
     }
 
-    public function bKnightAdvancingAlongAFileData()
+    public function bKnightAdvancingData()
     {
         return [
             [
@@ -191,7 +191,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         ];
     }
 
-    public function bKnightAdvancingAlongAFileAttackedByAPawnData()
+    public function bKnightAdvancingUnderAttackData()
     {
         return [
             [
