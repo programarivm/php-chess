@@ -10,10 +10,10 @@ use Chess\Tests\AbstractUnitTestCase;
 class KnightOutpostEvaluationTest extends AbstractUnitTestCase
 {
     /**
-     * @dataProvider wKnightAdvancingData
+     * @dataProvider wAdvancingData
      * @test
      */
-    public function w_knight_advancing($expected, $fen)
+    public function w_advancing($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -23,10 +23,10 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider wKnightAdvancingUnderAttackData
+     * @dataProvider wAdvancingUnderAttackData
      * @test
      */
-    public function w_knight_advancing_under_attack($expected, $fen)
+    public function w_advancing_under_attack($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -36,10 +36,10 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider wKnightAdvancingCanBeAttackedData
+     * @dataProvider wAdvancingCanBeAttackedData
      * @test
      */
-    public function w_knight_advancing_can_be_attacked($expected, $fen)
+    public function w_advancing_can_be_attacked($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -49,10 +49,10 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider bKnightAdvancingData
+     * @dataProvider bAdvancingData
      * @test
      */
-    public function b_knight_advancing($expected, $fen)
+    public function b_advancing($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -62,10 +62,10 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider bKnightAdvancingUnderAttackData
+     * @dataProvider bAdvancingUnderAttackData
      * @test
      */
-    public function b_knight_advancing_under_attack($expected, $fen)
+    public function b_advancing_under_attack($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -75,10 +75,10 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider bKnightAdvancingCanBeAttackedData
+     * @dataProvider bAdvancingCanBeAttackedData
      * @test
      */
-    public function b_knight_advancing_can_be_attacked($expected, $fen)
+    public function b_advancing_can_be_attacked($expected, $fen)
     {
         $board = (new StringToBoard($fen))->create();
 
@@ -87,7 +87,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         $this->assertSame($expected, $knightOutpostEvald);
     }
 
-    public function wKnightAdvancingData()
+    public function wAdvancingData()
     {
         return [
             [
@@ -135,7 +135,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         ];
     }
 
-    public function wKnightAdvancingUnderAttackData()
+    public function wAdvancingUnderAttackData()
     {
         return [
             [
@@ -169,7 +169,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         ];
     }
 
-    public function wKnightAdvancingCanBeAttackedData()
+    public function wAdvancingCanBeAttackedData()
     {
         return [
             [
@@ -217,7 +217,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         ];
     }
 
-    public function bKnightAdvancingData()
+    public function bAdvancingData()
     {
         return [
             [
@@ -265,7 +265,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         ];
     }
 
-    public function bKnightAdvancingUnderAttackData()
+    public function bAdvancingUnderAttackData()
     {
         return [
             [
@@ -299,7 +299,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         ];
     }
 
-    public function bKnightAdvancingCanBeAttackedData()
+    public function bAdvancingCanBeAttackedData()
     {
         return [
             [
