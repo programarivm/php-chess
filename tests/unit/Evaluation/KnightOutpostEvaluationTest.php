@@ -74,6 +74,19 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
         $this->assertSame($expected, $knightOutpostEvald);
     }
 
+    /**
+     * @dataProvider bKnightAdvancingCanBeAttackedData
+     * @test
+     */
+    public function b_knight_advancing_can_be_attacked($expected, $fen)
+    {
+        $board = (new StringToBoard($fen))->create();
+
+        $knightOutpostEvald = (new KnightOutpostEvaluation($board))->evaluate();
+
+        $this->assertSame($expected, $knightOutpostEvald);
+    }
+
     public function wKnightAdvancingData()
     {
         return [
@@ -282,6 +295,54 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
                     'b' => 0,
                 ],
                 '8/8/8/8/7p/6n1/K4P2/2k5 w - -',
+            ],
+        ];
+    }
+
+    public function bKnightAdvancingCanBeAttackedData()
+    {
+        return [
+            [
+                [
+                    'w' => 0,
+                    'b' => 0,
+                ],
+                '8/7p/6n1/8/8/8/K7/2k5 w - -',
+            ],
+            [
+                [
+                    'w' => 0,
+                    'b' => 0,
+                ],
+                '8/8/7p/6n1/5P2/8/K7/2k5 w - -',
+            ],
+            [
+                [
+                    'w' => 1,
+                    'b' => 0,
+                ],
+                '8/8/8/7p/5Pn1/8/K7/2k5 w - -',
+            ],
+            [
+                [
+                    'w' => 1,
+                    'b' => 0,
+                ],
+                '8/8/8/8/5P1p/6n1/K7/2k5 w - -',
+            ],
+            [
+                [
+                    'w' => 1,
+                    'b' => 0,
+                ],
+                '8/8/8/8/5P2/7p/K5n1/2k5 w - -',
+            ],
+            [
+                [
+                    'w' => 0,
+                    'b' => 0,
+                ],
+                '8/8/8/8/5P2/8/K6p/2k3n1 w - -',
             ],
         ];
     }
