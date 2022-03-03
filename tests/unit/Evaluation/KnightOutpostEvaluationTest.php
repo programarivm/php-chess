@@ -229,29 +229,29 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
             ],
             [
                 [
-                    'w' => 1,
-                    'b' => 0,
+                    'w' => 0,
+                    'b' => 1,
                 ],
                 '8/8/7p/6n1/8/8/K7/2k5 w - -',
             ],
             [
                 [
-                    'w' => 1,
-                    'b' => 0,
+                    'w' => 0,
+                    'b' => 1,
                 ],
                 '8/8/8/7p/6n1/8/K7/2k5 w - -',
             ],
             [
                 [
-                    'w' => 1,
-                    'b' => 0,
+                    'w' => 0,
+                    'b' => 1,
                 ],
                 '8/8/8/8/7p/6n1/K7/2k5 w - -',
             ],
             [
                 [
-                    'w' => 1,
-                    'b' => 0,
+                    'w' => 0,
+                    'b' => 1,
                 ],
                 '8/8/8/8/8/7p/K5n1/2k5 w - -',
             ],
@@ -307,7 +307,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
                     'w' => 0,
                     'b' => 0,
                 ],
-                '8/7p/6n1/8/8/8/K7/2k5 w - -',
+                '8/7p/6n1/8/5P2/8/K7/2k5 w - -',
             ],
             [
                 [
@@ -318,22 +318,22 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
             ],
             [
                 [
-                    'w' => 1,
-                    'b' => 0,
+                    'w' => 0,
+                    'b' => 1,
                 ],
                 '8/8/8/7p/5Pn1/8/K7/2k5 w - -',
             ],
             [
                 [
-                    'w' => 1,
-                    'b' => 0,
+                    'w' => 0,
+                    'b' => 1,
                 ],
                 '8/8/8/8/5P1p/6n1/K7/2k5 w - -',
             ],
             [
                 [
-                    'w' => 1,
-                    'b' => 0,
+                    'w' => 0,
+                    'b' => 1,
                 ],
                 '8/8/8/8/5P2/7p/K5n1/2k5 w - -',
             ],
