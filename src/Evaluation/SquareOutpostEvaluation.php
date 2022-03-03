@@ -10,16 +10,9 @@ class SquareOutpostEvaluation extends AbstractEvaluation
 {
     const NAME = 'square_outpost';
 
-    protected $positions = [
-        Symbol::WHITE => [],
-        Symbol::BLACK => [],
-    ];
-
     public function __construct(Board $board)
     {
         parent::__construct($board);
-
-        $this->positions();
 
         $this->result = [
             Symbol::WHITE => [],
@@ -27,23 +20,12 @@ class SquareOutpostEvaluation extends AbstractEvaluation
         ];
     }
 
-    protected function positions()
-    {
-        foreach ($this->board->getPieces() as $piece) {
-            if ($piece->getIdentity() === Symbol::PAWN) {
-                $this->positions[$piece->getColor()][] = $piece->getPosition();
-            }
-        }
-
-        return $this;
-    }
-
     public function evaluate(): array
     {
+        $ranks = [3, 4, 5, 6];
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getIdentity() === Symbol::PAWN) {
                 $captureSquares = $piece->getCaptureSquares();
-                $lFile = $rFile = '';
                 if ($piece->getColor() === Symbol::WHITE) {
                     $lFile = chr(ord($piece->getFile()) - 2);
                     $rFile = chr(ord($piece->getFile()) + 2);
@@ -52,29 +34,37 @@ class SquareOutpostEvaluation extends AbstractEvaluation
                     $rFile = chr(ord($piece->getFile()) - 2);
                     rsort($captureSquares);
                 }
-                !$this->opposition($piece, $lFile)
-                    ? $this->results[$piece->getColor()][] = $captureSquares[0]
-                    : null;
-                !$this->opposition($piece, $rFile)
-                    ? $this->results[$piece->getColor()][] = $captureSquares[1]
-                    : null;
+                if (in_array($piece->getPosition()[1], $ranks)) {
+                    $this->opposition($piece, $lFile) ?: $this->result[$piece->getColor()][] = $captureSquares[0];
+                    if (!$this->opposition($piece, $rFile)) {
+                        $this->result[$piece->getColor()][] = $captureSquares[0];
+                        empty($captureSquares[1]) ?: $this->result[$piece->getColor()][] = $captureSquares[1];
+                    }
+                }
             }
         }
+        $this->result[Symbol::WHITE] = array_unique($this->result[Symbol::WHITE]);
+        $this->result[Symbol::BLACK] = array_unique($this->result[Symbol::BLACK]);
+        sort($this->result[Symbol::WHITE]);
+        sort($this->result[Symbol::BLACK]);
 
-        return $this;
+        return $this->result;
     }
 
     protected function opposition(Pawn $pawn, $file)
     {
-        for ($i = 1; $i < 9; $i++) {
+        if (!($file >= 'a' && $file <= 'h')) {
+            return true;
+        }
+        for ($i = 2; $i < 8; $i++) {
             if ($piece = $this->board->getPieceByPosition($file.$i)) {
                 if ($piece->getIdentity() === Symbol::PAWN) {
-                    if ($piece->getColor() === Symbol::WHITE) {
-                        if ($pawn->getRank() >= $piece->getRank() - 1) {
+                    if ($pawn->getColor() === Symbol::WHITE) {
+                        if ($pawn->getPosition()[1] + 2 <= $piece->getPosition()[1]) {
                             return true;
                         }
                     } else {
-                        if ($pawn->getRank() <= $piece->getRank() + 1) {
+                        if ($pawn->getPosition()[1] - 2 >= $piece->getPosition()[1]) {
                             return true;
                         }
                     }
