@@ -67,15 +67,16 @@ class SquareOutpostEvaluation extends AbstractEvaluation
     protected function opposition(Pawn $pawn, $file)
     {
         for ($i = 1; $i < 9; $i++) {
-            $piece = $this->board->getPieceByPosition($file.$i);
-            if ($piece->getIdentity() === Symbol::PAWN) {
-                if ($piece->getColor() === Symbol::WHITE) {
-                    if ($pawn->getRank() >= $piece->getRank() - 1) {
-                        return true;
-                    }
-                } else {
-                    if ($pawn->getRank() <= $piece->getRank() + 1) {
-                        return true;
+            if ($piece = $this->board->getPieceByPosition($file.$i)) {
+                if ($piece->getIdentity() === Symbol::PAWN) {
+                    if ($piece->getColor() === Symbol::WHITE) {
+                        if ($pawn->getRank() >= $piece->getRank() - 1) {
+                            return true;
+                        }
+                    } else {
+                        if ($pawn->getRank() <= $piece->getRank() + 1) {
+                            return true;
+                        }
                     }
                 }
             }
