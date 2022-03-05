@@ -21,6 +21,7 @@ use Chess\Evaluation\AbsoluteForkEvaluation;
 use Chess\Evaluation\RelativeForkEvaluation;
 use Chess\Evaluation\SquareOutpostEvaluation;
 use Chess\Evaluation\KnightOutpostEvaluation;
+use Chess\Evaluation\BishopOutpostEvaluation;
 use Chess\PGN\Symbol;
 
 /**
@@ -53,7 +54,7 @@ class HeuristicPicture extends Player
      * @var array
      */
     protected $dimensions = [
-        MaterialEvaluation::class => 15,
+        MaterialEvaluation::class => 10,
         CenterEvaluation::class => 5,
         ConnectivityEvaluation::class => 5,
         SpaceEvaluation::class => 5,
@@ -71,6 +72,7 @@ class HeuristicPicture extends Player
         RelativeForkEvaluation::class => 5,
         SquareOutpostEvaluation::class => 5,
         KnightOutpostEvaluation::class => 5,
+        BishopOutpostEvaluation::class => 5,
     ];
 
     /**
