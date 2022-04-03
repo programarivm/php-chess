@@ -12,7 +12,7 @@ class BoardToPng
     const FILEPATH = __DIR__ . '/../../img';
 
     const SIZES = [
-        480 => 65,
+        480 => 60,
         3000 => 375,
     ];
 
