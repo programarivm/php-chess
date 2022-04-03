@@ -42,7 +42,7 @@ class AbstractBoardToImg
         return $this;
     }
 
-    protected function chessboard(string $filepath, string $salt = '')
+    protected function chessboard(string $filepath)
     {
         $chessboard = $this->imagine->open(self::FILEPATH.'/chessboard/'.$this->size.'.png');
         $array = (new Ascii())->toArray($this->board, $this->flip);

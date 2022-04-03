@@ -4,12 +4,13 @@ namespace Chess\Media;
 
 class BoardToPng extends AbstractBoardToImg
 {
-    public function output(string $filepath, string $salt = '')
-    {
-        $salt ? $filename = $salt.'_'.uniqid().'.png' : $filename = uniqid().'.png';
+    const EXT = '.png';
 
-        $this->chessboard($filepath, $salt)
-            ->save("{$filepath}/{$filename}");
+    public function output(string $filepath)
+    {
+        $filename = uniqid().self::EXT;
+
+        $this->chessboard($filepath)->save("{$filepath}/{$filename}");
 
         return $filename;
     }
