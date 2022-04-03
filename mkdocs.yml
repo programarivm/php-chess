@@ -10,8 +10,9 @@ pages:
   - Chess\FEN\BoardToString: fen-board-to-string.md
   - Chess\FEN\StringToBoard: fen-string-to-board.md
   - Chess\FEN\Validate: fen-validate.md
-  - Chess\Media\BoardToPng: media-board-to-png.md
+  - Chess\Media\BoardToJpg: media-board-to-jpg.md
   - Chess\Media\BoardToMp4: media-board-to-mp4.md
+  - Chess\Media\BoardToPng: media-board-to-png.md
   - Chess\PGN\Movetext: pgn-movetext.md
   - Command Line Interface: cli.md
   - Usage: usage.md
