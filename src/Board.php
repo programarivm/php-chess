@@ -2,7 +2,6 @@
 
 namespace Chess;
 
-use Chess\Castling\Can as CastlingCan;
 use Chess\Castling\Initialization as CastlingInit;
 use Chess\Castling\Rule as CastlingRule;
 use Chess\Exception\BoardException;
@@ -550,12 +549,12 @@ final class Board extends \SplObjectStorage
             $piece = current($pieces);
             switch ($piece->getMove()->type) {
                 case Move::KING_CASTLING_SHORT:
-                    CastlingCan::short($this->turn, $this->castling, $this->space)
+                    CastlingRule::short($this->turn, $this->castling, $this->space)
                         ? $isLegalMove = $this->castle($piece)
                         : $isLegalMove = false;
                     break;
                 case Move::KING_CASTLING_LONG:
-                    CastlingCan::long($this->turn, $this->castling, $this->space)
+                    CastlingRule::long($this->turn, $this->castling, $this->space)
                         ? $isLegalMove = $this->castle($piece)
                         : $isLegalMove = false;
                     break;
