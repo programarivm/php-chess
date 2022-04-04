@@ -170,7 +170,7 @@ class Game
      */
     public function piece(string $sq): ?\stdClass
     {
-        if ($piece = $this->board->getPieceBySquare(Validate::square($sq))) {
+        if ($piece = $this->board->getPieceBySquare(Validate::sq($sq))) {
             $moves = [];
             $color = $piece->getColor();
             foreach ($piece->getSquares() as $sq) {

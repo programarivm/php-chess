@@ -122,7 +122,7 @@ class Pawn extends AbstractPiece
     {
         // next rank
         try {
-            if (Validate::square($this->file . $this->ranks->next, true)) {
+            if (Validate::sq($this->file . $this->ranks->next, true)) {
                 $this->scope->up[] = $this->file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
@@ -140,7 +140,7 @@ class Pawn extends AbstractPiece
         // capture square
         try {
             $file = chr(ord($this->file) - 1);
-            if (Validate::square($file.$this->ranks->next, true)) {
+            if (Validate::sq($file.$this->ranks->next, true)) {
                 $this->captureSquares[] = $file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
@@ -150,7 +150,7 @@ class Pawn extends AbstractPiece
         // capture square
         try {
             $file = chr(ord($this->file) + 1);
-            if (Validate::square($file.$this->ranks->next, true)) {
+            if (Validate::sq($file.$this->ranks->next, true)) {
                 $this->captureSquares[] = $file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {

@@ -27,7 +27,7 @@ class Rule
                 return [
                     Symbol::KING => [
                         Symbol::CASTLING_SHORT => [
-                            'squares' => [
+                            'sqs' => [
                                 'f' => 'f1',
                                 'g' => 'g1',
                             ],
@@ -37,7 +37,7 @@ class Rule
                             ],
                         ],
                         Symbol::CASTLING_LONG => [
-                            'squares' => [
+                            'sqs' => [
                                 'b' => 'b1',
                                 'c' => 'c1',
                                 'd' => 'd1',
@@ -68,7 +68,7 @@ class Rule
                 return [
                     Symbol::KING => [
                         Symbol::CASTLING_SHORT => [
-                            'squares' => [
+                            'sqs' => [
                                 'f' => 'f8',
                                 'g' => 'g8',
                             ],
@@ -78,7 +78,7 @@ class Rule
                             ],
                         ],
                         Symbol::CASTLING_LONG => [
-                            'squares' => [
+                            'sqs' => [
                                 'b' => 'b8',
                                 'c' => 'c8',
                                 'd' => 'd8',

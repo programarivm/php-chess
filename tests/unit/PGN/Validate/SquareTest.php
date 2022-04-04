@@ -14,7 +14,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        Validate::square(9);
+        Validate::sq(9);
     }
 
     /**
@@ -24,7 +24,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        Validate::square(9.75);
+        Validate::sq(9.75);
     }
 
     /**
@@ -34,7 +34,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        Validate::square('a9');
+        Validate::sq('a9');
     }
 
     /**
@@ -44,7 +44,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        Validate::square('foo');
+        Validate::sq('foo');
     }
 
     /**
@@ -52,6 +52,6 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function e4()
     {
-        $this->assertSame(Validate::square('e4'), 'e4');
+        $this->assertSame(Validate::sq('e4'), 'e4');
     }
 }

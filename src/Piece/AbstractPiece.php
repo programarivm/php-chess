@@ -75,7 +75,7 @@ abstract class AbstractPiece implements Piece
     public function __construct(string $color, string $sq, string $identity)
     {
         $this->color = Validate::color($color);
-        $this->position = Validate::square($sq);
+        $this->position = Validate::sq($sq);
         $this->identity = $identity;
     }
 

@@ -821,7 +821,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function opponent_threatening_castling_squares()
+    public function opponent_threatening_castling_sqs()
     {
         $pieces = [
             new Pawn('w', 'a2'),

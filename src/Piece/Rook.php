@@ -71,7 +71,7 @@ class Rook extends Slider
         try {
             $file = $this->position[0];
             $rank = (int)$this->position[1] + 1;
-            while (Validate::square($file.$rank)) {
+            while (Validate::sq($file.$rank)) {
                 $this->scope->up[] = $file . $rank;
                 $rank = (int)$rank + 1;
             }
@@ -83,7 +83,7 @@ class Rook extends Slider
         try {
             $file = $this->position[0];
             $rank = (int)$this->position[1] - 1;
-            while (Validate::square($file.$rank)) {
+            while (Validate::sq($file.$rank)) {
                 $this->scope->bottom[] = $file . $rank;
                 $rank = (int)$rank - 1;
             }
@@ -95,7 +95,7 @@ class Rook extends Slider
         try {
             $file = chr(ord($this->position[0]) - 1);
             $rank = (int)$this->position[1];
-            while (Validate::square($file.$rank)) {
+            while (Validate::sq($file.$rank)) {
                 $this->scope->left[] = $file . $rank;
                 $file = chr(ord($file) - 1);
             }
@@ -107,7 +107,7 @@ class Rook extends Slider
         try {
             $file = chr(ord($this->position[0]) + 1);
             $rank = (int)$this->position[1];
-            while (Validate::square($file.$rank)) {
+            while (Validate::sq($file.$rank)) {
                 $this->scope->right[] = $file . $rank;
                 $file = chr(ord($file) + 1);
             }

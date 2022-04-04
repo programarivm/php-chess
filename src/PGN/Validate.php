@@ -38,7 +38,7 @@ class Validate
      * @return string if the square is valid
      * @throws UnknownNotationException
      */
-    public static function square(string $sq): string
+    public static function sq(string $sq): string
     {
         if (!preg_match('/^' . Symbol::SQUARE . '$/', $sq)) {
             throw new UnknownNotationException("This square is not valid: $sq.");

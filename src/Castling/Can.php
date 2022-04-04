@@ -25,11 +25,11 @@ class Can
     {
         return $castling[$color][Symbol::CASTLING_SHORT] &&
             !(in_array(
-                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['squares']['f'],
+                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['sqs']['f'],
                 $space->{Symbol::oppColor($color)})
              ) &&
             !(in_array(
-                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['squares']['g'],
+                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['sqs']['g'],
                 $space->{Symbol::oppColor($color)})
              );
     }
@@ -46,15 +46,15 @@ class Can
     {
         return $castling[$color][Symbol::CASTLING_LONG] &&
             !(in_array(
-                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['squares']['b'],
+                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['b'],
                 $space->{Symbol::oppColor($color)})
              ) &&
             !(in_array(
-                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['squares']['c'],
+                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['c'],
                 $space->{Symbol::oppColor($color)})
              ) &&
             !(in_array(
-                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['squares']['d'],
+                CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['d'],
                 $space->{Symbol::oppColor($color)})
              );
     }

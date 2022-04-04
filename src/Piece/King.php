@@ -49,12 +49,12 @@ class King extends AbstractPiece
         if (!$this->board->getCastling()[$this->getColor()]['castled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLING_LONG]) {
                 if (
-                    in_array($rule['squares']['b'], $this->board->getSquares()->free) &&
-                    in_array($rule['squares']['c'], $this->board->getSquares()->free) &&
-                    in_array($rule['squares']['d'], $this->board->getSquares()->free) &&
-                    !in_array($rule['squares']['b'], $this->board->getSpace()->{$this->getOppColor()}) &&
-                    !in_array($rule['squares']['c'], $this->board->getSpace()->{$this->getOppColor()}) &&
-                    !in_array($rule['squares']['d'], $this->board->getSpace()->{$this->getOppColor()})
+                    in_array($rule['sqs']['b'], $this->board->getSquares()->free) &&
+                    in_array($rule['sqs']['c'], $this->board->getSquares()->free) &&
+                    in_array($rule['sqs']['d'], $this->board->getSquares()->free) &&
+                    !in_array($rule['sqs']['b'], $this->board->getSpace()->{$this->getOppColor()}) &&
+                    !in_array($rule['sqs']['c'], $this->board->getSpace()->{$this->getOppColor()}) &&
+                    !in_array($rule['sqs']['d'], $this->board->getSpace()->{$this->getOppColor()})
                 ) {
                     return $rule['position']['next'];
                 }
@@ -70,10 +70,10 @@ class King extends AbstractPiece
         if (!$this->board->getCastling()[$this->getColor()]['castled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLING_SHORT]) {
                 if (
-                    in_array($rule['squares']['f'], $this->board->getSquares()->free) &&
-                    in_array($rule['squares']['g'], $this->board->getSquares()->free) &&
-                    !in_array($rule['squares']['f'], $this->board->getSpace()->{$this->getOppColor()}) &&
-                    !in_array($rule['squares']['g'], $this->board->getSpace()->{$this->getOppColor()})
+                    in_array($rule['sqs']['f'], $this->board->getSquares()->free) &&
+                    in_array($rule['sqs']['g'], $this->board->getSquares()->free) &&
+                    !in_array($rule['sqs']['f'], $this->board->getSpace()->{$this->getOppColor()}) &&
+                    !in_array($rule['sqs']['g'], $this->board->getSpace()->{$this->getOppColor()})
                 ) {
                     return $rule['position']['next'];
                 }
