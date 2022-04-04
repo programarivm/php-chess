@@ -531,7 +531,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Calculates if a chess move is legal.
+     * Checks out if a chess move is legal.
      *
      * @param \stdClass $move
      * @return bool true if the move is legal; otherwise false
@@ -797,7 +797,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Calculates if the board is in check when a piece is moved.
+     * Checks out if the board is in check when a piece is moved.
      *
      * @param \Chess\Piece\Piece $piece
      * @return bool
@@ -822,26 +822,11 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Calculates whether the current player is in check.
+     * Checks out whether a player is trapped.
      *
      * @return bool
      */
-    public function isCheck(): bool
-    {
-        $king = $this->getPiece($this->turn, Symbol::KING);
-
-        return in_array(
-            $king->getPosition(),
-            $this->pressure->{$king->getOppColor()}
-        );
-    }
-
-    /**
-     * Calculates whether the current player is checkmated.
-     *
-     * @return bool
-     */
-    public function isMate(): bool
+    private function isTrapped(): bool
     {
         $escape = 0;
         foreach ($this->getPiecesByColor($this->turn) as $piece) {
@@ -884,29 +869,42 @@ final class Board extends \SplObjectStorage
             }
         }
 
-        return $escape === 0 && !empty($this->getSquaresByColor($this->turn));
-    }
-
-    public function getSquaresByColor(string $color)
-    {
-        $sqs = [];
-        foreach ($this->getPiecesByColor($this->turn) as $piece) {
-            foreach ($piece->getSquares() as $sq) {
-                $sqs[] = $sq;
-            }
-        }
-
-        return $sqs;
+        return $escape === 0;
     }
 
     /**
-     * Calculates whether the current player is stalemated.
+     * Checks out whether a player is in check.
+     *
+     * @return bool
+     */
+    public function isCheck(): bool
+    {
+        $king = $this->getPiece($this->turn, Symbol::KING);
+
+        return in_array(
+            $king->getPosition(),
+            $this->pressure->{$king->getOppColor()}
+        );
+    }
+
+    /**
+     * Checks out whether a player is checkmated.
+     *
+     * @return bool
+     */
+    public function isMate(): bool
+    {
+        return $this->isTrapped() && $this->isCheck();
+    }
+
+    /**
+     * Checks out whether a player is stalemated.
      *
      * @return bool
      */
     public function isStalemate(): bool
     {
-        return !$this->isMate() && empty($this->getSquaresByColor($this->turn));
+        return $this->isTrapped() && !$this->isCheck();
     }
 
     public function getMoves()

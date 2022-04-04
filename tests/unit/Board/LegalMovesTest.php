@@ -1149,7 +1149,7 @@ class LegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function king_and_queen_vs_king_stalemated()
+    public function king_and_queen_vs_king_stalemate()
     {
         $pieces = [
             new King('b', 'h1'),
@@ -1172,6 +1172,68 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $board = (new Board($pieces, $castling))->setTurn('b');
 
+        $this->assertFalse($board->isMate());
+        $this->assertTrue($board->isStalemate());
+    }
+
+    /**
+     * @test
+     */
+    public function king_and_pawn_vs_king_stalemate()
+    {
+        $pieces = [
+            new King('w', 'f6'),
+            new Pawn('w', 'f7'),
+            new King('b', 'f8'),
+        ];
+
+        $castling = [
+            'w' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ],
+            'b' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ]
+        ];
+
+        $board = (new Board($pieces, $castling))->setTurn('b');
+
+        $this->assertFalse($board->isMate());
+        $this->assertTrue($board->isStalemate());
+    }
+
+    /**
+     * @test
+     */
+    public function king_and_rook_vs_king_and_bishop_stalemate()
+    {
+        $pieces = [
+            new King('w', 'b6'),
+            new Rook('w', 'h8', RookType::CASTLING_LONG),
+            new King('b', 'a8'),
+            new Bishop('b', 'b8'),
+        ];
+
+        $castling = [
+            'w' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ],
+            'b' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ]
+        ];
+
+        $board = (new Board($pieces, $castling))->setTurn('b');
+
+        $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
     }
 }
