@@ -1145,4 +1145,33 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $this->assertNotEmpty($board->getPieceByPosition('b1')->getLegalMoves());
     }
+
+    /**
+     * @test
+     */
+    public function king_and_queen_vs_king_stalemated()
+    {
+        $pieces = [
+            new King('b', 'h1'),
+            new King('w', 'a8'),
+            new Queen('w', 'f2'),
+        ];
+
+        $castling = [
+            'w' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ],
+            'b' => [
+                'castled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ]
+        ];
+
+        $board = (new Board($pieces, $castling))->setTurn('b');
+
+        $this->assertTrue($board->isStalemate());
+    }
 }

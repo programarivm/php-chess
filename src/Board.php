@@ -902,7 +902,29 @@ final class Board extends \SplObjectStorage
             }
         }
 
-        return $escape === 0;
+        return $escape === 0 && !empty($this->legalMovesByColor($this->turn));
+    }
+
+    public function legalMovesByColor(string $color)
+    {
+        $squares = [];
+        foreach ($this->getPiecesByColor($this->turn) as $piece) {
+            foreach ($piece->getLegalMoves() as $square) {
+                $squares[] = $square;
+            }
+        }
+
+        return $squares;
+    }
+
+    /**
+     * Calculates whether the current player is stalemated.
+     *
+     * @return bool
+     */
+    public function isStalemate(): bool
+    {
+        return !$this->isMate() && empty($this->legalMovesByColor($this->turn));
     }
 
     public function getPossibleMoves()
