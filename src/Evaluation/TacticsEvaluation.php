@@ -65,7 +65,7 @@ class TacticsEvaluation extends AbstractEvaluation
     {
         foreach ($this->target as $color => $sqs) {
             foreach ($sqs as $sq) {
-                $id = $this->board->getPieceBySquare($sq)->getId();
+                $id = $this->board->getPieceBySq($sq)->getId();
                 if ($id !== Symbol::KING) {
                     $this->result[$color] += $this->value[$id];
                 }

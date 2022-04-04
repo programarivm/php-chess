@@ -34,7 +34,7 @@ class AttackEvaluation extends AbstractEvaluation
                     break;
                 case Symbol::PAWN:
                     foreach ($piece->getCaptureSquares() as $sq) {
-                        if ($item = $this->board->getPieceBySquare($sq)) {
+                        if ($item = $this->board->getPieceBySq($sq)) {
                             if ($item->getColor() !== $piece->getColor()) {
                                 $id = $item->getId();
                                 if ($id !== Symbol::KING && $this->value[Symbol::PAWN] < $this->value[$id]) {
@@ -46,7 +46,7 @@ class AttackEvaluation extends AbstractEvaluation
                     break;
                 default:
                     foreach ($piece->getSquares() as $sq) {
-                        if ($item = $this->board->getPieceBySquare($sq)) {
+                        if ($item = $this->board->getPieceBySq($sq)) {
                             if ($item->getColor() !== $piece->getColor()) {
                                 $id = $item->getId();
                                 if ($id !== Symbol::KING && $this->value[$piece->getId()] < $this->value[$id]) {

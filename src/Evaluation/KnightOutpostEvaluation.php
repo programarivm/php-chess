@@ -28,7 +28,7 @@ class KnightOutpostEvaluation extends AbstractEvaluation
     {
         foreach ($this->sqOutpostEvald as $key => $val) {
             foreach ($val as $sq) {
-                if ($piece = $this->board->getPieceBySquare($sq)) {
+                if ($piece = $this->board->getPieceBySq($sq)) {
                     if ($piece->getColor() === $key && $piece->getId() === Symbol::KNIGHT) {
                         $this->result[$key] += 1;
                     }

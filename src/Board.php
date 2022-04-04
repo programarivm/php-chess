@@ -390,7 +390,7 @@ final class Board extends \SplObjectStorage
      * @param string $sq
      * @return mixed \Chess\Piece\Piece|null
      */
-    public function getPieceBySquare(string $sq): ?Piece
+    public function getPieceBySq(string $sq): ?Piece
     {
         $this->rewind();
         while ($this->valid()) {
@@ -439,17 +439,17 @@ final class Board extends \SplObjectStorage
     private function capture(Piece $piece): Board
     {
         $piece->getSquares(); // this creates the enPassantSquare property in the pawn's position object
-        if ($piece->getId() === Symbol::PAWN && !empty($piece->getEnPassantSquare()) &&
-            empty($this->getPieceBySquare($piece->getMove()->sq->next))
+        if ($piece->getId() === Symbol::PAWN && !empty($piece->getEnPassantSq()) &&
+            empty($this->getPieceBySq($piece->getMove()->sq->next))
            ) {
-            if ($captured = $this->getPieceBySquare($piece->getEnPassantSquare())) {
+            if ($captured = $this->getPieceBySq($piece->getEnPassantSq())) {
                 $capturedData = (object) [
                     'id' => $captured->getId(),
-                    'sq' => $piece->getEnPassantSquare(),
+                    'sq' => $piece->getEnPassantSq(),
                 ];
             }
         } else {
-            if ($captured = $this->getPieceBySquare($piece->getMove()->sq->next)) {
+            if ($captured = $this->getPieceBySq($piece->getMove()->sq->next)) {
                 $capturedData = (object) [
                     'id' => $captured->getId(),
                     'sq' => $captured->getSquare(),
@@ -482,7 +482,7 @@ final class Board extends \SplObjectStorage
      */
     private function promote(Pawn $pawn): Board
     {
-        $this->detach($this->getPieceBySquare($pawn->getMove()->sq->next));
+        $this->detach($this->getPieceBySq($pawn->getMove()->sq->next));
         switch ($pawn->getMove()->newIdentity) {
             case Symbol::KNIGHT:
                 $this->attach(new Knight($pawn->getColor(), $pawn->getMove()->sq->next));
@@ -517,11 +517,11 @@ final class Board extends \SplObjectStorage
             return false;
         } elseif (
             $move->isCapture &&
-            empty($this->getPieceBySquare($move->sq->next)) &&
+            empty($this->getPieceBySq($move->sq->next)) &&
             $move->id !== Symbol::PAWN
         ) {
             return false;
-        } elseif (!$move->isCapture && !empty($this->getPieceBySquare($move->sq->next))) {
+        } elseif (!$move->isCapture && !empty($this->getPieceBySq($move->sq->next))) {
             return false;
         }
 
@@ -574,7 +574,7 @@ final class Board extends \SplObjectStorage
      */
     public function play(string $color, string $pgn): bool
     {
-        $stdObj = Convert::toStdObj($color, $pgn);
+        $stdObj = Convert::toObj($color, $pgn);
 
         return $this->isValidMove($stdObj) && $this->isLegalMove($stdObj);
     }
@@ -589,7 +589,7 @@ final class Board extends \SplObjectStorage
     {
         $rook = $king->getCastlingRook(iterator_to_array($this, false));
         if (!empty($rook)) {
-            $this->detach($this->getPieceBySquare($king->getSquare()));
+            $this->detach($this->getPieceBySq($king->getSquare()));
             $this->attach(
                 new King(
                     $king->getColor(),
@@ -625,12 +625,12 @@ final class Board extends \SplObjectStorage
     private function undoCastle(array $prevCastling): Board
     {
         $prev = end($this->history);
-        $king = $this->getPieceBySquare($prev->move->sq->next);
+        $king = $this->getPieceBySq($prev->move->sq->next);
         $kingUndone = new King($prev->move->color, $prev->sq);
         $this->detach($king);
         $this->attach($kingUndone);
         if (Move::KING_CASTLING_SHORT === $prev->move->type) {
-            $rook = $this->getPieceBySquare(
+            $rook = $this->getPieceBySq(
                 Castling::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['sq']['next']
             );
             $rookUndone = new Rook(
@@ -641,7 +641,7 @@ final class Board extends \SplObjectStorage
             $this->detach($rook);
             $this->attach($rookUndone);
         } elseif (Move::KING_CASTLING_LONG === $prev->move->type) {
-            $rook = $this->getPieceBySquare(
+            $rook = $this->getPieceBySq(
                 Castling::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['sq']['next']
             );
             $rookUndone = new Rook(
@@ -711,7 +711,7 @@ final class Board extends \SplObjectStorage
         if ($piece->getMove()->isCapture) {
             $this->capture($piece);
         }
-        $this->detach($this->getPieceBySquare($piece->getSquare()));
+        $this->detach($this->getPieceBySq($piece->getSquare()));
         $pieceClass = new \ReflectionClass(get_class($piece));
         $this->attach(
             $pieceClass->newInstanceArgs([
@@ -740,7 +740,7 @@ final class Board extends \SplObjectStorage
     {
         $prev = end($this->history);
         if ($prev) {
-            $piece = $this->getPieceBySquare($prev->move->sq->next);
+            $piece = $this->getPieceBySq($prev->move->sq->next);
             $this->detach($piece);
             if ($prev->move->type === Move::PAWN_PROMOTES ||
                 $prev->move->type === Move::PAWN_CAPTURES_AND_PROMOTES) {
@@ -779,8 +779,10 @@ final class Board extends \SplObjectStorage
         $this->turn = Symbol::oppColor($this->turn);
 
         $this->sqs = (object) [
-            SquareEvaluation::FEATURE_FREE => (new SquareEvaluation($this))->evaluate(SquareEvaluation::FEATURE_FREE),
-            SquareEvaluation::FEATURE_USED => (object) (new SquareEvaluation($this))->evaluate(SquareEvaluation::FEATURE_USED),
+            SquareEvaluation::FEATURE_FREE => (new SquareEvaluation($this))
+                ->evaluate(SquareEvaluation::FEATURE_FREE),
+            SquareEvaluation::FEATURE_USED => (object) (new SquareEvaluation($this))
+                ->evaluate(SquareEvaluation::FEATURE_USED),
         ];
 
         $this->detachPieces()
@@ -833,33 +835,33 @@ final class Board extends \SplObjectStorage
                     case Symbol::KING:
                         if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toStdObj($this->turn, Symbol::KING."x$sq"))
+                                $piece->setMove(Convert::toObj($this->turn, Symbol::KING."x$sq"))
                             );
                         } elseif (!in_array($sq, $this->space->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toStdObj($this->turn, Symbol::KING.$sq))
+                                $piece->setMove(Convert::toObj($this->turn, Symbol::KING.$sq))
                             );
                         }
                         break;
                     case Symbol::PAWN:
                         if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toStdObj($this->turn, $piece->getFile()."x$sq"))
+                                $piece->setMove(Convert::toObj($this->turn, $piece->getFile()."x$sq"))
                             );
                         } else {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toStdObj($this->turn, $sq))
+                                $piece->setMove(Convert::toObj($this->turn, $sq))
                             );
                         }
                         break;
                     default:
                         if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toStdObj($this->turn, $piece->getId()."x$sq"))
+                                $piece->setMove(Convert::toObj($this->turn, $piece->getId()."x$sq"))
                             );
                         } else {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toStdObj($this->turn, $piece->getId().$sq))
+                                $piece->setMove(Convert::toObj($this->turn, $piece->getId().$sq))
                             );
                         }
                         break;

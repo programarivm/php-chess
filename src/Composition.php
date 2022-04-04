@@ -20,7 +20,7 @@ class Composition
 
     public function deletePieceByPosition(string $sq)
     {
-        $piece = $this->board->getPieceBySquare($sq);
+        $piece = $this->board->getPieceBySq($sq);
         $this->board->detach($piece);
         $this->board->refresh();
 

@@ -110,7 +110,7 @@ class Pawn extends AbstractPiece
      *
      * @return string
      */
-    public function getEnPassantSquare()
+    public function getEnPassantSq()
     {
         return $this->enPassantSquare;
     }

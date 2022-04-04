@@ -58,7 +58,7 @@ class PassedPawnEvaluation extends AbstractEvaluation
         }
         $passedPawn = true;
         foreach ($sqs as $sq) {
-            if ($nextPiece = $this->board->getPieceBySquare($sq)) {
+            if ($nextPiece = $this->board->getPieceBySq($sq)) {
                 if ($nextPiece->getId() === Symbol::PAWN && $nextPiece->getColor() !== $color) {
                     $passedPawn = false;
                     break;

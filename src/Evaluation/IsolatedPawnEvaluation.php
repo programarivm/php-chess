@@ -53,7 +53,7 @@ class IsolatedPawnEvaluation extends AbstractEvaluation implements InverseEvalua
         }
 
         foreach ($sqs as $sq) {
-            if ($nextPiece = $this->board->getPieceBySquare($sq)) {
+            if ($nextPiece = $this->board->getPieceBySq($sq)) {
                 if ($nextPiece->getId() === Symbol::PAWN && $nextPiece->getColor() === $color) {
                     return 0;
                 }

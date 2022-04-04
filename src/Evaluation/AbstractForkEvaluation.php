@@ -11,7 +11,7 @@ abstract class AbstractForkEvaluation extends AbstractEvaluation
     {
         $attackedPieces = [];
         foreach ($sqs = $piece->getSquares() as $sq) {
-            if ($attackedPiece = $this->board->getPieceBySquare($sq)) {
+            if ($attackedPiece = $this->board->getPieceBySq($sq)) {
                 if ($attackedPiece->getId() !== Symbol::PAWN) {
                     $attackedPieces[] = $attackedPiece;
                 }

@@ -41,7 +41,7 @@ class CenterEvaluation extends AbstractEvaluation
     {
         $spEvald = (new SpaceEvaluation($this->board))->evaluate();
         foreach ($this->center as $sq => $val) {
-            if ($piece = $this->board->getPieceBySquare($sq)) {
+            if ($piece = $this->board->getPieceBySq($sq)) {
                 $this->result[$piece->getColor()] += $this->value[$piece->getId()] * $val;
             }
             if (in_array($sq, $spEvald[Symbol::WHITE])) {
