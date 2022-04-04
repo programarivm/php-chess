@@ -12,7 +12,7 @@ use Chess\PGN\Symbol;
  */
 class Rule
 {
-    const IS_CASTLED = 'castled';
+    const IS_CASTLED = 'isCastled';
 
     /**
      * Castling rule by color.

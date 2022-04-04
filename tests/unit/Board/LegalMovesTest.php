@@ -54,12 +54,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => true
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => true
             ]
@@ -86,12 +86,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => true
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -118,12 +118,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => true
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -152,12 +152,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => true
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -215,12 +215,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -270,12 +270,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => true
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => true
             ]
@@ -309,12 +309,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -347,12 +347,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -385,12 +385,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -423,12 +423,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -461,12 +461,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -499,12 +499,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -537,12 +537,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -575,12 +575,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -634,12 +634,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => true
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ]
@@ -672,12 +672,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ]
@@ -711,12 +711,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ]
@@ -751,12 +751,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ]
@@ -790,12 +790,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ]
@@ -860,12 +860,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -897,12 +897,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -936,12 +936,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -984,12 +984,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -1159,12 +1159,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -1189,12 +1189,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]
@@ -1220,12 +1220,12 @@ class LegalMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]

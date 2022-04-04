@@ -46,7 +46,7 @@ class King extends AbstractPiece
     protected function moveCastlingLong()
     {
         $rule = CastlingRule::color($this->getColor())[Symbol::KING][Symbol::CASTLING_LONG];
-        if (!$this->board->getCastling()[$this->getColor()]['castled']) {
+        if (!$this->board->getCastling()[$this->getColor()]['isCastled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLING_LONG]) {
                 if (
                     in_array($rule['sqs']['b'], $this->board->getSquares()->free) &&
@@ -67,7 +67,7 @@ class King extends AbstractPiece
     protected function moveCastlingShort()
     {
         $rule = CastlingRule::color($this->getColor())[Symbol::KING][Symbol::CASTLING_SHORT];
-        if (!$this->board->getCastling()[$this->getColor()]['castled']) {
+        if (!$this->board->getCastling()[$this->getColor()]['isCastled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLING_SHORT]) {
                 if (
                     in_array($rule['sqs']['f'], $this->board->getSquares()->free) &&

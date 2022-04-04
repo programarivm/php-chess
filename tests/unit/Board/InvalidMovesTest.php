@@ -96,12 +96,12 @@ class InvalidMovesTest extends AbstractUnitTestCase
 
         $castling = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ],
             'b' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false
             ]

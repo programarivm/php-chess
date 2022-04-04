@@ -86,12 +86,12 @@ class CastlingTest extends AbstractUnitTestCase
 
         $expected = [
             'w' => [
-                'castled' => true,
+                'isCastled' => true,
                 'O-O' => false,
                 'O-O-O' => false,
             ],
             'b' => [
-                'castled' => false,
+                'isCastled' => false,
                 'O-O' => true,
                 'O-O-O' => true,
             ],
