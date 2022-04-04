@@ -1236,4 +1236,38 @@ class LegalMovesTest extends AbstractUnitTestCase
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
     }
+
+    /**
+     * @test
+     */
+    public function endgame_stalemate()
+    {
+        $pieces = [
+            new King('w', 'g1'),
+            new Queen('w', 'd1'),
+            new Rook('w', 'a5', RookType::CASTLING_SHORT),
+            new Rook('w', 'b7', RookType::CASTLING_LONG),
+            new Pawn('w', 'f6'),
+            new Pawn('w', 'g5'),
+            new King('b', 'e6'),
+        ];
+
+        $castling = [
+            'w' => [
+                'isCastled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ],
+            'b' => [
+                'isCastled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ]
+        ];
+
+        $board = (new Board($pieces, $castling))->setTurn('b');
+
+        $this->assertFalse($board->isMate());
+        $this->assertTrue($board->isStalemate());
+    }
 }
