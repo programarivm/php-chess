@@ -13,6 +13,6 @@ class GeometricSumLabeller extends AbstractLabeller
             $sum += pow(2, $key) * $val;
         }
 
-        return $sum;
+        return round($sum, 2);
     }
 }
