@@ -56,7 +56,7 @@ abstract class AbstractPiece implements Piece
      *
      * @var array
      */
-    protected $legalMoves;
+    protected $squares;
 
     /**
      * The chessboard.

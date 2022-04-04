@@ -145,14 +145,14 @@ class King extends AbstractPiece
      */
     public function getSquares(): array
     {
-        $legalMoves = array_merge(
+        $squares = array_merge(
             $this->movesKing(),
             $this->movesCaptures(),
             [$this->moveCastlingLong()],
             [$this->moveCastlingShort()]
         );
 
-        return array_filter($legalMoves);
+        return array_filter($squares);
     }
 
     public function getDefendedSquares(): array
