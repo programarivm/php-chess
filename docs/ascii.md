@@ -1,4 +1,4 @@
-#### `toArray(Board $board): array`
+#### `toArray(Board $board, bool $flip = false): array`
 
 Returns an ASCII array from a `Chess\Board` object.
 
