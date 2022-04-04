@@ -165,36 +165,36 @@ class Game
     /**
      * Gets a piece by its position on the board.
      *
-     * @param string $square
+     * @param string $sq
      * @return mixed null|\stdClass
      */
-    public function piece(string $square): ?\stdClass
+    public function piece(string $sq): ?\stdClass
     {
-        if ($piece = $this->board->getPieceByPosition(Validate::square($square))) {
+        if ($piece = $this->board->getPieceBySquare(Validate::square($sq))) {
             $moves = [];
             $color = $piece->getColor();
-            foreach ($piece->getSquares() as $square) {
+            foreach ($piece->getSquares() as $sq) {
                 $clone = unserialize(serialize($this->board));
                 switch ($piece->getIdentity()) {
                     case Symbol::KING:
-                        if ($clone->play($color, Symbol::KING.$square)) {
-                            $moves[] = $square;
-                        } elseif ($clone->play($color, Symbol::KING.'x'.$square)) {
-                            $moves[] = $square;
+                        if ($clone->play($color, Symbol::KING.$sq)) {
+                            $moves[] = $sq;
+                        } elseif ($clone->play($color, Symbol::KING.'x'.$sq)) {
+                            $moves[] = $sq;
                         }
                         break;
                     case Symbol::PAWN:
-                        if ($clone->play($color, $piece->getFile()."x$square")) {
-                            $moves[] = $square;
-                        } elseif ($clone->play($color, $square)) {
-                            $moves[] = $square;
+                        if ($clone->play($color, $piece->getFile()."x$sq")) {
+                            $moves[] = $sq;
+                        } elseif ($clone->play($color, $sq)) {
+                            $moves[] = $sq;
                         }
                         break;
                     default:
-                        if ($clone->play($color, $piece->getIdentity().$square)) {
-                            $moves[] = $square;
-                        } elseif ($clone->play($color, "{$piece->getIdentity()}x$square")) {
-                            $moves[] = $square;
+                        if ($clone->play($color, $piece->getIdentity().$sq)) {
+                            $moves[] = $sq;
+                        } elseif ($clone->play($color, "{$piece->getIdentity()}x$sq")) {
+                            $moves[] = $sq;
                         }
                         break;
                 }

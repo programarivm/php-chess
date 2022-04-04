@@ -42,7 +42,7 @@ class KingSafetyEvaluation extends AbstractEvaluation
     {
         $king = $this->board->getPiece($color, Symbol::KING);
         foreach ($king->getScope() as $key => $sq) {
-            if ($piece = $this->board->getPieceByPosition($sq)) {
+            if ($piece = $this->board->getPieceBySquare($sq)) {
                 if ($piece->getColor() === $king->getOppColor()) {
                     $this->result[$color] -= 1;
                 }

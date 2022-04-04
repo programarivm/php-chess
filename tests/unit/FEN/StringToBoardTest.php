@@ -257,7 +257,7 @@ class StringToBoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $legalMoves = $board->getPieceByPosition('e5')->getSquares();
+        $legalMoves = $board->getPieceBySquare('e5')->getSquares();
 
         $this->assertSame($expected, $array);
         $this->assertSame($legalMoves, ['e6' , 'f6']);
@@ -361,7 +361,7 @@ class StringToBoardTest extends AbstractUnitTestCase
 
         $board->play('w', 'Qg4');
 
-        $legalMoves = $board->getPieceByPosition('a7')->getSquares();
+        $legalMoves = $board->getPieceBySquare('a7')->getSquares();
 
         $expected = ['a6', 'a5'];
 
@@ -376,7 +376,7 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('8/5k2/8/8/2K1p3/3r4/8/8 w - - 0 1'))
             ->create();
 
-        $legalMoves = $board->getPieceByPosition('c4')->getSquares();
+        $legalMoves = $board->getPieceBySquare('c4')->getSquares();
 
         $expected = ['c5', 'b4', 'b5'];
 
@@ -391,7 +391,7 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('8/5k2/8/8/2K5/3rp3/8/8 w - - 0 1'))
             ->create();
 
-        $legalMoves = $board->getPieceByPosition('c4')->getSquares();
+        $legalMoves = $board->getPieceBySquare('c4')->getSquares();
 
         $expected = ['c5', 'b4', 'b5', 'd3'];
 
@@ -406,7 +406,7 @@ class StringToBoardTest extends AbstractUnitTestCase
         $board = (new StringToBoard('7k/8/8/8/8/8/2K5/r7 w - - 0 1'))
             ->create();
 
-        $legalMoves = $board->getPieceByPosition('c2')->getSquares();
+        $legalMoves = $board->getPieceBySquare('c2')->getSquares();
 
         $expected = ['c3', 'b2', 'd2', 'b3', 'd3'];
 

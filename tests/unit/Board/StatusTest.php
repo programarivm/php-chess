@@ -289,7 +289,7 @@ class StatusTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit(new Board()))->play();
 
-        $king = $board->getPieceByPosition('f1');
+        $king = $board->getPieceBySquare('f1');
 
         $expected = [ 'e1', 'e2', 'g2' ];
 
@@ -314,7 +314,7 @@ class StatusTest extends AbstractUnitTestCase
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
-        $queen = $board->getPieceByPosition('d1');
+        $queen = $board->getPieceBySquare('d1');
 
         $expected = [ 'e1', 'c2', 'b3' ];
 

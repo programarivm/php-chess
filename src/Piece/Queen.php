@@ -29,14 +29,14 @@ class Queen extends Slider
      * Constructor.
      *
      * @param string $color
-     * @param string $square
+     * @param string $sq
      */
-    public function __construct(string $color, string $square)
+    public function __construct(string $color, string $sq)
     {
-        parent::__construct($color, $square, Symbol::QUEEN);
+        parent::__construct($color, $sq, Symbol::QUEEN);
 
-        $this->rook = new Rook($color, $square, RookType::FAKED);
-        $this->bishop = new Bishop($color, $square);
+        $this->rook = new Rook($color, $sq, RookType::FAKED);
+        $this->bishop = new Bishop($color, $sq);
 
         $this->scope();
     }

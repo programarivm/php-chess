@@ -10,8 +10,8 @@ abstract class AbstractForkEvaluation extends AbstractEvaluation
     protected function attackedPieces(Piece $piece)
     {
         $attackedPieces = [];
-        foreach ($squares = $piece->getSquares() as $square) {
-            if ($attackedPiece = $this->board->getPieceByPosition($square)) {
+        foreach ($sqs = $piece->getSquares() as $sq) {
+            if ($attackedPiece = $this->board->getPieceBySquare($sq)) {
                 if ($attackedPiece->getIdentity() !== Symbol::PAWN) {
                     $attackedPieces[] = $attackedPiece;
                 }

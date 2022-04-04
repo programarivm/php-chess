@@ -26,11 +26,11 @@ class Rook extends Slider
      * Constructor.
      *
      * @param string $color
-     * @param string $square
+     * @param string $sq
      * @param string $type
      * @throws \Chess\Exception\PieceTypeException
      */
-    public function __construct(string $color, string $square, $type)
+    public function __construct(string $color, string $sq, $type)
     {
         if (!in_array($type, RookType::getChoices())) {
             throw new PieceTypeException(
@@ -40,7 +40,7 @@ class Rook extends Slider
             $this->type = $type;
         }
 
-        parent::__construct($color, $square, Symbol::ROOK);
+        parent::__construct($color, $sq, Symbol::ROOK);
 
         $this->scope = (object)[
             'up' => [],

@@ -19,11 +19,11 @@ class Knight extends AbstractPiece
      * Constructor.
      *
      * @param string $color
-     * @param string $square
+     * @param string $sq
      */
-    public function __construct(string $color, string $square)
+    public function __construct(string $color, string $sq)
     {
-        parent::__construct($color, $square, Symbol::KNIGHT);
+        parent::__construct($color, $sq, Symbol::KNIGHT);
 
         $this->scope = (object)[
             'jumps' => []
@@ -123,11 +123,11 @@ class Knight extends AbstractPiece
     public function getSquares(): array
     {
         $moves = [];
-        foreach ($this->scope->jumps as $square) {
-            if (in_array($square, $this->board->getSquares()->free)) {
-                $moves[] = $square;
-            } elseif (in_array($square, $this->board->getSquares()->used->{$this->getOppColor()})) {
-                $moves[] = $square;
+        foreach ($this->scope->jumps as $sq) {
+            if (in_array($sq, $this->board->getSquares()->free)) {
+                $moves[] = $sq;
+            } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})) {
+                $moves[] = $sq;
             }
         }
 
@@ -136,13 +136,13 @@ class Knight extends AbstractPiece
 
     public function getDefendedSquares(): array
     {
-        $squares = [];
-        foreach ($this->scope->jumps as $square) {
-            if (in_array($square, $this->board->getSquares()->used->{$this->getColor()})) {
-                $squares[] = $square;
+        $sqs = [];
+        foreach ($this->scope->jumps as $sq) {
+            if (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
+                $sqs[] = $sq;
             }
         }
 
-        return $squares;
+        return $sqs;
     }
 }

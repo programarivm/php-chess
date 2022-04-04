@@ -40,20 +40,20 @@ class IsolatedPawnEvaluation extends AbstractEvaluation implements InverseEvalua
         $prevFile = chr(ord($pawnFile) - 1);
         $nextFile = chr(ord($pawnFile) + 1);
 
-        $squares = [];
+        $sqs = [];
         foreach ([ $prevFile, $nextFile ] as $file) {
             if ($file < 'a' || $file > 'h') {
                 continue;
             }
             $ranks = range(2, 7);
-            $squaresFile = array_map(function($rank) use ($file){
+            $sqsFile = array_map(function($rank) use ($file){
                 return $file . $rank;
             }, $ranks);
-            $squares = array_merge($squares, $squaresFile);
+            $sqs = array_merge($sqs, $sqsFile);
         }
 
-        foreach ($squares as $square) {
-            if ($nextPiece = $this->board->getPieceByPosition($square)) {
+        foreach ($sqs as $sq) {
+            if ($nextPiece = $this->board->getPieceBySquare($sq)) {
                 if ($nextPiece->getIdentity() === Symbol::PAWN && $nextPiece->getColor() === $color) {
                     return 0;
                 }

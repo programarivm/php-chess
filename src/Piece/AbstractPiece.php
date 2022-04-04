@@ -52,11 +52,11 @@ abstract class AbstractPiece implements Piece
     protected $move;
 
     /**
-     * The legal moves that the piece can carry out.
+     * The squares where the piece can be placed on.
      *
      * @var array
      */
-    protected $squares;
+    protected $sqs;
 
     /**
      * The chessboard.
@@ -69,18 +69,18 @@ abstract class AbstractPiece implements Piece
      * Constructor.
      *
      * @param string $color
-     * @param string $square
+     * @param string $sq
      * @param string $identity
      */
-    public function __construct(string $color, string $square, string $identity)
+    public function __construct(string $color, string $sq, string $identity)
     {
         $this->color = Validate::color($color);
-        $this->position = Validate::square($square);
+        $this->position = Validate::square($sq);
         $this->identity = $identity;
     }
 
     /**
-     * Gets the squares where a piece can be placed on.
+     * Gets the squares where the piece can be placed on.
      *
      * @return array The piece's legal squares.
      */
@@ -108,11 +108,7 @@ abstract class AbstractPiece implements Piece
      */
     public function getOppColor(): string
     {
-        if ($this->color == Symbol::WHITE) {
-            return Symbol::BLACK;
-        } else {
-            return Symbol::WHITE;
-        }
+        return Symbol::oppColor($this->color);
     }
 
     /**
@@ -176,8 +172,8 @@ abstract class AbstractPiece implements Piece
     {
         if (isset($this->move)) {
             return in_array($this->move->position->next, $this->getSquares());
-        } else {
-            return false;
         }
+
+        return false;
     }
 }

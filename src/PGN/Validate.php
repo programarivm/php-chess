@@ -34,17 +34,17 @@ class Validate
     /**
      * Validates a square.
      *
-     * @param string $square
+     * @param string $sq
      * @return string if the square is valid
      * @throws UnknownNotationException
      */
-    public static function square(string $square): string
+    public static function square(string $sq): string
     {
-        if (!preg_match('/^' . Symbol::SQUARE . '$/', $square)) {
-            throw new UnknownNotationException("This square is not valid: $square.");
+        if (!preg_match('/^' . Symbol::SQUARE . '$/', $sq)) {
+            throw new UnknownNotationException("This square is not valid: $sq.");
         }
 
-        return $square;
+        return $sq;
     }
 
     /**

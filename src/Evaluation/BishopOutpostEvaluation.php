@@ -27,8 +27,8 @@ class BishopOutpostEvaluation extends AbstractEvaluation
     public function evaluate(): array
     {
         foreach ($this->sqOutpostEvald as $key => $val) {
-            foreach ($val as $square) {
-                if ($piece = $this->board->getPieceByPosition($square)) {
+            foreach ($val as $sq) {
+                if ($piece = $this->board->getPieceBySquare($sq)) {
                     if ($piece->getColor() === $key && $piece->getIdentity() === Symbol::BISHOP) {
                         $this->result[$key] += 1;
                     }

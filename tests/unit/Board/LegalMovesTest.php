@@ -834,7 +834,7 @@ class LegalMovesTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'O-O'));
         $this->assertTrue($board->play('w', 'Bd3'));
         $this->assertTrue($board->play('b', 'f5'));
-        $pawn_e5 = $board->getPieceByPosition('e5');
+        $pawn_e5 = $board->getPieceBySquare('e5');
         $pawn_e5->getSquares(); // this creates the enPassantSquare property in the pawn's position object
         $this->assertSame('f5', $pawn_e5->getEnPassantSquare());
         $this->assertTrue($board->play('w', 'exf6'));
@@ -1107,7 +1107,7 @@ class LegalMovesTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('w', 'exd5'));
         $this->assertTrue($board->play('b', 'e5'));
 
-        $this->assertSame('P', $board->getPieceByPosition('d5')->getIdentity());
+        $this->assertSame('P', $board->getPieceBySquare('d5')->getIdentity());
     }
 
     /**
@@ -1143,7 +1143,7 @@ class LegalMovesTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('w', 'Nxd4'));
         $this->assertTrue($board->play('b', 'Nf6'));
 
-        $this->assertNotEmpty($board->getPieceByPosition('b1')->getSquares());
+        $this->assertNotEmpty($board->getPieceBySquare('b1')->getSquares());
     }
 
     /**

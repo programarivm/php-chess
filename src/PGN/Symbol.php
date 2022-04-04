@@ -40,8 +40,8 @@ class Symbol
     {
         if ($color == Symbol::WHITE) {
             return Symbol::BLACK;
-        } else {
-            return Symbol::WHITE;
         }
+
+        return Symbol::WHITE;
     }
 }

@@ -14,12 +14,12 @@ abstract class Slider extends AbstractPiece
      * Constructor.
      *
      * @param $color
-     * @param $square
+     * @param $sq
      * @param $identity
      */
-    public function __construct(string $color, string $square, string $identity)
+    public function __construct(string $color, string $sq, string $identity)
     {
-        parent::__construct($color, $square, $identity);
+        parent::__construct($color, $sq, $identity);
     }
 
     /**
@@ -31,16 +31,16 @@ abstract class Slider extends AbstractPiece
     {
         $moves = [];
         foreach ($this->scope as $direction) {
-            foreach ($direction as $square) {
+            foreach ($direction as $sq) {
                 if (
-                    !in_array($square, $this->board->getSquares()->used->{$this->getColor()}) &&
-                    !in_array($square, $this->board->getSquares()->used->{$this->getOppColor()})
+                    !in_array($sq, $this->board->getSquares()->used->{$this->getColor()}) &&
+                    !in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})
                 ) {
-                    $moves[] = $square;
-                } elseif (in_array($square, $this->board->getSquares()->used->{$this->getOppColor()})) {
-                    $moves[] = $square;
+                    $moves[] = $sq;
+                } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})) {
+                    $moves[] = $sq;
                     break 1;
-                } elseif (in_array($square, $this->board->getSquares()->used->{$this->getColor()})) {
+                } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
                     break 1;
                 }
             }
@@ -56,18 +56,18 @@ abstract class Slider extends AbstractPiece
      */
     public function getDefendedSquares(): array
     {
-        $squares = [];
+        $sqs = [];
         foreach ($this->scope as $direction) {
-            foreach ($direction as $square) {
-                if (in_array($square, $this->board->getSquares()->used->{$this->getColor()})) {
-                    $squares[] = $square;
+            foreach ($direction as $sq) {
+                if (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
+                    $sqs[] = $sq;
                     break 1;
-                } elseif (in_array($square, $this->board->getSquares()->used->{$this->getOppColor()})) {
+                } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})) {
                     break 1;
                 }
             }
         }
 
-        return $squares;
+        return $sqs;
     }
 }

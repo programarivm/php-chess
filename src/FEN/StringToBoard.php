@@ -114,52 +114,52 @@ class StringToBoard
         }
     }
 
-    private function pushPiece($color, $char, $square)
+    private function pushPiece($color, $char, $sq)
     {
         switch ($char) {
             case Symbol::KING:
-                $this->pieces[] = new King($color, $square);
+                $this->pieces[] = new King($color, $sq);
                 break;
             case Symbol::QUEEN:
-                $this->pieces[] = new Queen($color, $square);
+                $this->pieces[] = new Queen($color, $sq);
                 break;
             case Symbol::ROOK:
                 if ($color === Symbol::BLACK &&
-                    $square === 'a8' &&
+                    $sq === 'a8' &&
                     $this->castling[$color][Symbol::CASTLING_LONG]
                 ) {
-                    $this->pieces[] = new Rook($color, $square, RookType::CASTLING_LONG);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
                 } elseif (
                     $color === Symbol::BLACK &&
-                    $square === 'h8' &&
+                    $sq === 'h8' &&
                     $this->castling[$color][Symbol::CASTLING_SHORT]
                 ) {
-                    $this->pieces[] = new Rook($color, $square, RookType::CASTLING_SHORT);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_SHORT);
                 } elseif (
                     $color === Symbol::WHITE &&
-                    $square === 'a1' &&
+                    $sq === 'a1' &&
                     $this->castling[$color][Symbol::CASTLING_LONG]
                 ) {
-                    $this->pieces[] = new Rook($color, $square, RookType::CASTLING_LONG);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
                 } elseif (
                     $color === Symbol::WHITE &&
-                    $square === 'h1' &&
+                    $sq === 'h1' &&
                     $this->castling[$color][Symbol::CASTLING_SHORT]
                 ) {
-                    $this->pieces[] = new Rook($color, $square, RookType::CASTLING_SHORT);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_SHORT);
                 } else {
                     // in this case it really doesn't matter which RookType is assigned to the rook
-                    $this->pieces[] = new Rook($color, $square, RookType::CASTLING_LONG);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
                 }
                 break;
             case Symbol::BISHOP:
-                $this->pieces[] = new Bishop($color, $square);
+                $this->pieces[] = new Bishop($color, $sq);
                 break;
             case Symbol::KNIGHT:
-                $this->pieces[] = new Knight($color, $square);
+                $this->pieces[] = new Knight($color, $sq);
                 break;
             case Symbol::PAWN:
-                $this->pieces[] = new Pawn($color, $square);
+                $this->pieces[] = new Pawn($color, $sq);
                 break;
             default:
                 // do nothing
