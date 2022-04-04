@@ -902,10 +902,10 @@ final class Board extends \SplObjectStorage
             }
         }
 
-        return $escape === 0 && !empty($this->legalMovesByColor($this->turn));
+        return $escape === 0 && !empty($this->getSquaresByColor($this->turn));
     }
 
-    public function legalMovesByColor(string $color)
+    public function getSquaresByColor(string $color)
     {
         $squares = [];
         foreach ($this->getPiecesByColor($this->turn) as $piece) {
@@ -924,12 +924,12 @@ final class Board extends \SplObjectStorage
      */
     public function isStalemate(): bool
     {
-        return !$this->isMate() && empty($this->legalMovesByColor($this->turn));
+        return !$this->isMate() && empty($this->getSquaresByColor($this->turn));
     }
 
-    public function getPossibleMoves()
+    public function getMoves()
     {
-        $possibleMoves = [];
+        $moves = [];
         $color = $this->getTurn();
         foreach ($this->getPiecesByColor($color) as $piece) {
             foreach ($piece->getSquares() as $square) {
@@ -940,36 +940,36 @@ final class Board extends \SplObjectStorage
                             CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['position']['next'] === $square &&
                             $clone->play($color, Symbol::CASTLING_SHORT)
                         ) {
-                            $possibleMoves[] = Symbol::CASTLING_SHORT;
+                            $moves[] = Symbol::CASTLING_SHORT;
                         } elseif (
                             CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['position']['next'] === $square &&
                             $clone->play($color, Symbol::CASTLING_LONG)
                         ) {
-                            $possibleMoves[] = Symbol::CASTLING_LONG;
+                            $moves[] = Symbol::CASTLING_LONG;
                         } elseif ($clone->play($color, Symbol::KING.$square)) {
-                            $possibleMoves[] = Symbol::KING.$square;
+                            $moves[] = Symbol::KING.$square;
                         } elseif ($clone->play($color, Symbol::KING.'x'.$square)) {
-                            $possibleMoves[] = Symbol::KING.'x'.$square;
+                            $moves[] = Symbol::KING.'x'.$square;
                         }
                         break;
                     case Symbol::PAWN:
                         if ($clone->play($color, $square)) {
-                            $possibleMoves[] = $square;
+                            $moves[] = $square;
                         } elseif ($clone->play($color, $piece->getFile()."x$square")) {
-                            $possibleMoves[] = $piece->getFile()."x$square";
+                            $moves[] = $piece->getFile()."x$square";
                         }
                         break;
                     default:
                         if ($clone->play($color, $piece->getIdentity().$square)) {
-                            $possibleMoves[] = $piece->getIdentity().$square;
+                            $moves[] = $piece->getIdentity().$square;
                         } elseif ($clone->play($color, "{$piece->getIdentity()}x$square")) {
-                            $possibleMoves[] = "{$piece->getIdentity()}x$square";
+                            $moves[] = "{$piece->getIdentity()}x$square";
                         }
                         break;
                 }
             }
         }
 
-        return $possibleMoves;
+        return $moves;
     }
 }
