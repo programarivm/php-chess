@@ -577,7 +577,7 @@ final class Board extends \SplObjectStorage
      */
     public function play(string $color, string $pgn): bool
     {
-        $stdObj = Convert::toObj($color, $pgn);
+        $stdObj = Convert::toStdClass($color, $pgn);
 
         return $this->isValidMove($stdObj) && $this->isLegalMove($stdObj);
     }
@@ -838,33 +838,33 @@ final class Board extends \SplObjectStorage
                     case Symbol::KING:
                         if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toObj($this->turn, Symbol::KING."x$sq"))
+                                $piece->setMove(Convert::toStdClass($this->turn, Symbol::KING."x$sq"))
                             );
                         } elseif (!in_array($sq, $this->space->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toObj($this->turn, Symbol::KING.$sq))
+                                $piece->setMove(Convert::toStdClass($this->turn, Symbol::KING.$sq))
                             );
                         }
                         break;
                     case Symbol::PAWN:
                         if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toObj($this->turn, $piece->getFile()."x$sq"))
+                                $piece->setMove(Convert::toStdClass($this->turn, $piece->getFile()."x$sq"))
                             );
                         } else {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toObj($this->turn, $sq))
+                                $piece->setMove(Convert::toStdClass($this->turn, $sq))
                             );
                         }
                         break;
                     default:
                         if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toObj($this->turn, $piece->getId()."x$sq"))
+                                $piece->setMove(Convert::toStdClass($this->turn, $piece->getId()."x$sq"))
                             );
                         } else {
                             $escape += (int) !$this->leavesInCheck(
-                                $piece->setMove(Convert::toObj($this->turn, $piece->getId().$sq))
+                                $piece->setMove(Convert::toStdClass($this->turn, $piece->getId().$sq))
                             );
                         }
                         break;

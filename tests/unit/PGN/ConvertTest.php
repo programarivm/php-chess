@@ -17,7 +17,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('w', 'Ua5');
+        Convert::toStdClass('w', 'Ua5');
     }
 
     /**
@@ -27,7 +27,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('b', 'foo5');
+        Convert::toStdClass('b', 'foo5');
     }
 
     /**
@@ -37,7 +37,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('w', 'cb3b7');
+        Convert::toStdClass('w', 'cb3b7');
     }
 
     /**
@@ -47,7 +47,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('b', 'a-a');
+        Convert::toStdClass('b', 'a-a');
     }
 
     /**
@@ -57,7 +57,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('w', 'c-c-c');
+        Convert::toStdClass('w', 'c-c-c');
     }
 
     /**
@@ -67,7 +67,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('b', 'a');
+        Convert::toStdClass('b', 'a');
     }
 
     /**
@@ -77,7 +77,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('w', 3);
+        Convert::toStdClass('w', 3);
     }
 
     /**
@@ -87,7 +87,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('b', 'K3');
+        Convert::toStdClass('b', 'K3');
     }
 
     /**
@@ -97,7 +97,7 @@ class ConvertTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        Convert::toObj('w', 'Fxa7');
+        Convert::toStdClass('w', 'Fxa7');
     }
 
     /**
@@ -119,7 +119,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('w', $move), $example);
+        $this->assertEquals(Convert::toStdClass('w', $move), $example);
     }
 
     /**
@@ -141,7 +141,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('b', $move), $example);
+        $this->assertEquals(Convert::toStdClass('b', $move), $example);
     }
 
     /**
@@ -163,7 +163,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('b', $move), $example);
+        $this->assertEquals(Convert::toStdClass('b', $move), $example);
     }
 
     /**
@@ -185,7 +185,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('b', $move), $example);
+        $this->assertEquals(Convert::toStdClass('b', $move), $example);
     }
 
     /**
@@ -207,7 +207,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('w', $move), $example);
+        $this->assertEquals(Convert::toStdClass('w', $move), $example);
     }
 
     /**
@@ -229,7 +229,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('b', $move), $example);
+        $this->assertEquals(Convert::toStdClass('b', $move), $example);
     }
 
     /**
@@ -251,7 +251,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('w', $move), $example);
+        $this->assertEquals(Convert::toStdClass('w', $move), $example);
     }
 
     /**
@@ -273,7 +273,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('w', $move), $example);
+        $this->assertEquals(Convert::toStdClass('w', $move), $example);
     }
 
     /**
@@ -292,7 +292,7 @@ class ConvertTest extends AbstractUnitTestCase
             'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLING_SHORT]['sq']
         ];
 
-        $this->assertEquals(Convert::toObj('w', $move), $example);
+        $this->assertEquals(Convert::toStdClass('w', $move), $example);
     }
 
     /**
@@ -311,7 +311,7 @@ class ConvertTest extends AbstractUnitTestCase
             'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLING_LONG]['sq']
         ];
 
-        $this->assertEquals(Convert::toObj('w', $move), $example);
+        $this->assertEquals(Convert::toStdClass('w', $move), $example);
     }
 
     /**
@@ -333,7 +333,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('b', $move), $example);
+        $this->assertEquals(Convert::toStdClass('b', $move), $example);
     }
 
     /**
@@ -355,7 +355,7 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('b', $move), $example);
+        $this->assertEquals(Convert::toStdClass('b', $move), $example);
     }
 
     /**
@@ -377,6 +377,6 @@ class ConvertTest extends AbstractUnitTestCase
             ]
         ];
 
-        $this->assertEquals(Convert::toObj('b', $move), $example);
+        $this->assertEquals(Convert::toStdClass('b', $move), $example);
     }
 }

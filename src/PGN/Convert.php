@@ -28,7 +28,7 @@ class Convert
      * @return \stdClass
      * @throws \Chess\Exception\UnknownNotationException
      */
-    public static function toObj(string $color, string $pgn): \stdClass
+    public static function toStdClass(string $color, string $pgn): \stdClass
     {
         $isCheck = substr($pgn, -1) === '+' || substr($pgn, -1) === '#';
 
