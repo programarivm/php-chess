@@ -56,7 +56,7 @@ class King extends AbstractPiece
                     !in_array($rule['sqs']['c'], $this->board->getSpace()->{$this->getOppColor()}) &&
                     !in_array($rule['sqs']['d'], $this->board->getSpace()->{$this->getOppColor()})
                 ) {
-                    return $rule['position']['next'];
+                    return $rule['sq']['next'];
                 }
             }
         }
@@ -75,7 +75,7 @@ class King extends AbstractPiece
                     !in_array($rule['sqs']['f'], $this->board->getSpace()->{$this->getOppColor()}) &&
                     !in_array($rule['sqs']['g'], $this->board->getSpace()->{$this->getOppColor()})
                 ) {
-                    return $rule['position']['next'];
+                    return $rule['sq']['next'];
                 }
             }
         }
@@ -111,8 +111,8 @@ class King extends AbstractPiece
         $rule = CastlingRule::color($this->getColor())[Symbol::ROOK];
         foreach ($pieces as $piece) {
             if (
-                $piece->getIdentity() === Symbol::ROOK &&
-                $piece->getPosition() === $rule[rtrim($this->getMove()->pgn, '+')]['position']['current']
+                $piece->getId() === Symbol::ROOK &&
+                $piece->getSquare() === $rule[rtrim($this->getMove()->pgn, '+')]['sq']['current']
             ) {
                 return $piece;
             }

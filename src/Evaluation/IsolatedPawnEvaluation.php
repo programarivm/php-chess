@@ -25,7 +25,7 @@ class IsolatedPawnEvaluation extends AbstractEvaluation implements InverseEvalua
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();
             /** @var Pawn $piece */
-            if ($piece->getIdentity() === Symbol::PAWN) {
+            if ($piece->getId() === Symbol::PAWN) {
                 $this->result[ $color ] += $this->checkIsolatedPawn($piece);
             }
         }
@@ -54,7 +54,7 @@ class IsolatedPawnEvaluation extends AbstractEvaluation implements InverseEvalua
 
         foreach ($sqs as $sq) {
             if ($nextPiece = $this->board->getPieceBySquare($sq)) {
-                if ($nextPiece->getIdentity() === Symbol::PAWN && $nextPiece->getColor() === $color) {
+                if ($nextPiece->getId() === Symbol::PAWN && $nextPiece->getColor() === $color) {
                     return 0;
                 }
             }

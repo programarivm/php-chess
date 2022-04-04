@@ -46,7 +46,7 @@ class ConnectivityEvaluation extends AbstractEvaluation
     private function color(string $color)
     {
         foreach ($this->board->getPiecesByColor($color) as $piece) {
-            switch ($piece->getIdentity()) {
+            switch ($piece->getId()) {
                 case Symbol::KING:
                     $this->result[$color] += count(
                         array_intersect(array_values((array)$piece->getScope()),

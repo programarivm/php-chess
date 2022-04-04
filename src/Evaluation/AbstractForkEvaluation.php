@@ -12,7 +12,7 @@ abstract class AbstractForkEvaluation extends AbstractEvaluation
         $attackedPieces = [];
         foreach ($sqs = $piece->getSquares() as $sq) {
             if ($attackedPiece = $this->board->getPieceBySquare($sq)) {
-                if ($attackedPiece->getIdentity() !== Symbol::PAWN) {
+                if ($attackedPiece->getId() !== Symbol::PAWN) {
                     $attackedPieces[] = $attackedPiece;
                 }
             }
@@ -24,7 +24,7 @@ abstract class AbstractForkEvaluation extends AbstractEvaluation
     protected function isKingAttacked(array $attackedPieces)
     {
         foreach ($attackedPieces as $attackedPiece) {
-            if ($attackedPiece->getIdentity() === Symbol::KING) {
+            if ($attackedPiece->getId() === Symbol::KING) {
                 return true;
             }
         }
@@ -35,10 +35,10 @@ abstract class AbstractForkEvaluation extends AbstractEvaluation
     protected function sumValues(Piece $piece, array $attackedPieces)
     {
         $values = 0;
-        $pieceValue = $this->value[$piece->getIdentity()];
+        $pieceValue = $this->value[$piece->getId()];
         foreach ($attackedPieces as $attackedPiece) {
-            if ($attackedPiece->getIdentity() !== Symbol::KING) {
-                $attackedPieceValue = $this->value[$attackedPiece->getIdentity()];
+            if ($attackedPiece->getId() !== Symbol::KING) {
+                $attackedPieceValue = $this->value[$attackedPiece->getId()];
                 if ($pieceValue < $attackedPieceValue) {
                     $values += $attackedPieceValue;
                 }

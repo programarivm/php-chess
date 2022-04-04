@@ -40,8 +40,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::KING,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::KING,
-                    'position' => (object) [
+                    'id' => Symbol::KING,
+                    'sq' => (object) [
                         'current' => null,
                         'next' => mb_substr($pgn, -2)
                 ]];
@@ -53,8 +53,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::KING_CASTLING_SHORT,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::KING,
-                    'position' => (object) CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['position']
+                    'id' => Symbol::KING,
+                    'sq' => (object) CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['sq']
                 ];
 
             case preg_match('/^' . Move::KING_CASTLING_LONG . '$/', $pgn):
@@ -64,8 +64,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::KING_CASTLING_LONG,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::KING,
-                    'position' => (object) CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['position']
+                    'id' => Symbol::KING,
+                    'sq' => (object) CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sq']
                 ];
 
             case preg_match('/^' . Move::KING_CAPTURES . '$/', $pgn):
@@ -75,8 +75,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::KING_CAPTURES,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::KING,
-                    'position' => (object) [
+                    'id' => Symbol::KING,
+                    'sq' => (object) [
                         'current' => null,
                         'next' => mb_substr($pgn, -2)
                 ]];
@@ -95,8 +95,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::PIECE,
                     'color' => Validate::color($color),
-                    'identity' => mb_substr($pgn, 0, 1),
-                    'position' => (object) [
+                    'id' => mb_substr($pgn, 0, 1),
+                    'sq' => (object) [
                         'current' => $currentPosition,
                         'next' => $nextPosition
                 ]];
@@ -108,8 +108,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::PIECE_CAPTURES,
                     'color' => Validate::color($color),
-                    'identity' => mb_substr($pgn, 0, 1),
-                    'position' => (object) [
+                    'id' => mb_substr($pgn, 0, 1),
+                    'sq' => (object) [
                         'current' => !$isCheck ? mb_substr(mb_substr($pgn, 0, -3), 1) : mb_substr(mb_substr($pgn, 0, -4), 1),
                         'next' => !$isCheck ? mb_substr($pgn, -2) : mb_substr($pgn, -3, -1)
                 ]];
@@ -128,8 +128,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::KNIGHT,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::KNIGHT,
-                    'position' => (object) [
+                    'id' => Symbol::KNIGHT,
+                    'sq' => (object) [
                         'current' => $currentPosition,
                         'next' => $nextPosition
                 ]];
@@ -141,8 +141,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::KNIGHT_CAPTURES,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::KNIGHT,
-                    'position' => (object) [
+                    'id' => Symbol::KNIGHT,
+                    'sq' => (object) [
                         'current' => !$isCheck ? mb_substr(mb_substr($pgn, 0, -3), 1) : mb_substr(mb_substr($pgn, 0, -4), 1),
                         'next' => !$isCheck ? mb_substr($pgn, -2) : mb_substr($pgn, -3, -1)
                 ]];
@@ -154,9 +154,9 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::PAWN_PROMOTES,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::PAWN,
+                    'id' => Symbol::PAWN,
                     'newIdentity' => !$isCheck ? mb_substr($pgn, -1) : mb_substr($pgn, -2, -1),
-                    'position' => (object) [
+                    'sq' => (object) [
                         'current' => null,
                         'next' => mb_substr($pgn, 0, 2)
                 ]];
@@ -168,9 +168,9 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::PAWN_CAPTURES_AND_PROMOTES,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::PAWN,
+                    'id' => Symbol::PAWN,
                     'newIdentity' => !$isCheck ? mb_substr($pgn, -1) : mb_substr($pgn, -2, -1),
-                    'position' => (object) [
+                    'sq' => (object) [
                         'current' => null,
                         'next' => mb_substr($pgn, 2, 2)
                 ]];
@@ -182,8 +182,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::PAWN,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => mb_substr($pgn, 0, 1),
                         'next' => !$isCheck ? $pgn : mb_substr($pgn, 0, -1)
                 ]];
@@ -195,8 +195,8 @@ class Convert
                     'isCheck' => $isCheck,
                     'type' => Move::PAWN_CAPTURES,
                     'color' => Validate::color($color),
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => mb_substr($pgn, 0, 1),
                         'next' => !$isCheck ? mb_substr($pgn, -2) : mb_substr($pgn, -3, -1)
                 ]];
@@ -207,14 +207,14 @@ class Convert
     }
 
     /**
-     * Gets the piece's class name according to its PGN identity.
+     * Gets the piece's class name according to its PGN id.
      *
-     * @param string $identity
+     * @param string $id
      * @return string
      */
-    public static function toClassName(string $identity): string
+    public static function toClassName(string $id): string
     {
-        switch($identity) {
+        switch($id) {
             case Symbol::BISHOP:
                 return (new \ReflectionClass('\Chess\Piece\Bishop'))->getName();
             case Symbol::KING:

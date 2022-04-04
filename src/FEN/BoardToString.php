@@ -86,18 +86,18 @@ class BoardToString
         $history = $this->board->getHistory();
         if ($history) {
             $last = array_slice($history, -1)[0];
-            if ($last->move->identity === Symbol::PAWN) {
-                $prev = $last->position;
-                $next = $last->move->position->next;
+            if ($last->move->id === Symbol::PAWN) {
+                $prev = $last->sq;
+                $next = $last->move->sq->next;
                 if ($last->move->color === Symbol::WHITE) {
-                    if ($last->move->position->next[1] - $last->position[1] === 2) {
-                        $rank = $last->position[1] + 1;
-                        return $last->move->position->current.$rank;
+                    if ($last->move->sq->next[1] - $last->sq[1] === 2) {
+                        $rank = $last->sq[1] + 1;
+                        return $last->move->sq->current.$rank;
                     }
                 } else {
-                    if ($last->position[1] - $last->move->position->next[1] === 2) {
-                        $rank = $last->position[1] - 1;
-                        return $last->move->position->current.$rank;
+                    if ($last->sq[1] - $last->move->sq->next[1] === 2) {
+                        $rank = $last->sq[1] - 1;
+                        return $last->move->sq->current.$rank;
                     }
                 }
             }

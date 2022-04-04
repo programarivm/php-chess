@@ -28,13 +28,13 @@ class MaterialEvaluation extends AbstractEvaluation
     public function evaluate(): array
     {
         foreach ($this->board->getPiecesByColor(Symbol::WHITE) as $piece) {
-            if ($piece->getIdentity() !== Symbol::KING) {
-                $this->result[Symbol::WHITE] += $this->value[$piece->getIdentity()];
+            if ($piece->getId() !== Symbol::KING) {
+                $this->result[Symbol::WHITE] += $this->value[$piece->getId()];
             }
         }
         foreach ($this->board->getPiecesByColor(Symbol::BLACK) as $piece) {
-            if ($piece->getIdentity() !== Symbol::KING) {
-                $this->result[Symbol::BLACK] += $this->value[$piece->getIdentity()];
+            if ($piece->getId() !== Symbol::KING) {
+                $this->result[Symbol::BLACK] += $this->value[$piece->getId()];
             }
         }
 

@@ -204,7 +204,7 @@ class PlayTest extends AbstractUnitTestCase
         $this->assertTrue($game->playFen('rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b'));
         $this->assertTrue($game->playFen('rnbqkbnr/ppp2ppp/8/3Pp3/8/8/PPPP1PPP/RNBQKBNR w'));
 
-        $this->assertSame('P', $game->piece('d5')->identity);
+        $this->assertSame('P', $game->piece('d5')->id);
     }
 
     /**
@@ -378,8 +378,8 @@ class PlayTest extends AbstractUnitTestCase
 
         $expected = (object) [
             'color' => 'b',
-            'identity' => 'P',
-            'position' => 'a7',
+            'id' => 'P',
+            'sq' => 'a7',
             'moves' => [ 'a6', 'a5' ],
         ];
 

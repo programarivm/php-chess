@@ -53,7 +53,7 @@ class PressureEvaluation extends AbstractEvaluation
     public function evaluate(): array
     {
         foreach ($this->board->getPieces() as $piece) {
-            switch ($piece->getIdentity()) {
+            switch ($piece->getId()) {
                 case Symbol::KING:
                     $this->result[$piece->getColor()] = array_merge(
                         $this->result[$piece->getColor()],

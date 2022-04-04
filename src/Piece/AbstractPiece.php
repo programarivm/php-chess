@@ -38,11 +38,11 @@ abstract class AbstractPiece implements Piece
     protected $scope = [];
 
     /**
-     * The piece's identity in PGN format.
+     * The piece's id in PGN format.
      *
      * @var string
      */
-    protected $identity;
+    protected $id;
 
     /**
      * The piece's next move to be performed on the board.
@@ -70,13 +70,13 @@ abstract class AbstractPiece implements Piece
      *
      * @param string $color
      * @param string $sq
-     * @param string $identity
+     * @param string $id
      */
-    public function __construct(string $color, string $sq, string $identity)
+    public function __construct(string $color, string $sq, string $id)
     {
         $this->color = Validate::color($color);
-        $this->position = Validate::sq($sq);
-        $this->identity = $identity;
+        $this->sq = Validate::sq($sq);
+        $this->id = $id;
     }
 
     /**
@@ -116,9 +116,9 @@ abstract class AbstractPiece implements Piece
      *
      * @return string
      */
-    public function getPosition(): string
+    public function getSquare(): string
     {
-        return $this->position;
+        return $this->sq;
     }
 
     /**
@@ -132,13 +132,13 @@ abstract class AbstractPiece implements Piece
     }
 
     /**
-     * Gets the piece's identity.
+     * Gets the piece's id.
      *
      * @return string
      */
-    public function getIdentity(): string
+    public function getId(): string
     {
-        return $this->identity;
+        return $this->id;
     }
 
     /**
@@ -171,7 +171,7 @@ abstract class AbstractPiece implements Piece
     public function isMovable(): bool
     {
         if (isset($this->move)) {
-            return in_array($this->move->position->next, $this->getSquares());
+            return in_array($this->move->sq->next, $this->getSquares());
         }
 
         return false;

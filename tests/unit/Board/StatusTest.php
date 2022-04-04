@@ -28,64 +28,64 @@ class StatusTest extends AbstractUnitTestCase
             'w' => [
                 (object) [
                     'capturing' => (object) [
-                        'identity' => 'B',
-                        'position' => 'b5',
+                        'id' => 'B',
+                        'sq' => 'b5',
                     ],
                     'captured' => (object) [
-                        'identity' => 'N',
-                        'position' => 'c6',
+                        'id' => 'N',
+                        'sq' => 'c6',
                     ],
                 ],
                 (object) [
                     'capturing' => (object) [
-                        'identity' => 'Q',
-                        'position' => 'd1',
+                        'id' => 'Q',
+                        'sq' => 'd1',
                     ],
                     'captured' => (object) [
-                        'identity' => 'P',
-                        'position' => 'd4',
+                        'id' => 'P',
+                        'sq' => 'd4',
                     ],
                 ],
                 (object) [
                     'capturing' => (object) [
-                        'identity' => 'N',
-                        'position' => 'f3',
+                        'id' => 'N',
+                        'sq' => 'f3',
                     ],
                     'captured' => (object) [
-                        'identity' => 'Q',
-                        'position' => 'd4',
+                        'id' => 'Q',
+                        'sq' => 'd4',
                     ],
                 ],
             ],
             'b' => [
                 (object) [
                     'capturing' => (object) [
-                        'identity' => 'P',
-                        'position' => 'd7',
+                        'id' => 'P',
+                        'sq' => 'd7',
                     ],
                     'captured' => (object) [
-                        'identity' => 'B',
-                        'position' => 'c6',
+                        'id' => 'B',
+                        'sq' => 'c6',
                     ],
                 ],
                 (object) [
                     'capturing' => (object) [
-                        'identity' => 'P',
-                        'position' => 'e5',
+                        'id' => 'P',
+                        'sq' => 'e5',
                     ],
                     'captured' => (object) [
-                        'identity' => 'P',
-                        'position' => 'd4',
+                        'id' => 'P',
+                        'sq' => 'd4',
                     ],
                 ],
                 (object) [
                     'capturing' => (object) [
-                        'identity' => 'Q',
-                        'position' => 'd8',
+                        'id' => 'Q',
+                        'sq' => 'd8',
                     ],
                     'captured' => (object) [
-                        'identity' => 'Q',
-                        'position' => 'd4',
+                        'id' => 'Q',
+                        'sq' => 'd4',
                     ],
                 ],
             ],
@@ -115,60 +115,60 @@ class StatusTest extends AbstractUnitTestCase
 
         $expected = [
             (object) [
-                'position' => 'd2',
+                'sq' => 'd2',
                 'move' => (object) [
                     'pgn' => 'd4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'd',
                         'next' => 'd4',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'd7',
+                'sq' => 'd7',
                 'move' => (object) [
                     'pgn' => 'd5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'd',
                         'next' => 'd5',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'c2',
+                'sq' => 'c2',
                 'move' => (object) [
                     'pgn' => 'c4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'c',
                         'next' => 'c4',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'c7',
+                'sq' => 'c7',
                 'move' => (object) [
                     'pgn' => 'c5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'c',
                         'next' => 'c5',
                     ],
@@ -188,90 +188,90 @@ class StatusTest extends AbstractUnitTestCase
 
         $expected = [
             (object) [
-                'position' => 'e2',
+                'sq' => 'e2',
                 'move' => (object) [
                     'pgn' => 'e4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'e',
                         'next' => 'e4',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'e7',
+                'sq' => 'e7',
                 'move' => (object) [
                     'pgn' => 'e5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'e',
                         'next' => 'e5',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'g1',
+                'sq' => 'g1',
                 'move' => (object) [
                     'pgn' => 'Nf3',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Symbol::WHITE,
-                    'identity' => Symbol::KNIGHT,
-                    'position' => (object) [
+                    'id' => Symbol::KNIGHT,
+                    'sq' => (object) [
                         'current' => null,
                         'next' => 'f3',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'b8',
+                'sq' => 'b8',
                 'move' => (object) [
                     'pgn' => 'Nc6',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Symbol::BLACK,
-                    'identity' => Symbol::KNIGHT,
-                    'position' => (object) [
+                    'id' => Symbol::KNIGHT,
+                    'sq' => (object) [
                         'current' => null,
                         'next' => 'c6',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'f1',
+                'sq' => 'f1',
                 'move' => (object) [
                     'pgn' => 'Bb5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PIECE,
                     'color' => Symbol::WHITE,
-                    'identity' => Symbol::BISHOP,
-                    'position' => (object) [
+                    'id' => Symbol::BISHOP,
+                    'sq' => (object) [
                         'current' => null,
                         'next' => 'b5',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'f8',
+                'sq' => 'f8',
                 'move' => (object) [
                     'pgn' => 'Be7',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PIECE,
                     'color' => Symbol::BLACK,
-                    'identity' => Symbol::BISHOP,
-                    'position' => (object) [
+                    'id' => Symbol::BISHOP,
+                    'sq' => (object) [
                         'current' => null,
                         'next' => 'e7',
                     ],
@@ -352,90 +352,90 @@ class StatusTest extends AbstractUnitTestCase
 
         $expected = [
             (object) [
-                'position' => 'e2',
+                'sq' => 'e2',
                 'move' => (object) [
                     'pgn' => 'e4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'e',
                         'next' => 'e4',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'e7',
+                'sq' => 'e7',
                 'move' => (object) [
                     'pgn' => 'e6',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'e',
                         'next' => 'e6',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'd2',
+                'sq' => 'd2',
                 'move' => (object) [
                     'pgn' => 'd4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'd',
                         'next' => 'd4',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'd7',
+                'sq' => 'd7',
                 'move' => (object) [
                     'pgn' => 'd5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'identity' => Symbol::PAWN,
-                    'position' => (object) [
+                    'id' => Symbol::PAWN,
+                    'sq' => (object) [
                         'current' => 'd',
                         'next' => 'd5',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'b1',
+                'sq' => 'b1',
                 'move' => (object) [
                     'pgn' => 'Nc3',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Symbol::WHITE,
-                    'identity' => Symbol::KNIGHT,
-                    'position' => (object) [
+                    'id' => Symbol::KNIGHT,
+                    'sq' => (object) [
                         'current' => null,
                         'next' => 'c3',
                     ],
                 ],
             ],
             (object) [
-                'position' => 'g8',
+                'sq' => 'g8',
                 'move' => (object) [
                     'pgn' => 'Nf6',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Symbol::BLACK,
-                    'identity' => Symbol::KNIGHT,
-                    'position' => (object) [
+                    'id' => Symbol::KNIGHT,
+                    'sq' => (object) [
                         'current' => null,
                         'next' => 'f6',
                     ],

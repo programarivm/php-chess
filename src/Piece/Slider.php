@@ -15,11 +15,11 @@ abstract class Slider extends AbstractPiece
      *
      * @param $color
      * @param $sq
-     * @param $identity
+     * @param $id
      */
-    public function __construct(string $color, string $sq, string $identity)
+    public function __construct(string $color, string $sq, string $id)
     {
-        parent::__construct($color, $sq, $identity);
+        parent::__construct($color, $sq, $id);
     }
 
     /**

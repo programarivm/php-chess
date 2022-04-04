@@ -25,7 +25,7 @@ class PassedPawnEvaluation extends AbstractEvaluation
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();
             /** @var Pawn $piece */
-            if ($piece->getIdentity() === Symbol::PAWN) {
+            if ($piece->getId() === Symbol::PAWN) {
                 $this->result[ $color ] += $this->getThreatPassedPawn($piece);
             }
         }
@@ -59,14 +59,14 @@ class PassedPawnEvaluation extends AbstractEvaluation
         $passedPawn = true;
         foreach ($sqs as $sq) {
             if ($nextPiece = $this->board->getPieceBySquare($sq)) {
-                if ($nextPiece->getIdentity() === Symbol::PAWN && $nextPiece->getColor() !== $color) {
+                if ($nextPiece->getId() === Symbol::PAWN && $nextPiece->getColor() !== $color) {
                     $passedPawn = false;
                     break;
                 }
             }
         }
         if ($passedPawn) {
-            $position = $pawn->getPosition();
+            $position = $pawn->getSquare();
             if ($color === Symbol::WHITE) {
                 return $position[ 1 ];
             } else {

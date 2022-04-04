@@ -45,7 +45,7 @@ class SpaceEvaluation extends AbstractEvaluation
         $this->board->rewind();
         while ($this->board->valid()) {
             $piece = $this->board->current();
-            switch ($piece->getIdentity()) {
+            switch ($piece->getId()) {
                 case Symbol::KING:
                     $this->result[$piece->getColor()] = array_unique(
                         array_merge(

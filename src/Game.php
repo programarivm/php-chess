@@ -109,8 +109,8 @@ class Game
             $history[] = (object) [
                 'pgn' => $entry->move->pgn,
                 'color' => $entry->move->color,
-                'identity' => $entry->move->identity,
-                'position' => $entry->position,
+                'id' => $entry->move->id,
+                'sq' => $entry->sq,
                 'isCapture' => $entry->move->isCapture,
                 'isCheck' => $entry->move->isCheck,
             ];
@@ -153,8 +153,8 @@ class Game
 
         foreach ($pieces as $piece) {
             $result[] = (object) [
-                'identity' => $piece->getIdentity(),
-                'position' => $piece->getPosition(),
+                'id' => $piece->getId(),
+                'sq' => $piece->getSquare(),
                 'moves' => $piece->getSquares(),
             ];
         }
@@ -175,7 +175,7 @@ class Game
             $color = $piece->getColor();
             foreach ($piece->getSquares() as $sq) {
                 $clone = unserialize(serialize($this->board));
-                switch ($piece->getIdentity()) {
+                switch ($piece->getId()) {
                     case Symbol::KING:
                         if ($clone->play($color, Symbol::KING.$sq)) {
                             $moves[] = $sq;
@@ -191,9 +191,9 @@ class Game
                         }
                         break;
                     default:
-                        if ($clone->play($color, $piece->getIdentity().$sq)) {
+                        if ($clone->play($color, $piece->getId().$sq)) {
                             $moves[] = $sq;
-                        } elseif ($clone->play($color, "{$piece->getIdentity()}x$sq")) {
+                        } elseif ($clone->play($color, "{$piece->getId()}x$sq")) {
                             $moves[] = $sq;
                         }
                         break;
@@ -201,11 +201,11 @@ class Game
             }
             $result = [
                 'color' => $color,
-                'identity' => $piece->getIdentity(),
-                'position' => $piece->getPosition(),
+                'id' => $piece->getId(),
+                'sq' => $piece->getSquare(),
                 'moves' => $moves,
             ];
-            if ($piece->getIdentity() === Symbol::PAWN) {
+            if ($piece->getId() === Symbol::PAWN) {
                 if ($enPassant = $piece->getEnPassantSquare()) {
                     $result['enPassant'] = $enPassant;
                 }

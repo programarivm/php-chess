@@ -35,15 +35,15 @@ class Ascii
         ];
 
         foreach ($board->getPieces() as $piece) {
-            $position = $piece->getPosition();
+            $position = $piece->getSquare();
             list($file, $rank) = $this->fromAlgebraicToIndex($position);
             if ($flip) {
                 $file = 7 - $file;
                 $rank = 7 - $rank;
             }
             Symbol::WHITE === $piece->getColor()
-                ? $array[$file][$rank] = ' ' . $piece->getIdentity() . ' '
-                : $array[$file][$rank] = ' ' . strtolower($piece->getIdentity()) . ' ';
+                ? $array[$file][$rank] = ' ' . $piece->getId() . ' '
+                : $array[$file][$rank] = ' ' . strtolower($piece->getId()) . ' ';
         }
 
         return $array;

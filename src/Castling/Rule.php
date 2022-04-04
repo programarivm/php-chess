@@ -31,7 +31,7 @@ class Rule
                                 'f' => 'f1',
                                 'g' => 'g1',
                             ],
-                            'position' => [
+                            'sq' => [
                                 'current' => 'e1',
                                 'next' => 'g1',
                             ],
@@ -42,7 +42,7 @@ class Rule
                                 'c' => 'c1',
                                 'd' => 'd1',
                             ],
-                            'position' => [
+                            'sq' => [
                                 'current' => 'e1',
                                 'next' => 'c1',
                             ],
@@ -50,13 +50,13 @@ class Rule
                     ],
                     Symbol::ROOK => [
                         Symbol::CASTLING_SHORT => [
-                            'position' => [
+                            'sq' => [
                                 'current' => 'h1',
                                 'next' => 'f1',
                             ],
                         ],
                         Symbol::CASTLING_LONG => [
-                            'position' => [
+                            'sq' => [
                                 'current' => 'a1',
                                 'next' => 'd1',
                             ],
@@ -72,7 +72,7 @@ class Rule
                                 'f' => 'f8',
                                 'g' => 'g8',
                             ],
-                            'position' => [
+                            'sq' => [
                                 'current' => 'e8',
                                 'next' => 'g8',
                             ],
@@ -83,7 +83,7 @@ class Rule
                                 'c' => 'c8',
                                 'd' => 'd8',
                             ],
-                            'position' => [
+                            'sq' => [
                                 'current' => 'e8',
                                 'next' => 'c8',
                             ],
@@ -91,13 +91,13 @@ class Rule
                     ],
                     Symbol::ROOK => [
                         Symbol::CASTLING_SHORT => [
-                            'position' => [
+                            'sq' => [
                                 'current' => 'h8',
                                 'next' => 'f8',
                             ],
                         ],
                         Symbol::CASTLING_LONG => [
-                            'position' => [
+                            'sq' => [
                                 'current' => 'a8',
                                 'next' => 'd8',
                             ],

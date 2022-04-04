@@ -23,11 +23,11 @@ class DoubledPawnEvaluation extends AbstractEvaluation implements InverseEvaluat
     {
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();
-            if ($piece->getIdentity() === Symbol::PAWN) {
+            if ($piece->getId() === Symbol::PAWN) {
                 $file = $piece->getFile();
                 $ranks = $piece->getRanks();
                 if ($nextPiece = $this->board->getPieceBySquare($file.$ranks->next)) {
-                    if ($nextPiece->getIdentity() === Symbol::PAWN && $nextPiece->getColor() === $color) {
+                    if ($nextPiece->getId() === Symbol::PAWN && $nextPiece->getColor() === $color) {
                         $this->result[$color] += 1;
                     }
                 }

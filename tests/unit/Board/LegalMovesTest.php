@@ -1107,7 +1107,7 @@ class LegalMovesTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('w', 'exd5'));
         $this->assertTrue($board->play('b', 'e5'));
 
-        $this->assertSame('P', $board->getPieceBySquare('d5')->getIdentity());
+        $this->assertSame('P', $board->getPieceBySquare('d5')->getId());
     }
 
     /**

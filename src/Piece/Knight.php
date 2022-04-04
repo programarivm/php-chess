@@ -38,8 +38,8 @@ class Knight extends AbstractPiece
     protected function scope(): void
     {
         try {
-            $file = chr(ord($this->position[0]) - 1);
-            $rank = (int)$this->position[1] + 2;
+            $file = chr(ord($this->sq[0]) - 1);
+            $rank = (int)$this->sq[1] + 2;
             if (Validate::sq($file.$rank)) {
                 $this->scope->jumps[] = $file . $rank;
             }
@@ -48,8 +48,8 @@ class Knight extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->position[0]) - 2);
-            $rank = (int)$this->position[1] + 1;
+            $file = chr(ord($this->sq[0]) - 2);
+            $rank = (int)$this->sq[1] + 1;
             if (Validate::sq($file.$rank)) {
                 $this->scope->jumps[] = $file . $rank;
             }
@@ -58,8 +58,8 @@ class Knight extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->position[0]) - 2);
-            $rank = (int)$this->position[1] - 1;
+            $file = chr(ord($this->sq[0]) - 2);
+            $rank = (int)$this->sq[1] - 1;
             if (Validate::sq($file.$rank)) {
                 $this->scope->jumps[] = $file . $rank;
             }
@@ -68,8 +68,8 @@ class Knight extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->position[0]) - 1);
-            $rank = (int)$this->position[1] - 2;
+            $file = chr(ord($this->sq[0]) - 1);
+            $rank = (int)$this->sq[1] - 2;
             if (Validate::sq($file.$rank)) {
                 $this->scope->jumps[] = $file . $rank;
             }
@@ -78,8 +78,8 @@ class Knight extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->position[0]) + 1);
-            $rank = (int)$this->position[1] - 2;
+            $file = chr(ord($this->sq[0]) + 1);
+            $rank = (int)$this->sq[1] - 2;
             if (Validate::sq($file.$rank)) {
                 $this->scope->jumps[] = $file . $rank;
             }
@@ -89,8 +89,8 @@ class Knight extends AbstractPiece
 
         try {
 
-            $file = chr(ord($this->position[0]) + 2);
-            $rank = (int)$this->position[1] - 1;
+            $file = chr(ord($this->sq[0]) + 2);
+            $rank = (int)$this->sq[1] - 1;
             if (Validate::sq($file.$rank)) {
                 $this->scope->jumps[] = $file . $rank;
             }
@@ -99,8 +99,8 @@ class Knight extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->position[0]) + 2);
-            $rank = (int)$this->position[1] + 1;
+            $file = chr(ord($this->sq[0]) + 2);
+            $rank = (int)$this->sq[1] + 1;
             if (Validate::sq($file.$rank)) {
                 $this->scope->jumps[] = $file . $rank;
             }
@@ -109,8 +109,8 @@ class Knight extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->position[0]) + 1);
-            $rank = (int)$this->position[1] + 2;
+            $file = chr(ord($this->sq[0]) + 1);
+            $rank = (int)$this->sq[1] + 2;
             if (Validate::sq($file.$rank)) {
                 $this->scope->jumps[] = $file . $rank;
             }
