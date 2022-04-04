@@ -502,14 +502,10 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Semantically validates a chess move.
-     *
-     * Examples of invalid moves:
-     *      - Bxb5 with b5 empty
-     *      - Bb5 with a piece on b5
+     * Checks out if a chess move is valid.
      *
      * @param \stdClass $move
-     * @return bool true if the move is semantically valid; otherwise false
+     * @return bool true if the move is valid; otherwise false
      */
     private function isValidMove(\stdClass $move): bool
     {
@@ -704,7 +700,7 @@ final class Board extends \SplObjectStorage
      * Moves a piece.
      *
      * @param \Chess\Piece\Piece $piece
-     * @return bool true if the move is successfully run; otherwise false
+     * @return bool true if the move can be made; otherwise false
      */
     private function move(Piece $piece): bool
     {
