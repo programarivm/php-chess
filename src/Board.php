@@ -91,6 +91,11 @@ final class Board extends \SplObjectStorage
      */
     private $castling = [];
 
+    /**
+     * Observers.
+     *
+     * @var array
+     */
     private $observers = [];
 
     /**
@@ -169,7 +174,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Gets the board's square evaluation.
+     * Gets the square evaluation.
      *
      * @return \stdClass
      */
@@ -179,7 +184,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Gets the board's pressure evaluation.
+     * Gets the pressure evaluation.
      *
      * @return \stdClass
      */
@@ -189,7 +194,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Gets the board's space evaluation.
+     * Gets the space evaluation.
      *
      * @return \stdClass
      */
@@ -199,7 +204,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Gets the board's defense evaluation.
+     * Gets the defense evaluation.
      *
      * @return \stdClass
      */
@@ -223,7 +228,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getCaptures(): array
+    public function getCaptures(): ?array
     {
         return $this->captures;
     }
@@ -231,7 +236,7 @@ final class Board extends \SplObjectStorage
     /**
      * Adds a new element to the captured pieces.
      *
-     * @param string    $color
+     * @param string $color
      * @param \stdClass $capture
      * @return \Chess\Board
      */
@@ -246,6 +251,7 @@ final class Board extends \SplObjectStorage
      * Removes an element from the captured pieces.
      *
      * @param string $color
+     * @return \Chess\Board
      */
     private function popCapture(string $color): Board
     {
@@ -259,7 +265,7 @@ final class Board extends \SplObjectStorage
      *
      * @return array
      */
-    public function getHistory(): array
+    public function getHistory(): ?array
     {
         return $this->history;
     }
@@ -269,7 +275,7 @@ final class Board extends \SplObjectStorage
      *
      * @return mixed object|null
      */
-    public function getLastHistory()
+    public function getLastHistory(): ?\stdClass
     {
         if (!empty($this->history)) {
             return end($this->history);
@@ -372,7 +378,7 @@ final class Board extends \SplObjectStorage
      *
      * @return array
      */
-    public function getPieces()
+    public function getPieces(): array
     {
         $pieces = [];
         $this->rewind();
@@ -438,7 +444,7 @@ final class Board extends \SplObjectStorage
      */
     private function capture(Piece $piece): Board
     {
-        $piece->getSquares(); // this creates the enPassantSquare property in the pawn's position object
+        $piece->getSquares(); // creates the enPassantSquare property if the piece is a pawn
         if ($piece->getId() === Symbol::PAWN && !empty($piece->getEnPassantSq()) &&
             empty($this->getPieceBySq($piece->getMove()->sq->next))
            ) {
@@ -567,6 +573,7 @@ final class Board extends \SplObjectStorage
      *
      * @param string $color
      * @param string $pgn
+     * @return bool true if the move can be made; otherwise false
      */
     public function play(string $color, string $pgn): bool
     {
@@ -579,7 +586,7 @@ final class Board extends \SplObjectStorage
      * Castles the king.
      *
      * @param \Chess\Piece\King $king
-     * @return bool true if the castling is successfully run; otherwise false
+     * @return bool true if the castling move can be made; otherwise false
      */
     private function castle(King $king): bool
     {
@@ -903,7 +910,12 @@ final class Board extends \SplObjectStorage
         return $this->isTrapped() && !$this->isCheck();
     }
 
-    public function getMoves()
+    /**
+     * Returns all possible moves.
+     *
+     * @return array
+     */
+    public function getMoves(): array
     {
         $moves = [];
         $color = $this->getTurn();
