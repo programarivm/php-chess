@@ -2,7 +2,7 @@
 
 namespace Chess\FEN;
 
-use Chess\Castling\Rule as CastlingRule;
+use Chess\Castling;
 use Chess\FEN\BoardToString;
 use Chess\FEN\StringToBoard;
 use Chess\PGN\Symbol;
@@ -35,7 +35,7 @@ abstract class AbstractStringToPgn
                 $position = $piece->getSquare();
                 switch ($id) {
                     case Symbol::KING:
-                        $rule = CastlingRule::color($color)[Symbol::KING];
+                        $rule = Castling::color($color)[Symbol::KING];
                         if ($sq === $rule[Symbol::CASTLING_SHORT]['sq']['next'] &&
                             $this->board->getCastling()[$color][Symbol::CASTLING_SHORT]
                         ) {

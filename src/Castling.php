@@ -1,18 +1,31 @@
 <?php
 
-namespace Chess\Castling;
+namespace Chess;
 
 use Chess\PGN\Symbol;
 
 /**
- * Castling rule.
+ * Castling.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-class Rule
+class Castling
 {
     const IS_CASTLED = 'isCastled';
+
+    public static $initialState = [
+        Symbol::WHITE => [
+            self::IS_CASTLED => false,
+            Symbol::CASTLING_SHORT => true,
+            Symbol::CASTLING_LONG => true,
+        ],
+        Symbol::BLACK => [
+            self::IS_CASTLED => false,
+            Symbol::CASTLING_SHORT => true,
+            Symbol::CASTLING_LONG => true,
+        ],
+    ];
 
     /**
      * Castling rule by color.

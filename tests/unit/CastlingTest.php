@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit;
 
 use Chess\Board;
-use Chess\Castling\Rule as CastlingRule;
+use Chess\Castling;
 use Chess\PGN\Symbol;
 use Chess\Piece\King;
 use Chess\Piece\Knight;
@@ -20,7 +20,7 @@ class CastlingTest extends AbstractUnitTestCase
      */
     public function white_long()
     {
-        $rule = CastlingRule::color(Symbol::WHITE);
+        $rule = Castling::color(Symbol::WHITE);
 
         $this->assertSame($rule[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['b'], 'b1');
         $this->assertSame($rule[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['c'], 'c1');
@@ -36,7 +36,7 @@ class CastlingTest extends AbstractUnitTestCase
      */
     public function black_long()
     {
-        $rule = CastlingRule::color(Symbol::BLACK);
+        $rule = Castling::color(Symbol::BLACK);
 
         $this->assertSame($rule[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['b'], 'b8');
         $this->assertSame($rule[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['c'], 'c8');
@@ -52,7 +52,7 @@ class CastlingTest extends AbstractUnitTestCase
      */
     public function white_short()
     {
-        $rule = CastlingRule::color(Symbol::WHITE);
+        $rule = Castling::color(Symbol::WHITE);
 
         $this->assertSame($rule[Symbol::KING][Symbol::CASTLING_SHORT]['sqs']['f'], 'f1');
         $this->assertSame($rule[Symbol::KING][Symbol::CASTLING_SHORT]['sqs']['g'], 'g1');
@@ -67,7 +67,7 @@ class CastlingTest extends AbstractUnitTestCase
      */
     public function black_short()
     {
-        $rule = CastlingRule::color(Symbol::BLACK);
+        $rule = Castling::color(Symbol::BLACK);
 
         $this->assertSame($rule[Symbol::KING][Symbol::CASTLING_SHORT]['sqs']['f'], 'f8');
         $this->assertSame($rule[Symbol::KING][Symbol::CASTLING_SHORT]['sqs']['g'], 'g8');

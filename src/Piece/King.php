@@ -2,7 +2,7 @@
 
 namespace Chess\Piece;
 
-use Chess\Castling\Rule as CastlingRule;
+use Chess\Castling;
 use Chess\PGN\Symbol;
 use Chess\Piece\AbstractPiece;
 use Chess\Piece\Rook;
@@ -45,7 +45,7 @@ class King extends AbstractPiece
 
     protected function moveCastlingLong()
     {
-        $rule = CastlingRule::color($this->getColor())[Symbol::KING][Symbol::CASTLING_LONG];
+        $rule = Castling::color($this->getColor())[Symbol::KING][Symbol::CASTLING_LONG];
         if (!$this->board->getCastling()[$this->getColor()]['isCastled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLING_LONG]) {
                 if (
@@ -66,7 +66,7 @@ class King extends AbstractPiece
 
     protected function moveCastlingShort()
     {
-        $rule = CastlingRule::color($this->getColor())[Symbol::KING][Symbol::CASTLING_SHORT];
+        $rule = Castling::color($this->getColor())[Symbol::KING][Symbol::CASTLING_SHORT];
         if (!$this->board->getCastling()[$this->getColor()]['isCastled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLING_SHORT]) {
                 if (
@@ -108,7 +108,7 @@ class King extends AbstractPiece
      */
     public function getCastlingRook(array $pieces)
     {
-        $rule = CastlingRule::color($this->getColor())[Symbol::ROOK];
+        $rule = Castling::color($this->getColor())[Symbol::ROOK];
         foreach ($pieces as $piece) {
             if (
                 $piece->getId() === Symbol::ROOK &&

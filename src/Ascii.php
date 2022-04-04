@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\Castling\Rule as CastlingRule;
+use Chess\Castling;
 use Chess\PGN\Symbol;
 use Chess\Piece\Bishop;
 use Chess\Piece\King;
@@ -54,12 +54,12 @@ class Ascii
         if (!$castling) {
             $castling = [
                 Symbol::WHITE => [
-                    CastlingRule::IS_CASTLED => false,
+                    Castling::IS_CASTLED => false,
                     Symbol::CASTLING_SHORT => false,
                     Symbol::CASTLING_LONG => false,
                 ],
                 Symbol::BLACK => [
-                    CastlingRule::IS_CASTLED => false,
+                    Castling::IS_CASTLED => false,
                     Symbol::CASTLING_SHORT => false,
                     Symbol::CASTLING_LONG => false,
                 ],

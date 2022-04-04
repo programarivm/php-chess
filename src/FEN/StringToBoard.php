@@ -4,7 +4,7 @@ namespace Chess\FEN;
 
 use Chess\Ascii;
 use Chess\Board;
-use Chess\Castling\Initialization as CastlingInit;
+use Chess\Castling;
 use Chess\Exception\UnknownNotationException;
 use Chess\PGN\Symbol;
 use Chess\Piece\Bishop;
@@ -37,7 +37,7 @@ class StringToBoard
 
         $this->fields = array_filter(explode(' ', $this->string));
 
-        $this->castling = CastlingInit::$initialState;
+        $this->castling = Castling::$initialState;
 
         $this->pieces = [];
 

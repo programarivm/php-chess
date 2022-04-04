@@ -5,7 +5,6 @@ namespace Chess\FEN;
 use Chess\Ascii;
 use Chess\Board;
 use Chess\PGN\Symbol;
-use Chess\Castling\Rule as CastlingRule;
 
 /**
  * Chess\Board to FEN string converter.

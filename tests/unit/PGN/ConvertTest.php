@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\PGN;
 
-use Chess\Castling\Rule as CastlingRule;
+use Chess\Castling;
 use Chess\PGN\Convert;
 use Chess\PGN\Move;
 use Chess\PGN\Symbol;
@@ -289,7 +289,7 @@ class ConvertTest extends AbstractUnitTestCase
             'type' => Move::KING_CASTLING_SHORT,
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) CastlingRule::color('w')[Symbol::KING][Symbol::CASTLING_SHORT]['sq']
+            'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLING_SHORT]['sq']
         ];
 
         $this->assertEquals(Convert::toStdObj('w', $move), $example);
@@ -308,7 +308,7 @@ class ConvertTest extends AbstractUnitTestCase
             'type' => Move::KING_CASTLING_LONG,
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) CastlingRule::color('w')[Symbol::KING][Symbol::CASTLING_LONG]['sq']
+            'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLING_LONG]['sq']
         ];
 
         $this->assertEquals(Convert::toStdObj('w', $move), $example);

@@ -2,8 +2,7 @@
 
 namespace Chess;
 
-use Chess\Castling\Initialization as CastlingInit;
-use Chess\Castling\Rule as CastlingRule;
+use Chess\Castling;
 use Chess\Exception\BoardException;
 use Chess\Evaluation\DefenseEvaluation;
 use Chess\Evaluation\PressureEvaluation;
@@ -135,7 +134,7 @@ final class Board extends \SplObjectStorage
             $this->attach(new Pawn(Symbol::BLACK, 'f7'));
             $this->attach(new Pawn(Symbol::BLACK, 'g7'));
             $this->attach(new Pawn(Symbol::BLACK, 'h7'));
-            $this->castling = CastlingInit::$initialState;
+            $this->castling = Castling::$initialState;
         } else {
             foreach ($pieces as $piece) {
                 $this->attach($piece);
@@ -549,12 +548,12 @@ final class Board extends \SplObjectStorage
             $piece = current($pieces);
             switch ($piece->getMove()->type) {
                 case Move::KING_CASTLING_SHORT:
-                    CastlingRule::short($this->turn, $this->castling, $this->space)
+                    Castling::short($this->turn, $this->castling, $this->space)
                         ? $isLegalMove = $this->castle($piece)
                         : $isLegalMove = false;
                     break;
                 case Move::KING_CASTLING_LONG:
-                    CastlingRule::long($this->turn, $this->castling, $this->space)
+                    Castling::long($this->turn, $this->castling, $this->space)
                         ? $isLegalMove = $this->castle($piece)
                         : $isLegalMove = false;
                     break;
@@ -594,19 +593,19 @@ final class Board extends \SplObjectStorage
             $this->attach(
                 new King(
                     $king->getColor(),
-                    CastlingRule::color($king->getColor())[Symbol::KING][rtrim($king->getMove()->pgn, '+')]['sq']['next']
+                    Castling::color($king->getColor())[Symbol::KING][rtrim($king->getMove()->pgn, '+')]['sq']['next']
                 )
              );
             $this->detach($rook);
             $this->attach(
                 new Rook(
                     $rook->getColor(),
-                    CastlingRule::color($king->getColor())[Symbol::ROOK][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
+                    Castling::color($king->getColor())[Symbol::ROOK][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
                     $rook->getId() === Symbol::ROOK
                 )
             );
             $this->castling[$this->turn] = [
-                CastlingRule::IS_CASTLED => true,
+                Castling::IS_CASTLED => true,
                 Symbol::CASTLING_SHORT => false,
                 Symbol::CASTLING_LONG => false,
             ];
@@ -632,22 +631,22 @@ final class Board extends \SplObjectStorage
         $this->attach($kingUndone);
         if (Move::KING_CASTLING_SHORT === $prev->move->type) {
             $rook = $this->getPieceBySquare(
-                CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['sq']['next']
+                Castling::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['sq']['next']
             );
             $rookUndone = new Rook(
                 $prev->move->color,
-                CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['sq']['current'],
+                Castling::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_SHORT]['sq']['current'],
                 $rook->getType()
             );
             $this->detach($rook);
             $this->attach($rookUndone);
         } elseif (Move::KING_CASTLING_LONG === $prev->move->type) {
             $rook = $this->getPieceBySquare(
-                CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['sq']['next']
+                Castling::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['sq']['next']
             );
             $rookUndone = new Rook(
                 $prev->move->color,
-                CastlingRule::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['sq']['current'],
+                Castling::color($prev->move->color)[Symbol::ROOK][Symbol::CASTLING_LONG]['sq']['current'],
                 $rook->getType()
             );
             $this->detach($rook);
@@ -667,10 +666,10 @@ final class Board extends \SplObjectStorage
      */
     private function updateCastling(Piece $pieceMoved): Board
     {
-        if (!$this->castling[$this->turn][CastlingRule::IS_CASTLED]) {
+        if (!$this->castling[$this->turn][Castling::IS_CASTLED]) {
             if ($pieceMoved->getId() === Symbol::KING) {
                 $this->castling[$this->turn] = [
-                    CastlingRule::IS_CASTLED => false,
+                    Castling::IS_CASTLED => false,
                     Symbol::CASTLING_SHORT => false,
                     Symbol::CASTLING_LONG => false,
                 ];
@@ -683,15 +682,15 @@ final class Board extends \SplObjectStorage
             }
         }
         $oppColor = Symbol::oppColor($this->turn);
-        if (!$this->castling[$oppColor][CastlingRule::IS_CASTLED]) {
+        if (!$this->castling[$oppColor][Castling::IS_CASTLED]) {
             if ($pieceMoved->getMove()->isCapture) {
                 if ($pieceMoved->getMove()->sq->next ===
-                    CastlingRule::color($oppColor)[Symbol::ROOK][Symbol::CASTLING_SHORT]['sq']['current']
+                    Castling::color($oppColor)[Symbol::ROOK][Symbol::CASTLING_SHORT]['sq']['current']
                 ) {
                     $this->castling[$oppColor][Symbol::CASTLING_SHORT] = false;
                 } elseif (
                     $pieceMoved->getMove()->sq->next ===
-                    CastlingRule::color($oppColor)[Symbol::ROOK][Symbol::CASTLING_LONG]['sq']['current']
+                    Castling::color($oppColor)[Symbol::ROOK][Symbol::CASTLING_LONG]['sq']['current']
                 ) {
                     $this->castling[$oppColor][Symbol::CASTLING_LONG] = false;
                 }
@@ -916,12 +915,12 @@ final class Board extends \SplObjectStorage
                 switch ($piece->getId()) {
                     case Symbol::KING:
                         if (
-                            CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['sq']['next'] === $sq &&
+                            Castling::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['sq']['next'] === $sq &&
                             $clone->play($color, Symbol::CASTLING_SHORT)
                         ) {
                             $moves[] = Symbol::CASTLING_SHORT;
                         } elseif (
-                            CastlingRule::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sq']['next'] === $sq &&
+                            Castling::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sq']['next'] === $sq &&
                             $clone->play($color, Symbol::CASTLING_LONG)
                         ) {
                             $moves[] = Symbol::CASTLING_LONG;

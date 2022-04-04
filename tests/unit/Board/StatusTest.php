@@ -3,7 +3,6 @@
 namespace Chess\Tests\Unit\Board;
 
 use Chess\Board;
-use Chess\Castling\Rule as CastlingRule;
 use Chess\PGN\Move;
 use Chess\PGN\Symbol;
 use Chess\Tests\AbstractUnitTestCase;
