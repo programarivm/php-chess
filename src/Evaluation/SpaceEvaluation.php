@@ -75,7 +75,7 @@ class SpaceEvaluation extends AbstractEvaluation
                         array_merge(
                             $this->result[$piece->getColor()],
                             array_diff(
-                                $piece->getLegalMoves(),
+                                $piece->getSquares(),
                                 $this->sqEvald[SquareEvaluation::FEATURE_USED][$piece->getOppColor()]
                             )
                         )

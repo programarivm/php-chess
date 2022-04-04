@@ -27,7 +27,7 @@ abstract class Slider extends AbstractPiece
      *
      * @return array The slider piece's (BRQ) legal moves.
      */
-    public function getLegalMoves(): array
+    public function getSquares(): array
     {
         $moves = [];
         foreach ($this->scope as $direction) {

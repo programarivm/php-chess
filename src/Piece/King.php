@@ -143,7 +143,7 @@ class King extends AbstractPiece
      *
      * @return array
      */
-    public function getLegalMoves(): array
+    public function getSquares(): array
     {
         $legalMoves = array_merge(
             $this->movesKing(),

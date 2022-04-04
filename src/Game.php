@@ -155,7 +155,7 @@ class Game
             $result[] = (object) [
                 'identity' => $piece->getIdentity(),
                 'position' => $piece->getPosition(),
-                'moves' => $piece->getLegalMoves(),
+                'moves' => $piece->getSquares(),
             ];
         }
 
@@ -173,7 +173,7 @@ class Game
         if ($piece = $this->board->getPieceByPosition(Validate::square($square))) {
             $moves = [];
             $color = $piece->getColor();
-            foreach ($piece->getLegalMoves() as $square) {
+            foreach ($piece->getSquares() as $square) {
                 $clone = unserialize(serialize($this->board));
                 switch ($piece->getIdentity()) {
                     case Symbol::KING:

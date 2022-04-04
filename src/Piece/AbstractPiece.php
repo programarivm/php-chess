@@ -80,11 +80,11 @@ abstract class AbstractPiece implements Piece
     }
 
     /**
-     * Gets the legal moves that a piece can perform on the board.
+     * Gets the squares where a piece can be placed on.
      *
-     * @return array The legal moves that the piece can perform.
+     * @return array The piece's legal squares.
      */
-    abstract public function getLegalMoves(): array;
+    abstract public function getSquares(): array;
 
     /**
      * Calculates the piece's scope.
@@ -175,7 +175,7 @@ abstract class AbstractPiece implements Piece
     public function isMovable(): bool
     {
         if (isset($this->move)) {
-            return in_array($this->move->position->next, $this->getLegalMoves());
+            return in_array($this->move->position->next, $this->getSquares());
         } else {
             return false;
         }

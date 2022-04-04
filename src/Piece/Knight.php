@@ -120,7 +120,7 @@ class Knight extends AbstractPiece
 
     }
 
-    public function getLegalMoves(): array
+    public function getSquares(): array
     {
         $moves = [];
         foreach ($this->scope->jumps as $square) {

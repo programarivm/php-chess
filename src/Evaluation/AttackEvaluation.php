@@ -45,7 +45,7 @@ class AttackEvaluation extends AbstractEvaluation
                     }
                     break;
                 default:
-                    foreach ($piece->getLegalMoves() as $square) {
+                    foreach ($piece->getSquares() as $square) {
                         if ($item = $this->board->getPieceByPosition($square)) {
                             if ($item->getColor() !== $piece->getColor()) {
                                 $identity = $item->getIdentity();

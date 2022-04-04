@@ -158,7 +158,7 @@ class Pawn extends AbstractPiece
         }
     }
 
-    public function getLegalMoves(): array
+    public function getSquares(): array
     {
         $moves = [];
 

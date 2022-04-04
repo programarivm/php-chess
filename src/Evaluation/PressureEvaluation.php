@@ -78,7 +78,7 @@ class PressureEvaluation extends AbstractEvaluation
                     $this->result[$piece->getColor()] = array_merge(
                         $this->result[$piece->getColor()],
                         array_intersect(
-                            $piece->getLegalMoves(),
+                            $piece->getSquares(),
                             $this->sqEvald[SquareEvaluation::FEATURE_USED][$piece->getOppColor()]
                         )
                     );

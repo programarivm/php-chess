@@ -29,7 +29,7 @@ abstract class AbstractStringToPgn
         $legal = [];
         $color = $this->board->getTurn();
         foreach ($this->board->getPiecesByColor($color) as $piece) {
-            foreach ($piece->getLegalMoves() as $square) {
+            foreach ($piece->getSquares() as $square) {
                 $clone = unserialize(serialize($this->board));
                 $identity = $piece->getIdentity();
                 $position = $piece->getPosition();
@@ -113,7 +113,7 @@ abstract class AbstractStringToPgn
         $identities = [];
         $clone = unserialize(serialize($this->board));
         foreach ($clone->getPiecesByColor($color) as $piece) {
-            foreach ($piece->getLegalMoves() as $square) {
+            foreach ($piece->getSquares() as $square) {
                 switch ($piece->getIdentity()) {
                     case Symbol::KING:
                         break;
