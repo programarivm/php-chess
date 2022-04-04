@@ -126,7 +126,7 @@ Returns a `Chess\Board` object from an ASCII array.
 ```php
 use Chess\Ascii;
 
-$position = [
+$sq = [
     7 => [ ' r ', ' n ', ' . ', ' q ', ' k ', ' b ', ' . ', ' r ' ],
     6 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' p ', ' . ', ' p ' ],
     5 => [ ' . ', ' . ', ' . ', ' p ', ' . ', ' n ', ' p ', ' . ' ],
@@ -150,7 +150,7 @@ $castling = [
     ],
 ];
 
-$board = (new Ascii())->toBoard($position, 'b', $castling);
+$board = (new Ascii())->toBoard($sq, 'b', $castling);
 ```
 
 #### `print(Board $board): string`
@@ -183,7 +183,7 @@ P  P  P  P  .  P  P  P
 R  N  B  Q  K  B  N  R
 ```
 
-#### `fromAlgebraicToIndex(string $square): array`
+#### `fromAlgebraicToIndex(string $sq): array`
 
 Returns the ASCII array indexes of a specific square described in algebraic notation.
 
@@ -223,14 +223,14 @@ Output:
 h8
 ```
 
-#### `setArrayElem(string $piece, string $square, &$array): Ascii`
+#### `setArrayElem(string $piece, string $sq, &$array): Ascii`
 
 Sets a piece in a specific square in the given ASCII array.
 
 ```php
 use Chess\Ascii;
 
-$position = [
+$sq = [
     7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
     6 => [ ' p ', ' p ', ' p ', ' p ', ' . ', ' p ', ' p ', ' p ' ],
     5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
@@ -243,9 +243,9 @@ $position = [
 
 $ascii = new Ascii();
 
-$board = $ascii->setArrayElem(' . ', 'g1', $position)
-            ->setArrayElem(' N ', 'f3', $position)
-            ->toBoard($position, 'b');
+$board = $ascii->setArrayElem(' . ', 'g1', $sq)
+            ->setArrayElem(' N ', 'f3', $sq)
+            ->toBoard($sq, 'b');
 
 $board->play('b', 'Nc6');
 

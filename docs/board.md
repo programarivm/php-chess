@@ -33,13 +33,13 @@ array (
     (object) array(
        'capturing' =>
       (object) array(
-         'identity' => 'P',
-         'position' => 'e4',
+         'id' => 'P',
+         'sq' => 'e4',
       ),
        'captured' =>
       (object) array(
-         'identity' => 'P',
-         'position' => 'd5',
+         'id' => 'P',
+         'sq' => 'd5',
       ),
     ),
   ),
@@ -49,13 +49,13 @@ array (
     (object) array(
        'capturing' =>
       (object) array(
-         'identity' => 'Q',
-         'position' => 'd8',
+         'id' => 'Q',
+         'sq' => 'd8',
       ),
        'captured' =>
       (object) array(
-         'identity' => 'P',
-         'position' => 'd5',
+         'id' => 'P',
+         'sq' => 'd5',
       ),
     ),
   ),
@@ -107,8 +107,8 @@ array (
   (object) array(
      'pgn' => 'e4',
      'color' => 'w',
-     'identity' => 'P',
-     'position' => 'e2',
+     'id' => 'P',
+     'sq' => 'e2',
      'isCapture' => false,
      'isCheck' => false,
   ),
@@ -116,8 +116,8 @@ array (
   (object) array(
      'pgn' => 'd5',
      'color' => 'b',
-     'identity' => 'P',
-     'position' => 'd7',
+     'id' => 'P',
+     'sq' => 'd7',
      'isCapture' => false,
      'isCheck' => false,
   ),
@@ -125,8 +125,8 @@ array (
   (object) array(
      'pgn' => 'exd5',
      'color' => 'w',
-     'identity' => 'P',
-     'position' => 'e4',
+     'id' => 'P',
+     'sq' => 'e4',
      'isCapture' => true,
      'isCheck' => false,
   ),
@@ -134,8 +134,8 @@ array (
   (object) array(
      'pgn' => 'Qxd5',
      'color' => 'b',
-     'identity' => 'Q',
-     'position' => 'd8',
+     'id' => 'Q',
+     'sq' => 'd8',
      'isCapture' => true,
      'isCheck' => false,
   ),

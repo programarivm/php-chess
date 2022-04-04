@@ -54,13 +54,13 @@ array (
     (object) array(
        'capturing' =>
       (object) array(
-         'identity' => 'P',
-         'position' => 'e4',
+         'id' => 'P',
+         'sq' => 'e4',
       ),
        'captured' =>
       (object) array(
-         'identity' => 'P',
-         'position' => 'd5',
+         'id' => 'P',
+         'sq' => 'd5',
       ),
     ),
   ),
@@ -70,13 +70,13 @@ array (
     (object) array(
        'capturing' =>
       (object) array(
-         'identity' => 'Q',
-         'position' => 'd8',
+         'id' => 'Q',
+         'sq' => 'd8',
       ),
        'captured' =>
       (object) array(
-         'identity' => 'P',
-         'position' => 'd5',
+         'id' => 'P',
+         'sq' => 'd5',
       ),
     ),
   ),
@@ -185,8 +185,8 @@ array (
   (object) array(
      'pgn' => 'e4',
      'color' => 'w',
-     'identity' => 'P',
-     'position' => 'e2',
+     'id' => 'P',
+     'sq' => 'e2',
      'isCapture' => false,
      'isCheck' => false,
   ),
@@ -194,8 +194,8 @@ array (
   (object) array(
      'pgn' => 'd5',
      'color' => 'b',
-     'identity' => 'P',
-     'position' => 'd7',
+     'id' => 'P',
+     'sq' => 'd7',
      'isCapture' => false,
      'isCheck' => false,
   ),
@@ -203,8 +203,8 @@ array (
   (object) array(
      'pgn' => 'exd5',
      'color' => 'w',
-     'identity' => 'P',
-     'position' => 'e4',
+     'id' => 'P',
+     'sq' => 'e4',
      'isCapture' => true,
      'isCheck' => false,
   ),
@@ -212,8 +212,8 @@ array (
   (object) array(
      'pgn' => 'Qxd5',
      'color' => 'b',
-     'identity' => 'Q',
-     'position' => 'd8',
+     'id' => 'Q',
+     'sq' => 'd8',
      'isCapture' => true,
      'isCheck' => false,
   ),
@@ -321,7 +321,7 @@ Output:
 '1.e4 d5 2.exd5 Qxd5'
 ```
 
-#### `piece(string $square): ?stdClass`
+#### `piece(string $sq): ?stdClass`
 
 Gets a piece by its position on the board.
 
@@ -333,21 +333,21 @@ var_export($piece);
 
 `$piece` is a PHP object with information about the piece selected.
 
-| Property       | Description                                |
-|----------------|--------------------------------------------|
-| `color`        | The piece's color in PGN format            |
-| `identity`     | The piece's identity in PGN format         |
-| `position`     | The piece's position on the board          |
-| `moves`        | The piece's possible moves                 |
-| `enPassant`    | The en passant pawn, if any                |
+| Property    | Description                          |
+|-------------|--------------------------------------|
+| `color`     | The piece's color in PGN format      |
+| `id`        | The piece's id in PGN format         |
+| `sq`        | The piece's position on the board    |
+| `moves`     | The piece's possible moves           |
+| `enPassant` | The en passant pawn, if any          |
 
 Output:
 
 ```text
 (object) array(
    'color' => 'b',
-   'identity' => 'Q',
-   'position' => 'd5',
+   'id' => 'Q',
+   'sq' => 'd5',
    'moves' =>
   array (
     0 => 'd6',
@@ -386,11 +386,11 @@ var_export($pieces);
 ```
 `$pieces` is an array of PHP objects with black pieces information.
 
-| Property       | Description                                |
-|----------------|--------------------------------------------|
-| `identity`     | The piece's identity in PGN format         |
-| `position`     | The piece's position on the board          |
-| `moves`        | The piece's possible moves                 |
+| Property | Description                          |
+|----------|--------------------------------------|
+| `id`     | The piece's id in PGN format         |
+| `sq`     | The piece's position on the board    |
+| `moves`  | The piece's possible moves           |
 
 
 Output:
@@ -399,16 +399,16 @@ Output:
 array (
   0 =>
   (object) array(
-     'identity' => 'R',
-     'position' => 'a8',
+     'id' => 'R',
+     'sq' => 'a8',
      'moves' =>
     array (
     ),
   ),
   1 =>
   (object) array(
-     'identity' => 'N',
-     'position' => 'b8',
+     'id' => 'N',
+     'sq' => 'b8',
      'moves' =>
     array (
       0 => 'a6',
@@ -419,8 +419,8 @@ array (
   ...
   13 =>
   (object) array(
-     'identity' => 'P',
-     'position' => 'h7',
+     'id' => 'P',
+     'sq' => 'h7',
      'moves' =>
     array (
       0 => 'h6',
@@ -429,8 +429,8 @@ array (
   ),
   14 =>
   (object) array(
-     'identity' => 'Q',
-     'position' => 'd5',
+     'id' => 'Q',
+     'sq' => 'd5',
      'moves' =>
     array (
       0 => 'd6',
