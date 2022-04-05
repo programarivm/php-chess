@@ -33,7 +33,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $pic = (new Heuristics($board->getMovetext()))->getPicture();
+        $pic = (new Heuristics($board->getMovetext()))->getResult();
 
         $expected = [
             'w' => [
@@ -87,7 +87,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e5';
 
-        $pic = (new Heuristics($movetext))->getPicture();
+        $pic = (new Heuristics($movetext))->getResult();
 
         $expected = [
             'w' => [
@@ -300,7 +300,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6';
 
-        $pic = (new Heuristics($movetext))->getPicture();
+        $pic = (new Heuristics($movetext))->getResult();
 
         $expected = [
             'w' => [
@@ -321,7 +321,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5';
 
-        $pic = (new Heuristics($movetext))->getPicture();
+        $pic = (new Heuristics($movetext))->getResult();
 
         $expected = [
             'w' => [
@@ -344,7 +344,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5 3.Nd2 Nf6';
 
-        $pic = (new Heuristics($movetext))->getPicture();
+        $pic = (new Heuristics($movetext))->getResult();
 
         $expected = [
             'w' => [

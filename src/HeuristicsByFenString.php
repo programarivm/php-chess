@@ -16,7 +16,7 @@ class HeuristicsByFenString
     {
         $this->board = (new StrToBoard($fen))->create();
 
-        $this->take();
+        $this->calc();
     }
 
     /**
@@ -35,7 +35,7 @@ class HeuristicsByFenString
 
         $weights = array_values($this->getDimensions());
 
-        $pic = $this->getPicture();
+        $pic = $this->getResult();
 
         for ($i = 0; $i < count($this->getDimensions()); $i++) {
             $result[Symbol::WHITE] += $weights[$i] * $pic[Symbol::WHITE][$i];
@@ -49,11 +49,11 @@ class HeuristicsByFenString
     }
 
     /**
-     * Takes a normalized, balanced heuristic picture.
+     * Heristics calc.
      *
      * @return \Chess\Heuristic\HeuristicsByFenString
      */
-    protected function take(): HeuristicsByFenString
+    protected function calc(): HeuristicsByFenString
     {
         $item = [];
         foreach ($this->dimensions as $dimension => $w) {
@@ -82,8 +82,8 @@ class HeuristicsByFenString
             }
         }
 
-        $this->picture[Symbol::WHITE] = array_column($item, Symbol::WHITE);
-        $this->picture[Symbol::BLACK] = array_column($item, Symbol::BLACK);
+        $this->result[Symbol::WHITE] = array_column($item, Symbol::WHITE);
+        $this->result[Symbol::BLACK] = array_column($item, Symbol::BLACK);
 
         $this->normalize()->balance();
 
@@ -95,8 +95,8 @@ class HeuristicsByFenString
         $normalization = [];
 
         $values = array_merge(
-            $this->picture[Symbol::WHITE],
-            $this->picture[Symbol::BLACK]
+            $this->result[Symbol::WHITE],
+            $this->result[Symbol::BLACK]
         );
 
         $min = min($values);
@@ -105,24 +105,24 @@ class HeuristicsByFenString
         for ($i = 0; $i < count($this->dimensions); $i++) {
             if ($max - $min > 0) {
                 $normalization[Symbol::WHITE][$i] =
-                    round(($this->picture[Symbol::WHITE][$i] - $min) / ($max - $min), 2);
+                    round(($this->result[Symbol::WHITE][$i] - $min) / ($max - $min), 2);
                 $normalization[Symbol::BLACK][$i] =
-                    round(($this->picture[Symbol::BLACK][$i] - $min) / ($max - $min), 2);
+                    round(($this->result[Symbol::BLACK][$i] - $min) / ($max - $min), 2);
             } elseif ($max == $min) {
                 $normalization[Symbol::WHITE][$i] = round(1 / count($values), 2);
                 $normalization[Symbol::BLACK][$i] = round(1 / count($values), 2);
             }
         }
 
-        $this->picture = $normalization;
+        $this->result = $normalization;
 
         return $this;
     }
 
     protected function balance(): HeuristicsByFenString
     {
-        foreach ($this->picture[Symbol::WHITE] as $key => $val) {
-            $this->balance[$key] = $this->picture[Symbol::WHITE][$key] - $this->picture[Symbol::BLACK][$key];
+        foreach ($this->result[Symbol::WHITE] as $key => $val) {
+            $this->balance[$key] = $this->result[Symbol::WHITE][$key] - $this->result[Symbol::BLACK][$key];
         }
 
         return $this;

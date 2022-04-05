@@ -13,7 +13,7 @@ class Heuristics extends Player
     {
         parent::__construct($movetext, $board);
 
-        $this->take();
+        $this->calc();
     }
 
     /**
@@ -32,7 +32,7 @@ class Heuristics extends Player
 
         $weights = array_values($this->getDimensions());
 
-        $pic = $this->getPicture();
+        $pic = $this->getResult();
 
         for ($i = 0; $i < count($this->getDimensions()); $i++) {
             $result[Symbol::WHITE] += $weights[$i] * end($pic[Symbol::WHITE])[$i];
@@ -46,11 +46,11 @@ class Heuristics extends Player
     }
 
     /**
-     * Takes a normalized, balanced heuristic picture.
+     * Heuristics calc.
      *
      * @return \Chess\Heuristics
      */
-    protected function take(): Heuristics
+    protected function calc(): Heuristics
     {
         foreach ($this->moves as $move) {
             $this->board->play(Symbol::WHITE, $move[0]);
@@ -84,8 +84,8 @@ class Heuristics extends Player
                     }
                 }
             }
-            $this->picture[Symbol::WHITE][] = array_column($item, Symbol::WHITE);
-            $this->picture[Symbol::BLACK][] = array_column($item, Symbol::BLACK);
+            $this->result[Symbol::WHITE][] = array_column($item, Symbol::WHITE);
+            $this->result[Symbol::BLACK][] = array_column($item, Symbol::BLACK);
         }
 
         $this->normalize()->balance();
@@ -113,17 +113,17 @@ class Heuristics extends Player
         if (count($this->board->getHistory()) >= 2) {
             for ($i = 0; $i < count($this->dimensions); $i++) {
                 $values = array_merge(
-                    array_column($this->picture[Symbol::WHITE], $i),
-                    array_column($this->picture[Symbol::BLACK], $i)
+                    array_column($this->result[Symbol::WHITE], $i),
+                    array_column($this->result[Symbol::BLACK], $i)
                 );
                 $min = round(min($values), 2);
                 $max = round(max($values), 2);
-                for ($j = 0; $j < count($this->picture[Symbol::WHITE]); $j++) {
+                for ($j = 0; $j < count($this->result[Symbol::WHITE]); $j++) {
                     if ($max - $min > 0) {
                         $normalization[Symbol::WHITE][$j][$i] =
-                            round(($this->picture[Symbol::WHITE][$j][$i] - $min) / ($max - $min), 2);
+                            round(($this->result[Symbol::WHITE][$j][$i] - $min) / ($max - $min), 2);
                         $normalization[Symbol::BLACK][$j][$i] =
-                            round(($this->picture[Symbol::BLACK][$j][$i] - $min) / ($max - $min), 2);
+                            round(($this->result[Symbol::BLACK][$j][$i] - $min) / ($max - $min), 2);
                     } elseif ($max == $min) {
                         $normalization[Symbol::WHITE][$j][$i] = 0;
                         $normalization[Symbol::BLACK][$j][$i] = 0;
@@ -135,7 +135,7 @@ class Heuristics extends Player
                 $normalization[Symbol::BLACK][] = array_fill(0, count($this->dimensions), 0);
         }
 
-        $this->picture = $normalization;
+        $this->result = $normalization;
 
         return $this;
     }
@@ -151,10 +151,10 @@ class Heuristics extends Player
      */
     protected function balance(): Heuristics
     {
-        foreach ($this->picture[Symbol::WHITE] as $i => $color) {
+        foreach ($this->result[Symbol::WHITE] as $i => $color) {
             foreach ($color as $j => $val) {
                 $this->balance[$i][$j] =
-                    $this->picture[Symbol::WHITE][$i][$j] - $this->picture[Symbol::BLACK][$i][$j];
+                    $this->result[Symbol::WHITE][$i][$j] - $this->result[Symbol::BLACK][$i][$j];
             }
         }
 
@@ -169,8 +169,8 @@ class Heuristics extends Player
     public function end(): array
     {
         return [
-            Symbol::WHITE => end($this->picture[Symbol::WHITE]),
-            Symbol::BLACK => end($this->picture[Symbol::BLACK]),
+            Symbol::WHITE => end($this->result[Symbol::WHITE]),
+            Symbol::BLACK => end($this->result[Symbol::BLACK]),
         ];
     }
 }

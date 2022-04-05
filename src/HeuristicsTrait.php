@@ -76,11 +76,11 @@ trait HeuristicsTrait
     ];
 
     /**
-     * The heuristic picture of $this->board.
+     * The heuristics of $this->board.
      *
      * @var array
      */
-    protected $picture = [];
+    protected $result = [];
 
     /**
      * The balanced heuristic picture of $this->board.
@@ -117,9 +117,9 @@ trait HeuristicsTrait
      *
      * @return array
      */
-    public function getPicture(): array
+    public function getResult(): array
     {
-        return $this->picture;
+        return $this->result;
     }
 
     /**

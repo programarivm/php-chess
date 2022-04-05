@@ -369,7 +369,7 @@ class Game
             return $heuristics->getBalance();
         }
 
-        return $heuristics->getPicture();
+        return $heuristics->getResult();
     }
 
     public function undoMove(): ?\stdClass
