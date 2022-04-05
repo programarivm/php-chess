@@ -1,6 +1,8 @@
 ### Play Chess With an AI
 
-    $ php cli/chess.php a1.model
+```text
+$ php cli/chess.php a1.model
+```
 
 This will start a prompt awaiting for your next chess move.
 

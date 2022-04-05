@@ -3,7 +3,7 @@
 namespace Chess\FEN;
 
 /**
- * Short FEN string to PGN.
+ * Converts a short FEN string into PGN move.
  *
  * @author Jordi Bassagañas
  * @license GPL

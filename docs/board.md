@@ -1,4 +1,4 @@
-The `Chess\Board` class is a chess board representation that allows to play a game of chess in Portable Game Notation (PGN) format. It is the cornerstone that allows to build multiple features on top of it: FEN string generation, ASCII representation, PNG image creation, position evaluation, and more.
+This is a chess board representation that allows to play chess in Portable Game Notation (PGN) format. It is a cornerstone allowing to build multiple features on top of it: FEN string generation, ASCII representation, PNG image creation, position evaluation, etc.
 
 Let's look at some relevant [`Chess\Board`](https://github.com/chesslablab/php-chess/blob/master/src/Board.php) methods available through the following example:
 

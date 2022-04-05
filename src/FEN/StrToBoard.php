@@ -16,7 +16,9 @@ use Chess\Piece\Rook;
 use Chess\Piece\Type\RookType;
 
 /**
- * FEN string to Chess\Board.
+ * StrToBoard
+ *
+ * Converts a FEN string to a Chess\Board object.
  *
  * @author Jordi Bassagañas
  * @license GPL

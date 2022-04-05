@@ -1,6 +1,8 @@
+`Chess\Board` object to FEN string.
+
 #### `create(): string`
 
-Creates a FEN string from a `Chess\Board`.
+Creates a FEN string.
 
 ```php
 use Chess\Board;

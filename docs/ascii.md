@@ -1,4 +1,4 @@
-The `Chess\Ascii` class provides a number of methods that can be used to convert `Chess\Board` objects into character-based representations such as strings or arrays, and vice versa.
+The methods in the `Chess\Ascii` class can be used to convert `Chess\Board` objects into character-based representations such as strings or arrays, and vice versa.
 
 #### `toArray(Board $board, bool $flip = false): array`
 

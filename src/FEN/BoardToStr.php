@@ -7,7 +7,9 @@ use Chess\Board;
 use Chess\PGN\Symbol;
 
 /**
- * Board to FEN string.
+ * BoardToStr
+ *
+ * Converts a Chess\Board object to a FEN string.
  *
  * @author Jordi Bassagañas
  * @license GPL
