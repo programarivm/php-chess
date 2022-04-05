@@ -292,7 +292,7 @@ class StatusTest extends AbstractUnitTestCase
 
         $expected = [ 'e1', 'e2', 'g2' ];
 
-        $this->assertSame($expected, $king->getSquares());
+        $this->assertSame($expected, $king->getSqs());
     }
 
     /**
@@ -317,7 +317,7 @@ class StatusTest extends AbstractUnitTestCase
 
         $expected = [ 'e1', 'c2', 'b3' ];
 
-        $this->assertSame($expected, $queen->getSquares());
+        $this->assertSame($expected, $queen->getSqs());
     }
 
     /**

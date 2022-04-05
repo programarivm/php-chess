@@ -25,8 +25,8 @@ class SpaceEvaluation extends AbstractEvaluation
         $sqEval = new SquareEvaluation($board);
 
         $this->sqEvald = [
-            SquareEvaluation::FEATURE_FREE => $sqEval->evaluate(SquareEvaluation::FEATURE_FREE),
-            SquareEvaluation::FEATURE_USED => $sqEval->evaluate(SquareEvaluation::FEATURE_USED),
+            SquareEvaluation::TYPE_FREE => $sqEval->evaluate(SquareEvaluation::TYPE_FREE),
+            SquareEvaluation::TYPE_USED => $sqEval->evaluate(SquareEvaluation::TYPE_USED),
         ];
 
         $this->result = [
@@ -53,7 +53,7 @@ class SpaceEvaluation extends AbstractEvaluation
                             array_values(
                                 array_intersect(
                                     array_values((array) $piece->getTravel()),
-                                    $this->sqEvald[SquareEvaluation::FEATURE_FREE]
+                                    $this->sqEvald[SquareEvaluation::TYPE_FREE]
                                 )
                             )
                         )
@@ -65,7 +65,7 @@ class SpaceEvaluation extends AbstractEvaluation
                             $this->result[$piece->getColor()],
                             array_intersect(
                                 $piece->getCaptureSquares(),
-                                $this->sqEvald[SquareEvaluation::FEATURE_FREE]
+                                $this->sqEvald[SquareEvaluation::TYPE_FREE]
                             )
                         )
                     );
@@ -75,8 +75,8 @@ class SpaceEvaluation extends AbstractEvaluation
                         array_merge(
                             $this->result[$piece->getColor()],
                             array_diff(
-                                $piece->getSquares(),
-                                $this->sqEvald[SquareEvaluation::FEATURE_USED][$piece->getOppColor()]
+                                $piece->getSqs(),
+                                $this->sqEvald[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
                             )
                         )
                     );

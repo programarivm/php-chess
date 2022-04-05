@@ -178,7 +178,7 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getSquares(): \stdClass
+    public function getSqs(): \stdClass
     {
         return $this->sqs;
     }
@@ -444,7 +444,7 @@ final class Board extends \SplObjectStorage
      */
     private function capture(Piece $piece): Board
     {
-        $piece->getSquares(); // creates the enPassantSquare property if the piece is a pawn
+        $piece->getSqs(); // creates the enPassantSquare property if the piece is a pawn
         if ($piece->getId() === Symbol::PAWN && !empty($piece->getEnPassantSq()) &&
             empty($this->getPieceBySq($piece->getMove()->sq->next))
            ) {
@@ -782,10 +782,10 @@ final class Board extends \SplObjectStorage
         $this->turn = Symbol::oppColor($this->turn);
 
         $this->sqs = (object) [
-            SquareEvaluation::FEATURE_FREE => (new SquareEvaluation($this))
-                ->evaluate(SquareEvaluation::FEATURE_FREE),
-            SquareEvaluation::FEATURE_USED => (object) (new SquareEvaluation($this))
-                ->evaluate(SquareEvaluation::FEATURE_USED),
+            SquareEvaluation::TYPE_FREE => (new SquareEvaluation($this))
+                ->evaluate(SquareEvaluation::TYPE_FREE),
+            SquareEvaluation::TYPE_USED => (object) (new SquareEvaluation($this))
+                ->evaluate(SquareEvaluation::TYPE_USED),
         ];
 
         $this->detachPieces()
@@ -833,7 +833,7 @@ final class Board extends \SplObjectStorage
     {
         $escape = 0;
         foreach ($this->getPiecesByColor($this->turn) as $piece) {
-            foreach ($piece->getSquares() as $sq) {
+            foreach ($piece->getSqs() as $sq) {
                 switch ($piece->getId()) {
                     case Symbol::KING:
                         if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
@@ -920,7 +920,7 @@ final class Board extends \SplObjectStorage
         $moves = [];
         $color = $this->getTurn();
         foreach ($this->getPiecesByColor($color) as $piece) {
-            foreach ($piece->getSquares() as $sq) {
+            foreach ($piece->getSqs() as $sq) {
                 $clone = unserialize(serialize($this));
                 switch ($piece->getId()) {
                     case Symbol::KING:

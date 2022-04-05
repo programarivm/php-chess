@@ -42,7 +42,7 @@ class DefenseEvaluation extends AbstractEvaluation
             $piece = $this->board->current();
             $this->result[$piece->getColor()] = array_merge(
                 $this->result[$piece->getColor()],
-                $piece->getDefendedSquares()
+                $piece->getDefendedSqs()
             );
             $this->board->next();
         }

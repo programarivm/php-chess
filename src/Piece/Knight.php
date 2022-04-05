@@ -25,8 +25,6 @@ class Knight extends AbstractPiece
     {
         parent::__construct($color, $sq, Symbol::KNIGHT);
 
-        $this->travel = [];
-
         $this->setTravel();
     }
 
@@ -118,13 +116,13 @@ class Knight extends AbstractPiece
 
     }
 
-    public function getSquares(): array
+    public function getSqs(): array
     {
         $moves = [];
         foreach ($this->travel as $sq) {
-            if (in_array($sq, $this->board->getSquares()->free)) {
+            if (in_array($sq, $this->board->getSqs()->free)) {
                 $moves[] = $sq;
-            } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})) {
+            } elseif (in_array($sq, $this->board->getSqs()->used->{$this->getOppColor()})) {
                 $moves[] = $sq;
             }
         }
@@ -132,11 +130,11 @@ class Knight extends AbstractPiece
         return $moves;
     }
 
-    public function getDefendedSquares(): array
+    public function getDefendedSqs(): array
     {
         $sqs = [];
         foreach ($this->travel as $sq) {
-            if (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->getSqs()->used->{$this->getColor()})) {
                 $sqs[] = $sq;
             }
         }

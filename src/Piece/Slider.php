@@ -27,20 +27,20 @@ abstract class Slider extends AbstractPiece
      *
      * @return array The slider piece's (BRQ) legal moves.
      */
-    public function getSquares(): array
+    public function getSqs(): array
     {
         $moves = [];
         foreach ($this->travel as $direction) {
             foreach ($direction as $sq) {
                 if (
-                    !in_array($sq, $this->board->getSquares()->used->{$this->getColor()}) &&
-                    !in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})
+                    !in_array($sq, $this->board->getSqs()->used->{$this->getColor()}) &&
+                    !in_array($sq, $this->board->getSqs()->used->{$this->getOppColor()})
                 ) {
                     $moves[] = $sq;
-                } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})) {
+                } elseif (in_array($sq, $this->board->getSqs()->used->{$this->getOppColor()})) {
                     $moves[] = $sq;
                     break 1;
-                } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
+                } elseif (in_array($sq, $this->board->getSqs()->used->{$this->getColor()})) {
                     break 1;
                 }
             }
@@ -54,15 +54,15 @@ abstract class Slider extends AbstractPiece
      *
      * @return array The slider piece's (BRQ) defended squares.
      */
-    public function getDefendedSquares(): array
+    public function getDefendedSqs(): array
     {
         $sqs = [];
         foreach ($this->travel as $direction) {
             foreach ($direction as $sq) {
-                if (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
+                if (in_array($sq, $this->board->getSqs()->used->{$this->getColor()})) {
                     $sqs[] = $sq;
                     break 1;
-                } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})) {
+                } elseif (in_array($sq, $this->board->getSqs()->used->{$this->getOppColor()})) {
                     break 1;
                 }
             }

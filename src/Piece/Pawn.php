@@ -116,7 +116,7 @@ class Pawn extends AbstractPiece
     }
 
     /**
-     * Calculates the pawn's scope.
+     * Calculates the pawn's travel.
      */
     protected function setTravel(): void
     {
@@ -158,13 +158,13 @@ class Pawn extends AbstractPiece
         }
     }
 
-    public function getSquares(): array
+    public function getSqs(): array
     {
         $moves = [];
 
         // add up squares
         foreach($this->travel->up as $sq) {
-            if (in_array($sq, $this->board->getSquares()->free)) {
+            if (in_array($sq, $this->board->getSqs()->free)) {
                 $moves[] = $sq;
             } else {
                 break;
@@ -173,7 +173,7 @@ class Pawn extends AbstractPiece
 
         // add capture squares
         foreach($this->captureSquares as $sq) {
-            if (in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})) {
+            if (in_array($sq, $this->board->getSqs()->used->{$this->getOppColor()})) {
                 $moves[] = $sq;
             }
         }
@@ -211,11 +211,11 @@ class Pawn extends AbstractPiece
         return $moves;
     }
 
-    public function getDefendedSquares(): array
+    public function getDefendedSqs(): array
     {
         $sqs = [];
         foreach($this->captureSquares as $sq) {
-            if (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->getSqs()->used->{$this->getColor()})) {
                 $sqs[] = $sq;
             }
         }

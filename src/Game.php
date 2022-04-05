@@ -26,17 +26,12 @@ use Rubix\ML\Persisters\Filesystem;
  */
 class Game
 {
-    const MODE_AI = 'MODE_AI';
-
-    const MODE_ANALYSIS = 'MODE_ANALYSIS';
-
-    const MODE_GRANDMASTER = 'MODE_GRANDMASTER';
-
-    const MODE_LOAD_FEN = 'MODE_LOAD_FEN';
-
-    const MODE_LOAD_PGN = 'MODE_LOAD_PGN';
-
-    const MODE_PLAY_FRIEND = 'MODE_PLAY_FRIEND';
+    const MODE_AI           = 'MODE_AI';
+    const MODE_ANALYSIS     = 'MODE_ANALYSIS';
+    const MODE_GRANDMASTER  = 'MODE_GRANDMASTER';
+    const MODE_LOAD_FEN     = 'MODE_LOAD_FEN';
+    const MODE_LOAD_PGN     = 'MODE_LOAD_PGN';
+    const MODE_PLAY_FRIEND  = 'MODE_PLAY_FRIEND';
 
     const MODEL_FOLDER = __DIR__.'/../model/';
 
@@ -155,7 +150,7 @@ class Game
             $result[] = (object) [
                 'id' => $piece->getId(),
                 'sq' => $piece->getSquare(),
-                'moves' => $piece->getSquares(),
+                'moves' => $piece->getSqs(),
             ];
         }
 
@@ -173,7 +168,7 @@ class Game
         if ($piece = $this->board->getPieceBySq(Validate::sq($sq))) {
             $moves = [];
             $color = $piece->getColor();
-            foreach ($piece->getSquares() as $sq) {
+            foreach ($piece->getSqs() as $sq) {
                 $clone = unserialize(serialize($this->board));
                 switch ($piece->getId()) {
                     case Symbol::KING:

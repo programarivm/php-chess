@@ -36,7 +36,7 @@ class Bishop extends Slider
     }
 
     /**
-     * Calculates the bishop's scope.
+     * Calculates the bishop's travel.
      */
     protected function setTravel(): void
     {

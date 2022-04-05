@@ -63,7 +63,7 @@ class Rook extends Slider
     }
 
     /**
-     * Calculates the rook's scope.
+     * Calculates the rook's travel.
      */
     protected function setTravel(): void
     {

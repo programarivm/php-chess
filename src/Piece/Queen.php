@@ -42,7 +42,7 @@ class Queen extends Slider
     }
 
     /**
-     * Calculates the piece's scope.
+     * Calculates the piece's travel.
      */
     protected function setTravel(): void
     {

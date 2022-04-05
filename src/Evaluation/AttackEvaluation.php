@@ -45,7 +45,7 @@ class AttackEvaluation extends AbstractEvaluation
                     }
                     break;
                 default:
-                    foreach ($piece->getSquares() as $sq) {
+                    foreach ($piece->getSqs() as $sq) {
                         if ($item = $this->board->getPieceBySq($sq)) {
                             if ($item->getColor() !== $piece->getColor()) {
                                 $id = $item->getId();
