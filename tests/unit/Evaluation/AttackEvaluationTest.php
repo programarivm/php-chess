@@ -15,14 +15,14 @@ class AttackEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $attEvald = (new AttackEvaluation(new Board()))->evaluate();
+        $attEval = (new AttackEvaluation(new Board()))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 
     /**
@@ -32,14 +32,14 @@ class AttackEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $attEvald = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 
     /**
@@ -49,14 +49,14 @@ class AttackEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $attEvald = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 
     /**
@@ -73,14 +73,14 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $attEvald = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 2.33,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 
     /**
@@ -97,14 +97,14 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'Nxe4');
         $board->play('w', 'd3');
 
-        $attEvald = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 2.2,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 
     /**
@@ -117,13 +117,13 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'Nf6');
         $board->play('w', 'e5');
 
-        $attEvald = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 2.2,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 }

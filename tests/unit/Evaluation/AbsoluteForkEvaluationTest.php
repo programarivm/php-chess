@@ -22,9 +22,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -40,9 +40,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -58,9 +58,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -76,9 +76,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -94,9 +94,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -112,9 +112,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -130,9 +130,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -148,9 +148,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 5.1,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -166,9 +166,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 8.8,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -184,9 +184,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -202,9 +202,9 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 
     /**
@@ -220,8 +220,8 @@ class AbsoluteForkEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEvald = (new AbsoluteForkEvaluation($board))->evaluate();
+        $absForkEval = (new AbsoluteForkEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $absForkEvald);
+        $this->assertSame($expected, $absForkEval);
     }
 }

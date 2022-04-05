@@ -14,14 +14,14 @@ class ConnectivityEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $connEvald = (new ConnectivityEvaluation(new Board()))->evaluate();
+        $connEval = (new ConnectivityEvaluation(new Board()))->evaluate();
 
         $expected = [
             'w' => 20,
             'b' => 20,
         ];
 
-        $this->assertSame($expected, $connEvald);
+        $this->assertSame($expected, $connEval);
     }
 
     /**
@@ -36,8 +36,8 @@ class ConnectivityEvaluationTest extends AbstractUnitTestCase
             'b' => 23,
         ];
 
-        $connEvald = (new ConnectivityEvaluation($board))->evaluate();
+        $connEval = (new ConnectivityEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $connEvald);
+        $this->assertSame($expected, $connEval);
     }
 }

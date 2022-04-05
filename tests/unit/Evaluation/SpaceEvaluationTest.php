@@ -15,7 +15,7 @@ class SpaceEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $spEvald = (new SpaceEvaluation(new Board()))->evaluate();
+        $spEval = (new SpaceEvaluation(new Board()))->evaluate();
 
         $expected = [
             'w' => [
@@ -26,7 +26,7 @@ class SpaceEvaluationTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertSame($expected, $spEvald);
+        $this->assertSame($expected, $spEval);
     }
 
     /**
@@ -36,7 +36,7 @@ class SpaceEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $spEvald = (new SpaceEvaluation($board))->evaluate();
+        $spEval = (new SpaceEvaluation($board))->evaluate();
 
         $expected = [
             'w' => [
@@ -51,7 +51,7 @@ class SpaceEvaluationTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertSame($expected, $spEvald);
+        $this->assertSame($expected, $spEval);
     }
 
     /**
@@ -61,7 +61,7 @@ class SpaceEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $spEvald = (new SpaceEvaluation($board))->evaluate();
+        $spEval = (new SpaceEvaluation($board))->evaluate();
 
         $expected = [
             'w' => [
@@ -76,6 +76,6 @@ class SpaceEvaluationTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertSame($expected, $spEvald);
+        $this->assertSame($expected, $spEval);
     }
 }

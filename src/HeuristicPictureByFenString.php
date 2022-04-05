@@ -55,27 +55,27 @@ class HeuristicPictureByFenString
     {
         $item = [];
         foreach ($this->dimensions as $dimension => $w) {
-            $evald = (new $dimension($this->board))->evaluate();
-            if (is_array($evald[Symbol::WHITE])) {
+            $eval = (new $dimension($this->board))->evaluate();
+            if (is_array($eval[Symbol::WHITE])) {
                 if ($dimension instanceof InverseEvaluationInterface) {
                     $item[] = [
-                        Symbol::WHITE => count($evald[Symbol::BLACK]),
-                        Symbol::BLACK => count($evald[Symbol::WHITE]),
+                        Symbol::WHITE => count($eval[Symbol::BLACK]),
+                        Symbol::BLACK => count($eval[Symbol::WHITE]),
                     ];
                 } else {
                     $item[] = [
-                        Symbol::WHITE => count($evald[Symbol::WHITE]),
-                        Symbol::BLACK => count($evald[Symbol::BLACK]),
+                        Symbol::WHITE => count($eval[Symbol::WHITE]),
+                        Symbol::BLACK => count($eval[Symbol::BLACK]),
                     ];
                 }
             } else {
                 if ($dimension instanceof InverseEvaluationInterface) {
                     $item[] = [
-                        Symbol::WHITE => $evald[Symbol::BLACK],
-                        Symbol::BLACK => $evald[Symbol::WHITE],
+                        Symbol::WHITE => $eval[Symbol::BLACK],
+                        Symbol::BLACK => $eval[Symbol::WHITE],
                     ];
                 } else {
-                    $item[] = $evald;
+                    $item[] = $eval;
                 }
             }
         }

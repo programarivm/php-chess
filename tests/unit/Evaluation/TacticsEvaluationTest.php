@@ -15,14 +15,14 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $attEvald = (new TacticsEvaluation(new Board()))->evaluate();
+        $attEval = (new TacticsEvaluation(new Board()))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 
     /**
@@ -34,14 +34,14 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'd5');
 
-        $tacticsEvald = (new TacticsEvaluation($board))->evaluate();
+        $tacticsEval = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 1,
         ];
 
-        $this->assertSame($expected, $tacticsEvald);
+        $this->assertSame($expected, $tacticsEval);
     }
 
     /**
@@ -51,14 +51,14 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $attEvald = (new TacticsEvaluation($board))->evaluate();
+        $attEval = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 
     /**
@@ -68,14 +68,14 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $attEvald = (new TacticsEvaluation($board))->evaluate();
+        $attEval = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $attEvald);
+        $this->assertSame($expected, $attEval);
     }
 
     /**
@@ -92,14 +92,14 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $tacticsEvald = (new TacticsEvaluation($board))->evaluate();
+        $tacticsEval = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 0,
             'b' => 6.53,
         ];
 
-        $this->assertSame($expected, $tacticsEvald);
+        $this->assertSame($expected, $tacticsEval);
     }
 
     /**
@@ -116,13 +116,13 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'Nxe4');
         $board->play('w', 'd3');
 
-        $tacticsEvald = (new TacticsEvaluation($board))->evaluate();
+        $tacticsEval = (new TacticsEvaluation($board))->evaluate();
 
         $expected = [
             'w' => 4.2,
             'b' => 0,
         ];
 
-        $this->assertSame($expected, $tacticsEvald);
+        $this->assertSame($expected, $tacticsEval);
     }
 }

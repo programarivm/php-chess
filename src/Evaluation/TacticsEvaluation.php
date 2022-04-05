@@ -25,14 +25,14 @@ class TacticsEvaluation extends AbstractEvaluation
      *
      * @var array
      */
-    private $defenseEvald;
+    private $defenseEval;
 
     /**
      * Pressure evaluation containing the squares being pressured.
      *
      * @var array
      */
-    private $pressEvald;
+    private $pressEval;
 
     /**
      * @param \Chess\Board $board
@@ -41,8 +41,8 @@ class TacticsEvaluation extends AbstractEvaluation
     {
         parent::__construct($board);
 
-        $this->defenseEvald = (new DefenseEvaluation($board))->evaluate();
-        $this->pressEvald = (new PressureEvaluation($board))->evaluate();
+        $this->defenseEval = (new DefenseEvaluation($board))->evaluate();
+        $this->pressEval = (new PressureEvaluation($board))->evaluate();
 
         $this->target = [
             Symbol::WHITE => [],
@@ -83,11 +83,11 @@ class TacticsEvaluation extends AbstractEvaluation
      */
     protected function target()
     {
-        foreach ($this->pressEvald as $color => $sqs) {
+        foreach ($this->pressEval as $color => $sqs) {
             $countPress = array_count_values($sqs);
-            $countDefense = array_count_values($this->defenseEvald[Convert::toOpposite($color)]);
+            $countDefense = array_count_values($this->defenseEval[Convert::toOpposite($color)]);
             foreach ($sqs as $sq) {
-                if (in_array($sq, $this->defenseEvald[Convert::toOpposite($color)])) {
+                if (in_array($sq, $this->defenseEval[Convert::toOpposite($color)])) {
                     if ($countPress[$sq] > $countDefense[$sq]) {
                         $this->target[$color][] = $sq;
                     }

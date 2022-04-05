@@ -15,7 +15,7 @@ class SquareEvaluationTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $sqEvald = (new SquareEvaluation($board))->evaluate(SquareEvaluation::TYPE_FREE);
+        $sqEval = (new SquareEvaluation($board))->evaluate(SquareEvaluation::TYPE_FREE);
 
         $expected = [
             'a3', 'a4', 'a5', 'a6',
@@ -28,6 +28,6 @@ class SquareEvaluationTest extends AbstractUnitTestCase
             'h3', 'h4', 'h5', 'h6',
         ];
 
-        $this->assertSame($expected, $sqEvald);
+        $this->assertSame($expected, $sqEval);
     }
 }

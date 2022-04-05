@@ -22,9 +22,9 @@ class RelativePinEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $relPinEvald = (new RelativePinEvaluation($board))->evaluate();
+        $relPinEval = (new RelativePinEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $relPinEvald);
+        $this->assertSame($expected, $relPinEval);
     }
 
     /**
@@ -40,9 +40,9 @@ class RelativePinEvaluationTest extends AbstractUnitTestCase
             'b' => 5.47,
         ];
 
-        $relPinEvald = (new RelativePinEvaluation($board))->evaluate();
+        $relPinEval = (new RelativePinEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $relPinEvald);
+        $this->assertSame($expected, $relPinEval);
     }
 
     /**
@@ -58,9 +58,9 @@ class RelativePinEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $relPinEvald = (new RelativePinEvaluation($board))->evaluate();
+        $relPinEval = (new RelativePinEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $relPinEvald);
+        $this->assertSame($expected, $relPinEval);
     }
 
     /**
@@ -76,9 +76,9 @@ class RelativePinEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $relPinEvald = (new RelativePinEvaluation($board))->evaluate();
+        $relPinEval = (new RelativePinEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $relPinEvald);
+        $this->assertSame($expected, $relPinEval);
     }
 
     /**
@@ -94,9 +94,9 @@ class RelativePinEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $relPinEvald = (new RelativePinEvaluation($board))->evaluate();
+        $relPinEval = (new RelativePinEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $relPinEvald);
+        $this->assertSame($expected, $relPinEval);
     }
 
     /**
@@ -112,8 +112,8 @@ class RelativePinEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $relPinEvald = (new RelativePinEvaluation($board))->evaluate();
+        $relPinEval = (new RelativePinEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $relPinEvald);
+        $this->assertSame($expected, $relPinEval);
     }
 }

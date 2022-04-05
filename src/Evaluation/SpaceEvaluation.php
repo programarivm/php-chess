@@ -16,7 +16,7 @@ class SpaceEvaluation extends AbstractEvaluation
 {
     const NAME = 'space';
 
-    private $sqEvald;
+    private $sqEval;
 
     public function __construct(Board $board)
     {
@@ -24,7 +24,7 @@ class SpaceEvaluation extends AbstractEvaluation
 
         $sqEval = new SquareEvaluation($board);
 
-        $this->sqEvald = [
+        $this->sqEval = [
             SquareEvaluation::TYPE_FREE => $sqEval->evaluate(SquareEvaluation::TYPE_FREE),
             SquareEvaluation::TYPE_USED => $sqEval->evaluate(SquareEvaluation::TYPE_USED),
         ];
@@ -53,7 +53,7 @@ class SpaceEvaluation extends AbstractEvaluation
                             array_values(
                                 array_intersect(
                                     array_values((array) $piece->getTravel()),
-                                    $this->sqEvald[SquareEvaluation::TYPE_FREE]
+                                    $this->sqEval[SquareEvaluation::TYPE_FREE]
                                 )
                             )
                         )
@@ -65,7 +65,7 @@ class SpaceEvaluation extends AbstractEvaluation
                             $this->result[$piece->getColor()],
                             array_intersect(
                                 $piece->getCaptureSquares(),
-                                $this->sqEvald[SquareEvaluation::TYPE_FREE]
+                                $this->sqEval[SquareEvaluation::TYPE_FREE]
                             )
                         )
                     );
@@ -76,7 +76,7 @@ class SpaceEvaluation extends AbstractEvaluation
                             $this->result[$piece->getColor()],
                             array_diff(
                                 $piece->getSqs(),
-                                $this->sqEvald[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
+                                $this->sqEval[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
                             )
                         )
                     );

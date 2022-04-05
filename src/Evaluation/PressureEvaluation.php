@@ -23,7 +23,7 @@ class PressureEvaluation extends AbstractEvaluation
      *
      * @var array
      */
-    private $sqEvald;
+    private $sqEval;
 
     /**
      * @param \Chess\Board $board
@@ -34,7 +34,7 @@ class PressureEvaluation extends AbstractEvaluation
 
         $sqEval = new SquareEvaluation($board);
 
-        $this->sqEvald = [
+        $this->sqEval = [
             SquareEvaluation::TYPE_FREE => $sqEval->evaluate(SquareEvaluation::TYPE_FREE),
             SquareEvaluation::TYPE_USED => $sqEval->evaluate(SquareEvaluation::TYPE_USED),
         ];
@@ -60,7 +60,7 @@ class PressureEvaluation extends AbstractEvaluation
                         array_values(
                             array_intersect(
                                 array_values((array) $piece->getTravel()),
-                                $this->sqEvald[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
+                                $this->sqEval[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
                             )
                         )
                     );
@@ -70,7 +70,7 @@ class PressureEvaluation extends AbstractEvaluation
                         $this->result[$piece->getColor()],
                         array_intersect(
                             $piece->getCaptureSquares(),
-                            $this->sqEvald[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
+                            $this->sqEval[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
                         )
                     );
                     break;
@@ -79,7 +79,7 @@ class PressureEvaluation extends AbstractEvaluation
                         $this->result[$piece->getColor()],
                         array_intersect(
                             $piece->getSqs(),
-                            $this->sqEvald[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
+                            $this->sqEval[SquareEvaluation::TYPE_USED][$piece->getOppColor()]
                         )
                     );
                     break;

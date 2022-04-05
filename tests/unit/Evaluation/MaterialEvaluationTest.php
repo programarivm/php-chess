@@ -21,9 +21,9 @@ class MaterialEvaluationTest extends AbstractUnitTestCase
             'b' => 40.06,
         ];
 
-        $mtlEvald = (new MaterialEvaluation($board))->evaluate();
+        $mtlEval = (new MaterialEvaluation($board))->evaluate();
 
-        $this->assertEquals($expected, $mtlEvald);
+        $this->assertEquals($expected, $mtlEval);
     }
 
     /**
@@ -38,9 +38,9 @@ class MaterialEvaluationTest extends AbstractUnitTestCase
             'b' => 40.06,
         ];
 
-        $mtlEvald = (new MaterialEvaluation($board))->evaluate();
+        $mtlEval = (new MaterialEvaluation($board))->evaluate();
 
-        $this->assertSame($expected, $mtlEvald);
+        $this->assertSame($expected, $mtlEval);
     }
 
     /**
@@ -57,8 +57,8 @@ class MaterialEvaluationTest extends AbstractUnitTestCase
             'b' => 40.06,
         ];
 
-        $mtlEvald = (new MaterialEvaluation($board))->evaluate();
+        $mtlEval = (new MaterialEvaluation($board))->evaluate();
 
-        $this->assertEquals($expected, $mtlEvald);
+        $this->assertEquals($expected, $mtlEval);
     }
 }

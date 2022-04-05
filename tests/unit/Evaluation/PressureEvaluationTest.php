@@ -15,14 +15,14 @@ class PressureEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $pressEvald = (new PressureEvaluation(new Board()))->evaluate();
+        $pressEval = (new PressureEvaluation(new Board()))->evaluate();
 
         $expected = [
             'w' => [],
             'b' => [],
         ];
 
-        $this->assertSame($expected, $pressEvald);
+        $this->assertSame($expected, $pressEval);
     }
 
     /**
@@ -32,14 +32,14 @@ class PressureEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $pressEvald = (new PressureEvaluation($board))->evaluate();
+        $pressEval = (new PressureEvaluation($board))->evaluate();
 
         $expected = [
             'w' => [],
             'b' => ['e4'],
         ];
 
-        $this->assertSame($expected, $pressEvald);
+        $this->assertSame($expected, $pressEval);
     }
 
     /**
@@ -49,14 +49,14 @@ class PressureEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $pressEvald = (new PressureEvaluation($board))->evaluate();
+        $pressEval = (new PressureEvaluation($board))->evaluate();
 
         $expected = [
             'w' => [],
             'b' => ['c3'],
         ];
 
-        $this->assertSame($expected, $pressEvald);
+        $this->assertSame($expected, $pressEval);
     }
 
     /**
@@ -73,13 +73,13 @@ class PressureEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $pressEvald = (new PressureEvaluation($board))->evaluate();
+        $pressEval = (new PressureEvaluation($board))->evaluate();
 
         $expected = [
             'w' => ['a6', 'c6', 'c6', 'd7', 'f7'],
             'b' => ['b5', 'e5'],
         ];
 
-        $this->assertSame($expected, $pressEvald);
+        $this->assertSame($expected, $pressEval);
     }
 }
