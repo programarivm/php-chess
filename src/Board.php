@@ -350,7 +350,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Gets all pieces by color.
+     * Gets the pieces by color.
      *
      * @param string $color
      * @return array

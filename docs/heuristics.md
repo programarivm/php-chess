@@ -195,13 +195,13 @@ Array
 )
 ```
 
-#### `function evaluate(): array`
+#### `function eval(): array`
 
 Returns the evaluation of the chess position in a human readable format. The result obtained suggests which player is probably better.
 
 ```php
 $eval = (new Heuristics($game->movetext()))
-    ->evaluate();
+    ->eval();
 
 print_r($eval);
 ```

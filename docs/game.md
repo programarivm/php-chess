@@ -1,4 +1,4 @@
-The `Chess\Game` class is a wrapper for the `Chess\Board` class. It is the main component of the [PHP Chess Server](https://github.com/chesslablab/chess-server). Thus, there is a one-to-one correspondence between the `Chess\Game` methods and the commands available in the [`ChessServer\Command`](https://github.com/chesslablab/chess-server/tree/master/src/Command) namespace.
+The `Chess\Game` class is a wrapper for the `Chess\Board` class. It is the main component of the [PHP Chess Server](https://github.com/chesslablab/chess-server). There is a one-to-one correspondence between the `Chess\Game` methods and the commands available in the [`ChessServer\Command`](https://github.com/chesslablab/chess-server/tree/master/src/Command) namespace.
 
 Let's look at some relevant [`Chess\Game`](https://github.com/chesslablab/php-chess/blob/master/src/Game.php) methods available through the following example:
 
@@ -34,9 +34,9 @@ Output:
  R  N  B  Q  K  B  N  R
 ```
 
-#### `captures(): array`
+#### `captures(): ?array`
 
-Gets the pieces captured by both players as an array of `stdClass` objects.
+Gets the pieces captured by both players.
 
 ```php
 $captures = $game->captures();
@@ -83,12 +83,12 @@ array (
 )
 ```
 
-#### `castling(): ?array`
+#### `castle(): ?array`
 
-Gets the castling status.
+Gets the castle status.
 
 ```php
-$castle = $game->castling();
+$castle = $game->castle();
 
 var_export($castle);
 ```
@@ -123,14 +123,14 @@ Output:
 rnb1kbnr/ppp1pppp/8/3q4/8/8/PPPP1PPP/RNBQKBNR w KQkq -
 ```
 
-#### `heuristicPicture($balanced = false): array`
+#### `heuristics($balanced = false, $fen = ''): array`
 
 Gets the game's heuristic picture as an array.
 
 ```php
-$heuristicPicture = $game->heuristicPicture(true);
+$heuristics = $game->heuristics(true);
 
-var_export($heuristicPicture);
+var_export($heuristics);
 ```
 
 Output:
@@ -167,9 +167,9 @@ For further information on taking heuristic pictures, please visit:
 - [How to Take Normalized Heuristic Pictures](https://medium.com/geekculture/how-to-take-normalized-heuristic-pictures-79ca0df4cdec)
 - [Visualizing Chess Openings Before MLP Classification](https://medium.com/geekculture/visualizing-chess-openings-before-mlp-classification-fd2a3e8c266)
 
-#### `history(): array`
+#### `history(): ?array`
 
-Gets the game's history as an array of `stdClass` objects.
+Returns the game's history.
 
 ```php
 $history = $game->history();
@@ -252,9 +252,9 @@ Output:
 false
 ```
 
-#### `loadFen(string $string)`
+#### `loadFen(string $string): void`
 
-Loads a FEN string allowing to continue a chess game from a particular position.
+Loads a FEN string allowing to continue a chess game.
 
 ```php
 $game->loadFen('rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9');
@@ -278,9 +278,9 @@ r  n  .  q  k  .  .  r
 rn1qk2r/4ppbp/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR w kq -
 ```
 
-#### `loadPgn(string $movetext)`
+#### `loadPgn(string $movetext): void`
 
-Loads a PGN movetext allowing to continue a chess game from a particular position.
+Loads a PGN movetext allowing to continue a chess game.
 
 ```php
 $game = new Game(Game::MODE_LOAD_PGN);
@@ -377,7 +377,7 @@ Output:
 
 #### `pieces(string $color): array`
 
-Gets the pieces on the board by color.
+Gets the pieces by color.
 
 ```php
 $pieces = $game->pieces('b');
@@ -461,7 +461,7 @@ array (
 
 #### `play(string $color, string $pgn): bool`
 
-Plays a chess move.
+Makes a move.
 
 ```php
 $game->play('w', 'Nc3');
@@ -482,14 +482,12 @@ P  P  P  P  .  P  P  P
 R  .  B  Q  K  B  N  R
 ```
 
-#### `playFen(string $toFen)`
+#### `playFen(string $toShortFen)`
 
-Plays a chess move in shortened FEN format; only the piece placement and the side to move are required.
+Plays a chess move in short FEN format; only the piece placement and the side to move are required.
 
 ```php
-$game->playFen(
-    'rnb1kbnr/ppp1pppp/8/3q4/8/2N5/PPPP1PPP/R1BQKBNR b'
-);
+$game->playFen('rnb1kbnr/ppp1pppp/8/3q4/8/2N5/PPPP1PPP/R1BQKBNR b');
 
 echo $game->ascii();
 ```

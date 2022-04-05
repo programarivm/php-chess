@@ -17,8 +17,8 @@ use Rubix\ML\Persisters\Filesystem;
 /**
  * Game
  *
- * A wrapper for the Chess\Board class. It is the main component of the PHP Chess Server;
- * thus, there is a one-to-one correspondence between the Chess\Game methods and
+ * Wrapper for the Chess\Board class. It is the main component of the PHP Chess Server.
+ * There is a one-to-one correspondence between the Chess\Game methods and
  * the commands available in the ChessServer\Command namespace.
  *
  * @author Jordi Bassagañas
@@ -93,9 +93,9 @@ class Game
     /**
      * Gets the history.
      *
-     * @return array
+     * @return mixed null|array
      */
-    public function history(): array
+    public function history(): ?array
     {
         $history = [];
 
@@ -128,15 +128,15 @@ class Game
     /**
      * Gets the pieces captured by both players.
      *
-     * @return \stdClass
+     * @return mixed null|array
      */
-    public function captures(): array
+    public function captures(): ?array
     {
         return $this->board->getCaptures();
     }
 
     /**
-     * Gets an array of pieces by color.
+     * Gets the pieces by color.
      *
      * @param string $color
      * @return array
@@ -233,11 +233,11 @@ class Game
     }
 
     /**
-     * Plays a chess move on the board.
+     * Makes a move.
      *
      * @param string $color
      * @param string $pgn
-     * @return bool
+     * @return bool true if the move can be made; otherwise false
      */
     public function play(string $color, string $pgn): bool
     {
@@ -277,16 +277,34 @@ class Game
         return (new BoardToStr($this->board))->create();
     }
 
-    public function loadFen(string $string)
+    /**
+     * Loads a FEN string allowing to continue a chess game.
+     *
+     * @param string
+     */
+    public function loadFen(string $string): void
     {
         $this->board = (new StrToBoard($string))->create();
     }
 
+    /**
+     * Loads a PGN movetext allowing to continue a chess game.
+     *
+     * @param string
+     */
     public function loadPgn(string $movetext)
     {
         $this->board = (new Player($movetext))->play()->getBoard();
     }
 
+    /**
+     * Makes a move in short FEN format.
+     *
+     * Only the piece placement and the side to move are required.
+     *
+     * @param string $toShortFen
+     * @return mixed
+     */
     public function playFen(string $toShortFen)
     {
         $fromFen = (new BoardToStr($this->board))->create();
@@ -336,22 +354,22 @@ class Game
         return false;
     }
 
-    public function heuristicPicture($balanced = false, $fen = ''): array
+    public function heuristics($balanced = false, $fen = ''): array
     {
         $movetext = $this->board->getMovetext();
 
         if ($this->mode === self::MODE_LOAD_FEN) {
             $board = (new StrToBoard($fen))->create();
-            $heuristicPicture = new Heuristics($movetext, $board);
+            $heuristics = new Heuristics($movetext, $board);
         } else {
-            $heuristicPicture = new Heuristics($movetext);
+            $heuristics = new Heuristics($movetext);
         }
 
         if ($balanced) {
-            return $heuristicPicture->take()->getBalance();
+            return $heuristics->take()->getBalance();
         }
 
-        return $heuristicPicture->take()->getPicture();
+        return $heuristics->take()->getPicture();
     }
 
     public function undoMove(): ?\stdClass

@@ -17,9 +17,9 @@ class HeuristicsTest extends AbstractUnitTestCase
      */
     public function weights()
     {
-        $heuristicPicture = new Heuristics('');
+        $heuristics = new Heuristics('');
 
-        $weights = array_values($heuristicPicture->getDimensions());
+        $weights = array_values($heuristics->getDimensions());
 
         $expected = 100;
 
@@ -231,9 +231,9 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit(new Board()))->play();
 
-        $heuristicPicture = new Heuristics($board->getMovetext());
+        $heuristics = new Heuristics($board->getMovetext());
 
-        $evaluation = $heuristicPicture->eval();
+        $evaluation = $heuristics->eval();
 
         $expected = [
             'w' => 26.32,
@@ -421,13 +421,13 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.d4 d5 2.e4 e5 3.f4 f5 4.exd5 exd4 5.c3 dxc3 6.Nxc3';
 
-        $heuristicPicture = new Heuristics($movetext);
+        $heuristics = new Heuristics($movetext);
         // let's test only this heuristic
-        $heuristicPicture->setDimensions(
+        $heuristics->setDimensions(
             [IsolatedPawnEvaluation::class => 5]
         );
 
-        $balance = $heuristicPicture->take()
+        $balance = $heuristics->take()
             ->getBalance();
 
         $expected = [
