@@ -68,11 +68,11 @@ class Pawn extends AbstractPiece
 
         $this->captureSquares = [];
 
-        $this->scope = (object)[
+        $this->travel = (object)[
             'up' => []
         ];
 
-        $this->scope();
+        $this->travel();
     }
 
     /**
@@ -118,12 +118,12 @@ class Pawn extends AbstractPiece
     /**
      * Calculates the pawn's scope.
      */
-    protected function scope(): void
+    protected function travel(): void
     {
         // next rank
         try {
             if (Validate::sq($this->file . $this->ranks->next, true)) {
-                $this->scope->up[] = $this->file . $this->ranks->next;
+                $this->travel->up[] = $this->file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
 
@@ -131,10 +131,10 @@ class Pawn extends AbstractPiece
 
         // two square advance
         if ($this->sq[1] == 2 && $this->ranks->initial == 2) {
-            $this->scope->up[] = $this->file . ($this->ranks->initial + 2);
+            $this->travel->up[] = $this->file . ($this->ranks->initial + 2);
         }
         elseif ($this->sq[1] == 7 && $this->ranks->initial == 7) {
-            $this->scope->up[] = $this->file . ($this->ranks->initial - 2);
+            $this->travel->up[] = $this->file . ($this->ranks->initial - 2);
         }
 
         // capture square
@@ -163,7 +163,7 @@ class Pawn extends AbstractPiece
         $moves = [];
 
         // add up squares
-        foreach($this->scope->up as $sq) {
+        foreach($this->travel->up as $sq) {
             if (in_array($sq, $this->board->getSquares()->free)) {
                 $moves[] = $sq;
             } else {

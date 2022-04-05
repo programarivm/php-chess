@@ -25,23 +25,23 @@ class Knight extends AbstractPiece
     {
         parent::__construct($color, $sq, Symbol::KNIGHT);
 
-        $this->scope = (object)[
+        $this->travel = (object)[
             'jumps' => []
         ];
 
-        $this->scope();
+        $this->travel();
     }
 
     /**
-     * Calculates the knight's scope.
+     * Calculates the knight's travel.
      */
-    protected function scope(): void
+    protected function travel(): void
     {
         try {
             $file = chr(ord($this->sq[0]) - 1);
             $rank = (int)$this->sq[1] + 2;
             if (Validate::sq($file.$rank)) {
-                $this->scope->jumps[] = $file . $rank;
+                $this->travel->jumps[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
 
@@ -51,7 +51,7 @@ class Knight extends AbstractPiece
             $file = chr(ord($this->sq[0]) - 2);
             $rank = (int)$this->sq[1] + 1;
             if (Validate::sq($file.$rank)) {
-                $this->scope->jumps[] = $file . $rank;
+                $this->travel->jumps[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
 
@@ -61,7 +61,7 @@ class Knight extends AbstractPiece
             $file = chr(ord($this->sq[0]) - 2);
             $rank = (int)$this->sq[1] - 1;
             if (Validate::sq($file.$rank)) {
-                $this->scope->jumps[] = $file . $rank;
+                $this->travel->jumps[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
 
@@ -71,7 +71,7 @@ class Knight extends AbstractPiece
             $file = chr(ord($this->sq[0]) - 1);
             $rank = (int)$this->sq[1] - 2;
             if (Validate::sq($file.$rank)) {
-                $this->scope->jumps[] = $file . $rank;
+                $this->travel->jumps[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
 
@@ -81,7 +81,7 @@ class Knight extends AbstractPiece
             $file = chr(ord($this->sq[0]) + 1);
             $rank = (int)$this->sq[1] - 2;
             if (Validate::sq($file.$rank)) {
-                $this->scope->jumps[] = $file . $rank;
+                $this->travel->jumps[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
 
@@ -92,7 +92,7 @@ class Knight extends AbstractPiece
             $file = chr(ord($this->sq[0]) + 2);
             $rank = (int)$this->sq[1] - 1;
             if (Validate::sq($file.$rank)) {
-                $this->scope->jumps[] = $file . $rank;
+                $this->travel->jumps[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
 
@@ -102,7 +102,7 @@ class Knight extends AbstractPiece
             $file = chr(ord($this->sq[0]) + 2);
             $rank = (int)$this->sq[1] + 1;
             if (Validate::sq($file.$rank)) {
-                $this->scope->jumps[] = $file . $rank;
+                $this->travel->jumps[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
 
@@ -112,7 +112,7 @@ class Knight extends AbstractPiece
             $file = chr(ord($this->sq[0]) + 1);
             $rank = (int)$this->sq[1] + 2;
             if (Validate::sq($file.$rank)) {
-                $this->scope->jumps[] = $file . $rank;
+                $this->travel->jumps[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
 
@@ -123,7 +123,7 @@ class Knight extends AbstractPiece
     public function getSquares(): array
     {
         $moves = [];
-        foreach ($this->scope->jumps as $sq) {
+        foreach ($this->travel->jumps as $sq) {
             if (in_array($sq, $this->board->getSquares()->free)) {
                 $moves[] = $sq;
             } elseif (in_array($sq, $this->board->getSquares()->used->{$this->getOppColor()})) {
@@ -137,7 +137,7 @@ class Knight extends AbstractPiece
     public function getDefendedSquares(): array
     {
         $sqs = [];
-        foreach ($this->scope->jumps as $sq) {
+        foreach ($this->travel->jumps as $sq) {
             if (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
                 $sqs[] = $sq;
             }

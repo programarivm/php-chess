@@ -35,7 +35,7 @@ abstract class AbstractPiece implements Piece
      *
      * @var array
      */
-    protected $scope = [];
+    protected $travel = [];
 
     /**
      * The piece's id in PGN format.
@@ -87,9 +87,9 @@ abstract class AbstractPiece implements Piece
     abstract public function getSquares(): array;
 
     /**
-     * Calculates the piece's scope.
+     * Calculates the squares the piece could travel to.
      */
-    abstract protected function scope(): void;
+    abstract protected function travel(): void;
 
     /**
      * Gets the piece's color.
@@ -128,7 +128,7 @@ abstract class AbstractPiece implements Piece
      */
     public function getScope(): \stdClass
     {
-        return $this->scope;
+        return $this->travel;
     }
 
     /**

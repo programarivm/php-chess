@@ -40,7 +40,7 @@ class King extends AbstractPiece
         $this->rook = new Rook($color, $sq, RookType::FAKED);
         $this->bishop = new Bishop($color, $sq);
 
-        $this->scope();
+        $this->travel();
     }
 
     protected function moveCastlingLong()
@@ -86,7 +86,7 @@ class King extends AbstractPiece
     protected function movesCaptures()
     {
         $movesCaptures = array_intersect(
-            array_values((array)$this->scope),
+            array_values((array)$this->travel),
             $this->board->getSquares()->used->{$this->getOppColor()}
         );
 
@@ -95,7 +95,7 @@ class King extends AbstractPiece
 
     protected function movesKing()
     {
-        $movesKing = array_intersect(array_values((array)$this->scope), $this->board->getSquares()->free);
+        $movesKing = array_intersect(array_values((array)$this->travel), $this->board->getSquares()->free);
 
         return array_diff($movesKing, $this->board->getSpace()->{$this->getOppColor()});
     }
@@ -124,18 +124,18 @@ class King extends AbstractPiece
     /**
      * Calculates the king's scope.
      */
-    protected function scope(): void
+    protected function travel(): void
     {
-        $scope =  array_merge(
+        $travel =  array_merge(
             (array) $this->rook->getScope(),
             (array) $this->bishop->getScope()
         );
 
-        foreach($scope as $key => $val) {
-            $scope[$key] = $val[0] ?? null;
+        foreach($travel as $key => $val) {
+            $travel[$key] = $val[0] ?? null;
         }
 
-        $this->scope = (object) array_filter(array_unique($scope));
+        $this->travel = (object) array_filter(array_unique($travel));
     }
 
     /**
@@ -158,7 +158,7 @@ class King extends AbstractPiece
     public function getDefendedSquares(): array
     {
         $sqs = [];
-        foreach ($this->scope as $sq) {
+        foreach ($this->travel as $sq) {
             if (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
                 $sqs[] = $sq;
             }

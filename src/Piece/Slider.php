@@ -30,7 +30,7 @@ abstract class Slider extends AbstractPiece
     public function getSquares(): array
     {
         $moves = [];
-        foreach ($this->scope as $direction) {
+        foreach ($this->travel as $direction) {
             foreach ($direction as $sq) {
                 if (
                     !in_array($sq, $this->board->getSquares()->used->{$this->getColor()}) &&
@@ -57,7 +57,7 @@ abstract class Slider extends AbstractPiece
     public function getDefendedSquares(): array
     {
         $sqs = [];
-        foreach ($this->scope as $direction) {
+        foreach ($this->travel as $direction) {
             foreach ($direction as $sq) {
                 if (in_array($sq, $this->board->getSquares()->used->{$this->getColor()})) {
                     $sqs[] = $sq;

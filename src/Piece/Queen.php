@@ -38,15 +38,15 @@ class Queen extends Slider
         $this->rook = new Rook($color, $sq, RookType::FAKED);
         $this->bishop = new Bishop($color, $sq);
 
-        $this->scope();
+        $this->travel();
     }
 
     /**
      * Calculates the piece's scope.
      */
-    protected function scope(): void
+    protected function travel(): void
     {
-        $this->scope = (object) array_merge(
+        $this->travel = (object) array_merge(
             (array) $this->rook->getScope(),
             (array) $this->bishop->getScope()
         );

@@ -25,27 +25,27 @@ class Bishop extends Slider
     {
         parent::__construct($color, $sq, Symbol::BISHOP);
 
-        $this->scope = (object)[
+        $this->travel = (object)[
             'upLeft' => [],
             'upRight' => [],
             'bottomLeft' => [],
             'bottomRight' => []
         ];
 
-        $this->scope();
+        $this->travel();
     }
 
     /**
      * Calculates the bishop's scope.
      */
-    protected function scope(): void
+    protected function travel(): void
     {
         // top left diagonal
         try {
             $file = chr(ord($this->sq[0]) - 1);
             $rank = (int)$this->sq[1] + 1;
             while (Validate::sq($file.$rank)) {
-                $this->scope->upLeft[] = $file . $rank;
+                $this->travel->upLeft[] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank + 1;
             }
@@ -58,7 +58,7 @@ class Bishop extends Slider
             $file = chr(ord($this->sq[0]) + 1);
             $rank = (int)$this->sq[1] + 1;
             while (Validate::sq($file.$rank)) {
-                $this->scope->upRight[] = $file . $rank;
+                $this->travel->upRight[] = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank + 1;
             }
@@ -72,7 +72,7 @@ class Bishop extends Slider
             $rank = (int)$this->sq[1] - 1;
             while (Validate::sq($file.$rank))
             {
-                $this->scope->bottomLeft[] = $file . $rank;
+                $this->travel->bottomLeft[] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank - 1;
             }
@@ -86,7 +86,7 @@ class Bishop extends Slider
             $rank = (int)$this->sq[1] - 1;
             while (Validate::sq($file.$rank))
             {
-                $this->scope->bottomRight[] = $file . $rank;
+                $this->travel->bottomRight[] = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank - 1;
             }
