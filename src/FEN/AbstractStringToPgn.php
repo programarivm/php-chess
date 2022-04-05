@@ -34,12 +34,12 @@ abstract class AbstractStringToPgn
                 $id = $piece->getId();
                 $position = $piece->getSquare();
                 switch ($id) {
-                    case Symbol::KING:
-                        $rule = Castling::color($color)[Symbol::KING];
+                    case Symbol::K:
+                        $rule = Castling::color($color)[Symbol::K];
                         if ($sq === $rule[Symbol::CASTLE_SHORT]['sq']['next'] &&
                             $this->board->getCastling()[$color][Symbol::CASTLE_SHORT]
                         ) {
-                            if ($clone->play($color, Symbol::KING.$sq)) {
+                            if ($clone->play($color, Symbol::K.$sq)) {
                                 $legal[] = [
                                     Symbol::CASTLE_SHORT => (new BoardToString($clone))->create()
                                 ];
@@ -47,22 +47,22 @@ abstract class AbstractStringToPgn
                         } elseif ($sq === $rule[Symbol::CASTLE_LONG]['sq']['next'] &&
                             $this->board->getCastling()[$color][Symbol::CASTLE_LONG]
                         ) {
-                            if ($clone->play($color, Symbol::KING.$sq)) {
+                            if ($clone->play($color, Symbol::K.$sq)) {
                                 $legal[] = [
                                     Symbol::CASTLE_LONG => (new BoardToString($clone))->create()
                                 ];
                             }
-                        } elseif ($clone->play($color, Symbol::KING.$sq)) {
+                        } elseif ($clone->play($color, Symbol::K.$sq)) {
                             $legal[] = [
-                                Symbol::KING.$sq => (new BoardToString($clone))->create()
+                                Symbol::K.$sq => (new BoardToString($clone))->create()
                             ];
-                        } elseif ($clone->play($color, Symbol::KING.'x'.$sq)) {
+                        } elseif ($clone->play($color, Symbol::K.'x'.$sq)) {
                             $legal[] = [
-                                Symbol::KING.'x'.$sq => (new BoardToString($clone))->create()
+                                Symbol::K.'x'.$sq => (new BoardToString($clone))->create()
                             ];
                         }
                         break;
-                    case Symbol::PAWN:
+                    case Symbol::P:
                         try {
                             if ($clone->play($color, $sq)) {
                                 $legal[] = [
@@ -115,9 +115,9 @@ abstract class AbstractStringToPgn
         foreach ($clone->getPiecesByColor($color) as $piece) {
             foreach ($piece->getSqs() as $sq) {
                 switch ($piece->getId()) {
-                    case Symbol::KING:
+                    case Symbol::K:
                         break;
-                    case Symbol::PAWN:
+                    case Symbol::P:
                         break;
                     default:
                         $identities[$piece->getId()][$piece->getSquare()][] = $sq;

@@ -43,7 +43,7 @@ class Pawn extends AbstractPiece
      */
     public function __construct(string $color, string $sq)
     {
-        parent::__construct($color, $sq, Symbol::PAWN);
+        parent::__construct($color, $sq, Symbol::P);
 
         $this->file = $this->sq[0];
 
@@ -180,7 +180,7 @@ class Pawn extends AbstractPiece
 
         // en passant implementation
         if ($this->board->getLastHistory() &&
-            $this->board->getLastHistory()->move->id === Symbol::PAWN &&
+            $this->board->getLastHistory()->move->id === Symbol::P &&
             $this->board->getLastHistory()->move->color === $this->getOppColor()) {
             switch ($this->getColor()) {
                 case Symbol::WHITE:

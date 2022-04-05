@@ -112,7 +112,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::PIECE,
             'color' => 'w',
-            'id' => Symbol::BISHOP,
+            'id' => Symbol::B,
             'sq' => (object) [
                 'current' => null,
                 'next' =>'g5'
@@ -134,7 +134,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::PIECE,
             'color' => 'b',
-            'id' => Symbol::ROOK,
+            'id' => Symbol::R,
             'sq' => (object) [
                 'current' => null,
                 'next' => 'a5'
@@ -156,7 +156,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::PIECE,
             'color' => 'b',
-            'id' => Symbol::QUEEN,
+            'id' => Symbol::Q,
             'sq' => (object) [
                 'current' => 'b',
                 'next' => 'b7'
@@ -178,7 +178,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::KNIGHT,
             'color' => 'b',
-            'id' => Symbol::KNIGHT,
+            'id' => Symbol::N,
             'sq' => (object) [
                 'current' => 'd',
                 'next' => 'b4'
@@ -200,7 +200,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::KING,
             'color' => 'w',
-            'id' => Symbol::KING,
+            'id' => Symbol::K,
             'sq' => (object) [
                 'current' => null,
                 'next' => 'g7'
@@ -222,7 +222,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::PIECE,
             'color' => 'b',
-            'id' => Symbol::QUEEN,
+            'id' => Symbol::Q,
             'sq' => (object) [
                 'current' => 'h8',
                 'next' => 'g7'
@@ -244,7 +244,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::PAWN,
             'color' => 'w',
-            'id' => Symbol::PAWN,
+            'id' => Symbol::P,
             'sq' => (object) [
                 'current' => 'c',
                 'next' => 'c3'
@@ -266,7 +266,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::PAWN,
             'color' => 'w',
-            'id' => Symbol::PAWN,
+            'id' => Symbol::P,
             'sq' => (object) [
                 'current' => 'h',
                 'next' => 'h3'
@@ -289,7 +289,7 @@ class ConvertTest extends AbstractUnitTestCase
             'type' => Move::CASTLE_SHORT,
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLE_SHORT]['sq']
+            'sq' => (object) Castling::color('w')[Symbol::K][Symbol::CASTLE_SHORT]['sq']
         ];
 
         $this->assertEquals(Convert::toStdClass('w', $move), $example);
@@ -308,7 +308,7 @@ class ConvertTest extends AbstractUnitTestCase
             'type' => Move::CASTLE_LONG,
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLE_LONG]['sq']
+            'sq' => (object) Castling::color('w')[Symbol::K][Symbol::CASTLE_LONG]['sq']
         ];
 
         $this->assertEquals(Convert::toStdClass('w', $move), $example);
@@ -326,7 +326,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::PAWN_CAPTURES,
             'color' => 'b',
-            'id' => Symbol::PAWN,
+            'id' => Symbol::P,
             'sq' => (object) [
                 'current' => 'f',
                 'next' => 'g5'
@@ -348,7 +348,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::KNIGHT_CAPTURES,
             'color' => 'b',
-            'id' => Symbol::KNIGHT,
+            'id' => Symbol::N,
             'sq' => (object) [
                 'current' => null,
                 'next' => 'e4'
@@ -370,7 +370,7 @@ class ConvertTest extends AbstractUnitTestCase
             'isCheck' => false,
             'type' => Move::PIECE_CAPTURES,
             'color' => 'b',
-            'id' => Symbol::QUEEN,
+            'id' => Symbol::Q,
             'sq' => (object) [
                 'current' => '7',
                 'next' => 'g7'

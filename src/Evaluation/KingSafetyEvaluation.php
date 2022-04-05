@@ -40,7 +40,7 @@ class KingSafetyEvaluation extends AbstractEvaluation
 
     private function color(string $color, array $pressEval, array $spEval)
     {
-        $king = $this->board->getPiece($color, Symbol::KING);
+        $king = $this->board->getPiece($color, Symbol::K);
         foreach ($king->getTravel() as $key => $sq) {
             if ($piece = $this->board->getPieceBySq($sq)) {
                 if ($piece->getColor() === $king->getOppColor()) {

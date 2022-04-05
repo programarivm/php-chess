@@ -121,7 +121,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'd',
                         'next' => 'd4',
@@ -136,7 +136,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'd',
                         'next' => 'd5',
@@ -151,7 +151,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'c',
                         'next' => 'c4',
@@ -166,7 +166,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'c',
                         'next' => 'c5',
@@ -194,7 +194,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'e',
                         'next' => 'e4',
@@ -209,7 +209,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'e',
                         'next' => 'e5',
@@ -224,7 +224,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Symbol::WHITE,
-                    'id' => Symbol::KNIGHT,
+                    'id' => Symbol::N,
                     'sq' => (object) [
                         'current' => null,
                         'next' => 'f3',
@@ -239,7 +239,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Symbol::BLACK,
-                    'id' => Symbol::KNIGHT,
+                    'id' => Symbol::N,
                     'sq' => (object) [
                         'current' => null,
                         'next' => 'c6',
@@ -254,7 +254,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PIECE,
                     'color' => Symbol::WHITE,
-                    'id' => Symbol::BISHOP,
+                    'id' => Symbol::B,
                     'sq' => (object) [
                         'current' => null,
                         'next' => 'b5',
@@ -269,7 +269,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PIECE,
                     'color' => Symbol::BLACK,
-                    'id' => Symbol::BISHOP,
+                    'id' => Symbol::B,
                     'sq' => (object) [
                         'current' => null,
                         'next' => 'e7',
@@ -358,7 +358,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'e',
                         'next' => 'e4',
@@ -373,7 +373,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'e',
                         'next' => 'e6',
@@ -388,7 +388,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::WHITE,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'd',
                         'next' => 'd4',
@@ -403,7 +403,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Symbol::BLACK,
-                    'id' => Symbol::PAWN,
+                    'id' => Symbol::P,
                     'sq' => (object) [
                         'current' => 'd',
                         'next' => 'd5',
@@ -418,7 +418,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Symbol::WHITE,
-                    'id' => Symbol::KNIGHT,
+                    'id' => Symbol::N,
                     'sq' => (object) [
                         'current' => null,
                         'next' => 'c3',
@@ -433,7 +433,7 @@ class StatusTest extends AbstractUnitTestCase
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Symbol::BLACK,
-                    'id' => Symbol::KNIGHT,
+                    'id' => Symbol::N,
                     'sq' => (object) [
                         'current' => null,
                         'next' => 'f6',

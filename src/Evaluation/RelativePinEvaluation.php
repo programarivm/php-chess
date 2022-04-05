@@ -25,7 +25,7 @@ class RelativePinEvaluation extends AbstractEvaluation
     {
         $attackEvalBoard = (new AttackEvaluation($this->board))->eval();
         foreach ($this->board->getPieces() as $piece) {
-            if ($piece->getId() !== Symbol::KING && $piece->getId() !== Symbol::QUEEN) {
+            if ($piece->getId() !== Symbol::K && $piece->getId() !== Symbol::Q) {
                 $oppColor = $piece->getOppColor();
                 $composition = (new Composition($this->board))
                     ->deletePieceByPosition($piece->getSquare())

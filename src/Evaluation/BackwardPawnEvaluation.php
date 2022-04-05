@@ -31,7 +31,7 @@ class BackwardPawnEvaluation extends AbstractEvaluation implements InverseEvalua
         $captureSquares = [];
         $nextMoves = [];
         foreach ($this->board->getPieces() as $piece) {
-            if ($piece->getId() === Symbol::PAWN) {
+            if ($piece->getId() === Symbol::P) {
                 $captureSquares[] = [
                     'color' => $piece->getColor(),
                     'captureSquares' => $piece->getCaptureSquares(),

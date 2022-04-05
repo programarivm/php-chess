@@ -129,13 +129,13 @@ class Ascii
     private function pushPiece($color, $char, $sq, $castling, &$pieces)
     {
         switch ($char) {
-            case Symbol::KING:
+            case Symbol::K:
                 $pieces[] = new King($color, $sq);
                 break;
-            case Symbol::QUEEN:
+            case Symbol::Q:
                 $pieces[] = new Queen($color, $sq);
                 break;
-            case Symbol::ROOK:
+            case Symbol::R:
                 if ($color === Symbol::BLACK &&
                     $sq === 'a8' &&
                     $castling[$color][Symbol::CASTLE_LONG]
@@ -164,13 +164,13 @@ class Ascii
                     $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 }
                 break;
-            case Symbol::BISHOP:
+            case Symbol::B:
                 $pieces[] = new Bishop($color, $sq);
                 break;
-            case Symbol::KNIGHT:
+            case Symbol::N:
                 $pieces[] = new Knight($color, $sq);
                 break;
-            case Symbol::PAWN:
+            case Symbol::P:
                 $pieces[] = new Pawn($color, $sq);
                 break;
             default:

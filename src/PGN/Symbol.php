@@ -3,7 +3,7 @@
 namespace Chess\PGN;
 
 /**
- * Symbols in PGN format.
+ * PGN symbols.
  *
  * @author Jordi Bassagañas
  * @license GPL
@@ -13,12 +13,12 @@ class Symbol
     const WHITE = 'w';
     const BLACK = 'b';
 
-    const BISHOP = 'B';
-    const KING = 'K';
-    const KNIGHT = 'N';
-    const PAWN = 'P';
-    const QUEEN = 'Q';
-    const ROOK = 'R';
+    const B = 'B';
+    const K = 'K';
+    const N = 'N';
+    const P = 'P';
+    const Q = 'Q';
+    const R = 'R';
 
     const CASTLE_SHORT = 'O-O';
     const CASTLE_LONG = 'O-O-O';

@@ -23,7 +23,7 @@ class Bishop extends Slider
      */
     public function __construct(string $color, string $sq)
     {
-        parent::__construct($color, $sq, Symbol::BISHOP);
+        parent::__construct($color, $sq, Symbol::B);
 
         $this->travel = (object)[
             'upLeft' => [],

@@ -47,19 +47,19 @@ class ConnectivityEvaluation extends AbstractEvaluation
     {
         foreach ($this->board->getPiecesByColor($color) as $piece) {
             switch ($piece->getId()) {
-                case Symbol::KING:
+                case Symbol::K:
                     $this->result[$color] += count(
                         array_intersect(array_values((array)$piece->getTravel()),
                         $this->sqEval[SqEvaluation::TYPE_USED][$color])
                     );
                     break;
-                case Symbol::KNIGHT:
+                case Symbol::N:
                     $this->result[$color] += count(
                         array_intersect($piece->getTravel(),
                         $this->sqEval[SqEvaluation::TYPE_USED][$color])
                     );
                     break;
-                case Symbol::PAWN:
+                case Symbol::P:
                     $this->result[$color] += count(
                         array_intersect($piece->getCaptureSquares(),
                         $this->sqEval[SqEvaluation::TYPE_USED][$color])

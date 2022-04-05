@@ -117,13 +117,13 @@ class StringToBoard
     private function pushPiece($color, $char, $sq)
     {
         switch ($char) {
-            case Symbol::KING:
+            case Symbol::K:
                 $this->pieces[] = new King($color, $sq);
                 break;
-            case Symbol::QUEEN:
+            case Symbol::Q:
                 $this->pieces[] = new Queen($color, $sq);
                 break;
-            case Symbol::ROOK:
+            case Symbol::R:
                 if ($color === Symbol::BLACK &&
                     $sq === 'a8' &&
                     $this->castling[$color][Symbol::CASTLE_LONG]
@@ -152,13 +152,13 @@ class StringToBoard
                     $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 }
                 break;
-            case Symbol::BISHOP:
+            case Symbol::B:
                 $this->pieces[] = new Bishop($color, $sq);
                 break;
-            case Symbol::KNIGHT:
+            case Symbol::N:
                 $this->pieces[] = new Knight($color, $sq);
                 break;
-            case Symbol::PAWN:
+            case Symbol::P:
                 $this->pieces[] = new Pawn($color, $sq);
                 break;
             default:

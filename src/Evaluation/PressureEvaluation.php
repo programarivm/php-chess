@@ -54,7 +54,7 @@ class PressureEvaluation extends AbstractEvaluation
     {
         foreach ($this->board->getPieces() as $piece) {
             switch ($piece->getId()) {
-                case Symbol::KING:
+                case Symbol::K:
                     $this->result[$piece->getColor()] = array_merge(
                         $this->result[$piece->getColor()],
                         array_values(
@@ -65,7 +65,7 @@ class PressureEvaluation extends AbstractEvaluation
                         )
                     );
                     break;
-                case Symbol::PAWN:
+                case Symbol::P:
                     $this->result[$piece->getColor()] = array_merge(
                         $this->result[$piece->getColor()],
                         array_intersect(

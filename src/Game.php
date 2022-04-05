@@ -171,14 +171,14 @@ class Game
             foreach ($piece->getSqs() as $sq) {
                 $clone = unserialize(serialize($this->board));
                 switch ($piece->getId()) {
-                    case Symbol::KING:
-                        if ($clone->play($color, Symbol::KING.$sq)) {
+                    case Symbol::K:
+                        if ($clone->play($color, Symbol::K.$sq)) {
                             $moves[] = $sq;
-                        } elseif ($clone->play($color, Symbol::KING.'x'.$sq)) {
+                        } elseif ($clone->play($color, Symbol::K.'x'.$sq)) {
                             $moves[] = $sq;
                         }
                         break;
-                    case Symbol::PAWN:
+                    case Symbol::P:
                         if ($clone->play($color, $piece->getFile()."x$sq")) {
                             $moves[] = $sq;
                         } elseif ($clone->play($color, $sq)) {
@@ -200,7 +200,7 @@ class Game
                 'sq' => $piece->getSquare(),
                 'moves' => $moves,
             ];
-            if ($piece->getId() === Symbol::PAWN) {
+            if ($piece->getId() === Symbol::P) {
                 if ($enPassant = $piece->getEnPassantSq()) {
                     $result['enPassant'] = $enPassant;
                 }

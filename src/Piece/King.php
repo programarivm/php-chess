@@ -35,7 +35,7 @@ class King extends AbstractPiece
      */
     public function __construct(string $color, string $sq)
     {
-        parent::__construct($color, $sq, Symbol::KING);
+        parent::__construct($color, $sq, Symbol::K);
 
         $this->rook = new Rook($color, $sq, RookType::SLIDER);
         $this->bishop = new Bishop($color, $sq);
@@ -45,7 +45,7 @@ class King extends AbstractPiece
 
     protected function moveCastlingLong()
     {
-        $rule = Castling::color($this->getColor())[Symbol::KING][Symbol::CASTLE_LONG];
+        $rule = Castling::color($this->getColor())[Symbol::K][Symbol::CASTLE_LONG];
         if (!$this->board->getCastling()[$this->getColor()]['isCastled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLE_LONG]) {
                 if (
@@ -66,7 +66,7 @@ class King extends AbstractPiece
 
     protected function moveCastlingShort()
     {
-        $rule = Castling::color($this->getColor())[Symbol::KING][Symbol::CASTLE_SHORT];
+        $rule = Castling::color($this->getColor())[Symbol::K][Symbol::CASTLE_SHORT];
         if (!$this->board->getCastling()[$this->getColor()]['isCastled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLE_SHORT]) {
                 if (
@@ -108,10 +108,10 @@ class King extends AbstractPiece
      */
     public function getCastlingRook(array $pieces)
     {
-        $rule = Castling::color($this->getColor())[Symbol::ROOK];
+        $rule = Castling::color($this->getColor())[Symbol::R];
         foreach ($pieces as $piece) {
             if (
-                $piece->getId() === Symbol::ROOK &&
+                $piece->getId() === Symbol::R &&
                 $piece->getSquare() === $rule[rtrim($this->getMove()->pgn, '+')]['sq']['current']
             ) {
                 return $piece;

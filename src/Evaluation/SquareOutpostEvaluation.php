@@ -31,7 +31,7 @@ class SquareOutpostEvaluation extends AbstractEvaluation
     public function eval(): array
     {
         foreach ($this->board->getPieces() as $piece) {
-            if ($piece->getId() === Symbol::PAWN) {
+            if ($piece->getId() === Symbol::P) {
                 $captureSquares = $piece->getCaptureSquares();
                 if ($piece->getColor() === Symbol::WHITE) {
                     $lFile = chr(ord($piece->getFile()) - 2);
@@ -66,7 +66,7 @@ class SquareOutpostEvaluation extends AbstractEvaluation
     {
         for ($i = 2; $i < 8; $i++) {
             if ($piece = $this->board->getPieceBySq($file.$i)) {
-                if ($piece->getId() === Symbol::PAWN) {
+                if ($piece->getId() === Symbol::P) {
                     if ($pawn->getColor() === Symbol::WHITE) {
                         if ($pawn->getSquare()[1] + 2 <= $piece->getSquare()[1]) {
                             return true;

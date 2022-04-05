@@ -33,7 +33,7 @@ class Queen extends Slider
      */
     public function __construct(string $color, string $sq)
     {
-        parent::__construct($color, $sq, Symbol::QUEEN);
+        parent::__construct($color, $sq, Symbol::Q);
 
         $this->rook = new Rook($color, $sq, RookType::SLIDER);
         $this->bishop = new Bishop($color, $sq);

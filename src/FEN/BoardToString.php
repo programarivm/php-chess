@@ -85,7 +85,7 @@ class BoardToString
         $history = $this->board->getHistory();
         if ($history) {
             $last = array_slice($history, -1)[0];
-            if ($last->move->id === Symbol::PAWN) {
+            if ($last->move->id === Symbol::P) {
                 $prev = $last->sq;
                 $next = $last->move->sq->next;
                 if ($last->move->color === Symbol::WHITE) {

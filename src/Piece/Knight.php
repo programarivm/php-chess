@@ -23,7 +23,7 @@ class Knight extends AbstractPiece
      */
     public function __construct(string $color, string $sq)
     {
-        parent::__construct($color, $sq, Symbol::KNIGHT);
+        parent::__construct($color, $sq, Symbol::N);
 
         $this->setTravel();
     }

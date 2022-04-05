@@ -36,7 +36,7 @@ class Rook extends Slider
             throw new PieceTypeException;
         }
 
-        parent::__construct($color, $sq, Symbol::ROOK);
+        parent::__construct($color, $sq, Symbol::R);
 
         $this->type = $type;
 

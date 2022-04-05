@@ -39,7 +39,7 @@ class Castling
         switch ($color) {
             case Symbol::WHITE:
                 return [
-                    Symbol::KING => [
+                    Symbol::K => [
                         Symbol::CASTLE_SHORT => [
                             'sqs' => [
                                 'f' => 'f1',
@@ -62,7 +62,7 @@ class Castling
                             ],
                         ],
                     ],
-                    Symbol::ROOK => [
+                    Symbol::R => [
                         Symbol::CASTLE_SHORT => [
                             'sq' => [
                                 'current' => 'h1',
@@ -80,7 +80,7 @@ class Castling
 
             case Symbol::BLACK:
                 return [
-                    Symbol::KING => [
+                    Symbol::K => [
                         Symbol::CASTLE_SHORT => [
                             'sqs' => [
                                 'f' => 'f8',
@@ -103,7 +103,7 @@ class Castling
                             ],
                         ],
                     ],
-                    Symbol::ROOK => [
+                    Symbol::R => [
                         Symbol::CASTLE_SHORT => [
                             'sq' => [
                                 'current' => 'h8',
@@ -133,11 +133,11 @@ class Castling
     {
         return $castling[$color][Symbol::CASTLE_SHORT] &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLE_SHORT]['sqs']['f'],
+                self::color($color)[Symbol::K][Symbol::CASTLE_SHORT]['sqs']['f'],
                 $space->{Convert::toOpposite($color)})
              ) &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLE_SHORT]['sqs']['g'],
+                self::color($color)[Symbol::K][Symbol::CASTLE_SHORT]['sqs']['g'],
                 $space->{Convert::toOpposite($color)})
              );
     }
@@ -154,15 +154,15 @@ class Castling
     {
         return $castling[$color][Symbol::CASTLE_LONG] &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLE_LONG]['sqs']['b'],
+                self::color($color)[Symbol::K][Symbol::CASTLE_LONG]['sqs']['b'],
                 $space->{Convert::toOpposite($color)})
              ) &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLE_LONG]['sqs']['c'],
+                self::color($color)[Symbol::K][Symbol::CASTLE_LONG]['sqs']['c'],
                 $space->{Convert::toOpposite($color)})
              ) &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLE_LONG]['sqs']['d'],
+                self::color($color)[Symbol::K][Symbol::CASTLE_LONG]['sqs']['d'],
                 $space->{Convert::toOpposite($color)})
              );
     }
