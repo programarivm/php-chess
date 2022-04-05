@@ -17,9 +17,8 @@ class Heuristics extends Player
     }
 
     /**
-     * Returns the current evaluation of $this->board.
-     *
-     * The result obtained suggests which player is probably better.
+     * Returns the current evaluation of $this->board. The result obtained suggests
+     * which player may be better.
      *
      * @return array
      */

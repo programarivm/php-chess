@@ -3,7 +3,6 @@
 namespace Chess\Tests\Unit;
 
 use Chess\Board;
-use Chess\Evaluation\IsolatedPawnEvaluation;
 use Chess\Heuristics;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Checkmate\Fool as FoolCheckmate;
@@ -33,7 +32,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $pic = (new Heuristics($board->getMovetext()))->getResult();
+        $result = (new Heuristics($board->getMovetext()))->getResult();
 
         $expected = [
             'w' => [
@@ -44,7 +43,7 @@ class HeuristicsTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $pic);
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -87,7 +86,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e5';
 
-        $pic = (new Heuristics($movetext))->getResult();
+        $result = (new Heuristics($movetext))->getResult();
 
         $expected = [
             'w' => [
@@ -98,7 +97,7 @@ class HeuristicsTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertSame($expected, $pic);
+        $this->assertSame($expected, $result);
     }
 
     /**
@@ -300,7 +299,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6';
 
-        $pic = (new Heuristics($movetext))->getResult();
+        $result = (new Heuristics($movetext))->getResult();
 
         $expected = [
             'w' => [
@@ -311,7 +310,7 @@ class HeuristicsTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $pic);
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -321,7 +320,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5';
 
-        $pic = (new Heuristics($movetext))->getResult();
+        $result = (new Heuristics($movetext))->getResult();
 
         $expected = [
             'w' => [
@@ -334,7 +333,7 @@ class HeuristicsTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $pic);
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -344,7 +343,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5 3.Nd2 Nf6';
 
-        $pic = (new Heuristics($movetext))->getResult();
+        $result = (new Heuristics($movetext))->getResult();
 
         $expected = [
             'w' => [
@@ -359,7 +358,7 @@ class HeuristicsTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $pic);
+        $this->assertEquals($expected, $result);
     }
 
     /**

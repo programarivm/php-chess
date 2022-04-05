@@ -14,14 +14,14 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
     {
         $fen = 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2';
 
-        $pic = (new HeuristicsByFenString($fen))->getResult();
+        $result = (new HeuristicsByFenString($fen))->getResult();
 
         $expected = [
             'w' => [ 1, 0.7, 0.4, 0.4, 0, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             'b' => [ 1, 0.7, 0.4, 0.4, 0, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         ];
 
-        $this->assertEquals($expected, $pic);
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -62,14 +62,14 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
     {
         $fen = 'rnbqkb1r/pppp1ppp/5n2/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3';
 
-        $pic = (new HeuristicsByFenString($fen))->getResult();
+        $result = (new HeuristicsByFenString($fen))->getResult();
 
         $expected = [
             'w' => [ 1, 0.88, 0.52, 0.42, 0.02, 0.02, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
             'b' => [ 1, 0.88, 0.52, 0.42, 0.02, 0.02, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         ];
 
-        $this->assertEquals($expected, $pic);
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -110,14 +110,14 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
     {
         $fen = 'rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9';
 
-        $pic = (new HeuristicsByFenString($fen))->getResult();
+        $result = (new HeuristicsByFenString($fen))->getResult();
 
         $expected = [
             'w' => [ 0.88, 1, 0.45, 0.59, 0, 0.02, 0, 0, 0, 0.05, 0, 0.02, 0, 0, 0, 0, 0.02, 0, 0 ],
             'b' => [ 0.86, 0.78, 0.47, 0.5, 0.07, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.02, 0, 0 ],
         ];
 
-        $this->assertEquals($expected, $pic);
+        $this->assertEquals($expected, $result);
     }
 
     /**

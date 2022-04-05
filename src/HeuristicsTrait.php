@@ -113,7 +113,7 @@ trait HeuristicsTrait
     }
 
     /**
-     * Returns the heuristic picture.
+     * Returns the heuristics.
      *
      * @return array
      */
@@ -123,7 +123,11 @@ trait HeuristicsTrait
     }
 
     /**
-     * Returns the balanced heuristic picture.
+     * Returns the balanced heuristics.
+     *
+     * A chess game can be plotted in terms of balance. +1 is the best possible
+     * evaluation for White and -1 the best possible evaluation for Black. Both
+     * forces being set to 0 means they're actually offset and, therefore, balanced.
      *
      * @return array
      */
