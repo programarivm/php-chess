@@ -10,7 +10,7 @@ class KnightTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function scope_d4()
+    public function travel_d4()
     {
         $knight = new Knight('w', 'd4');
         $travel = [
@@ -30,7 +30,7 @@ class KnightTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function scope_h1()
+    public function travel_h1()
     {
         $knight = new Knight('w', 'h1');
         $travel = [
@@ -44,7 +44,7 @@ class KnightTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function scope_b1()
+    public function travel_b1()
     {
         $knight = new Knight('w', 'b1');
         $travel = [

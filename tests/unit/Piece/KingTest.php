@@ -10,26 +10,26 @@ class KingTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function scope_a2()
+    public function travel_a2()
     {
         $king = new King('w', 'a2');
-        $scope = (object) [
+        $travel = (object) [
             'up' => 'a3',
             'bottom' => 'a1',
             'right' => 'b2',
             'upRight' => 'b3',
             'bottomRight' => 'b1'
         ];
-        $this->assertEquals($scope, $king->getTravel());
+        $this->assertEquals($travel, $king->getTravel());
     }
 
     /**
      * @test
      */
-    public function scope_d5()
+    public function travel_d5()
     {
         $king = new King('w', 'd5');
-        $scope = (object) [
+        $travel = (object) [
             'up' => 'd6',
             'bottom' => 'd4',
             'left' => 'c5',
@@ -39,6 +39,6 @@ class KingTest extends AbstractUnitTestCase
             'bottomLeft' => 'c4',
             'bottomRight' => 'e4'
         ];
-        $this->assertEquals($scope, $king->getTravel());
+        $this->assertEquals($travel, $king->getTravel());
     }
 }

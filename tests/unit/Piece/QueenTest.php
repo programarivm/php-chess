@@ -10,10 +10,10 @@ class QueenTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function scope_a2()
+    public function travel_a2()
     {
         $queen = new Queen('w', 'a2');
-        $scope = (object) [
+        $travel = (object) [
             'up' => ['a3', 'a4', 'a5', 'a6', 'a7', 'a8'],
             'bottom' => ['a1'],
             'left' => [],
@@ -24,16 +24,16 @@ class QueenTest extends AbstractUnitTestCase
             'bottomRight' => ['b1']
         ];
 
-        $this->assertEquals($scope, $queen->getTravel());
+        $this->assertEquals($travel, $queen->getTravel());
     }
 
     /**
      * @test
      */
-    public function scope_d5()
+    public function travel_d5()
     {
         $queen = new Queen('w', 'd5');
-        $scope = (object) [
+        $travel = (object) [
             'up' => ['d6', 'd7', 'd8'],
             'bottom' => ['d4', 'd3', 'd2', 'd1'],
             'left' => ['c5', 'b5', 'a5'],
@@ -44,6 +44,6 @@ class QueenTest extends AbstractUnitTestCase
             'bottomRight' => ['e4', 'f3', 'g2', 'h1']
         ];
 
-        $this->assertEquals($scope, $queen->getTravel());
+        $this->assertEquals($travel, $queen->getTravel());
     }
 }
