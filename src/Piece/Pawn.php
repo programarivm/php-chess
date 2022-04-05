@@ -230,7 +230,7 @@ class Pawn extends AbstractPiece
      */
     public function isPromoted(): bool
     {
-        return isset($this->move->newIdentity) &&
+        return isset($this->move->newId) &&
             (int)$this->getMove()->sq->next[1] === $this->ranks->promotion;
     }
 }

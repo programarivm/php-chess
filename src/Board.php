@@ -479,7 +479,7 @@ final class Board extends \SplObjectStorage
     private function promote(Pawn $pawn): Board
     {
         $this->detach($this->getPieceBySq($pawn->getMove()->sq->next));
-        switch ($pawn->getMove()->newIdentity) {
+        switch ($pawn->getMove()->newId) {
             case Symbol::N:
                 $this->attach(new Knight($pawn->getColor(), $pawn->getMove()->sq->next));
                 break;
