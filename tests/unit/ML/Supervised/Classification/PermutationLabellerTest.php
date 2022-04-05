@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\ML\Supervised\Classification;
 
 use Chess\Board;
-use Chess\HeuristicPicture;
+use Chess\Heuristics;
 use Chess\Combinatorics\RestrictedPermutationWithRepetition;
 use Chess\ML\Supervised\Classification\PermutationLabeller;
 use Chess\Tests\AbstractUnitTestCase;
@@ -18,7 +18,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
 
     public static function setUpBeforeClass(): void
     {
-        $dimensions = (new HeuristicPicture(''))->getDimensions();
+        $dimensions = (new Heuristics(''))->getDimensions();
 
         self::$permutations = (new RestrictedPermutationWithRepetition())
             ->get(
@@ -35,7 +35,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -60,7 +60,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'e5');
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -85,7 +85,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'Na6');
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -110,7 +110,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'Nc6');
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -133,7 +133,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = (new FoolCheckmate(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -156,7 +156,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = (new ScholarCheckmate(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -179,7 +179,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -202,7 +202,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 

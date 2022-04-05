@@ -3,7 +3,7 @@
 namespace Chess;
 
 use Chess\Ascii;
-use Chess\HeuristicPicture;
+use Chess\Heuristics;
 use Chess\Player;
 use Chess\FEN\BoardToStr;
 use Chess\FEN\ShortStrToPgn;
@@ -341,9 +341,9 @@ class Game
 
         if ($this->mode === self::MODE_LOAD_FEN) {
             $board = (new StrToBoard($fen))->create();
-            $heuristicPicture = new HeuristicPicture($movetext, $board);
+            $heuristicPicture = new Heuristics($movetext, $board);
         } else {
-            $heuristicPicture = new HeuristicPicture($movetext);
+            $heuristicPicture = new Heuristics($movetext);
         }
 
         if ($balanced) {

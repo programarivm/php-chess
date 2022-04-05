@@ -6,9 +6,9 @@ use Chess\Evaluation\InverseEvaluationInterface;
 use Chess\FEN\StrToBoard;
 use Chess\PGN\Symbol;
 
-class HeuristicPictureByFenString
+class HeuristicsByFenString
 {
-    use HeuristicPictureTrait;
+    use HeuristicsTrait;
 
     protected $board;
 
@@ -49,9 +49,9 @@ class HeuristicPictureByFenString
     /**
      * Takes a normalized, balanced heuristic picture.
      *
-     * @return \Chess\Heuristic\HeuristicPictureByFenString
+     * @return \Chess\Heuristic\HeuristicsByFenString
      */
-    public function take(): HeuristicPictureByFenString
+    public function take(): HeuristicsByFenString
     {
         $item = [];
         foreach ($this->dimensions as $dimension => $w) {
@@ -88,7 +88,7 @@ class HeuristicPictureByFenString
         return $this;
     }
 
-    protected function normalize(): HeuristicPictureByFenString
+    protected function normalize(): HeuristicsByFenString
     {
         $normalization = [];
 
@@ -117,7 +117,7 @@ class HeuristicPictureByFenString
         return $this;
     }
 
-    protected function balance(): HeuristicPictureByFenString
+    protected function balance(): HeuristicsByFenString
     {
         foreach ($this->picture[Symbol::WHITE] as $key => $val) {
             $this->balance[$key] = $this->picture[Symbol::WHITE][$key] - $this->picture[Symbol::BLACK][$key];

@@ -4,20 +4,20 @@ namespace Chess\Tests\Unit;
 
 use Chess\Board;
 use Chess\Evaluation\IsolatedPawnEvaluation;
-use Chess\HeuristicPicture;
+use Chess\Heuristics;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Checkmate\Fool as FoolCheckmate;
 use Chess\Tests\Sample\Checkmate\Scholar as ScholarCheckmate;
 use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 
-class HeuristicPictureTest extends AbstractUnitTestCase
+class HeuristicsTest extends AbstractUnitTestCase
 {
     /**
      * @test
      */
     public function weights()
     {
-        $heuristicPicture = new HeuristicPicture('');
+        $heuristicPicture = new Heuristics('');
 
         $weights = array_values($heuristicPicture->getDimensions());
 
@@ -33,7 +33,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $pic = (new HeuristicPicture($board->getMovetext()))
+        $pic = (new Heuristics($board->getMovetext()))
             ->take()
             ->getPicture();
 
@@ -56,7 +56,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $end = (new HeuristicPicture($board->getMovetext()))
+        $end = (new Heuristics($board->getMovetext()))
             ->take()
             ->end();
 
@@ -75,7 +75,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -93,7 +93,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e5';
 
-        $pic = (new HeuristicPicture($movetext))
+        $pic = (new Heuristics($movetext))
             ->take()
             ->getPicture();
 
@@ -116,7 +116,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e5';
 
-        $end = (new HeuristicPicture($movetext))
+        $end = (new Heuristics($movetext))
             ->take()
             ->end();
 
@@ -135,7 +135,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e5';
 
-        $balance = (new HeuristicPicture($movetext))
+        $balance = (new Heuristics($movetext))
             ->take()
             ->getBalance();
 
@@ -153,7 +153,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $board = (new FoolCheckmate(new Board()))->play();
 
-        $end = (new HeuristicPicture($board->getMovetext()))
+        $end = (new Heuristics($board->getMovetext()))
             ->take()
             ->end();
 
@@ -172,7 +172,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $board = (new FoolCheckmate(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -191,7 +191,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $board = (new ScholarCheckmate(new Board()))->play();
 
-        $end = (new HeuristicPicture($board->getMovetext()))
+        $end = (new Heuristics($board->getMovetext()))
             ->take()
             ->end();
 
@@ -210,7 +210,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $board = (new ScholarCheckmate(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -231,7 +231,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit(new Board()))->play();
 
-        $heuristicPicture = new HeuristicPicture($board->getMovetext());
+        $heuristicPicture = new Heuristics($board->getMovetext());
 
         $evaluation = $heuristicPicture->eval();
 
@@ -250,7 +250,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6';
 
-        $balance = (new HeuristicPicture($movetext))
+        $balance = (new Heuristics($movetext))
             ->take()
             ->getBalance();
 
@@ -268,7 +268,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5';
 
-        $balance = (new HeuristicPicture($movetext))
+        $balance = (new Heuristics($movetext))
             ->take()
             ->getBalance();
 
@@ -287,7 +287,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5 3.Nd2 Nf6';
 
-        $balance = (new HeuristicPicture($movetext))
+        $balance = (new Heuristics($movetext))
             ->take()
             ->getBalance();
 
@@ -307,7 +307,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5 3.Nd2 Nf6 4.e5 Nfd7';
 
-        $balance = (new HeuristicPicture($movetext))
+        $balance = (new Heuristics($movetext))
             ->take()
             ->getBalance();
 
@@ -328,7 +328,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6';
 
-        $pic = (new HeuristicPicture($movetext))
+        $pic = (new Heuristics($movetext))
             ->take()
             ->getPicture();
 
@@ -351,7 +351,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5';
 
-        $pic = (new HeuristicPicture($movetext))
+        $pic = (new Heuristics($movetext))
             ->take()
             ->getPicture();
 
@@ -376,7 +376,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e6 2.d4 d5 3.Nd2 Nf6';
 
-        $pic = (new HeuristicPicture($movetext))
+        $pic = (new Heuristics($movetext))
             ->take()
             ->getPicture();
 
@@ -403,7 +403,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 Nf6';
 
-        $balance = (new HeuristicPicture($movetext))
+        $balance = (new Heuristics($movetext))
             ->take()
             ->getBalance();
 
@@ -421,7 +421,7 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     {
         $movetext = '1.d4 d5 2.e4 e5 3.f4 f5 4.exd5 exd4 5.c3 dxc3 6.Nxc3';
 
-        $heuristicPicture = new HeuristicPicture($movetext);
+        $heuristicPicture = new Heuristics($movetext);
         // let's test only this heuristic
         $heuristicPicture->setDimensions(
             [IsolatedPawnEvaluation::class => 5]

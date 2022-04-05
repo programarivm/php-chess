@@ -1,10 +1,10 @@
 A chess game can be thought of in terms of snapshots describing what's going on the board as reported by a number of evaluation features. Chess positions can be evaluated by taking heuristic pictures of the game.
 
-Let's look at the `Chess\HeuristicPicture` methods available through the following example:
+Let's look at the `Chess\Heuristics` methods available through the following example:
 
 ```php
 use Chess\Game;
-use Chess\HeuristicPicture;
+use Chess\Heuristics;
 
 $game = new Game();
 
@@ -19,7 +19,7 @@ $game->play('b', 'd5');
 Returns the evaluation features also known as dimensions.
 
 ```php
-$dimensions = (new HeuristicPicture($game->movetext()))
+$dimensions = (new Heuristics($game->movetext()))
     ->getDimensions();
 
 print_r($dimensions);
@@ -54,7 +54,7 @@ The order in which the different chess evaluation features are arranged as a dim
 Takes a heuristic picture of the game.
 
 ```php
-$pic = (new HeuristicPicture($game->movetext()))
+$pic = (new Heuristics($game->movetext()))
     ->take()
     ->getPicture();
 
@@ -148,7 +148,7 @@ Returns the balanced, heuristic picture of the game.
 A chess game can be plotted in terms of balance. +1 is the best possible evaluation for White and -1 the best possible evaluation for Black. Both forces being set to 0 means they're actually offset and, therefore, balanced.
 
 ```php
-$balance = (new HeuristicPicture($game->movetext()))
+$balance = (new Heuristics($game->movetext()))
     ->take()
     ->getBalance();
 
@@ -200,7 +200,7 @@ Array
 Returns the evaluation of the chess position in a human readable format. The result obtained suggests which player is probably better.
 
 ```php
-$eval = (new HeuristicPicture($game->movetext()))
+$eval = (new Heuristics($game->movetext()))
     ->evaluate();
 
 print_r($eval);

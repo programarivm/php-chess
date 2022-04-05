@@ -4,7 +4,7 @@ pages:
   - Chess\Ascii: ascii.md
   - Chess\Board: board.md
   - Chess\Game: game.md
-  - Chess\HeuristicPicture: heuristic-picture.md
+  - Chess\Heuristics: heuristic-picture.md
   - Chess\Player: player.md
   - Chess\Combinatorics\RestrictedPermutationWithRepetition: combinatorics-restricted-permutation-with-repetition.md
   - Chess\FEN\BoardToStr: fen-board-to-string.md

@@ -5,9 +5,9 @@ namespace Chess;
 use Chess\Evaluation\InverseEvaluationInterface;
 use Chess\PGN\Symbol;
 
-class HeuristicPicture extends Player
+class Heuristics extends Player
 {
-    use HeuristicPictureTrait;
+    use HeuristicsTrait;
 
     /**
      * Returns the current evaluation of $this->board.
@@ -41,9 +41,9 @@ class HeuristicPicture extends Player
     /**
      * Takes a normalized, balanced heuristic picture.
      *
-     * @return \Chess\HeuristicPicture
+     * @return \Chess\Heuristics
      */
-    public function take(): HeuristicPicture
+    public function take(): Heuristics
     {
         foreach ($this->moves as $move) {
             $this->board->play(Symbol::WHITE, $move[0]);
@@ -97,9 +97,9 @@ class HeuristicPicture extends Player
      * chess move that is made because it is recalculated or zoomed out, if you like,
      * to fit within a 0–1 range.
      *
-     * @return \Chess\HeuristicPicture
+     * @return \Chess\Heuristics
      */
-    protected function normalize(): HeuristicPicture
+    protected function normalize(): Heuristics
     {
         $normalization = [];
 
@@ -140,9 +140,9 @@ class HeuristicPicture extends Player
      * evaluation for White and -1 the best possible evaluation for Black. Both
      * forces being set to 0 means they're actually offset and, therefore, balanced.
      *
-     * @return \Chess\HeuristicPicture
+     * @return \Chess\Heuristics
      */
-    protected function balance(): HeuristicPicture
+    protected function balance(): Heuristics
     {
         foreach ($this->picture[Symbol::WHITE] as $i => $color) {
             foreach ($color as $j => $val) {

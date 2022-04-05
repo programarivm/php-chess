@@ -25,7 +25,7 @@ use Chess\Evaluation\BishopOutpostEvaluation;
 use Chess\PGN\Symbol;
 
 /**
- * HeuristicPictureTrait
+ * HeuristicsTrait
  *
  * A chess game can be thought of in terms of snapshots describing what's going on
  * the board as reported by a number of evaluation features. Thus, it can be plotted
@@ -33,7 +33,7 @@ use Chess\PGN\Symbol;
  * best possible evaluation for Black. Both forces being set to 0 means they're
  * actually offset and, therefore, balanced.
  */
-trait HeuristicPictureTrait
+trait HeuristicsTrait
 {
     /**
      * The evaluation features that make up a heuristic picture.
@@ -103,7 +103,7 @@ trait HeuristicPictureTrait
      * Sets the dimensions.
      *
      * @param array $dimensions
-     * @return \Chess\HeuristicPicture
+     * @return \Chess\Heuristics
      */
     public function setDimensions(array $dimensions)
     {

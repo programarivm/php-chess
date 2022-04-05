@@ -5,7 +5,7 @@ namespace Chess\Tests\Unit\Game;
 use Chess\Game;
 use Chess\Tests\AbstractUnitTestCase;
 
-class HeuristicPictureTest extends AbstractUnitTestCase
+class HeuristicsTest extends AbstractUnitTestCase
 {
     /**
      * @test

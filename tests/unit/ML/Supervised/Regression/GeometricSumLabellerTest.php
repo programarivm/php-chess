@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\ML\Supervised\Regression;
 
 use Chess\Board;
-use Chess\HeuristicPicture;
+use Chess\Heuristics;
 use Chess\ML\Supervised\Regression\GeometricSumLabeller;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Checkmate\Fool as FoolCheckmate;
@@ -20,7 +20,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -40,7 +40,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = (new FoolCheckmate(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -60,7 +60,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = (new ScholarCheckmate(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -80,7 +80,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 
@@ -100,7 +100,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $balance = (new HeuristicPicture($board->getMovetext()))
+        $balance = (new Heuristics($board->getMovetext()))
             ->take()
             ->getBalance();
 

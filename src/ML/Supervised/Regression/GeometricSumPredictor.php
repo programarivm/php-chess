@@ -3,7 +3,7 @@
 namespace Chess\ML\Supervised\Regression;
 
 use Chess\Board;
-use Chess\HeuristicPicture;
+use Chess\Heuristics;
 use Chess\ML\Supervised\AbstractPredictor;
 use Rubix\ML\Datasets\Unlabeled;
 
@@ -11,7 +11,7 @@ class PermutationPredictor extends AbstractPredictor
 {
     protected function eval(Board $clone): array
     {
-        $balance = (new HeuristicPicture($clone->getMovetext(), $clone))
+        $balance = (new Heuristics($clone->getMovetext(), $clone))
             ->take()
             ->getBalance();
 
