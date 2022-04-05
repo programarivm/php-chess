@@ -684,7 +684,7 @@ final class Board extends \SplObjectStorage
                 }
             }
         }
-        $oppColor = Symbol::oppColor($this->turn);
+        $oppColor = Convert::toOpposite($this->turn);
         if (!$this->castling[$oppColor][Castling::IS_CASTLED]) {
             if ($pieceMoved->getMove()->isCapture) {
                 if ($pieceMoved->getMove()->sq->next ===
@@ -779,7 +779,7 @@ final class Board extends \SplObjectStorage
      */
     public function refresh(): void
     {
-        $this->turn = Symbol::oppColor($this->turn);
+        $this->turn = Convert::toOpposite($this->turn);
 
         $this->sqs = (object) [
             SquareEvaluation::TYPE_FREE => (new SquareEvaluation($this))

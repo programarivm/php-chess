@@ -5,6 +5,7 @@ namespace Chess\Evaluation;
 use Chess\Board;
 use Chess\Evaluation\DefenseEvaluation;
 use Chess\Evaluation\PressureEvaluation;
+use Chess\PGN\Convert;
 use Chess\PGN\Symbol;
 
 /**
@@ -84,9 +85,9 @@ class TacticsEvaluation extends AbstractEvaluation
     {
         foreach ($this->pressEvald as $color => $sqs) {
             $countPress = array_count_values($sqs);
-            $countDefense = array_count_values($this->defenseEvald[Symbol::oppColor($color)]);
+            $countDefense = array_count_values($this->defenseEvald[Convert::toOpposite($color)]);
             foreach ($sqs as $sq) {
-                if (in_array($sq, $this->defenseEvald[Symbol::oppColor($color)])) {
+                if (in_array($sq, $this->defenseEvald[Convert::toOpposite($color)])) {
                     if ($countPress[$sq] > $countDefense[$sq]) {
                         $this->target[$color][] = $sq;
                     }

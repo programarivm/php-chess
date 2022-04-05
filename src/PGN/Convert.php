@@ -4,7 +4,6 @@ namespace Chess\PGN;
 
 use Chess\Castling;
 use Chess\Exception\UnknownNotationException;
-use Chess\PGN\Validate;
 use Chess\Piece\Bishop;
 use Chess\Piece\King;
 use Chess\Piece\Knight;
@@ -207,7 +206,7 @@ class Convert
     }
 
     /**
-     * Gets the piece's class name according to its PGN id.
+     * Converts the PGN identifier of a piece into a class name.
      *
      * @param string $id
      * @return string
@@ -228,5 +227,20 @@ class Convert
             case Symbol::ROOK:
                 return (new \ReflectionClass('\Chess\Piece\Rook'))->getName();
         }
+    }
+
+    /**
+     * Converts a PGN color into the opposite.
+     *
+     * @param string $color
+     * @return string
+     */
+    public static function toOpposite(?string $color): string
+    {
+        if ($color == Symbol::WHITE) {
+            return Symbol::BLACK;
+        }
+
+        return Symbol::WHITE;
     }
 }

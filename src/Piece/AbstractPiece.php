@@ -3,7 +3,7 @@
 namespace Chess\Piece;
 
 use Chess\Piece\Piece;
-use Chess\PGN\Symbol;
+use Chess\PGN\Convert;
 use Chess\PGN\Validate;
 
 /**
@@ -101,7 +101,7 @@ abstract class AbstractPiece implements Piece
      */
     public function getOppColor(): string
     {
-        return Symbol::oppColor($this->color);
+        return Convert::toOpposite($this->color);
     }
 
     /**

@@ -29,19 +29,4 @@ class Symbol
     const RESULT_BLACK_WINS = '0-1';
     const RESULT_DRAW = '1/2-1/2';
     const RESULT_UNKNOWN = '*';
-
-    /**
-     * Gets the opposite color.
-     *
-     * @param string $color
-     * @return type
-     */
-    public static function oppColor(?string $color): string
-    {
-        if ($color == Symbol::WHITE) {
-            return Symbol::BLACK;
-        }
-
-        return Symbol::WHITE;
-    }
 }
