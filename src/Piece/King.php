@@ -49,9 +49,9 @@ class King extends AbstractPiece
         if (!$this->board->getCastling()[$this->getColor()]['isCastled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLE_LONG]) {
                 if (
-                    in_array($rule['sqs']['b'], $this->board->getSquareEval()->free) &&
-                    in_array($rule['sqs']['c'], $this->board->getSquareEval()->free) &&
-                    in_array($rule['sqs']['d'], $this->board->getSquareEval()->free) &&
+                    in_array($rule['sqs']['b'], $this->board->getSqEval()->free) &&
+                    in_array($rule['sqs']['c'], $this->board->getSqEval()->free) &&
+                    in_array($rule['sqs']['d'], $this->board->getSqEval()->free) &&
                     !in_array($rule['sqs']['b'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
                     !in_array($rule['sqs']['c'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
                     !in_array($rule['sqs']['d'], $this->board->getSpaceEval()->{$this->getOppColor()})
@@ -70,8 +70,8 @@ class King extends AbstractPiece
         if (!$this->board->getCastling()[$this->getColor()]['isCastled']) {
             if ($this->board->getCastling()[$this->getColor()][Symbol::CASTLE_SHORT]) {
                 if (
-                    in_array($rule['sqs']['f'], $this->board->getSquareEval()->free) &&
-                    in_array($rule['sqs']['g'], $this->board->getSquareEval()->free) &&
+                    in_array($rule['sqs']['f'], $this->board->getSqEval()->free) &&
+                    in_array($rule['sqs']['g'], $this->board->getSqEval()->free) &&
                     !in_array($rule['sqs']['f'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
                     !in_array($rule['sqs']['g'], $this->board->getSpaceEval()->{$this->getOppColor()})
                 ) {
@@ -87,7 +87,7 @@ class King extends AbstractPiece
     {
         $movesCaptures = array_intersect(
             array_values((array)$this->travel),
-            $this->board->getSquareEval()->used->{$this->getOppColor()}
+            $this->board->getSqEval()->used->{$this->getOppColor()}
         );
 
         return array_diff($movesCaptures, $this->board->getDefenseEval()->{$this->getOppColor()});
@@ -95,7 +95,7 @@ class King extends AbstractPiece
 
     protected function movesKing()
     {
-        $movesKing = array_intersect(array_values((array)$this->travel), $this->board->getSquareEval()->free);
+        $movesKing = array_intersect(array_values((array)$this->travel), $this->board->getSqEval()->free);
 
         return array_diff($movesKing, $this->board->getSpaceEval()->{$this->getOppColor()});
     }
@@ -159,7 +159,7 @@ class King extends AbstractPiece
     {
         $sqs = [];
         foreach ($this->travel as $sq) {
-            if (in_array($sq, $this->board->getSquareEval()->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->getSqEval()->used->{$this->getColor()})) {
                 $sqs[] = $sq;
             }
         }

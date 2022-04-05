@@ -3,7 +3,7 @@
 namespace Chess\Evaluation;
 
 use Chess\Board;
-use Chess\Evaluation\SquareEvaluation;
+use Chess\Evaluation\SqEvaluation;
 use Chess\PGN\Symbol;
 
 /**
@@ -22,11 +22,11 @@ class ConnectivityEvaluation extends AbstractEvaluation
     {
         parent::__construct($board);
 
-        $sqEval = new SquareEvaluation($board);
+        $sqEval = new SqEvaluation($board);
 
         $this->sqEval = [
-            SquareEvaluation::TYPE_FREE => $sqEval->eval(SquareEvaluation::TYPE_FREE),
-            SquareEvaluation::TYPE_USED => $sqEval->eval(SquareEvaluation::TYPE_USED),
+            SqEvaluation::TYPE_FREE => $sqEval->eval(SqEvaluation::TYPE_FREE),
+            SqEvaluation::TYPE_USED => $sqEval->eval(SqEvaluation::TYPE_USED),
         ];
 
         $this->result = [
@@ -50,28 +50,28 @@ class ConnectivityEvaluation extends AbstractEvaluation
                 case Symbol::KING:
                     $this->result[$color] += count(
                         array_intersect(array_values((array)$piece->getTravel()),
-                        $this->sqEval[SquareEvaluation::TYPE_USED][$color])
+                        $this->sqEval[SqEvaluation::TYPE_USED][$color])
                     );
                     break;
                 case Symbol::KNIGHT:
                     $this->result[$color] += count(
                         array_intersect($piece->getTravel(),
-                        $this->sqEval[SquareEvaluation::TYPE_USED][$color])
+                        $this->sqEval[SqEvaluation::TYPE_USED][$color])
                     );
                     break;
                 case Symbol::PAWN:
                     $this->result[$color] += count(
                         array_intersect($piece->getCaptureSquares(),
-                        $this->sqEval[SquareEvaluation::TYPE_USED][$color])
+                        $this->sqEval[SqEvaluation::TYPE_USED][$color])
                     );
                     break;
                 default:
                     foreach ((array)$piece->getTravel() as $key => $val) {
                         foreach ($val as $sq) {
-                            if (in_array($sq, $this->sqEval[SquareEvaluation::TYPE_USED][$color])) {
+                            if (in_array($sq, $this->sqEval[SqEvaluation::TYPE_USED][$color])) {
                                 $this->result[$color] += 1;
                                 break;
-                            } elseif (in_array($sq, $this->sqEval[SquareEvaluation::TYPE_USED][$piece->getOppColor()])) {
+                            } elseif (in_array($sq, $this->sqEval[SqEvaluation::TYPE_USED][$piece->getOppColor()])) {
                                 break;
                             }
                         }

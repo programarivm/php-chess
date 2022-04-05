@@ -3,10 +3,10 @@
 namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
-use Chess\Evaluation\SquareEvaluation;
+use Chess\Evaluation\SqEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
 
-class SquareEvaluationTest extends AbstractUnitTestCase
+class SqEvaluationTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -15,7 +15,7 @@ class SquareEvaluationTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $sqEval = (new SquareEvaluation($board))->eval(SquareEvaluation::TYPE_FREE);
+        $sqEval = (new SqEvaluation($board))->eval(SqEvaluation::TYPE_FREE);
 
         $expected = [
             'a3', 'a4', 'a5', 'a6',

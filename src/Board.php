@@ -7,7 +7,7 @@ use Chess\Exception\BoardException;
 use Chess\Evaluation\DefenseEvaluation;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
-use Chess\Evaluation\SquareEvaluation;
+use Chess\Evaluation\SqEvaluation;
 use Chess\PGN\Convert;
 use Chess\PGN\Move;
 use Chess\PGN\Symbol;
@@ -96,7 +96,7 @@ final class Board extends \SplObjectStorage
      *
      * @var \stdClass
      */
-    private $squareEval;
+    private $sqEval;
 
     /**
      * Constructor.
@@ -178,9 +178,9 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getSquareEval(): \stdClass
+    public function getSqEval(): \stdClass
     {
-        return $this->squareEval;
+        return $this->sqEval;
     }
 
     /**
@@ -771,11 +771,9 @@ final class Board extends \SplObjectStorage
     {
         $this->turn = Convert::toOpposite($this->turn);
 
-        $this->squareEval = (object) [
-            SquareEvaluation::TYPE_FREE => (new SquareEvaluation($this))
-                ->eval(SquareEvaluation::TYPE_FREE),
-            SquareEvaluation::TYPE_USED => (object) (new SquareEvaluation($this))
-                ->eval(SquareEvaluation::TYPE_USED),
+        $this->sqEval = (object) [
+            SqEvaluation::TYPE_FREE => (new SqEvaluation($this))->eval(SqEvaluation::TYPE_FREE),
+            SqEvaluation::TYPE_USED => (object) (new SqEvaluation($this))->eval(SqEvaluation::TYPE_USED),
         ];
 
         $this->detachPieces()
@@ -826,7 +824,7 @@ final class Board extends \SplObjectStorage
             foreach ($piece->getSqs() as $sq) {
                 switch ($piece->getId()) {
                     case Symbol::KING:
-                        if (in_array($sq, $this->squareEval->used->{$piece->getOppColor()})) {
+                        if (in_array($sq, $this->sqEval->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
                                 $piece->setMove(Convert::toStdClass($this->turn, Symbol::KING."x$sq"))
                             );
@@ -837,7 +835,7 @@ final class Board extends \SplObjectStorage
                         }
                         break;
                     case Symbol::PAWN:
-                        if (in_array($sq, $this->squareEval->used->{$piece->getOppColor()})) {
+                        if (in_array($sq, $this->sqEval->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
                                 $piece->setMove(Convert::toStdClass($this->turn, $piece->getFile()."x$sq"))
                             );
@@ -848,7 +846,7 @@ final class Board extends \SplObjectStorage
                         }
                         break;
                     default:
-                        if (in_array($sq, $this->squareEval->used->{$piece->getOppColor()})) {
+                        if (in_array($sq, $this->sqEval->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
                                 $piece->setMove(Convert::toStdClass($this->turn, $piece->getId()."x$sq"))
                             );
