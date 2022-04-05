@@ -24,7 +24,7 @@ class KnightTest extends AbstractUnitTestCase
             'e6'
         ];
 
-        $this->assertSame($jumps, $knight->getScope()->jumps);
+        $this->assertSame($jumps, $knight->getTravel()->jumps);
     }
 
     /**
@@ -38,7 +38,7 @@ class KnightTest extends AbstractUnitTestCase
             'f2'
         ];
 
-        $this->assertSame($jumps, $knight->getScope()->jumps);
+        $this->assertSame($jumps, $knight->getTravel()->jumps);
     }
 
     /**
@@ -53,6 +53,6 @@ class KnightTest extends AbstractUnitTestCase
             'c3'
         ];
 
-        $this->assertSame($jumps, $knight->getScope()->jumps);
+        $this->assertSame($jumps, $knight->getTravel()->jumps);
     }
 }

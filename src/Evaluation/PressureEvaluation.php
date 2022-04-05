@@ -59,7 +59,7 @@ class PressureEvaluation extends AbstractEvaluation
                         $this->result[$piece->getColor()],
                         array_values(
                             array_intersect(
-                                array_values((array) $piece->getScope()),
+                                array_values((array) $piece->getTravel()),
                                 $this->sqEvald[SquareEvaluation::FEATURE_USED][$piece->getOppColor()]
                             )
                         )

@@ -20,7 +20,7 @@ class KingTest extends AbstractUnitTestCase
             'upRight' => 'b3',
             'bottomRight' => 'b1'
         ];
-        $this->assertEquals($scope, $king->getScope());
+        $this->assertEquals($scope, $king->getTravel());
     }
 
     /**
@@ -39,6 +39,6 @@ class KingTest extends AbstractUnitTestCase
             'bottomLeft' => 'c4',
             'bottomRight' => 'e4'
         ];
-        $this->assertEquals($scope, $king->getScope());
+        $this->assertEquals($scope, $king->getTravel());
     }
 }

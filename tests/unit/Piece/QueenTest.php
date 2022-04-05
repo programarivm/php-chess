@@ -24,7 +24,7 @@ class QueenTest extends AbstractUnitTestCase
             'bottomRight' => ['b1']
         ];
 
-        $this->assertEquals($scope, $queen->getScope());
+        $this->assertEquals($scope, $queen->getTravel());
     }
 
     /**
@@ -44,6 +44,6 @@ class QueenTest extends AbstractUnitTestCase
             'bottomRight' => ['e4', 'f3', 'g2', 'h1']
         ];
 
-        $this->assertEquals($scope, $queen->getScope());
+        $this->assertEquals($scope, $queen->getTravel());
     }
 }

@@ -126,7 +126,7 @@ abstract class AbstractPiece implements Piece
      *
      * @return \stdClass
      */
-    public function getScope(): \stdClass
+    public function getTravel(): \stdClass
     {
         return $this->travel;
     }

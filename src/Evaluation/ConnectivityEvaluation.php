@@ -49,13 +49,13 @@ class ConnectivityEvaluation extends AbstractEvaluation
             switch ($piece->getId()) {
                 case Symbol::KING:
                     $this->result[$color] += count(
-                        array_intersect(array_values((array)$piece->getScope()),
+                        array_intersect(array_values((array)$piece->getTravel()),
                         $this->sqEvald[SquareEvaluation::FEATURE_USED][$color])
                     );
                     break;
                 case Symbol::KNIGHT:
                     $this->result[$color] += count(
-                        array_intersect($piece->getScope()->jumps,
+                        array_intersect($piece->getTravel()->jumps,
                         $this->sqEvald[SquareEvaluation::FEATURE_USED][$color])
                     );
                     break;
@@ -66,7 +66,7 @@ class ConnectivityEvaluation extends AbstractEvaluation
                     );
                     break;
                 default:
-                    foreach ((array)$piece->getScope() as $key => $val) {
+                    foreach ((array)$piece->getTravel() as $key => $val) {
                         foreach ($val as $sq) {
                             if (in_array($sq, $this->sqEvald[SquareEvaluation::FEATURE_USED][$color])) {
                                 $this->result[$color] += 1;

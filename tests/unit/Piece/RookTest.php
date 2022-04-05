@@ -21,7 +21,7 @@ class RookTest extends AbstractUnitTestCase
             'right' => ['b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2']
         ];
 
-        $this->assertEquals($scope, $rook->getScope());
+        $this->assertEquals($scope, $rook->getTravel());
     }
 
     /**
@@ -37,6 +37,6 @@ class RookTest extends AbstractUnitTestCase
             'right' => ['e5', 'f5', 'g5', 'h5']
         ];
 
-        $this->assertEquals($scope, $rook->getScope());
+        $this->assertEquals($scope, $rook->getTravel());
     }
 }

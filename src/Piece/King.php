@@ -127,8 +127,8 @@ class King extends AbstractPiece
     protected function travel(): void
     {
         $travel =  array_merge(
-            (array) $this->rook->getScope(),
-            (array) $this->bishop->getScope()
+            (array) $this->rook->getTravel(),
+            (array) $this->bishop->getTravel()
         );
 
         foreach($travel as $key => $val) {
