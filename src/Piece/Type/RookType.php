@@ -12,7 +12,7 @@ class RookType
     const CASTLING_SHORT = 'castling short';
     const CASTLING_LONG = 'castling long';
     const PROMOTED = 'promoted';
-    const FAKED = 'faked';
+    const SLIDER = 'slider';
 
     public static function getChoices()
     {
@@ -20,7 +20,7 @@ class RookType
             self::CASTLING_SHORT,
             self::CASTLING_LONG,
             self::PROMOTED,
-            self::FAKED
+            self::SLIDER
         ];
     }
 }

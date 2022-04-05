@@ -37,7 +37,7 @@ class King extends AbstractPiece
     {
         parent::__construct($color, $sq, Symbol::KING);
 
-        $this->rook = new Rook($color, $sq, RookType::FAKED);
+        $this->rook = new Rook($color, $sq, RookType::SLIDER);
         $this->bishop = new Bishop($color, $sq);
 
         $this->setTravel();
