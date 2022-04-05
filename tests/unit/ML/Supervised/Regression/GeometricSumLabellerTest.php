@@ -20,9 +20,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -40,9 +38,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = (new FoolCheckmate(new Board()))->play();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -60,9 +56,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = (new ScholarCheckmate(new Board()))->play();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -80,9 +74,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit(new Board()))->play();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -100,9 +92,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 

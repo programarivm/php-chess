@@ -11,9 +11,7 @@ class PermutationPredictor extends AbstractPredictor
 {
     protected function eval(Board $clone): array
     {
-        $balance = (new Heuristics($clone->getMovetext(), $clone))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($clone->getMovetext(), $clone))->getBalance();
 
         $dataset = new Unlabeled($balance);
 

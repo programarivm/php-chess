@@ -15,6 +15,8 @@ class HeuristicsByFenString
     public function __construct(string $fen)
     {
         $this->board = (new StrToBoard($fen))->create();
+
+        $this->take();
     }
 
     /**
@@ -33,7 +35,7 @@ class HeuristicsByFenString
 
         $weights = array_values($this->getDimensions());
 
-        $pic = $this->take()->getPicture();
+        $pic = $this->getPicture();
 
         for ($i = 0; $i < count($this->getDimensions()); $i++) {
             $result[Symbol::WHITE] += $weights[$i] * $pic[Symbol::WHITE][$i];
@@ -51,7 +53,7 @@ class HeuristicsByFenString
      *
      * @return \Chess\Heuristic\HeuristicsByFenString
      */
-    public function take(): HeuristicsByFenString
+    protected function take(): HeuristicsByFenString
     {
         $item = [];
         foreach ($this->dimensions as $dimension => $w) {

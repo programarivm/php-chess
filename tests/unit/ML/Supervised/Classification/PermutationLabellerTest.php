@@ -35,9 +35,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -60,9 +58,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'e5');
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -85,9 +81,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'Na6');
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -110,9 +104,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'Nc6');
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -133,9 +125,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = (new FoolCheckmate(new Board()))->play();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -156,9 +146,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = (new ScholarCheckmate(new Board()))->play();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -179,9 +167,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = (new BenkoGambit(new Board()))->play();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 
@@ -202,9 +188,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $balance = (new Heuristics($board->getMovetext()))
-            ->take()
-            ->getBalance();
+        $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
         $end = end($balance);
 

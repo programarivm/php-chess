@@ -9,6 +9,13 @@ class Heuristics extends Player
 {
     use HeuristicsTrait;
 
+    public function __construct(string $movetext, Board $board = null)
+    {
+        parent::__construct($movetext, $board);
+
+        $this->take();
+    }
+
     /**
      * Returns the current evaluation of $this->board.
      *
@@ -25,7 +32,7 @@ class Heuristics extends Player
 
         $weights = array_values($this->getDimensions());
 
-        $pic = $this->take()->getPicture();
+        $pic = $this->getPicture();
 
         for ($i = 0; $i < count($this->getDimensions()); $i++) {
             $result[Symbol::WHITE] += $weights[$i] * end($pic[Symbol::WHITE])[$i];
@@ -43,7 +50,7 @@ class Heuristics extends Player
      *
      * @return \Chess\Heuristics
      */
-    public function take(): Heuristics
+    protected function take(): Heuristics
     {
         foreach ($this->moves as $move) {
             $this->board->play(Symbol::WHITE, $move[0]);

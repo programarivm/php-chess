@@ -366,10 +366,10 @@ class Game
         }
 
         if ($balanced) {
-            return $heuristics->take()->getBalance();
+            return $heuristics->getBalance();
         }
 
-        return $heuristics->take()->getPicture();
+        return $heuristics->getPicture();
     }
 
     public function undoMove(): ?\stdClass
