@@ -164,7 +164,7 @@ class Pawn extends AbstractPiece
 
         // add up squares
         foreach($this->travel->up as $sq) {
-            if (in_array($sq, $this->board->getSqs()->free)) {
+            if (in_array($sq, $this->board->getSquareEval()->free)) {
                 $moves[] = $sq;
             } else {
                 break;
@@ -173,7 +173,7 @@ class Pawn extends AbstractPiece
 
         // add capture squares
         foreach($this->captureSquares as $sq) {
-            if (in_array($sq, $this->board->getSqs()->used->{$this->getOppColor()})) {
+            if (in_array($sq, $this->board->getSquareEval()->used->{$this->getOppColor()})) {
                 $moves[] = $sq;
             }
         }
@@ -215,7 +215,7 @@ class Pawn extends AbstractPiece
     {
         $sqs = [];
         foreach($this->captureSquares as $sq) {
-            if (in_array($sq, $this->board->getSqs()->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->getSquareEval()->used->{$this->getColor()})) {
                 $sqs[] = $sq;
             }
         }

@@ -40,34 +40,6 @@ final class Board extends \SplObjectStorage
     private $turn;
 
     /**
-     * Free/used squares.
-     *
-     * @var \stdClass
-     */
-    private $sqs;
-
-    /**
-     * Squares being pressured.
-     *
-     * @var \stdClass
-     */
-    private $pressure;
-
-    /**
-     * Squares being controlled.
-     *
-     * @var \stdClass
-     */
-    private $space;
-
-    /**
-     * Squares being defended.
-     *
-     * @var \stdClass
-     */
-    private $defense;
-
-    /**
      * Captured pieces.
      *
      * @var array
@@ -97,6 +69,34 @@ final class Board extends \SplObjectStorage
      * @var array
      */
     private $observers = [];
+
+    /**
+     * Defense evaluation.
+     *
+     * @var \stdClass
+     */
+    private $defenseEval;
+
+    /**
+     * Pressure evaluation.
+     *
+     * @var \stdClass
+     */
+    private $pressureEval;
+
+    /**
+     * Space evaluation.
+     *
+     * @var \stdClass
+     */
+    private $spaceEval;
+
+    /**
+     * Square evaluation.
+     *
+     * @var \stdClass
+     */
+    private $squareEval;
 
     /**
      * Constructor.
@@ -178,19 +178,9 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getSqs(): \stdClass
+    public function getSquareEval(): \stdClass
     {
-        return $this->sqs;
-    }
-
-    /**
-     * Gets the pressure evaluation.
-     *
-     * @return \stdClass
-     */
-    public function getPressure(): \stdClass
-    {
-        return $this->pressure;
+        return $this->squareEval;
     }
 
     /**
@@ -198,9 +188,9 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getSpace(): \stdClass
+    public function getSpaceEval(): \stdClass
     {
-        return $this->space;
+        return $this->spaceEval;
     }
 
     /**
@@ -208,9 +198,9 @@ final class Board extends \SplObjectStorage
      *
      * @return \stdClass
      */
-    public function getDefense(): \stdClass
+    public function getDefenseEval(): \stdClass
     {
-        return $this->defense;
+        return $this->defenseEval;
     }
 
     /**
@@ -550,12 +540,12 @@ final class Board extends \SplObjectStorage
             $piece = current($pieces);
             switch ($piece->getMove()->type) {
                 case Move::CASTLE_SHORT:
-                    Castling::short($this->turn, $this->castling, $this->space)
+                    Castling::short($this->turn, $this->castling, $this->spaceEval)
                         ? $isLegalMove = $this->castle($piece)
                         : $isLegalMove = false;
                     break;
                 case Move::CASTLE_LONG:
-                    Castling::long($this->turn, $this->castling, $this->space)
+                    Castling::long($this->turn, $this->castling, $this->spaceEval)
                         ? $isLegalMove = $this->castle($piece)
                         : $isLegalMove = false;
                     break;
@@ -781,7 +771,7 @@ final class Board extends \SplObjectStorage
     {
         $this->turn = Convert::toOpposite($this->turn);
 
-        $this->sqs = (object) [
+        $this->squareEval = (object) [
             SquareEvaluation::TYPE_FREE => (new SquareEvaluation($this))
                 ->eval(SquareEvaluation::TYPE_FREE),
             SquareEvaluation::TYPE_USED => (object) (new SquareEvaluation($this))
@@ -792,9 +782,9 @@ final class Board extends \SplObjectStorage
             ->attachPieces()
             ->notifyPieces();
 
-        $this->space = (object) (new SpaceEvaluation($this))->eval();
-        $this->pressure = (object) (new PressureEvaluation($this))->eval();
-        $this->defense = (object) (new DefenseEvaluation($this))->eval();
+        $this->spaceEval = (object) (new SpaceEvaluation($this))->eval();
+        $this->pressureEval = (object) (new PressureEvaluation($this))->eval();
+        $this->defenseEval = (object) (new DefenseEvaluation($this))->eval();
 
         $this->notifyPieces();
     }
@@ -812,12 +802,12 @@ final class Board extends \SplObjectStorage
             $piece->getMove()->type === Move::CASTLE_LONG) {
             $this->castle($piece);
             $king = $this->getPiece($piece->getColor(), Symbol::KING);
-            $leavesInCheck = in_array($king->getSquare(), $this->pressure->{$king->getOppColor()});
+            $leavesInCheck = in_array($king->getSquare(), $this->pressureEval->{$king->getOppColor()});
             $this->undoCastle($prevCastling);
         } else {
             $this->move($piece);
             $king = $this->getPiece($piece->getColor(), Symbol::KING);
-            $leavesInCheck = in_array($king->getSquare(), $this->pressure->{$king->getOppColor()});
+            $leavesInCheck = in_array($king->getSquare(), $this->pressureEval->{$king->getOppColor()});
             $this->undoMove($prevCastling);
         }
 
@@ -836,18 +826,18 @@ final class Board extends \SplObjectStorage
             foreach ($piece->getSqs() as $sq) {
                 switch ($piece->getId()) {
                     case Symbol::KING:
-                        if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
+                        if (in_array($sq, $this->squareEval->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
                                 $piece->setMove(Convert::toStdClass($this->turn, Symbol::KING."x$sq"))
                             );
-                        } elseif (!in_array($sq, $this->space->{$piece->getOppColor()})) {
+                        } elseif (!in_array($sq, $this->spaceEval->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
                                 $piece->setMove(Convert::toStdClass($this->turn, Symbol::KING.$sq))
                             );
                         }
                         break;
                     case Symbol::PAWN:
-                        if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
+                        if (in_array($sq, $this->squareEval->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
                                 $piece->setMove(Convert::toStdClass($this->turn, $piece->getFile()."x$sq"))
                             );
@@ -858,7 +848,7 @@ final class Board extends \SplObjectStorage
                         }
                         break;
                     default:
-                        if (in_array($sq, $this->sqs->used->{$piece->getOppColor()})) {
+                        if (in_array($sq, $this->squareEval->used->{$piece->getOppColor()})) {
                             $escape += (int) !$this->leavesInCheck(
                                 $piece->setMove(Convert::toStdClass($this->turn, $piece->getId()."x$sq"))
                             );
@@ -886,7 +876,7 @@ final class Board extends \SplObjectStorage
 
         return in_array(
             $king->getSquare(),
-            $this->pressure->{$king->getOppColor()}
+            $this->pressureEval->{$king->getOppColor()}
         );
     }
 

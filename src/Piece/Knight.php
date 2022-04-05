@@ -120,9 +120,9 @@ class Knight extends AbstractPiece
     {
         $moves = [];
         foreach ($this->travel as $sq) {
-            if (in_array($sq, $this->board->getSqs()->free)) {
+            if (in_array($sq, $this->board->getSquareEval()->free)) {
                 $moves[] = $sq;
-            } elseif (in_array($sq, $this->board->getSqs()->used->{$this->getOppColor()})) {
+            } elseif (in_array($sq, $this->board->getSquareEval()->used->{$this->getOppColor()})) {
                 $moves[] = $sq;
             }
         }
@@ -134,7 +134,7 @@ class Knight extends AbstractPiece
     {
         $sqs = [];
         foreach ($this->travel as $sq) {
-            if (in_array($sq, $this->board->getSqs()->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->getSquareEval()->used->{$this->getColor()})) {
                 $sqs[] = $sq;
             }
         }
