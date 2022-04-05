@@ -13,7 +13,7 @@ class KnightTest extends AbstractUnitTestCase
     public function scope_d4()
     {
         $knight = new Knight('w', 'd4');
-        $jumps = [
+        $travel = [
             'c6',
             'b5',
             'b3',
@@ -24,7 +24,7 @@ class KnightTest extends AbstractUnitTestCase
             'e6'
         ];
 
-        $this->assertSame($jumps, $knight->getTravel()->jumps);
+        $this->assertSame($travel, $knight->getTravel());
     }
 
     /**
@@ -33,12 +33,12 @@ class KnightTest extends AbstractUnitTestCase
     public function scope_h1()
     {
         $knight = new Knight('w', 'h1');
-        $jumps = [
+        $travel = [
             'g3',
             'f2'
         ];
 
-        $this->assertSame($jumps, $knight->getTravel()->jumps);
+        $this->assertSame($travel, $knight->getTravel());
     }
 
     /**
@@ -47,12 +47,12 @@ class KnightTest extends AbstractUnitTestCase
     public function scope_b1()
     {
         $knight = new Knight('w', 'b1');
-        $jumps = [
+        $travel = [
             'a3',
             'd2',
             'c3'
         ];
 
-        $this->assertSame($jumps, $knight->getTravel()->jumps);
+        $this->assertSame($travel, $knight->getTravel());
     }
 }

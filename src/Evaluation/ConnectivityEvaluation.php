@@ -55,7 +55,7 @@ class ConnectivityEvaluation extends AbstractEvaluation
                     break;
                 case Symbol::KNIGHT:
                     $this->result[$color] += count(
-                        array_intersect($piece->getTravel()->jumps,
+                        array_intersect($piece->getTravel(),
                         $this->sqEvald[SquareEvaluation::FEATURE_USED][$color])
                     );
                     break;
