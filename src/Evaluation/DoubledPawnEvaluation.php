@@ -19,7 +19,7 @@ class DoubledPawnEvaluation extends AbstractEvaluation implements InverseEvaluat
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();

@@ -41,8 +41,8 @@ class TacticsEvaluation extends AbstractEvaluation
     {
         parent::__construct($board);
 
-        $this->defenseEval = (new DefenseEvaluation($board))->evaluate();
-        $this->pressEval = (new PressureEvaluation($board))->evaluate();
+        $this->defenseEval = (new DefenseEvaluation($board))->eval();
+        $this->pressEval = (new PressureEvaluation($board))->eval();
 
         $this->target = [
             Symbol::WHITE => [],
@@ -62,7 +62,7 @@ class TacticsEvaluation extends AbstractEvaluation
      *
      * @return array
      */
-    public function evaluate(): array
+    public function eval(): array
     {
         foreach ($this->target as $color => $sqs) {
             foreach ($sqs as $sq) {

@@ -25,8 +25,8 @@ class SpaceEvaluation extends AbstractEvaluation
         $sqEval = new SquareEvaluation($board);
 
         $this->sqEval = [
-            SquareEvaluation::TYPE_FREE => $sqEval->evaluate(SquareEvaluation::TYPE_FREE),
-            SquareEvaluation::TYPE_USED => $sqEval->evaluate(SquareEvaluation::TYPE_USED),
+            SquareEvaluation::TYPE_FREE => $sqEval->eval(SquareEvaluation::TYPE_FREE),
+            SquareEvaluation::TYPE_USED => $sqEval->eval(SquareEvaluation::TYPE_USED),
         ];
 
         $this->result = [
@@ -35,7 +35,7 @@ class SpaceEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
         $this->result = [
             Symbol::WHITE => [],

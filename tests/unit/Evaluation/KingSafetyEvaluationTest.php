@@ -15,7 +15,7 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $kSafetyEval = (new KingSafetyEvaluation(new Board()))->evaluate();
+        $kSafetyEval = (new KingSafetyEvaluation(new Board()))->eval();
 
         $expected = [
             'w' => 1,
@@ -32,7 +32,7 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $kSafetyEval = (new KingSafetyEvaluation($board))->evaluate();
+        $kSafetyEval = (new KingSafetyEvaluation($board))->eval();
 
         $expected = [
             'w' => 1,
@@ -49,7 +49,7 @@ class KingSafetyEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $kSafetyEval = (new KingSafetyEvaluation($board))->evaluate();
+        $kSafetyEval = (new KingSafetyEvaluation($board))->eval();
 
         $expected = [
             'w' => 1,

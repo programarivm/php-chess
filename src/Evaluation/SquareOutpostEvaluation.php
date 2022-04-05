@@ -28,7 +28,7 @@ class SquareOutpostEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Symbol::PAWN) {

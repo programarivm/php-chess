@@ -22,7 +22,7 @@ class AbsolutePinEvaluationTest extends AbstractUnitTestCase
             'b' => 3.2,
         ];
 
-        $absPinEval = (new AbsolutePinEvaluation($board))->evaluate();
+        $absPinEval = (new AbsolutePinEvaluation($board))->eval();
 
         $this->assertSame($expected, $absPinEval);
     }
@@ -40,7 +40,7 @@ class AbsolutePinEvaluationTest extends AbstractUnitTestCase
             'b' => 3.2,
         ];
 
-        $absPinEval = (new AbsolutePinEvaluation($board))->evaluate();
+        $absPinEval = (new AbsolutePinEvaluation($board))->eval();
 
         $this->assertSame($expected, $absPinEval);
     }
@@ -58,7 +58,7 @@ class AbsolutePinEvaluationTest extends AbstractUnitTestCase
             'b' => 3.2,
         ];
 
-        $absPinEval = (new AbsolutePinEvaluation($board))->evaluate();
+        $absPinEval = (new AbsolutePinEvaluation($board))->eval();
 
         $this->assertSame($expected, $absPinEval);
     }

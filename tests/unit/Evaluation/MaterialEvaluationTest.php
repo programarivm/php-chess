@@ -21,7 +21,7 @@ class MaterialEvaluationTest extends AbstractUnitTestCase
             'b' => 40.06,
         ];
 
-        $mtlEval = (new MaterialEvaluation($board))->evaluate();
+        $mtlEval = (new MaterialEvaluation($board))->eval();
 
         $this->assertEquals($expected, $mtlEval);
     }
@@ -38,7 +38,7 @@ class MaterialEvaluationTest extends AbstractUnitTestCase
             'b' => 40.06,
         ];
 
-        $mtlEval = (new MaterialEvaluation($board))->evaluate();
+        $mtlEval = (new MaterialEvaluation($board))->eval();
 
         $this->assertSame($expected, $mtlEval);
     }
@@ -57,7 +57,7 @@ class MaterialEvaluationTest extends AbstractUnitTestCase
             'b' => 40.06,
         ];
 
-        $mtlEval = (new MaterialEvaluation($board))->evaluate();
+        $mtlEval = (new MaterialEvaluation($board))->eval();
 
         $this->assertEquals($expected, $mtlEval);
     }

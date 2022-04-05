@@ -20,7 +20,7 @@ class IsolatedPawnEvaluation extends AbstractEvaluation implements InverseEvalua
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();

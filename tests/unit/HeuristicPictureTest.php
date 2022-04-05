@@ -227,13 +227,13 @@ class HeuristicPictureTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function benko_gambit_evaluate()
+    public function benko_gambit_eval()
     {
         $board = (new BenkoGambit(new Board()))->play();
 
         $heuristicPicture = new HeuristicPicture($board->getMovetext());
 
-        $evaluation = $heuristicPicture->evaluate();
+        $evaluation = $heuristicPicture->eval();
 
         $expected = [
             'w' => 26.32,

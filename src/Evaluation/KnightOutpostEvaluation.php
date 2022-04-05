@@ -16,7 +16,7 @@ class KnightOutpostEvaluation extends AbstractEvaluation
     {
         parent::__construct($board);
 
-        $this->sqOutpostEval = (new SquareOutpostEvaluation($board))->evaluate();
+        $this->sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
 
         $this->result = [
             Symbol::WHITE => 0,
@@ -24,7 +24,7 @@ class KnightOutpostEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
         foreach ($this->sqOutpostEval as $key => $val) {
             foreach ($val as $sq) {

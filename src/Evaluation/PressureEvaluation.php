@@ -35,8 +35,8 @@ class PressureEvaluation extends AbstractEvaluation
         $sqEval = new SquareEvaluation($board);
 
         $this->sqEval = [
-            SquareEvaluation::TYPE_FREE => $sqEval->evaluate(SquareEvaluation::TYPE_FREE),
-            SquareEvaluation::TYPE_USED => $sqEval->evaluate(SquareEvaluation::TYPE_USED),
+            SquareEvaluation::TYPE_FREE => $sqEval->eval(SquareEvaluation::TYPE_FREE),
+            SquareEvaluation::TYPE_USED => $sqEval->eval(SquareEvaluation::TYPE_USED),
         ];
 
         $this->result = [
@@ -50,7 +50,7 @@ class PressureEvaluation extends AbstractEvaluation
      *
      * @return array
      */
-    public function evaluate(): array
+    public function eval(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             switch ($piece->getId()) {

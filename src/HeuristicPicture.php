@@ -16,7 +16,7 @@ class HeuristicPicture extends Player
      *
      * @return array
      */
-    public function evaluate(): array
+    public function eval(): array
     {
         $result = [
             Symbol::WHITE => 0,
@@ -53,7 +53,7 @@ class HeuristicPicture extends Player
             $item = [];
             foreach ($this->dimensions as $className => $weight) {
                 $dimension = new $className($this->board);
-                $eval = $dimension->evaluate();
+                $eval = $dimension->eval();
                 if (is_array($eval[Symbol::WHITE])) {
                     if ($dimension instanceof InverseEvaluationInterface) {
                         $item[] = [
@@ -91,7 +91,7 @@ class HeuristicPicture extends Player
      *
      * The dimensions are normalized meaning that the chess features (Material,
      * Center, Connectivity, Space, Pressure, King safety, Tactics, and so on)
-     * are evaluated and scaled to have values between 0 and 1.
+     * are evald and scaled to have values between 0 and 1.
      *
      * It is worth noting that a normalized heuristic picture changes with every
      * chess move that is made because it is recalculated or zoomed out, if you like,

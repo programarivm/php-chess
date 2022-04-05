@@ -9,7 +9,7 @@ use Rubix\ML\Datasets\Unlabeled;
 
 class PermutationPredictor extends AbstractPredictor
 {
-    protected function evaluate(Board $clone): array
+    protected function eval(Board $clone): array
     {
         $balance = (new HeuristicPicture($clone->getMovetext(), $clone))
             ->take()

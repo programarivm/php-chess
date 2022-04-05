@@ -31,7 +31,7 @@ class DoubledPawnEvaluationTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $doubledPawnEval = (new DoubledPawnEvaluation($board))->evaluate();
+        $doubledPawnEval = (new DoubledPawnEvaluation($board))->eval();
 
         $this->assertSame($expected, $doubledPawnEval);
     }
@@ -59,7 +59,7 @@ class DoubledPawnEvaluationTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $doubledPawnEval = (new DoubledPawnEvaluation($board))->evaluate();
+        $doubledPawnEval = (new DoubledPawnEvaluation($board))->eval();
 
         $this->assertSame($expected, $doubledPawnEval);
     }

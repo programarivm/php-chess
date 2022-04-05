@@ -27,10 +27,10 @@ class KingSafetyEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
-        $pressEval = (new PressureEvaluation($this->board))->evaluate();
-        $spEval = (new SpaceEvaluation($this->board))->evaluate();
+        $pressEval = (new PressureEvaluation($this->board))->eval();
+        $spEval = (new SpaceEvaluation($this->board))->eval();
 
         $this->color(Symbol::WHITE, $pressEval, $spEval);
         $this->color(Symbol::BLACK, $pressEval, $spEval);

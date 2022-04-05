@@ -15,7 +15,7 @@ class PressureEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $pressEval = (new PressureEvaluation(new Board()))->evaluate();
+        $pressEval = (new PressureEvaluation(new Board()))->eval();
 
         $expected = [
             'w' => [],
@@ -32,7 +32,7 @@ class PressureEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $pressEval = (new PressureEvaluation($board))->evaluate();
+        $pressEval = (new PressureEvaluation($board))->eval();
 
         $expected = [
             'w' => [],
@@ -49,7 +49,7 @@ class PressureEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $pressEval = (new PressureEvaluation($board))->evaluate();
+        $pressEval = (new PressureEvaluation($board))->eval();
 
         $expected = [
             'w' => [],
@@ -73,7 +73,7 @@ class PressureEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $pressEval = (new PressureEvaluation($board))->evaluate();
+        $pressEval = (new PressureEvaluation($board))->eval();
 
         $expected = [
             'w' => ['a6', 'c6', 'c6', 'd7', 'f7'],

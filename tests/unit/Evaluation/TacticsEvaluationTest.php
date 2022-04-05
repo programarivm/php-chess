@@ -15,7 +15,7 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $attEval = (new TacticsEvaluation(new Board()))->evaluate();
+        $attEval = (new TacticsEvaluation(new Board()))->eval();
 
         $expected = [
             'w' => 0,
@@ -34,7 +34,7 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'd5');
 
-        $tacticsEval = (new TacticsEvaluation($board))->evaluate();
+        $tacticsEval = (new TacticsEvaluation($board))->eval();
 
         $expected = [
             'w' => 0,
@@ -51,7 +51,7 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $attEval = (new TacticsEvaluation($board))->evaluate();
+        $attEval = (new TacticsEvaluation($board))->eval();
 
         $expected = [
             'w' => 0,
@@ -68,7 +68,7 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $attEval = (new TacticsEvaluation($board))->evaluate();
+        $attEval = (new TacticsEvaluation($board))->eval();
 
         $expected = [
             'w' => 0,
@@ -92,7 +92,7 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $tacticsEval = (new TacticsEvaluation($board))->evaluate();
+        $tacticsEval = (new TacticsEvaluation($board))->eval();
 
         $expected = [
             'w' => 0,
@@ -116,7 +116,7 @@ class TacticsEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'Nxe4');
         $board->play('w', 'd3');
 
-        $tacticsEval = (new TacticsEvaluation($board))->evaluate();
+        $tacticsEval = (new TacticsEvaluation($board))->eval();
 
         $expected = [
             'w' => 4.2,

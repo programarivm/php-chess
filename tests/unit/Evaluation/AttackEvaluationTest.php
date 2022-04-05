@@ -15,7 +15,7 @@ class AttackEvaluationTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $attEval = (new AttackEvaluation(new Board()))->evaluate();
+        $attEval = (new AttackEvaluation(new Board()))->eval();
 
         $expected = [
             'w' => 0,
@@ -32,7 +32,7 @@ class AttackEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new OpenSicilian(new Board()))->play();
 
-        $attEval = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->eval();
 
         $expected = [
             'w' => 0,
@@ -49,7 +49,7 @@ class AttackEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new ClosedSicilian(new Board()))->play();
 
-        $attEval = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->eval();
 
         $expected = [
             'w' => 0,
@@ -73,7 +73,7 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $attEval = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->eval();
 
         $expected = [
             'w' => 0,
@@ -97,7 +97,7 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'Nxe4');
         $board->play('w', 'd3');
 
-        $attEval = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->eval();
 
         $expected = [
             'w' => 2.2,
@@ -117,7 +117,7 @@ class AttackEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'Nf6');
         $board->play('w', 'e5');
 
-        $attEval = (new AttackEvaluation($board))->evaluate();
+        $attEval = (new AttackEvaluation($board))->eval();
 
         $expected = [
             'w' => 2.2,

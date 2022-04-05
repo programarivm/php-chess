@@ -22,7 +22,7 @@ class DefenseEvaluationTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $defenseEval = (new DefenseEvaluation($board))->evaluate();
+        $defenseEval = (new DefenseEvaluation($board))->eval();
 
         $expected = [
             'w' => [

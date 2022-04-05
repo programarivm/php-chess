@@ -17,7 +17,7 @@ class SquareOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $sqOutpostEval = (new SquareOutpostEvaluation($board))->evaluate();
+        $sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $sqOutpostEval);
     }
@@ -30,7 +30,7 @@ class SquareOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $sqOutpostEval = (new SquareOutpostEvaluation($board))->evaluate();
+        $sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $sqOutpostEval);
     }
@@ -43,7 +43,7 @@ class SquareOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $sqOutpostEval = (new SquareOutpostEvaluation($board))->evaluate();
+        $sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $sqOutpostEval);
     }
@@ -56,7 +56,7 @@ class SquareOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $sqOutpostEval = (new SquareOutpostEvaluation($board))->evaluate();
+        $sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $sqOutpostEval);
     }
@@ -69,7 +69,7 @@ class SquareOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $sqOutpostEval = (new SquareOutpostEvaluation($board))->evaluate();
+        $sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $sqOutpostEval);
     }
@@ -82,7 +82,7 @@ class SquareOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $sqOutpostEval = (new SquareOutpostEvaluation($board))->evaluate();
+        $sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $sqOutpostEval);
     }
@@ -361,7 +361,7 @@ class SquareOutpostEvaluationTest extends AbstractUnitTestCase
             'b' => [],
         ];
 
-        $sqOutpostEval = (new SquareOutpostEvaluation($board))->evaluate();
+        $sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $sqOutpostEval);
     }

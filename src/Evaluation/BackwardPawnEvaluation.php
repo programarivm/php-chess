@@ -26,7 +26,7 @@ class BackwardPawnEvaluation extends AbstractEvaluation implements InverseEvalua
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
         $captureSquares = [];
         $nextMoves = [];

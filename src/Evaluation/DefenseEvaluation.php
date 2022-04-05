@@ -35,7 +35,7 @@ class DefenseEvaluation extends AbstractEvaluation
      *
      * @return array
      */
-    public function evaluate(): array
+    public function eval(): array
     {
         $this->board->rewind();
         while ($this->board->valid()) {

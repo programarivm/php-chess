@@ -13,7 +13,7 @@ abstract class AbstractPredictor
 
     protected $result = [];
 
-    abstract protected function evaluate(Board $clone): array;
+    abstract protected function eval(Board $clone): array;
 
     abstract protected function sort(string $color): AbstractPredictor;
 
@@ -47,7 +47,7 @@ abstract class AbstractPredictor
         foreach ($this->board->getMoves() as $possibleMove) {
             $clone = unserialize(serialize($this->board));
             $clone->play($color, $possibleMove);
-            $this->result[] = [ $possibleMove => $this->evaluate($clone) ];
+            $this->result[] = [ $possibleMove => $this->eval($clone) ];
         }
         $found = $this->sort($color)->find();
 

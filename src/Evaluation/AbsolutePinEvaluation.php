@@ -20,7 +20,7 @@ class AbsolutePinEvaluation extends AbstractEvaluation implements InverseEvaluat
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() !== Symbol::KING) {

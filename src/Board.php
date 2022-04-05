@@ -783,18 +783,18 @@ final class Board extends \SplObjectStorage
 
         $this->sqs = (object) [
             SquareEvaluation::TYPE_FREE => (new SquareEvaluation($this))
-                ->evaluate(SquareEvaluation::TYPE_FREE),
+                ->eval(SquareEvaluation::TYPE_FREE),
             SquareEvaluation::TYPE_USED => (object) (new SquareEvaluation($this))
-                ->evaluate(SquareEvaluation::TYPE_USED),
+                ->eval(SquareEvaluation::TYPE_USED),
         ];
 
         $this->detachPieces()
             ->attachPieces()
             ->notifyPieces();
 
-        $this->space = (object) (new SpaceEvaluation($this))->evaluate();
-        $this->pressure = (object) (new PressureEvaluation($this))->evaluate();
-        $this->defense = (object) (new DefenseEvaluation($this))->evaluate();
+        $this->space = (object) (new SpaceEvaluation($this))->eval();
+        $this->pressure = (object) (new PressureEvaluation($this))->eval();
+        $this->defense = (object) (new DefenseEvaluation($this))->eval();
 
         $this->notifyPieces();
     }

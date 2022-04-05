@@ -24,7 +24,7 @@ class HeuristicPictureByFenString
      *
      * @return array
      */
-    public function evaluate(): array
+    public function eval(): array
     {
         $result = [
             Symbol::WHITE => 0,
@@ -55,7 +55,7 @@ class HeuristicPictureByFenString
     {
         $item = [];
         foreach ($this->dimensions as $dimension => $w) {
-            $eval = (new $dimension($this->board))->evaluate();
+            $eval = (new $dimension($this->board))->eval();
             if (is_array($eval[Symbol::WHITE])) {
                 if ($dimension instanceof InverseEvaluationInterface) {
                     $item[] = [

@@ -17,7 +17,7 @@ class BishopOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->evaluate();
+        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $bishopOutpostEval);
     }
@@ -30,7 +30,7 @@ class BishopOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->evaluate();
+        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $bishopOutpostEval);
     }
@@ -43,7 +43,7 @@ class BishopOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->evaluate();
+        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $bishopOutpostEval);
     }
@@ -56,7 +56,7 @@ class BishopOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->evaluate();
+        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $bishopOutpostEval);
     }
@@ -69,7 +69,7 @@ class BishopOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->evaluate();
+        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $bishopOutpostEval);
     }
@@ -82,7 +82,7 @@ class BishopOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $board = (new StringToBoard($fen))->create();
 
-        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->evaluate();
+        $bishopOutpostEval = (new BishopOutpostEvaluation($board))->eval();
 
         $this->assertSame($expected, $bishopOutpostEval);
     }

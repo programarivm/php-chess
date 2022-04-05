@@ -28,7 +28,7 @@ class SquareEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate($feature): array
+    public function eval($feature): array
     {
         $pieces = iterator_to_array($this->board, false);
         switch ($feature) {

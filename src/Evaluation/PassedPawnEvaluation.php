@@ -20,7 +20,7 @@ class PassedPawnEvaluation extends AbstractEvaluation
         ];
     }
 
-    public function evaluate(): array
+    public function eval(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();
