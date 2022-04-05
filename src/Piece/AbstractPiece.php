@@ -89,7 +89,7 @@ abstract class AbstractPiece implements Piece
     /**
      * Calculates the squares the piece could travel to.
      */
-    abstract protected function travel(): void;
+    abstract protected function setTravel(): void;
 
     /**
      * Gets the piece's color.

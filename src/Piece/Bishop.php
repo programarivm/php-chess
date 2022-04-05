@@ -32,13 +32,13 @@ class Bishop extends Slider
             'bottomRight' => []
         ];
 
-        $this->travel();
+        $this->setTravel();
     }
 
     /**
      * Calculates the bishop's scope.
      */
-    protected function travel(): void
+    protected function setTravel(): void
     {
         // top left diagonal
         try {

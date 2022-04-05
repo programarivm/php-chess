@@ -40,7 +40,7 @@ class King extends AbstractPiece
         $this->rook = new Rook($color, $sq, RookType::FAKED);
         $this->bishop = new Bishop($color, $sq);
 
-        $this->travel();
+        $this->setTravel();
     }
 
     protected function moveCastlingLong()
@@ -124,7 +124,7 @@ class King extends AbstractPiece
     /**
      * Calculates the king's scope.
      */
-    protected function travel(): void
+    protected function setTravel(): void
     {
         $travel =  array_merge(
             (array) $this->rook->getTravel(),

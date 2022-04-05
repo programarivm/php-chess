@@ -27,13 +27,13 @@ class Knight extends AbstractPiece
 
         $this->travel = [];
 
-        $this->travel();
+        $this->setTravel();
     }
 
     /**
      * Calculates the knight's travel.
      */
-    protected function travel(): void
+    protected function setTravel(): void
     {
         try {
             $file = chr(ord($this->sq[0]) - 1);
