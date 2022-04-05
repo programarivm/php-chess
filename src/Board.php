@@ -23,7 +23,12 @@ use Chess\Piece\Rook;
 use Chess\Piece\Type\RookType;
 
 /**
- * Chess board.
+ * Board
+ *
+ * Chess board representation that allows to play a game of chess in Portable
+ * Game Notation (PGN) format. This class is the cornerstone that allows to build
+ * multiple features on top of it: FEN string generation, ASCII representation,
+ * PNG image creation, position evaluation, etc.
  *
  * @author Jordi Bassagañas
  * @license GPL
@@ -208,15 +213,15 @@ final class Board extends \SplObjectStorage
      *
      * @return array
      */
-    public function getCastle(): ?array
+    public function getCastle(): array
     {
         return $this->castle;
     }
 
     /**
-     * Gets the captured pieces.
+     * Gets the pieces captured by both players as an array of stdClass objects.
      *
-     * @return \stdClass
+     * @return mixed array|null
      */
     public function getCaptures(): ?array
     {
@@ -253,7 +258,7 @@ final class Board extends \SplObjectStorage
     /**
      * Gets the history.
      *
-     * @return array
+     * @return mixed array|null
      */
     public function getHistory(): ?array
     {
@@ -813,7 +818,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Checks out whether a player is trapped.
+     * Checks out whether the current player is trapped.
      *
      * @return bool
      */
@@ -864,7 +869,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Checks out whether a player is in check.
+     * Checks out whether the current player is in check.
      *
      * @return bool
      */
@@ -879,7 +884,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Checks out whether a player is checkmated.
+     * Checks out whether the current player is checkmated.
      *
      * @return bool
      */
@@ -889,7 +894,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Checks out whether a player is stalemated.
+     * Checks out whether the current player is stalemated.
      *
      * @return bool
      */
@@ -903,7 +908,7 @@ final class Board extends \SplObjectStorage
      *
      * @return array
      */
-    public function getMoves(): array
+    public function possibleMoves(): ?array
     {
         $moves = [];
         $color = $this->getTurn();

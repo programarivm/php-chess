@@ -27,7 +27,7 @@ class CheckmateInOneEvaluation extends AbstractEvaluation
 
     public function eval(): array
     {
-        foreach ($this->board->getMoves() as $move) {
+        foreach ($this->board->possibleMoves() as $move) {
             $this->board->play($this->board->getTurn(), $move);
             if ($this->board->isMate()) {
                 $this->result[$this->board->getTurn()] = 1;

@@ -1,3 +1,5 @@
+The `Chess\Ascii` class provides a number of methods that can be used to convert `Chess\Board` objects into character-based representations such as strings or arrays, and vice versa.
+
 #### `toArray(Board $board, bool $flip = false): array`
 
 Returns an ASCII array from a `Chess\Board` object.
@@ -119,7 +121,7 @@ Array
 )
 ```
 
-#### `toBoard(array $array, string $turn, $castling = null): Board`
+#### `toBoard(array $array, string $turn, $castle = null): Board`
 
 Returns a `Chess\Board` object from an ASCII array.
 
@@ -137,20 +139,20 @@ $sq = [
     0 => [ ' R ', ' . ', ' B ', ' Q ', ' . ', ' K ', ' N ', ' R ' ],
 ];
 
-$castling = [
+$castle = [
     'w' => [
-        'castled' => false,
+        'isCastled' => false,
         'O-O' => false,
         'O-O-O' => false,
     ],
     'b' => [
-        'castled' => false,
+        'isCastled' => false,
         'O-O' => true,
         'O-O-O' => true,
     ],
 ];
 
-$board = (new Ascii())->toBoard($sq, 'b', $castling);
+$board = (new Ascii())->toBoard($sq, 'b', $castle);
 ```
 
 #### `print(Board $board): string`
@@ -185,7 +187,7 @@ R  N  B  Q  K  B  N  R
 
 #### `fromAlgebraicToIndex(string $sq): array`
 
-Returns the ASCII array indexes of a specific square described in algebraic notation.
+Returns the ASCII array indexes of a square described in algebraic notation.
 
 ```php
 use Chess\Ascii;
@@ -207,7 +209,7 @@ Array
 
 #### `fromIndexToAlgebraic(int $i, int $j): string`
 
-Returns the square in algebraic notation corresponding to the specific ASCII array indexes.
+Returns the square in algebraic notation corresponding to the given ASCII array indexes.
 
 ```php
 use Chess\Ascii;

@@ -10,19 +10,20 @@ use Chess\FEN\ShortStrToPgn;
 use Chess\FEN\StrToBoard;
 use Chess\PGN\Symbol;
 use Chess\PGN\Validate;
-use Chess\Evaluation\PressureEvaluation;
-use Chess\Evaluation\SpaceEvaluation;
 use Chess\ML\Supervised\Regression\GeometricSumPredictor;
 use Rubix\ML\PersistentModel;
 use Rubix\ML\Persisters\Filesystem;
 
 /**
- * Game class.
+ * Game
  *
- * A wrapper of the Board class.
+ * A wrapper for the Chess\Board class. It is the main component of the PHP Chess Server;
+ * thus, there is a one-to-one correspondence between the Chess\Game methods and
+ * the commands available in the ChessServer\Command namespace.
  *
  * @author Jordi Bassagañas
  * @license GPL
+ * @link https://github.com/chesslablab/chess-server
  */
 class Game
 {

@@ -13,7 +13,7 @@ class PossibleMovesTest extends AbstractUnitTestCase
     public function start()
     {
         $board = new Board();
-        $possibleMoves = $board->getMoves();
+        $possibleMoves = $board->possibleMoves();
 
         $expected = [
             'Na3',
@@ -48,7 +48,7 @@ class PossibleMovesTest extends AbstractUnitTestCase
     {
         $board = new Board();
         $board->play('w', 'e4');
-        $possibleMoves = $board->getMoves();
+        $possibleMoves = $board->possibleMoves();
 
         $expected = [
             'Na6',
@@ -88,7 +88,7 @@ class PossibleMovesTest extends AbstractUnitTestCase
         $board->play('b', 'Nf6');
         $board->play('w', 'Be2');
         $board->play('b', 'Be7');
-        $possibleMoves = $board->getMoves();
+        $possibleMoves = $board->possibleMoves();
 
         $expected = [
             'Na3',

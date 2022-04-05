@@ -1,6 +1,6 @@
-The `Chess\Game` class is essentially a wrapper for the `Chess\Board` class and has been specifically designed to be the main component of the [PHP Chess Server](https://github.com/chesslablab/chess-server). Thus, there is a one-to-one correspondence between the `Chess\Game` methods and the `ChessServer\Command` [commands available](https://github.com/chesslablab/chess-server/tree/master/src/Command).
+The `Chess\Game` class is a wrapper for the `Chess\Board` class. It is the main component of the [PHP Chess Server](https://github.com/chesslablab/chess-server). Thus, there is a one-to-one correspondence between the `Chess\Game` methods and the commands available in the [`ChessServer\Command`](https://github.com/chesslablab/chess-server/tree/master/src/Command) namespace.
 
-Let's look at the [`Chess\Game`](https://github.com/chesslablab/php-chess/blob/master/src/Game.php) methods available through the following example:
+Let's look at some relevant [`Chess\Game`](https://github.com/chesslablab/php-chess/blob/master/src/Game.php) methods available through the following example:
 
 ```php
 use Chess\Game;
@@ -88,22 +88,22 @@ array (
 Gets the castling status.
 
 ```php
-$castling = $game->castling();
+$castle = $game->castling();
 
-var_export($castling);
+var_export($castle);
 ```
 
 ```text
 array (
   'w' =>
   array (
-    'castled' => false,
+    'isCastled' => false,
     'O-O' => true,
     'O-O-O' => true,
   ),
   'b' =>
   array (
-    'castled' => false,
+    'isCastled' => false,
     'O-O' => true,
     'O-O-O' => true,
   ),

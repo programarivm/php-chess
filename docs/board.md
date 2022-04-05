@@ -1,6 +1,6 @@
-The `Chess\Board` class is essentially a chess board representation that allows to play a game of chess in Portable Game Notation (PGN) format. It is the cornerstone that allows to build multiple features on top of it: FEN string generation, ASCII representation, PNG image creation, position evaluation, and many more cool features.
+The `Chess\Board` class is a chess board representation that allows to play a game of chess in Portable Game Notation (PGN) format. It is the cornerstone that allows to build multiple features on top of it: FEN string generation, ASCII representation, PNG image creation, position evaluation, and more.
 
-Let's look at some relevant [`Chess\Board`](https://github.com/chesslablab/php-chess/blob/master/src/Game.php) methods available through the following example:
+Let's look at some relevant [`Chess\Board`](https://github.com/chesslablab/php-chess/blob/master/src/Board.php) methods available through the following example:
 
 ```php
 use Chess\Board;
@@ -13,7 +13,7 @@ $board->play('w', 'exd5');
 $board->play('b', 'Qxd5');
 ```
 
-#### `getCaptures(): array`
+#### `getCaptures(): ?array`
 
 Gets the pieces captured by both players as an array of `stdClass` objects.
 
@@ -62,34 +62,34 @@ array (
 )
 ```
 
-#### `getCastle(): ?array`
+#### `getCastle(): array`
 
-Gets the castling status.
+Gets the castle status.
 
 ```php
-$castling = $board->getCastle();
+$castle = $board->getCastle();
 
-var_export($castling);
+var_export($castle);
 ```
 
 ```text
 array (
   'w' =>
   array (
-    'castled' => false,
+    'isCastled' => false,
     'O-O' => true,
     'O-O-O' => true,
   ),
   'b' =>
   array (
-    'castled' => false,
+    'isCastled' => false,
     'O-O' => true,
     'O-O-O' => true,
   ),
 )
 ```
 
-#### `getHistory(): array`
+#### `getHistory(): ?array`
 
 Gets the history as an array of `stdClass` objects.
 
@@ -144,7 +144,7 @@ array (
 
 #### `getMovetext(): string`
 
-Gets the movetext in text format.
+Gets the movetext.
 
 ```php
 $movetext = $board->getMovetext();
@@ -176,7 +176,7 @@ Output:
 
 #### `isCheck(): bool`
 
-Finds out if a player is in check.
+Checks out whether the current player is in check.
 
 ```php
 $isCheck = $board->isCheck();
@@ -192,7 +192,7 @@ false
 
 #### `isMate(): bool`
 
-Finds out if a player is checkmated.
+Checks out whether the current player is checkmated.
 
 ```php
 $isMate = $board->isMate();
@@ -206,9 +206,25 @@ Output:
 false
 ```
 
-#### `play(\stdClass $move): bool`
+#### `isStalemate(): bool`
 
-Plays a chess move.
+Checks out whether the current player is stalemated.
+
+```php
+$isStalemate = $board->isStalemate();
+
+var_export($isStalemate);
+```
+
+Output:
+
+```text
+false
+```
+
+#### `play(string $color, string $pgn): bool`
+
+Makes a move.
 
 ```php
 $board->play('w', 'Nc3');
@@ -221,3 +237,7 @@ Output:
 ```text
 '1.e4 d5 2.exd5 Qxd5 3.Nc3'
 ```
+
+#### `possibleMoves(): ?array`
+
+Returns all possible moves.
