@@ -9,7 +9,7 @@ use Chess\PGN\Symbol;
 /**
  * Player.
  *
- * Allows to play a chess game as a PGN movetext.
+ * Allows to play a chess game in PGN format.
  *
  * @author Jordi Bassagañas
  * @license GPL
@@ -41,11 +41,11 @@ class Player
     {
         foreach ($this->getMoves() as $move) {
             if (!$this->getBoard()->play('w', $move[0])) {
-                throw new MovetextException("This move is not allowed: {$move[0]}");
+                throw new MovetextException;
             }
             if (isset($move[1])) {
                 if (!$this->getBoard()->play('b', $move[1])) {
-                    throw new MovetextException("This move is not allowed: {$move[1]}");
+                    throw new MovetextException;
                 }
             }
         }
