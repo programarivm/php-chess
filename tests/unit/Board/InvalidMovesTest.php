@@ -83,18 +83,18 @@ class InvalidMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLE_LONG),
+            new Rook('w', 'e6', RookType::O_O_O),
             new King('w', 'g3'),
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLE_SHORT),
+            new Rook('b', 'f5', RookType::O_O),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => true,
                 'O-O' => false,
@@ -107,7 +107,7 @@ class InvalidMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        (new Board($pieces, $castling))
+        (new Board($pieces, $castle))
             ->play('w', 'f4');
     }
 }

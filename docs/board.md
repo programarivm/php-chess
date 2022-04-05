@@ -62,12 +62,12 @@ array (
 )
 ```
 
-#### `getCastling(): ?array`
+#### `getCastle(): ?array`
 
 Gets the castling status.
 
 ```php
-$castling = $board->getCastling();
+$castling = $board->getCastle();
 
 var_export($castling);
 ```

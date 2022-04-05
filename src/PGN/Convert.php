@@ -2,7 +2,7 @@
 
 namespace Chess\PGN;
 
-use Chess\Castling;
+use Chess\Castle;
 use Chess\Exception\UnknownNotationException;
 use Chess\Piece\Bishop;
 use Chess\Piece\King;
@@ -45,26 +45,26 @@ class Convert
                         'next' => mb_substr($pgn, -2)
                 ]];
 
-            case preg_match('/^' . Move::CASTLE_SHORT . '$/', $pgn):
+            case preg_match('/^' . Move::O_O . '$/', $pgn):
                 return (object) [
                     'pgn' => $pgn,
                     'isCapture' => false,
                     'isCheck' => $isCheck,
-                    'type' => Move::CASTLE_SHORT,
+                    'type' => Move::O_O,
                     'color' => Validate::color($color),
                     'id' => Symbol::K,
-                    'sq' => (object) Castling::color($color)[Symbol::K][Symbol::CASTLE_SHORT]['sq']
+                    'sq' => (object) Castle::color($color)[Symbol::K][Symbol::O_O]['sq']
                 ];
 
-            case preg_match('/^' . Move::CASTLE_LONG . '$/', $pgn):
+            case preg_match('/^' . Move::O_O_O . '$/', $pgn):
                 return (object) [
                     'pgn' => $pgn,
                     'isCapture' => false,
                     'isCheck' => $isCheck,
-                    'type' => Move::CASTLE_LONG,
+                    'type' => Move::O_O_O,
                     'color' => Validate::color($color),
                     'id' => Symbol::K,
-                    'sq' => (object) Castling::color($color)[Symbol::K][Symbol::CASTLE_LONG]['sq']
+                    'sq' => (object) Castle::color($color)[Symbol::K][Symbol::O_O_O]['sq']
                 ];
 
             case preg_match('/^' . Move::KING_CAPTURES . '$/', $pgn):

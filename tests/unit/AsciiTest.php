@@ -56,7 +56,7 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -69,7 +69,7 @@ class AsciiTest extends AbstractUnitTestCase
             ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, 'w', $castling);
+        $board = (new Ascii())->toBoard($expected, 'w', $castle);
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -114,7 +114,7 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' . ', ' K ', ' N ', ' R ' ],
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => false,
@@ -127,7 +127,7 @@ class AsciiTest extends AbstractUnitTestCase
             ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, 'b', $castling);
+        $board = (new Ascii())->toBoard($expected, 'b', $castle);
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -172,7 +172,7 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' . ', ' R ', ' K ', ' . ' ],
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => true,
                 'O-O' => false,
@@ -185,7 +185,7 @@ class AsciiTest extends AbstractUnitTestCase
             ],
         ];
 
-        $board = (new Ascii())->toBoard($expected, 'b', $castling);
+        $board = (new Ascii())->toBoard($expected, 'b', $castle);
         $array = (new Ascii())->toArray($board);
 
         $this->assertSame($expected, $array);
@@ -355,7 +355,7 @@ class AsciiTest extends AbstractUnitTestCase
     public function ruy_lopez_exchange_undo_move_to_array()
     {
         $board = (new RuyLopezExchange(new Board()))->play();
-        $board = $board->undoMove($board->getCastling());
+        $board = $board->undoMove($board->getCastle());
 
         $array = (new Ascii())->toArray($board);
 
@@ -379,8 +379,8 @@ class AsciiTest extends AbstractUnitTestCase
     public function ruy_lopez_exchange_undo_two_moves_to_array()
     {
         $board = (new RuyLopezExchange(new Board()))->play();
-        $board = $board->undoMove($board->getCastling());
-        $board = $board->undoMove($board->getCastling());
+        $board = $board->undoMove($board->getCastle());
+        $board = $board->undoMove($board->getCastle());
 
         $array = (new Ascii())->toArray($board);
 

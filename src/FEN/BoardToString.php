@@ -32,7 +32,7 @@ class BoardToString
             }
         }
 
-        return "{$this->filter($string)} {$this->board->getTurn()} {$this->castlingRights()} {$this->enPassant()}";
+        return "{$this->filter($string)} {$this->board->getTurn()} {$this->castleRights()} {$this->enPassant()}";
     }
 
     private function filter(string $string)
@@ -57,27 +57,27 @@ class BoardToString
         return $filtered;
     }
 
-    private function castlingRights()
+    private function castleRights()
     {
-        $castlingRights = '';
-        $castling = $this->board->getCastling();
-        if ($castling[Symbol::WHITE][Symbol::CASTLE_SHORT]) {
-            $castlingRights .= 'K';
+        $castleRights = '';
+        $castle = $this->board->getCastle();
+        if ($castle[Symbol::WHITE][Symbol::O_O]) {
+            $castleRights .= 'K';
         }
-        if ($castling[Symbol::WHITE][Symbol::CASTLE_LONG]) {
-            $castlingRights .= 'Q';
+        if ($castle[Symbol::WHITE][Symbol::O_O_O]) {
+            $castleRights .= 'Q';
         }
-        if ($castling[Symbol::BLACK][Symbol::CASTLE_SHORT]) {
-            $castlingRights .= 'k';
+        if ($castle[Symbol::BLACK][Symbol::O_O]) {
+            $castleRights .= 'k';
         }
-        if ($castling[Symbol::BLACK][Symbol::CASTLE_LONG]) {
-            $castlingRights .= 'q';
+        if ($castle[Symbol::BLACK][Symbol::O_O_O]) {
+            $castleRights .= 'q';
         }
-        if ($castlingRights === '') {
-            $castlingRights = '-';
+        if ($castleRights === '') {
+            $castleRights = '-';
         }
 
-        return $castlingRights;
+        return $castleRights;
     }
 
     private function enPassant()

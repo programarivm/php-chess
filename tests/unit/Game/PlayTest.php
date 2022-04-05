@@ -92,7 +92,7 @@ class PlayTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling()
+    public function castle()
     {
         $game = new Game();
         $game->playFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b');

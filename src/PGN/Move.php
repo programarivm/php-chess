@@ -12,8 +12,8 @@ use Chess\PGN\Symbol;
  */
 class Move
 {
-    const CASTLE_SHORT = Symbol::CASTLE_SHORT . Symbol::CHECK;
-    const CASTLE_LONG = Symbol::CASTLE_LONG . Symbol::CHECK;
+    const O_O = Symbol::O_O . Symbol::CHECK;
+    const O_O_O = Symbol::O_O_O . Symbol::CHECK;
     const KING = 'K' . Symbol::SQUARE . Symbol::CHECK;
     const KING_CAPTURES = 'Kx' . Symbol::SQUARE . Symbol::CHECK;
     const PIECE = '[BRQ]{1}[a-h]{0,1}[1-8]{0,1}' . Symbol::SQUARE . Symbol::CHECK;

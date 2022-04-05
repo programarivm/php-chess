@@ -2,7 +2,7 @@
 
 namespace Chess\FEN;
 
-use Chess\Castling;
+use Chess\Castle;
 use Chess\FEN\BoardToString;
 use Chess\FEN\StringToBoard;
 use Chess\PGN\Symbol;
@@ -35,21 +35,21 @@ abstract class AbstractStringToPgn
                 $position = $piece->getSquare();
                 switch ($id) {
                     case Symbol::K:
-                        $rule = Castling::color($color)[Symbol::K];
-                        if ($sq === $rule[Symbol::CASTLE_SHORT]['sq']['next'] &&
-                            $this->board->getCastling()[$color][Symbol::CASTLE_SHORT]
+                        $rule = Castle::color($color)[Symbol::K];
+                        if ($sq === $rule[Symbol::O_O]['sq']['next'] &&
+                            $this->board->getCastle()[$color][Symbol::O_O]
                         ) {
                             if ($clone->play($color, Symbol::K.$sq)) {
                                 $legal[] = [
-                                    Symbol::CASTLE_SHORT => (new BoardToString($clone))->create()
+                                    Symbol::O_O => (new BoardToString($clone))->create()
                                 ];
                             }
-                        } elseif ($sq === $rule[Symbol::CASTLE_LONG]['sq']['next'] &&
-                            $this->board->getCastling()[$color][Symbol::CASTLE_LONG]
+                        } elseif ($sq === $rule[Symbol::O_O_O]['sq']['next'] &&
+                            $this->board->getCastle()[$color][Symbol::O_O_O]
                         ) {
                             if ($clone->play($color, Symbol::K.$sq)) {
                                 $legal[] = [
-                                    Symbol::CASTLE_LONG => (new BoardToString($clone))->create()
+                                    Symbol::O_O_O => (new BoardToString($clone))->create()
                                 ];
                             }
                         } elseif ($clone->play($color, Symbol::K.$sq)) {

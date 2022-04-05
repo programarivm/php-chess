@@ -153,18 +153,18 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLE_LONG),
+            new Rook('w', 'e6', RookType::O_O_O),
             new King('w', 'g3'),
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLE_SHORT),
+            new Rook('b', 'f5', RookType::O_O),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => true,
                 'O-O' => false,
@@ -177,7 +177,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'Kf4'));
     }
@@ -191,18 +191,18 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLE_LONG),
+            new Rook('w', 'e6', RookType::O_O_O),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLE_SHORT),
+            new Rook('b', 'f5', RookType::O_O),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => true,
                 'O-O' => false,
@@ -215,7 +215,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'Kf4'));
     }
@@ -229,18 +229,18 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLE_LONG),
+            new Rook('w', 'e6', RookType::O_O_O),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLE_SHORT),
+            new Rook('b', 'f5', RookType::O_O),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => true,
                 'O-O' => false,
@@ -253,7 +253,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'Kf2'));
     }
@@ -267,18 +267,18 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLE_LONG),
+            new Rook('w', 'e6', RookType::O_O_O),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLE_SHORT),
+            new Rook('b', 'f5', RookType::O_O),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => true,
                 'O-O' => false,
@@ -291,7 +291,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'Re7'));
     }
@@ -305,18 +305,18 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLE_LONG),
+            new Rook('w', 'e6', RookType::O_O_O),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLE_SHORT),
+            new Rook('b', 'f5', RookType::O_O),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => true,
                 'O-O' => false,
@@ -329,7 +329,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'a4'));
     }
@@ -343,18 +343,18 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLE_LONG),
+            new Rook('w', 'e6', RookType::O_O_O),
             new King('w', 'g3'),
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f2', RookType::CASTLE_SHORT), // rook defended by knight
+            new Rook('b', 'f2', RookType::O_O), // rook defended by knight
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => true,
                 'O-O' => false,
@@ -367,7 +367,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'Kxf2'));
     }
@@ -407,7 +407,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling_threatening_f1()
+    public function castle_threatening_f1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -416,20 +416,20 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f2'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new Bishop('b', 'a6'), // bishop threatening f1
             new King('b', 'e8'),
             new Bishop('b', 'f8'),
             new Knight('b', 'g8'),
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -442,7 +442,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'O-O'));
     }
@@ -450,7 +450,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling_threatening_f1_g1()
+    public function castle_threatening_f1_g1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -459,20 +459,20 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new Bishop('b', 'a6'), // bishop threatening f1
             new King('b', 'e8'),
             new Bishop('b', 'c5'), // bishop threatening g1
             new Knight('b', 'g8'),
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -485,7 +485,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'O-O'));
     }
@@ -493,7 +493,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling_threatening_g1()
+    public function castle_threatening_g1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -502,19 +502,19 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new King('b', 'e8'),
             new Bishop('b', 'c5'), // bishop threatening g1
             new Knight('b', 'g8'),
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -527,7 +527,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'O-O'));
     }
@@ -535,7 +535,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling_threatening_c1()
+    public function castle_threatening_c1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -544,19 +544,19 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new King('b', 'e8'),
             new Bishop('b', 'f4'), // bishop threatening c1
             new Knight('b', 'g8'),
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -569,7 +569,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'O-O-O'));
     }
@@ -577,7 +577,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling_threatening_d1_f1()
+    public function castle_threatening_d1_f1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -586,19 +586,19 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new King('b', 'e8'),
             new Bishop('b', 'f8'),
             new Knight('b', 'e3'), // knight threatening d1 and f1
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -611,7 +611,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'O-O'));
         $this->assertFalse($board->play('w', 'O-O-O'));
@@ -620,7 +620,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling_threatening_b1_f1()
+    public function castle_threatening_b1_f1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -629,19 +629,19 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new King('b', 'e8'),
             new Bishop('b', 'f8'),
             new Knight('b', 'd2'), // knight threatening b1 and f1
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -654,7 +654,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'O-O'));
         $this->assertFalse($board->play('w', 'O-O-O'));
@@ -663,7 +663,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling_threatening_b1_d1()
+    public function castle_threatening_b1_d1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -672,19 +672,19 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new King('b', 'e8'),
             new Bishop('b', 'f8'),
             new Knight('b', 'c3'), // knight threatening b1 and d1
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -697,7 +697,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertFalse($board->play('w', 'O-O-O'));
     }
@@ -714,19 +714,19 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new King('b', 'e8'),
             new Bishop('b', 'f8'),
             new Knight('b', 'g8'),
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -739,7 +739,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertTrue($board->play('w', 'Kf1'));
         $this->assertTrue($board->play('b', 'Nf6'));
@@ -760,19 +760,19 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new King('b', 'e8'),
             new Bishop('b', 'f8'),
             new Knight('b', 'g8'),
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -785,7 +785,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertTrue($board->play('w', 'Rg1'));
         $this->assertTrue($board->play('b', 'Nf6'));
@@ -821,7 +821,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function opponent_threatening_castling_sqs()
+    public function opponent_threatening_castle_sqs()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -831,10 +831,10 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f2'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLE_LONG),
+            new Rook('w', 'a1', RookType::O_O_O),
             new King('w', 'e1'),
             new Knight('w', 'g1'),
-            new Rook('w', 'h1', RookType::CASTLE_SHORT),
+            new Rook('w', 'h1', RookType::O_O),
             new Bishop('w', 'a3'),
             new Bishop('w', 'd3'),
             new Pawn('b', 'a7'),
@@ -843,16 +843,16 @@ class IllegalMovesTest extends AbstractUnitTestCase
             new Pawn('b', 'e6'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h6'),
-            new Rook('b', 'a8', RookType::CASTLE_LONG),
+            new Rook('b', 'a8', RookType::O_O_O),
             new Bishop('b', 'c8'),
             new Queen('b', 'd8'),
             new King('b', 'e8'),
-            new Rook('b', 'h8', RookType::CASTLE_SHORT),
+            new Rook('b', 'h8', RookType::O_O),
             new Knight('b', 'd7'),
             new Knight('b', 'f6')
         ];
 
-        $castling = [
+        $castle = [
             'w' => [
                 'isCastled' => false,
                 'O-O' => true,
@@ -865,7 +865,7 @@ class IllegalMovesTest extends AbstractUnitTestCase
             ]
         ];
 
-        $board = new Board($pieces, $castling);
+        $board = new Board($pieces, $castle);
 
         $this->assertTrue($board->play('w', 'Nf3'));
         $this->assertFalse($board->play('b', 'O-O'));

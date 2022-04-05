@@ -72,7 +72,7 @@ class BoardToStringTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castling_short()
+    public function castle_short()
     {
         $board = new Board();
         $board->play('w', 'e4');

@@ -86,9 +86,9 @@ class Validate
         switch (true) {
             case preg_match('/^' . Move::KING . '$/', $move):
                 return true;
-            case preg_match('/^' . Move::CASTLE_SHORT . '$/', $move):
+            case preg_match('/^' . Move::O_O . '$/', $move):
                 return true;
-            case preg_match('/^' . Move::CASTLE_LONG . '$/', $move):
+            case preg_match('/^' . Move::O_O_O . '$/', $move):
                 return true;
             case preg_match('/^' . Move::KING_CAPTURES . '$/', $move):
                 return true;
