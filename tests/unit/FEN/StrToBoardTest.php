@@ -4,11 +4,11 @@ namespace Chess\Tests\Unit\FEN;
 
 use Chess\Ascii;
 use Chess\Exception\UnknownNotationException;
-use Chess\FEN\StringToBoard;
+use Chess\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 use Generator;
 
-class StringToBoardTest extends AbstractUnitTestCase
+class StrToBoardTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -17,7 +17,7 @@ class StringToBoardTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        (new StringToBoard('foo'))->create();
+        (new StrToBoard('foo'))->create();
     }
 
     /**
@@ -27,7 +27,7 @@ class StringToBoardTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        (new StringToBoard('foo bar'))->create();
+        (new StrToBoard('foo bar'))->create();
     }
 
     /**
@@ -35,7 +35,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function e4()
     {
-        $board = (new StringToBoard('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'))
+        $board = (new StrToBoard('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'))
             ->create();
 
         $array = (new Ascii())->toArray($board);
@@ -59,7 +59,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function e4_e5()
     {
-        $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
+        $board = (new StrToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
             ->create();
 
         $array = (new Ascii())->toArray($board);
@@ -83,7 +83,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function e4_e5_flip()
     {
-        $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
+        $board = (new StrToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
             ->create();
 
         $array = (new Ascii())->toArray($board, true);
@@ -107,7 +107,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function benko_gambit()
     {
-        $board = (new StringToBoard('rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9'))
+        $board = (new StrToBoard('rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9'))
             ->create();
 
         $array = (new Ascii())->toArray($board);
@@ -131,7 +131,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function ruy_lopez_exchange()
     {
-        $board = (new StringToBoard('r1b1kbnr/1pp2ppp/p1p5/8/3NP3/8/PPP2PPP/RNB1K2R b KQkq - 0 7'))
+        $board = (new StrToBoard('r1b1kbnr/1pp2ppp/p1p5/8/3NP3/8/PPP2PPP/RNB1K2R b KQkq - 0 7'))
             ->create();
 
         $array = (new Ascii())->toArray($board);
@@ -155,7 +155,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function closed_sicilian()
     {
-        $board = (new StringToBoard('r1bqk1nr/pp2ppbp/2np2p1/2p5/4P3/2NP2P1/PPP2PBP/R1BQK1NR w KQkq - 0 6'))
+        $board = (new StrToBoard('r1bqk1nr/pp2ppbp/2np2p1/2p5/4P3/2NP2P1/PPP2PBP/R1BQK1NR w KQkq - 0 6'))
             ->create();
 
         $array = (new Ascii())->toArray($board);
@@ -179,7 +179,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function closed_sicilian_flip()
     {
-        $board = (new StringToBoard('r1bqk1nr/pp2ppbp/2np2p1/2p5/4P3/2NP2P1/PPP2PBP/R1BQK1NR w KQkq - 0 6'))
+        $board = (new StrToBoard('r1bqk1nr/pp2ppbp/2np2p1/2p5/4P3/2NP2P1/PPP2PBP/R1BQK1NR w KQkq - 0 6'))
             ->create();
 
         $array = (new Ascii())->toArray($board,true);
@@ -203,7 +203,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function e4_e5_play_Nf3_Nc6()
     {
-        $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
+        $board = (new StrToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
             ->create();
 
         $board->play('w', 'Nf3');
@@ -230,7 +230,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function e4_e5_play_Nc6()
     {
-        $board = (new StringToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
+        $board = (new StrToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
             ->create();
 
         $this->assertFalse($board->play('w', 'Nc6'));
@@ -241,7 +241,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function e4_c5_e5_f5()
     {
-        $board = (new StringToBoard('rnbqkbnr/pp1pp1pp/8/2p1Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3'))
+        $board = (new StrToBoard('rnbqkbnr/pp1pp1pp/8/2p1Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3'))
             ->create();
 
         $array = (new Ascii())->toArray($board);
@@ -268,7 +268,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function e4_c5_e5_f5_play_exf6()
     {
-        $board = (new StringToBoard('rnbqkbnr/pp1pp1pp/8/2p1Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3'))
+        $board = (new StrToBoard('rnbqkbnr/pp1pp1pp/8/2p1Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3'))
             ->create();
 
         $this->assertTrue($board->play('w', 'exf6'));
@@ -279,7 +279,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function kaufman_01()
     {
-        $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
+        $board = (new StrToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
         $array = (new Ascii())->toArray($board);
@@ -303,7 +303,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function kaufman_01_Qg4()
     {
-        $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
+        $board = (new StrToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
         $board->play('w', 'Qg4');
@@ -329,7 +329,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function kaufman_01_Qg4_a5()
     {
-        $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
+        $board = (new StrToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
         $board->play('w', 'Qg4');
@@ -356,7 +356,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function kaufman_01_Qg4_then_get_piece()
     {
-        $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
+        $board = (new StrToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
         $board->play('w', 'Qg4');
@@ -373,7 +373,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function endgame_king_and_rook_vs_king_cannot_capture()
     {
-        $board = (new StringToBoard('8/5k2/8/8/2K1p3/3r4/8/8 w - - 0 1'))
+        $board = (new StrToBoard('8/5k2/8/8/2K1p3/3r4/8/8 w - - 0 1'))
             ->create();
 
         $legalMoves = $board->getPieceBySq('c4')->getSqs();
@@ -388,7 +388,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function endgame_king_and_rook_vs_king_can_capture()
     {
-        $board = (new StringToBoard('8/5k2/8/8/2K5/3rp3/8/8 w - - 0 1'))
+        $board = (new StrToBoard('8/5k2/8/8/2K5/3rp3/8/8 w - - 0 1'))
             ->create();
 
         $legalMoves = $board->getPieceBySq('c4')->getSqs();
@@ -403,7 +403,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function endgame_checkmate_king_and_rook_vs_king()
     {
-        $board = (new StringToBoard('7k/8/8/8/8/8/2K5/r7 w - - 0 1'))
+        $board = (new StrToBoard('7k/8/8/8/8/8/2K5/r7 w - - 0 1'))
             ->create();
 
         $legalMoves = $board->getPieceBySq('c2')->getSqs();
@@ -418,7 +418,7 @@ class StringToBoardTest extends AbstractUnitTestCase
      */
     public function endgame_checkmate_king_and_rook_vs_king_play()
     {
-        $board = (new StringToBoard('7k/8/8/8/8/8/2K5/r7 w - - 0 1'))
+        $board = (new StrToBoard('7k/8/8/8/8/8/2K5/r7 w - - 0 1'))
             ->create();
 
         $this->assertTrue($board->play('w', 'Kb2'));

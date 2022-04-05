@@ -7,7 +7,7 @@ pages:
   - Chess\HeuristicPicture: heuristic-picture.md
   - Chess\Player: player.md
   - Chess\Combinatorics\RestrictedPermutationWithRepetition: combinatorics-restricted-permutation-with-repetition.md
-  - Chess\FEN\BoardToString: fen-board-to-string.md
+  - Chess\FEN\BoardToStr: fen-board-to-string.md
   - Chess\FEN\StringToBoard: fen-string-to-board.md
   - Chess\FEN\Validate: fen-validate.md
   - Chess\Media\BoardToJpg: media-board-to-jpg.md

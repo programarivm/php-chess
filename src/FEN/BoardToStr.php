@@ -7,12 +7,12 @@ use Chess\Board;
 use Chess\PGN\Symbol;
 
 /**
- * Chess\Board to FEN string converter.
+ * Board to FEN string.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-class BoardToString
+class BoardToStr
 {
     private $board;
 

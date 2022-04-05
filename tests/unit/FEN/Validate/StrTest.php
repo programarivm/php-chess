@@ -6,7 +6,7 @@ use Chess\Exception\UnknownNotationException;
 use Chess\FEN\Validate;
 use Chess\Tests\AbstractUnitTestCase;
 
-class StringTest extends AbstractUnitTestCase
+class StrTest extends AbstractUnitTestCase
 {
     /**
      * @test

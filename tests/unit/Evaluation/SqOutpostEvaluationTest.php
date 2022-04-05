@@ -4,7 +4,7 @@ namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
 use Chess\Evaluation\SqOutpostEvaluation;
-use Chess\FEN\StringToBoard;
+use Chess\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
 class SqOutpostEvaluationTest extends AbstractUnitTestCase
@@ -15,7 +15,7 @@ class SqOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function w_advancing($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $sqOutpostEval = (new SqOutpostEvaluation($board))->eval();
 
@@ -28,7 +28,7 @@ class SqOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function w_advancing_under_attack($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $sqOutpostEval = (new SqOutpostEvaluation($board))->eval();
 
@@ -41,7 +41,7 @@ class SqOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function w_advancing_can_be_attacked($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $sqOutpostEval = (new SqOutpostEvaluation($board))->eval();
 
@@ -54,7 +54,7 @@ class SqOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function b_advancing($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $sqOutpostEval = (new SqOutpostEvaluation($board))->eval();
 
@@ -67,7 +67,7 @@ class SqOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function b_advancing_under_attack($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $sqOutpostEval = (new SqOutpostEvaluation($board))->eval();
 
@@ -80,7 +80,7 @@ class SqOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function b_advancing_can_be_attacked($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $sqOutpostEval = (new SqOutpostEvaluation($board))->eval();
 
@@ -354,7 +354,7 @@ class SqOutpostEvaluationTest extends AbstractUnitTestCase
     {
         $fen = 'r3kb1r/ppq2ppp/2p2n2/4nb2/P1N5/2N3P1/1P2PP1P/R1BQKB1R w KQkq -';
 
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $expected = [
             'w' => [],

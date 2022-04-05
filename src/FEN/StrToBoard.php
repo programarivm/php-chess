@@ -16,12 +16,12 @@ use Chess\Piece\Rook;
 use Chess\Piece\Type\RookType;
 
 /**
- * FEN string to Chess\Board converter.
+ * FEN string to Chess\Board.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-class StringToBoard
+class StrToBoard
 {
     private $string;
 

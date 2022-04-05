@@ -5,9 +5,9 @@ namespace Chess;
 use Chess\Ascii;
 use Chess\HeuristicPicture;
 use Chess\Player;
-use Chess\FEN\BoardToString;
-use Chess\FEN\ShortStringToPgn;
-use Chess\FEN\StringToBoard;
+use Chess\FEN\BoardToStr;
+use Chess\FEN\ShortStrToPgn;
+use Chess\FEN\StrToBoard;
 use Chess\PGN\Symbol;
 use Chess\PGN\Validate;
 use Chess\Evaluation\PressureEvaluation;
@@ -273,12 +273,12 @@ class Game
 
     public function fen(): string
     {
-        return (new BoardToString($this->board))->create();
+        return (new BoardToStr($this->board))->create();
     }
 
     public function loadFen(string $string)
     {
-        $this->board = (new StringToBoard($string))->create();
+        $this->board = (new StrToBoard($string))->create();
     }
 
     public function loadPgn(string $movetext)
@@ -288,7 +288,7 @@ class Game
 
     public function playFen(string $toShortFen)
     {
-        $fromFen = (new BoardToString($this->board))->create();
+        $fromFen = (new BoardToStr($this->board))->create();
 
         $fromPiecePlacement = explode(' ', $fromFen)[0];
         $toPiecePlacement = explode(' ', $toShortFen)[0];
@@ -321,7 +321,7 @@ class Game
             return Symbol::O_O_O;
         }
 
-        $pgn = (new ShortStringToPgn($fromFen, $toShortFen))->create();
+        $pgn = (new ShortStrToPgn($fromFen, $toShortFen))->create();
         $color = key($pgn);
         $result = current($pgn);
 
@@ -340,7 +340,7 @@ class Game
         $movetext = $this->board->getMovetext();
 
         if ($this->mode === self::MODE_LOAD_FEN) {
-            $board = (new StringToBoard($fen))->create();
+            $board = (new StrToBoard($fen))->create();
             $heuristicPicture = new HeuristicPicture($movetext, $board);
         } else {
             $heuristicPicture = new HeuristicPicture($movetext);

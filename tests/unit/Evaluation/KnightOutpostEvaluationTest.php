@@ -4,7 +4,7 @@ namespace Chess\Tests\Unit\Evaluation;
 
 use Chess\Board;
 use Chess\Evaluation\KnightOutpostEvaluation;
-use Chess\FEN\StringToBoard;
+use Chess\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
 class KnightOutpostEvaluationTest extends AbstractUnitTestCase
@@ -15,7 +15,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function w_advancing($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $knightOutpostEval = (new KnightOutpostEvaluation($board))->eval();
 
@@ -28,7 +28,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function w_advancing_under_attack($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $knightOutpostEval = (new KnightOutpostEvaluation($board))->eval();
 
@@ -41,7 +41,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function w_advancing_can_be_attacked($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $knightOutpostEval = (new KnightOutpostEvaluation($board))->eval();
 
@@ -54,7 +54,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function b_advancing($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $knightOutpostEval = (new KnightOutpostEvaluation($board))->eval();
 
@@ -67,7 +67,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function b_advancing_under_attack($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $knightOutpostEval = (new KnightOutpostEvaluation($board))->eval();
 
@@ -80,7 +80,7 @@ class KnightOutpostEvaluationTest extends AbstractUnitTestCase
      */
     public function b_advancing_can_be_attacked($expected, $fen)
     {
-        $board = (new StringToBoard($fen))->create();
+        $board = (new StrToBoard($fen))->create();
 
         $knightOutpostEval = (new KnightOutpostEvaluation($board))->eval();
 

@@ -3,11 +3,11 @@
 namespace Chess\FEN;
 
 use Chess\Castle;
-use Chess\FEN\BoardToString;
-use Chess\FEN\StringToBoard;
+use Chess\FEN\BoardToStr;
+use Chess\FEN\StrToBoard;
 use Chess\PGN\Symbol;
 
-abstract class AbstractStringToPgn
+abstract class AbstractStrToPgn
 {
     protected $fromFen;
 
@@ -19,7 +19,7 @@ abstract class AbstractStringToPgn
     {
         $this->fromFen = $fromFen;
         $this->toFen = $toFen;
-        $this->board = (new StringToBoard($fromFen))->create();
+        $this->board = (new StrToBoard($fromFen))->create();
     }
 
     abstract protected function find(array $legal);
@@ -41,7 +41,7 @@ abstract class AbstractStringToPgn
                         ) {
                             if ($clone->play($color, Symbol::K.$sq)) {
                                 $legal[] = [
-                                    Symbol::O_O => (new BoardToString($clone))->create()
+                                    Symbol::O_O => (new BoardToStr($clone))->create()
                                 ];
                             }
                         } elseif ($sq === $rule[Symbol::O_O_O]['sq']['next'] &&
@@ -49,16 +49,16 @@ abstract class AbstractStringToPgn
                         ) {
                             if ($clone->play($color, Symbol::K.$sq)) {
                                 $legal[] = [
-                                    Symbol::O_O_O => (new BoardToString($clone))->create()
+                                    Symbol::O_O_O => (new BoardToStr($clone))->create()
                                 ];
                             }
                         } elseif ($clone->play($color, Symbol::K.$sq)) {
                             $legal[] = [
-                                Symbol::K.$sq => (new BoardToString($clone))->create()
+                                Symbol::K.$sq => (new BoardToStr($clone))->create()
                             ];
                         } elseif ($clone->play($color, Symbol::K.'x'.$sq)) {
                             $legal[] = [
-                                Symbol::K.'x'.$sq => (new BoardToString($clone))->create()
+                                Symbol::K.'x'.$sq => (new BoardToStr($clone))->create()
                             ];
                         }
                         break;
@@ -66,13 +66,13 @@ abstract class AbstractStringToPgn
                         try {
                             if ($clone->play($color, $sq)) {
                                 $legal[] = [
-                                    $sq => (new BoardToString($clone))->create()
+                                    $sq => (new BoardToStr($clone))->create()
                                 ];
                             }
                         } catch (\Exception $e) {}
                         if ($clone->play($color, $piece->getFile()."x$sq")) {
                             $legal[] = [
-                                $piece->getFile()."x$sq" => (new BoardToString($clone))->create()
+                                $piece->getFile()."x$sq" => (new BoardToStr($clone))->create()
                             ];
                         }
                         break;
@@ -80,21 +80,21 @@ abstract class AbstractStringToPgn
                         if (in_array($sq, $this->disambiguation($color, $id))) {
                             if ($clone->play($color, $id.$position.$sq)) {
                                 $legal[] = [
-                                    $id.$position.$sq => (new BoardToString($clone))->create()
+                                    $id.$position.$sq => (new BoardToStr($clone))->create()
                                 ];
                             } elseif ($clone->play($color, "{$id}{$position}x$sq")) {
                                 $legal[] = [
-                                    "{$id}{$position}x$sq" => (new BoardToString($clone))->create()
+                                    "{$id}{$position}x$sq" => (new BoardToStr($clone))->create()
                                 ];
                             }
                         } else {
                             if ($clone->play($color, $id.$sq)) {
                                 $legal[] = [
-                                    $id.$sq => (new BoardToString($clone))->create()
+                                    $id.$sq => (new BoardToStr($clone))->create()
                                 ];
                             } elseif ($clone->play($color, "{$id}x{$sq}")) {
                                 $legal[] = [
-                                    "{$id}x{$sq}" => (new BoardToString($clone))->create()
+                                    "{$id}x{$sq}" => (new BoardToStr($clone))->create()
                                 ];
                             }
                         }

@@ -3,12 +3,12 @@
 namespace Chess\FEN;
 
 /**
- * FEN string to PGN converter.
+ * FEN string to PGN.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-class StringToPgn extends AbstractStringToPgn
+class StrToPgn extends AbstractStrToPgn
 {
     protected function find(array $legal)
     {

@@ -4,13 +4,13 @@ Creates a FEN string from a `Chess\Board`.
 
 ```php
 use Chess\Board;
-use Chess\FEN\BoardToString;
+use Chess\FEN\BoardToStr;
 
 $board = new Board();
 $board->play('w', 'e4');
 $board->play('b', 'e5');
 
-$string = (new BoardToString($board))->create();
+$string = (new BoardToStr($board))->create();
 
 print_r($string);
 ```

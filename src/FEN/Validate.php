@@ -16,14 +16,11 @@ class Validate
     public static function pieces(string $placement): string
     {
         $fields = explode('/', $placement);
-
         if ($count = count($fields) === 8) {
             return $placement;
         }
 
-        throw new UnknownNotationException(
-            "The FEN string should contain a valid piece placement."
-        );
+        throw new UnknownNotationException;
     }
 
     public static function color(string $color): string
@@ -39,9 +36,7 @@ class Validate
             }
         }
 
-        throw new UnknownNotationException(
-            "This FEN string does not contain a valid castle ability."
-        );
+        throw new UnknownNotationException;
     }
 
     public static function sq(string $sq): string

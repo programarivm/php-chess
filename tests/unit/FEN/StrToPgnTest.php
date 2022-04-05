@@ -2,17 +2,17 @@
 
 namespace Chess\Tests\Unit\Fen;
 
-use Chess\FEN\StringToPgn;
+use Chess\FEN\StrToPgn;
 use Chess\Tests\AbstractUnitTestCase;
 
-class StringToPgnTest extends AbstractUnitTestCase
+class StrToPgnTest extends AbstractUnitTestCase
 {
     /**
      * @test
      */
     public function e4()
     {
-        $pgn = (new StringToPgn(
+        $pgn = (new StrToPgn(
             'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -',
             'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3'
         ))->create();
@@ -29,7 +29,7 @@ class StringToPgnTest extends AbstractUnitTestCase
      */
     public function Nf3()
     {
-        $pgn = (new StringToPgn(
+        $pgn = (new StrToPgn(
             'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -',
             'rnbqkbnr/pppppppp/8/8/8/5N2/PPPPPPPP/RNBQKB1R b KQkq -'
         ))->create();

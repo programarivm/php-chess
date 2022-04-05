@@ -3,7 +3,7 @@
 namespace Chess;
 
 use Chess\Evaluation\InverseEvaluationInterface;
-use Chess\FEN\StringToBoard;
+use Chess\FEN\StrToBoard;
 use Chess\PGN\Symbol;
 
 class HeuristicPictureByFenString
@@ -14,7 +14,7 @@ class HeuristicPictureByFenString
 
     public function __construct(string $fen)
     {
-        $this->board = (new StringToBoard($fen))->create();
+        $this->board = (new StrToBoard($fen))->create();
     }
 
     /**

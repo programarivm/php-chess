@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Media;
 
 use Chess\Board;
-use Chess\FEN\StringToBoard;
+use Chess\FEN\StrToBoard;
 use Chess\Media\BoardToPng;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
@@ -38,7 +38,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_01_kaufman_flip()
     {
-        $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
+        $board = (new StrToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
         $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
@@ -54,7 +54,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_01_kaufman()
     {
-        $board = (new StringToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
+        $board = (new StrToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
         $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
@@ -70,7 +70,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_02_kaufman()
     {
-        $board = (new StringToBoard('3r2k1/p2r1p1p/1p2p1p1/q4n2/3P4/PQ5P/1P1RNPP1/3R2K1 b - - bm Nxd4'))
+        $board = (new StrToBoard('3r2k1/p2r1p1p/1p2p1p1/q4n2/3P4/PQ5P/1P1RNPP1/3R2K1 b - - bm Nxd4'))
             ->create();
 
         $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
