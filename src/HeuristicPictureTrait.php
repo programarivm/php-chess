@@ -19,7 +19,7 @@ use Chess\Evaluation\AbsolutePinEvaluation;
 use Chess\Evaluation\RelativePinEvaluation;
 use Chess\Evaluation\AbsoluteForkEvaluation;
 use Chess\Evaluation\RelativeForkEvaluation;
-use Chess\Evaluation\SquareOutpostEvaluation;
+use Chess\Evaluation\SqOutpostEvaluation;
 use Chess\Evaluation\KnightOutpostEvaluation;
 use Chess\Evaluation\BishopOutpostEvaluation;
 use Chess\PGN\Symbol;
@@ -70,7 +70,7 @@ trait HeuristicPictureTrait
         RelativePinEvaluation::class => 4,
         AbsoluteForkEvaluation::class => 4,
         RelativeForkEvaluation::class => 4,
-        SquareOutpostEvaluation::class => 4,
+        SqOutpostEvaluation::class => 4,
         KnightOutpostEvaluation::class => 4,
         BishopOutpostEvaluation::class => 4,
     ];

@@ -8,11 +8,11 @@ use Chess\PGN\Symbol;
 use Chess\PGN\Validate;
 
 /**
- * SquareOutpostEvaluation
+ * SqOutpostEvaluation
  *
  * @link https://en.wikipedia.org/wiki/Outpost_(chess)
  */
-class SquareOutpostEvaluation extends AbstractEvaluation
+class SqOutpostEvaluation extends AbstractEvaluation
 {
     const NAME = 'square_outpost';
 

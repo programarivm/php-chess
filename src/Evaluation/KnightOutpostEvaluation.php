@@ -3,7 +3,7 @@
 namespace Chess\Evaluation;
 
 use Chess\Board;
-use Chess\Evaluation\SquareOutpostEvaluation;
+use Chess\Evaluation\SqOutpostEvaluation;
 use Chess\PGN\Symbol;
 
 class KnightOutpostEvaluation extends AbstractEvaluation
@@ -16,7 +16,7 @@ class KnightOutpostEvaluation extends AbstractEvaluation
     {
         parent::__construct($board);
 
-        $this->sqOutpostEval = (new SquareOutpostEvaluation($board))->eval();
+        $this->sqOutpostEval = (new SqOutpostEvaluation($board))->eval();
 
         $this->result = [
             Symbol::WHITE => 0,
