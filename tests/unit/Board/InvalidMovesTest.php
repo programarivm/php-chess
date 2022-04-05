@@ -83,13 +83,13 @@ class InvalidMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'g3'),
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLING_SHORT),
+            new Rook('b', 'f5', RookType::CASTLE_SHORT),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];

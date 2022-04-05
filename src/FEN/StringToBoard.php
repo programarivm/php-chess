@@ -83,30 +83,30 @@ class StringToBoard
     {
         switch (true) {
             case $this->fields[2] === '-':
-                $this->castling[Symbol::WHITE][Symbol::CASTLING_SHORT] = false;
-                $this->castling[Symbol::WHITE][Symbol::CASTLING_LONG] = false;
-                $this->castling[Symbol::BLACK][Symbol::CASTLING_SHORT] = false;
-                $this->castling[Symbol::BLACK][Symbol::CASTLING_LONG] = false;
+                $this->castling[Symbol::WHITE][Symbol::CASTLE_SHORT] = false;
+                $this->castling[Symbol::WHITE][Symbol::CASTLE_LONG] = false;
+                $this->castling[Symbol::BLACK][Symbol::CASTLE_SHORT] = false;
+                $this->castling[Symbol::BLACK][Symbol::CASTLE_LONG] = false;
                 break;
             case !str_contains($this->fields[2], 'K') && !str_contains($this->fields[2], 'Q'):
-                $this->castling[Symbol::WHITE][Symbol::CASTLING_SHORT] = false;
-                $this->castling[Symbol::WHITE][Symbol::CASTLING_LONG] = false;
+                $this->castling[Symbol::WHITE][Symbol::CASTLE_SHORT] = false;
+                $this->castling[Symbol::WHITE][Symbol::CASTLE_LONG] = false;
                 break;
             case !str_contains($this->fields[2], 'K'):
-                $this->castling[Symbol::WHITE][Symbol::CASTLING_SHORT] = false;
+                $this->castling[Symbol::WHITE][Symbol::CASTLE_SHORT] = false;
                 break;
             case !str_contains($this->fields[2], 'Q'):
-                $this->castling[Symbol::WHITE][Symbol::CASTLING_LONG] = false;
+                $this->castling[Symbol::WHITE][Symbol::CASTLE_LONG] = false;
                 break;
             case !str_contains($this->fields[2], 'k') && !str_contains($this->fields[2], 'q'):
-                $this->castling[Symbol::BLACK][Symbol::CASTLING_SHORT] = false;
-                $this->castling[Symbol::BLACK][Symbol::CASTLING_LONG] = false;
+                $this->castling[Symbol::BLACK][Symbol::CASTLE_SHORT] = false;
+                $this->castling[Symbol::BLACK][Symbol::CASTLE_LONG] = false;
                 break;
             case !str_contains($this->fields[2], 'k'):
-                $this->castling[Symbol::BLACK][Symbol::CASTLING_SHORT] = false;
+                $this->castling[Symbol::BLACK][Symbol::CASTLE_SHORT] = false;
                 break;
             case !str_contains($this->fields[2], 'q'):
-                $this->castling[Symbol::BLACK][Symbol::CASTLING_LONG] = false;
+                $this->castling[Symbol::BLACK][Symbol::CASTLE_LONG] = false;
                 break;
             default:
                 // do nothing
@@ -126,30 +126,30 @@ class StringToBoard
             case Symbol::ROOK:
                 if ($color === Symbol::BLACK &&
                     $sq === 'a8' &&
-                    $this->castling[$color][Symbol::CASTLING_LONG]
+                    $this->castling[$color][Symbol::CASTLE_LONG]
                 ) {
-                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 } elseif (
                     $color === Symbol::BLACK &&
                     $sq === 'h8' &&
-                    $this->castling[$color][Symbol::CASTLING_SHORT]
+                    $this->castling[$color][Symbol::CASTLE_SHORT]
                 ) {
-                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_SHORT);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
                 } elseif (
                     $color === Symbol::WHITE &&
                     $sq === 'a1' &&
-                    $this->castling[$color][Symbol::CASTLING_LONG]
+                    $this->castling[$color][Symbol::CASTLE_LONG]
                 ) {
-                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 } elseif (
                     $color === Symbol::WHITE &&
                     $sq === 'h1' &&
-                    $this->castling[$color][Symbol::CASTLING_SHORT]
+                    $this->castling[$color][Symbol::CASTLE_SHORT]
                 ) {
-                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_SHORT);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
                 } else {
                     // in this case it really doesn't matter which RookType is assigned to the rook
-                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 }
                 break;
             case Symbol::BISHOP:

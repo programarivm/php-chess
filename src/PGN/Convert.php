@@ -45,26 +45,26 @@ class Convert
                         'next' => mb_substr($pgn, -2)
                 ]];
 
-            case preg_match('/^' . Move::KING_CASTLING_SHORT . '$/', $pgn):
+            case preg_match('/^' . Move::CASTLE_SHORT . '$/', $pgn):
                 return (object) [
                     'pgn' => $pgn,
                     'isCapture' => false,
                     'isCheck' => $isCheck,
-                    'type' => Move::KING_CASTLING_SHORT,
+                    'type' => Move::CASTLE_SHORT,
                     'color' => Validate::color($color),
                     'id' => Symbol::KING,
-                    'sq' => (object) Castling::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['sq']
+                    'sq' => (object) Castling::color($color)[Symbol::KING][Symbol::CASTLE_SHORT]['sq']
                 ];
 
-            case preg_match('/^' . Move::KING_CASTLING_LONG . '$/', $pgn):
+            case preg_match('/^' . Move::CASTLE_LONG . '$/', $pgn):
                 return (object) [
                     'pgn' => $pgn,
                     'isCapture' => false,
                     'isCheck' => $isCheck,
-                    'type' => Move::KING_CASTLING_LONG,
+                    'type' => Move::CASTLE_LONG,
                     'color' => Validate::color($color),
                     'id' => Symbol::KING,
-                    'sq' => (object) Castling::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sq']
+                    'sq' => (object) Castling::color($color)[Symbol::KING][Symbol::CASTLE_LONG]['sq']
                 ];
 
             case preg_match('/^' . Move::KING_CAPTURES . '$/', $pgn):

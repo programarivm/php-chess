@@ -55,13 +55,13 @@ class Ascii
             $castling = [
                 Symbol::WHITE => [
                     Castling::IS_CASTLED => false,
-                    Symbol::CASTLING_SHORT => false,
-                    Symbol::CASTLING_LONG => false,
+                    Symbol::CASTLE_SHORT => false,
+                    Symbol::CASTLE_LONG => false,
                 ],
                 Symbol::BLACK => [
                     Castling::IS_CASTLED => false,
-                    Symbol::CASTLING_SHORT => false,
-                    Symbol::CASTLING_LONG => false,
+                    Symbol::CASTLE_SHORT => false,
+                    Symbol::CASTLE_LONG => false,
                 ],
             ];
         }
@@ -138,30 +138,30 @@ class Ascii
             case Symbol::ROOK:
                 if ($color === Symbol::BLACK &&
                     $sq === 'a8' &&
-                    $castling[$color][Symbol::CASTLING_LONG]
+                    $castling[$color][Symbol::CASTLE_LONG]
                 ) {
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 } elseif (
                     $color === Symbol::BLACK &&
                     $sq === 'h8' &&
-                    $castling[$color][Symbol::CASTLING_SHORT]
+                    $castling[$color][Symbol::CASTLE_SHORT]
                 ) {
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLING_SHORT);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
                 } elseif (
                     $color === Symbol::WHITE &&
                     $sq === 'a1' &&
-                    $castling[$color][Symbol::CASTLING_LONG]
+                    $castling[$color][Symbol::CASTLE_LONG]
                 ) {
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 } elseif (
                     $color === Symbol::WHITE &&
                     $sq === 'h1' &&
-                    $castling[$color][Symbol::CASTLING_SHORT]
+                    $castling[$color][Symbol::CASTLE_SHORT]
                 ) {
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLING_SHORT);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
                 } else {
                     // in this case it really doesn't matter which RookType is assigned to the rook
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLING_LONG);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 }
                 break;
             case Symbol::BISHOP:

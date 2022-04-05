@@ -61,16 +61,16 @@ class BoardToString
     {
         $castlingRights = '';
         $castling = $this->board->getCastling();
-        if ($castling[Symbol::WHITE][Symbol::CASTLING_SHORT]) {
+        if ($castling[Symbol::WHITE][Symbol::CASTLE_SHORT]) {
             $castlingRights .= 'K';
         }
-        if ($castling[Symbol::WHITE][Symbol::CASTLING_LONG]) {
+        if ($castling[Symbol::WHITE][Symbol::CASTLE_LONG]) {
             $castlingRights .= 'Q';
         }
-        if ($castling[Symbol::BLACK][Symbol::CASTLING_SHORT]) {
+        if ($castling[Symbol::BLACK][Symbol::CASTLE_SHORT]) {
             $castlingRights .= 'k';
         }
-        if ($castling[Symbol::BLACK][Symbol::CASTLING_LONG]) {
+        if ($castling[Symbol::BLACK][Symbol::CASTLE_LONG]) {
             $castlingRights .= 'q';
         }
         if ($castlingRights === '') {

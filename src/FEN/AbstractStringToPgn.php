@@ -36,20 +36,20 @@ abstract class AbstractStringToPgn
                 switch ($id) {
                     case Symbol::KING:
                         $rule = Castling::color($color)[Symbol::KING];
-                        if ($sq === $rule[Symbol::CASTLING_SHORT]['sq']['next'] &&
-                            $this->board->getCastling()[$color][Symbol::CASTLING_SHORT]
+                        if ($sq === $rule[Symbol::CASTLE_SHORT]['sq']['next'] &&
+                            $this->board->getCastling()[$color][Symbol::CASTLE_SHORT]
                         ) {
                             if ($clone->play($color, Symbol::KING.$sq)) {
                                 $legal[] = [
-                                    Symbol::CASTLING_SHORT => (new BoardToString($clone))->create()
+                                    Symbol::CASTLE_SHORT => (new BoardToString($clone))->create()
                                 ];
                             }
-                        } elseif ($sq === $rule[Symbol::CASTLING_LONG]['sq']['next'] &&
-                            $this->board->getCastling()[$color][Symbol::CASTLING_LONG]
+                        } elseif ($sq === $rule[Symbol::CASTLE_LONG]['sq']['next'] &&
+                            $this->board->getCastling()[$color][Symbol::CASTLE_LONG]
                         ) {
                             if ($clone->play($color, Symbol::KING.$sq)) {
                                 $legal[] = [
-                                    Symbol::CASTLING_LONG => (new BoardToString($clone))->create()
+                                    Symbol::CASTLE_LONG => (new BoardToString($clone))->create()
                                 ];
                             }
                         } elseif ($clone->play($color, Symbol::KING.$sq)) {

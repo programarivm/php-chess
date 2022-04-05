@@ -33,14 +33,12 @@ class Rook extends Slider
     public function __construct(string $color, string $sq, $type)
     {
         if (!in_array($type, RookType::getChoices())) {
-            throw new PieceTypeException(
-                "A valid rook type needs to be provided in order to instantiate a rook."
-            );
-        } else {
-            $this->type = $type;
+            throw new PieceTypeException;
         }
 
         parent::__construct($color, $sq, Symbol::ROOK);
+
+        $this->type = $type;
 
         $this->travel = (object)[
             'up' => [],

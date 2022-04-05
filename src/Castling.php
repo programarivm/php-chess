@@ -18,13 +18,13 @@ class Castling
     public static $initialState = [
         Symbol::WHITE => [
             self::IS_CASTLED => false,
-            Symbol::CASTLING_SHORT => true,
-            Symbol::CASTLING_LONG => true,
+            Symbol::CASTLE_SHORT => true,
+            Symbol::CASTLE_LONG => true,
         ],
         Symbol::BLACK => [
             self::IS_CASTLED => false,
-            Symbol::CASTLING_SHORT => true,
-            Symbol::CASTLING_LONG => true,
+            Symbol::CASTLE_SHORT => true,
+            Symbol::CASTLE_LONG => true,
         ],
     ];
 
@@ -40,7 +40,7 @@ class Castling
             case Symbol::WHITE:
                 return [
                     Symbol::KING => [
-                        Symbol::CASTLING_SHORT => [
+                        Symbol::CASTLE_SHORT => [
                             'sqs' => [
                                 'f' => 'f1',
                                 'g' => 'g1',
@@ -50,7 +50,7 @@ class Castling
                                 'next' => 'g1',
                             ],
                         ],
-                        Symbol::CASTLING_LONG => [
+                        Symbol::CASTLE_LONG => [
                             'sqs' => [
                                 'b' => 'b1',
                                 'c' => 'c1',
@@ -63,13 +63,13 @@ class Castling
                         ],
                     ],
                     Symbol::ROOK => [
-                        Symbol::CASTLING_SHORT => [
+                        Symbol::CASTLE_SHORT => [
                             'sq' => [
                                 'current' => 'h1',
                                 'next' => 'f1',
                             ],
                         ],
-                        Symbol::CASTLING_LONG => [
+                        Symbol::CASTLE_LONG => [
                             'sq' => [
                                 'current' => 'a1',
                                 'next' => 'd1',
@@ -81,7 +81,7 @@ class Castling
             case Symbol::BLACK:
                 return [
                     Symbol::KING => [
-                        Symbol::CASTLING_SHORT => [
+                        Symbol::CASTLE_SHORT => [
                             'sqs' => [
                                 'f' => 'f8',
                                 'g' => 'g8',
@@ -91,7 +91,7 @@ class Castling
                                 'next' => 'g8',
                             ],
                         ],
-                        Symbol::CASTLING_LONG => [
+                        Symbol::CASTLE_LONG => [
                             'sqs' => [
                                 'b' => 'b8',
                                 'c' => 'c8',
@@ -104,13 +104,13 @@ class Castling
                         ],
                     ],
                     Symbol::ROOK => [
-                        Symbol::CASTLING_SHORT => [
+                        Symbol::CASTLE_SHORT => [
                             'sq' => [
                                 'current' => 'h8',
                                 'next' => 'f8',
                             ],
                         ],
-                        Symbol::CASTLING_LONG => [
+                        Symbol::CASTLE_LONG => [
                             'sq' => [
                                 'current' => 'a8',
                                 'next' => 'd8',
@@ -131,13 +131,13 @@ class Castling
      */
     public static function short(string $color, array $castling, \stdClass $space): bool
     {
-        return $castling[$color][Symbol::CASTLING_SHORT] &&
+        return $castling[$color][Symbol::CASTLE_SHORT] &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['sqs']['f'],
+                self::color($color)[Symbol::KING][Symbol::CASTLE_SHORT]['sqs']['f'],
                 $space->{Convert::toOpposite($color)})
              ) &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLING_SHORT]['sqs']['g'],
+                self::color($color)[Symbol::KING][Symbol::CASTLE_SHORT]['sqs']['g'],
                 $space->{Convert::toOpposite($color)})
              );
     }
@@ -152,17 +152,17 @@ class Castling
      */
     public static function long(string $color, array $castling, \stdClass $space): bool
     {
-        return $castling[$color][Symbol::CASTLING_LONG] &&
+        return $castling[$color][Symbol::CASTLE_LONG] &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['b'],
+                self::color($color)[Symbol::KING][Symbol::CASTLE_LONG]['sqs']['b'],
                 $space->{Convert::toOpposite($color)})
              ) &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['c'],
+                self::color($color)[Symbol::KING][Symbol::CASTLE_LONG]['sqs']['c'],
                 $space->{Convert::toOpposite($color)})
              ) &&
             !(in_array(
-                self::color($color)[Symbol::KING][Symbol::CASTLING_LONG]['sqs']['d'],
+                self::color($color)[Symbol::KING][Symbol::CASTLE_LONG]['sqs']['d'],
                 $space->{Convert::toOpposite($color)})
              );
     }

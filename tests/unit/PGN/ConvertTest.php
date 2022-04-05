@@ -286,10 +286,10 @@ class ConvertTest extends AbstractUnitTestCase
             'pgn' => 'O-O',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => Move::KING_CASTLING_SHORT,
+            'type' => Move::CASTLE_SHORT,
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLING_SHORT]['sq']
+            'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLE_SHORT]['sq']
         ];
 
         $this->assertEquals(Convert::toStdClass('w', $move), $example);
@@ -305,10 +305,10 @@ class ConvertTest extends AbstractUnitTestCase
             'pgn' => 'O-O-O',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => Move::KING_CASTLING_LONG,
+            'type' => Move::CASTLE_LONG,
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLING_LONG]['sq']
+            'sq' => (object) Castling::color('w')[Symbol::KING][Symbol::CASTLE_LONG]['sq']
         ];
 
         $this->assertEquals(Convert::toStdClass('w', $move), $example);

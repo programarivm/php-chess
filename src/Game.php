@@ -298,27 +298,27 @@ class Game
         if (
           'K2R' === substr($fromRanks[7], -3) &&
           'KR' === substr($toRanks[7], -2) &&
-          $this->board->play(Symbol::WHITE, Symbol::CASTLING_SHORT)
+          $this->board->play(Symbol::WHITE, Symbol::CASTLE_SHORT)
         ) {
-            return Symbol::CASTLING_SHORT;
+            return Symbol::CASTLE_SHORT;
         } elseif (
           'R3K' === substr($fromRanks[7], 0, 3) &&
           'R1K' === substr($toRanks[7], 0, 3) &&
-          $this->board->play(Symbol::WHITE, Symbol::CASTLING_LONG)
+          $this->board->play(Symbol::WHITE, Symbol::CASTLE_LONG)
         ) {
-            return Symbol::CASTLING_LONG;
+            return Symbol::CASTLE_LONG;
         } elseif (
           'k2r' === substr($fromRanks[0], -3) &&
           'kr' === substr($toRanks[0], -2) &&
-          $this->board->play(Symbol::BLACK, Symbol::CASTLING_SHORT)
+          $this->board->play(Symbol::BLACK, Symbol::CASTLE_SHORT)
         ) {
-            return Symbol::CASTLING_SHORT;
+            return Symbol::CASTLE_SHORT;
         } elseif (
           'r3k' === substr($fromRanks[0], 0, 3) &&
           'r1k' === substr($toRanks[0], 0, 3) &&
-          $this->board->play(Symbol::BLACK, Symbol::CASTLING_LONG)
+          $this->board->play(Symbol::BLACK, Symbol::CASTLE_LONG)
         ) {
-            return Symbol::CASTLING_LONG;
+            return Symbol::CASTLE_LONG;
         }
 
         $pgn = (new ShortStringToPgn($fromFen, $toShortFen))->create();

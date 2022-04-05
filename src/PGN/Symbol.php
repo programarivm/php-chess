@@ -20,8 +20,8 @@ class Symbol
     const QUEEN = 'Q';
     const ROOK = 'R';
 
-    const CASTLING_SHORT = 'O-O';
-    const CASTLING_LONG = 'O-O-O';
+    const CASTLE_SHORT = 'O-O';
+    const CASTLE_LONG = 'O-O-O';
     const SQUARE = '[a-h]{1}[1-8]{1}';
     const CHECK = '[\+\#]{0,1}';
 

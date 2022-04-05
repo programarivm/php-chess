@@ -21,12 +21,12 @@ class LegalMovesTest extends AbstractUnitTestCase
     public function Ra6()
     {
         $pieces = [
-            new Rook('w', 'a1', RookType::CASTLING_LONG),
+            new Rook('w', 'a1', RookType::CASTLE_LONG),
             new Queen('w', 'd1'),
             new King('w', 'e1'),
             new Bishop('w', 'f1'),
             new Knight('w', 'g1'),
-            new Rook('w', 'h1', RookType::CASTLING_SHORT),
+            new Rook('w', 'h1', RookType::CASTLE_SHORT),
             new Pawn('w', 'b2'),
             new Pawn('w', 'c2'),
             new Pawn('w', 'd2'),
@@ -34,14 +34,14 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f2'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('b', 'a8', RookType::CASTLING_LONG),
+            new Rook('b', 'a8', RookType::CASTLE_LONG),
             new Knight('b', 'b8'),
             new Bishop('b', 'c8'),
             new Queen('b', 'd8'),
             new King('b', 'e8'),
             new Bishop('b', 'f8'),
             new Knight('b', 'g8'),
-            new Rook('b', 'h8', RookType::CASTLING_SHORT),
+            new Rook('b', 'h8', RookType::CASTLE_SHORT),
             new Pawn('b', 'a7'),
             new Pawn('b', 'b7'),
             new Pawn('b', 'c7'),
@@ -76,7 +76,7 @@ class LegalMovesTest extends AbstractUnitTestCase
     public function Rxa6()
     {
         $pieces = [
-            new Rook('w', 'a1', RookType::CASTLING_LONG),
+            new Rook('w', 'a1', RookType::CASTLE_LONG),
             new King('w', 'e1'),
             new King('b', 'e8'),
             new Bishop('b', 'a6'),
@@ -108,7 +108,7 @@ class LegalMovesTest extends AbstractUnitTestCase
     public function h6()
     {
         $pieces = [
-            new Rook('w', 'a1', RookType::CASTLING_LONG),
+            new Rook('w', 'a1', RookType::CASTLE_LONG),
             new King('w', 'e1'),
             new King('b', 'e8'),
             new Bishop('b', 'a6'),
@@ -141,7 +141,7 @@ class LegalMovesTest extends AbstractUnitTestCase
     public function hxg6()
     {
         $pieces = [
-            new Rook('w', 'a1', RookType::CASTLING_LONG),
+            new Rook('w', 'a1', RookType::CASTLE_LONG),
             new King('w', 'e1'),
             new Pawn('w', 'g6'),
             new King('b', 'e8'),
@@ -237,14 +237,14 @@ class LegalMovesTest extends AbstractUnitTestCase
     public function O_O()
     {
         $pieces = [
-            new Rook('w', 'a1', RookType::CASTLING_LONG),
+            new Rook('w', 'a1', RookType::CASTLE_LONG),
             new Knight('w', 'b1'),
             new Bishop('w', 'c1'),
             new Queen('w', 'd1'),
             new King('w', 'e1'),
             new Bishop('w', 'f1'),
             new Knight('w', 'g1'),
-            new Rook('w', 'h1', RookType::CASTLING_SHORT),
+            new Rook('w', 'h1', RookType::CASTLE_SHORT),
             new Pawn('w', 'a2'),
             new Pawn('w', 'b2'),
             new Pawn('w', 'c2'),
@@ -253,12 +253,12 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f2'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('b', 'a8', RookType::CASTLING_LONG),
+            new Rook('b', 'a8', RookType::CASTLE_LONG),
             new Knight('b', 'b8'),
             new Bishop('b', 'c8'),
             new Queen('b', 'd8'),
             new King('b', 'e8'),
-            new Rook('b', 'h8', RookType::CASTLING_SHORT),
+            new Rook('b', 'h8', RookType::CASTLE_SHORT),
             new Pawn('b', 'a7'),
             new Pawn('b', 'b7'),
             new Pawn('b', 'c7'),
@@ -296,13 +296,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLING_SHORT),
+            new Rook('b', 'f5', RookType::CASTLE_SHORT),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
@@ -334,13 +334,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLING_SHORT),
+            new Rook('b', 'f5', RookType::CASTLE_SHORT),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
@@ -372,13 +372,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLING_SHORT),
+            new Rook('b', 'f5', RookType::CASTLE_SHORT),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
@@ -410,13 +410,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLING_SHORT),
+            new Rook('b', 'f5', RookType::CASTLE_SHORT),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
@@ -448,13 +448,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'f3'), // in check!
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLING_SHORT),
+            new Rook('b', 'f5', RookType::CASTLE_SHORT),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
@@ -486,13 +486,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'g3'),
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f5', RookType::CASTLING_SHORT),
+            new Rook('b', 'f5', RookType::CASTLE_SHORT),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
@@ -524,13 +524,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'g3'),
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'h2', RookType::CASTLING_SHORT),
+            new Rook('b', 'h2', RookType::CASTLE_SHORT),
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
@@ -562,13 +562,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'a3'),
             new Pawn('w', 'c3'),
-            new Rook('w', 'e6', RookType::CASTLING_LONG),
+            new Rook('w', 'e6', RookType::CASTLE_LONG),
             new King('w', 'g3'),
             new Pawn('b', 'a6'),
             new Pawn('b', 'b5'),
             new Pawn('b', 'c4'),
             new Knight('b', 'd3'),
-            new Rook('b', 'f3', RookType::CASTLING_SHORT), // rook not defended
+            new Rook('b', 'f3', RookType::CASTLE_SHORT), // rook not defended
             new King('b', 'g5'),
             new Pawn('b', 'h7')
         ];
@@ -620,13 +620,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'f3'),
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'a1', RookType::CASTLING_LONG),
+            new Rook('w', 'a1', RookType::CASTLE_LONG),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLING_SHORT),
+            new Rook('w', 'h1', RookType::CASTLE_SHORT),
             new King('b', 'e8'),
             new Bishop('b', 'd6'),
             new Knight('b', 'g8'),
-            new Rook('b', 'h8', RookType::CASTLING_SHORT),
+            new Rook('b', 'h8', RookType::CASTLE_SHORT),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7')
@@ -661,13 +661,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLING_SHORT),
+            new Rook('w', 'h1', RookType::CASTLE_SHORT),
             new Pawn('b', 'e4'),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7'),
             new King('b', 'e8'),
-            new Rook('b', 'h8', RookType::CASTLING_SHORT)
+            new Rook('b', 'h8', RookType::CASTLE_SHORT)
         ];
 
         $castling = [
@@ -700,13 +700,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLING_SHORT),
+            new Rook('w', 'h1', RookType::CASTLE_SHORT),
             new Pawn('b', 'e7'),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h7'),
             new King('b', 'e8'),
-            new Rook('b', 'h8', RookType::CASTLING_SHORT)
+            new Rook('b', 'h8', RookType::CASTLE_SHORT)
         ];
 
         $castling = [
@@ -740,13 +740,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLING_SHORT),
+            new Rook('w', 'h1', RookType::CASTLE_SHORT),
             new Pawn('b', 'e7'),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g4'),
             new Pawn('b', 'h7'),
             new King('b', 'e8'),
-            new Rook('b', 'h8', RookType::CASTLING_SHORT)
+            new Rook('b', 'h8', RookType::CASTLE_SHORT)
         ];
 
         $castling = [
@@ -779,13 +779,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'g2'),
             new Pawn('w', 'h2'),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLING_SHORT),
+            new Rook('w', 'h1', RookType::CASTLE_SHORT),
             new Pawn('b', 'e7'),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
             new Pawn('b', 'h4'),
             new King('b', 'e8'),
-            new Rook('b', 'h8', RookType::CASTLING_SHORT)
+            new Rook('b', 'h8', RookType::CASTLE_SHORT)
         ];
 
         $castling = [
@@ -849,13 +849,13 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'a2'),
             new Pawn('w', 'b2'),
             new Pawn('w', 'c5'),
-            new Rook('w', 'd1', RookType::CASTLING_LONG),
+            new Rook('w', 'd1', RookType::CASTLE_LONG),
             new King('w', 'e4'),
             new Pawn('b', 'a7'),
             new Pawn('b', 'b7'),
             new Pawn('b', 'c7'),
             new King('b', 'g6'),
-            new Rook('b', 'h8', RookType::CASTLING_LONG),
+            new Rook('b', 'h8', RookType::CASTLE_LONG),
         ];
 
         $castling = [
@@ -887,7 +887,7 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Pawn('w', 'g2'),
             new Pawn('w', 'h7'),
             new King('w', 'e1'),
-            new Rook('w', 'h1', RookType::CASTLING_SHORT),
+            new Rook('w', 'h1', RookType::CASTLE_SHORT),
             new Pawn('b', 'c7'),
             new Pawn('b', 'd7'),
             new Pawn('b', 'e7'),
@@ -919,7 +919,7 @@ class LegalMovesTest extends AbstractUnitTestCase
     public function check()
     {
         $pieces = [
-            new Rook('w', 'a7', RookType::CASTLING_LONG),
+            new Rook('w', 'a7', RookType::CASTLE_LONG),
             new Pawn('w', 'd4'),
             new Queen('w', 'e3'),
             new King('w', 'g1'),
@@ -929,8 +929,8 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Knight('b', 'e4'),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
-            new Rook('b', 'g5', RookType::CASTLING_LONG),
-            new Rook('b', 'h8', RookType::CASTLING_SHORT),
+            new Rook('b', 'g5', RookType::CASTLE_LONG),
+            new Rook('b', 'h8', RookType::CASTLE_SHORT),
             new Pawn('b', 'h7')
         ];
 
@@ -975,7 +975,7 @@ class LegalMovesTest extends AbstractUnitTestCase
             new Queen('w', 'f5'),
             new King('w', 'g2'),
             new Pawn('w', 'h2'),
-            new Rook('w', 'h8', RookType::CASTLING_LONG),
+            new Rook('w', 'h8', RookType::CASTLE_LONG),
             new King('b', 'e7'),
             new Pawn('b', 'f7'),
             new Pawn('b', 'g7'),
@@ -1213,7 +1213,7 @@ class LegalMovesTest extends AbstractUnitTestCase
     {
         $pieces = [
             new King('w', 'b6'),
-            new Rook('w', 'h8', RookType::CASTLING_LONG),
+            new Rook('w', 'h8', RookType::CASTLE_LONG),
             new King('b', 'a8'),
             new Bishop('b', 'b8'),
         ];
@@ -1245,8 +1245,8 @@ class LegalMovesTest extends AbstractUnitTestCase
         $pieces = [
             new King('w', 'g1'),
             new Queen('w', 'd1'),
-            new Rook('w', 'a5', RookType::CASTLING_SHORT),
-            new Rook('w', 'b7', RookType::CASTLING_LONG),
+            new Rook('w', 'a5', RookType::CASTLE_SHORT),
+            new Rook('w', 'b7', RookType::CASTLE_LONG),
             new Pawn('w', 'f6'),
             new Pawn('w', 'g5'),
             new King('b', 'e6'),
