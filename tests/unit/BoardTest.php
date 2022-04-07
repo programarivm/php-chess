@@ -17,6 +17,85 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function play_w_9()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        (new Board())->play('w', 9);
+    }
+
+    /**
+     * @test
+     */
+    public function play_w_foo()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        (new Board())->play('w', 'foo');
+    }
+
+    /**
+     * @test
+     */
+    public function play_w_e9()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        (new Board())->play('w', 'e9');
+    }
+
+    /**
+     * @test
+     */
+    public function play_w_Nw3()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        (new Board())->play('w', 'Nw3');
+    }
+
+    /**
+     * @test
+     */
+    public function piece_does_not_exist()
+    {
+        $this->expectException(\Chess\Exception\BoardException::class);
+
+        $pieces = [
+            new Pawn('w', 'a2'),
+            new Pawn('w', 'a3'),
+            new Pawn('w', 'c3'),
+            new Rook('w', 'e6', RookType::O_O_O),
+            new King('w', 'g3'),
+            new Pawn('b', 'a6'),
+            new Pawn('b', 'b5'),
+            new Pawn('b', 'c4'),
+            new Knight('b', 'd3'),
+            new Rook('b', 'f5', RookType::O_O),
+            new King('b', 'g5'),
+            new Pawn('b', 'h7')
+        ];
+
+        $castle = [
+            'w' => [
+                'isCastled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ],
+            'b' => [
+                'isCastled' => true,
+                'O-O' => false,
+                'O-O-O' => false
+            ]
+        ];
+
+        (new Board($pieces, $castle))
+            ->play('w', 'f4');
+    }
+
+    /**
+     * @test
+     */
     public function normal_turn()
     {
         $board = new Board();
