@@ -29,6 +29,7 @@ class BoardTest extends AbstractUnitTestCase
     |--------------------------------------------------------------------------
     |
     | Invalid moves throw an exception.
+    |
     */
 
     /**
@@ -115,6 +116,7 @@ class BoardTest extends AbstractUnitTestCase
     |--------------------------------------------------------------------------
     |
     | Illegal moves return false.
+    |
     */
 
     /**
@@ -933,6 +935,7 @@ class BoardTest extends AbstractUnitTestCase
     |--------------------------------------------------------------------------
     |
     | Legal moves return true.
+    |
     */
 
     /**
@@ -1936,6 +1939,7 @@ class BoardTest extends AbstractUnitTestCase
     |--------------------------------------------------------------------------
     |
     | Possible moves.
+    |
     */
 
     /**
@@ -2058,6 +2062,7 @@ class BoardTest extends AbstractUnitTestCase
     |--------------------------------------------------------------------------
     |
     | The captured pieces.
+    |
     */
 
     /**
@@ -2143,6 +2148,7 @@ class BoardTest extends AbstractUnitTestCase
     |--------------------------------------------------------------------------
     |
     | The history of the game.
+    |
     */
 
     /**
@@ -2430,12 +2436,13 @@ class BoardTest extends AbstractUnitTestCase
     |--------------------------------------------------------------------------
     |
     | Gets the pieces by color.
+    |
     */
 
     /**
      * @test
      */
-    public function count_pieces_in_benko_gambit()
+    public function get_pieces_in_benko_gambit()
     {
         $board = (new BenkoGambit(new Board()))->play();
 
@@ -2446,7 +2453,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function count_pieces_in_fianchetto_variation()
+    public function get_pieces_in_fianchetto_variation()
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
@@ -2457,7 +2464,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function count_pieces_in_open_sicilian()
+    public function get_pieces_in_open_sicilian()
     {
         $board = (new OpenSicilian(new Board()))->play();
 

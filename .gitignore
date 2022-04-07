@@ -2,3 +2,5 @@
 /vendor/
 .env
 /tests/output/*.png
+
+.phpunit.result.cache
