@@ -1,16 +1,27 @@
 <?php
 
-namespace Chess\Tests\Unit\Game;
+namespace Chess\Tests\Unit;
 
 use Chess\Game;
 use Chess\Tests\AbstractUnitTestCase;
 
-class HeuristicsTest extends AbstractUnitTestCase
+class GameTest extends AbstractUnitTestCase
 {
+    /*
+    |--------------------------------------------------------------------------
+    | heuristics()
+    |--------------------------------------------------------------------------
+    |
+    | A chess game can be thought of in terms of snapshots describing what's
+    | going on the board as reported by a number of evaluation features, thus,
+    | chess positions can be evaluated considering the heuristics of the game.
+    |
+    */
+
     /**
      * @test
      */
-    public function e4_e5_playfen()
+    public function heuristics_e4_e5()
     {
         $game = new Game();
         $game->playFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b');
@@ -33,7 +44,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function e4_e5_playfen_balanced()
+    public function heuristics_balance_e4_e5()
     {
         $game = new Game();
         $game->playFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b');
@@ -51,7 +62,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function kaufman_01_play_Nf6_gxf6()
+    public function heuristics_balance_kaufman_01()
     {
         $fen = '1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+';
 
@@ -72,7 +83,7 @@ class HeuristicsTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function e4_e5_f4_f5_Nc3_Nc6()
+    public function heuristics_balance_e4_e5_f4_f5_Nc3_Nc6()
     {
         $fen = 'r1bqkbnr/pppp2pp/2n5/4pp2/4PP2/2N5/PPPP2PP/R1BQKBNR w KQkq - 2 4';
 
