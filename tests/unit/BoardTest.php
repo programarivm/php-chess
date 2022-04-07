@@ -14,6 +14,10 @@ use Chess\Tests\AbstractUnitTestCase;
 
 class BoardTest extends AbstractUnitTestCase
 {
+    /**************************************************************************/
+    /* Invalid moves throwing an exception                                    */                                                          */
+    /**************************************************************************/
+
     /**
      * @test
      */
@@ -57,7 +61,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function piece_does_not_exist()
+    public function init_board_and_pick_a_nonexistent_piece()
     {
         $this->expectException(\Chess\Exception\BoardException::class);
 
@@ -89,53 +93,17 @@ class BoardTest extends AbstractUnitTestCase
             ]
         ];
 
-        (new Board($pieces, $castle))
-            ->play('w', 'f4');
+        (new Board($pieces, $castle))->play('w', 'f4');
     }
+
+    /**************************************************************************/
+    /* Illegal moves returning false                                          */                                                          */                                                          */
+    /**************************************************************************/
 
     /**
      * @test
      */
-    public function normal_turn()
-    {
-        $board = new Board();
-
-        $this->assertSame($board->getTurn(), 'w');
-        $this->assertTrue($board->play('w', 'e4'));
-        $this->assertSame($board->getTurn(), 'b');
-        $this->assertTrue($board->play('b', 'e5'));
-        $this->assertSame($board->getTurn(), 'w');
-    }
-
-    /**
-     * @test
-     */
-    public function wrong_turn()
-    {
-        $board = new Board();
-
-        $this->assertSame($board->getTurn(), 'w');
-        $this->assertFalse($board->play('b', 'e4'));
-        $this->assertSame($board->getTurn(), 'w');
-        $this->assertFalse($board->play('w', 'O-O'));
-        $this->assertSame($board->getTurn(), 'w');
-        $this->assertFalse($board->play('w', 'O-O-O'));
-        $this->assertSame($board->getTurn(), 'w');
-        $this->assertTrue($board->play('w', 'e4'));
-        $this->assertSame($board->getTurn(), 'b');
-        $this->assertFalse($board->play('w', 'e5'));
-        $this->assertSame($board->getTurn(), 'b');
-        $this->assertFalse($board->play('w', 'Nf3'));
-        $this->assertSame($board->getTurn(), 'b');
-        $this->assertTrue($board->play('b', 'e5'));
-        $this->assertSame($board->getTurn(), 'w');
-        $this->assertFalse($board->play('b', 'Nc6'));
-    }
-
-    /**
-     * @test
-     */
-    public function Qg5()
+    public function play_b_Qg5()
     {
         $board = new Board();
         $this->assertFalse($board->play('b', 'Qg5'));
@@ -144,7 +112,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Ra6()
+    public function play_w_Ra6()
     {
         $board = new Board();
         $this->assertFalse($board->play('w', 'Ra6'));
@@ -153,7 +121,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Rxa6()
+    public function play_b_Rxa6()
     {
         $board = new Board();
         $this->assertFalse($board->play('b', 'Rxa6'));
@@ -162,7 +130,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Bxe5()
+    public function play_w_Bxe5()
     {
         $board = new Board();
         $this->assertFalse($board->play('w', 'Bxe5'));
@@ -171,7 +139,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function exd4()
+    public function play_w_exd4()
     {
         $board = new Board();
         $this->assertFalse($board->play('w', 'exd4'));
@@ -180,7 +148,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Nxd2()
+    public function play_w_Nxd2()
     {
         $board = new Board();
         $this->assertFalse($board->play('w', 'Nxd2'));
@@ -189,16 +157,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Nxc3()
-    {
-        $board = new Board();
-        $this->assertFalse($board->play('w', 'Nxc3'));
-    }
-
-    /**
-     * @test
-     */
-    public function white_O_O()
+    public function play_w_O_O()
     {
         $board = new Board();
         $this->assertFalse($board->play('w', 'O-O'));
@@ -207,16 +166,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function white_O_O_O()
-    {
-        $board = new Board();
-        $this->assertFalse($board->play('w', 'O-O-O'));
-    }
-
-    /**
-     * @test
-     */
-    public function black_O_O()
+    public function play_b_O_O()
     {
         $board = new Board();
         $board->play('w', 'e4');
@@ -226,7 +176,33 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Kf4()
+    public function play_a_falsy_game()
+    {
+        $board = new Board();
+
+        $this->assertFalse($board->play('w', 'O-O'));
+        $this->assertFalse($board->play('w', 'O-O-O'));
+        $this->assertFalse($board->play('w', 'e5'));
+
+        $this->assertTrue($board->play('w', 'e4'));
+        $this->assertTrue($board->play('b', 'e5'));
+
+        $this->assertTrue($board->play('w', 'Nf3'));
+        $this->assertTrue($board->play('b', 'Nc6'));
+
+        $this->assertFalse($board->play('w', 'Ra2'));
+        $this->assertFalse($board->play('w', 'Ra3'));
+        $this->assertFalse($board->play('w', 'Ra4'));
+        $this->assertFalse($board->play('w', 'Ra5'));
+        $this->assertFalse($board->play('w', 'Ra6'));
+        $this->assertFalse($board->play('w', 'Ra7'));
+        $this->assertFalse($board->play('w', 'Ra8'));
+    }
+
+    /**
+     * @test
+     */
+    public function init_board_and_play_w_Kf4()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -264,7 +240,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Kf4_check()
+    public function init_board_and_play_w_Kf4_in_check()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -302,7 +278,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Kf2_check()
+    public function init_board_and_play_w_Kf2_in_check()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -340,7 +316,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Re7_check()
+    public function init_board_and_play_w_Re7_in_check()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -378,7 +354,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function a4_check()
+    public function init_board_and_play_w_a4_in_check()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -416,7 +392,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function Kxf2()
+    public function init_board_and_play_w_Kxf2()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -454,7 +430,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function white_O_O_after_Nc6()
+    public function init_board_and_play_w_O_O()
     {
         $board = new Board();
 
@@ -469,7 +445,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function white_O_O_O_after_Nf6()
+    public function init_board_and_play_w_O_O_O()
     {
         $board = new Board();
 
@@ -486,7 +462,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castle_threatening_f1()
+    public function init_board_and_play_w_O_O_with_threats_on_f1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -529,7 +505,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castle_threatening_f1_g1()
+    public function init_board_and_play_w_O_O_with_threats_on_f1_g1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -572,7 +548,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castle_threatening_g1()
+    public function init_board_and_play_w_O_O_with_threats_on_g1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -614,7 +590,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castle_threatening_c1()
+    public function init_board_and_play_w_O_O_O_with_threats_on_c1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -656,7 +632,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castle_threatening_d1_f1()
+    public function init_board_and_castle_with_threats_on_d1_f1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -699,7 +675,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castle_threatening_b1_f1()
+    public function init_board_and_castle_with_threats_on_b1_f1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -742,7 +718,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function castle_threatening_b1_d1()
+    public function init_board_and_play_w_O_O_O_with_threats_on_b1_d1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -784,7 +760,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function O_O_after_Kf1()
+    public function init_board_and_play_w_O_O_after_Kf1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -830,7 +806,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function O_O_after_Rg1()
+    public function init_board_and_play_w_O_O_after_Rg1()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -876,31 +852,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function O_O_RuyLopez()
-    {
-        $board = new Board();
-
-        $board->play('w', 'e4');
-        $board->play('b', 'e5');
-        $board->play('w', 'Nf3');
-        $board->play('b', 'Nc6');
-        $board->play('w', 'Bb5');
-        $board->play('b', 'Nf6');
-        $board->play('w', 'Ke2');
-        $board->play('b', 'Bb4');
-        $board->play('w', 'Ke1');
-        $board->play('b', 'Ke7');
-        $board->play('w', 'Nc3');
-        $board->play('b', 'Ke8');
-
-        $this->assertFalse($board->play('w', 'O-O'));
-        $this->assertFalse($board->play('b', 'O-O'));
-    }
-
-    /**
-     * @test
-     */
-    public function opponent_threatening_castle_sqs()
+    public function init_board_and_play_b_O_O_with_threats()
     {
         $pieces = [
             new Pawn('w', 'a2'),
@@ -948,31 +900,5 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertTrue($board->play('w', 'Nf3'));
         $this->assertFalse($board->play('b', 'O-O'));
-    }
-
-    /**
-     * @test
-     */
-    public function falsly_game()
-    {
-        $board = new Board();
-
-        $this->assertFalse($board->play('w', 'O-O'));
-        $this->assertFalse($board->play('w', 'O-O-O'));
-        $this->assertFalse($board->play('w', 'e5'));
-
-        $this->assertTrue($board->play('w', 'e4'));
-        $this->assertTrue($board->play('b', 'e5'));
-
-        $this->assertTrue($board->play('w', 'Nf3'));
-        $this->assertTrue($board->play('b', 'Nc6'));
-
-        $this->assertFalse($board->play('w', 'Ra2'));
-        $this->assertFalse($board->play('w', 'Ra3'));
-        $this->assertFalse($board->play('w', 'Ra4'));
-        $this->assertFalse($board->play('w', 'Ra5'));
-        $this->assertFalse($board->play('w', 'Ra6'));
-        $this->assertFalse($board->play('w', 'Ra7'));
-        $this->assertFalse($board->play('w', 'Ra8'));
     }
 }
