@@ -1914,4 +1914,124 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Possible moves.
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * @test
+     */
+    public function possible_moves_on_start()
+    {
+        $board = new Board();
+
+        $expected = [
+            'Na3',
+            'Nc3',
+            'Nf3',
+            'Nh3',
+            'a3',
+            'a4',
+            'b3',
+            'b4',
+            'c3',
+            'c4',
+            'd3',
+            'd4',
+            'e3',
+            'e4',
+            'f3',
+            'f4',
+            'g3',
+            'g4',
+            'h3',
+            'h4',
+        ];
+
+        $this->assertSame($expected, $board->possibleMoves());
+    }
+
+    /**
+     * @test
+     */
+    public function possible_moves_after_e4()
+    {
+        $board = new Board();
+        $board->play('w', 'e4');
+
+        $expected = [
+            'Na6',
+            'Nc6',
+            'Nf6',
+            'Nh6',
+            'a6',
+            'a5',
+            'b6',
+            'b5',
+            'c6',
+            'c5',
+            'd6',
+            'd5',
+            'e6',
+            'e5',
+            'f6',
+            'f5',
+            'g6',
+            'g5',
+            'h6',
+            'h5',
+        ];
+
+        $this->assertSame($expected, $board->possibleMoves());
+    }
+
+    /**
+     * @test_
+     */
+    public function possible_moves_after_e4_e5_Nf3_Nf6_Be2_Be7()
+    {
+        $board = new Board();
+        $board->play('w', 'e4');
+        $board->play('b', 'e5');
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nf6');
+        $board->play('w', 'Be2');
+        $board->play('b', 'Be7');
+
+        $expected = [
+            'Na3',
+            'Nc3',
+            'Kf1',
+            'O-O',
+            'Rg1',
+            'Rf1',
+            'a3',
+            'a4',
+            'b3',
+            'b4',
+            'c3',
+            'c4',
+            'd3',
+            'd4',
+            'g3',
+            'g4',
+            'h3',
+            'h4',
+            'Nxe5',
+            'Nd4',
+            'Ng1',
+            'Nh4',
+            'Ng5',
+            'Bd3',
+            'Bc4',
+            'Bb5',
+            'Ba6',
+            'Bf1',
+        ];
+
+        $this->assertSame($expected, $board->possibleMoves());
+    }
 }
