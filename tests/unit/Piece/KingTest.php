@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Piece;
 
+use Chess\Board;
 use Chess\Piece\King;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
@@ -46,7 +47,7 @@ class KingTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function kings_legal_moves_in_benko_gambit()
+    public function get_sqs_benko_gambit()
     {
         $board = (new BenkoGambit(new Board()))->play();
 

@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Piece;
 
+use Chess\Board;
 use Chess\Piece\Queen;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
@@ -51,7 +52,7 @@ class QueenTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function queens_legal_moves_in_fianchetto_variation()
+    public function get_sqs_fianchetto_variation()
     {
         $board = (new BenoniFianchettoVariation(new Board()))->play();
 
