@@ -4,6 +4,7 @@ namespace Chess\Tests\Unit\Piece;
 
 use Chess\Piece\King;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Tests\Sample\Opening\Benoni\BenkoGambit;
 
 class KingTest extends AbstractUnitTestCase
 {
@@ -40,5 +41,19 @@ class KingTest extends AbstractUnitTestCase
             'bottomRight' => 'e4'
         ];
         $this->assertEquals($travel, $king->getTravel());
+    }
+
+    /**
+     * @test
+     */
+    public function kings_legal_moves_in_benko_gambit()
+    {
+        $board = (new BenkoGambit(new Board()))->play();
+
+        $king = $board->getPieceBySq('f1');
+
+        $expected = [ 'e1', 'e2', 'g2' ];
+
+        $this->assertSame($expected, $king->getSqs());
     }
 }

@@ -4,6 +4,7 @@ namespace Chess\Tests\Unit\Piece;
 
 use Chess\Piece\Queen;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Tests\Sample\Opening\Benoni\FianchettoVariation as BenoniFianchettoVariation;
 
 class QueenTest extends AbstractUnitTestCase
 {
@@ -45,5 +46,19 @@ class QueenTest extends AbstractUnitTestCase
         ];
 
         $this->assertEquals($travel, $queen->getTravel());
+    }
+
+    /**
+     * @test
+     */
+    public function queens_legal_moves_in_fianchetto_variation()
+    {
+        $board = (new BenoniFianchettoVariation(new Board()))->play();
+
+        $queen = $board->getPieceBySq('d1');
+
+        $expected = [ 'e1', 'c2', 'b3' ];
+
+        $this->assertSame($expected, $queen->getSqs());
     }
 }
