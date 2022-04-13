@@ -127,7 +127,7 @@ class BoardTest extends AbstractUnitTestCase
     {
         $board = (new OpenRuyLopez(new Board()))->play();
 
-        $expected = 'kb';
+        $expected = 'kq';
 
         $this->assertSame($expected, $board->getCastlingAbility());
     }
