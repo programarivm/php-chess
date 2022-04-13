@@ -181,20 +181,9 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true,
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true,
-            ],
-        ];
+        $castlingAbility = 'KQkq';
 
-        $board = Ascii::toBoard($expected, 'w', $castle);
+        $board = Ascii::toBoard($expected, 'w', $castlingAbility);
         $array = Ascii::toArray($board);
 
         $this->assertSame($expected, $array);
@@ -216,20 +205,9 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' . ', ' K ', ' N ', ' R ' ],
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => false,
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true,
-            ],
-        ];
+        $castlingAbility = 'kq';
 
-        $board = Ascii::toBoard($expected, 'b', $castle);
+        $board = Ascii::toBoard($expected, 'b', $castlingAbility);
         $array = Ascii::toArray($board);
 
         $this->assertSame($expected, $array);
@@ -251,20 +229,9 @@ class AsciiTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' . ', ' R ', ' K ', ' . ' ],
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false,
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false,
-            ],
-        ];
+        $castlingAbility = '-';
 
-        $board = Ascii::toBoard($expected, 'b', $castle);
+        $board = Ascii::toBoard($expected, 'b', $castlingAbility);
         $array = Ascii::toArray($board);
 
         $this->assertSame($expected, $array);

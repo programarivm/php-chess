@@ -2,17 +2,9 @@
 
 namespace Chess;
 
-use Chess\CastlingRule;
-use Chess\PGN\AN\Castle;
+use Chess\Pieces;
+use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\AN\Color;
-use Chess\PGN\AN\Piece;
-use Chess\Piece\Bishop;
-use Chess\Piece\King;
-use Chess\Piece\Knight;
-use Chess\Piece\Pawn;
-use Chess\Piece\Queen;
-use Chess\Piece\Rook;
-use Chess\Piece\RookType;
 
 /**
  * Ascii
@@ -70,10 +62,10 @@ class Ascii
      */
     public static function toBoard(array $array, string $turn, $castlingAbility = null): Board
     {
+        $pieces = new Pieces();
         if (!$castlingAbility) {
             $castlingAbility = CastlingAbility::NEITHER;
         }
-        $pieces = [];
         foreach ($array as $i => $row) {
             $file = 'a';
             $rank = $i + 1;
@@ -81,14 +73,14 @@ class Ascii
                 $char = trim($item);
                 if (ctype_lower($char)) {
                     $char = strtoupper($char);
-                    self::pushPiece(Color::B, $char, $file.$rank, $castlingAbility, $pieces);
+                    $pieces->push(Color::B, $char, $file.$rank, $castlingAbility);
                 } elseif (ctype_upper($char)) {
-                    self::pushPiece(Color::W, $char, $file.$rank, $castlingAbility, $pieces);
+                    $pieces->push(Color::W, $char, $file.$rank, $castlingAbility);
                 }
                 $file = chr(ord($file) + 1);
             }
         }
-        $board = (new Board($pieces, $castlingAbility))->setTurn($turn);
+        $board = (new Board($pieces->getPieces(), $castlingAbility))->setTurn($turn);
 
         return $board;
     }
@@ -144,73 +136,5 @@ class Ascii
             $i,
             $j,
         ];
-    }
-
-    /**
-     * Returns the square in algebraic notation corresponding to the given ASCII array indexes.
-     *
-     * @param int $i
-     * @param int $j
-     * @return string
-     */
-    private static function fromIndexToAlgebraic(int $i, int $j): string
-    {
-        $file = chr(97 + $j);
-        $rank = $i + 1;
-
-        return $file.$rank;
-    }
-
-    private static function pushPiece($color, $char, $sq, $castle, &$pieces): void
-    {
-        switch ($char) {
-            case Piece::K:
-                $pieces[] = new King($color, $sq);
-                break;
-            case Piece::Q:
-                $pieces[] = new Queen($color, $sq);
-                break;
-            case Piece::R:
-                if ($color === Color::B &&
-                    $sq === 'a8' &&
-                    $castle[$color][Castle::LONG]
-                ) {
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
-                } elseif (
-                    $color === Color::B &&
-                    $sq === 'h8' &&
-                    $castle[$color][Castle::SHORT]
-                ) {
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
-                } elseif (
-                    $color === Color::W &&
-                    $sq === 'a1' &&
-                    $castle[$color][Castle::LONG]
-                ) {
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
-                } elseif (
-                    $color === Color::W &&
-                    $sq === 'h1' &&
-                    $castle[$color][Castle::SHORT]
-                ) {
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
-                } else {
-                    // in this case it really doesn't matter which RookType is assigned to the rook
-                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
-                }
-                break;
-            case Piece::B:
-                $pieces[] = new Bishop($color, $sq);
-                break;
-            case Piece::N:
-                $pieces[] = new Knight($color, $sq);
-                break;
-            case Piece::P:
-                $pieces[] = new Pawn($color, $sq);
-                break;
-            default:
-                // do nothing
-                break;
-        }
     }
 }

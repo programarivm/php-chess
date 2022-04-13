@@ -38,7 +38,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1'))
             ->create();
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -62,7 +62,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
             ->create();
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -86,7 +86,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2'))
             ->create();
 
-        $array = (new Ascii())->toArray($board, true);
+        $array = Ascii::toArray($board, true);
 
         $expected = [
             7 => [' R ', ' N ', ' B ', ' K ', ' Q ', ' B ', ' N ', ' R '],
@@ -110,7 +110,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('rn1qkb1r/4pp1p/3p1np1/2pP4/4P3/2N3P1/PP3P1P/R1BQ1KNR b kq - 0 9'))
             ->create();
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' r ', ' n ', ' . ', ' q ', ' k ', ' b ', ' . ', ' r ' ],
@@ -134,7 +134,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('r1b1kbnr/1pp2ppp/p1p5/8/3NP3/8/PPP2PPP/RNB1K2R b KQkq - 0 7'))
             ->create();
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' r ', ' . ', ' b ', ' . ', ' k ', ' b ', ' n ', ' r ' ],
@@ -158,7 +158,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('r1bqk1nr/pp2ppbp/2np2p1/2p5/4P3/2NP2P1/PPP2PBP/R1BQK1NR w KQkq - 0 6'))
             ->create();
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' r ', ' . ', ' b ', ' q ', ' k ', ' . ', ' n ', ' r ' ],
@@ -182,7 +182,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('r1bqk1nr/pp2ppbp/2np2p1/2p5/4P3/2NP2P1/PPP2PBP/R1BQK1NR w KQkq - 0 6'))
             ->create();
 
-        $array = (new Ascii())->toArray($board,true);
+        $array = Ascii::toArray($board,true);
 
         $expected = [
             7 => [' R ', ' N ', ' . ', ' K ', ' Q ', ' B ', ' . ', ' R '],
@@ -209,7 +209,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board->play('w', 'Nf3');
         $board->play('b', 'Nc6');
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' r ', ' . ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -244,7 +244,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('rnbqkbnr/pp1pp1pp/8/2p1Pp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3'))
             ->create();
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -282,7 +282,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+'))
             ->create();
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' . ', ' r ', ' b ', ' q ', ' . ', ' r ', ' k ', ' . ' ],
@@ -308,7 +308,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board->play('w', 'Qg4');
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' . ', ' r ', ' b ', ' q ', ' . ', ' r ', ' k ', ' . ' ],
@@ -335,7 +335,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board->play('w', 'Qg4');
         $board->play('b', 'a5');
 
-        $array = (new Ascii())->toArray($board);
+        $array = Ascii::toArray($board);
 
         $expected = [
             7 => [ ' . ', ' r ', ' b ', ' q ', ' . ', ' r ', ' k ', ' . ' ],
