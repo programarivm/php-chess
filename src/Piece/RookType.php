@@ -10,16 +10,16 @@ namespace Chess\Piece;
  */
 class RookType
 {
-    const O_O = 'castle short';
-    const O_O_O = 'castle long';
+    const CASTLE_SHORT = 'castle short';
+    const CASTLE_LONG = 'castle long';
     const PROMOTED = 'promoted';
     const SLIDER = 'slider';
 
     public static function all(): array
     {
         return [
-            self::O_O,
-            self::O_O_O,
+            self::CASTLE_SHORT,
+            self::CASTLE_LONG,
             self::PROMOTED,
             self::SLIDER
         ];

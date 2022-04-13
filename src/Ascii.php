@@ -175,28 +175,28 @@ class Ascii
                     $sq === 'a8' &&
                     $castle[$color][Castle::LONG]
                 ) {
-                    $pieces[] = new Rook($color, $sq, RookType::O_O_O);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 } elseif (
                     $color === Color::B &&
                     $sq === 'h8' &&
                     $castle[$color][Castle::SHORT]
                 ) {
-                    $pieces[] = new Rook($color, $sq, RookType::O_O);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
                 } elseif (
                     $color === Color::W &&
                     $sq === 'a1' &&
                     $castle[$color][Castle::LONG]
                 ) {
-                    $pieces[] = new Rook($color, $sq, RookType::O_O_O);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 } elseif (
                     $color === Color::W &&
                     $sq === 'h1' &&
                     $castle[$color][Castle::SHORT]
                 ) {
-                    $pieces[] = new Rook($color, $sq, RookType::O_O);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
                 } else {
                     // in this case it really doesn't matter which RookType is assigned to the rook
-                    $pieces[] = new Rook($color, $sq, RookType::O_O_O);
+                    $pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 }
                 break;
             case Piece::B:

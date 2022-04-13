@@ -13,7 +13,7 @@ class CastlingRuleTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function w_O_O_O()
+    public function w_CASTLE_LONG()
     {
         $rule = CastlingRule::color(Color::W);
 
@@ -29,7 +29,7 @@ class CastlingRuleTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function b_O_O_O()
+    public function b_CASTLE_LONG()
     {
         $rule = CastlingRule::color(Color::B);
 
@@ -45,7 +45,7 @@ class CastlingRuleTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function w_O_O()
+    public function w_CASTLE_SHORT()
     {
         $rule = CastlingRule::color(Color::W);
 
@@ -60,7 +60,7 @@ class CastlingRuleTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function b_O_O()
+    public function b_CASTLE_SHORT()
     {
         $rule = CastlingRule::color(Color::B);
 

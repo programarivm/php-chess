@@ -132,28 +132,28 @@ class StrToBoard
                     $sq === 'a8' &&
                     $this->castle[$color][Castle::LONG]
                 ) {
-                    $this->pieces[] = new Rook($color, $sq, RookType::O_O_O);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 } elseif (
                     $color === Color::B &&
                     $sq === 'h8' &&
                     $this->castle[$color][Castle::SHORT]
                 ) {
-                    $this->pieces[] = new Rook($color, $sq, RookType::O_O);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
                 } elseif (
                     $color === Color::W &&
                     $sq === 'a1' &&
                     $this->castle[$color][Castle::LONG]
                 ) {
-                    $this->pieces[] = new Rook($color, $sq, RookType::O_O_O);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 } elseif (
                     $color === Color::W &&
                     $sq === 'h1' &&
                     $this->castle[$color][Castle::SHORT]
                 ) {
-                    $this->pieces[] = new Rook($color, $sq, RookType::O_O);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
                 } else {
                     // in this case it really doesn't matter which RookType is assigned to the rook
-                    $this->pieces[] = new Rook($color, $sq, RookType::O_O_O);
+                    $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
                 }
                 break;
             case Piece::B:

@@ -65,7 +65,7 @@ class GameTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function ascii_e4_e5_Nf3_Nc6_Bb5_a6_Ba4_b5_Bb3_Bb7_a4_Nf6_Nc3_g6_Qe2_d6_d3_Be7_Bg5_Qd7_O_O_O_O_O()
+    public function ascii_e4_e5_Nf3_Nc6_Bb5_a6_Ba4_b5_Bb3_Bb7_a4_Nf6_Nc3_g6_Qe2_d6_d3_Be7_Bg5_Qd7_CASTLE_LONG_CASTLE_SHORT()
     {
         $game = new Game();
         $this->assertTrue($game->playFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b'));
@@ -341,7 +341,7 @@ class GameTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_fen_a_sequence_of_moves_O_O()
+    public function play_fen_a_sequence_of_moves_CASTLE_SHORT()
     {
         $game = new Game();
         $game->playFen('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b');
