@@ -4,8 +4,8 @@ namespace Chess\FEN;
 
 use Chess\Ascii;
 use Chess\Board;
-use Chess\CastleRule;
 use Chess\Exception\UnknownNotationException;
+use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Color;
 use Chess\PGN\AN\Piece;
@@ -31,7 +31,7 @@ class StrToBoard
 
     private $fields;
 
-    private $castle;
+    private $castlingAbility;
 
     private $pieces;
 
@@ -41,7 +41,7 @@ class StrToBoard
 
         $this->fields = array_filter(explode(' ', $this->string));
 
-        $this->castle = CastleRule::$initialState;
+        $this->castlingAbility = CastlingAbility::START;
 
         $this->pieces = [];
 
@@ -68,7 +68,7 @@ class StrToBoard
                     }
                 }
             }
-            $board = (new Board($this->pieces, $this->castle))
+            $board = (new Board($this->pieces, $this->castlingAbility))
                 ->setTurn($this->fields[1]);
 
             if ($this->fields[3] !== '-') {
@@ -81,6 +81,7 @@ class StrToBoard
         return $board;
     }
 
+    /*
     private function castle()
     {
         switch (true) {
@@ -115,6 +116,7 @@ class StrToBoard
                 break;
         }
     }
+    */
 
     private function pushPiece(string $color, string $char, string $sq)
     {
@@ -190,7 +192,7 @@ class StrToBoard
         $toSquare = $file.$toRank;
         $ascii->setArrayElem($piece, $fromSquare, $array)
             ->setArrayElem(' . ', $toSquare, $array);
-        $board = $ascii->toBoard($array, $turn, $board->getCastle());
+        $board = $ascii->toBoard($array, $turn, $board->getCastlingAbility());
         $board->play($turn, $toSquare);
 
         return $board;

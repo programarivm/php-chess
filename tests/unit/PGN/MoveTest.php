@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\PGN;
 
-use Chess\CastleRule;
+use Chess\CastlingRule;
 use Chess\PGN\Move;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Piece;
@@ -289,7 +289,7 @@ class MoveTest extends AbstractUnitTestCase
             'type' => Move::O_O,
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) CastleRule::color('w')[Piece::K][Castle::SHORT]['sq']
+            'sq' => (object) CastlingRule::color('w')[Piece::K][Castle::SHORT]['sq']
         ];
 
         $this->assertEquals(Move::toObj('w', $move), $example);
@@ -308,7 +308,7 @@ class MoveTest extends AbstractUnitTestCase
             'type' => Move::O_O_O,
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) CastleRule::color('w')[Piece::K][Castle::LONG]['sq']
+            'sq' => (object) CastlingRule::color('w')[Piece::K][Castle::LONG]['sq']
         ];
 
         $this->assertEquals(Move::toObj('w', $move), $example);

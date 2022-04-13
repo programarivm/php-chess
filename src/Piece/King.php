@@ -2,7 +2,8 @@
 
 namespace Chess\Piece;
 
-use Chess\CastleRule;
+use Chess\CastlingRule;
+use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Piece;
 use Chess\Piece\RookType;
@@ -43,19 +44,17 @@ class King extends AbstractPiece
 
     protected function moveCastleLong(): ?string
     {
-        $rule = CastleRule::color($this->getColor())[Piece::K][Castle::LONG];
-        if (!$this->board->getCastle()[$this->getColor()]['isCastled']) {
-            if ($this->board->getCastle()[$this->getColor()][Castle::LONG]) {
-                if (
-                    in_array($rule['sqs']['b'], $this->board->getSqEval()->free) &&
-                    in_array($rule['sqs']['c'], $this->board->getSqEval()->free) &&
-                    in_array($rule['sqs']['d'], $this->board->getSqEval()->free) &&
-                    !in_array($rule['sqs']['b'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
-                    !in_array($rule['sqs']['c'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
-                    !in_array($rule['sqs']['d'], $this->board->getSpaceEval()->{$this->getOppColor()})
-                ) {
-                    return $rule['sq']['next'];
-                }
+        $rule = CastlingRule::color($this->getColor())[Piece::K][Castle::LONG];
+        if (CastlingAbility::long($this->board->getCastlingAbility(), $this->getColor())) {
+            if (
+                in_array($rule['sqs']['b'], $this->board->getSqEval()->free) &&
+                in_array($rule['sqs']['c'], $this->board->getSqEval()->free) &&
+                in_array($rule['sqs']['d'], $this->board->getSqEval()->free) &&
+                !in_array($rule['sqs']['b'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
+                !in_array($rule['sqs']['c'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
+                !in_array($rule['sqs']['d'], $this->board->getSpaceEval()->{$this->getOppColor()})
+            ) {
+                return $rule['sq']['next'];
             }
         }
 
@@ -64,17 +63,15 @@ class King extends AbstractPiece
 
     protected function moveCastleShort(): ?string
     {
-        $rule = CastleRule::color($this->getColor())[Piece::K][Castle::SHORT];
-        if (!$this->board->getCastle()[$this->getColor()]['isCastled']) {
-            if ($this->board->getCastle()[$this->getColor()][Castle::SHORT]) {
-                if (
-                    in_array($rule['sqs']['f'], $this->board->getSqEval()->free) &&
-                    in_array($rule['sqs']['g'], $this->board->getSqEval()->free) &&
-                    !in_array($rule['sqs']['f'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
-                    !in_array($rule['sqs']['g'], $this->board->getSpaceEval()->{$this->getOppColor()})
-                ) {
-                    return $rule['sq']['next'];
-                }
+        $rule = CastlingRule::color($this->getColor())[Piece::K][Castle::SHORT];
+        if (CastlingAbility::short($this->board->getCastlingAbility(), $this->getColor())) {
+            if (
+                in_array($rule['sqs']['f'], $this->board->getSqEval()->free) &&
+                in_array($rule['sqs']['g'], $this->board->getSqEval()->free) &&
+                !in_array($rule['sqs']['f'], $this->board->getSpaceEval()->{$this->getOppColor()}) &&
+                !in_array($rule['sqs']['g'], $this->board->getSpaceEval()->{$this->getOppColor()})
+            ) {
+                return $rule['sq']['next'];
             }
         }
 
@@ -106,7 +103,7 @@ class King extends AbstractPiece
      */
     public function getCastleRook(array $pieces): ?Rook
     {
-        $rule = CastleRule::color($this->getColor())[Piece::R];
+        $rule = CastlingRule::color($this->getColor())[Piece::R];
         foreach ($pieces as $piece) {
             if (
                 $piece->getId() === Piece::R &&

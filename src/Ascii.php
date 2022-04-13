@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\CastleRule;
+use Chess\CastlingRule;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Color;
 use Chess\PGN\AN\Piece;
@@ -65,24 +65,13 @@ class Ascii
      *
      * @param array $array
      * @param string $turn
-     * @param \stdClass $castle
+     * @param \stdClass $castlingAbility
      * @return \Chess\Board
      */
-    public static function toBoard(array $array, string $turn, $castle = null): Board
+    public static function toBoard(array $array, string $turn, $castlingAbility = null): Board
     {
-        if (!$castle) {
-            $castle = [
-                Color::W => [
-                    CastleRule::IS_CASTLED => false,
-                    Castle::SHORT => false,
-                    Castle::LONG => false,
-                ],
-                Color::B => [
-                    CastleRule::IS_CASTLED => false,
-                    Castle::SHORT => false,
-                    Castle::LONG => false,
-                ],
-            ];
+        if (!$castlingAbility) {
+            $castlingAbility = CastlingAbility::NEITHER;
         }
         $pieces = [];
         foreach ($array as $i => $row) {
@@ -92,14 +81,14 @@ class Ascii
                 $char = trim($item);
                 if (ctype_lower($char)) {
                     $char = strtoupper($char);
-                    self::pushPiece(Color::B, $char, $file.$rank, $castle, $pieces);
+                    self::pushPiece(Color::B, $char, $file.$rank, $castlingAbility, $pieces);
                 } elseif (ctype_upper($char)) {
-                    self::pushPiece(Color::W, $char, $file.$rank, $castle, $pieces);
+                    self::pushPiece(Color::W, $char, $file.$rank, $castlingAbility, $pieces);
                 }
                 $file = chr(ord($file) + 1);
             }
         }
-        $board = (new Board($pieces, $castle))->setTurn($turn);
+        $board = (new Board($pieces, $castlingAbility))->setTurn($turn);
 
         return $board;
     }

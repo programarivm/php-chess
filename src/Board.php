@@ -2,12 +2,13 @@
 
 namespace Chess;
 
-use Chess\CastleRule;
+use Chess\CastlingRule;
 use Chess\Evaluation\DefenseEvaluation;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
 use Chess\Evaluation\SqEvaluation;
 use Chess\Exception\BoardException;
+use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\Move;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Color;
@@ -61,11 +62,11 @@ final class Board extends \SplObjectStorage
     private array $history = [];
 
     /**
-     * Castle status.
+     * Castling ability.
      *
      * @var array
      */
-    private array $castle;
+    private string $castlingAbility;
 
     /**
      * Observers.
@@ -106,9 +107,9 @@ final class Board extends \SplObjectStorage
      * Constructor.
      *
      * @param array $pieces
-     * @param array $castle
+     * @param string $castlingAbility
      */
-    public function __construct(array $pieces = null, array $castle = null)
+    public function __construct(array $pieces = null, string $castlingAbility = '-')
     {
         if (empty($pieces)) {
             $this->attach(new Rook(Color::W, 'a1', RookType::O_O_O));
@@ -143,12 +144,12 @@ final class Board extends \SplObjectStorage
             $this->attach(new Pawn(Color::B, 'f7'));
             $this->attach(new Pawn(Color::B, 'g7'));
             $this->attach(new Pawn(Color::B, 'h7'));
-            $this->castle = CastleRule::$initialState;
+            $this->castlingAbility = CastlingAbility::START;
         } else {
             foreach ($pieces as $piece) {
                 $this->attach($piece);
             }
-            $this->castle = $castle;
+            $this->castlingAbility = $castlingAbility;
         }
 
         $this->refresh();
@@ -208,13 +209,13 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Gets the castle status.
+     * Gets the castling ability.
      *
-     * @return array
+     * @return string
      */
-    public function getCastle(): array
+    public function getCastlingAbility(): string
     {
-        return $this->castle;
+        return $this->castlingAbility;
     }
 
     /**
@@ -528,7 +529,6 @@ final class Board extends \SplObjectStorage
      */
     private function isLegalMove(object $move): bool
     {
-        $isLegalMove = false;
         $pieces = $this->pickPiece($move);
         if (count($pieces) > 1) {
             foreach ($pieces as $piece) {
@@ -536,26 +536,27 @@ final class Board extends \SplObjectStorage
                     return $this->move($piece);
                 }
             }
-        } elseif (current($pieces)->isMovable() && !$this->leavesInCheck(current($pieces))) {
-            $piece = current($pieces);
-            switch ($piece->getMove()->type) {
-                case Move::O_O:
-                    CastleRule::short($this->turn, $this->castle, $this->spaceEval)
-                        ? $isLegalMove = $this->castle($piece)
-                        : $isLegalMove = false;
-                    break;
-                case Move::O_O_O:
-                    CastleRule::long($this->turn, $this->castle, $this->spaceEval)
-                        ? $isLegalMove = $this->castle($piece)
-                        : $isLegalMove = false;
-                    break;
-                default:
-                    $isLegalMove = $this->move($piece);
-                    break;
+        } elseif ($piece = current($pieces)) {
+            if ($piece->isMovable() && !$this->leavesInCheck($piece)) {
+                if ($piece->getMove()->type === Move::O_O) {
+                    return CastlingRule::short(
+                        $this->castlingAbility,
+                        $this->turn,
+                        $this->spaceEval
+                    );
+                } elseif ($piece->getMove()->type === Move::O_O_O) {
+                    return CastlingRule::long(
+                        $this->castlingAbility,
+                        $this->turn,
+                        $this->spaceEval
+                    );
+                } else {
+                    return $this->move($piece);
+                }
             }
         }
 
-        return $isLegalMove;
+        return false;
     }
 
     /**
@@ -586,22 +587,18 @@ final class Board extends \SplObjectStorage
             $this->attach(
                 new King(
                     $king->getColor(),
-                    CastleRule::color($king->getColor())[Piece::K][rtrim($king->getMove()->pgn, '+')]['sq']['next']
+                    CastlingRule::color($king->getColor())[Piece::K][rtrim($king->getMove()->pgn, '+')]['sq']['next']
                 )
              );
             $this->detach($rook);
             $this->attach(
                 new Rook(
                     $rook->getColor(),
-                    CastleRule::color($king->getColor())[Piece::R][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
+                    CastlingRule::color($king->getColor())[Piece::R][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
                     $rook->getType()
                 )
             );
-            $this->castle[$this->turn] = [
-                CastleRule::IS_CASTLED => true,
-                Castle::SHORT => false,
-                Castle::LONG => false,
-            ];
+            $this->castlingAbility = CastlingAbility::castle($this->castlingAbility, $this->turn);
             $this->pushHistory($king)->refresh();
             return true;
         }
@@ -612,10 +609,10 @@ final class Board extends \SplObjectStorage
     /**
      * Undoes a castle move.
      *
-     * @param array $prevCastle
+     * @param string $prevCastlingAbility
      * @return \Chess\Board
      */
-    private function undoCastle(array $prevCastle): Board
+    private function undoCastle(string $prevCastlingAbility): Board
     {
         $prev = end($this->history);
         $king = $this->getPieceBySq($prev->move->sq->next);
@@ -624,28 +621,28 @@ final class Board extends \SplObjectStorage
         $this->attach($kingUndone);
         if (Move::O_O === $prev->move->type) {
             $rook = $this->getPieceBySq(
-                CastleRule::color($prev->move->color)[Piece::R][Castle::SHORT]['sq']['next']
+                CastlingRule::color($prev->move->color)[Piece::R][Castle::SHORT]['sq']['next']
             );
             $rookUndone = new Rook(
                 $prev->move->color,
-                CastleRule::color($prev->move->color)[Piece::R][Castle::SHORT]['sq']['current'],
+                CastlingRule::color($prev->move->color)[Piece::R][Castle::SHORT]['sq']['current'],
                 $rook->getType()
             );
             $this->detach($rook);
             $this->attach($rookUndone);
         } elseif (Move::O_O_O === $prev->move->type) {
             $rook = $this->getPieceBySq(
-                CastleRule::color($prev->move->color)[Piece::R][Castle::LONG]['sq']['next']
+                CastlingRule::color($prev->move->color)[Piece::R][Castle::LONG]['sq']['next']
             );
             $rookUndone = new Rook(
                 $prev->move->color,
-                CastleRule::color($prev->move->color)[Piece::R][Castle::LONG]['sq']['current'],
+                CastlingRule::color($prev->move->color)[Piece::R][Castle::LONG]['sq']['current'],
                 $rook->getType()
             );
             $this->detach($rook);
             $this->attach($rookUndone);
         }
-        $this->castle = $prevCastle;
+        $this->castlingAbility = $prevCastlingAbility;
         $this->popHistory()->refresh();
 
         return $this;
@@ -659,33 +656,49 @@ final class Board extends \SplObjectStorage
      */
     private function updateCastle(AbstractPiece $pieceMoved): Board
     {
-        if (!$this->castle[$this->turn][CastleRule::IS_CASTLED]) {
+        if (CastlingAbility::can($this->castlingAbility, $this->turn)) {
             if ($pieceMoved->getId() === Piece::K) {
-                $this->castle[$this->turn] = [
-                    CastleRule::IS_CASTLED => false,
-                    Castle::SHORT => false,
-                    Castle::LONG => false,
-                ];
+                $this->castlingAbility = CastlingAbility::remove(
+                    $this->castlingAbility,
+                    $this->turn,
+                    [Piece::K, Piece::Q]
+                );
             } elseif ($pieceMoved->getId() === Piece::R) {
                 if ($pieceMoved->getType() === RookType::O_O) {
-                    $this->castle[$this->turn][Castle::SHORT] = false;
+                    $this->castlingAbility = CastlingAbility::remove(
+                        $this->castlingAbility,
+                        $this->turn,
+                        [Piece::K]
+                    );
                 } elseif ($pieceMoved->getType() === RookType::O_O_O) {
-                    $this->castle[$this->turn][Castle::LONG] = false;
+                    $this->castlingAbility = CastlingAbility::remove(
+                        $this->castlingAbility,
+                        $this->turn,
+                        [Piece::Q]
+                    );
                 }
             }
         }
         $oppColor = Color::opp($this->turn);
-        if (!$this->castle[$oppColor][CastleRule::IS_CASTLED]) {
+        if (CastlingAbility::can($this->castlingAbility, $oppColor)) {
             if ($pieceMoved->getMove()->isCapture) {
                 if ($pieceMoved->getMove()->sq->next ===
-                    CastleRule::color($oppColor)[Piece::R][Castle::SHORT]['sq']['current']
+                    CastlingRule::color($oppColor)[Piece::R][Castle::SHORT]['sq']['current']
                 ) {
-                    $this->castle[$oppColor][Castle::SHORT] = false;
+                    $this->castlingAbility = CastlingAbility::remove(
+                        $this->castlingAbility,
+                        $oppColor,
+                        [Piece::K]
+                    );
                 } elseif (
                     $pieceMoved->getMove()->sq->next ===
-                    CastleRule::color($oppColor)[Piece::R][Castle::LONG]['sq']['current']
+                    CastlingRule::color($oppColor)[Piece::R][Castle::LONG]['sq']['current']
                 ) {
-                    $this->castle[$oppColor][Castle::LONG] = false;
+                    $this->castlingAbility = CastlingAbility::remove(
+                        $this->castlingAbility,
+                        $oppColor,
+                        [Piece::Q]
+                    );
                 }
             }
         }
@@ -726,10 +739,10 @@ final class Board extends \SplObjectStorage
     /**
      * Undoes the last move.
      *
-     * @param array $prevCastle
+     * @param string $prevCastlingAbility
      * @return \Chess\Board
      */
-    public function undoMove(array $prevCastle): Board
+    public function undoMove(string $prevCastlingAbility): Board
     {
         $prev = end($this->history);
         if ($prev) {
@@ -759,7 +772,7 @@ final class Board extends \SplObjectStorage
                 );
                 $this->popCapture($prev->move->color);
             }
-            !isset($prevCastle) ?: $this->castle = $prevCastle;
+            !isset($prevCastlingAbility) ?: $this->castlingAbility = $prevCastlingAbility;
             $this->popHistory()->refresh();
         }
 
@@ -797,18 +810,18 @@ final class Board extends \SplObjectStorage
      */
     private function leavesInCheck(AbstractPiece $piece): bool
     {
-        $prevCastle = $this->castle;
+        $prevCastlingAbility = $this->castlingAbility;
         if ($piece->getMove()->type === Move::O_O ||
             $piece->getMove()->type === Move::O_O_O) {
             $this->castle($piece);
             $king = $this->getPiece($piece->getColor(), Piece::K);
             $leavesInCheck = in_array($king->getSquare(), $this->pressureEval->{$king->getOppColor()});
-            $this->undoCastle($prevCastle);
+            $this->undoCastle($prevCastlingAbility);
         } else {
             $this->move($piece);
             $king = $this->getPiece($piece->getColor(), Piece::K);
             $leavesInCheck = in_array($king->getSquare(), $this->pressureEval->{$king->getOppColor()});
-            $this->undoMove($prevCastle);
+            $this->undoMove($prevCastlingAbility);
         }
 
         return $leavesInCheck;
@@ -915,12 +928,12 @@ final class Board extends \SplObjectStorage
                 switch ($piece->getId()) {
                     case Piece::K:
                         if (
-                            CastleRule::color($color)[Piece::K][Castle::SHORT]['sq']['next'] === $sq &&
+                            CastlingRule::color($color)[Piece::K][Castle::SHORT]['sq']['next'] === $sq &&
                             $clone->play($color, Castle::SHORT)
                         ) {
                             $moves[] = Castle::SHORT;
                         } elseif (
-                            CastleRule::color($color)[Piece::K][Castle::LONG]['sq']['next'] === $sq &&
+                            CastlingRule::color($color)[Piece::K][Castle::LONG]['sq']['next'] === $sq &&
                             $clone->play($color, Castle::LONG)
                         ) {
                             $moves[] = Castle::LONG;

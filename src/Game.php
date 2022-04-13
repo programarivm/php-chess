@@ -79,7 +79,7 @@ class Game
     public function status(): object
     {
         return (object) [
-            'castle' => $this->board->getCastle(),
+            'castle' => $this->board->getCastlingAbility(),
             'isCheck' => $this->board->isCheck(),
             'isMate' => $this->board->isMate(),
             'movetext' => $this->board->getMovetext(),
@@ -94,7 +94,7 @@ class Game
      */
     public function castle(): ?array
     {
-        return $this->board->getCastle();
+        return $this->board->getCastlingAbility();
     }
 
     /**
@@ -382,7 +382,7 @@ class Game
     public function undoMove(): ?object
     {
         if ($this->board->getHistory()) {
-            $this->board->undoMove($this->board->getCastle());
+            $this->board->undoMove($this->board->getCastlingAbility());
             return $this->status();
         }
 

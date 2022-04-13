@@ -33,7 +33,7 @@ class CheckmateInOneEvaluation extends AbstractEvaluation
                 $this->result[$this->board->getTurn()] = 1;
                 return $this->result;
             } else {
-                $this->board->undoMove($this->board->getCastle());
+                $this->board->undoMove($this->board->getCastlingAbility());
             }
         }
 

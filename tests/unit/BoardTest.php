@@ -127,20 +127,9 @@ class BoardTest extends AbstractUnitTestCase
     {
         $board = (new OpenRuyLopez(new Board()))->play();
 
-        $expected = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false,
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true,
-            ],
-        ];
+        $expected = 'kb';
 
-        $this->assertSame($expected, $board->getCastle());
+        $this->assertSame($expected, $board->getCastlingAbility());
     }
 
     /*
@@ -544,20 +533,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        (new Board($pieces, $castle))->play('w', 'f4');
+        (new Board($pieces, $castlingAbility))->play('w', 'f4');
     }
 
     /*
@@ -696,20 +674,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'Kf4'));
     }
@@ -734,20 +701,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'Kf4'));
     }
@@ -772,20 +728,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'Kf2'));
     }
@@ -810,20 +755,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'Re7'));
     }
@@ -848,20 +782,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'a4'));
     }
@@ -886,20 +809,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'Kxf2'));
     }
@@ -961,20 +873,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'O-O'));
     }
@@ -1004,20 +905,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'O-O'));
     }
@@ -1046,20 +936,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'O-O'));
     }
@@ -1088,20 +967,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'O-O-O'));
     }
@@ -1130,20 +998,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'O-O'));
         $this->assertFalse($board->play('w', 'O-O-O'));
@@ -1173,20 +1030,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'O-O'));
         $this->assertFalse($board->play('w', 'O-O-O'));
@@ -1216,20 +1062,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'O-O-O'));
     }
@@ -1258,20 +1093,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Kf1'));
         $this->assertTrue($board->play('b', 'Nf6'));
@@ -1304,20 +1128,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Rg1'));
         $this->assertTrue($board->play('b', 'Nf6'));
@@ -1360,20 +1173,9 @@ class BoardTest extends AbstractUnitTestCase
             new Knight('b', 'f6')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'KQk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Nf3'));
         $this->assertFalse($board->play('b', 'O-O'));
@@ -1425,20 +1227,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ]
-        ];
+        $castlingAbility = 'KQkq';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Ra6'));
     }
@@ -1457,20 +1248,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'Q';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Rxa6'));
     }
@@ -1489,20 +1269,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'Q';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
         $board->setTurn('b');
 
         $this->assertTrue($board->play('b', 'h6'));
@@ -1523,20 +1292,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'Q';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
         $board->setTurn('b');
 
         $this->assertTrue($board->play('b', 'hxg6'));
@@ -1557,20 +1315,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Nxc3'));
     }
@@ -1612,20 +1359,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => true
-            ]
-        ];
+        $castlingAbility = 'KQkq';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
         $board->setTurn('b');
 
         $this->assertTrue($board->play('b', 'O-O'));
@@ -1651,20 +1387,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Ke4'));
     }
@@ -1689,20 +1414,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Kg3'));
     }
@@ -1727,20 +1441,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Kg2'));
     }
@@ -1765,20 +1468,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Ke2'));
     }
@@ -1803,20 +1495,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Ke3'));
     }
@@ -1841,20 +1522,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Kg2'));
     }
@@ -1879,20 +1549,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Kxh2'));
     }
@@ -1917,20 +1576,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Kxf3'));
     }
@@ -1955,20 +1603,9 @@ class BoardTest extends AbstractUnitTestCase
             new Rook('b', 'h8', RookType::O_O)
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'Kk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'f4'));
         $this->assertTrue($board->play('b', 'exf3')); // en passant
@@ -1994,20 +1631,9 @@ class BoardTest extends AbstractUnitTestCase
             new Rook('b', 'h8', RookType::O_O)
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'Kk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
         $board->setTurn('b');
 
         $this->assertTrue($board->play('b', 'f5'));
@@ -2034,20 +1660,9 @@ class BoardTest extends AbstractUnitTestCase
             new Rook('b', 'h8', RookType::O_O)
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'Kk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'h4'));
         $this->assertTrue($board->play('b', 'gxh3')); // en passant
@@ -2073,20 +1688,9 @@ class BoardTest extends AbstractUnitTestCase
             new Rook('b', 'h8', RookType::O_O)
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'Kk';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'g4'));
         $this->assertTrue($board->play('b', 'hxg3'));
@@ -2142,20 +1746,9 @@ class BoardTest extends AbstractUnitTestCase
             new Rook('b', 'h8', RookType::O_O_O),
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
         $board->setTurn('b');
 
         $this->assertTrue($board->play('b', 'b5'));
@@ -2179,20 +1772,9 @@ class BoardTest extends AbstractUnitTestCase
             new King('b', 'e8')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => false,
-                'O-O' => true,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => false,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = 'K';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'h8=Q'));
     }
@@ -2214,20 +1796,9 @@ class BoardTest extends AbstractUnitTestCase
             new Pawn('b', 'h7')
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = new Board($pieces, $castle);
+        $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'd6+'));
         $this->assertTrue($board->isCheck());
@@ -2269,20 +1840,9 @@ class BoardTest extends AbstractUnitTestCase
             new Queen('w', 'f2'),
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = (new Board($pieces, $castle))->setTurn('b');
+        $board = (new Board($pieces, $castlingAbility))->setTurn('b');
 
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
@@ -2299,20 +1859,9 @@ class BoardTest extends AbstractUnitTestCase
             new King('b', 'f8'),
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = (new Board($pieces, $castle))->setTurn('b');
+        $board = (new Board($pieces, $castlingAbility))->setTurn('b');
 
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
@@ -2330,20 +1879,9 @@ class BoardTest extends AbstractUnitTestCase
             new Bishop('b', 'b8'),
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = (new Board($pieces, $castle))->setTurn('b');
+        $board = (new Board($pieces, $castlingAbility))->setTurn('b');
 
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
@@ -2364,20 +1902,9 @@ class BoardTest extends AbstractUnitTestCase
             new King('b', 'e6'),
         ];
 
-        $castle = [
-            'w' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ],
-            'b' => [
-                'isCastled' => true,
-                'O-O' => false,
-                'O-O-O' => false
-            ]
-        ];
+        $castlingAbility = '-';
 
-        $board = (new Board($pieces, $castle))->setTurn('b');
+        $board = (new Board($pieces, $castlingAbility))->setTurn('b');
 
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());

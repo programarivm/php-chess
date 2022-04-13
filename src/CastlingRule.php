@@ -2,6 +2,7 @@
 
 namespace Chess;
 
+use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Color;
 use Chess\PGN\AN\Piece;
@@ -12,23 +13,8 @@ use Chess\PGN\AN\Piece;
  * @author Jordi Bassagañas
  * @license GPL
  */
-class CastleRule
+class CastlingRule
 {
-    const IS_CASTLED = 'isCastled';
-
-    public static array $initialState = [
-        Color::W => [
-            self::IS_CASTLED => false,
-            Castle::SHORT => true,
-            Castle::LONG => true,
-        ],
-        Color::B => [
-            self::IS_CASTLED => false,
-            Castle::SHORT => true,
-            Castle::LONG => true,
-        ],
-    ];
-
     /**
      * Castle rule by color.
      *
@@ -126,13 +112,13 @@ class CastleRule
      * Can castle short.
      *
      * @param string $color
-     * @param array $castle
+     * @param string $castlingAbility
      * @param object $space
      * @return bool
      */
-    public static function short(string $color, array $castle, object $space): bool
+    public static function short(string $castlingAbility, string $color, object $space): bool
     {
-        return $castle[$color][Castle::SHORT] &&
+        return CastlingAbility::short($castlingAbility, $color) &&
             !(in_array(
                 self::color($color)[Piece::K][Castle::SHORT]['sqs']['f'],
                 $space->{Color::opp($color)})
@@ -147,13 +133,13 @@ class CastleRule
      * Can castle long.
      *
      * @param string $color
-     * @param array $castle
+     * @param string $castlingAbility
      * @param object $space
      * @return bool
      */
-    public static function long(string $color, array $castle, object $space): bool
+    public static function long(string $castlingAbility, string $color, object $space): bool
     {
-        return $castle[$color][Castle::LONG] &&
+        return CastlingAbility::long($castlingAbility, $color) &&
             !(in_array(
                 self::color($color)[Piece::K][Castle::LONG]['sqs']['b'],
                 $space->{Color::opp($color)})

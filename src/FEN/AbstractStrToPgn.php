@@ -3,7 +3,7 @@
 namespace Chess\FEN;
 
 use Chess\Board;
-use Chess\CastleRule;
+use Chess\CastlingRule;
 use Chess\FEN\BoardToStr;
 use Chess\FEN\StrToBoard;
 use Chess\PGN\AN\Castle;
@@ -37,9 +37,9 @@ abstract class AbstractStrToPgn
                 $position = $piece->getSquare();
                 switch ($id) {
                     case Piece::K:
-                        $rule = CastleRule::color($color)[Piece::K];
+                        $rule = CastlingRule::color($color)[Piece::K];
                         if ($sq === $rule[Castle::SHORT]['sq']['next'] &&
-                            $this->board->getCastle()[$color][Castle::SHORT]
+                            $this->board->getCastlingAbility()[$color][Castle::SHORT]
                         ) {
                             if ($clone->play($color, Piece::K.$sq)) {
                                 $legal[] = [
@@ -47,7 +47,7 @@ abstract class AbstractStrToPgn
                                 ];
                             }
                         } elseif ($sq === $rule[Castle::LONG]['sq']['next'] &&
-                            $this->board->getCastle()[$color][Castle::LONG]
+                            $this->board->getCastlingAbility()[$color][Castle::LONG]
                         ) {
                             if ($clone->play($color, Piece::K.$sq)) {
                                 $legal[] = [
