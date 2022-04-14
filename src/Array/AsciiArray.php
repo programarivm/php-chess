@@ -42,16 +42,16 @@ class AsciiArray extends AbstractArray
     }
 
     /**
-     * Sets an element in the array.
+     * Sets an element in the array using algebraic notation to identify the square.
      *
-     * @param string $piece
+     * @param string $elem
      * @param string $sq
      * @return \Chess\Array\AsciiArray
      */
-    public function setElem(string $piece, string $sq): AsciiArray
+    public function setElem(string $elem, string $sq): AsciiArray
     {
         $index = self::fromAlgebraicToIndex($sq);
-        $this->array[$index[0]][$index[1]] = $piece;
+        $this->array[$index[0]][$index[1]] = $elem;
 
         return $this;
     }

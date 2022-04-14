@@ -1,12 +1,13 @@
 site_name: PHP Chess
 pages:
   - Home: index.md
-  - Chess\Ascii: ascii.md
   - Chess\Board: board.md
   - Chess\Game: game.md
   - Chess\Heuristics: heuristics.md
   - Chess\Movetext: movetext.md
   - Chess\Player: player.md
+  - Chess\Array\AsciiArray: array-ascii-array.md
+  - Chess\Array\PieceArray: array-piece-array.md
   - Chess\Combinatorics\RestrictedPermutationWithRepetition: combinatorics-restricted-permutation-with-repetition.md
   - Chess\FEN\BoardToStr: fen-board-to-str.md
   - Chess\FEN\StrToBoard: fen-str-to-board.md
