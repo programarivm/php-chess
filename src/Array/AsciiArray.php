@@ -11,15 +11,8 @@ use Chess\FEN\Field\CastlingAbility;
  * @author Jordi Bassagañas
  * @license GPL
  */
-class AsciiArray
+class AsciiArray extends AbstractArray
 {
-    /**
-     * Array.
-     *
-     * @var array
-     */
-    private array $array;
-
     /**
      * Constructor.
      *
@@ -29,16 +22,6 @@ class AsciiArray
     {
         $this->array = $array;
     }
-
-    /**
-     * Returns the array.
-     *
-     * @return array
-     */
-     public function getArray(): array
-     {
-         return $this->array;
-     }
 
     /**
      * Returns a Chess\Board object.
@@ -52,7 +35,7 @@ class AsciiArray
         $castlingAbility = CastlingAbility::NEITHER
     ): Board
     {
-        $pieces = (new PieceArray())->ascii($this->array)->getPieces();
+        $pieces = (new PieceArray($this->array))->getArray();
         $board = (new Board($pieces, $castlingAbility))->setTurn($turn);
 
         return $board;

@@ -36,7 +36,8 @@ class StrToBoard
     public function create(): Board
     {
         try {
-            $pieces = (new PieceArray())->fen($this->fields[0])->getPieces();
+            $asciiArray = Str::toAsciiArray($this->fields[0]);
+            $pieces = (new PieceArray($asciiArray))->getArray();
             $board = (new Board($pieces, $this->castlingAbility))
                 ->setTurn($this->fields[1]);
             if ($this->fields[3] !== '-') {
