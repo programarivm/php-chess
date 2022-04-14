@@ -44,10 +44,10 @@ class StrToBoard
                 foreach (str_split($val) as $id) {
                     if (ctype_lower($id)) {
                         $id = strtoupper($id);
-                        $pieces->push(Color::B, $id, $file.$rank, $this->castlingAbility);
+                        $pieces->push(Color::B, $id, $file.$rank);
                         $file = chr(ord($file) + 1);
                     } elseif (ctype_upper($id)) {
-                        $pieces->push(Color::W, $id, $file.$rank, $this->castlingAbility);
+                        $pieces->push(Color::W, $id, $file.$rank);
                         $file = chr(ord($file) + 1);
                     } elseif (is_numeric($id)) {
                         $file = chr(ord($file) + $id);

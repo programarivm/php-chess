@@ -60,12 +60,13 @@ class Ascii
      * @param \stdClass $castlingAbility
      * @return \Chess\Board
      */
-    public static function toBoard(array $array, string $turn, $castlingAbility = null): Board
+    public static function toBoard(
+        array $array,
+        string $turn,
+        $castlingAbility = CastlingAbility::NEITHER
+    ): Board
     {
         $pieces = new Pieces();
-        if (!$castlingAbility) {
-            $castlingAbility = CastlingAbility::NEITHER;
-        }
         foreach ($array as $i => $row) {
             $file = 'a';
             $rank = $i + 1;
@@ -73,9 +74,9 @@ class Ascii
                 $char = trim($item);
                 if (ctype_lower($char)) {
                     $char = strtoupper($char);
-                    $pieces->push(Color::B, $char, $file.$rank, $castlingAbility);
+                    $pieces->push(Color::B, $char, $file.$rank);
                 } elseif (ctype_upper($char)) {
-                    $pieces->push(Color::W, $char, $file.$rank, $castlingAbility);
+                    $pieces->push(Color::W, $char, $file.$rank);
                 }
                 $file = chr(ord($file) + 1);
             }

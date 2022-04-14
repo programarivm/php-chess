@@ -2,7 +2,6 @@
 
 namespace Chess;
 
-use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\AN\Color;
 use Chess\PGN\AN\Piece;
 use Chess\Piece\Bishop;
@@ -33,7 +32,7 @@ class Pieces
         return $this->pieces;
     }
 
-    public function push(string $color, string $id, string $sq, string $castlingAbility)
+    public function push(string $color, string $id, string $sq)
     {
         if ($id === Piece::K) {
             $this->pieces[] = new King($color, $sq);
@@ -41,26 +40,22 @@ class Pieces
             $this->pieces[] = new Queen($color, $sq);
         } elseif ($id === Piece::R) {
             if ($color === Color::B &&
-                $sq === 'a8' &&
-                CastlingAbility::long($castlingAbility, $color)
+                $sq === 'a8'
             ) {
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
             } elseif (
                 $color === Color::B &&
-                $sq === 'h8' &&
-                CastlingAbility::short($castlingAbility, $color)
+                $sq === 'h8'
             ) {
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
             } elseif (
                 $color === Color::W &&
-                $sq === 'a1' &&
-                CastlingAbility::long($castlingAbility, $color)
+                $sq === 'a1'
             ) {
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
             } elseif (
                 $color === Color::W &&
-                $sq === 'h1' &&
-                CastlingAbility::short($castlingAbility, $color)
+                $sq === 'h1'
             ) {
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
             } else {
