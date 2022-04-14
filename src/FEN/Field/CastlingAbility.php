@@ -50,10 +50,18 @@ class CastlingAbility implements ValidationInterface
         if ($color === Color::B) {
             $ids = array_map('mb_strtolower', $ids);
         }
+        $castlingAbility = str_replace($ids, '', $castlingAbility);
 
-        return str_replace($ids, '', $castlingAbility);
+        return $castlingAbility;
     }
 
+    /**
+     * Castles the king.
+     *
+     * @param string $castlingAbility
+     * @param string $color
+     * @return string
+     */
     public static function castle(string $castlingAbility, string $color): string
     {
         $castlingAbility = self::remove(

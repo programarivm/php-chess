@@ -185,7 +185,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function remove_w_from_KQkq()
+    public function remove_w_K_Q_from_KQkq()
     {
         $castlingAbility = CastlingAbility::remove('KQkq', 'w', [Piece::K, Piece::Q]);
 
@@ -197,11 +197,61 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function remove_b_from_KQkq()
+    public function remove_b_k_q_from_KQkq()
     {
         $castlingAbility = CastlingAbility::remove('KQkq', 'b', [Piece::K, Piece::Q]);
 
         $expected = 'KQ';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function castle_w_KQkq()
+    {
+        $castlingAbility = CastlingAbility::castle('KQkq', 'w');
+
+        $expected = 'kq';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function castle_b_KQkq()
+    {
+        $castlingAbility = CastlingAbility::castle('KQkq', 'b');
+
+        $expected = 'KQ';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function castle_w_b_KQkq()
+    {
+        $castlingAbility = CastlingAbility::castle('KQkq', 'w');
+        $castlingAbility = CastlingAbility::castle($castlingAbility, 'b');
+
+        $expected = '-';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function castle_b_w_KQkq()
+    {
+        $castlingAbility = CastlingAbility::castle('KQkq', 'b');
+        $castlingAbility = CastlingAbility::castle($castlingAbility, 'w');
+
+        $expected = '-';
 
         $this->assertSame($expected, $castlingAbility);
     }
