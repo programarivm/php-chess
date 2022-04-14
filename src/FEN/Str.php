@@ -3,7 +3,6 @@
 namespace Chess\FEN;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\FEN\ValidationInterface;
 use Chess\FEN\Field\CastlingAbility;
 use Chess\FEN\Field\EnPassantTargetSquare;
 use Chess\FEN\Field\PiecePlacement;

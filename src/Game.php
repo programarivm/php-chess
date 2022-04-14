@@ -2,9 +2,6 @@
 
 namespace Chess;
 
-use Chess\AsciiArray;
-use Chess\Heuristics;
-use Chess\Player;
 use Chess\FEN\BoardToStr;
 use Chess\FEN\ShortStrToPgn;
 use Chess\FEN\StrToBoard;

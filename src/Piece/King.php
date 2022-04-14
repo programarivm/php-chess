@@ -6,7 +6,6 @@ use Chess\CastlingRule;
 use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Piece;
-use Chess\Piece\RookType;
 
 /**
  * King class.

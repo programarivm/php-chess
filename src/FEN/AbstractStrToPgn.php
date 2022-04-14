@@ -4,8 +4,6 @@ namespace Chess\FEN;
 
 use Chess\Board;
 use Chess\CastlingRule;
-use Chess\FEN\BoardToStr;
-use Chess\FEN\StrToBoard;
 use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Piece;

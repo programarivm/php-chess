@@ -6,7 +6,6 @@ use Chess\Exception\PieceTypeException;
 use Chess\Exception\UnknownNotationException;
 use Chess\PGN\AN\Square;
 use Chess\PGN\AN\Piece;
-use Chess\Piece\AbstractPiece;
 
 /**
  * Rook class.

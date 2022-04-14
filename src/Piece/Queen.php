@@ -3,7 +3,6 @@
 namespace Chess\Piece;
 
 use Chess\PGN\AN\Piece;
-use Chess\Piece\RookType;
 
 /**
  * Queen class.
