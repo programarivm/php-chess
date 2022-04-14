@@ -32,7 +32,50 @@ class Pieces
         return $this->pieces;
     }
 
-    public function push(string $color, string $id, string $sq)
+    public function ascii(array $array)
+    {
+        foreach ($array as $i => $row) {
+            $file = 'a';
+            $rank = $i + 1;
+            foreach ($row as $j => $item) {
+                $char = trim($item);
+                if (ctype_lower($char)) {
+                    $char = strtoupper($char);
+                    $this->push(Color::B, $char, $file.$rank);
+                } elseif (ctype_upper($char)) {
+                    $this->push(Color::W, $char, $file.$rank);
+                }
+                $file = chr(ord($file) + 1);
+            }
+        }
+
+        return $this;
+    }
+
+    public function fen(string $piecePlacement)
+    {
+        $array = array_filter(explode('/', $piecePlacement));
+        foreach ($array as $i => $row) {
+            $file = 'a';
+            $rank = 8 - $i;
+            foreach (str_split($row) as $id) {
+                if (ctype_lower($id)) {
+                    $id = strtoupper($id);
+                    $this->push(Color::B, $id, $file.$rank);
+                    $file = chr(ord($file) + 1);
+                } elseif (ctype_upper($id)) {
+                    $this->push(Color::W, $id, $file.$rank);
+                    $file = chr(ord($file) + 1);
+                } elseif (is_numeric($id)) {
+                    $file = chr(ord($file) + $id);
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    private function push(string $color, string $id, string $sq)
     {
         if ($id === Piece::K) {
             $this->pieces[] = new King($color, $sq);

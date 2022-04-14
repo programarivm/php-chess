@@ -66,22 +66,8 @@ class Ascii
         $castlingAbility = CastlingAbility::NEITHER
     ): Board
     {
-        $pieces = new Pieces();
-        foreach ($array as $i => $row) {
-            $file = 'a';
-            $rank = $i + 1;
-            foreach ($row as $j => $item) {
-                $char = trim($item);
-                if (ctype_lower($char)) {
-                    $char = strtoupper($char);
-                    $pieces->push(Color::B, $char, $file.$rank);
-                } elseif (ctype_upper($char)) {
-                    $pieces->push(Color::W, $char, $file.$rank);
-                }
-                $file = chr(ord($file) + 1);
-            }
-        }
-        $board = (new Board($pieces->getPieces(), $castlingAbility))->setTurn($turn);
+        $pieces = (new Pieces())->ascii($array)->getPieces();
+        $board = (new Board($pieces, $castlingAbility))->setTurn($turn);
 
         return $board;
     }
