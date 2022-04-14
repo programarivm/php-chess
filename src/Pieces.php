@@ -58,16 +58,16 @@ class Pieces
         foreach ($array as $i => $row) {
             $file = 'a';
             $rank = 8 - $i;
-            foreach (str_split($row) as $id) {
-                if (ctype_lower($id)) {
-                    $id = strtoupper($id);
-                    $this->push(Color::B, $id, $file.$rank);
+            foreach (str_split($row) as $item) {
+                if (ctype_lower($item)) {
+                    $item = strtoupper($item);
+                    $this->push(Color::B, $item, $file.$rank);
                     $file = chr(ord($file) + 1);
-                } elseif (ctype_upper($id)) {
-                    $this->push(Color::W, $id, $file.$rank);
+                } elseif (ctype_upper($item)) {
+                    $this->push(Color::W, $item, $file.$rank);
                     $file = chr(ord($file) + 1);
-                } elseif (is_numeric($id)) {
-                    $file = chr(ord($file) + $id);
+                } elseif (is_numeric($item)) {
+                    $file = chr(ord($file) + $item);
                 }
             }
         }
