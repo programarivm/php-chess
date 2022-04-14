@@ -11,7 +11,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function foobar()
+    public function validate_foobar()
     {
         $this->expectException(UnknownNotationException::class);
 
@@ -21,7 +21,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function start_b_kqKQ()
+    public function validate_start_b_kqKQ()
     {
         $this->expectException(UnknownNotationException::class);
 
@@ -31,7 +31,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function start_rearrange_KkQq()
+    public function validate_start_rearrange_KkQq()
     {
         $this->expectException(UnknownNotationException::class);
 
@@ -41,7 +41,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function double_hyphen()
+    public function validate_double_hyphen()
     {
         $this->expectException(UnknownNotationException::class);
 
@@ -51,7 +51,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function b_k_hyphen()
+    public function validate_b_k_hyphen()
     {
         $this->expectException(UnknownNotationException::class);
 
@@ -61,7 +61,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function empty_string()
+    public function validate_empty_string()
     {
         $this->expectException(UnknownNotationException::class);
 
@@ -71,7 +71,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function start_w_KQkq()
+    public function validate_start_w_KQkq()
     {
         $this->assertSame('KQkq', CastlingAbility::validate('KQkq'));
     }
@@ -79,7 +79,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function w_k()
+    public function validate_w_k()
     {
         $this->assertSame('K', CastlingAbility::validate('K'));
     }
@@ -87,7 +87,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function w_q()
+    public function validate_w_q()
     {
         $this->assertSame('Q', CastlingAbility::validate('Q'));
     }
@@ -95,7 +95,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function b_k()
+    public function validate_b_k()
     {
         $this->assertSame('k', CastlingAbility::validate('k'));
     }
@@ -103,7 +103,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function b_q()
+    public function validate_b_q()
     {
         $this->assertSame('q', CastlingAbility::validate('q'));
     }
@@ -111,7 +111,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function w_kq()
+    public function validate_w_kq()
     {
         $this->assertSame('KQ', CastlingAbility::validate('KQ'));
     }
@@ -119,7 +119,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function b_kq()
+    public function validate_b_kq()
     {
         $this->assertSame('kq', CastlingAbility::validate('kq'));
     }
@@ -127,7 +127,7 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function hyphen()
+    public function validate_hyphen()
     {
         $this->assertSame('-', CastlingAbility::validate('-'));
     }
