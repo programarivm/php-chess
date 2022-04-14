@@ -54,7 +54,7 @@ class AbstractBoardToImg
     protected function chessboard(string $filepath)
     {
         $chessboard = $this->imagine->open(self::FILEPATH.'/chessboard/'.$this->size.'.png');
-        $array = (new Ascii())->toArray($this->board, $this->flip);
+        $array = Ascii::toArray($this->board, $this->flip);
         $x = $y = 0;
         foreach ($array as $i => $rank) {
             foreach ($rank as $j => $piece) {
