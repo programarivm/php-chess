@@ -20,7 +20,7 @@ class CastlingAbility implements ValidationInterface
     const NEITHER = '-';
 
     /**
-     * String validation.
+     * Validates a string.
      *
      * @param string $value
      * @return string if the value is valid
@@ -37,6 +37,23 @@ class CastlingAbility implements ValidationInterface
         throw new UnknownNotationException;
     }
 
+    /**
+     * Removes castling rights.
+     *
+     * @param string $castlingAbility
+     * @param string $color
+     * @param array $ids
+     * @return string
+     */
+    public static function remove(string $castlingAbility, string $color, array $ids): string
+    {
+        if ($color === Color::B) {
+            $ids = array_map('mb_strtolower', $ids);
+        }
+
+        return str_replace($ids, '', $castlingAbility);
+    }
+
     public static function castle(string $castlingAbility, string $color): string
     {
         $castlingAbility = self::remove(
@@ -49,15 +66,6 @@ class CastlingAbility implements ValidationInterface
         }
 
         return $castlingAbility;
-    }
-
-    public static function remove(string $castlingAbility, string $color, array $ids)
-    {
-        if ($color === Color::B) {
-            $ids = array_map('mb_strtolower', $ids);
-        }
-
-        return str_replace($ids, '', $castlingAbility);
     }
 
     public static function long(string $castlingAbility, string $color)

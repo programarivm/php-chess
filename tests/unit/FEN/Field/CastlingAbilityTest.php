@@ -4,6 +4,7 @@ namespace Chess\Tests\Unit\FEN\Field;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\FEN\Field\CastlingAbility;
+use Chess\PGN\AN\Piece;
 use Chess\Tests\AbstractUnitTestCase;
 
 class CastlingAbilityTest extends AbstractUnitTestCase
@@ -130,5 +131,78 @@ class CastlingAbilityTest extends AbstractUnitTestCase
     public function validate_hyphen()
     {
         $this->assertSame('-', CastlingAbility::validate('-'));
+    }
+
+
+    /**
+     * @test
+     */
+    public function remove_w_K_from_KQkq()
+    {
+        $castlingAbility = CastlingAbility::remove('KQkq', 'w', [Piece::K]);
+
+        $expected = 'Qkq';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function remove_w_Q_from_KQkq()
+    {
+        $castlingAbility = CastlingAbility::remove('KQkq', 'w', [Piece::Q]);
+
+        $expected = 'Kkq';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function remove_b_k_from_KQkq()
+    {
+        $castlingAbility = CastlingAbility::remove('KQkq', 'b', [Piece::K]);
+
+        $expected = 'KQq';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function remove_b_q_from_KQkq()
+    {
+        $castlingAbility = CastlingAbility::remove('KQkq', 'b', [Piece::Q]);
+
+        $expected = 'KQk';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function remove_w_from_KQkq()
+    {
+        $castlingAbility = CastlingAbility::remove('KQkq', 'w', [Piece::K, Piece::Q]);
+
+        $expected = 'kq';
+
+        $this->assertSame($expected, $castlingAbility);
+    }
+
+    /**
+     * @test
+     */
+    public function remove_b_from_KQkq()
+    {
+        $castlingAbility = CastlingAbility::remove('KQkq', 'b', [Piece::K, Piece::Q]);
+
+        $expected = 'KQ';
+
+        $this->assertSame($expected, $castlingAbility);
     }
 }
