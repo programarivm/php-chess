@@ -542,7 +542,7 @@ final class Board extends \SplObjectStorage
                     !CastlingRule::short($this->castlingAbility, $this->turn, $this->spaceEval)
                         ?: $isLegalMove = $this->castle($piece);
                 } elseif ($piece->getMove()->type === Move::CASTLE_LONG) {
-                    !CastlingRule::short($this->castlingAbility, $this->turn, $this->spaceEval)
+                    !CastlingRule::long($this->castlingAbility, $this->turn, $this->spaceEval)
                         ?: $isLegalMove = $this->castle($piece);
                 } else {
                     $isLegalMove = $this->move($piece);
