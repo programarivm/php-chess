@@ -20,7 +20,7 @@ class CastlingAbility implements ValidationInterface
     const NEITHER = '-';
 
     /**
-     * Validates a string.
+     * String validation.
      *
      * @param string $value
      * @return string if the value is valid
@@ -28,17 +28,17 @@ class CastlingAbility implements ValidationInterface
      */
     public static function validate(string $value): string
     {
-        if ($value) {
-            if ($value === self::NEITHER  || preg_match('/^K?Q?k?q?$/', $value)) {
-                return $value;
-            }
+        if ($value === self::NEITHER) {
+            return $value;
+        } elseif ($value && preg_match('/^K?Q?k?q?$/', $value)) {
+            return $value;
         }
 
         throw new UnknownNotationException;
     }
 
     /**
-     * Removes castling rights.
+     * Removes the given castling ability.
      *
      * @param string $castlingAbility
      * @param string $color
@@ -51,6 +51,9 @@ class CastlingAbility implements ValidationInterface
             $ids = array_map('mb_strtolower', $ids);
         }
         $castlingAbility = str_replace($ids, '', $castlingAbility);
+        if (empty($castlingAbility)) {
+            $castlingAbility = self::NEITHER;
+        }
 
         return $castlingAbility;
     }
@@ -69,14 +72,18 @@ class CastlingAbility implements ValidationInterface
             $color,
             [ Piece::K, Piece::Q ],
         );
-        if (empty($castlingAbility)) {
-            $castlingAbility = self::NEITHER;
-        }
 
         return $castlingAbility;
     }
 
-    public static function long(string $castlingAbility, string $color)
+    /**
+     * Finds out if a long castling move can be made.
+     *
+     * @param string $castlingAbility
+     * @param string $color
+     * @return string
+     */
+    public static function long(string $castlingAbility, string $color): string
     {
         $id = Piece::Q;
         if ($color === Color::B) {
@@ -86,6 +93,13 @@ class CastlingAbility implements ValidationInterface
         return strpbrk($castlingAbility, $id);
     }
 
+    /**
+     * Finds out if a short castling move can be made.
+     *
+     * @param string $castlingAbility
+     * @param string $color
+     * @return string
+     */
     public static function short(string $castlingAbility, string $color)
     {
         $id = Piece::K;
@@ -96,6 +110,13 @@ class CastlingAbility implements ValidationInterface
         return strpbrk($castlingAbility, $id);
     }
 
+    /**
+     * Finds out if a castling move can be made.
+     *
+     * @param string $castlingAbility
+     * @param string $color
+     * @return string
+     */
     public static function can(string $castlingAbility, string $color)
     {
         return self::long($castlingAbility, $color) ||
