@@ -3,7 +3,6 @@
 namespace Chess;
 
 use Chess\FEN\Field\CastlingAbility;
-
 use Chess\PGN\AN\Color;
 use Chess\PGN\AN\Piece;
 use Chess\Piece\Bishop;

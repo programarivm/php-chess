@@ -6,6 +6,7 @@ use Chess\Board;
 use Chess\CastlingRule;
 use Chess\FEN\BoardToStr;
 use Chess\FEN\StrToBoard;
+use Chess\FEN\Field\CastlingAbility;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Piece;
 
@@ -39,7 +40,7 @@ abstract class AbstractStrToPgn
                     case Piece::K:
                         $rule = CastlingRule::color($color)[Piece::K];
                         if ($sq === $rule[Castle::SHORT]['sq']['next'] &&
-                            $this->board->getCastlingAbility()[$color][Castle::SHORT]
+                            CastlingAbility::short($this->board->getCastlingAbility(), $color)
                         ) {
                             if ($clone->play($color, Piece::K.$sq)) {
                                 $legal[] = [
@@ -47,7 +48,7 @@ abstract class AbstractStrToPgn
                                 ];
                             }
                         } elseif ($sq === $rule[Castle::LONG]['sq']['next'] &&
-                            $this->board->getCastlingAbility()[$color][Castle::LONG]
+                            CastlingAbility::long($this->board->getCastlingAbility(), $color)
                         ) {
                             if ($clone->play($color, Piece::K.$sq)) {
                                 $legal[] = [
