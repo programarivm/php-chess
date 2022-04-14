@@ -219,7 +219,7 @@ final class Board extends \SplObjectStorage
     }
 
     /**
-     * Gets the pieces captured by both players as an array of stdClass objects.
+     * Gets the pieces captured by both players.
      *
      * @return mixed array|null
      */

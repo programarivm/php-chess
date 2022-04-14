@@ -1,4 +1,4 @@
-This is a chess board representation that allows to play chess in Portable Game Notation (PGN) format. It is a cornerstone allowing to build multiple features on top of it: FEN string generation, ASCII representation, PNG image creation, position evaluation, etc.
+`Chess\Board` is a chessboard representation that allows to play chess in Portable Game Notation (PGN) format. But not only that, it is the cornerstone to create multiple features: FEN string processing, ASCII representation, PNG image creation, position evaluation, etc.
 
 Let's look at the methods available through the following example.
 
@@ -13,9 +13,11 @@ $board->play('w', 'exd5');
 $board->play('b', 'Qxd5');
 ```
 
-For further details you may want to check out the tests in [unit/tests/BoardTest.php](https://github.com/chesslablab/php-chess/blob/master/tests/unit/BoardTest.php).
+For further information you may want to check out the tests in [tests/unit/BoardTest.php](https://github.com/chesslablab/php-chess/blob/master/tests/unit/BoardTest.php).
 
 ---
+
+#### `public function getCaptures(): ?array`
 
 Get the pieces captured by both players.
 
@@ -61,29 +63,20 @@ array (
 )
 ```
 
-Get the castle status.
+#### `public function getCastlingAbility(): string`
+
+Get the castling ability in FEN format.
 
 ```php
-$castle = $board->getCastle();
+$castlingAbility = $board->getCastlingAbility();
 
-var_export($castle);
+var_export($castlingAbility);
 ```
 ```text
-array (
-  'w' =>
-  array (
-    'isCastled' => false,
-    'O-O' => true,
-    'O-O-O' => true,
-  ),
-  'b' =>
-  array (
-    'isCastled' => false,
-    'O-O' => true,
-    'O-O-O' => true,
-  ),
-)
+'KQkq'
 ```
+
+#### `public function getHistory(): ?array`
 
 Get the history.
 
@@ -133,6 +126,8 @@ array (
 )
 ```
 
+#### `public function getMovetext(): string`
+
 Get the movetext.
 
 ```php
@@ -143,6 +138,8 @@ var_export($movetext);
 ```text
 '1.e4 d5 2.exd5 Qxd5'
 ```
+
+#### `public function getTurn(): string`
 
 Get the current turn.
 
@@ -155,6 +152,154 @@ var_export($turn);
 'w'
 ```
 
+#### `public function play(string $color, string $pgn): bool`
+
+Make a move.
+
+```php
+$board->play('w', 'Nc3');
+
+$movetext = $board->getMovetext();
+
+var_export($movetext);
+```
+```text
+'1.e4 d5 2.exd5 Qxd5 3.Nc3'
+```
+
+#### `public function toAsciiArray(bool $flip = false): array`
+
+Create an ASCII array.
+
+```php
+$array = $board->toAsciiArray();
+
+print_r($array);
+```
+```
+Array
+(
+    [7] => Array
+        (
+            [0] =>  r
+            [1] =>  n
+            [2] =>  b
+            [3] =>  .
+            [4] =>  k
+            [5] =>  b
+            [6] =>  n
+            [7] =>  r
+        )
+
+    [6] => Array
+        (
+            [0] =>  p
+            [1] =>  p
+            [2] =>  p
+            [3] =>  .
+            [4] =>  p
+            [5] =>  p
+            [6] =>  p
+            [7] =>  p
+        )
+
+    [5] => Array
+        (
+            [0] =>  .
+            [1] =>  .
+            [2] =>  .
+            [3] =>  .
+            [4] =>  .
+            [5] =>  .
+            [6] =>  .
+            [7] =>  .
+        )
+
+    [4] => Array
+        (
+            [0] =>  .
+            [1] =>  .
+            [2] =>  .
+            [3] =>  q
+            [4] =>  .
+            [5] =>  .
+            [6] =>  .
+            [7] =>  .
+        )
+
+    [3] => Array
+        (
+            [0] =>  .
+            [1] =>  .
+            [2] =>  .
+            [3] =>  .
+            [4] =>  .
+            [5] =>  .
+            [6] =>  .
+            [7] =>  .
+        )
+
+    [2] => Array
+        (
+            [0] =>  .
+            [1] =>  .
+            [2] =>  .
+            [3] =>  .
+            [4] =>  .
+            [5] =>  .
+            [6] =>  .
+            [7] =>  .
+        )
+
+    [1] => Array
+        (
+            [0] =>  P
+            [1] =>  P
+            [2] =>  P
+            [3] =>  P
+            [4] =>  .
+            [5] =>  P
+            [6] =>  P
+            [7] =>  P
+        )
+
+    [0] => Array
+        (
+            [0] =>  R
+            [1] =>  N
+            [2] =>  B
+            [3] =>  Q
+            [4] =>  K
+            [5] =>  B
+            [6] =>  N
+            [7] =>  R
+        )
+
+)
+```
+
+#### `public function toAsciiString(bool $flip = false): string`
+
+Create an ASCII string.
+
+```php
+$string = $board->toAsciiString();
+
+print_r($string);
+```
+```text
+r  n  b  .  k  b  n  r
+p  p  p  .  p  p  p  p
+.  .  .  .  .  .  .  .
+.  .  .  q  .  .  .  .
+.  .  .  .  .  .  .  .
+.  .  .  .  .  .  .  .
+P  P  P  P  .  P  P  P
+R  N  B  Q  K  B  N  R
+```
+
+#### `public function isCheck(): bool`
+
 Check out whether the current player is in check.
 
 ```php
@@ -165,6 +310,8 @@ var_export($isCheck);
 ```text
 false
 ```
+
+#### `public function isMate(): bool`
 
 Check out whether the current player is checkmated.
 
@@ -177,6 +324,8 @@ var_export($isMate);
 false
 ```
 
+#### `public function isStalemate(): bool`
+
 Check out whether the current player is stalemated.
 
 ```php
@@ -186,15 +335,4 @@ var_export($isStalemate);
 ```
 ```text
 false
-```
-
-Make a move.
-
-```php
-$board->play('w', 'Nc3');
-
-var_export($board->getMovetext());
-```
-```text
-'1.e4 d5 2.exd5 Qxd5 3.Nc3'
 ```

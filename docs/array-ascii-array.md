@@ -1,6 +1,6 @@
-The `Chess\Array\AsciiArray` class allows to convert an array of ASCII characters representing a chess position into a [`Chess\Board`](https://php-chess.readthedocs.io/en/latest/board/) object.
+`Chess\Array\AsciiArray` allows to convert an array of ASCII characters representing a chess position into a [`Chess\Board`](https://php-chess.readthedocs.io/en/latest/board/) object.
 
-Let's look at the methods available through some examples. For further details you may want to check out the tests in [tests/unit/Array/AsciiArrayTest.php](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Array/AsciiArrayTest.php).
+Let's look at the methods available through some examples. For further information you may want to check out the tests in [tests/unit/Array/AsciiArrayTest.php](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Array/AsciiArrayTest.php).
 
 ---
 

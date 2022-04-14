@@ -1,4 +1,4 @@
-The `Chess\Array\PieceArray` class allows to convert an array of ASCII characters representing a chess position into an array of object-oriented chess pieces for further processing.
+`Chess\Array\PieceArray` allows to convert an array of ASCII characters representing a chess position into an array of object-oriented chess pieces for further processing.
 
 Let's look at the methods available through some examples.
 
