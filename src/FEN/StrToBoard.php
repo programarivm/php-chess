@@ -2,7 +2,7 @@
 
 namespace Chess\FEN;
 
-use Chess\Ascii;
+use Chess\AsciiArray;
 use Chess\Board;
 use Chess\Pieces;
 use Chess\Exception\UnknownNotationException;
@@ -51,7 +51,6 @@ class StrToBoard
 
     protected function doublePawnPush(Board $board)
     {
-        $array = Ascii::toArray($board);
         $file = $this->fields[3][0];
         $rank = $this->fields[3][1];
         if ($this->fields[1] === Color::W) {
@@ -65,12 +64,15 @@ class StrToBoard
             $toRank = $rank + 1;
             $turn = Color::W;
         }
-        $fromSquare = $file.$fromRank;
-        $toSquare = $file.$toRank;
-        Ascii::setArrayElem($piece, $fromSquare, $array)
-            ->setArrayElem(' . ', $toSquare, $array);
-        $board = Ascii::toBoard($array, $turn, $board->getCastlingAbility());
-        $board->play($turn, $toSquare);
+        $fromSq = $file.$fromRank;
+        $toSq = $file.$toRank;
+        $array = (new AsciiArray($board->toAsciiArray()))
+            ->setElem($piece, $fromSq)
+            ->setElem(' . ', $toSq)
+            ->getArray();
+        $board = (new AsciiArray($array))
+            ->toBoard($turn, $board->getCastlingAbility());
+        $board->play($turn, $toSq);
 
         return $board;
     }

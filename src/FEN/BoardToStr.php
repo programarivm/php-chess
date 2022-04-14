@@ -2,7 +2,6 @@
 
 namespace Chess\FEN;
 
-use Chess\Ascii;
 use Chess\Board;
 use Chess\PGN\AN\Castle;
 use Chess\PGN\AN\Color;
@@ -28,7 +27,7 @@ class BoardToStr
     public function create(): string
     {
         $string = '';
-        $array = Ascii::toArray($this->board);
+        $array = $this->board->toAsciiArray();
         for ($i = 7; $i >= 0; $i--) {
             $string .= str_replace(' ', '', implode('', $array[$i]));
             if ($i != 0) {

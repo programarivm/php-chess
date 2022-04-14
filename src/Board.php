@@ -2,7 +2,6 @@
 
 namespace Chess;
 
-use Chess\CastlingRule;
 use Chess\Evaluation\DefenseEvaluation;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;
@@ -957,5 +956,58 @@ final class Board extends \SplObjectStorage
         }
 
         return $moves;
+    }
+
+    /**
+     * Returns an ASCII array representing this Chess\Board object.
+     *
+     * @param bool $flip
+     * @return array
+     */
+    public function toAsciiArray(bool $flip = false): array
+    {
+        $array = [
+            7 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            6 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            5 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            4 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            3 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            2 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            1 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+            0 => [' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . '],
+        ];
+        foreach ($this->getPieces() as $piece) {
+            $sq = $piece->getSquare();
+            list($file, $rank) = AsciiArray::fromAlgebraicToIndex($sq);
+            if ($flip) {
+                $file = 7 - $file;
+                $rank = 7 - $rank;
+            }
+            $piece->getColor() === Color::W
+                ? $array[$file][$rank] = ' ' . $piece->getId() . ' '
+                : $array[$file][$rank] = ' ' . strtolower($piece->getId()) . ' ';
+        }
+
+        return $array;
+    }
+
+    /**
+     * Returns an ASCII string representing this Chess\Board object.
+     *
+     * @param bool $flip
+     * @return string
+     */
+    public function toAsciiString(bool $flip = false): string
+    {
+        $ascii = '';
+        $array = $this->toAsciiArray($flip);
+        foreach ($array as $i => $rank) {
+            foreach ($rank as $j => $file) {
+                $ascii .= $array[$i][$j];
+            }
+            $ascii .= PHP_EOL;
+        }
+
+        return $ascii;
     }
 }

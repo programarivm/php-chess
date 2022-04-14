@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\Ascii;
+use Chess\AsciiArray;
 use Chess\Heuristics;
 use Chess\Player;
 use Chess\FEN\BoardToStr;
@@ -276,7 +276,7 @@ class Game
 
     public function ascii(): string
     {
-        return Ascii::toString($this->board);
+        return $this->board->toAsciiString();
     }
 
     public function fen(): string

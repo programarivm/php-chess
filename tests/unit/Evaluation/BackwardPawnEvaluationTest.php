@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\Evaluation;
 
-use Chess\Ascii;
+use Chess\AsciiArray;
 use Chess\Evaluation\BackwardPawnEvaluation;
 use Chess\Evaluation\DoubledPawnEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
@@ -25,7 +25,7 @@ class BackwardPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, 'w');
+        $board = (new AsciiArray($position))->toBoard('w');
 
         $expected = [
             'w' => 2,
@@ -53,7 +53,7 @@ class BackwardPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, 'w');
+        $board = (new AsciiArray($position))->toBoard('w');
 
         $expected = [
             'w' => 0,

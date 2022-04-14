@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\Evaluation;
 
-use Chess\Ascii;
+use Chess\AsciiArray;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Evaluation\IsolatedPawnEvaluation;
 
@@ -24,7 +24,7 @@ class IsolatedPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' . ', ' . ', ' K ', ' . ', ' . ', ' R ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, 'w');
+        $board = (new AsciiArray($position))->toBoard('w');
 
         $expected = [
             'w' => 0,
@@ -52,7 +52,7 @@ class IsolatedPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' N ', ' . ', ' R ', ' K ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, 'w');
+        $board = (new AsciiArray($position))->toBoard('w');
 
         $expected = [
             'w' => 1,
@@ -80,7 +80,7 @@ class IsolatedPawnEvaluationTest extends AbstractUnitTestCase
             0 => [ ' . ', ' R ', ' . ', ' . ', ' . ', ' R ', ' . ', ' . ' ],
         ];
 
-        $board = (new Ascii())->toBoard($position, 'w');
+        $board = (new AsciiArray($position))->toBoard('w');
 
         $expected = [
             'w' => 2,
