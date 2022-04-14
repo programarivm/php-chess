@@ -3,7 +3,7 @@
 namespace Chess\FEN;
 
 use Chess\Board;
-use Chess\Pieces;
+use Chess\Array\PieceArray;
 use Chess\Array\AsciiArray;
 use Chess\Exception\UnknownNotationException;
 use Chess\PGN\AN\Color;
@@ -36,7 +36,7 @@ class StrToBoard
     public function create(): Board
     {
         try {
-            $pieces = (new Pieces())->fen($this->fields[0])->getPieces();
+            $pieces = (new PieceArray())->fen($this->fields[0])->getPieces();
             $board = (new Board($pieces, $this->castlingAbility))
                 ->setTurn($this->fields[1]);
             if ($this->fields[3] !== '-') {

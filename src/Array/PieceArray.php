@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess;
+namespace Chess\Array;
 
 use Chess\PGN\AN\Color;
 use Chess\PGN\AN\Piece;
@@ -13,12 +13,12 @@ use Chess\Piece\Rook;
 use Chess\Piece\RookType;
 
 /**
- * Pieces.
+ * Piece array.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-class Pieces
+class PieceArray
 {
     /**
      * Pieces.

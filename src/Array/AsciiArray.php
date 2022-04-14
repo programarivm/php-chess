@@ -3,7 +3,6 @@
 namespace Chess\Array;
 
 use Chess\Board;
-use Chess\Pieces;
 use Chess\FEN\Field\CastlingAbility;
 
 /**
@@ -53,7 +52,7 @@ class AsciiArray
         $castlingAbility = CastlingAbility::NEITHER
     ): Board
     {
-        $pieces = (new Pieces())->ascii($this->array)->getPieces();
+        $pieces = (new PieceArray())->ascii($this->array)->getPieces();
         $board = (new Board($pieces, $castlingAbility))->setTurn($turn);
 
         return $board;
