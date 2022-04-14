@@ -2,9 +2,9 @@
 
 namespace Chess\FEN;
 
-use Chess\AsciiArray;
 use Chess\Board;
 use Chess\Pieces;
+use Chess\Array\AsciiArray;
 use Chess\Exception\UnknownNotationException;
 use Chess\PGN\AN\Color;
 

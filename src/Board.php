@@ -2,6 +2,7 @@
 
 namespace Chess;
 
+use Chess\Array\AsciiArray;
 use Chess\Evaluation\DefenseEvaluation;
 use Chess\Evaluation\PressureEvaluation;
 use Chess\Evaluation\SpaceEvaluation;

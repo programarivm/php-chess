@@ -1,9 +1,9 @@
 <?php
 
-namespace Chess\Tests\Unit;
+namespace Chess\Tests\Unit\Array;
 
-use Chess\AsciiArray;
 use Chess\Board;
+use Chess\Array\AsciiArray;
 use Chess\Tests\AbstractUnitTestCase;
 
 class AsciiArrayTest extends AbstractUnitTestCase

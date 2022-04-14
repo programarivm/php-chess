@@ -1,7 +1,9 @@
 <?php
 
-namespace Chess;
+namespace Chess\Array;
 
+use Chess\Board;
+use Chess\Pieces;
 use Chess\FEN\Field\CastlingAbility;
 
 /**
@@ -43,7 +45,7 @@ class AsciiArray
      * Returns a Chess\Board object.
      *
      * @param string $turn
-     * @param \stdClass $castlingAbility
+     * @param string $castlingAbility
      * @return \Chess\Board
      */
     public function toBoard(
@@ -62,7 +64,7 @@ class AsciiArray
      *
      * @param string $piece
      * @param string $sq
-     * @return \Chess\AsciiArray
+     * @return \Chess\Array\AsciiArray
      */
     public function setElem(string $piece, string $sq): AsciiArray
     {

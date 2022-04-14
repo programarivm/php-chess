@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\Evaluation;
 
-use Chess\AsciiArray;
+use Chess\Array\AsciiArray;
 use Chess\Evaluation\DoubledPawnEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
 

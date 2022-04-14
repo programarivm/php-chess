@@ -2,8 +2,8 @@
 
 namespace Chess\Media;
 
-use Chess\AsciiArray;
 use Chess\Board;
+use Chess\Array\AsciiArray;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Point;
 
