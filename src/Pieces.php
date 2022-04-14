@@ -82,27 +82,15 @@ class Pieces
         } elseif ($id === Piece::Q) {
             $this->pieces[] = new Queen($color, $sq);
         } elseif ($id === Piece::R) {
-            if ($color === Color::B &&
-                $sq === 'a8'
-            ) {
+            if ($color === Color::B && $sq === 'a8') {
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
-            } elseif (
-                $color === Color::B &&
-                $sq === 'h8'
-            ) {
+            } elseif ($color === Color::B && $sq === 'h8') {
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
-            } elseif (
-                $color === Color::W &&
-                $sq === 'a1'
-            ) {
+            } elseif ($color === Color::W && $sq === 'a1') {
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
-            } elseif (
-                $color === Color::W &&
-                $sq === 'h1'
-            ) {
+            } elseif ($color === Color::W && $sq === 'h1') {
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_SHORT);
-            } else {
-                // it really doesn't matter which RookType is assigned
+            } else { // it doesn't matter which RookType is assigned
                 $this->pieces[] = new Rook($color, $sq, RookType::CASTLE_LONG);
             }
         } elseif ($id === Piece::B) {
