@@ -13,9 +13,24 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '8.1' ]
 
     steps:
     - uses: actions/checkout@v3
+
+    - name: Install FFmpeg
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extensions: curl, gd, mbstring, xml, zip
+        coverage: none
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -33,7 +48,4 @@ jobs:
       run: composer install --prefer-dist --no-progress
 
     - name: PHPUnit tests
-      uses: php-actions/phpunit@v9
-      with:
-        bootstrap: vendor/autoload.php
-        configuration: phpunit.xml
+      run: vendor/bin/phpunit
