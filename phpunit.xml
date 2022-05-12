@@ -13,7 +13,7 @@
             <directory>tests/unit/Combinatorics</directory>
             <directory>tests/unit/Evaluation</directory>
             <directory>tests/unit/FEN</directory>
-            <directory>tests/unit/Media/BoardToPngTest.php</directory>
+            <directory>tests/unit/Media</directory>
             <directory>tests/unit/ML</directory>
             <directory>tests/unit/PGN</directory>
             <directory>tests/unit/Piece</directory>

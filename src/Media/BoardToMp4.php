@@ -47,7 +47,7 @@ class BoardToMp4
 
     private function animate(string $filepath, string $filename): BoardToMp4
     {
-        $cmd = "ffmpeg -r 1 -pattern_type glob -i {$filepath}/{$filename}*.png -vf fps=25 -pix_fmt yuv420p {$filepath}/{$filename}.mp4";
+        $cmd = "ffmpeg -r 1 -pattern_type glob -i {$filepath}/{$filename}*.png -vf fps=25 -x264-params threads=6 -pix_fmt yuv420p {$filepath}/{$filename}.mp4";
         $escapedCmd = escapeshellcmd($cmd);
         exec($escapedCmd);
 
