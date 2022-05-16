@@ -22,6 +22,7 @@ use Chess\Evaluation\RelativeForkEvaluation;
 use Chess\Evaluation\SqOutpostEvaluation;
 use Chess\Evaluation\KnightOutpostEvaluation;
 use Chess\Evaluation\BishopOutpostEvaluation;
+use Chess\Evaluation\BishopPairEvaluation;
 
 /**
  * HeuristicsTrait
@@ -53,7 +54,7 @@ trait HeuristicsTrait
      * @var array
      */
     protected $dimensions = [
-        MaterialEvaluation::class => 28,
+        MaterialEvaluation::class => 24,
         CenterEvaluation::class => 4,
         ConnectivityEvaluation::class => 4,
         SpaceEvaluation::class => 4,
@@ -72,6 +73,7 @@ trait HeuristicsTrait
         SqOutpostEvaluation::class => 4,
         KnightOutpostEvaluation::class => 4,
         BishopOutpostEvaluation::class => 4,
+        BishopPairEvaluation::class => 4,
     ];
 
     /**

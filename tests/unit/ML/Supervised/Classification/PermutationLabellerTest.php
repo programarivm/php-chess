@@ -22,7 +22,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
 
         self::$permutations = (new RestrictedPermutationWithRepetition())
             ->get(
-                [ 4, 28 ],
+                [ 4, 24 ],
                 count($dimensions),
                 100
             );
