@@ -1,8 +1,8 @@
 <?php
 
-namespace Chess\Tests\Unit\Piece;
+namespace Chess\Tests\Unit\UciEngine;
 
-use Chess\UCI\Stockfish;
+use Chess\UciEngine\Stockfish;
 use Chess\Tests\AbstractUnitTestCase;
 
 class StockfishTest extends AbstractUnitTestCase
