@@ -10,12 +10,10 @@ class StockfishTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function best_move()
+    public function best_move_e2e4()
     {
-        $stockfish = new Stockfish();
+        $bestMove = (new Stockfish())->bestMove('e2e4', 3);
 
-        $stockfish->bestMove(3);
-
-        $this->assertTrue(true);
+        $this->assertNotEmpty($bestMove);
     }
 }
