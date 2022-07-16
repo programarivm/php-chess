@@ -25,19 +25,21 @@ class Stockfish
 
     protected array $pipes = [];
 
-    protected $process;
-
     public function __construct(Board $board)
     {
         $this->board = $board;
-        $this->process = proc_open(self::NAME, $this->descr, $this->pipes);
+    }
+
+    public function getBoard(): Board
+    {
+        return $this->board;
     }
 
     public function bestMove(string $fen, int $seconds): string
     {
-        echo $fen . PHP_EOL;
         $bestMove = '(none)';
-        if (is_resource($this->process)) {
+        $process = proc_open(self::NAME, $this->descr, $this->pipes);
+        if (is_resource($process)) {
             fwrite($this->pipes[0], "uci\n");
             fwrite($this->pipes[0], "position fen $fen\n");
             fwrite($this->pipes[0], "go infinite\n");
@@ -52,23 +54,9 @@ class Stockfish
                 }
             }
             fclose($this->pipes[1]);
-            proc_close($this->process);
+            proc_close($process);
         }
 
         return $bestMove;
-    }
-
-    public function play(string $move): Stockfish
-    {
-        if ($move !== '(none)') {
-            $this->board->play($this->board->getTurn(), $this->fromLongAnToAn($move));
-        }
-
-        return $this;
-    }
-
-    public function getBoard(): Board
-    {
-        return $this->board;
     }
 }
