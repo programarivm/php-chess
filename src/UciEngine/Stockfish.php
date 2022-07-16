@@ -2,6 +2,8 @@
 
 namespace Chess\UciEngine;
 
+use Chess\Board;
+
 /**
  * Stockfish.
  *
@@ -14,20 +16,24 @@ class Stockfish
 {
     const NAME = 'stockfish';
 
-    protected $descr = [
+    protected Board $board;
+
+    protected array $descr = [
         ['pipe', 'r'],
         ['pipe', 'w'],
     ];
 
-    protected $pipes = [];
+    protected array $pipes = [];
 
     protected $process;
 
-    public function __construct() {
+    public function __construct(Board $board)
+    {
+        $this->board = $board;
         $this->process = proc_open(self::NAME, $this->descr, $this->pipes);
     }
 
-    public function bestMove(string $moves, int $seconds)
+    public function bestMove(string $moves, int $seconds): string
     {
         $bestMove = '';
         if (is_resource($this->process)) {
@@ -49,5 +55,17 @@ class Stockfish
         }
 
         return $bestMove;
+    }
+
+    public function play(string $move): Stockfish
+    {
+        // TODO
+
+        return $this;
+    }
+
+    public function getBoard(): Board
+    {
+        return $this->board;
     }
 }
