@@ -35,7 +35,7 @@ class Stockfish
 
     public function bestMove(string $moves, int $seconds): string
     {
-        $bestMove = '';
+        $bestMove = '(none)';
         if (is_resource($this->process)) {
             fwrite($this->pipes[0], "uci\n");
             fwrite($this->pipes[0], "position startpos move $moves\n");
@@ -59,7 +59,9 @@ class Stockfish
 
     public function play(string $move): Stockfish
     {
-        // TODO
+        if ($move !== '(none)') {
+            $this->board->play($this->board->getTurn(), $this->fromLongAnToAn($move));
+        }
 
         return $this;
     }
@@ -67,5 +69,18 @@ class Stockfish
     public function getBoard(): Board
     {
         return $this->board;
+    }
+
+    protected function fromLongAnToAn(string $move)
+    {
+        $from = $move[0] . $move[1];
+        $to = $move[2] . $move[3];
+        $piece = $this->board->getPieceBySq($from);
+        switch ($piece->getId()) {
+            case 'P':
+                return $to;
+            default:
+                return;
+        }
     }
 }
