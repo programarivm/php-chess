@@ -10,12 +10,21 @@ namespace Chess\UciEngine;
  * @author Jordi Bassagañas
  * @license GPL
  */
-class Stockfish extends Process
+class Stockfish
 {
     const NAME = 'stockfish';
 
+    protected $descr = [
+        ['pipe', 'r'],
+        ['pipe', 'w'],
+    ];
+
+    protected $pipes = [];
+
+    protected $process;
+
     public function __construct() {
-        parent::__construct(self::NAME);
+        $this->process = proc_open(self::NAME, $this->descr, $this->pipes);
     }
 
     public function bestMove(string $moves, int $seconds)
