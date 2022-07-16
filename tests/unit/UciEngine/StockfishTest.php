@@ -11,13 +11,14 @@ class StockfishTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function best_move_e2e4()
+    public function best_move_e4()
     {
-        $stockfish = new Stockfish(new Board());
+        $board = new Board();
+        $board->play('w', 'e4');
 
-        $bestMove = $stockfish->bestMove('e2e4', 3);
+        $stockfish = new Stockfish($board);
 
-        $board = $stockfish->play($bestMove)->getBoard();
+        $bestMove = $stockfish->bestMove($board->toFen(), 3);
 
         $this->assertNotEmpty($bestMove);
     }

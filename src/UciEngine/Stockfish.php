@@ -33,12 +33,13 @@ class Stockfish
         $this->process = proc_open(self::NAME, $this->descr, $this->pipes);
     }
 
-    public function bestMove(string $moves, int $seconds): string
+    public function bestMove(string $fen, int $seconds): string
     {
+        echo $fen . PHP_EOL;
         $bestMove = '(none)';
         if (is_resource($this->process)) {
             fwrite($this->pipes[0], "uci\n");
-            fwrite($this->pipes[0], "position startpos move $moves\n");
+            fwrite($this->pipes[0], "position fen $fen\n");
             fwrite($this->pipes[0], "go infinite\n");
             sleep($seconds);
             fwrite($this->pipes[0], "stop\n");
@@ -69,18 +70,5 @@ class Stockfish
     public function getBoard(): Board
     {
         return $this->board;
-    }
-
-    protected function fromLongAnToAn(string $move)
-    {
-        $from = $move[0] . $move[1];
-        $to = $move[2] . $move[3];
-        $piece = $this->board->getPieceBySq($from);
-        switch ($piece->getId()) {
-            case 'P':
-                return $to;
-            default:
-                return;
-        }
     }
 }
