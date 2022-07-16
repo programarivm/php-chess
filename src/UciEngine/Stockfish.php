@@ -16,25 +16,57 @@ class Stockfish
 {
     const NAME = 'stockfish';
 
+    /**
+     * PHP Chess board.
+     *
+     * @var \Chess\Board
+     */
     protected Board $board;
 
+    /**
+     * Process descriptor.
+     *
+     * @var array
+     */
     protected array $descr = [
         ['pipe', 'r'],
         ['pipe', 'w'],
     ];
 
+    /**
+     * Process pipes.
+     *
+     * @var array
+     */
     protected array $pipes = [];
 
+    /**
+     * Constructor.
+     *
+     * @param \Chess\Board $board
+     */
     public function __construct(Board $board)
     {
         $this->board = $board;
     }
 
+    /**
+     * Returns the PHP Chess board.
+     *
+     * @return \Chess\Board
+     */
     public function getBoard(): Board
     {
         return $this->board;
     }
 
+    /**
+     * Calculates the best move.
+     *
+     * @param string $fen
+     * @param int $seconds
+     * @return string
+     */
     public function bestMove(string $fen, int $seconds): string
     {
         $bestMove = '(none)';
@@ -60,6 +92,13 @@ class Stockfish
         return $bestMove;
     }
 
+    /**
+     * Makes the best move returning the FEN string.
+     *
+     * @param string $fen
+     * @param int $seconds
+     * @return string
+     */
     public function fen(string $fen, int $seconds): string
     {
         $bestMove = $this->bestMove($fen, $seconds);
