@@ -21,14 +21,14 @@ class Stockfish
      *
      * @var \Chess\Board
      */
-    protected Board $board;
+    private Board $board;
 
     /**
      * Process descriptor.
      *
      * @var array
      */
-    protected array $descr = [
+    private array $descr = [
         ['pipe', 'r'],
         ['pipe', 'w'],
     ];
@@ -38,7 +38,7 @@ class Stockfish
      *
      * @var array
      */
-    protected array $pipes = [];
+    private array $pipes = [];
 
     /**
      * Constructor.
