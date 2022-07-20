@@ -40,7 +40,7 @@ class ModelPlayCli extends CLI
                 echo $game->getBoard()->toFen() . PHP_EOL;
             } elseif ($move !== 'quit') {
                 $game->play('w', $move);
-                $ai = $game->ai();
+                $ai = $game->ai(['Skill Level' => 20] , ['depth' => 8]);
                 $game->play('b', $ai->move);
                 echo self::PROMPT . $game->getBoard()->getMovetext() . PHP_EOL;
                 echo $game->getBoard()->toAsciiString();

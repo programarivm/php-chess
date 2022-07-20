@@ -139,9 +139,11 @@ class Game
      * This method is to be used in either Game::MODE_AI or Game::MODE_GM
      * otherwise it returns null.
      *
+     * @param array $options
+     * @param array $params
      * @return mixed object|null
      */
-    public function ai(): ?object
+    public function ai(array $options = [], array $params = []): ?object
     {
         if ($this->mode === Game::MODE_GM) {
             return $this->gm->move($this);
@@ -163,9 +165,11 @@ class Game
             if ($move = $this->gm->move($this)) {
                 return $move;
             }
-            $stockfish = new Stockfish($this->board);
+            $stockfish = (new Stockfish($this->board))
+                ->setOptions($options)
+                ->setParams($params);
             $fromFen = $this->board->toFen();
-            $toFen = $stockfish->shortFen($fromFen, 3000);
+            $toFen = $stockfish->shortFen($fromFen);
             $pgn = (new ShortStrToPgn($fromFen, $toFen))->create();
             return (object) [
                 'move' => current($pgn),
