@@ -18,8 +18,8 @@ class BadBishopEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard($fen))->create();
 
         $expected = [
-            'w' => 5,
-            'b' => 0,
+            'w' => 0,
+            'b' => 5,
         ];
 
         $badBishopEval = (new BadBishopEval($board))->eval();
