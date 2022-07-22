@@ -33,7 +33,7 @@ class Randomizer
         return $this->board;
     }
 
-    public function sq(): string
+    private function sq(): string
     {
         $files = self::FILES;
         $ranks = self::RANKS;
@@ -79,6 +79,31 @@ class Randomizer
         $this->castlingAbility = '-';
 
         $this->board = new Board($this->pieces, $this->castlingAbility);
+
+        return $this;
+    }
+
+    public function pieces(array $items)
+    {
+        $pieces = [];
+        $freeSqs = $this->board->getSqEval()->free;
+        foreach ($items as $color => $ids) {
+            foreach ($ids as $id) {
+                do {
+                    $sq = $this->sq();
+                } while (!in_array($sq, $freeSqs));
+                $pieces[] = [
+                    'color' => $color,
+                    'id' => $id,
+                    'sq' => $sq,
+                ];
+                if (($key = array_search($sq, $freeSqs)) !== false) {
+                    unset($freeSqs[$key]);
+                }
+            }
+        }
+
+        // TODO...
 
         return $this;
     }
