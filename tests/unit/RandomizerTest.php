@@ -14,7 +14,9 @@ class RandomizerTest extends AbstractUnitTestCase
      */
     public function kings()
     {
-        $board = (new Randomizer())->getBoard();
+        $turn = Color::W;
+
+        $board = (new Randomizer($turn))->getBoard();
 
         $fen = (new BoardToStr($board))->create();
 
@@ -26,13 +28,13 @@ class RandomizerTest extends AbstractUnitTestCase
      */
     public function pieces()
     {
+        $turn = Color::W;
+
         $pieces = [
             Color::W => ['R'],
         ];
 
-        $board = (new Randomizer())
-            ->pieces($pieces)
-            ->getBoard();
+        $board = (new Randomizer($turn, $pieces))->getBoard();
 
         $fen = (new BoardToStr($board))->create();
 

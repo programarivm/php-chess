@@ -23,9 +23,11 @@ class Randomizer
 
     private string $castlingAbility;
 
-    public function __construct()
+    public function __construct(string $turn, array $items = [])
     {
         $this->kings();
+        $this->board->setTurn($turn);
+        $this->pieces($items);
     }
 
     public function getBoard()
