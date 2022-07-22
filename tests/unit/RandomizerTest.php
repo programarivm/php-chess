@@ -26,12 +26,30 @@ class RandomizerTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function pieces()
+    public function w_N_B_R()
     {
         $turn = Color::W;
 
         $items = [
             Color::W => ['N', 'B', 'R'],
+        ];
+
+        $board = (new Randomizer($turn, $items))->getBoard();
+
+        $fen = (new BoardToStr($board))->create();
+
+        $this->assertNotEmpty($fen);
+    }
+
+    /**
+     * @test
+     */
+    public function b_N_B_R()
+    {
+        $turn = Color::B;
+
+        $items = [
+            Color::B => ['N', 'B', 'R'],
         ];
 
         $board = (new Randomizer($turn, $items))->getBoard();
