@@ -30,11 +30,11 @@ class RandomizerTest extends AbstractUnitTestCase
     {
         $turn = Color::W;
 
-        $pieces = [
-            Color::W => ['R'],
+        $items = [
+            Color::W => ['N', 'B', 'R'],
         ];
 
-        $board = (new Randomizer($turn, $pieces))->getBoard();
+        $board = (new Randomizer($turn, $items))->getBoard();
 
         $fen = (new BoardToStr($board))->create();
 
