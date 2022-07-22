@@ -25,7 +25,7 @@ class Randomizer
 
     public function __construct()
     {
-        // ...
+        $this->kings();
     }
 
     public function getBoard()
@@ -56,7 +56,7 @@ class Randomizer
         return $b === $prev || $b === $curr || $b === $next;
     }
 
-    public function kings()
+    private function kings()
     {
         $wSq = $this->sq();
         $wFile = $wSq[0];

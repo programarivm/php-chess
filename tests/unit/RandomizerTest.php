@@ -14,7 +14,7 @@ class RandomizerTest extends AbstractUnitTestCase
      */
     public function kings()
     {
-        $board = (new Randomizer())->kings()->getBoard();
+        $board = (new Randomizer())->getBoard();
 
         $fen = (new BoardToStr($board))->create();
 
@@ -31,7 +31,6 @@ class RandomizerTest extends AbstractUnitTestCase
         ];
 
         $board = (new Randomizer())
-            ->kings()
             ->pieces($pieces)
             ->getBoard();
 
