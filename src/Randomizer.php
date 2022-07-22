@@ -92,18 +92,17 @@ class Randomizer
                 do {
                     $sq = $this->sq();
                 } while (!in_array($sq, $freeSqs));
-                $pieces[] = [
-                    'color' => $color,
-                    'id' => $id,
-                    'sq' => $sq,
-                ];
+                $className = "\Chess\Piece\\$id";
+                $pieces[] = new $className($color, $sq, RType::PROMOTED);
                 if (($key = array_search($sq, $freeSqs)) !== false) {
                     unset($freeSqs[$key]);
                 }
             }
         }
-
-        // TODO...
+        foreach ($this->board->getPieces() as $kings) {
+            $pieces[] = new K($kings->getColor(), $kings->getSq());
+        }
+        $this->board = new Board($pieces, $this->board->getCastlingAbility());
 
         return $this;
     }
