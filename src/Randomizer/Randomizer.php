@@ -26,14 +26,14 @@ class Randomizer
      *
      * @var \Chess\Board
      */
-    private Board $board;
+    protected Board $board;
 
     /**
      * The items to be added.
      *
      * @var array
      */
-    private array $items = [];
+    protected array $items = [];
 
     /**
      * Constructor.
@@ -69,7 +69,7 @@ class Randomizer
      *
      * @return string
      */
-    private function sq(): string
+    protected function sq(): string
     {
         $files = self::FILES;
         $ranks = self::RANKS;
@@ -88,7 +88,7 @@ class Randomizer
      *
      * @return bool
      */
-    private function areAdjacentSqs(string $w, string $b): bool
+    protected function areAdjacentSqs(string $w, string $b): bool
     {
         $prev = chr(ord($w) - 1);
         $curr = $w;
@@ -102,7 +102,7 @@ class Randomizer
      *
      * @return array
      */
-    private function kings(): array
+    protected function kings(): array
     {
         $wSq = $this->sq();
         $wFile = $wSq[0];
@@ -134,7 +134,7 @@ class Randomizer
      * @param array $pieces
      * @return array
      */
-    private function rand(array $items, array $pieces): array
+    protected function rand(array $items, array $pieces): array
     {
         $freeSqs = $this->board->getSqEval()->free;
         foreach ($items as $color => $ids) {
@@ -155,7 +155,7 @@ class Randomizer
      *
      * @return bool
      */
-    private function isAttackingKing(Board $board): bool
+    protected function isAttackingKing(Board $board): bool
     {
         foreach ($board->getPieces() as $piece) {
             if ($piece->isAttackingKing()) {
