@@ -23,6 +23,7 @@ use Chess\Eval\SqOutpostEval;
 use Chess\Eval\KnightOutpostEval;
 use Chess\Eval\BishopOutpostEval;
 use Chess\Eval\BishopPairEval;
+use Chess\Eval\BadBishopEval;
 
 /**
  * HeuristicsTrait
@@ -54,7 +55,7 @@ trait HeuristicsTrait
      * @var array
      */
     protected $dims = [
-        MaterialEval::class => 24,
+        MaterialEval::class => 20,
         CenterEval::class => 4,
         ConnectivityEval::class => 4,
         SpaceEval::class => 4,
@@ -74,6 +75,7 @@ trait HeuristicsTrait
         KnightOutpostEval::class => 4,
         BishopOutpostEval::class => 4,
         BishopPairEval::class => 4,
+        BadBishopEval::class => 4,
     ];
 
     /**

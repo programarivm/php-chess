@@ -27,8 +27,8 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
         $evaluation = (new HeuristicsByFenString($fen))->eval();
 
         $expected = [
-            'w' => 30.08,
-            'b' => 30.08,
+            'w' => 26.88,
+            'b' => 26.88,
         ];
 
         $this->assertSame($expected, $evaluation);
@@ -44,8 +44,8 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
         $evaluation = (new HeuristicsByFenString($fen))->eval();
 
         $expected = [
-            'w' => 31.52,
-            'b' => 31.52,
+            'w' => 28.32,
+            'b' => 28.32,
         ];
 
         $this->assertSame($expected, $evaluation);
@@ -61,8 +61,8 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
         $evaluation = (new HeuristicsByFenString($fen))->eval();
 
         $expected = [
-            'w' => 29.64,
-            'b' => 28.16,
+            'w' => 26.4,
+            'b' => 25.12,
         ];
 
         $this->assertSame($expected, $evaluation);
@@ -86,7 +86,7 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFenString($fen))->getBalance();
 
-        $expected = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        $expected = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -100,7 +100,7 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFenString($fen))->getBalance();
 
-        $expected = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        $expected = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -114,7 +114,7 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFenString($fen))->getBalance();
 
-        $expected = [ 0.02, 0.22, -0.02, 0.09, -0.07, 0, 0, 0, 0, 0.05, 0, -0.02, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        $expected = [ 0.02, 0.22, -0.02, 0.09, -0.07, 0, 0, 0, 0, 0.05, 0, -0.02, 0, 0, 0, 0, 0, 0, 0, 0, -0.03 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -128,7 +128,7 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFenString($fen))->getBalance();
 
-        $expected = [ 0.02, 0.12, -0.25, 0.04, 0.06, 0.08, -0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        $expected = [ 0.02, 0.12, -0.25, 0.04, 0.06, 0.08, -0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.02 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -151,7 +151,7 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFenString($fen))->getResizedBalance(0, 1);
 
-        $expected = [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ];
+        $expected = [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -165,7 +165,7 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFenString($fen))->getResizedBalance(0, 1);
 
-        $expected = [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ];
+        $expected = [ 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -179,7 +179,7 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFenString($fen))->getResizedBalance(0, 1);
 
-        $expected = [ 0.51, 0.61, 0.49, 0.55, 0.47, 0.5, 0.5, 0.5, 0.5, 0.53, 0.5, 0.49, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ];
+        $expected = [ 0.51, 0.61, 0.49, 0.55, 0.47, 0.5, 0.5, 0.5, 0.5, 0.53, 0.5, 0.49, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.49 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -193,7 +193,7 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFenString($fen))->getResizedBalance(0, 1);
 
-        $expected = [ 0.51, 0.56, 0.38, 0.52, 0.53, 0.54, 0.49, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 ];
+        $expected = [ 0.51, 0.56, 0.38, 0.52, 0.53, 0.54, 0.49, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.49 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -217,8 +217,8 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
         $result = (new HeuristicsByFenString($fen))->getResult();
 
         $expected = [
-            'w' => [ 1, 0.7, 0.4, 0.4, 0, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            'b' => [ 1, 0.7, 0.4, 0.4, 0, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            'w' => [ 1, 0.7, 0.4, 0.4, 0, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2 ],
+            'b' => [ 1, 0.7, 0.4, 0.4, 0, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2 ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -234,8 +234,8 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
         $result = (new HeuristicsByFenString($fen))->getResult();
 
         $expected = [
-            'w' => [ 1, 0.88, 0.52, 0.42, 0.02, 0.02, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-            'b' => [ 1, 0.88, 0.52, 0.42, 0.02, 0.02, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            'w' => [ 1, 0.88, 0.52, 0.42, 0.02, 0.02, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2 ],
+            'b' => [ 1, 0.88, 0.52, 0.42, 0.02, 0.02, 0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.2 ],
         ];
 
         $this->assertEquals($expected, $result);
@@ -251,8 +251,8 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
         $result = (new HeuristicsByFenString($fen))->getResult();
 
         $expected = [
-            'w' => [ 0.88, 1, 0.45, 0.59, 0, 0.02, 0, 0, 0, 0.05, 0, 0, 0, 0, 0, 0, 0.02, 0, 0, 0 ],
-            'b' => [ 0.86, 0.78, 0.47, 0.5, 0.07, 0.02, 0, 0, 0, 0, 0, 0.02, 0, 0, 0, 0, 0.02, 0, 0, 0 ],
+            'w' => [ 0.88, 1, 0.45, 0.59, 0, 0.02, 0, 0, 0, 0.05, 0, 0, 0, 0, 0, 0, 0.02, 0, 0, 0, 0.07 ],
+            'b' => [ 0.86, 0.78, 0.47, 0.5, 0.07, 0.02, 0, 0, 0, 0, 0, 0.02, 0, 0, 0, 0, 0.02, 0, 0, 0, 0.1 ],
         ];
 
         $this->assertEquals($expected, $result);
