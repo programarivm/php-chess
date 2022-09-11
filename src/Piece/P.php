@@ -50,15 +50,15 @@ class P extends AbstractPiece
 
         if ($this->color === Color::W) {
             $this->ranks = (object) [
-                'initial' => 2,
+                'start' => 2,
                 'next' => (int)$this->sq[1] + 1,
-                'promotion' => 8
+                'end' => 8
             ];
         } elseif ($this->color === Color::B) {
             $this->ranks = (object) [
-                'initial' => 7,
+                'start' => 7,
                 'next' => (int)$this->sq[1] - 1,
-                'promotion' => 1
+                'end' => 1
             ];
         }
 
@@ -86,11 +86,11 @@ class P extends AbstractPiece
         }
 
         // two square advance
-        if ($this->sq[1] == 2 && $this->ranks->initial == 2) {
-            $this->mobility[] = $this->file . ($this->ranks->initial + 2);
+        if ($this->sq[1] == 2 && $this->ranks->start == 2) {
+            $this->mobility[] = $this->file . ($this->ranks->start + 2);
         }
-        elseif ($this->sq[1] == 7 && $this->ranks->initial == 7) {
-            $this->mobility[] = $this->file . ($this->ranks->initial - 2);
+        elseif ($this->sq[1] == 7 && $this->ranks->start == 7) {
+            $this->mobility[] = $this->file . ($this->ranks->start - 2);
         }
 
         // capture square
@@ -232,6 +232,6 @@ class P extends AbstractPiece
     public function isPromoted(): bool
     {
         return isset($this->move->newId) &&
-            (int)$this->getMove()->sq->next[1] === $this->ranks->promotion;
+            (int)$this->getMove()->sq->next[1] === $this->ranks->end;
     }
 }

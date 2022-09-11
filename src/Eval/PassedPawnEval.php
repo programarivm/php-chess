@@ -47,9 +47,9 @@ class PassedPawnEval extends AbstractEval
                 continue;
             }
             if ($color === Color::W) {
-                $listRanks = range($ranks->next, $ranks->promotion - 1);
+                $listRanks = range($ranks->next, $ranks->end - 1);
             } else {
-                $listRanks = range($ranks->next, $ranks->promotion + 1);
+                $listRanks = range($ranks->next, $ranks->end + 1);
             }
             $sqsFile = array_map(function($rank) use ($file){
                 return $file . $rank;
