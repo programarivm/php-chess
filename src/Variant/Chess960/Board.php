@@ -2,15 +2,25 @@
 
 namespace Chess\Variant\Chess960;
 
-use Chess\Board;
+use Chess\Board as ClassicalBoard;
+use Chess\FEN\Field\CastlingAbility;
 use Chess\Variant\Chess960\StartPieces;
 
-final class Board extends Board
+final class Board extends ClassicalBoard
 {
-    public function __construct()
+    public function __construct(array $pieces = null, string $castlingAbility = '-')
     {
-        $pieces = (new StartPieces())->create();
+        if (!$pieces) {
+            $pieces = (new StartPieces())->create();
+            $this->castlingAbility = CastlingAbility::START;
+        } else {
+            $this->castlingAbility = $castlingAbility;
+        }
 
-        // TODO
+        foreach ($pieces as $piece) {
+            $this->attach($piece);
+        }
     }
+
+    // TODO ...
 }
