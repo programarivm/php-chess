@@ -34,7 +34,7 @@ use Chess\Piece\RType;
  * @author Jordi Bassagañas
  * @license GPL
  */
-final class Board extends \SplObjectStorage
+class Board extends \SplObjectStorage
 {
     use BoardObserverPieceTrait;
 
