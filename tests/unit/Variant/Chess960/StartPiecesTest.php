@@ -14,6 +14,6 @@ class StartPiecesTest extends AbstractUnitTestCase
     {
         $pieces = (new StartPieces())->create();
 
-        $this->assertSame(16, count($pieces));
+        $this->assertSame(32, count($pieces));
     }
 }

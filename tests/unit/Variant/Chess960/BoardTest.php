@@ -16,6 +16,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $pieces = $board->getPieces();
 
-        $this->assertSame(16, count($pieces));
+        $this->assertSame(32, count($pieces));
     }
 }
