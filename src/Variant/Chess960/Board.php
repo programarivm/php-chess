@@ -1,6 +1,6 @@
 <?php
 
-namespace Variant\Chess960;
+namespace Chess\Variant\Chess960;
 
 use Chess\Board;
 
