@@ -3,16 +3,16 @@
 namespace Chess\Tests\Unit\Variant\Chess960;
 
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Chess960\StartingPosition;
+use Chess\Variant\Chess960\StartPosition;
 
-class StartingPositionTest extends AbstractUnitTestCase
+class StartPositionTest extends AbstractUnitTestCase
 {
     /**
      * @test
      */
     public function create()
     {
-        $arr = (new StartingPosition())->create();
+        $arr = (new StartPosition())->create();
 
         $this->assertNotEmpty($arr);
     }

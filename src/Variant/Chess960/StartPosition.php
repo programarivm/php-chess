@@ -4,7 +4,7 @@ namespace Chess\Variant\Chess960;
 
 use Chess\PGN\AN\Piece;
 
-class StartingPosition
+class StartPosition
 {
     private $arr = [
         Piece::R,
@@ -29,22 +29,23 @@ class StartingPosition
     private function bishops()
     {
         $keys = [];
+
         foreach ($this->arr as $key => $val) {
             if ($val === Piece::B) {
                 $keys[] = $key;
             }
         }
-        $areEven = $keys[0] % 2 === 0 && $keys[1] % 2 === 0;
-        $areOdd = $keys[0] % 2 !== 0 && $keys[1] % 2 !== 0;
 
-        return !$areEven && !$areOdd;
+        $even = $keys[0] % 2 === 0 && $keys[1] % 2 === 0;
+        $odd = $keys[0] % 2 !== 0 && $keys[1] % 2 !== 0;
+
+        return !$even && !$odd;
     }
 
     private function king()
     {
         $str = implode('', $this->arr);
-        $isBetweenRooks = preg_match('/^(.*)R(.*)K(.*)R(.*)$/', $str);
 
-        return $isBetweenRooks;
+        return preg_match('/^(.*)R(.*)K(.*)R(.*)$/', $str);
     }
 }
