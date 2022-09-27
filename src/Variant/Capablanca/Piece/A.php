@@ -51,7 +51,7 @@ class A extends Slider
     {
         $this->mobility = (object) [
             ... (array) $this->bishop->getMobility(),
-            ... (array) $this->knight->getMobility()
+            'knight' => (array) $this->knight->getMobility()
         ];
 
         return $this;
