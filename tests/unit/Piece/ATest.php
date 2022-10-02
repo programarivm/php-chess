@@ -29,7 +29,7 @@ class ATest extends AbstractUnitTestCase
             'upRight' => ['b2', 'c3', 'd4', 'e5', 'f6', 'g7', 'h8'],
             'downLeft' => [],
             'downRight' => [],
-            'knight' => ['b3', 'c3']
+            'knight' => ['b3', 'c2']
         ];
 
         $this->assertEquals($mobility, $archbishop->getMobility());
