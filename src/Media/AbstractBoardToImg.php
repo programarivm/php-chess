@@ -2,16 +2,16 @@
 
 namespace Chess\Media;
 
-use Chess\Array\AsciiArray;
 use Chess\Variant\Classical\Board;
 use Imagine\Gd\Imagine;
+use Imagine\Image\ImageInterface;
 use Imagine\Image\Point;
 
 class AbstractBoardToImg
 {
-    const FILEPATH = __DIR__ . '/../../img';
+    public const FILEPATH = __DIR__ . '/../../img';
 
-    const SIZES = [
+    public const SIZES = [
         480 => 60,
         3000 => 375,
     ];
@@ -44,20 +44,20 @@ class AbstractBoardToImg
 
     public function output(string $filepath, string $salt = ''): string
     {
-        $salt ? $filename = $salt.$this->ext : $filename = uniqid().$this->ext;
+        $salt ? $filename = $salt.$this->ext : $filename = uniqid('', true).$this->ext;
 
-        $this->chessboard($filepath)->save("{$filepath}/{$filename}");
+        $this->chessboard($filepath)->save("$filepath/$filename");
 
         return $filename;
     }
 
-    protected function chessboard(string $filepath)
+    protected function chessboard(string $filepath): ImageInterface
     {
         $chessboard = $this->imagine->open(self::FILEPATH.'/chessboard/'.$this->size.'.png');
         $array = $this->board->toAsciiArray($this->flip);
         $x = $y = 0;
-        foreach ($array as $i => $rank) {
-            foreach ($rank as $j => $piece) {
+        foreach ($array as $rank) {
+            foreach ($rank as $piece) {
                 if ($piece !== ' . ') {
                     $filename = trim($piece);
                     $image = $this->imagine->open(

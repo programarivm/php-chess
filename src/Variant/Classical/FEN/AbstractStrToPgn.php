@@ -2,11 +2,10 @@
 
 namespace Chess\Variant\Classical\FEN;
 
-use Chess\Piece\K;
-use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Board;
+use Exception;
 
 abstract class AbstractStrToPgn
 {
@@ -70,7 +69,7 @@ abstract class AbstractStrToPgn
                                     $sq => (new BoardToStr($clone))->create()
                                 ];
                             }
-                        } catch (\Exception $e) {}
+                        } catch (Exception) {}
                         if ($clone->play($color, $piece->getFile()."x$sq")) {
                             $legal[] = [
                                 $piece->getFile()."x$sq" => (new BoardToStr($clone))->create()
@@ -78,26 +77,24 @@ abstract class AbstractStrToPgn
                         }
                         break;
                     default:
-                        if (in_array($sq, $this->disambiguation($color, $id))) {
+                        if (in_array($sq, $this->disambiguation($color, $id), true)) {
                             if ($clone->play($color, $id.$position.$sq)) {
                                 $legal[] = [
                                     $id.$position.$sq => (new BoardToStr($clone))->create()
                                 ];
-                            } elseif ($clone->play($color, "{$id}{$position}x$sq")) {
+                            } elseif ($clone->play($color, "$id{$position}x$sq")) {
                                 $legal[] = [
-                                    "{$id}{$position}x$sq" => (new BoardToStr($clone))->create()
+                                    "$id{$position}x$sq" => (new BoardToStr($clone))->create()
                                 ];
                             }
-                        } else {
-                            if ($clone->play($color, $id.$sq)) {
-                                $legal[] = [
-                                    $id.$sq => (new BoardToStr($clone))->create()
-                                ];
-                            } elseif ($clone->play($color, "{$id}x{$sq}")) {
-                                $legal[] = [
-                                    "{$id}x{$sq}" => (new BoardToStr($clone))->create()
-                                ];
-                            }
+                        } else if ($clone->play($color, $id.$sq)) {
+                            $legal[] = [
+                                $id.$sq => (new BoardToStr($clone))->create()
+                            ];
+                        } elseif ($clone->play($color, "{$id}x$sq")) {
+                            $legal[] = [
+                                "{$id}x$sq" => (new BoardToStr($clone))->create()
+                            ];
                         }
                         break;
                 }
@@ -116,9 +113,8 @@ abstract class AbstractStrToPgn
         foreach ($clone->getPiecesByColor($color) as $piece) {
             foreach ($piece->sqs() as $sq) {
                 switch ($piece->getId()) {
-                    case Piece::K:
-                        break;
                     case Piece::P:
+                    case Piece::K:
                         break;
                     default:
                         $identities[$piece->getId()][$piece->getSq()][] = $sq;
@@ -127,8 +123,7 @@ abstract class AbstractStrToPgn
             }
         }
         $vals = array_merge(...array_values($identities[$id]));
-        $duplicates = array_diff_assoc($vals, array_unique($vals));
 
-        return $duplicates;
+        return array_diff_assoc($vals, array_unique($vals));
     }
 }

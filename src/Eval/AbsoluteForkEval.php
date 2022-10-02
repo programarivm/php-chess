@@ -7,7 +7,7 @@ use Chess\Variant\Classical\Board;
 
 class AbsoluteForkEval extends AbstractForkEval
 {
-    const NAME = 'Absolute fork';
+    public const NAME = 'Absolute fork';
 
     public function __construct(Board $board)
     {

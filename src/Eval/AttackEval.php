@@ -14,7 +14,7 @@ use Chess\Variant\Classical\Board;
  */
 class AttackEval extends AbstractEval
 {
-    const NAME = 'Attack';
+    public const NAME = 'Attack';
 
     public function __construct(Board $board)
     {
@@ -35,24 +35,20 @@ class AttackEval extends AbstractEval
                     break;
                 case Piece::P:
                     foreach ($piece->getCaptureSqs() as $sq) {
-                        if ($item = $this->board->getPieceBySq($sq)) {
-                            if ($item->getColor() !== $piece->getColor()) {
-                                $id = $item->getId();
-                                if ($id !== Piece::K && $this->value[Piece::P] < $this->value[$id]) {
-                                    $this->result[$piece->getColor()] += $this->value[$id] - $this->value[Piece::P];
-                                }
+                        if (($item = $this->board->getPieceBySq($sq)) && $item->getColor() !== $piece->getColor()) {
+                            $id = $item->getId();
+                            if ($id !== Piece::K && $this->value[Piece::P] < $this->value[$id]) {
+                                $this->result[$piece->getColor()] += $this->value[$id] - $this->value[Piece::P];
                             }
                         }
                     }
                     break;
                 default:
                     foreach ($piece->sqs() as $sq) {
-                        if ($item = $this->board->getPieceBySq($sq)) {
-                            if ($item->getColor() !== $piece->getColor()) {
-                                $id = $item->getId();
-                                if ($id !== Piece::K && $this->value[$piece->getId()] < $this->value[$id]) {
-                                    $this->result[$piece->getColor()] += $this->value[$id] - $this->value[$piece->getId()];
-                                }
+                        if (($item = $this->board->getPieceBySq($sq)) && $item->getColor() !== $piece->getColor()) {
+                            $id = $item->getId();
+                            if ($id !== Piece::K && $this->value[$piece->getId()] < $this->value[$id]) {
+                                $this->result[$piece->getColor()] += $this->value[$id] - $this->value[$piece->getId()];
                             }
                         }
                     }

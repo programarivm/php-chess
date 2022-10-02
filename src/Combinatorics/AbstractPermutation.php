@@ -15,7 +15,7 @@ abstract class AbstractPermutation
         $array = [];
 
         for ($i = 0; $i < $size; $i++) {
-            $selector = ((int) ($offset / pow($count,$i)) % $count);
+            $selector = ((int) ($offset / ($count ** $i)) % $count);
             $array[$i] = $values[$selector];
         }
 

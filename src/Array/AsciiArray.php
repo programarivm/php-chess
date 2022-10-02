@@ -28,17 +28,16 @@ class AsciiArray extends AbstractArray
      *
      * @param string $turn
      * @param string $castlingAbility
-     * @return \Chess\Variant\Classical\Board
+     * @return Board
      */
     public function toBoard(
         string $turn,
-        $castlingAbility = CastlingAbility::NEITHER
+        string $castlingAbility = CastlingAbility::NEITHER
     ): Board
     {
         $pieces = (new PieceArray($this->array))->getArray();
-        $board = (new Board($pieces, $castlingAbility))->setTurn($turn);
 
-        return $board;
+        return (new Board($pieces, $castlingAbility))->setTurn($turn);
     }
 
     /**
@@ -46,7 +45,7 @@ class AsciiArray extends AbstractArray
      *
      * @param string $elem
      * @param string $sq
-     * @return \Chess\Array\AsciiArray
+     * @return AsciiArray
      */
     public function setElem(string $elem, string $sq): AsciiArray
     {
@@ -65,7 +64,7 @@ class AsciiArray extends AbstractArray
     public static function fromAlgebraicToIndex(string $sq): array
     {
         $j = ord($sq[0]) - 97;
-        $i = intval(ltrim($sq, $sq[0])) - 1;
+        $i = (int) ltrim($sq, $sq[0]) - 1;
 
         return [
             $i,

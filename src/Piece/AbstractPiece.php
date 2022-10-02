@@ -59,7 +59,7 @@ abstract class AbstractPiece
     /**
      * The chessboard.
      *
-     * @var \Chess\Variant\Classical\Board
+     * @var Board
      */
     protected Board $board;
 
@@ -68,6 +68,7 @@ abstract class AbstractPiece
      *
      * @param string $color
      * @param string $sq
+     * @param array $size
      * @param string $id
      */
     public function __construct(string $color, string $sq, array $size, string $id)
@@ -81,7 +82,7 @@ abstract class AbstractPiece
     /**
      * Calculates the piece's mobility.
      *
-     * @return \Chess\Piece\AbstractPiece
+     * @return AbstractPiece
      */
     abstract protected function mobility(): AbstractPiece;
 
@@ -95,19 +96,19 @@ abstract class AbstractPiece
     /**
      * Returns the squares defended by the piece.
      *
-     * @return mixed array|null
+     * @return array|null array|null
      */
     abstract public function defendedSqs(): ?array;
 
     /**
      * Returns the pieces attacked by the piece.
      *
-     * @return mixed array|null
+     * @return array|null array|null
      */
     public function attackedPieces(): ?array
     {
         $pieces = [];
-        foreach ($sqs = $this->sqs() as $sq) {
+        foreach ($this->sqs() as $sq) {
             if ($piece = $this->board->getPieceBySq($sq)) {
                 $pieces[] = $piece;
             }
@@ -165,7 +166,7 @@ abstract class AbstractPiece
     /**
      * Gets the piece's mobility.
      *
-     * @return mixed array|object
+     * @return array|object array|object
      */
     public function getMobility(): array|object
     {
@@ -186,6 +187,7 @@ abstract class AbstractPiece
      * Sets the piece's next move.
      *
      * @param object $move
+     * @return AbstractPiece
      */
     public function setMove(object $move): AbstractPiece
     {
@@ -212,17 +214,19 @@ abstract class AbstractPiece
     public function isMovable(): bool
     {
         if ($this->move) {
-            return in_array($this->move->sq->next, $this->sqs());
+            return in_array($this->move->sq->next, $this->sqs(), true);
         }
 
         return false;
     }
 
-    protected function isValidSq(string $sq)
+    protected function isValidSq(string $sq): bool|string
     {
         if ($this->size === ['files' => 8, 'ranks' => 8]) {
             return \Chess\Variant\Classical\PGN\AN\Square::validate($sq);
-        } elseif ($this->size === ['files' => 10, 'ranks' => 10]) {
+        }
+
+        if ($this->size === ['files' => 10, 'ranks' => 10]) {
             return \Chess\Variant\Capablanca\PGN\AN\Square::validate($sq);
         }
 

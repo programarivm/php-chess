@@ -50,8 +50,7 @@ abstract class AbstractPredictor
             ];
         }
         $this->sort($color);
-        $current = current(array_keys($this->result[0]));
 
-        return $current;
+        return current(array_keys($this->result[0]));
     }
 }

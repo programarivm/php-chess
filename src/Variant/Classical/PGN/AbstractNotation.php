@@ -2,6 +2,8 @@
 
 namespace Chess\Variant\Classical\PGN;
 
+use ReflectionClass;
+
 /**
  * Abstract notation.
  *
@@ -12,6 +14,6 @@ abstract class AbstractNotation
 {
     public static function values(): array
     {
-        return (new \ReflectionClass(get_called_class()))->getConstants();
+        return (new ReflectionClass(static::class))->getConstants();
     }
 }

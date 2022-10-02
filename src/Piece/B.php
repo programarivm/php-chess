@@ -3,7 +3,6 @@
 namespace Chess\Piece;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -38,57 +37,57 @@ class B extends Slider
     /**
      * Calculates the piece's mobility.
      *
-     * @return \Chess\Piece\AbstractPiece
+     * @return AbstractPiece
      */
     protected function mobility(): AbstractPiece
     {
         try {
             $file = chr(ord($this->sq[0]) - 1);
-            $rank = intval(ltrim($this->sq, $this->sq[0])) + 1;
+            $rank = (int)ltrim($this->sq, $this->sq[0]) + 1;
             while ($this->isValidSq($file.$rank)) {
                 $this->mobility->upLeft[] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank + 1;
             }
-        } catch (UnknownNotationException $e) {
+        } catch (UnknownNotationException) {
 
         }
 
         try {
             $file = chr(ord($this->sq[0]) + 1);
-            $rank = intval(ltrim($this->sq, $this->sq[0])) + 1;
+            $rank = (int)ltrim($this->sq, $this->sq[0]) + 1;
             while ($this->isValidSq($file.$rank)) {
                 $this->mobility->upRight[] = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank + 1;
             }
-        } catch (UnknownNotationException $e) {
+        } catch (UnknownNotationException) {
 
         }
 
         try {
             $file = chr(ord($this->sq[0]) - 1);
-            $rank = intval(ltrim($this->sq, $this->sq[0])) - 1;
+            $rank = (int)ltrim($this->sq, $this->sq[0]) - 1;
             while ($this->isValidSq($file.$rank))
             {
                 $this->mobility->downLeft[] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank - 1;
             }
-        } catch (UnknownNotationException $e) {
+        } catch (UnknownNotationException) {
 
         }
 
         try {
             $file = chr(ord($this->sq[0]) + 1);
-            $rank = intval(ltrim($this->sq, $this->sq[0])) - 1;
+            $rank = (int)ltrim($this->sq, $this->sq[0]) - 1;
             while ($this->isValidSq($file.$rank))
             {
                 $this->mobility->downRight[] = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank - 1;
             }
-        } catch (UnknownNotationException $e) {
+        } catch (UnknownNotationException) {
 
         }
 
