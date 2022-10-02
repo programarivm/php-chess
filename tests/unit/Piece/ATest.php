@@ -24,9 +24,15 @@ class ATest extends AbstractUnitTestCase
     {
         $archbishop = new A('w', 'a1', self::$size);
 
-        // TODO ...
+        $mobility = (object) [
+            'upLeft' => [],
+            'upRight' => ['b2', 'c3', 'd4', 'e5', 'f6', 'g7', 'h8'],
+            'downLeft' => [],
+            'downRight' => [],
+            'knight' => ['b3', 'c3']
+        ];
 
-        $this->assertTrue(true);
+        $this->assertEquals($mobility, $archbishop->getMobility());
     }
 
     /**
