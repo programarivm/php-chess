@@ -9,7 +9,7 @@ use Chess\Variant\Classical\Board;
 
 class BadBishopEval extends AbstractEval implements InverseEvalInterface
 {
-    const NAME = 'Bad bishop';
+    public const NAME = 'Bad bishop';
 
     public function __construct(Board $board)
     {
@@ -35,14 +35,13 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
         return $this->result;
     }
 
-    private function count(string $bColor, string $sqColor)
+    private function count(string $bColor, string $sqColor): int
     {
         $pawns = 0;
         foreach ($this->board->getPieces() as $piece) {
-            if ($piece->getId() === Piece::P) {
-                if ($piece->getColor() === $bColor && Square::color($piece->getSq()) === $sqColor) {
-                    $pawns += 1;
-                }
+            if (($piece->getId() === Piece::P) && $piece->getColor() === $bColor
+                && Square::color($piece->getSq()) === $sqColor) {
+                ++$pawns;
             }
         }
 

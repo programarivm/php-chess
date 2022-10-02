@@ -2,7 +2,6 @@
 
 namespace Chess\Eval;
 
-use Chess\Eval\SpaceEval;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Board;
@@ -15,7 +14,7 @@ use Chess\Variant\Classical\Board;
  */
 class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
 {
-    const NAME = 'Backward pawn';
+    public const NAME = 'Backward pawn';
 
     public function __construct(Board $board)
     {
