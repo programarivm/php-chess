@@ -15,8 +15,6 @@ use Chess\Variant\Classical\Board;
  */
 class Stockfish
 {
-    const NAME = '/usr/games/stockfish';
-
     const OPTIONS = [
         'Skill Level' => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
     ];
@@ -31,6 +29,12 @@ class Stockfish
      * @var \Chess\Variant\Classical\Board
      */
     private Board $board;
+
+    /**
+     * Location of where the Stockfish executable is located in the file directory
+     * @var string
+     */
+    private string $stockFishPath;
 
     /**
      * Process descriptor.
@@ -71,6 +75,7 @@ class Stockfish
     public function __construct(Board $board)
     {
         $this->board = $board;
+        $this->stockFishPath = $this->getStockFishPath();
     }
 
     /**
@@ -146,7 +151,7 @@ class Stockfish
     public function bestMove(string $fen): string
     {
         $bestMove = '(none)';
-        $process = proc_open(self::NAME, $this->descr, $this->pipes);
+        $process = proc_open($this->stockFishPath, $this->descr, $this->pipes);
         if (is_resource($process)) {
             fwrite($this->pipes[0], "uci\n");
             fwrite($this->pipes[0], "ucinewgame\n");
@@ -178,7 +183,7 @@ class Stockfish
     {
         $bestMove = $this->bestMove($fen);
         if ($bestMove !== '(none)') {
-            $process = proc_open(self::NAME, $this->descr, $this->pipes);
+            $process = proc_open($this->stockFishPath, $this->descr, $this->pipes);
             if (is_resource($process)) {
                 fwrite($this->pipes[0], "uci\n");
                 fwrite($this->pipes[0], "position fen $fen moves $bestMove\n");
@@ -198,5 +203,19 @@ class Stockfish
         }
 
         return $fen;
+    }
+
+    /**
+     * This method allows users to change where they have stored the Stockfish executable
+     */
+    private function getStockFishPath(): string
+    {
+        $path = getenv('STOCKFISH_PATH');
+
+        if (!$path) {
+            return '/usr/games/stockfish';
+        }
+
+        return $path;
     }
 }
