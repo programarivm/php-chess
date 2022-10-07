@@ -15,6 +15,8 @@ use Chess\Variant\Classical\Board;
  */
 class Stockfish
 {
+    const FILEPATH = '/usr/games/stockfish';
+
     const OPTIONS = [
         'Skill Level' => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
     ];
@@ -31,10 +33,11 @@ class Stockfish
     private Board $board;
 
     /**
-     * Location of where the Stockfish executable is located in the file directory
+     * Stockfish filepath.
+     *
      * @var string
      */
-    private string $stockFishPath;
+    private string $filepath;
 
     /**
      * Process descriptor.
@@ -71,11 +74,13 @@ class Stockfish
      * Constructor.
      *
      * @param \Chess\Variant\Classical\Board $board
+     * @param string $filepath
      */
-    public function __construct(Board $board)
+    public function __construct(Board $board, string $filepath = '')
     {
         $this->board = $board;
-        $this->stockFishPath = $this->getStockFishPath();
+
+        $this->filepath = !$filepath ? self::FILEPATH : $filepath;
     }
 
     /**
@@ -151,7 +156,7 @@ class Stockfish
     public function bestMove(string $fen): string
     {
         $bestMove = '(none)';
-        $process = proc_open($this->stockFishPath, $this->descr, $this->pipes);
+        $process = proc_open($this->filepath, $this->descr, $this->pipes);
         if (is_resource($process)) {
             fwrite($this->pipes[0], "uci\n");
             fwrite($this->pipes[0], "ucinewgame\n");
@@ -183,7 +188,7 @@ class Stockfish
     {
         $bestMove = $this->bestMove($fen);
         if ($bestMove !== '(none)') {
-            $process = proc_open($this->stockFishPath, $this->descr, $this->pipes);
+            $process = proc_open($this->filepath, $this->descr, $this->pipes);
             if (is_resource($process)) {
                 fwrite($this->pipes[0], "uci\n");
                 fwrite($this->pipes[0], "position fen $fen moves $bestMove\n");
@@ -203,19 +208,5 @@ class Stockfish
         }
 
         return $fen;
-    }
-
-    /**
-     * This method allows users to change where they have stored the Stockfish executable
-     */
-    private function getStockFishPath(): string
-    {
-        $path = getenv('STOCKFISH_PATH');
-
-        if (!$path) {
-            return '/usr/games/stockfish';
-        }
-
-        return $path;
     }
 }
