@@ -33,7 +33,8 @@
     "brick/math": "^0.9.3"
   },
   "require-dev": {
-    "phpunit/phpunit": "~9.0"
+    "phpunit/phpunit": "~9.0",
+    "phpstan/phpstan": "^1.8"
   },
   "autoload": {
     "psr-4": {
@@ -45,5 +46,13 @@
       "Chess\\Tests\\": "tests/",
       "Chess\\Tests\\Sample\\": "tests/Sample/"
     }
+  },
+  "scripts": {
+    "phpstan": [
+      "vendor/bin/phpstan analyse -c phpstan.neon.dist"
+    ],
+    "phpstan-baseline": [
+      "vendor/bin/phpstan analyse -c phpstan.neon.dist --generate-baseline"
+    ]
   }
 }

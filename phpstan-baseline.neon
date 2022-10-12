@@ -1,0 +1,361 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Binary operation \"\\-\" between string and string results in an error\\.$#"
+			count: 1
+			path: src/Eval/DirectOppositionEval.php
+
+		-
+			message: "#^Binary operation \"\\-\" between 9 and string results in an error\\.$#"
+			count: 1
+			path: src/Eval/PassedPawnEval.php
+
+		-
+			message: "#^Method Chess\\\\Eval\\\\PassedPawnEval\\:\\:getThreatPassedPawn\\(\\) should return int but returns string\\.$#"
+			count: 1
+			path: src/Eval/PassedPawnEval.php
+
+		-
+			message: "#^Binary operation \"\\+\" between string and 2 results in an error\\.$#"
+			count: 1
+			path: src/Eval/SqOutpostEval.php
+
+		-
+			message: "#^Binary operation \"\\-\" between string and 2 results in an error\\.$#"
+			count: 1
+			path: src/Eval/SqOutpostEval.php
+
+		-
+			message: "#^Access to an undefined property Chess\\\\Eval\\\\TacticsEval\\:\\:\\$target\\.$#"
+			count: 4
+			path: src/Eval/TacticsEval.php
+
+		-
+			message: "#^PHPDoc tag @return with type array is incompatible with native type void\\.$#"
+			count: 1
+			path: src/Eval/TacticsEval.php
+
+		-
+			message: "#^Call to method play\\(\\) on an unknown class Chess\\\\Player\\.$#"
+			count: 1
+			path: src/Game.php
+
+		-
+			message: "#^Instantiated class Chess\\\\Player not found\\.$#"
+			count: 1
+			path: src/Game.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\\\Chess\\\\Variant\\\\Classical\\\\Board\\)\\: Unexpected token \"\\\\r\\\\n     \\* \", expected variable at offset 94$#"
+			count: 1
+			path: src/Game.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\r\\\\n     \", expected variable at offset 95$#"
+			count: 1
+			path: src/Game.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\r\\\\n     \", expected variable at offset 97$#"
+			count: 1
+			path: src/Game.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type bool\\|string\\.$#"
+			count: 1
+			path: src/Game.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type object\\|null\\.$#"
+			count: 1
+			path: src/Game.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(\\\\Chess\\\\Game\\)\\: Unexpected token \"\\\\r\\\\n     \\* \", expected variable at offset 84$#"
+			count: 1
+			path: src/Grandmaster.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type object\\|null\\.$#"
+			count: 1
+			path: src/Grandmaster.php
+
+		-
+			message: "#^PHPDoc tag @param for parameter \\$board with type Chess\\\\Chess\\\\Board is not subtype of native type Chess\\\\Variant\\\\Classical\\\\Board\\|null\\.$#"
+			count: 1
+			path: src/Heuristics.php
+
+		-
+			message: "#^Parameter \\$board of method Chess\\\\Heuristics\\:\\:__construct\\(\\) has invalid type Chess\\\\Chess\\\\Board\\.$#"
+			count: 1
+			path: src/Heuristics.php
+
+		-
+			message: "#^Method Chess\\\\HeuristicsByFenString\\:\\:calc\\(\\) has invalid return type Chess\\\\Heuristic\\\\HeuristicsByFenString\\.$#"
+			count: 1
+			path: src/HeuristicsByFenString.php
+
+		-
+			message: "#^Method Chess\\\\HeuristicsByFenString\\:\\:setDims\\(\\) should return Chess\\\\Heuristics but returns \\$this\\(Chess\\\\HeuristicsByFenString\\)\\.$#"
+			count: 1
+			path: src/HeuristicsByFenString.php
+
+		-
+			message: "#^PHPDoc tag @return with type Chess\\\\Heuristic\\\\HeuristicsByFenString is not subtype of native type Chess\\\\HeuristicsByFenString\\.$#"
+			count: 1
+			path: src/HeuristicsByFenString.php
+
+		-
+			message: "#^Call to an undefined method Chess\\\\ML\\\\Supervised\\\\AbstractPredictor\\:\\:eval\\(\\)\\.$#"
+			count: 1
+			path: src/ML/Supervised/AbstractPredictor.php
+
+		-
+			message: "#^Access to an undefined property Chess\\\\ML\\\\Supervised\\\\Classification\\\\PermutationPredictor\\:\\:\\$permutations\\.$#"
+			count: 2
+			path: src/ML/Supervised/Classification/PermutationPredictor.php
+
+		-
+			message: "#^Call to method getDims\\(\\) on an unknown class Chess\\\\ML\\\\Supervised\\\\Classification\\\\Heuristics\\.$#"
+			count: 1
+			path: src/ML/Supervised/Classification/PermutationPredictor.php
+
+		-
+			message: "#^Call to method toFen\\(\\) on an unknown class Chess\\\\Board\\.$#"
+			count: 1
+			path: src/ML/Supervised/Classification/PermutationPredictor.php
+
+		-
+			message: "#^Instantiated class Chess\\\\ML\\\\Supervised\\\\Classification\\\\Heuristics not found\\.$#"
+			count: 1
+			path: src/ML/Supervised/Classification/PermutationPredictor.php
+
+		-
+			message: "#^Parameter \\$board of method Chess\\\\ML\\\\Supervised\\\\Classification\\\\PermutationPredictor\\:\\:__construct\\(\\) has invalid type Chess\\\\Board\\.$#"
+			count: 1
+			path: src/ML/Supervised/Classification/PermutationPredictor.php
+
+		-
+			message: "#^Parameter \\$clone of method Chess\\\\ML\\\\Supervised\\\\Classification\\\\PermutationPredictor\\:\\:eval\\(\\) has invalid type Chess\\\\Board\\.$#"
+			count: 1
+			path: src/ML/Supervised/Classification/PermutationPredictor.php
+
+		-
+			message: "#^Parameter \\$estimator of method Chess\\\\ML\\\\Supervised\\\\Classification\\\\PermutationPredictor\\:\\:__construct\\(\\) has invalid type Chess\\\\ML\\\\Supervised\\\\Classification\\\\PersistentModel\\.$#"
+			count: 1
+			path: src/ML/Supervised/Classification/PermutationPredictor.php
+
+		-
+			message: "#^Method Chess\\\\ML\\\\Supervised\\\\Regression\\\\ExpandedFormLabeller\\:\\:label\\(\\) should return array but returns string\\.$#"
+			count: 1
+			path: src/ML/Supervised/Regression/ExpandedFormLabeller.php
+
+		-
+			message: "#^Access to an undefined property Chess\\\\Media\\\\AbstractBoardToImg\\:\\:\\$ext\\.$#"
+			count: 2
+			path: src/Media/AbstractBoardToImg.php
+
+		-
+			message: "#^Access to an undefined property object\\:\\:\\$n\\.$#"
+			count: 1
+			path: src/Movetext.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\r\\\\n     \", expected variable at offset 88$#"
+			count: 1
+			path: src/Movetext.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
+			count: 1
+			path: src/Piece/A.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
+			count: 2
+			path: src/Piece/AbstractPiece.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|object\\.$#"
+			count: 1
+			path: src/Piece/AbstractPiece.php
+
+		-
+			message: "#^PHPDoc tag @var for property Chess\\\\Piece\\\\AbstractPiece\\:\\:\\$mobility with type mixed is not subtype of native type array\\|object\\.$#"
+			count: 1
+			path: src/Piece/AbstractPiece.php
+
+		-
+			message: "#^Cannot access property \\$downLeft on array\\|object\\.$#"
+			count: 1
+			path: src/Piece/B.php
+
+		-
+			message: "#^Cannot access property \\$downRight on array\\|object\\.$#"
+			count: 1
+			path: src/Piece/B.php
+
+		-
+			message: "#^Cannot access property \\$upLeft on array\\|object\\.$#"
+			count: 1
+			path: src/Piece/B.php
+
+		-
+			message: "#^Cannot access property \\$upRight on array\\|object\\.$#"
+			count: 1
+			path: src/Piece/B.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
+			count: 1
+			path: src/Piece/C.php
+
+		-
+			message: "#^Method Chess\\\\Piece\\\\K\\:\\:getCastleRook\\(\\) should return Chess\\\\Piece\\\\R\\|null but returns Chess\\\\Piece\\\\AbstractPiece\\.$#"
+			count: 2
+			path: src/Piece/K.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type Chess\\\\Piece\\\\R\\|null\\.$#"
+			count: 1
+			path: src/Piece/K.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
+			count: 1
+			path: src/Piece/K.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
+			count: 1
+			path: src/Piece/N.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
+			count: 1
+			path: src/Piece/P.php
+
+		-
+			message: "#^Method Chess\\\\Piece\\\\PieceArray\\:\\:__construct\\(\\) with return type void returns \\$this\\(Chess\\\\Piece\\\\PieceArray\\) but should not return anything\\.$#"
+			count: 1
+			path: src/Piece/PieceArray.php
+
+		-
+			message: "#^Cannot access property \\$down on array\\|object\\.$#"
+			count: 1
+			path: src/Piece/R.php
+
+		-
+			message: "#^Cannot access property \\$left on array\\|object\\.$#"
+			count: 1
+			path: src/Piece/R.php
+
+		-
+			message: "#^Cannot access property \\$right on array\\|object\\.$#"
+			count: 1
+			path: src/Piece/R.php
+
+		-
+			message: "#^Cannot access property \\$up on array\\|object\\.$#"
+			count: 1
+			path: src/Piece/R.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
+			count: 1
+			path: src/Piece/Slider.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$value$#"
+			count: 1
+			path: src/Variant/Capablanca100/FEN/Str.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$value$#"
+			count: 1
+			path: src/Variant/Capablanca80/FEN/Str.php
+
+		-
+			message: "#^Call to an undefined method Chess\\\\Piece\\\\AbstractPiece\\:\\:getEnPassantSq\\(\\)\\.$#"
+			count: 4
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^Call to an undefined method Chess\\\\Piece\\\\AbstractPiece\\:\\:getFile\\(\\)\\.$#"
+			count: 1
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^Call to an undefined method Chess\\\\Piece\\\\AbstractPiece\\:\\:getType\\(\\)\\.$#"
+			count: 6
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^Call to an undefined method Chess\\\\Piece\\\\AbstractPiece\\:\\:isPromoted\\(\\)\\.$#"
+			count: 1
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type Chess\\\\Piece\\\\AbstractPiece\\|null\\.$#"
+			count: 2
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
+			count: 2
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^PHPDoc tag @return with type mixed is not subtype of native type object\\|null\\.$#"
+			count: 1
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^Variable \\$capturedData might not be defined\\.$#"
+			count: 2
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^Variable \\$move might not be defined\\.$#"
+			count: 1
+			path: src/Variant/Classical/Board.php
+
+		-
+			message: "#^Method Chess\\\\Variant\\\\Classical\\\\FEN\\\\Field\\\\CastlingAbility\\:\\:can\\(\\) should return string but returns bool\\.$#"
+			count: 1
+			path: src/Variant/Classical/FEN/Field/CastlingAbility.php
+
+		-
+			message: "#^PHPDoc tag @param references unknown parameter\\: \\$value$#"
+			count: 1
+			path: src/Variant/Classical/FEN/Str.php
+
+		-
+			message: "#^PHPDoc tag @throws with type Chess\\\\Variant\\\\Classical\\\\FEN\\\\UnknownNotationException is not subtype of Throwable$#"
+			count: 1
+			path: src/Variant/Classical/FEN/ValidationInterface.php
+
+		-
+			message: "#^PHPDoc tag @throws with type Chess\\\\Variant\\\\Classical\\\\PGN\\\\UnknownNotationException is not subtype of Throwable$#"
+			count: 1
+			path: src/Variant/Classical/PGN/ValidationInterface.php
+
+		-
+			message: "#^Variable \\$ranks might not be defined\\.$#"
+			count: 4
+			path: src/Variant/Classical/Randomizer/Endgame/PawnEndgameRandomizer.php
+
+		-
+			message: "#^Class Chess\\\\Variant\\\\Chess960\\\\StartPieces constructor invoked with 2 parameters, 1 required\\.$#"
+			count: 1
+			path: tests/unit/Variant/Chess960/StartPiecesTest.php
+
+		-
+			message: "#^Call to an undefined method Chess\\\\Piece\\\\AbstractPiece\\:\\:getEnPassantSq\\(\\)\\.$#"
+			count: 1
+			path: tests/unit/Variant/Classical/BoardTest.php
+
+		-
+			message: "#^Method Chess\\\\Variant\\\\Classical\\\\Board\\:\\:undo\\(\\) invoked with 1 parameter, 0 required\\.$#"
+			count: 1
+			path: tests/unit/Variant/Classical/BoardTest.php
