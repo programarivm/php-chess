@@ -1,7 +1,0 @@
-parameters:
-	level: 3
-	paths:
-		- src
-		- tests
-	bootstrapFiles:
-		- phpstan-bootstrap.php
