@@ -35,6 +35,11 @@ class TacticsEval extends AbstractEval
     private array $pressEval;
 
     /**
+     * @var array[]
+     */
+    private array $target;
+
+    /**
      * @param \Chess\Variant\Classical\Board $board
      */
     public function __construct(Board $board)

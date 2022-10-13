@@ -26,11 +26,6 @@ parameters:
 			path: src/Eval/SqOutpostEval.php
 
 		-
-			message: "#^Access to an undefined property Chess\\\\Eval\\\\TacticsEval\\:\\:\\$target\\.$#"
-			count: 4
-			path: src/Eval/TacticsEval.php
-
-		-
 			message: "#^PHPDoc tag @return with type array is incompatible with native type void\\.$#"
 			count: 1
 			path: src/Eval/TacticsEval.php
