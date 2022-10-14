@@ -21,7 +21,7 @@ class Grandmaster
      * Figures out the next move to be made.
      *
      * @param \Chess\Game
-     * @return mixed null|object
+     * @return null|object
      */
     public function move(Game $game): ?object
     {

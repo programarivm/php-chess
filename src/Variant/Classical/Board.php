@@ -268,7 +268,7 @@ class Board extends \SplObjectStorage
     /**
      * Returns the pieces captured by both players.
      *
-     * @return mixed array|null
+     * @return array|null
      */
     public function getCaptures(): ?array
     {
@@ -305,7 +305,7 @@ class Board extends \SplObjectStorage
     /**
      * Returns the history.
      *
-     * @return mixed array|null
+     * @return array|null
      */
     public function getHistory(): ?array
     {
@@ -363,7 +363,7 @@ class Board extends \SplObjectStorage
      *
      * @param string $color
      * @param string $id
-     * @return mixed \Chess\Piece\AbstractPiece|null
+     * @return AbstractPiece|null \Chess\Piece\AbstractPiece|null
      */
     public function getPiece(string $color, string $id): ?AbstractPiece
     {
@@ -419,7 +419,7 @@ class Board extends \SplObjectStorage
      * Returns a piece by its position on the board.
      *
      * @param string $sq
-     * @return mixed \Chess\Piece\AbstractPiece|null
+     * @return AbstractPiece|null \Chess\Piece\AbstractPiece|null
      */
     public function getPieceBySq(string $sq): ?AbstractPiece
     {
@@ -1054,7 +1054,7 @@ class Board extends \SplObjectStorage
      * Returns the legal squares of a piece.
      *
      * @param string $sq
-     * @return mixed null|object
+     * @return object|null
      */
     public function legalSqs(string $sq): ?object
     {

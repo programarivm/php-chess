@@ -178,7 +178,7 @@ class Game
      *
      * @param array $options
      * @param array $params
-     * @return mixed object|null
+     * @return object|null
      */
     public function ai(array $options = [], array $params = []): ?object
     {
@@ -246,7 +246,7 @@ class Game
      * to move are required.
      *
      * @param string $toShortFen
-     * @return mixed bool|string
+     * @return bool|string
      */
     public function playFen(string $toShortFen): bool|string
     {

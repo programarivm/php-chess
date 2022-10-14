@@ -26,11 +26,6 @@ parameters:
 			path: src/Eval/SqOutpostEval.php
 
 		-
-			message: "#^Access to an undefined property Chess\\\\Eval\\\\TacticsEval\\:\\:\\$target\\.$#"
-			count: 4
-			path: src/Eval/TacticsEval.php
-
-		-
 			message: "#^PHPDoc tag @return with type array is incompatible with native type void\\.$#"
 			count: 1
 			path: src/Eval/TacticsEval.php
@@ -46,37 +41,22 @@ parameters:
 			path: src/Game.php
 
 		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\\\Chess\\\\Variant\\\\Classical\\\\Board\\)\\: Unexpected token \"\\\\r\\\\n     \\* \", expected variable at offset 94$#"
+			message: "#^PHPDoc tag @param has invalid value \\(\\\\Chess\\\\Variant\\\\Classical\\\\Board\\)\\: Unexpected token \"\\\\n     \\* \", expected variable at offset 91$#"
 			count: 1
 			path: src/Game.php
 
 		-
-			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\r\\\\n     \", expected variable at offset 95$#"
+			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\n     \", expected variable at offset 92$#"
 			count: 1
 			path: src/Game.php
 
 		-
-			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\r\\\\n     \", expected variable at offset 97$#"
+			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\n     \", expected variable at offset 94$#"
 			count: 1
 			path: src/Game.php
 
 		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type bool\\|string\\.$#"
-			count: 1
-			path: src/Game.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type object\\|null\\.$#"
-			count: 1
-			path: src/Game.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\\\Chess\\\\Game\\)\\: Unexpected token \"\\\\r\\\\n     \\* \", expected variable at offset 84$#"
-			count: 1
-			path: src/Grandmaster.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type object\\|null\\.$#"
+			message: "#^PHPDoc tag @param has invalid value \\(\\\\Chess\\\\Game\\)\\: Unexpected token \"\\\\n     \\* \", expected variable at offset 81$#"
 			count: 1
 			path: src/Grandmaster.php
 
@@ -166,21 +146,6 @@ parameters:
 			path: src/Movetext.php
 
 		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
-			count: 1
-			path: src/Piece/A.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
-			count: 2
-			path: src/Piece/AbstractPiece.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|object\\.$#"
-			count: 1
-			path: src/Piece/AbstractPiece.php
-
-		-
 			message: "#^PHPDoc tag @var for property Chess\\\\Piece\\\\AbstractPiece\\:\\:\\$mobility with type mixed is not subtype of native type array\\|object\\.$#"
 			count: 1
 			path: src/Piece/AbstractPiece.php
@@ -206,34 +171,9 @@ parameters:
 			path: src/Piece/B.php
 
 		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
-			count: 1
-			path: src/Piece/C.php
-
-		-
 			message: "#^Method Chess\\\\Piece\\\\K\\:\\:getCastleRook\\(\\) should return Chess\\\\Piece\\\\R\\|null but returns Chess\\\\Piece\\\\AbstractPiece\\.$#"
 			count: 2
 			path: src/Piece/K.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type Chess\\\\Piece\\\\R\\|null\\.$#"
-			count: 1
-			path: src/Piece/K.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
-			count: 1
-			path: src/Piece/K.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
-			count: 1
-			path: src/Piece/N.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
-			count: 1
-			path: src/Piece/P.php
 
 		-
 			message: "#^Method Chess\\\\Piece\\\\PieceArray\\:\\:__construct\\(\\) with return type void returns \\$this\\(Chess\\\\Piece\\\\PieceArray\\) but should not return anything\\.$#"
@@ -259,11 +199,6 @@ parameters:
 			message: "#^Cannot access property \\$up on array\\|object\\.$#"
 			count: 1
 			path: src/Piece/R.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
-			count: 1
-			path: src/Piece/Slider.php
 
 		-
 			message: "#^PHPDoc tag @param references unknown parameter\\: \\$value$#"
@@ -292,21 +227,6 @@ parameters:
 
 		-
 			message: "#^Call to an undefined method Chess\\\\Piece\\\\AbstractPiece\\:\\:isPromoted\\(\\)\\.$#"
-			count: 1
-			path: src/Variant/Classical/Board.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type Chess\\\\Piece\\\\AbstractPiece\\|null\\.$#"
-			count: 2
-			path: src/Variant/Classical/Board.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type array\\|null\\.$#"
-			count: 2
-			path: src/Variant/Classical/Board.php
-
-		-
-			message: "#^PHPDoc tag @return with type mixed is not subtype of native type object\\|null\\.$#"
 			count: 1
 			path: src/Variant/Classical/Board.php
 

@@ -172,7 +172,7 @@ class P extends AbstractPiece
     /**
      * Returns the squares defended by the piece.
      *
-     * @return mixed array|null
+     * @return array|null
      */
     public function defendedSqs(): ?array
     {

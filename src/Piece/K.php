@@ -84,7 +84,7 @@ class K extends AbstractPiece
     /**
      * Returns the squares defended by the piece.
      *
-     * @return mixed array|null
+     * @return array|null
      */
     public function defendedSqs(): ?array
     {
@@ -153,7 +153,7 @@ class K extends AbstractPiece
      * Returns the castle rook.
      *
      * @param string $type
-     * @return mixed \Chess\Piece\R|null
+     * @return R|null \Chess\Piece\R|null
      */
     public function getCastleRook(string $type): ?R
     {

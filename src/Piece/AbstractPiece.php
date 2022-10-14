@@ -95,14 +95,14 @@ abstract class AbstractPiece
     /**
      * Returns the squares defended by the piece.
      *
-     * @return mixed array|null
+     * @return array|null
      */
     abstract public function defendedSqs(): ?array;
 
     /**
      * Returns the pieces attacked by the piece.
      *
-     * @return mixed array|null
+     * @return array|null
      */
     public function attackedPieces(): ?array
     {
@@ -165,7 +165,7 @@ abstract class AbstractPiece
     /**
      * Gets the piece's mobility.
      *
-     * @return mixed array|object
+     * @return array|object
      */
     public function getMobility(): array|object
     {
