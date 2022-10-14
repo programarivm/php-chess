@@ -73,7 +73,7 @@ class HeuristicsByFenString
     /**
      * Heristics calc.
      *
-     * @return \Chess\Heuristic\HeuristicsByFenString
+     * @return HeuristicsByFenString
      */
     protected function calc(): HeuristicsByFenString
     {

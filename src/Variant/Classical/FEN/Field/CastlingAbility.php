@@ -115,7 +115,7 @@ class CastlingAbility implements ValidationInterface
      *
      * @param string $castlingAbility
      * @param string $color
-     * @return string
+     * @return bool
      */
     public static function can(string $castlingAbility, string $color)
     {

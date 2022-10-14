@@ -84,7 +84,7 @@ class TacticsEval extends AbstractEval
     /**
      * Calculates the squares that are not being defended.
      *
-     * @return array
+     * @return void
      */
     protected function target(): void
     {

@@ -14,7 +14,7 @@ class ExpandedFormLabeller extends AbstractLabeller
      * Returns the label.
      *
      * @param array $end
-     * @return array
+     * @return string
      */
     public function label(array $end)
     {

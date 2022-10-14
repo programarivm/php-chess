@@ -45,7 +45,7 @@ abstract class AbstractPiece
     /**
      * The piece's mobility.
      *
-     * @var mixed object|array
+     * @var object|array
      */
     protected array|object $mobility;
 

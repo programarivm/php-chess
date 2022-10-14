@@ -90,7 +90,7 @@ class Movetext
     /**
      * Filters the given text for further processing.
      *
-     * @param string
+     * @param string $text
      */
     protected function filter(string $text): void
     {

@@ -108,7 +108,7 @@ trait HeuristicsTrait
      * Sets the dimensions.
      *
      * @param array $dims
-     * @return \Chess\Heuristics
+     * @return self
      */
     public function setDims(array $dims)
     {

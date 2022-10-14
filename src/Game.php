@@ -128,7 +128,7 @@ class Game
     /**
      * Sets the Chess\Board object.
      *
-     * @param \Chess\Variant\Classical\Board
+     * @param \Chess\Variant\Classical\Board $board
      * @return \Chess\Game
      */
     public function setBoard(ClassicalBoard $board): Game

@@ -25,7 +25,7 @@ class Heuristics extends PgnPlayer
      * Constructor.
      *
      * @param string $movetext
-     * @param Chess\Board $board
+     * @param Board|null $board
      */
     public function __construct(string $movetext = '', Board $board = null)
     {

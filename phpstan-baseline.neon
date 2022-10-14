@@ -26,11 +26,6 @@ parameters:
 			path: src/Eval/SqOutpostEval.php
 
 		-
-			message: "#^PHPDoc tag @return with type array is incompatible with native type void\\.$#"
-			count: 1
-			path: src/Eval/TacticsEval.php
-
-		-
 			message: "#^Call to method play\\(\\) on an unknown class Chess\\\\Player\\.$#"
 			count: 1
 			path: src/Game.php
@@ -39,51 +34,6 @@ parameters:
 			message: "#^Instantiated class Chess\\\\Player not found\\.$#"
 			count: 1
 			path: src/Game.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\\\Chess\\\\Variant\\\\Classical\\\\Board\\)\\: Unexpected token \"\\\\n     \\* \", expected variable at offset 91$#"
-			count: 1
-			path: src/Game.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\n     \", expected variable at offset 92$#"
-			count: 1
-			path: src/Game.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\n     \", expected variable at offset 94$#"
-			count: 1
-			path: src/Game.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(\\\\Chess\\\\Game\\)\\: Unexpected token \"\\\\n     \\* \", expected variable at offset 81$#"
-			count: 1
-			path: src/Grandmaster.php
-
-		-
-			message: "#^PHPDoc tag @param for parameter \\$board with type Chess\\\\Chess\\\\Board is not subtype of native type Chess\\\\Variant\\\\Classical\\\\Board\\|null\\.$#"
-			count: 1
-			path: src/Heuristics.php
-
-		-
-			message: "#^Parameter \\$board of method Chess\\\\Heuristics\\:\\:__construct\\(\\) has invalid type Chess\\\\Chess\\\\Board\\.$#"
-			count: 1
-			path: src/Heuristics.php
-
-		-
-			message: "#^Method Chess\\\\HeuristicsByFenString\\:\\:calc\\(\\) has invalid return type Chess\\\\Heuristic\\\\HeuristicsByFenString\\.$#"
-			count: 1
-			path: src/HeuristicsByFenString.php
-
-		-
-			message: "#^Method Chess\\\\HeuristicsByFenString\\:\\:setDims\\(\\) should return Chess\\\\Heuristics but returns \\$this\\(Chess\\\\HeuristicsByFenString\\)\\.$#"
-			count: 1
-			path: src/HeuristicsByFenString.php
-
-		-
-			message: "#^PHPDoc tag @return with type Chess\\\\Heuristic\\\\HeuristicsByFenString is not subtype of native type Chess\\\\HeuristicsByFenString\\.$#"
-			count: 1
-			path: src/HeuristicsByFenString.php
 
 		-
 			message: "#^Call to an undefined method Chess\\\\ML\\\\Supervised\\\\AbstractPredictor\\:\\:eval\\(\\)\\.$#"
@@ -126,11 +76,6 @@ parameters:
 			path: src/ML/Supervised/Classification/PermutationPredictor.php
 
 		-
-			message: "#^Method Chess\\\\ML\\\\Supervised\\\\Regression\\\\ExpandedFormLabeller\\:\\:label\\(\\) should return array but returns string\\.$#"
-			count: 1
-			path: src/ML/Supervised/Regression/ExpandedFormLabeller.php
-
-		-
 			message: "#^Access to an undefined property Chess\\\\Media\\\\AbstractBoardToImg\\:\\:\\$ext\\.$#"
 			count: 2
 			path: src/Media/AbstractBoardToImg.php
@@ -139,16 +84,6 @@ parameters:
 			message: "#^Access to an undefined property object\\:\\:\\$n\\.$#"
 			count: 1
 			path: src/Movetext.php
-
-		-
-			message: "#^PHPDoc tag @param has invalid value \\(string\\)\\: Unexpected token \"\\\\r\\\\n     \", expected variable at offset 88$#"
-			count: 1
-			path: src/Movetext.php
-
-		-
-			message: "#^PHPDoc tag @var for property Chess\\\\Piece\\\\AbstractPiece\\:\\:\\$mobility with type mixed is not subtype of native type array\\|object\\.$#"
-			count: 1
-			path: src/Piece/AbstractPiece.php
 
 		-
 			message: "#^Cannot access property \\$downLeft on array\\|object\\.$#"
@@ -234,11 +169,6 @@ parameters:
 			message: "#^Variable \\$move might not be defined\\.$#"
 			count: 1
 			path: src/Variant/Classical/Board.php
-
-		-
-			message: "#^Method Chess\\\\Variant\\\\Classical\\\\FEN\\\\Field\\\\CastlingAbility\\:\\:can\\(\\) should return string but returns bool\\.$#"
-			count: 1
-			path: src/Variant/Classical/FEN/Field/CastlingAbility.php
 
 		-
 			message: "#^PHPDoc tag @throws with type Chess\\\\Variant\\\\Classical\\\\FEN\\\\UnknownNotationException is not subtype of Throwable$#"
