@@ -51,8 +51,9 @@ class AbstractBoardToImg
             foreach ($rank as $j => $piece) {
                 if ($piece !== ' . ') {
                     $filename = trim($piece);
+                    $isWhite = strtoupper($filename) === $filename;
                     $image = $this->imagine->open(
-                        self::FILEPATH .'/pieces/png/'.$sqSize.'/'.$filename.'.png'
+                        self::FILEPATH . '/pieces/png/' . $sqSize . ($isWhite ? 'white' : 'black') . '/' . $filename . '.png'
                     );
                     $chessboard->paste($image, new Point($x, $y));
                 }
