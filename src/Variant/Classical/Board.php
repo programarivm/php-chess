@@ -634,8 +634,23 @@ class Board extends \SplObjectStorage
     {
         $sqs = $this->move->explodeSqs($uci);
         if (isset($sqs[0]) && isset($sqs[1])) {
-            if ($id = $this->getPieceBySq($sqs[0])->getId()) {
-                if ($id === Piece::P) {
+            if ($piece = $this->getPieceBySq($sqs[0])) {
+                $id = $piece->getId();
+                if ($id === Piece::K) {
+                    if (
+                        $this->castlingRule[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sqs[1] &&
+                        $piece->sqCastleShort()
+                    ) {
+                        $pgn = Castle::SHORT;
+                    } elseif (
+                        $this->castlingRule[$color][Piece::K][Castle::LONG]['sq']['next'] === $sqs[1] &&
+                        $piece->sqCastleLong()
+                    ) {
+                        $pgn = Castle::LONG;
+                    } else {
+                        $pgn = $id . $sqs[1];
+                    }
+                } elseif ($id === Piece::P) {
                     $pgn = $sqs[1];
                 } else {
                     $pgn = $id . $sqs[1];
