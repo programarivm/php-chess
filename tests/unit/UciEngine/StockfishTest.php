@@ -12,7 +12,7 @@ class StockfishTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function shortFen()
+    public function bestMove()
     {
         $board = new Board();
         $board->play('w', 'e4');
@@ -25,7 +25,7 @@ class StockfishTest extends AbstractUnitTestCase
             ]);
 
         $fromFen = $board->toFen();
-        $toFen = $stockfish->shortFen($fromFen);
+        $toFen = $stockfish->bestMove($fromFen);
 
         $this->assertNotEmpty($toFen);
     }
@@ -37,6 +37,7 @@ class StockfishTest extends AbstractUnitTestCase
     {
         $board = new Board();
         $board->play('w', 'e4');
+
         $stockfish = (new Stockfish($board))
             ->setOptions([
                 'Skill Level' => 17
@@ -45,17 +46,13 @@ class StockfishTest extends AbstractUnitTestCase
                 'depth' => 8
             ]);
 
-        $fromFen = $board->toFen();
-        $toFen = $stockfish->shortFen($fromFen);
-        $pgn = (new ShortStrToPgn($fromFen, $toFen))->create();
+        $uci = $stockfish->play($board->toFen());
 
-        $this->assertTrue($board->play('b', current($pgn)));
-        $this->assertTrue($board->play('w', 'a3'));
+        $this->assertTrue($board->playUci('b', $uci));
+        $this->assertTrue($board->playUci('w', 'a2a3'));
 
-        $fromFen = $board->toFen();
-        $toFen = $stockfish->shortFen($fromFen);
-        $pgn = (new ShortStrToPgn($fromFen, $toFen))->create();
+        $uci = $stockfish->play($board->toFen());
 
-        $this->assertTrue($board->play('b', current($pgn)));
+        $this->assertTrue($board->playUci('b', $uci));
     }
 }
