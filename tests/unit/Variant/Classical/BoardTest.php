@@ -2419,4 +2419,23 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->legalSqs('e1'));
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | playUci()
+    |--------------------------------------------------------------------------
+    |
+    | Invalid moves throw an exception.
+    |
+    */
+
+    /**
+     * @test
+     */
+    public function play_uci_w_e2e4()
+    {
+        $board = new Board();
+
+        $this->assertTrue($board->playUci('w', 'e2e4'));
+    }
 }

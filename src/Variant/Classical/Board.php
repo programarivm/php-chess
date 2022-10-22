@@ -610,7 +610,7 @@ class Board extends \SplObjectStorage
     }
 
     /**
-     * Makes a move.
+     * Makes a move in PGN format.
      *
      * @param string $color
      * @param string $pgn
@@ -621,6 +621,28 @@ class Board extends \SplObjectStorage
         $obj = $this->move->toObj($color, $pgn, $this->castlingRule);
 
         return $this->isValidMove($obj) && $this->isLegalMove($obj);
+    }
+
+    /**
+     * Makes a move in UCI format.
+     *
+     * @param string $color
+     * @param string $uci
+     * @return bool true if the move can be made; otherwise false
+     */
+    public function playUci(string $color, string $uci): bool
+    {
+        $sqs = $this->move->explodeSqs($uci);
+        if ($id = $this->getPieceBySq($sqs[0])->getId()) {
+            if ($id === Piece::P) {
+                $pgn = $sqs[1];
+            } else {
+                $pgn = $pieceId . $sqs[1];
+            }
+            return $this->play($color, $pgn);
+        }
+
+        return false;
     }
 
     /**
