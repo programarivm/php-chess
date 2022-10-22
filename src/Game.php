@@ -289,4 +289,16 @@ class Game
 
         return false;
     }
+
+    /**
+     * Makes a move in UCI format.
+     *
+     * @param string $color
+     * @param string $uci
+     * @return bool true if the move can be made; otherwise false
+     */
+    public function playUci(string $color, string $uci): bool
+    {
+        return $this->board->playUci($color, $uci);
+    }
 }

@@ -778,4 +778,36 @@ class GameTest extends AbstractUnitTestCase
             }
         }
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | playFen()
+    |--------------------------------------------------------------------------
+    |
+    | Plays a chess move in short FEN format; only the piece placement and
+    | the side to move are required.
+    |
+    */
+
+    /**
+     * @test
+     */
+    public function classical_play_uci_B00()
+    {
+        $game = new Game(
+            Game::VARIANT_CLASSICAL,
+            Game::MODE_ANALYSIS
+        );
+
+        $this->assertTrue($game->playUci('w', 'e2e4'));
+        $this->assertTrue($game->playUci('b', 'b8c6'));
+        $this->assertTrue($game->playUci('w', 'g1f3'));
+        $this->assertTrue($game->playUci('b', 'd7d6'));
+        $this->assertTrue($game->playUci('w', 'f1e2'));
+        $this->assertTrue($game->playUci('b', 'c8e6'));
+        $this->assertTrue($game->playUci('w', 'e1g1'));
+        $this->assertTrue($game->playUci('b', 'd8d7'));
+        $this->assertTrue($game->playUci('w', 'h2h3'));
+        $this->assertTrue($game->playUci('b', 'e8c8'));
+    }
 }
