@@ -149,10 +149,25 @@ var_export($turn);
 
 #### `public function play(string $color, string $pgn): bool`
 
-Make a move.
+Make a move in PGN format.
 
 ```php
 $board->play('w', 'Nc3');
+
+$movetext = $board->getMovetext();
+
+var_export($movetext);
+```
+```text
+'1.e4 d5 2.exd5 Qxd5 3.Nc3'
+```
+
+#### `public function playUci(string $color, string $uci): bool`
+
+Make a move in UCI format.
+
+```php
+$board->playUci('w', 'b1c3');
 
 $movetext = $board->getMovetext();
 

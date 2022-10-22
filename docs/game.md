@@ -35,6 +35,21 @@ $game = new Game(
 $game->play('w', 'Nc3');
 ```
 
+#### `public function playUci(string $color, string $uci): bool`
+
+Starts a game and makes a move in UCI format.
+
+```php
+use Chess\Game;
+
+$game = new Game(
+    Game::VARIANT_CLASSICAL,
+    Game::MODE_ANALYSIS
+);
+
+$game->playUci('w', 'b1c3');
+```
+
 #### `public function playFen(string $toShortFen): bool|string`
 
 Starts a game and makes a move in short FEN format, only the piece placement and the side to move are required.
