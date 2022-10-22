@@ -633,14 +633,18 @@ class Board extends \SplObjectStorage
     public function playUci(string $color, string $uci): bool
     {
         $sqs = $this->move->explodeSqs($uci);
-        $id = $this->getPieceBySq($sqs[0])->getId();
-        if ($id === Piece::P) {
-            $pgn = $sqs[1];
-        } else {
-            $pgn = $id . $sqs[1];
+        if (isset($sqs[0]) && isset($sqs[1])) {
+            if ($id = $this->getPieceBySq($sqs[0])->getId()) {
+                if ($id === Piece::P) {
+                    $pgn = $sqs[1];
+                } else {
+                    $pgn = $id . $sqs[1];
+                }
+                return $this->play($color, $pgn);
+            }
         }
 
-        return $this->play($color, $pgn);
+        return false;
     }
 
     /**
