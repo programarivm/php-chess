@@ -5,6 +5,7 @@ namespace Chess;
 use Chess\Grandmaster;
 use Chess\ML\Supervised\Regression\GeometricSumPredictor;
 use Chess\Player\FenPlayer;
+use Chess\Player\PgnPlayer as Player;
 use Chess\UciEngine\Stockfish;
 use Chess\Variant\Classical\FEN\BoardToStr;
 use Chess\Variant\Classical\FEN\StrToBoard;
