@@ -5,7 +5,7 @@ namespace Chess;
 use Chess\Grandmaster;
 use Chess\ML\Supervised\Regression\GeometricSumPredictor;
 use Chess\Player\FenPlayer;
-use Chess\Player\PgnPlayer as Player;
+use Chess\Player\PgnPlayer;
 use Chess\UciEngine\Stockfish;
 use Chess\Variant\Classical\FEN\BoardToStr;
 use Chess\Variant\Classical\FEN\StrToBoard;
@@ -240,7 +240,7 @@ class Game
      */
     public function loadPgn(string $movetext): void
     {
-        $this->board = (new Player($movetext))->play()->getBoard();
+        $this->board = (new PgnPlayer($movetext))->play()->getBoard();
     }
 
     /**
