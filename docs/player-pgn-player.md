@@ -12,9 +12,9 @@ $player = new PgnPlayer($movetext);
 $board = $player->play()->getBoard();
 ```
 
-#### `public function play(): Player`
+#### `public function play(): PgnPlayer`
 
-Plays a chess game.
+Plays a chess game in PGN format.
 
 #### `public function getBoard(): Board`
 

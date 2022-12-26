@@ -6,6 +6,7 @@ pages:
   - Chess\Movetext: movetext.md
   - Chess\Media\BoardToMp4: media-board-to-mp4.md
   - Chess\Media\BoardToPng: media-board-to-png.md
+  - Chess\Player\LanPlayer: player-lan-player.md
   - Chess\Player\PgnPlayer: player-pgn-player.md
   - Chess\UciEngine\Stockfish: uciengine-stockfish.md
   - Chess\Variant\Classical\Board: variant-classical-board.md
