@@ -1,8 +1,9 @@
-/composer.lock
-/vendor/
 .env
-/tests/tmp/*.png
-
+.idea/
 .phpunit.result.cache
 
-.idea/
+composer.lock
+
+/storage/tmp/*.jpg
+/tests/tmp/*.png
+/vendor/
