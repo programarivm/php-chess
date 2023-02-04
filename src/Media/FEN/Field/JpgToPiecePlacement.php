@@ -14,6 +14,8 @@ class JpgToPiecePlacement
 
     protected array $size;
 
+    protected string $uniqid;
+
     protected array $filepaths;
 
     protected string $piecePlacement;
@@ -23,8 +25,10 @@ class JpgToPiecePlacement
         $this->filename = $filename;
         $this->image = imagecreatefromjpeg($filename);
         $this->size = getimagesize($filename);
+        $this->uniqid = uniqid();
         $this->filepaths = [];
         $this->piecePlacement = '';
+
         $this->calcTiles();
     }
 
@@ -42,7 +46,7 @@ class JpgToPiecePlacement
                     'height' => $side,
                 ]);
                 if ($tile !== false) {
-                    $filepath = self::STORAGE_TMP_FOLDER."/example-$i$j.jpg";
+                    $filepath = self::STORAGE_TMP_FOLDER."/{$this->uniqid}$i$j.jpg";
                     $this->filepaths[$i][] = $filepath;
                     imagejpeg($tile, $filepath);
                     imagedestroy($tile);
@@ -50,6 +54,16 @@ class JpgToPiecePlacement
                 $x += $side;
             }
             $y += $side;
+        }
+    }
+
+    protected function cleanup(): void
+    {
+        $files = glob(self::STORAGE_TMP_FOLDER."/{$this->uniqid}*");
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            }
         }
     }
 
@@ -64,6 +78,8 @@ class JpgToPiecePlacement
             }
             $this->piecePlacement .= '/';
         }
+
+        $this->cleanup();
 
         $this->piecePlacement = substr($this->piecePlacement, 0, -1);
         $this->piecePlacement = str_replace('11111111', '8', $this->piecePlacement);
