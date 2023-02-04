@@ -14,16 +14,17 @@ class JpgToPiecePlacement
 
     protected array $size;
 
-    protected array $fen;
+    protected array $filepaths;
+
+    protected string $piecePlacement;
 
     public function __construct(string $filename)
     {
         $this->filename = $filename;
-
         $this->image = imagecreatefromjpeg($filename);
-
         $this->size = getimagesize($filename);
-
+        $this->filepaths = [];
+        $this->piecePlacement = '';
         $this->calcTiles();
     }
 
@@ -42,6 +43,7 @@ class JpgToPiecePlacement
                 ]);
                 if ($tile !== false) {
                     $filepath = self::STORAGE_TMP_FOLDER."/example-$i$j.jpg";
+                    $this->filepaths[$i][] = $filepath;
                     imagejpeg($tile, $filepath);
                     imagedestroy($tile);
                 }
@@ -53,8 +55,25 @@ class JpgToPiecePlacement
 
     public function predict(): string
     {
-        // TODO ...
+        foreach ($this->filepaths as $key => $val) {
+            foreach ($val as $filepath) {
+                $prediction = (new JpgToPiece($filepath))->predict();
+                $prediction === 'empty'
+                    ? $this->piecePlacement .= '1'
+                    : $this->piecePlacement .= $prediction;
+            }
+            $this->piecePlacement .= '/';
+        }
 
-        return '';
+        $this->piecePlacement = substr($this->piecePlacement, 0, -1);
+        $this->piecePlacement = str_replace('11111111', '8', $this->piecePlacement);
+        $this->piecePlacement = str_replace('1111111', '7', $this->piecePlacement);
+        $this->piecePlacement = str_replace('111111', '6', $this->piecePlacement);
+        $this->piecePlacement = str_replace('11111', '5', $this->piecePlacement);
+        $this->piecePlacement = str_replace('1111', '4', $this->piecePlacement);
+        $this->piecePlacement = str_replace('111', '3', $this->piecePlacement);
+        $this->piecePlacement = str_replace('11', '2', $this->piecePlacement);
+
+        return $this->piecePlacement;
     }
 }
