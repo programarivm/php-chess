@@ -2,21 +2,80 @@
 
 namespace Chess\Media;
 
+use Chess\Game;
+use Chess\Movetext;
+use Chess\Exception\MediaException;
 use Chess\Variant\Capablanca80\Board as Capablanca80Board;
+use Chess\Variant\Capablanca80\FEN\StrToBoard as Capablanca80FenStrToBoard;
+use Chess\Variant\Capablanca80\PGN\Move as Capablanca80PgnMove;
 use Chess\Variant\Chess960\Board as Chess960Board;
+use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
+use Chess\Variant\Classical\PGN\Move as ClassicalPgnMove;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 
 class BoardToMp4
 {
-    protected ClassicalBoard $board;
+    const MAX_MOVES = 300;
+
+    protected string $variant;
+
+    protected Movetext $movetext;
+
+    protected string $fen;
+
+    protected string $startPos;
 
     protected bool $flip;
 
-    public function __construct(ClassicalBoard $board, bool $flip = false)
-    {
-        $this->board = $board;
+    protected ClassicalBoard $board;
 
+    public function __construct(
+        string $variant,
+        string $movetext,
+        string $fen = '',
+        string $startPos = '',
+        bool $flip = false
+    ) {
+        $this->variant = $variant;
+        $this->fen = $fen;
+        $this->startPos = $startPos;
         $this->flip = $flip;
+
+        if ($variant === Game::VARIANT_960) {
+            $move = new ClassicalPgnMove();
+        } elseif ($variant === Game::VARIANT_CAPABLANCA_80) {
+            $move = new Capablanca80PgnMove();
+        } elseif ($variant === Game::VARIANT_CLASSICAL) {
+            $move = new ClassicalPgnMove();
+        } else {
+            throw new MediaException();
+        }
+
+        $this->movetext = new Movetext($move, $movetext);
+        if (!$this->movetext->validate()) {
+            throw new MediaException();
+        }
+        if (self::MAX_MOVES < count($this->movetext->getMovetext()->moves)) {
+            throw new MediaException();
+        }
+
+        if ($this->fen) {
+            if ($this->variant === Game::VARIANT_960) {
+                $this->board = (new ClassicalFenStrToBoard($this->fen))->create();
+            } elseif ($this->variant === Game::VARIANT_CAPABLANCA_80) {
+                $this->board = (new Capablanca80FenStrToBoard($this->fen))->create();
+            } elseif ($this->variant === Game::VARIANT_CLASSICAL) {
+                $this->board = (new ClassicalFenStrToBoard($this->fen))->create();
+            }
+        } else {
+            if ($this->variant === Game::VARIANT_960) {
+                $this->board = new Chess960Board($this->board->getStartPos());
+            } elseif ($this->variant === Game::VARIANT_CAPABLANCA_80) {
+                $this->board = new Capablanca80Board();
+            } elseif ($this->variant === Game::VARIANT_CLASSICAL) {
+                $this->board = new ClassicalBoard();
+            }
+        }
     }
 
     public function output(string $filepath): string
@@ -36,19 +95,12 @@ class BoardToMp4
 
     private function frames(string $filepath, string $filename): BoardToMp4
     {
-        if (is_a($this->board, Capablanca80Board::class)) {
-            $board = new Capablanca80Board();
-        } elseif (is_a($this->board, Chess960Board::class)) {
-            $board = new Chess960Board($this->board->getStartPos());
-        } elseif (is_a($this->board, ClassicalBoard::class)) {
-            $board = new ClassicalBoard();
-        }
-        $boardToPng = new BoardToPng($board, $this->flip);
-        $boardToPng->setBoard($board)->output($filepath, "{$filename}_000");
-        foreach ($this->board->getHistory() as $key => $item) {
+        $boardToPng = new BoardToPng($this->board, $this->flip);
+        $boardToPng->output($filepath, "{$filename}_000");
+        foreach ($this->movetext->getMovetext()->moves as $key => $val) {
             $n = sprintf("%03d", $key + 1);
-            $board->play($item->move->color, $item->move->pgn);
-            $boardToPng->setBoard($board)->output($filepath, "{$filename}_{$n}");
+            $this->board->play($this->board->getTurn(), $val);
+            $boardToPng->setBoard($this->board)->output($filepath, "{$filename}_{$n}");
         }
 
         return $this;
