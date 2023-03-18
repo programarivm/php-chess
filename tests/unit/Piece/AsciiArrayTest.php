@@ -90,7 +90,7 @@ class AsciiArrayTest extends AbstractUnitTestCase
         ];
 
         $board = (new AsciiArray($expected, self::$size, self::$castlingRule))
-            ->toBoard('\Chess\Variant\Classical\Board', 'w');
+            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $this->assertSame($expected, $board->toAsciiArray());
     }
@@ -112,7 +112,7 @@ class AsciiArrayTest extends AbstractUnitTestCase
         ];
 
         $board = (new AsciiArray($expected, self::$size, self::$castlingRule))
-            ->toBoard('\Chess\Variant\Classical\Board', 'w', 'kq');
+            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w', 'kq');
 
         $this->assertSame($expected, $board->toAsciiArray());
     }
@@ -134,7 +134,7 @@ class AsciiArrayTest extends AbstractUnitTestCase
         ];
 
         $board = (new AsciiArray($expected, self::$size, self::$castlingRule))
-            ->toBoard('\Chess\Variant\Classical\Board', 'b');
+            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'b');
 
         $this->assertSame($expected, $board->toAsciiArray());
     }
@@ -156,7 +156,7 @@ class AsciiArrayTest extends AbstractUnitTestCase
         ];
 
         $board = (new AsciiArray($expected, self::$size, self::$castlingRule))
-            ->toBoard('\Chess\Variant\Classical\Board', 'w');
+            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $this->assertSame($expected, $board->toAsciiArray());
     }

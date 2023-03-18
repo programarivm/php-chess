@@ -66,7 +66,7 @@ class AsciiArray
      * @param string $turn
      * @return \Chess\Variant\Classical\Board
      */
-    public function toBoard(string $className, string $turn, string $castlingAbility = null): Board
+    public function toClassicalBoard(string $className, string $turn, string $castlingAbility = null): Board
     {
         $board = new $className();
 

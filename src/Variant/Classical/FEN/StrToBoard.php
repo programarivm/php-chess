@@ -83,7 +83,7 @@ class StrToBoard
         $board = (new AsciiArray($board->toAsciiArray(), $this->size, $this->castlingRule))
             ->setElem($piece, $fromSq)
             ->setElem(' . ', $toSq)
-            ->toBoard(get_class($board), $turn);
+            ->toClassicalBoard(get_class($board), $turn);
         $board->play($turn, $toSq);
 
         return $board;

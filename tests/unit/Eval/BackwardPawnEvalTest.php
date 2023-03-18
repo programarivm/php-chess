@@ -38,7 +38,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $board = (new AsciiArray($position, self::$size, self::$castlingRule))
-            ->toBoard('\Chess\Variant\Classical\Board', 'w');
+            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $expected = [
             'w' => 2,
@@ -67,7 +67,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $board = (new AsciiArray($position, self::$size, self::$castlingRule))
-            ->toBoard('\Chess\Variant\Classical\Board', 'w');
+            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $expected = [
             'w' => 0,
