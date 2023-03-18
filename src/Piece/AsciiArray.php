@@ -64,6 +64,7 @@ class AsciiArray
      *
      * @param string $className
      * @param string $turn
+     * @param string $castlingAbility
      * @return \Chess\Variant\Classical\Board
      */
     public function toClassicalBoard(string $className, string $turn, string $castlingAbility = null): Board
@@ -81,6 +82,40 @@ class AsciiArray
         }
 
         $newBoard = (new $className($pieces, $castlingAbility))->setTurn($turn);
+
+        return $newBoard;
+    }
+
+    /**
+     * Returns a \Chess\Variant\Chess960\Board object.
+     *
+     * @param string $className
+     * @param string $turn
+     * @param string $castlingAbility
+     * @param string $startPos
+     * @return \Chess\Variant\Chess960\Board
+     */
+    public function toChess960Board(
+        string $className,
+        string $turn,
+        string $castlingAbility = null,
+        array $startPos
+    ): Board
+    {
+        $board = new $className();
+
+        $pieces = (new PieceArray(
+            $this->array,
+            $board->getSize(),
+            $board->getCastlingRule()
+        ))->getArray();
+
+        if (!$castlingAbility) {
+            $castlingAbility = CastlingAbility::START;
+        }
+
+        $newBoard = (new $className($startPos, $pieces, $castlingAbility))
+            ->setTurn($turn);
 
         return $newBoard;
     }

@@ -8,6 +8,7 @@ use Chess\Piece\PieceArray;
 use Chess\Variant\Chess960\Board;
 use Chess\Variant\Chess960\Rule\CastlingRule;
 use Chess\Variant\Classical\FEN\Str;
+use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 
@@ -31,9 +32,9 @@ class StrToBoard
 
     protected string $castlingAbility;
 
-    protected array $castlingRule;
-
     private array $startPos;
+
+    protected array $castlingRule;
 
     public function __construct(string $string, array $startPos)
     {
@@ -86,7 +87,7 @@ class StrToBoard
         $board = (new AsciiArray($board->toAsciiArray(), $this->size, $this->castlingRule))
             ->setElem($piece, $fromSq)
             ->setElem(' . ', $toSq)
-            ->toClassicalBoard(get_class($board), $turn);
+            ->toChess960Board(get_class($board), $turn, $this->castlingAbility, $this->startPos);
         $board->play($turn, $toSq);
 
         return $board;
