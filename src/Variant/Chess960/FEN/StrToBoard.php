@@ -3,13 +3,13 @@
 namespace Chess\Variant\Chess960\FEN;
 
 use Chess\Exception\UnknownNotationException;
+use Chess\Piece\AsciiArray;
 use Chess\Piece\PieceArray;
 use Chess\Variant\Chess960\Board;
+use Chess\Variant\Chess960\Rule\CastlingRule;
 use Chess\Variant\Classical\FEN\Str;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Chess960\Rule\CastlingRule;
-use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 
 /**
  * StrToBoard
@@ -19,8 +19,20 @@ use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
  * @author Jordi Bassagañas
  * @license GPL
  */
-class StrToBoard extends ClassicalFenStrToBoard
+class StrToBoard
 {
+    protected array $size;
+
+    protected Str $fenStr;
+
+    protected string $string;
+
+    protected array $fields;
+
+    protected string $castlingAbility;
+
+    protected array $castlingRule;
+
     private array $startPos;
 
     public function __construct(string $string, array $startPos)
@@ -50,6 +62,32 @@ class StrToBoard extends ClassicalFenStrToBoard
         } catch (\Throwable $e) {
             throw new UnknownNotationException();
         }
+
+        return $board;
+    }
+
+    protected function doublePawnPush(Board $board)
+    {
+        $file = $this->fields[3][0];
+        $rank = intval(substr($this->fields[3], 1));
+        if ($this->fields[1] === Color::W) {
+            $piece = ' p ';
+            $fromRank = $rank + 1;
+            $toRank = $rank - 1;
+            $turn = Color::B;
+        } else {
+            $piece = ' P ';
+            $fromRank = $rank - 1;
+            $toRank = $rank + 1;
+            $turn = Color::W;
+        }
+        $fromSq = $file.$fromRank;
+        $toSq = $file.$toRank;
+        $board = (new AsciiArray($board->toAsciiArray(), $this->size, $this->castlingRule))
+            ->setElem($piece, $fromSq)
+            ->setElem(' . ', $toSq)
+            ->toBoard(get_class($board), $turn);
+        $board->play($turn, $toSq);
 
         return $board;
     }

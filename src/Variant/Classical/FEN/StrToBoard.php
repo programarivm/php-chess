@@ -2,8 +2,8 @@
 
 namespace Chess\Variant\Classical\FEN;
 
-use Chess\Piece\AsciiArray;
 use Chess\Exception\UnknownNotationException;
+use Chess\Piece\AsciiArray;
 use Chess\Piece\PieceArray;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\FEN\Str;
