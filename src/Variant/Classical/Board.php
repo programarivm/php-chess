@@ -1172,8 +1172,9 @@ class Board extends \SplObjectStorage
             $sq = $piece->getSq();
             list($file, $rank) = AsciiArray::fromAlgebraicToIndex($sq);
             if ($flip) {
-                $file = $this->size['files'] - 1 - $file;
-                $rank = $this->size['ranks'] - 1 - $rank;
+                $diff = $this->size['files'] - $this->size['ranks'];
+                $file = $this->size['files'] - 1 - $file - $diff;
+                $rank = $this->size['ranks'] - 1 - $rank + $diff;
             }
             $piece->getColor() === Color::W
                 ? $array[$file][$rank] = ' ' . $piece->getId() . ' '

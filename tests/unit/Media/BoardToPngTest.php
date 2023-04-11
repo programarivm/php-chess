@@ -239,4 +239,24 @@ class BoardToPngTest extends AbstractUnitTestCase
             sha1_file(self::DATA_FOLDER.'/img/a4_j7___capablanca100.png')
         );
     }
+
+    /**
+     * @test
+     */
+    public function output_capablanca80_f4_f5_Nh3_Nc6_flip()
+    {
+        $board = new Capablanca80Board();
+
+        $board->play('w', 'f4');
+        $board->play('b', 'f5');
+        $board->play('w', 'Nh3');
+        $board->play('b', 'Nc6');
+
+        $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
+
+        $this->assertSame(
+            sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
+            sha1_file(self::DATA_FOLDER.'/img/f4_f5_Nh3_Nc6_flip___capablanca80.png')
+        );
+    }
 }
