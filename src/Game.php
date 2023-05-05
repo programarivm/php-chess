@@ -36,6 +36,7 @@ class Game
     const VARIANT_CLASSICAL         = 'classical';
 
     const MODE_ANALYSIS             = 'analysis';
+    const MODE_CORRESPONDENCE       = 'correspondence';
     const MODE_GM                   = 'gm';
     const MODE_FEN                  = 'fen';
     const MODE_PGN                  = 'pgn';
