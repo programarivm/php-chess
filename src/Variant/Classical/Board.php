@@ -1081,17 +1081,11 @@ class Board extends \SplObjectStorage
                 } catch (\Exception $e) {
                 }
             }
-            $result = [
+            return (object) [
                 'color' => $color,
                 'id' => $piece->getId(),
                 'fen' => $fen,
             ];
-            if ($piece->getId() === Piece::P) {
-                if ($enPassant = $piece->getEnPassantSq()) {
-                    $result['enPassant'] = $enPassant;
-                }
-            }
-            return (object) $result;
          }
 
          return null;
