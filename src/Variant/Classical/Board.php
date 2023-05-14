@@ -995,6 +995,23 @@ class Board extends \SplObjectStorage
     }
 
     /**
+     * Checks out whether the same position occurs five times.
+     *
+     * @return bool
+     */
+    public function isFivefoldRepetition(): bool
+    {
+        $count = array_count_values(array_column($this->history, 'fen'));
+        foreach ($count as $key => $val) {
+            if ($val >= 5) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Returns the legal FEN positions of a piece.
      *
      * @param string $sq

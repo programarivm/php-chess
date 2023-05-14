@@ -2559,4 +2559,36 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->playLan('w', 'a4b5'));
         $this->assertTrue($board->playLan('b', 'c6b5'));
     }
+
+    /**
+     * @test
+     */
+    public function is_fivefold_repetition()
+    {
+        $board = new Board();
+
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nc6');
+        $board->play('w', 'Ng1');
+        $board->play('b', 'Nb8');
+
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nc6');
+        $board->play('w', 'Ng1');
+        $board->play('b', 'Nb8');
+
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nc6');
+        $board->play('w', 'Ng1');
+        $board->play('b', 'Nb8');
+
+        $board->play('w', 'Nf3');
+        $board->play('b', 'Nc6');
+        $board->play('w', 'Ng1');
+        $board->play('b', 'Nb8');
+
+        $board->play('w', 'Nf3');
+
+        $this->assertTrue($board->isFivefoldRepetition());
+    }
 }
