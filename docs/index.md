@@ -196,15 +196,16 @@ $state = $game->state();
 
 `$state` is a PHP object with information about the game being played.
 
-| Property          | Description                                         |
-|-------------------|-----------------------------------------------------|
-| `turn`            | The current player's turn                           |
-| `castlingAbility` | The castling ability in FEN format                  |
-| `movetext`        | PGN movetext                                        |
-| `fen`             | FEN string                                          |
-| `isCheck`         | Checks out if the current player is in check        |
-| `isMate`          | Checks out if the current player is checkmated      |
-| `isStalemate`     | Checks out whether the current player is stalemated |
+| Property               | Description                                             |
+|------------------------|---------------------------------------------------------|
+| `turn`                 | The current player's turn.                              |
+| `castlingAbility`      | The castling ability in FEN format.                     |
+| `movetext`             | PGN movetext.                                           |
+| `fen`                  | FEN string.                                             |
+| `isCheck`              | Checks out if the current player is in check.           |
+| `isMate`               | Checks out if the current player is checkmated.         |
+| `isStalemate`          | Checks out whether the current player is stalemated.    |
+| `isFivefoldRepetition` | Checks out whether the same position occurs five times. |
 
 The properties of the  `$state` object are accessed this way:
 
@@ -216,6 +217,7 @@ $game->state()->fen;
 $game->state()->isCheck;
 $game->state()->isMate;
 $game->state()->isStalemate;
+$game->state()->isFivefoldRepetition;
 ```
 
 #### `public function getBoard(): ClassicalBoard`
