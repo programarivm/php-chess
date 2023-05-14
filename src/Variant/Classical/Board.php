@@ -892,6 +892,10 @@ class Board extends \SplObjectStorage
         $this->defenseEval = (object) (new DefenseEval($this))->eval();
 
         $this->notifyPieces();
+
+        if ($this->history) {
+            $this->history[count($this->history) - 1]->fen = $this->toFen();
+        }
     }
 
     private function leavesInCheck(AbstractPiece $piece): bool

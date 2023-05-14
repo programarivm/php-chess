@@ -176,6 +176,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'd4',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -192,6 +193,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'd5',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq d6',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -208,6 +210,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'c4',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq c3',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -224,6 +227,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'c5',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/pp2pppp/8/2pp4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq c6',
             ],
         ];
 
@@ -256,6 +260,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'e4',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -272,6 +277,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'e5',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -288,6 +294,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'f3',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -304,6 +311,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'c6',
                     ],
                 ],
+                'fen' => 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -320,6 +328,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'b5',
                     ],
                 ],
+                'fen' => 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -336,6 +345,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'e7',
                     ],
                 ],
+                'fen' => 'r1bqk1nr/ppppbppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
             ],
         ];
 
@@ -368,6 +378,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'e4',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -384,6 +395,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'e6',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -400,6 +412,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'd4',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -416,6 +429,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'd5',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq d6',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -432,6 +446,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'c3',
                     ],
                 ],
+                'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -',
             ],
             (object) [
                 'castlingAbility' => 'KQkq',
@@ -448,6 +463,7 @@ class BoardTest extends AbstractUnitTestCase
                         'next' => 'f6',
                     ],
                 ],
+                'fen' => 'rnbqkb1r/ppp2ppp/4pn2/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq -',
             ],
         ];
 
