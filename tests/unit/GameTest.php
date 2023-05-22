@@ -75,6 +75,30 @@ class GameTest extends AbstractUnitTestCase
 
     /*
     |--------------------------------------------------------------------------
+    | loadFen()
+    |--------------------------------------------------------------------------
+    |
+    | Loads a FEN string allowing to continue a chess game.
+    |
+    */
+
+    /**
+     * @test
+     */
+    public function loadFen_r3k2r__1R1Q1RK1()
+    {
+        $game = new Game(
+            Game::VARIANT_CLASSICAL,
+            Game::MODE_FEN
+        );
+
+        $game->loadFen('r3k2r/pp1np1bp/2p5/q4p2/2BPpB2/1PP1P3/6PP/1R1Q1RK1 b kq -');
+
+        $this->assertTrue($game->play('b', 'O-O-O'));
+    }
+
+    /*
+    |--------------------------------------------------------------------------
     | Play sample games.
     |--------------------------------------------------------------------------
     |
