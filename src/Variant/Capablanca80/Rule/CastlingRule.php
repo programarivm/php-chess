@@ -14,7 +14,7 @@ class CastlingRule extends ClassicalCastlingRule
             Piece::K => [
                 Castle::SHORT => [
                     'free' => [ 'g1', 'h1', 'i1' ],
-                    'attack' => [ 'g1', 'h1', 'i1' ],
+                    'attack' => [ 'f1', 'g1', 'h1', 'i1' ],
                     'sq' => [
                         'current' => 'f1',
                         'next' => 'i1',
@@ -22,7 +22,7 @@ class CastlingRule extends ClassicalCastlingRule
                 ],
                 Castle::LONG => [
                     'free' => [ 'b1', 'c1', 'd1', 'e1' ],
-                    'attack' => [ 'c1', 'd1', 'e1' ],
+                    'attack' => [ 'c1', 'd1', 'e1', 'f1' ],
                     'sq' => [
                         'current' => 'f1',
                         'next' => 'c1',
@@ -48,7 +48,7 @@ class CastlingRule extends ClassicalCastlingRule
             Piece::K => [
                 Castle::SHORT => [
                     'free' => [ 'g8', 'h8', 'i8' ],
-                    'attack' => [ 'g8', 'h8', 'i8' ],
+                    'attack' => [ 'f8', 'g8', 'h8', 'i8' ],
                     'sq' => [
                         'current' => 'f8',
                         'next' => 'i8',
@@ -56,7 +56,7 @@ class CastlingRule extends ClassicalCastlingRule
                 ],
                 Castle::LONG => [
                     'free' => [ 'b8', 'c8', 'd8', 'e8' ],
-                    'attack' => [ 'c8', 'd8', 'e8' ],
+                    'attack' => [ 'c8', 'd8', 'e8', 'f8' ],
                     'sq' => [
                         'current' => 'f8',
                         'next' => 'c8',
