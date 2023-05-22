@@ -33,7 +33,7 @@ class KTest extends AbstractUnitTestCase
     {
         $rule = self::$castlingRule[Color::W];
 
-        $this->assertSame($rule[Piece::K][Castle::LONG]['vacant'], [ 'b1', 'c1', 'd1' ]);
+        $this->assertSame($rule[Piece::K][Castle::LONG]['free'], [ 'b1', 'c1', 'd1' ]);
         $this->assertSame($rule[Piece::K][Castle::LONG]['sq']['current'], 'e1');
         $this->assertSame($rule[Piece::K][Castle::LONG]['sq']['next'], 'c1');
         $this->assertSame($rule[Piece::R][Castle::LONG]['sq']['current'], 'a1');
@@ -47,7 +47,7 @@ class KTest extends AbstractUnitTestCase
     {
         $rule = self::$castlingRule[Color::B];
 
-        $this->assertSame($rule[Piece::K][Castle::LONG]['vacant'], [ 'b8', 'c8', 'd8' ]);
+        $this->assertSame($rule[Piece::K][Castle::LONG]['free'], [ 'b8', 'c8', 'd8' ]);
         $this->assertSame($rule[Piece::K][Castle::LONG]['sq']['current'], 'e8');
         $this->assertSame($rule[Piece::K][Castle::LONG]['sq']['next'], 'c8');
         $this->assertSame($rule[Piece::R][Castle::LONG]['sq']['current'], 'a8');
@@ -61,7 +61,7 @@ class KTest extends AbstractUnitTestCase
     {
         $rule = self::$castlingRule[Color::W];
 
-        $this->assertSame($rule[Piece::K][Castle::SHORT]['vacant'], [ 'f1', 'g1' ]);
+        $this->assertSame($rule[Piece::K][Castle::SHORT]['free'], [ 'f1', 'g1' ]);
         $this->assertSame($rule[Piece::K][Castle::SHORT]['sq']['current'], 'e1');
         $this->assertSame($rule[Piece::K][Castle::SHORT]['sq']['next'], 'g1');
         $this->assertSame($rule[Piece::R][Castle::SHORT]['sq']['current'], 'h1');
@@ -75,7 +75,7 @@ class KTest extends AbstractUnitTestCase
     {
         $rule = self::$castlingRule[Color::B];
 
-        $this->assertSame($rule[Piece::K][Castle::SHORT]['vacant'], [ 'f8', 'g8' ]);
+        $this->assertSame($rule[Piece::K][Castle::SHORT]['free'], [ 'f8', 'g8' ]);
         $this->assertSame($rule[Piece::K][Castle::SHORT]['sq']['current'], 'e8');
         $this->assertSame($rule[Piece::K][Castle::SHORT]['sq']['next'], 'g8');
         $this->assertSame($rule[Piece::R][Castle::SHORT]['sq']['current'], 'h8');

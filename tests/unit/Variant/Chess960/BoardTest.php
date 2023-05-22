@@ -55,14 +55,16 @@ class BoardTest extends AbstractUnitTestCase
             Color::W => [
                 Piece::K => [
                     Castle::SHORT => [
-                        'vacant' => [ 'f1', 'g1' ],
+                        'free' => [ 'f1', 'g1' ],
+                        'attack' => [ 'f1', 'g1' ],
                         'sq' => [
                             'current' => 'd1',
                             'next' => 'g1',
                         ],
                     ],
                     Castle::LONG => [
-                        'vacant' => [ 'b1', 'c1' ],
+                        'free' => [ 'b1', 'c1' ],
+                        'attack' => [ 'b1', 'c1' ],
                         'sq' => [
                             'current' => 'd1',
                             'next' => 'c1',
@@ -87,14 +89,16 @@ class BoardTest extends AbstractUnitTestCase
             Color::B => [
                 Piece::K => [
                     Castle::SHORT => [
-                        'vacant' => [ 'f8', 'g8' ],
+                        'free' => [ 'f8', 'g8' ],
+                        'attack' => [ 'f8', 'g8' ],
                         'sq' => [
                             'current' => 'd8',
                             'next' => 'g8',
                         ],
                     ],
                     Castle::LONG => [
-                        'vacant' => [ 'b8', 'c8' ],
+                        'free' => [ 'b8', 'c8' ],
+                        'attack' => [ 'b8', 'c8' ],
                         'sq' => [
                             'current' => 'd8',
                             'next' => 'c8',
@@ -134,14 +138,16 @@ class BoardTest extends AbstractUnitTestCase
             Color::W => [
                 Piece::K => [
                     Castle::SHORT => [
-                        'vacant' => [ 'f1', 'g1' ],
+                        'free' => [ 'f1', 'g1' ],
+                        'attack' => [ 'f1', 'g1' ],
                         'sq' => [
                             'current' => 'd1',
                             'next' => 'g1',
                         ],
                     ],
                     Castle::LONG => [
-                        'vacant' => [ 'c1' ],
+                        'free' => [ 'c1' ],
+                        'attack' => [ 'c1' ],
                         'sq' => [
                             'current' => 'd1',
                             'next' => 'c1',
@@ -166,14 +172,16 @@ class BoardTest extends AbstractUnitTestCase
             Color::B => [
                 Piece::K => [
                     Castle::SHORT => [
-                        'vacant' => [ 'f8', 'g8' ],
+                        'free' => [ 'f8', 'g8' ],
+                        'attack' => [ 'f8', 'g8' ],
                         'sq' => [
                             'current' => 'd8',
                             'next' => 'g8',
                         ],
                     ],
                     Castle::LONG => [
-                        'vacant' => [ 'c8' ],
+                        'free' => [ 'c8' ],
+                        'attack' => [ 'c8' ],
                         'sq' => [
                             'current' => 'd8',
                             'next' => 'c8',
@@ -213,14 +221,16 @@ class BoardTest extends AbstractUnitTestCase
             Color::W => [
                 Piece::K => [
                     Castle::SHORT => [
-                        'vacant' => [ 'f1' ],
+                        'free' => [ 'f1' ],
+                        'attack' => [ 'f1' ],
                         'sq' => [
                             'current' => 'e1',
                             'next' => 'g1',
                         ],
                     ],
                     Castle::LONG => [
-                        'vacant' => [ 'c1' ],
+                        'free' => [ 'c1' ],
+                        'attack' => [ 'c1' ],
                         'sq' => [
                             'current' => 'e1',
                             'next' => 'c1',
@@ -245,14 +255,16 @@ class BoardTest extends AbstractUnitTestCase
             Color::B => [
                 Piece::K => [
                     Castle::SHORT => [
-                        'vacant' => [ 'f8' ],
+                        'free' => [ 'f8' ],
+                        'attack' => [ 'f8' ],
                         'sq' => [
                             'current' => 'e8',
                             'next' => 'g8',
                         ],
                     ],
                     Castle::LONG => [
-                        'vacant' => [ 'c8' ],
+                        'free' => [ 'c8' ],
+                        'attack' => [ 'c8' ],
                         'sq' => [
                             'current' => 'e8',
                             'next' => 'c8',

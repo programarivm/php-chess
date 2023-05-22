@@ -73,7 +73,7 @@ class CastlingRule extends ClassicalCastlingRule
 
         $path = array_unique(array_merge($kPath, $rPath));
 
-        $this->rule[Color::W][Piece::K][Castle::SHORT]['vacant'] = array_diff($path, [
+        $this->rule[Color::W][Piece::K][Castle::SHORT]['free'] = array_diff($path, [
             $this->rule[Color::W][Piece::K][Castle::SHORT]['sq']['current'],
             $this->rule[Color::W][Piece::R][Castle::SHORT]['sq']['current'],
         ]);
@@ -90,7 +90,7 @@ class CastlingRule extends ClassicalCastlingRule
 
         $path = array_unique(array_merge($kPath, $rPath));
 
-        $this->rule[Color::W][Piece::K][Castle::LONG]['vacant'] = array_diff($path, [
+        $this->rule[Color::W][Piece::K][Castle::LONG]['free'] = array_diff($path, [
             $this->rule[Color::W][Piece::K][Castle::LONG]['sq']['current'],
             $this->rule[Color::W][Piece::R][Castle::LONG]['sq']['current'],
         ]);
@@ -107,7 +107,7 @@ class CastlingRule extends ClassicalCastlingRule
 
         $path = array_unique(array_merge($kPath, $rPath));
 
-        $this->rule[Color::B][Piece::K][Castle::SHORT]['vacant'] = array_diff($path, [
+        $this->rule[Color::B][Piece::K][Castle::SHORT]['free'] = array_diff($path, [
             $this->rule[Color::B][Piece::K][Castle::SHORT]['sq']['current'],
             $this->rule[Color::B][Piece::R][Castle::SHORT]['sq']['current'],
         ]);
@@ -124,15 +124,15 @@ class CastlingRule extends ClassicalCastlingRule
 
         $path = array_unique(array_merge($kPath, $rPath));
 
-        $this->rule[Color::B][Piece::K][Castle::LONG]['vacant'] = array_diff($path, [
+        $this->rule[Color::B][Piece::K][Castle::LONG]['free'] = array_diff($path, [
             $this->rule[Color::B][Piece::K][Castle::LONG]['sq']['current'],
             $this->rule[Color::B][Piece::R][Castle::LONG]['sq']['current'],
         ]);
 
-        sort($this->rule[Color::W][Piece::K][Castle::SHORT]['vacant']);
-        sort($this->rule[Color::W][Piece::K][Castle::LONG]['vacant']);
-        sort($this->rule[Color::B][Piece::K][Castle::SHORT]['vacant']);
-        sort($this->rule[Color::B][Piece::K][Castle::LONG]['vacant']);
+        sort($this->rule[Color::W][Piece::K][Castle::SHORT]['free']);
+        sort($this->rule[Color::W][Piece::K][Castle::LONG]['free']);
+        sort($this->rule[Color::B][Piece::K][Castle::SHORT]['free']);
+        sort($this->rule[Color::B][Piece::K][Castle::LONG]['free']);
     }
 
     protected function path(string $from, string $to)

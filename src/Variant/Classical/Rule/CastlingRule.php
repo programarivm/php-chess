@@ -12,14 +12,16 @@ class CastlingRule
         Color::W => [
             Piece::K => [
                 Castle::SHORT => [
-                    'vacant' => [ 'f1', 'g1' ],
+                    'free' => [ 'f1', 'g1' ],
+                    'attack' => [ 'f1', 'g1' ],
                     'sq' => [
                         'current' => 'e1',
                         'next' => 'g1',
                     ],
                 ],
                 Castle::LONG => [
-                    'vacant' => [ 'b1', 'c1', 'd1' ],
+                    'free' => [ 'b1', 'c1', 'd1' ],
+                    'attack' => [ 'c1', 'd1' ],
                     'sq' => [
                         'current' => 'e1',
                         'next' => 'c1',
@@ -44,14 +46,16 @@ class CastlingRule
         Color::B => [
             Piece::K => [
                 Castle::SHORT => [
-                    'vacant' => [ 'f8', 'g8' ],
+                    'free' => [ 'f8', 'g8' ],
+                    'attack' => [ 'f8', 'g8' ],
                     'sq' => [
                         'current' => 'e8',
                         'next' => 'g8',
                     ],
                 ],
                 Castle::LONG => [
-                    'vacant' => [ 'b8', 'c8', 'd8' ],
+                    'free' => [ 'b8', 'c8', 'd8' ],
+                    'attack' => [ 'c8', 'd8' ],
                     'sq' => [
                         'current' => 'e8',
                         'next' => 'c8',
