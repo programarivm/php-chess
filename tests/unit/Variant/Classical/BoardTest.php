@@ -1091,7 +1091,7 @@ class BoardTest extends AbstractUnitTestCase
         $board = new Board($pieces, $castlingAbility);
 
         $this->assertFalse($board->play('w', 'O-O'));
-        $this->assertFalse($board->play('w', 'O-O-O'));
+        $this->assertTrue($board->play('w', 'O-O-O'));
     }
 
     /**
