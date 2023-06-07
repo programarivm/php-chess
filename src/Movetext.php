@@ -79,21 +79,17 @@ class Movetext
     protected function toString(): string
     {
         $text = '';
-        $j = 0;
-
+        $offset = 0;
         if (isset($this->movetext->moves[0])) {
             if ($this->movetext->moves[0] === self::SYMBOL_ELLIPSIS) {
                 $text = '1' . self::SYMBOL_ELLIPSIS . "{$this->movetext->moves[1]} ";
-                $j = 2;
+                $offset = 2;
             }
         }
-
-        for ($i = $j; $i < count($this->movetext->moves); $i++) {
-            if ($i % 2 === 0) {
-                $text .= (($i / 2) + 1) . ".{$this->movetext->moves[$i]}";
-            } else {
-                $text .= " {$this->movetext->moves[$i]} ";
-            }
+        for ($i = $offset; $i < count($this->movetext->moves); $i++) {
+            $i % 2 === 0
+                ? $text .= (($i / 2) + 1) . ".{$this->movetext->moves[$i]}"
+                : $text .= " {$this->movetext->moves[$i]} ";
         }
 
         return trim($text);

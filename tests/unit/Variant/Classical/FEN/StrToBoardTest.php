@@ -559,7 +559,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         ];
 
         $this->assertSame($expected, $array);
-        $this->assertSame('1.Rfxc8', $board->getMovetext());
+        $this->assertSame('1...Rfxc8', $board->getMovetext());
     }
 
     /**
@@ -751,8 +751,9 @@ class StrToBoardTest extends AbstractUnitTestCase
             ->create();
 
         $board->playLan('b', 'f8g7');
+        $board->playLan('w', 'e2e4');
 
-        $expected = '1...Bg7';
+        $expected = '1...Bg7 2.e4';
 
         $this->assertEquals($expected, $board->getMovetext());
     }

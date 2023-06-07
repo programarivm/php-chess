@@ -2,6 +2,7 @@
 
 namespace Chess\Variant\Classical;
 
+use Chess\Movetext;
 use Chess\Piece\AsciiArray;
 use Chess\Eval\DefenseEval;
 use Chess\Eval\PressureEval;
@@ -351,10 +352,17 @@ class Board extends \SplObjectStorage
     public function getMovetext(): string
     {
         $movetext = '';
-        foreach ($this->history as $key => $val) {
-            $key % 2 === 0
-                ? $movetext .= (($key / 2) + 1) . ".{$val->move->pgn}"
-                : $movetext .= " {$val->move->pgn} ";
+        $offset = 0;
+        if (isset($this->history[0]->move)) {
+            if ($this->history[0]->move->color === Color::B) {
+                $movetext = '1' . Movetext::SYMBOL_ELLIPSIS . "{$this->history[0]->move->pgn} ";
+                $offset = 2;
+            }
+        }
+        for ($i = $offset; $i < count($this->history); $i++) {
+            $i % 2 === 0
+                ? $movetext .= (($i / 2) + 1) . ".{$this->history[$i]->move->pgn}"
+                : $movetext .= " {$this->history[$i]->move->pgn} ";
         }
 
         return trim($movetext);
