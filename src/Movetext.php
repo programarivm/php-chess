@@ -108,15 +108,12 @@ class Movetext
     {
         // remove PGN symbols
         $text = str_replace(Termination::values(), '', $text);
-
         // remove comments
         $text = preg_replace("/\{[^)]+\}/", '', $text);
         $text = preg_replace("/\([^)]+\)/", '', $text);
-
         // replace FIDE notation with PGN notation
         $text = str_replace('0-0', 'O-O', $text);
         $text = str_replace('0-0-0', 'O-O-O', $text);
-
         // remove spaces between dots
         $text = preg_replace('/\s+\./', '.', $text);
 
@@ -157,13 +154,13 @@ class Movetext
     /**
      * Returns an array representing the movetext as a sequence of moves.
      *
-     * e.g. 1.d4 Nf6 2.Nf3 e6 3.c4
+     * e.g. 1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+
      *
      * Array
      * (
      *     [0] => 1.d4 Nf6
      *     [1] => 1.d4 Nf6 2.Nf3 e6
-     *     [2] => 1.d4 Nf6 2.Nf3 e6 3.c4
+     *     [2] => 1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+
      * )
      *
      * @return array
