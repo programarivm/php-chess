@@ -227,6 +227,13 @@ class MovetextTest extends AbstractUnitTestCase
     {
         return [
             [
+                '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+', [
+                    '1.d4 Nf6',
+                    '1.d4 Nf6 2.Nf3 e6',
+                    '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+',
+                ],
+            ],
+            [
                 '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5', [
                     '1.d4 Nf6',
                     '1.d4 Nf6 2.Nf3 e6',
@@ -247,7 +254,7 @@ class MovetextTest extends AbstractUnitTestCase
                     '1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Nf3 dxe5 5.Nxe5 c6 6.Be2 Bf5',
                     '1.e4 Nf6 2.e5 Nd5 3.d4 d6 4.Nf3 dxe5 5.Nxe5 c6 6.Be2 Bf5 7.c3 Nd7',
                 ],
-            ]
+            ],
         ];
     }
 }
