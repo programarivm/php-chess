@@ -274,6 +274,19 @@ class Board extends \SplObjectStorage
     }
 
     /**
+     * Sets the start FEN.
+     *
+     * @param string $fen
+     * @return \Chess\Variant\Classical\Board
+     */
+    public function setStartFen(string $fen): Board
+    {
+        $this->startFen = $fen;
+
+        return $this;
+    }
+
+    /**
      * Returns the size.
      *
      * @return array
