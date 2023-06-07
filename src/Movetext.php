@@ -2,7 +2,6 @@
 
 namespace Chess;
 
-use Chess\Exception\MovetextException;
 use Chess\Variant\Classical\PGN\AN\Termination;
 use Chess\Variant\Classical\PGN\Move;
 
@@ -13,6 +12,8 @@ use Chess\Variant\Classical\PGN\Move;
  */
 class Movetext
 {
+    const SYMBOL_ELLIPSIS = '...';
+
     /**
      * Move.
      *
@@ -38,7 +39,6 @@ class Movetext
         $this->move = $move;
 
         $this->movetext = (object) [
-            'n' => [],
             'moves' => [],
         ];
 
@@ -63,7 +63,7 @@ class Movetext
     public function validate(): string
     {
         foreach ($this->movetext->moves as $move) {
-            if ($move !== '...') {
+            if ($move !== self::SYMBOL_ELLIPSIS) {
                 $this->move->validate($move);
             }
         }
@@ -79,16 +79,16 @@ class Movetext
     protected function toString(): string
     {
         $text = '';
-        $index = 0;
+        $j = 0;
 
         if (isset($this->movetext->moves[0])) {
-            if ($this->movetext->moves[0] === '...') {
-                $text = "1...{$this->movetext->moves[1]} ";
-                $index = 2;
+            if ($this->movetext->moves[0] === self::SYMBOL_ELLIPSIS) {
+                $text = '1' . self::SYMBOL_ELLIPSIS . "{$this->movetext->moves[1]} ";
+                $j = 2;
             }
         }
 
-        for ($i = $index; $i < count($this->movetext->moves); $i++) {
+        for ($i = $j; $i < count($this->movetext->moves); $i++) {
             if ($i % 2 === 0) {
                 $text .= (($i / 2) + 1) . ".{$this->movetext->moves[$i]}";
             } else {
@@ -134,53 +134,49 @@ class Movetext
         foreach ($moves as $key => $val) {
             if ($key === 0) {
                 if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
-                    $exploded = explode('...', $val);
-                    $this->movetext->n[] = $exploded[0];
-                    $this->movetext->moves[] = '...';
+                    $exploded = explode(self::SYMBOL_ELLIPSIS, $val);
+                    $this->movetext->moves[] = self::SYMBOL_ELLIPSIS;
                     $this->movetext->moves[] = $exploded[1];
                 } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
-                    $exploded = explode('.', $val);
-                    $this->movetext->n[] = $exploded[0];
-                    $this->movetext->moves[] = $exploded[1];
+                    $this->movetext->moves[] = explode('.', $val)[1];
+                } else {
+                    $this->movetext->moves[] = $val;
                 }
             } else {
                 if (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
-                    $exploded = explode('.', $val);
-                    $this->movetext->n[] = $exploded[0];
-                    $this->movetext->moves[] = $exploded[1];
+                    $this->movetext->moves[] = explode('.', $val)[1];
                 } else {
                     $this->movetext->moves[] = $val;
                 }
             }
         }
+
+        $this->movetext->moves = array_values(array_filter($this->movetext->moves));
     }
 
     /**
      * Returns an array representing the movetext as a sequence of moves.
      *
-     * e.g. 1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5
+     * e.g. 1.d4 Nf6 2.Nf3 e6 3.c4
      *
      * Array
      * (
-     *  [0] => 1.d4 Nf6
-     *  [1] => 1.d4 Nf6 2.Nf3 e6
-     *  [2] => 1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+
-     *  [3] => 1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O
-     *  [4] => 1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7
-     *  [5] => 1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6
-     *  [6] => 1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5
+     *     [0] => 1.d4 Nf6
+     *     [1] => 1.d4 Nf6 2.Nf3 e6
+     *     [2] => 1.d4 Nf6 2.Nf3 e6 3.c4
      * )
      *
      * @return array
      */
     public function sequence(): array
     {
+        $n = floor(count($this->movetext->moves) / 2);
         $sequence = [];
-        for ($i = 0; $i < count($this->movetext->n); $i++) {
+        for ($i = 0; $i < $n; $i++) {
             $j = 2 * $i;
             if (isset($this->movetext->moves[$j+1])) {
-                $item = end($sequence) .
-                    " {$this->movetext->n[$i]}.{$this->movetext->moves[$j]} {$this->movetext->moves[$j+1]}";
+                $item = end($sequence) . ' ' .  $i + 1 .
+                ".{$this->movetext->moves[$j]} {$this->movetext->moves[$j+1]}";
                 $sequence[] = trim($item);
             }
         }
