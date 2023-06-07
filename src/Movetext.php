@@ -62,10 +62,6 @@ class Movetext
      */
     public function validate(): string
     {
-        if (!$this->isOrdered()) {
-            throw new MovetextException();
-        }
-
         foreach ($this->movetext->moves as $move) {
             if ($move !== '...') {
                 $this->move->validate($move);
@@ -157,21 +153,6 @@ class Movetext
                 }
             }
         }
-    }
-
-    /**
-     * Finds out if the movetext is ordered.
-     *
-     * @return bool
-     */
-    protected function isOrdered(): bool
-    {
-        $isOrdered = 1;
-        for ($i = 0; $i < count($this->movetext->n); $i++) {
-            $isOrdered *= (int) $this->movetext->n[$i] == $i + 1;
-        }
-
-        return (bool) $isOrdered;
     }
 
     /**
