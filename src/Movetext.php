@@ -67,24 +67,37 @@ class Movetext
         }
 
         foreach ($this->movetext->moves as $move) {
-            $this->move->validate($move);
+            if ($move !== '...') {
+                $this->move->validate($move);
+            }
         }
 
-        return $this->join();
+        return $this->toString();
     }
 
     /**
-     * Concatenates the moves to form a string.
+     * Converts the movetext data structure to a string.
      *
      * @return string
      */
-    protected function join(): string
+    protected function toString(): string
     {
         $text = '';
-        foreach ($this->movetext->moves as $key => $val) {
-            $key % 2 === 0
-                ? $text .= (($key / 2) + 1) . ".{$this->movetext->moves[$key]}"
-                : $text .= " {$this->movetext->moves[$key]} ";
+        $index = 0;
+
+        if (isset($this->movetext->moves[0])) {
+            if ($this->movetext->moves[0] === '...') {
+                $text = "1...{$this->movetext->moves[1]} ";
+                $index = 2;
+            }
+        }
+
+        for ($i = $index; $i < count($this->movetext->moves); $i++) {
+            if ($i % 2 === 0) {
+                $text .= (($i / 2) + 1) . ".{$this->movetext->moves[$i]}";
+            } else {
+                $text .= " {$this->movetext->moves[$i]} ";
+            }
         }
 
         return trim($text);
@@ -111,27 +124,39 @@ class Movetext
         // remove spaces between dots
         $text = preg_replace('/\s+\./', '.', $text);
 
-        $this->create($text);
+        $this->fill($text);
     }
 
     /**
-     * Creates the movetext.
+     * Fills the movetext data structure with data.
      *
      * @param string $text
      */
-    protected function create(string $text): void
+    protected function fill(string $text): void
     {
-        foreach ($moves = explode(' ', $text) as $move) {
-            if (preg_match('/^[1-9][0-9]*\.(.*)$/', $move)) {
-                $exploded = explode('.', $move);
-                $this->movetext->n[] = $exploded[0];
-                $this->movetext->moves[] = $exploded[1];
+        $moves = explode(' ', $text);
+        foreach ($moves as $key => $val) {
+            if ($key === 0) {
+                if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
+                    $exploded = explode('...', $val);
+                    $this->movetext->n[] = $exploded[0];
+                    $this->movetext->moves[] = '...';
+                    $this->movetext->moves[] = $exploded[1];
+                } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
+                    $exploded = explode('.', $val);
+                    $this->movetext->n[] = $exploded[0];
+                    $this->movetext->moves[] = $exploded[1];
+                }
             } else {
-                $this->movetext->moves[] = $move;
+                if (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
+                    $exploded = explode('.', $val);
+                    $this->movetext->n[] = $exploded[0];
+                    $this->movetext->moves[] = $exploded[1];
+                } else {
+                    $this->movetext->moves[] = $val;
+                }
             }
         }
-
-        $this->movetext->moves = array_values(array_filter($this->movetext->moves));
     }
 
     /**
