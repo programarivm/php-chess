@@ -37,12 +37,12 @@ class Movetext
     public function __construct(Move $move, string $text)
     {
         $this->move = $move;
-
         $this->movetext = (object) [
             'moves' => [],
         ];
+        $text = $this->filter($text);
 
-        $this->filter($text);
+        $this->fill($text);
     }
 
     /**
@@ -100,7 +100,7 @@ class Movetext
      *
      * @param string $text
      */
-    protected function filter(string $text): void
+    protected function filter(string $text): string
     {
         // remove PGN symbols
         $text = str_replace(Termination::values(), '', $text);
@@ -113,7 +113,7 @@ class Movetext
         // remove spaces between dots
         $text = preg_replace('/\s+\./', '.', $text);
 
-        $this->fill($text);
+        return $text;
     }
 
     /**
