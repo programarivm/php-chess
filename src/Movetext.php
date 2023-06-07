@@ -105,8 +105,8 @@ class Movetext
         $text = preg_replace("/\([^)]+\)/", '', $text);
 
         // replace FIDE notation with PGN notation
-        $text = preg_replace("/0-0/", 'O-O', $text);
-        $text = preg_replace("/0-0-0/", 'O-O-O', $text);
+        $text = str_replace('0-0', 'O-O', $text);
+        $text = str_replace('0-0-0', 'O-O-O', $text);
 
         // remove spaces between dots
         $text = preg_replace('/\s+\./', '.', $text);
