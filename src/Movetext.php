@@ -97,23 +97,30 @@ class Movetext
      */
     protected function filter(string $text): void
     {
-        // remove the PGN symbols found in the filter
+        // remove PGN symbols
         $text = str_replace(Termination::values(), '', $text);
 
         // remove comments
         $text = preg_replace("/\{[^)]+\}/", '', $text);
         $text = preg_replace("/\([^)]+\)/", '', $text);
 
-        // replace fide long castle
+        // replace FIDE notation with PGN notation
         $text = preg_replace("/0-0/", 'O-O', $text);
-
-        // replace fide short castle
         $text = preg_replace("/0-0-0/", 'O-O-O', $text);
 
         // remove spaces between dots
         $text = preg_replace('/\s+\./', '.', $text);
 
-        // build the array of moves
+        $this->create($text);
+    }
+
+    /**
+     * Creates the movetext.
+     *
+     * @param string $text
+     */
+    protected function create(string $text): void
+    {
         foreach ($moves = explode(' ', $text) as $move) {
             if (preg_match('/^[1-9][0-9]*\.(.*)$/', $move)) {
                 $exploded = explode('.', $move);
