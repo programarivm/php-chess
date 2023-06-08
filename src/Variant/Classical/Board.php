@@ -352,17 +352,27 @@ class Board extends \SplObjectStorage
     public function getMovetext(): string
     {
         $movetext = '';
-        $offset = 0;
         if (isset($this->history[0]->move)) {
-            if ($this->history[0]->move->color === Color::B) {
+            if ($this->history[0]->move->color === Color::W) {
+                $movetext = "1.{$this->history[0]->move->pgn}";
+            } else {
                 $movetext = '1' . Movetext::SYMBOL_ELLIPSIS . "{$this->history[0]->move->pgn} ";
-                $offset = 2;
             }
         }
-        for ($i = $offset; $i < count($this->history); $i++) {
-            $i % 2 === 0
-                ? $movetext .= (($i / 2) + 1) . ".{$this->history[$i]->move->pgn}"
-                : $movetext .= " {$this->history[$i]->move->pgn} ";
+        for ($i = 1; $i < count($this->history); $i++) {
+            if ($this->history[0]->move->color === Color::W) {
+                if ($i % 2 === 0) {
+                    $movetext .= (($i / 2) + 1) . ".{$this->history[$i]->move->pgn}";
+                } else {
+                    $movetext .= " {$this->history[$i]->move->pgn} ";
+                }
+            } else {
+                if ($i % 2 === 0) {
+                    $movetext .= " {$this->history[$i]->move->pgn} ";
+                } else {
+                    $movetext .= (ceil($i / 2) + 1) . ".{$this->history[$i]->move->pgn}";
+                }
+            }
         }
 
         return trim($movetext);
