@@ -757,4 +757,70 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->getMovetext());
     }
+
+    /**
+     * @test
+     */
+    public function resume_E40_O_O()
+    {
+        $board = (new StrToBoard('rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR b KQkq -'))
+            ->create();
+
+        $board->play('b', 'O-O');
+
+        $expected = '1...O-O';
+
+        $this->assertEquals($expected, $board->getMovetext());
+    }
+
+    /**
+     * @test
+     */
+    public function resume_E40_O_O_Nf3()
+    {
+        $board = (new StrToBoard('rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR b KQkq -'))
+            ->create();
+
+        $board->play('b', 'O-O');
+        $board->play('w', 'Nf3');
+
+        $expected = '1...O-O 2.Nf3';
+
+        $this->assertEquals($expected, $board->getMovetext());
+    }
+
+    /**
+     * @test
+     */
+    public function resume_E40_O_O_Nf3_d5()
+    {
+        $board = (new StrToBoard('rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR b KQkq -'))
+            ->create();
+
+        $board->play('b', 'O-O');
+        $board->play('w', 'Nf3');
+        $board->play('b', 'd5');
+
+        $expected = '1...O-O 2.Nf3 d5';
+
+        $this->assertEquals($expected, $board->getMovetext());
+    }
+
+    /**
+     * @test
+     */
+    public function resume_E40_O_O_Nf3_d5_cxd5()
+    {
+        $board = (new StrToBoard('rnbqk2r/pppp1ppp/4pn2/8/1bPP4/2N1P3/PP3PPP/R1BQKBNR b KQkq -'))
+            ->create();
+
+        $board->play('b', 'O-O');
+        $board->play('w', 'Nf3');
+        $board->play('b', 'd5');
+        $board->play('w', 'cxd5');
+
+        $expected = '1...O-O 2.Nf3 d5 3.cxd5';
+
+        $this->assertEquals($expected, $board->getMovetext());
+    }
 }
