@@ -74,7 +74,7 @@ class Movetext
      *
      * @return string
      */
-    protected function toString(): string
+    public function toString(): string
     {
         $text = '';
         $offset = 0;
@@ -85,64 +85,14 @@ class Movetext
             }
         }
         for ($i = $offset; $i < count($this->moves); $i++) {
-            $i % 2 === 0
-                ? $text .= (($i / 2) + 1) . ".{$this->moves[$i]}"
-                : $text .= " {$this->moves[$i]} ";
-        }
-
-        return trim($text);
-    }
-
-    /**
-     * Filters the given text for further processing.
-     *
-     * @param string $text
-     */
-    protected function filter(string $text): string
-    {
-        // remove PGN symbols
-        $text = str_replace(Termination::values(), '', $text);
-        // remove comments
-        $text = preg_replace("/\{[^)]+\}/", '', $text);
-        $text = preg_replace("/\([^)]+\)/", '', $text);
-        // replace FIDE notation with PGN notation
-        $text = str_replace('0-0', 'O-O', $text);
-        $text = str_replace('0-0-0', 'O-O-O', $text);
-        // remove spaces between dots
-        $text = preg_replace('/\s+\./', '.', $text);
-
-        return $text;
-    }
-
-    /**
-     * Fills the movetext data structure with data.
-     *
-     * @param string $text
-     */
-    protected function fill(string $text): void
-    {
-        $moves = explode(' ', $text);
-        foreach ($moves as $key => $val) {
-            if ($key === 0) {
-                if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
-                    $exploded = explode(self::SYMBOL_ELLIPSIS, $val);
-                    $this->moves[] = self::SYMBOL_ELLIPSIS;
-                    $this->moves[] = $exploded[1];
-                } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
-                    $this->moves[] = explode('.', $val)[1];
-                } else {
-                    $this->moves[] = $val;
-                }
+            if ($i % 2 === 0) {
+                $text .= (($i / 2) + 1) . ".{$this->moves[$i]}";
             } else {
-                if (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
-                    $this->moves[] = explode('.', $val)[1];
-                } else {
-                    $this->moves[] = $val;
-                }
+                $text .= " {$this->moves[$i]} ";
             }
         }
 
-        $this->moves = array_values(array_filter($this->moves));
+        return trim($text);
     }
 
     /**
@@ -173,5 +123,57 @@ class Movetext
         }
 
         return $sequence;
+    }
+
+    /**
+     * Filters the given text for further processing.
+     *
+     * @param string $text
+     */
+    protected function filter(string $text): string
+    {
+        // remove PGN symbols
+        $text = str_replace(Termination::values(), '', $text);
+        // remove comments
+        $text = preg_replace("/\{[^)]+\}/", '', $text);
+        $text = preg_replace("/\([^)]+\)/", '', $text);
+        // replace FIDE notation with PGN notation
+        $text = str_replace('0-0', 'O-O', $text);
+        $text = str_replace('0-0-0', 'O-O-O', $text);
+        // remove spaces between dots
+        $text = preg_replace('/\s+\./', '.', $text);
+
+        return $text;
+    }
+
+    /**
+     * Fills the array of PGN moves with data.
+     *
+     * @param string $text
+     */
+    protected function fill(string $text): void
+    {
+        $moves = explode(' ', $text);
+        foreach ($moves as $key => $val) {
+            if ($key === 0) {
+                if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
+                    $exploded = explode(self::SYMBOL_ELLIPSIS, $val);
+                    $this->moves[] = self::SYMBOL_ELLIPSIS;
+                    $this->moves[] = $exploded[1];
+                } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
+                    $this->moves[] = explode('.', $val)[1];
+                } else {
+                    $this->moves[] = $val;
+                }
+            } else {
+                if (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
+                    $this->moves[] = explode('.', $val)[1];
+                } else {
+                    $this->moves[] = $val;
+                }
+            }
+        }
+
+        $this->moves = array_values(array_filter($this->moves));
     }
 }
