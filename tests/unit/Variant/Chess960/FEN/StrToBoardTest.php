@@ -248,4 +248,43 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $array);
     }
+
+    /**
+     * @test
+     */
+    public function resume_RKNRQNBB_d5()
+    {
+        $startPos = ['R', 'K', 'N', 'R', 'Q', 'N', 'B', 'B' ];
+
+        $board = (new StrToBoard(
+            'rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -',
+            $startPos
+        ))->create();
+
+        $board->play('b', 'd5');
+
+        $expected = '1...d5';
+
+        $this->assertEquals($expected, $board->getMovetext());
+    }
+
+    /**
+     * @test
+     */
+    public function resume_RKNRQNBB_d5_Nd3()
+    {
+        $startPos = ['R', 'K', 'N', 'R', 'Q', 'N', 'B', 'B' ];
+
+        $board = (new StrToBoard(
+            'rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -',
+            $startPos
+        ))->create();
+
+        $board->play('b', 'd5');
+        $board->play('w', 'Nd3');
+
+        $expected = '1...d5 2.Nd3';
+
+        $this->assertEquals($expected, $board->getMovetext());
+    }
 }
