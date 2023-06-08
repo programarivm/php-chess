@@ -37,7 +37,7 @@ class PgnPlayer extends AbstractPlayer
 
         $movetext->validate();
 
-        $this->moves = $movetext->getMovetext()->moves;
+        $this->moves = $movetext->getMoves();
         $this->fen = [(new ClassicalBoard())->toFen()];
     }
 

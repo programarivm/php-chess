@@ -120,7 +120,7 @@ class GameTest extends AbstractUnitTestCase
             if ($movetext->validate()) {
                 $game = new Game(Game::VARIANT_CLASSICAL, Game::MODE_FEN);
                 $game->loadFen('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -');
-                foreach ($movetext->getMovetext()->moves as $key => $val) {
+                foreach ($movetext->getMoves() as $key => $val) {
                     $this->assertTrue($game->play($game->getBoard()->getTurn(), $val));
                 }
             }

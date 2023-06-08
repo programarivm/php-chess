@@ -58,7 +58,7 @@ class BoardToMp4
         if (!$this->movetext->validate()) {
             throw new MediaException();
         }
-        if (self::MAX_MOVES < count($this->movetext->getMovetext()->moves)) {
+        if (self::MAX_MOVES < count($this->movetext->getMoves())) {
             throw new MediaException();
         }
 
@@ -103,7 +103,7 @@ class BoardToMp4
     {
         $boardToPng = new BoardToPng($this->board, $this->flip);
         $boardToPng->output($filepath, "{$filename}_000");
-        foreach ($this->movetext->getMovetext()->moves as $key => $val) {
+        foreach ($this->movetext->getMoves() as $key => $val) {
             $n = sprintf("%03d", $key + 1);
             $this->board->play($this->board->getTurn(), $val);
             $boardToPng->setBoard($this->board)->output($filepath, "{$filename}_{$n}");

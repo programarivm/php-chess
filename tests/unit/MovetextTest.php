@@ -33,11 +33,9 @@ class MovetextTest extends AbstractUnitTestCase
     {
         $text = '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5';
 
-        $expected = (object) [
-            'moves' => [ 'd4', 'Nf6', 'Nf3', 'e6', 'c4', 'Bb4+', 'Nbd2', 'O-O', 'a3', 'Be7', 'e4', 'd6', 'Bd3', 'c5' ],
-        ];
+        $expected = [ 'd4', 'Nf6', 'Nf3', 'e6', 'c4', 'Bb4+', 'Nbd2', 'O-O', 'a3', 'Be7', 'e4', 'd6', 'Bd3', 'c5' ];
 
-        $this->assertEquals($expected, (new Movetext(self::$move, $text))->getMovetext());
+        $this->assertEquals($expected, (new Movetext(self::$move, $text))->getMoves());
     }
 
     /**

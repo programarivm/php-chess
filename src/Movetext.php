@@ -22,11 +22,11 @@ class Movetext
     private Move $move;
 
     /**
-     * Movetext.
+     * Array of PGN moves.
      *
-     * @var object
+     * @var array
      */
-    private object $movetext;
+    private array $moves;
 
     /**
      * Constructor.
@@ -37,22 +37,20 @@ class Movetext
     public function __construct(Move $move, string $text)
     {
         $this->move = $move;
-        $this->movetext = (object) [
-            'moves' => [],
-        ];
+        $this->moves = [];
         $text = $this->filter($text);
 
         $this->fill($text);
     }
 
     /**
-     * Returns the movetext.
+     * Returns the moves.
      *
-     * @return object
+     * @return array
      */
-    public function getMovetext(): object
+    public function getMoves(): array
     {
-        return $this->movetext;
+        return $this->moves;
     }
 
     /**
@@ -62,7 +60,7 @@ class Movetext
      */
     public function validate(): string
     {
-        foreach ($this->movetext->moves as $move) {
+        foreach ($this->moves as $move) {
             if ($move !== self::SYMBOL_ELLIPSIS) {
                 $this->move->validate($move);
             }
@@ -72,7 +70,7 @@ class Movetext
     }
 
     /**
-     * Converts the movetext data structure to a string.
+     * Converts the array of PGN moves to a string.
      *
      * @return string
      */
@@ -80,16 +78,16 @@ class Movetext
     {
         $text = '';
         $offset = 0;
-        if (isset($this->movetext->moves[0])) {
-            if ($this->movetext->moves[0] === self::SYMBOL_ELLIPSIS) {
-                $text = '1' . self::SYMBOL_ELLIPSIS . "{$this->movetext->moves[1]} ";
+        if (isset($this->moves[0])) {
+            if ($this->moves[0] === self::SYMBOL_ELLIPSIS) {
+                $text = '1' . self::SYMBOL_ELLIPSIS . "{$this->moves[1]} ";
                 $offset = 2;
             }
         }
-        for ($i = $offset; $i < count($this->movetext->moves); $i++) {
+        for ($i = $offset; $i < count($this->moves); $i++) {
             $i % 2 === 0
-                ? $text .= (($i / 2) + 1) . ".{$this->movetext->moves[$i]}"
-                : $text .= " {$this->movetext->moves[$i]} ";
+                ? $text .= (($i / 2) + 1) . ".{$this->moves[$i]}"
+                : $text .= " {$this->moves[$i]} ";
         }
 
         return trim($text);
@@ -128,23 +126,23 @@ class Movetext
             if ($key === 0) {
                 if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
                     $exploded = explode(self::SYMBOL_ELLIPSIS, $val);
-                    $this->movetext->moves[] = self::SYMBOL_ELLIPSIS;
-                    $this->movetext->moves[] = $exploded[1];
+                    $this->moves[] = self::SYMBOL_ELLIPSIS;
+                    $this->moves[] = $exploded[1];
                 } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
-                    $this->movetext->moves[] = explode('.', $val)[1];
+                    $this->moves[] = explode('.', $val)[1];
                 } else {
-                    $this->movetext->moves[] = $val;
+                    $this->moves[] = $val;
                 }
             } else {
                 if (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
-                    $this->movetext->moves[] = explode('.', $val)[1];
+                    $this->moves[] = explode('.', $val)[1];
                 } else {
-                    $this->movetext->moves[] = $val;
+                    $this->moves[] = $val;
                 }
             }
         }
 
-        $this->movetext->moves = array_values(array_filter($this->movetext->moves));
+        $this->moves = array_values(array_filter($this->moves));
     }
 
     /**
@@ -163,13 +161,13 @@ class Movetext
      */
     public function sequence(): array
     {
-        $n = floor(count($this->movetext->moves) / 2);
+        $n = floor(count($this->moves) / 2);
         $sequence = [];
         for ($i = 0; $i < $n; $i++) {
             $j = 2 * $i;
-            if (isset($this->movetext->moves[$j+1])) {
+            if (isset($this->moves[$j+1])) {
                 $item = end($sequence) . ' ' .  $i + 1 .
-                ".{$this->movetext->moves[$j]} {$this->movetext->moves[$j+1]}";
+                ".{$this->moves[$j]} {$this->moves[$j+1]}";
                 $sequence[] = trim($item);
             }
         }
