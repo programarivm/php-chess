@@ -11,8 +11,9 @@ A chess library for PHP.
 ### Install
 
 Via composer:
-
-    $ composer require chesslablab/php-chess
+```
+composer require chesslablab/php-chess
+```
 
 ### Documentation
 
