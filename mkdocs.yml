@@ -1,5 +1,6 @@
 site_name: PHP Chess
 pages:
+  - Chess\Game: getting-started.md
   - Chess\Game: index.md
   - Chess\Grandmaster: grandmaster.md
   - Chess\Heuristics: heuristics.md
