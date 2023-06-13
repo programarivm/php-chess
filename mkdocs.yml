@@ -2,4 +2,5 @@ site_name: PHP Chess
 pages:
   - Home: home.md
   - Getting Started: getting-started.md
+  - My First Opening: my-first-chess-opening.md
 theme: readthedocs
