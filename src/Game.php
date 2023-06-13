@@ -15,13 +15,12 @@ use Rubix\ML\Persisters\Filesystem;
 /**
  * Game
  *
- * Game is the main component of the PHP Chess Server. It is a wrapper for the
- * Chess\Board object to play chess online but it is also used on command line
+ * A wrapper for a Chess\Variant\Classical\Board object to play chess. Game is
+ * the main component of the PHP Chess Server. It is also used on command line
  * (CLI) apps as well as in APIs.
  *
  * @author Jordi Bassagañas
  * @license GPL
- * @link https://github.com/chesslablab/chess-server
  */
 class Game
 {
@@ -33,11 +32,7 @@ class Game
     const MODE_FEN                  = 'fen';
     const MODE_PGN                  = 'pgn';
     const MODE_PLAY                 = 'play';
-    const MODE_RUBIX                = 'rubix';
     const MODE_STOCKFISH            = 'stockfish';
-
-    const ML_FOLDER                 = __DIR__.'/../ml/';
-    const ML_FILE                   = 'regression/checkmate_king_and_rook_vs_king.rbx';
 
     /**
      * Chess board.
@@ -176,22 +171,6 @@ class Game
     {
         if ($this->mode === Game::MODE_GM) {
             return $this->gm->move($this);
-        } else if ($this->mode === Game::MODE_RUBIX) {
-            if ($this->gm) {
-                if ($move = $this->gm->move($this)) {
-                    return $move;
-                }
-            }
-            $estimator = PersistentModel::load(
-                new Filesystem(self::ML_FOLDER.self::ML_FILE)
-            );
-            $move = (new GeometricSumPredictor(
-                $this->board,
-                $estimator
-            ))->predict();
-            return (object) [
-                'move' => $move,
-            ];
         }
 
         if ($this->gm) {
