@@ -27,7 +27,6 @@ class Game
 {
     const VARIANT_960               = '960';
     const VARIANT_CAPABLANCA_80     = 'capablanca80';
-    const VARIANT_CAPABLANCA_100    = 'capablanca100';
     const VARIANT_CLASSICAL         = 'classical';
 
     const MODE_GM                   = 'gm';

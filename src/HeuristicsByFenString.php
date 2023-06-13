@@ -20,8 +20,6 @@ class HeuristicsByFenString
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
         } elseif ($variant === Game::VARIANT_CAPABLANCA_80) {
             $this->board = (new CapablancaFenStrToBoard($fen))->create();
-        } elseif ($variant === Game::VARIANT_CAPABLANCA_100) {
-            $this->board = (new CapablancaFenStrToBoard($fen))->create();
         } elseif ($variant === Game::VARIANT_CLASSICAL) {
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
         } else {
