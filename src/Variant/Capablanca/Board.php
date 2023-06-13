@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Variant\Capablanca80;
+namespace Chess\Variant\Capablanca;
 
 use Chess\Piece\A;
 use Chess\Piece\C;
@@ -11,10 +11,10 @@ use Chess\Piece\P;
 use Chess\Piece\Q;
 use Chess\Piece\R;
 use Chess\Piece\RType;
-use Chess\Variant\Capablanca80\FEN\StrToBoard;
-use Chess\Variant\Capablanca80\Rule\CastlingRule;
-use Chess\Variant\Capablanca80\PGN\Move;
-use Chess\Variant\Capablanca80\PGN\AN\Square;
+use Chess\Variant\Capablanca\FEN\StrToBoard;
+use Chess\Variant\Capablanca\Rule\CastlingRule;
+use Chess\Variant\Capablanca\PGN\Move;
+use Chess\Variant\Capablanca\PGN\AN\Square;
 use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\Board as ClassicalBoard;
@@ -99,7 +99,7 @@ class Board extends ClassicalBoard
     /**
      * Undoes the last move.
      *
-     * @return \Chess\Variant\Capablanca80\Board
+     * @return \Chess\Variant\Capablanca\Board
      */
     public function undo(): Board
     {

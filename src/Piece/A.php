@@ -6,7 +6,7 @@ use Chess\Piece\AbstractPiece;
 use Chess\Piece\CapablancaTrait;
 use Chess\Piece\B;
 use Chess\Piece\N;
-use Chess\Variant\Capablanca80\PGN\AN\Piece;
+use Chess\Variant\Capablanca\PGN\AN\Piece;
 
 /**
  * Archbishop.

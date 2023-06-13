@@ -5,7 +5,7 @@ namespace Chess\Tests\Unit\Media;
 use Chess\Media\BoardToPng;
 use Chess\Player\PgnPlayer;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Capablanca80\Board as Capablanca80Board;
+use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 
@@ -159,7 +159,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_start_capablanca80()
     {
-        $board = new Capablanca80Board();
+        $board = new CapablancaBoard();
 
         $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
@@ -174,7 +174,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_capablanca80_Nj3_e5___Ci6_O_O()
     {
-        $board = new Capablanca80Board();
+        $board = new CapablancaBoard();
 
         $board->play('w', 'Nj3');
         $board->play('b', 'e5');
@@ -199,7 +199,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_capablanca80_f4_f5_Nh3_Nc6_flip()
     {
-        $board = new Capablanca80Board();
+        $board = new CapablancaBoard();
 
         $board->play('w', 'f4');
         $board->play('b', 'f5');
@@ -219,7 +219,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_capablanca80_f4_f5___e3_O_O_O_flip()
     {
-        $board = new Capablanca80Board();
+        $board = new CapablancaBoard();
 
         $board->play('w', 'f4');
         $board->play('b', 'f5');

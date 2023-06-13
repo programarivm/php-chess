@@ -3,8 +3,8 @@
 namespace Chess\Player;
 
 use Chess\Exception\PlayerException;
-use Chess\Variant\Capablanca80\Board as Capablanca80Board;
-use Chess\Variant\Capablanca80\PGN\Move as Capablanca80PgnMove;
+use Chess\Variant\Capablanca\Board as CapablancaBoard;
+use Chess\Variant\Capablanca\PGN\Move as CapablancaPgnMove;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 use Chess\Variant\Classical\PGN\Move as ClassicalPgnMove;
 use Chess\Movetext;
@@ -29,8 +29,8 @@ class PgnPlayer extends AbstractPlayer
     {
         $this->board = $board ?? new ClassicalBoard();
 
-        if (is_a($board, Capablanca80Board::class)) {
-            $movetext = new Movetext(new Capablanca80PgnMove(), $text);
+        if (is_a($board, CapablancaBoard::class)) {
+            $movetext = new Movetext(new CapablancaPgnMove(), $text);
         } else {
             $movetext = new Movetext(new ClassicalPgnMove(), $text);
         }

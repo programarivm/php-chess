@@ -5,9 +5,9 @@ namespace Chess\Media;
 use Chess\Game;
 use Chess\Movetext;
 use Chess\Exception\MediaException;
-use Chess\Variant\Capablanca80\Board as Capablanca80Board;
-use Chess\Variant\Capablanca80\FEN\StrToBoard as Capablanca80FenStrToBoard;
-use Chess\Variant\Capablanca80\PGN\Move as Capablanca80PgnMove;
+use Chess\Variant\Capablanca\Board as CapablancaBoard;
+use Chess\Variant\Capablanca\FEN\StrToBoard as CapablancaFenStrToBoard;
+use Chess\Variant\Capablanca\PGN\Move as CapablancaPgnMove;
 use Chess\Variant\Chess960\Board as Chess960Board;
 use Chess\Variant\Chess960\FEN\StrToBoard as Chess960FenStrToBoard;
 use Chess\Variant\Classical\Board as ClassicalBoard;
@@ -47,7 +47,7 @@ class BoardToMp4
         if ($variant === Game::VARIANT_960) {
             $move = new ClassicalPgnMove();
         } elseif ($variant === Game::VARIANT_CAPABLANCA_80) {
-            $move = new Capablanca80PgnMove();
+            $move = new CapablancaPgnMove();
         } elseif ($variant === Game::VARIANT_CLASSICAL) {
             $move = new ClassicalPgnMove();
         } else {
@@ -67,7 +67,7 @@ class BoardToMp4
                 $this->board = (new Chess960FenStrToBoard($this->fen, $this->startPos))
                     ->create();
             } elseif ($this->variant === Game::VARIANT_CAPABLANCA_80) {
-                $this->board = (new Capablanca80FenStrToBoard($this->fen))
+                $this->board = (new CapablancaFenStrToBoard($this->fen))
                     ->create();
             } elseif ($this->variant === Game::VARIANT_CLASSICAL) {
                 $this->board = (new ClassicalFenStrToBoard($this->fen))
@@ -77,7 +77,7 @@ class BoardToMp4
             if ($this->variant === Game::VARIANT_960) {
                 $this->board = new Chess960Board($this->startPos);
             } elseif ($this->variant === Game::VARIANT_CAPABLANCA_80) {
-                $this->board = new Capablanca80Board();
+                $this->board = new CapablancaBoard();
             } elseif ($this->variant === Game::VARIANT_CLASSICAL) {
                 $this->board = new ClassicalBoard();
             }

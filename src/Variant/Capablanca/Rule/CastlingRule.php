@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Variant\Capablanca80\Rule;
+namespace Chess\Variant\Capablanca\Rule;
 
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;

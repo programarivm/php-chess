@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Capablanca80\FEN\Field;
+namespace Chess\Tests\Unit\Variant\Capablanca\FEN\Field;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Capablanca80\FEN\Field\PiecePlacement;
+use Chess\Variant\Capablanca\FEN\Field\PiecePlacement;
 
 class PiecePlacementTest extends AbstractUnitTestCase
 {

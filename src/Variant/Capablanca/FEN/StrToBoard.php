@@ -1,13 +1,13 @@
 <?php
 
-namespace Chess\Variant\Capablanca80\FEN;
+namespace Chess\Variant\Capablanca\FEN;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Piece\PieceArray;
-use Chess\Variant\Capablanca80\Board;
-use Chess\Variant\Capablanca80\FEN\Str;
-use Chess\Variant\Capablanca80\PGN\AN\Square;
-use Chess\Variant\Capablanca80\Rule\CastlingRule;
+use Chess\Variant\Capablanca\Board;
+use Chess\Variant\Capablanca\FEN\Str;
+use Chess\Variant\Capablanca\PGN\AN\Square;
+use Chess\Variant\Capablanca\Rule\CastlingRule;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 
 /**

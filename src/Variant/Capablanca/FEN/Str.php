@@ -1,8 +1,8 @@
 <?php
 
-namespace Chess\Variant\Capablanca80\FEN;
+namespace Chess\Variant\Capablanca\FEN;
 
-use Chess\Variant\Capablanca80\FEN\Field\PiecePlacement;
+use Chess\Variant\Capablanca\FEN\Field\PiecePlacement;
 use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\FEN\Field\EnPassantTargetSquare;
 use Chess\Variant\Classical\FEN\Field\SideToMove;
