@@ -46,7 +46,7 @@ class BoardToMp4
 
         if ($variant === Game::VARIANT_960) {
             $move = new ClassicalPgnMove();
-        } elseif ($variant === Game::VARIANT_CAPABLANCA_80) {
+        } elseif ($variant === Game::VARIANT_CAPABLANCA) {
             $move = new CapablancaPgnMove();
         } elseif ($variant === Game::VARIANT_CLASSICAL) {
             $move = new ClassicalPgnMove();
@@ -66,7 +66,7 @@ class BoardToMp4
             if ($this->variant === Game::VARIANT_960) {
                 $this->board = (new Chess960FenStrToBoard($this->fen, $this->startPos))
                     ->create();
-            } elseif ($this->variant === Game::VARIANT_CAPABLANCA_80) {
+            } elseif ($this->variant === Game::VARIANT_CAPABLANCA) {
                 $this->board = (new CapablancaFenStrToBoard($this->fen))
                     ->create();
             } elseif ($this->variant === Game::VARIANT_CLASSICAL) {
@@ -76,7 +76,7 @@ class BoardToMp4
         } else {
             if ($this->variant === Game::VARIANT_960) {
                 $this->board = new Chess960Board($this->startPos);
-            } elseif ($this->variant === Game::VARIANT_CAPABLANCA_80) {
+            } elseif ($this->variant === Game::VARIANT_CAPABLANCA) {
                 $this->board = new CapablancaBoard();
             } elseif ($this->variant === Game::VARIANT_CLASSICAL) {
                 $this->board = new ClassicalBoard();

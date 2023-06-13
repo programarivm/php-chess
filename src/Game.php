@@ -26,7 +26,7 @@ use Rubix\ML\Persisters\Filesystem;
 class Game
 {
     const VARIANT_960               = '960';
-    const VARIANT_CAPABLANCA_80     = 'capablanca80';
+    const VARIANT_CAPABLANCA        = 'capablanca';
     const VARIANT_CLASSICAL         = 'classical';
 
     const MODE_GM                   = 'gm';
@@ -79,7 +79,7 @@ class Game
         if ($this->variant === self::VARIANT_960) {
             $startPos = (new StartPosition())->create();
             $this->board = new Chess960Board($startPos);
-        } elseif ($this->variant === self::VARIANT_CAPABLANCA_80) {
+        } elseif ($this->variant === self::VARIANT_CAPABLANCA) {
             $this->board = new CapablancaBoard();
         } elseif ($this->variant === self::VARIANT_CLASSICAL) {
             $this->board = new ClassicalBoard();

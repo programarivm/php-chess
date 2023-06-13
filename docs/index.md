@@ -3,7 +3,7 @@ The `Chess\Game` class is the building block of the [PHP Chess Server](https://g
 Variants:
 
 - `Chess\Game::VARIANT_960`
-- `Chess\Game::VARIANT_CAPABLANCA_80`
+- `Chess\Game::VARIANT_CAPABLANCA`
 - `Chess\Game::VARIANT_CAPABLANCA_100`
 - `Chess\Game::VARIANT_CLASSICAL`
 

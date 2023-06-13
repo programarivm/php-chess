@@ -157,7 +157,7 @@ class BoardToPngTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function output_start_capablanca80()
+    public function output_start_capablanca()
     {
         $board = new CapablancaBoard();
 
@@ -165,14 +165,14 @@ class BoardToPngTest extends AbstractUnitTestCase
 
         $this->assertSame(
             sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/start_capablanca80.png')
+            sha1_file(self::DATA_FOLDER.'/img/start_capablanca.png')
         );
     }
 
     /**
      * @test
      */
-    public function output_capablanca80_Nj3_e5___Ci6_O_O()
+    public function output_capablanca_Nj3_e5___Ci6_O_O()
     {
         $board = new CapablancaBoard();
 
@@ -190,14 +190,14 @@ class BoardToPngTest extends AbstractUnitTestCase
 
         $this->assertSame(
             sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/Nj3_e5___capablanca80.png')
+            sha1_file(self::DATA_FOLDER.'/img/Nj3_e5___capablanca.png')
         );
     }
 
     /**
      * @test
      */
-    public function output_capablanca80_f4_f5_Nh3_Nc6_flip()
+    public function output_capablanca_f4_f5_Nh3_Nc6_flip()
     {
         $board = new CapablancaBoard();
 
@@ -210,14 +210,14 @@ class BoardToPngTest extends AbstractUnitTestCase
 
         $this->assertSame(
             sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/f4_f5_Nh3_Nc6_flip___capablanca80.png')
+            sha1_file(self::DATA_FOLDER.'/img/f4_f5_Nh3_Nc6_flip___capablanca.png')
         );
     }
 
     /**
      * @test
      */
-    public function output_capablanca80_f4_f5___e3_O_O_O_flip()
+    public function output_capablanca_f4_f5___e3_O_O_O_flip()
     {
         $board = new CapablancaBoard();
 
@@ -242,7 +242,7 @@ class BoardToPngTest extends AbstractUnitTestCase
 
         $this->assertSame(
             sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/f4_f5___e3_O_O_O_flip___capablanca80.png')
+            sha1_file(self::DATA_FOLDER.'/img/f4_f5___e3_O_O_O_flip___capablanca.png')
         );
     }
 }

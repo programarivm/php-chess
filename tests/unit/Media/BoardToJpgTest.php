@@ -155,7 +155,7 @@ class BoardToJpgTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function output_start_capablanca80()
+    public function output_start_capablanca()
     {
         $board = new CapablancaBoard();
 
@@ -163,14 +163,14 @@ class BoardToJpgTest extends AbstractUnitTestCase
 
         $this->assertSame(
             sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/start_capablanca80.jpg')
+            sha1_file(self::DATA_FOLDER.'/img/start_capablanca.jpg')
         );
     }
 
     /**
      * @test
      */
-    public function output_capablanca80_Nj3_e5___Ci6_O_O()
+    public function output_capablanca_Nj3_e5___Ci6_O_O()
     {
         $board = new CapablancaBoard();
 
@@ -188,7 +188,7 @@ class BoardToJpgTest extends AbstractUnitTestCase
 
         $this->assertSame(
             sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/Nj3_e5___capablanca80.jpg')
+            sha1_file(self::DATA_FOLDER.'/img/Nj3_e5___capablanca.jpg')
         );
     }
 }
