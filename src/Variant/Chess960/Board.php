@@ -20,6 +20,8 @@ use Chess\Variant\Chess960\Rule\CastlingRule;
  */
 final class Board extends ClassicalBoard
 {
+    const VARIANT = '960';
+
     /**
      * Start position.
      *

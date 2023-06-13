@@ -38,6 +38,8 @@ class Board extends \SplObjectStorage
 {
     use BoardObserverPieceTrait;
 
+    const VARIANT = 'classical';
+
     /**
      * Current player's turn.
      *

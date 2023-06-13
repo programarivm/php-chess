@@ -12,18 +12,18 @@ use Chess\Variant\Classical\Board as ClassicalBoard;
 /**
  * Game
  *
- * A wrapper for a Chess\Variant\Classical\Board object to play chess. Game is
- * the main component of the PHP Chess Server. It is also used on command line
- * (CLI) apps as well as in APIs.
+ * Game is the main component of the PHP Chess Server. It is a wrapper for a
+ * chessboard object allowing to play chess online. 
  *
  * @author Jordi Bassagañas
  * @license GPL
+ * @link https://github.com/chesslablab/chess-server
  */
 class Game
 {
-    const VARIANT_960               = '960';
-    const VARIANT_CAPABLANCA        = 'capablanca';
-    const VARIANT_CLASSICAL         = 'classical';
+    const VARIANT_960               = Chess960Board::VARIANT;
+    const VARIANT_CAPABLANCA        = CapablancaBoard::VARIANT;
+    const VARIANT_CLASSICAL         = ClassicalBoard::VARIANT;
 
     const MODE_GM                   = 'gm';
     const MODE_FEN                  = 'fen';

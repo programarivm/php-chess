@@ -29,6 +29,8 @@ use Chess\Variant\Classical\Board as ClassicalBoard;
  */
 class Board extends ClassicalBoard
 {
+    const VARIANT = 'capablanca';
+
     /**
      * Constructor.
      *
