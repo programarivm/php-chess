@@ -3,14 +3,11 @@
 namespace Chess;
 
 use Chess\Grandmaster;
-use Chess\ML\Supervised\Regression\GeometricSumPredictor;
 use Chess\UciEngine\Stockfish;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Chess960\Board as Chess960Board;
 use Chess\Variant\Chess960\StartPosition;
 use Chess\Variant\Classical\Board as ClassicalBoard;
-use Rubix\ML\PersistentModel;
-use Rubix\ML\Persisters\Filesystem;
 
 /**
  * Game
@@ -149,18 +146,6 @@ class Game
     }
 
     /**
-     * Makes a move.
-     *
-     * @param string $color
-     * @param string $pgn
-     * @return bool true if the move can be made; otherwise false
-     */
-    public function play(string $color, string $pgn): bool
-    {
-        return $this->board->play($color, $pgn);
-    }
-
-    /**
      * Returns a computer generated response to the current position.
      *
      * @param array $options
@@ -192,6 +177,18 @@ class Game
         return (object) [
             'move' => $end->move->pgn,
         ];
+    }
+
+    /**
+     * Makes a move.
+     *
+     * @param string $color
+     * @param string $pgn
+     * @return bool true if the move can be made; otherwise false
+     */
+    public function play(string $color, string $pgn): bool
+    {
+        return $this->board->play($color, $pgn);
     }
 
     /**
