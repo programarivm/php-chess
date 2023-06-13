@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Variant\Classical;
 
+use Chess\Movetext;
 use Chess\Piece\B;
 use Chess\Piece\K;
 use Chess\Piece\N;
@@ -28,6 +29,36 @@ class BoardTest extends AbstractUnitTestCase
             'files' => 8,
             'ranks' => 8,
         ];
+    }
+
+    /*
+    |---------------------------------------------------------------------------
+    | Play sample games.
+    |---------------------------------------------------------------------------
+    |
+    | Plays the sample games that are found in the tests/data/pgn folder.
+    |
+    */
+
+    /**
+     * @test
+     */
+    public function play_games()
+    {
+        $move = new Move();
+        foreach (new \DirectoryIterator(self::DATA_FOLDER."/pgn/") as $fileInfo) {
+            if ($fileInfo->isDot()) continue;
+            $filename = $fileInfo->getFilename();
+            $text = file_get_contents(self::DATA_FOLDER."/pgn/$filename");
+            $movetext = new Movetext($move, $text);
+            if ($movetext->validate()) {
+                $board = (new StrToBoard('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'))
+                    ->create();
+                foreach ($movetext->getMoves() as $key => $val) {
+                    $this->assertTrue($board->play($board->getTurn(), $val));
+                }
+            }
+        }
     }
 
     /*
