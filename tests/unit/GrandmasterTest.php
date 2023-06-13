@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\Game;
 use Chess\Grandmaster;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\Board as ClassicalBoard;
 
 class GrandmasterTest extends AbstractUnitTestCase
 {
@@ -15,12 +15,9 @@ class GrandmasterTest extends AbstractUnitTestCase
      */
     public function w_move()
     {
-        $game = new Game(
-            Game::VARIANT_CLASSICAL,
-            Game::MODE_GM
-        );
+        $board = new ClassicalBoard();
 
-        $move = (new Grandmaster(self::FILEPATH))->move($game);
+        $move = (new Grandmaster(self::FILEPATH))->move($board);
 
         $this->assertNotEmpty($move);
     }
@@ -30,13 +27,11 @@ class GrandmasterTest extends AbstractUnitTestCase
      */
     public function b_move()
     {
-        $game = new Game(
-            Game::VARIANT_CLASSICAL,
-            Game::MODE_GM
-        );
+        $board = new ClassicalBoard();
 
-        $game->play('w', 'e4');
-        $move = (new Grandmaster(self::FILEPATH))->move($game);
+        $board->play('w', 'e4');
+
+        $move = (new Grandmaster(self::FILEPATH))->move($board);
 
         $this->assertNotEmpty($move);
     }

@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\Game;
+use Chess\Variant\Classical\Board;
 
 class Grandmaster
 {
@@ -20,12 +20,12 @@ class Grandmaster
     /**
      * Figures out the next move to be made.
      *
-     * @param \Chess\Game $game
+     * @param \Chess\Variant\Classical\Board $board
      * @return null|object
      */
-    public function move(Game $game): ?object
+    public function move(Board $board): ?object
     {
-        $movetext = $game->getBoard()->getMovetext();
+        $movetext = $board->getMovetext();
         if ($found = $this->find($movetext)) {
             return (object) [
                 'move' => $this->next($found[0]['movetext'], $movetext),
