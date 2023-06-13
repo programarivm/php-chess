@@ -23,3 +23,28 @@ echo $board->getMovetext();
 ```
 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6
 ```
+
+Also `Chess\Player\LanPlayer` allows to easily play a bunch of LAN moves at once instead of one by one.
+
+```php
+use Chess\Player\LanPlayer;
+
+$movetext = '1.e2e4 c7c5 2.g1f3 d7d6 3.d2d4 c5d4 4.f3d4 g8f6';
+
+$board = (new LanPlayer($movetext))
+    ->play()
+    ->getBoard();
+
+echo $board->toAsciiString();
+```
+
+```
+r  n  b  q  k  b  .  r
+p  p  .  .  p  p  p  p
+.  .  .  p  .  n  .  .
+.  .  .  .  .  .  .  .
+.  .  .  N  P  .  .  .
+.  .  .  .  .  .  .  .
+P  P  P  .  .  P  P  P
+R  N  B  Q  K  B  .  R
+```
