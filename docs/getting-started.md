@@ -1,6 +1,6 @@
 # Getting Started
 
-The `Chess\Game` class is probably the quickest way to get started with PHP Chess.
+The `Chess\Game` class is the easiest way to get started with PHP Chess.
 
 ```php
 use Chess\Game;
@@ -61,4 +61,4 @@ object(stdClass)#6486 (10) {
 }
 ```
 
-📌 As soon as we instantiate our first `Chess\Game` object we're already using chess terms such as FEN, LAN and PGN. Some familiarity with chess terms and concepts is required to use the PHP Chess library, however, if you're new to chess this tutorial will guide you through how to easily create amazing chess web apps.
+📌 As soon as we instantiate our first `Chess\Game` object we're already using terms such as FEN, LAN and PGN. Some familiarity with chess terms and concepts is required but if you're new to chess this tutorial will guide you through how to easily create amazing apps with PHP Chess.
