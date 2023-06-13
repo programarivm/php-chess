@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Media;
 
-use Chess\Game;
 use Chess\Media\BoardToMp4;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\Board as ClassicalBoard;
 
 class BoardToMp4Test extends AbstractUnitTestCase
 {
@@ -23,7 +23,7 @@ class BoardToMp4Test extends AbstractUnitTestCase
         $A74 = file_get_contents(self::DATA_FOLDER.'/sample/A74.pgn');
 
         $filename = (new BoardToMp4(
-            Game::VARIANT_CLASSICAL,
+            ClassicalBoard::VARIANT,
             $A74
         ))->output(self::OUTPUT_FOLDER, 'A74');
 
@@ -42,7 +42,7 @@ class BoardToMp4Test extends AbstractUnitTestCase
         $startPos = 'QRKRNNBB';
 
         $filename = (new BoardToMp4(
-            Game::VARIANT_960,
+            ClassicalBoard::VARIANT,
             $movetext,
             $fen,
             $startPos
@@ -63,7 +63,7 @@ class BoardToMp4Test extends AbstractUnitTestCase
         $startPos = 'BNNBQRKR';
 
         $filename = (new BoardToMp4(
-            Game::VARIANT_960,
+            ClassicalBoard::VARIANT,
             $movetext,
             $fen,
             $startPos
