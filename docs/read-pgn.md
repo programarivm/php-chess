@@ -1,5 +1,7 @@
 # Read PGN
 
+📌 Portable Game Notation is a human-readable format that allows chess players to read and write chess games.
+
 Almost everything in PHP Chess can be done by instantiating a chessboard object. At present there are three different variants available and the default one is classical chess.
 
 | Variant | Namespace |
