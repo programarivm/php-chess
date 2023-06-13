@@ -1,5 +1,6 @@
 site_name: PHP Chess
 pages:
+  - Home: home.md
   - Features: features.md
   - Getting Started: getting-started.md
   - Chess\Game: index.md
