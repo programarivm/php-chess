@@ -1,28 +1,25 @@
 # Getting Started
 
-The `Chess\Game` class is the easiest way to get started with PHP Chess.
+The `Chess\Variant\Classical\Board` class is the easiest way to get started with PHP Chess.
 
 ```php
-use Chess\Game;
+use Chess\Variant\Classical\Board;
 
-$game = new Game(
-    Game::VARIANT_CLASSICAL,
-    Game::MODE_FEN
-);
+$board = new Board();
 ```
 
-Two parameters are required to instantiate a game: A chess variant and a game mode. The most common way to start is with `Game::VARIANT_CLASSICAL` and `Game::MODE_FEN`. Then, you're set up to play chess in either PGN or in LAN format.
+Then, you're set up to play classical chess either in PGN or LAN format.
 
-PGN format:
+In PGN format:
 
 ```php
-$game->play('w', 'e4');
+$board->play('w', 'e4');
 ```
 
-LAN format:
+In LAN format:
 
 ```php
-$game->playLan('w', 'e2e4');
+$board->playLan('w', 'e2e4');
 ```
 
 🎉 Congrats! 1.e4 is one of the best moves to start with.
@@ -30,35 +27,14 @@ $game->playLan('w', 'e2e4');
 
 PGN stands for Portable Game Notation and is a human-readable format that allows chess players to read and write chess games. Computers and graphic user interfaces (GUI) often prefer an easy-to-use, machine-readable format called Long Algebraic Notation (LAN) instead. So, for example, if you're integrating a JavaScript chessboard with a backend, you may want to make the chess moves in LAN format. On the other hand, PGN is more suitable for loading games annotated by humans.
 
-Be that as it may, every time a move is made, the state of the game changes.
+Be that as it may, every time a move is made, the state of the board changes.
 
 ```php
-var_dump($game->state());
+var_dump($board->toFen());
 ```
 
 ```
-object(stdClass)#6486 (10) {
-  ["turn"]=>
-  string(1) "b"
-  ["pgn"]=>
-  string(2) "e4"
-  ["castlingAbility"]=>
-  string(4) "KQkq"
-  ["movetext"]=>
-  string(4) "1.e4"
-  ["fen"]=>
-  string(55) "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3"
-  ["isCheck"]=>
-  bool(false)
-  ["isMate"]=>
-  bool(false)
-  ["isStalemate"]=>
-  bool(false)
-  ["isFivefoldRepetition"]=>
-  bool(false)
-  ["mode"]=>
-  string(3) "fen"
-}
+string(55) "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3"
 ```
 
-📌 As soon as we instantiate our first `Chess\Game` object we're already using terms such as FEN, LAN and PGN. Some familiarity with chess terms and concepts is required but if you're new to chess this tutorial will guide you through how to easily create amazing apps with PHP Chess.
+📌 As soon as we instantiate our first `Chess\Variant\Classical\Board` object we're already using terms such as FEN, LAN and PGN. Some familiarity with chess terms and concepts is required but if you're new to chess this tutorial will guide you through how to easily create amazing apps with PHP Chess.
