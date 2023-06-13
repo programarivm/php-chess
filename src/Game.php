@@ -6,7 +6,6 @@ use Chess\Grandmaster;
 use Chess\ML\Supervised\Regression\GeometricSumPredictor;
 use Chess\UciEngine\Stockfish;
 use Chess\Variant\Capablanca80\Board as Capablanca80Board;
-use Chess\Variant\Capablanca100\Board as Capablanca100Board;
 use Chess\Variant\Chess960\Board as Chess960Board;
 use Chess\Variant\Chess960\StartPosition;
 use Chess\Variant\Classical\Board as ClassicalBoard;
@@ -83,8 +82,6 @@ class Game
             $this->board = new Chess960Board($startPos);
         } elseif ($this->variant === self::VARIANT_CAPABLANCA_80) {
             $this->board = new Capablanca80Board();
-        } elseif ($this->variant === self::VARIANT_CAPABLANCA_100) {
-            $this->board = new Capablanca100Board();
         } elseif ($this->variant === self::VARIANT_CLASSICAL) {
             $this->board = new ClassicalBoard();
         }
