@@ -3,24 +3,26 @@
 namespace Chess;
 
 use Chess\Eval\InverseEvalInterface;
+use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Capablanca\FEN\StrToBoard as CapablancaFenStrToBoard;
+use Chess\Variant\Chess960\Board as Chess960Board;
+use Chess\Variant\Classical\Board as ClassicalBoard;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\Board;
 
 class HeuristicsByFenString
 {
     use HeuristicsTrait;
 
-    protected Board $board;
+    protected ClassicalBoard $board;
 
     public function __construct(string $fen, string $variant = '')
     {
-        if ($variant === Game::VARIANT_960) {
+        if ($variant === Chess960Board::VARIANT) {
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
-        } elseif ($variant === Game::VARIANT_CAPABLANCA) {
+        } elseif ($variant === CapablancaBoard::VARIANT) {
             $this->board = (new CapablancaFenStrToBoard($fen))->create();
-        } elseif ($variant === Game::VARIANT_CLASSICAL) {
+        } elseif ($variant === ClassicalBoard::VARIANT) {
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
         } else {
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
