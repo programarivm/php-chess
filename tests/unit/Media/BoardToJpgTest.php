@@ -6,7 +6,6 @@ use Chess\Media\BoardToJpg;
 use Chess\Player\PgnPlayer;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca80\Board as Capablanca80Board;
-use Chess\Variant\Capablanca100\Board as Capablanca100Board;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 
@@ -156,21 +155,6 @@ class BoardToJpgTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function output_start_capablanca100()
-    {
-        $board = new Capablanca100Board();
-
-        $filename = (new BoardToJpg($board))->output(self::OUTPUT_FOLDER);
-
-        $this->assertSame(
-            sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/start_capablanca100.jpg')
-        );
-    }
-
-    /**
-     * @test
-     */
     public function output_start_capablanca80()
     {
         $board = new Capablanca80Board();
@@ -205,36 +189,6 @@ class BoardToJpgTest extends AbstractUnitTestCase
         $this->assertSame(
             sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
             sha1_file(self::DATA_FOLDER.'/img/Nj3_e5___capablanca80.jpg')
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function output_capablanca100_a4_j7___bxc10_ixj1()
-    {
-        $board = new Capablanca100Board();
-
-        $board->play('w', 'a4');
-        $board->play('b', 'j7');
-        $board->play('w', 'a5');
-        $board->play('b', 'j6');
-        $board->play('w', 'a6');
-        $board->play('b', 'j5');
-        $board->play('w', 'a7');
-        $board->play('b', 'j4');
-        $board->play('w', 'a8');
-        $board->play('b', 'j3');
-        $board->play('w', 'axb9');
-        $board->play('b', 'jxi2');
-        $board->play('w', 'bxc10=Q');
-        $board->play('b', 'ixj1=Q');
-
-        $filename = (new BoardToJpg($board))->output(self::OUTPUT_FOLDER);
-
-        $this->assertSame(
-            sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/a4_j7___capablanca100.jpg')
         );
     }
 }

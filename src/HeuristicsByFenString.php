@@ -4,7 +4,6 @@ namespace Chess;
 
 use Chess\Eval\InverseEvalInterface;
 use Chess\Variant\Capablanca80\FEN\StrToBoard as Capablanca80FenStrToBoard;
-use Chess\Variant\Capablanca100\FEN\StrToBoard as Capablanca100FenStrToBoard;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\Board;
@@ -22,7 +21,7 @@ class HeuristicsByFenString
         } elseif ($variant === Game::VARIANT_CAPABLANCA_80) {
             $this->board = (new Capablanca80FenStrToBoard($fen))->create();
         } elseif ($variant === Game::VARIANT_CAPABLANCA_100) {
-            $this->board = (new Capablanca100FenStrToBoard($fen))->create();
+            $this->board = (new Capablanca80FenStrToBoard($fen))->create();
         } elseif ($variant === Game::VARIANT_CLASSICAL) {
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
         } else {

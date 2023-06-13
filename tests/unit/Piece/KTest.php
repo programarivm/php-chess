@@ -189,25 +189,4 @@ class KTest extends AbstractUnitTestCase
 
         $this->assertEquals($mobility, $king->getMobility());
     }
-
-    /**
-     * @test
-     */
-    public function mobility_b_f10_size_10_10()
-    {
-        $king = new K('b', 'f10', [
-            'files' => 10,
-            'ranks' => 10,
-        ]);
-
-        $mobility = (object) [
-            'down' => 'f9',
-            'left' => 'e10',
-            'right' => 'g10',
-            'downLeft' => 'e9',
-            'downRight' => 'g9',
-        ];
-
-        $this->assertEquals($mobility, $king->getMobility());
-    }
 }

@@ -59,7 +59,7 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
         } elseif ($this->board->getSize() === ['files' => 10, 'ranks' => 8]) {
             return \Chess\Variant\Capablanca80\PGN\AN\Square::color($sq);
         } elseif ($this->board->getSize() === ['files' => 10, 'ranks' => 10]) {
-            return \Chess\Variant\Capablanca100\PGN\AN\Square::color($sq);
+            return \Chess\Variant\Capablanca80\PGN\AN\Square::color($sq);
         }
 
         return false;

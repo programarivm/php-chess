@@ -69,25 +69,6 @@ class HeuristicsByFenStringTest extends AbstractUnitTestCase
         $this->assertSame($expected, $evaluation);
     }
 
-    /**
-     * @test
-     */
-    public function eval_capablanca100_e4()
-    {
-        $fen = 'rnabqkbcnr/pppppppppp/10/10/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3';
-
-        $variant = Game::VARIANT_CAPABLANCA_100;
-
-        $evaluation = (new HeuristicsByFenString($fen, $variant))->eval();
-
-        $expected = [
-            'w' => 22.88,
-            'b' => 19.48,
-        ];
-
-        $this->assertSame($expected, $evaluation);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | getBalance()

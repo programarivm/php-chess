@@ -3,7 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Piece\AbstractPiece;
-use Chess\Variant\Capablanca100\PGN\AN\Piece;
+use Chess\Variant\Capablanca80\PGN\AN\Piece;
 use Chess\Variant\Classical\Board;
 
 /**
