@@ -4,7 +4,6 @@ namespace Chess;
 
 use Chess\Grandmaster;
 use Chess\ML\Supervised\Regression\GeometricSumPredictor;
-use Chess\Player\FenPlayer;
 use Chess\Player\PgnPlayer;
 use Chess\UciEngine\Stockfish;
 use Chess\Variant\Classical\FEN\BoardToStr;
@@ -221,19 +220,6 @@ class Game
         return (object) [
             'move' => $end->move->pgn,
         ];
-    }
-
-    /**
-     * Loads a FEN string allowing to continue a chess game.
-     *
-     * @param string $fen
-     * @return \Chess\Game
-     */
-    public function loadFen(string $fen): Game
-    {
-        $this->board = (new StrToBoard($fen))->create();
-
-        return $this;
     }
 
     /**

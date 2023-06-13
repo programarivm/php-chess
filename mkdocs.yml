@@ -3,6 +3,7 @@ pages:
   - Home: home.md
   - Features: features.md
   - Getting Started: getting-started.md
+  - The Chess Game: the-chess-game.md
   - Chess\Game: index.md
   - Chess\Grandmaster: grandmaster.md
   - Chess\Heuristics: heuristics.md
