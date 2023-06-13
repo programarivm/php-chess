@@ -1,9 +1,8 @@
 site_name: PHP Chess
 pages:
   - Home: home.md
-  - Features: features.md
   - Getting Started: getting-started.md
-  - The Chess Game: the-chess-game.md
+  - Play Chess: play-chess.md
   - Chess\Game: index.md
   - Chess\Grandmaster: grandmaster.md
   - Chess\Heuristics: heuristics.md
