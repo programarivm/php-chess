@@ -65,9 +65,7 @@ P  P  P  .  .  P  P  P
 R  N  B  Q  K  B  .  R
 ```
 
-No worries! We've all been there.
-
-The `undo()` method comes to the rescue to fix mistakes like this one.
+No worries! We've all been there. The `undo()` method comes to the rescue to fix mistakes like this one.
 
 ```php
 $board = $board->undo();
@@ -78,4 +76,29 @@ echo $board->getMovetext();
 
 ```
 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6
+```
+
+Now, what if you want to play a bunch of PGN moves at once instead of one by one as in the previous example? This is a common use case, and `Chess\Player\PgnPlayer` allows you to easily do so.
+
+```php
+use Chess\Player\PgnPlayer;
+
+$movetext = '1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6';
+
+$board = (new PgnPlayer($movetext))
+    ->play()
+    ->getBoard();
+
+echo $board->toAsciiString();
+```
+
+```
+r  n  b  q  k  b  .  r
+p  p  .  .  p  p  p  p
+.  .  .  p  .  n  .  .
+.  .  .  .  .  .  .  .
+.  .  .  N  P  .  .  .
+.  .  .  .  .  .  .  .
+P  P  P  .  .  P  P  P
+R  N  B  Q  K  B  .  R
 ```
