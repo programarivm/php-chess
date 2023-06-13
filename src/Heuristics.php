@@ -10,9 +10,8 @@ use Chess\Variant\Classical\Board;
 /**
  * Heuristics
  *
- * A Chess\Game object can be thought of in terms of snapshots describing what's
- * going on its Chess\Board as reported by a number of evaluation features.
- * PGN movetexts can be evaluated by considering those.
+ * A chess game can be thought of in terms of snapshots describing what's going
+ * on as reported by a number of evaluation features.
  *
  * @author Jordi Bassagañas
  * @license GPL

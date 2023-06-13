@@ -2,24 +2,4 @@ site_name: PHP Chess
 pages:
   - Home: home.md
   - Getting Started: getting-started.md
-  - Play Chess: play-chess.md
-  - Chess\Game: index.md
-  - Chess\Grandmaster: grandmaster.md
-  - Chess\Heuristics: heuristics.md
-  - Chess\Movetext: movetext.md
-  - Chess\Media\BoardToMp4: media-board-to-mp4.md
-  - Chess\Media\BoardToPng: media-board-to-png.md
-  - Chess\Media\FEN\Field\JpgToPiecePlacement: media-fen-field-jpg-to-piece-placement.md
-  - Chess\Media\PGN\AN\JpgToPiece: media-pgn-an-jpg-to-piece.md
-  - Chess\Player\LanPlayer: player-lan-player.md
-  - Chess\Player\PgnPlayer: player-pgn-player.md
-  - Chess\UciEngine\Stockfish: uciengine-stockfish.md
-  - Chess\Variant\Capablanca80\FEN\StrToBoard: variant-capablanca80-fen-str-to-board.md
-  - Chess\Variant\Chess960\FEN\StrToBoard: variant-chess960-fen-str-to-board.md
-  - Chess\Variant\Classical\Board: variant-classical-board.md
-  - Chess\Variant\Classical\FEN\StrToBoard: variant-classical-fen-str-to-board.md
-  - Chess\Variant\Classical\Randomizer\Checkmate\TwoBishopsRandomizer: variant-classical-randomizer-checkmate-two-bishops-randomizer.md
-  - Chess\Variant\Classical\Randomizer\Endgame\PawnEndgameRandomizer: variant-classical-randomizer-endgame-pawn-endgame-randomizer.md
-  - Chess\Variant\Classical\Randomizer\Randomizer: variant-classical-randomizer-randomizer.md
-  - Command Line Interface: cli.md
 theme: readthedocs

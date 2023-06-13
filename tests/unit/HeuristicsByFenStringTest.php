@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\Game;
 use Chess\HeuristicsByFenString;
 use Chess\Tests\AbstractUnitTestCase;
 
