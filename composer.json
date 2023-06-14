@@ -41,8 +41,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Chess\\Tests\\": "tests/",
-      "Chess\\Tests\\Sample\\": "tests/Sample/"
+      "Chess\\Tests\\": "tests/"
     }
   },
   "scripts": {
