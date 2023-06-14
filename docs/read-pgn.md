@@ -2,7 +2,7 @@
 
 📌 Portable Game Notation is a human-readable format that allows chess players to read and write chess games.
 
-Almost everything in PHP Chess can be done with a chessboard object. At present there are three different variants supported with the default one being classical chess.
+Almost everything in PHP Chess can be done with a chessboard object. There are three different variants supported with the default one being classical chess.
 
 | Variant | Chessboard |
 | ------- | ---------- |

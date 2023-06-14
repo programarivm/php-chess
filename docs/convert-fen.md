@@ -4,13 +4,13 @@
 
 FEN stands for Forsyth-Edwards Notation and is the standard way for describing chess positions using text strings. At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done according to the variants supported.
 
-| Variant | FEN Converter | Chessboard |
-| ------- | ------------- | ---------- |
-| Capablanca | `Chess\Variant\Capablanca\FEN\StrToBoard` | `Chess\Variant\Capablanca\Board` |
-| Chess960 | `Chess\Variant\Chess960\FEN\StrToBoard` | `Chess\Variant\Chess960\Board` |
-| Classical | `Chess\Variant\Classical\FEN\StrToBoard` | `Chess\Variant\Classical\Board` |
+| Variant | FEN Converter |
+| ------- | ------------- |
+| Capablanca | `Chess\Variant\Capablanca\FEN\StrToBoard` |
+| Chess960 | `Chess\Variant\Chess960\FEN\StrToBoard` |
+| Classical | `Chess\Variant\Classical\FEN\StrToBoard` |
 
-Let's continue the game from the FEN position of B54, which is the ECO code for "Sicilian Defense: Modern Variations, Main Line" previously discussed in Section 3, Read PGN.
+Let's continue a classical game from the FEN position of B54, which is the ECO code for "Sicilian Defense: Modern Variations, Main Line" previously discussed in Section 3, Read PGN.
 
 ```php
 use Chess\Variant\Classical\FEN\StrToBoard;
