@@ -24,7 +24,7 @@ echo $board->getMovetext();
 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6
 ```
 
-Also `Chess\Player\LanPlayer` allows to easily play a bunch of LAN moves at once instead of one by one.
+Also `Chess\Player\LanPlayer` allows to easily play a bunch of LAN moves at once instead of one by one. As it name implies, this class is intended to play a LAN movetext in string format.
 
 ```php
 use Chess\Player\LanPlayer;
