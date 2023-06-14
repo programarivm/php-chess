@@ -10,6 +10,10 @@ Almost every class in the `src` folder represents a concept that is tested accor
 
 ## Features
 
+### Object-Oriented API
+
+Data processing with an object-oriented API. The chess board representation is an object of type `SplObjectStorage` as opposed to a bitboard.
+
 ### Easy to Learn
 
 > TODO
