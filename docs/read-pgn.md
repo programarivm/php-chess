@@ -10,7 +10,7 @@ Almost everything in PHP Chess can be done by instantiating a chessboard object.
 | Chess960 | `Chess\Variant\Chess960\Board` |
 | Classical | `Chess\Variant\Classical\Board` |
 
-So when it comes to chess openings, it is assumed that we're in the realms of classical chess as well. Both Capablanca and Chess960 were originally conceived to minimize memorization.
+Both Capablanca and Chess960 were originally conceived to minimize memorization. So when it comes to chess openings, it is assumed that we're in the realms of classical chess as well.
 
 Let's now have a look at B54 which is the ECO code for "Sicilian Defense: Modern Variations, Main Line".
 
