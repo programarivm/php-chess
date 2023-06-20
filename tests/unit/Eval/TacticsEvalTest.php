@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Eval;
 
 use Chess\Eval\TacticsEval;
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 
@@ -50,7 +50,7 @@ class TacticsEvalTest extends AbstractUnitTestCase
     {
         $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
 
-        $board = (new PgnPlayer($B56))->play()->getBoard();
+        $board = (new SAN($B56))->play()->getBoard();
 
         $attEval = (new TacticsEval($board))->eval();
 
@@ -69,7 +69,7 @@ class TacticsEvalTest extends AbstractUnitTestCase
     {
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
 
-        $board = (new PgnPlayer($B25))->play()->getBoard();
+        $board = (new SAN($B25))->play()->getBoard();
 
         $attEval = (new TacticsEval($board))->eval();
 

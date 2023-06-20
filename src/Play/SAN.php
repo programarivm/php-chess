@@ -1,23 +1,21 @@
 <?php
 
-namespace Chess\Player;
+namespace Chess\Play;
 
-use Chess\Exception\PlayerException;
-use Chess\Movetext\SAN;
+use Chess\Exception\PlayException;
+use Chess\Movetext\SAN as SanMovetext;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Capablanca\PGN\Move as CapablancaPgnMove;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 use Chess\Variant\Classical\PGN\Move as ClassicalPgnMove;
 
 /**
- * PgnPlayer.
- *
- * Plays a chess game in PGN format.
+ * Standard Algebraic Notation.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-class PgnPlayer extends AbstractPlayer
+class SAN extends AbstractPlay
 {
     /**
      * Constructor.
@@ -30,9 +28,9 @@ class PgnPlayer extends AbstractPlayer
         $this->board = $board ?? new ClassicalBoard();
 
         if (is_a($board, CapablancaBoard::class)) {
-            $san = new SAN(new CapablancaPgnMove(), $movetext);
+            $san = new SanMovetext(new CapablancaPgnMove(), $movetext);
         } else {
-            $san = new SAN(new ClassicalPgnMove(), $movetext);
+            $san = new SanMovetext(new ClassicalPgnMove(), $movetext);
         }
 
         $san->validate();
@@ -44,13 +42,13 @@ class PgnPlayer extends AbstractPlayer
     /**
      * Plays a chess game.
      *
-     * @return \Chess\Player\PgnPlayer
+     * @return \Chess\Play\SAN
      */
-    public function play(): PgnPlayer
+    public function play(): SAN
     {
         foreach ($this->moves as $key => $val) {
             if (!$this->board->play($this->board->getTurn(), $val)) {
-                throw new PlayerException();
+                throw new PlayException();
             }
             $this->fen[] = $this->board->toFen();
         }

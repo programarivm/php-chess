@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Eval;
 
 use Chess\Eval\BishopPairEval;
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -16,7 +16,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
     {
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
 
-        $board = (new PgnPlayer($B25))->play()->getBoard();
+        $board = (new SAN($B25))->play()->getBoard();
 
         $bishopPairEval = (new BishopPairEval($board))->eval();
 
@@ -35,7 +35,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
     {
         $C68 = file_get_contents(self::DATA_FOLDER.'/sample/C68.pgn');
 
-        $board = (new PgnPlayer($C68))->play()->getBoard();
+        $board = (new SAN($C68))->play()->getBoard();
 
         $bishopPairEval = (new BishopPairEval($board))->eval();
 

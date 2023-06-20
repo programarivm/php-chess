@@ -1,11 +1,11 @@
 <?php
 
-namespace Chess\Tests\Unit\Player;
+namespace Chess\Tests\Unit\Play;
 
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Tests\AbstractUnitTestCase;
 
-class PgnPlayerTest extends AbstractUnitTestCase
+class SanTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -13,7 +13,7 @@ class PgnPlayerTest extends AbstractUnitTestCase
     public function e4_e5()
     {
         $movetext = '1.e4 e5';
-        $board = (new PgnPlayer($movetext))->play()->getBoard();
+        $board = (new SAN($movetext))->play()->getBoard();
 
         $this->assertSame($movetext, $board->getMovetext());
     }
@@ -26,7 +26,7 @@ class PgnPlayerTest extends AbstractUnitTestCase
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
         $movetext = 'foo';
-        $board = (new PgnPlayer($movetext))->play()->getBoard();
+        $board = (new SAN($movetext))->play()->getBoard();
     }
 
     /**
@@ -34,9 +34,9 @@ class PgnPlayerTest extends AbstractUnitTestCase
      */
     public function e4_e4()
     {
-        $this->expectException(\Chess\Exception\PlayerException::class);
+        $this->expectException(\Chess\Exception\PlayException::class);
 
         $movetext = '1.e4 e4';
-        $board = (new PgnPlayer($movetext))->play()->getBoard();
+        $board = (new SAN($movetext))->play()->getBoard();
     }
 }

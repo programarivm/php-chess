@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Piece;
 
 use Chess\Piece\Q;
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Tests\AbstractUnitTestCase;
 
 class QTest extends AbstractUnitTestCase
@@ -65,7 +65,7 @@ class QTest extends AbstractUnitTestCase
     {
         $A74 = file_get_contents(self::DATA_FOLDER.'/sample/A74.pgn');
 
-        $board = (new PgnPlayer($A74))->play()->getBoard();
+        $board = (new SAN($A74))->play()->getBoard();
 
         $queen = $board->getPieceBySq('d1');
 

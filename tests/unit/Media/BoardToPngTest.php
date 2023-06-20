@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Media;
 
 use Chess\Media\BoardToPng;
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
@@ -91,7 +91,7 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
 
-        $board = (new PgnPlayer($A59))->play()->getBoard();
+        $board = (new SAN($A59))->play()->getBoard();
 
         $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
@@ -108,7 +108,7 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
 
-        $board = (new PgnPlayer($A59))->play()->getBoard();
+        $board = (new SAN($A59))->play()->getBoard();
 
         $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
@@ -125,7 +125,7 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $D06 = file_get_contents(self::DATA_FOLDER.'/sample/D06.pgn');
 
-        $board = (new PgnPlayer($D06))->play()->getBoard();
+        $board = (new SAN($D06))->play()->getBoard();
 
         $filename = (new BoardToPng($board))
             ->output(self::OUTPUT_FOLDER, 'D06');
@@ -143,7 +143,7 @@ class BoardToPngTest extends AbstractUnitTestCase
     {
         $D06 = file_get_contents(self::DATA_FOLDER.'/sample/D06.pgn');
 
-        $board = (new PgnPlayer($D06))->play()->getBoard();
+        $board = (new SAN($D06))->play()->getBoard();
 
         $filename = (new BoardToPng($board, $flip = true))
             ->output(self::OUTPUT_FOLDER, 'D06_flip');

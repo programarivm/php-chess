@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Eval;
 
 use Chess\Eval\KingSafetyEval;
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 
@@ -31,7 +31,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
     {
         $A00 = file_get_contents(self::DATA_FOLDER.'/sample/A00.pgn');
 
-        $board = (new PgnPlayer($A00))->play()->getBoard();
+        $board = (new SAN($A00))->play()->getBoard();
 
         $kSafetyEval = (new KingSafetyEval($board))->eval();
 
@@ -50,7 +50,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
     {
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
 
-        $board = (new PgnPlayer($B25))->play()->getBoard();
+        $board = (new SAN($B25))->play()->getBoard();
 
         $kSafetyEval = (new KingSafetyEval($board))->eval();
 

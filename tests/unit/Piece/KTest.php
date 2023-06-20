@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Piece;
 
 use Chess\Piece\K;
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -160,7 +160,7 @@ class KTest extends AbstractUnitTestCase
     {
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
 
-        $board = (new PgnPlayer($A59))->play()->getBoard();
+        $board = (new SAN($A59))->play()->getBoard();
 
         $king = $board->getPieceBySq('f1');
 

@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Eval\Material;
 
 use Chess\Eval\ConnectivityEval;
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 
@@ -31,7 +31,7 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
     {
         $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
 
-        $board = (new PgnPlayer($C60))->play()->getBoard();
+        $board = (new SAN($C60))->play()->getBoard();
 
         $expected = [
             'w' => 19,

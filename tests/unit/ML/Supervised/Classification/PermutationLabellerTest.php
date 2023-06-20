@@ -5,7 +5,7 @@ namespace Chess\Tests\Unit\ML\Supervised\Classification;
 use Chess\Heuristics;
 use Chess\Combinatorics\RestrictedPermutationWithRepetition;
 use Chess\ML\Supervised\Classification\PermutationLabeller;
-use Chess\Player\PgnPlayer;
+use Chess\Play\SAN;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 
@@ -122,7 +122,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $A00 = file_get_contents(self::DATA_FOLDER.'/sample/A00.pgn');
 
-        $board = (new PgnPlayer($A00))->play()->getBoard();
+        $board = (new SAN($A00))->play()->getBoard();
 
         $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
@@ -145,7 +145,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $movetext = file_get_contents(self::DATA_FOLDER.'/sample/scholar_checkmate.pgn');
 
-        $board = (new PgnPlayer($movetext))->play()->getBoard();
+        $board = (new SAN($movetext))->play()->getBoard();
 
         $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
@@ -168,7 +168,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
 
-        $board = (new PgnPlayer($A59))->play()->getBoard();
+        $board = (new SAN($A59))->play()->getBoard();
 
         $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
@@ -191,7 +191,7 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     {
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
 
-        $board = (new PgnPlayer($B25))->play()->getBoard();
+        $board = (new SAN($B25))->play()->getBoard();
 
         $balance = (new Heuristics($board->getMovetext()))->getBalance();
 

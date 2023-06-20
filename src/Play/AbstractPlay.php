@@ -1,18 +1,16 @@
 <?php
 
-namespace Chess\Player;
+namespace Chess\Play;
 
 use Chess\Variant\Classical\Board;
 
 /**
- * AbstractPlayer.
- *
- * Plays a chess game.
+ * AbstractPlay.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-abstract class AbstractPlayer
+abstract class AbstractPlay
 {
     /**
      * Chess board.
@@ -36,7 +34,7 @@ abstract class AbstractPlayer
     protected array $fen;
 
     /**
-     * Returns the resulting board object of playing a game.
+     * Returns the chessboard object.
      *
      * @return \Chess\Variant\Classical\Board
      */

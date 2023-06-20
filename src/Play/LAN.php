@@ -1,19 +1,17 @@
 <?php
 
-namespace Chess\Player;
+namespace Chess\Play;
 
-use Chess\Exception\PlayerException;
+use Chess\Exception\PlayException;
 use Chess\Variant\Classical\Board;
 
 /**
- * LanPlayer.
- *
- * Plays a chess game in long algebraic notation.
+ * Long algebraic notation.
  *
  * @author Jordi Bassagañas
  * @license GPL
  */
-class LanPlayer extends AbstractPlayer
+class LAN extends AbstractPlay
 {
     /**
      * Constructor.
@@ -31,18 +29,18 @@ class LanPlayer extends AbstractPlayer
     /**
      * Plays a chess game.
      *
-     * @return \Chess\Player\LanPlayer
+     * @return \Chess\Play\LAN
      */
-    public function play(): LanPlayer
+    public function play(): LAN
     {
         foreach ($this->moves as $key => $val) {
             if ($key % 2 === 0) {
                 if (!$this->board->playLan('w', $val)) {
-                    throw new PlayerException();
+                    throw new PlayException();
                 }
             } else {
                 if (!$this->board->playLan('b', $val)) {
-                    throw new PlayerException();
+                    throw new PlayException();
                 }
             }
             $this->fen[] = $this->board->toFen();

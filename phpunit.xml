@@ -15,7 +15,7 @@
             <directory>tests/unit/ML</directory>
             <directory>tests/unit/Movetext</directory>
             <directory>tests/unit/Piece</directory>
-            <directory>tests/unit/Player</directory>
+            <directory>tests/unit/Play</directory>
             <directory>tests/unit/UciEngine</directory>
             <directory>tests/unit/Variant</directory>
             <file>tests/unit/ArrayOfBoardsTest.php</file>
