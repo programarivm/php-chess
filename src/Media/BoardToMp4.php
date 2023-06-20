@@ -2,8 +2,8 @@
 
 namespace Chess\Media;
 
-use Chess\Movetext;
 use Chess\Exception\MediaException;
+use Chess\Movetext\SAN;
 use Chess\Variant\Classical\Board;
 
 class BoardToMp4
@@ -12,7 +12,7 @@ class BoardToMp4
 
     protected $ext = '.mp4';
 
-    protected Movetext $movetext;
+    protected SAN $san;
 
     protected Board $board;
 
@@ -20,11 +20,11 @@ class BoardToMp4
 
     public function __construct(string $movetext, Board $board, bool $flip = false)
     {
-        $this->movetext = new Movetext($board->getMove(), $movetext);
-        if (!$this->movetext->validate()) {
+        $this->san = new SAN($board->getMove(), $movetext);
+        if (!$this->san->validate()) {
             throw new MediaException();
         }
-        if (self::MAX_MOVES < count($this->movetext->getMoves())) {
+        if (self::MAX_MOVES < count($this->san->getMoves())) {
             throw new MediaException();
         }
         $this->board = $board;
@@ -40,7 +40,7 @@ class BoardToMp4
         $filename
             ? $filename = $filename.$this->ext
             : $filename = uniqid().$this->ext;
-            
+
         $this->frames($filepath, $filename)
             ->animate(escapeshellarg($filepath), $filename)
             ->cleanup($filepath, $filename);
@@ -52,7 +52,7 @@ class BoardToMp4
     {
         $boardToPng = new BoardToPng($this->board, $this->flip);
         $boardToPng->output($filepath, "{$filename}_000");
-        foreach ($this->movetext->getMoves() as $key => $val) {
+        foreach ($this->san->getMoves() as $key => $val) {
             $n = sprintf("%03d", $key + 1);
             $this->board->play($this->board->getTurn(), $val);
             $boardToPng->setBoard($this->board)->output($filepath, "{$filename}_{$n}");

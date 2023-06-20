@@ -3,11 +3,11 @@
 namespace Chess\Player;
 
 use Chess\Exception\PlayerException;
+use Chess\Movetext\SAN;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Capablanca\PGN\Move as CapablancaPgnMove;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 use Chess\Variant\Classical\PGN\Move as ClassicalPgnMove;
-use Chess\Movetext;
 
 /**
  * PgnPlayer.
@@ -22,22 +22,22 @@ class PgnPlayer extends AbstractPlayer
     /**
      * Constructor.
      *
-     * @param string $text
+     * @param string $movetext
      * @param ClassicalBoard $board
      */
-    public function __construct(string $text, ClassicalBoard $board = null)
+    public function __construct(string $movetext, ClassicalBoard $board = null)
     {
         $this->board = $board ?? new ClassicalBoard();
 
         if (is_a($board, CapablancaBoard::class)) {
-            $movetext = new Movetext(new CapablancaPgnMove(), $text);
+            $san = new SAN(new CapablancaPgnMove(), $movetext);
         } else {
-            $movetext = new Movetext(new ClassicalPgnMove(), $text);
+            $san = new SAN(new ClassicalPgnMove(), $movetext);
         }
 
-        $movetext->validate();
+        $san->validate();
 
-        $this->moves = $movetext->getMoves();
+        $this->moves = $san->getMoves();
         $this->fen = [(new ClassicalBoard())->toFen()];
     }
 

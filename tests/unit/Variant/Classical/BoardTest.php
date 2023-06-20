@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\Variant\Classical;
 
-use Chess\Movetext;
+use Chess\Movetext\SAN;
 use Chess\Piece\B;
 use Chess\Piece\K;
 use Chess\Piece\N;
@@ -49,12 +49,12 @@ class BoardTest extends AbstractUnitTestCase
         foreach (new \DirectoryIterator(self::DATA_FOLDER."/pgn/") as $fileInfo) {
             if ($fileInfo->isDot()) continue;
             $filename = $fileInfo->getFilename();
-            $text = file_get_contents(self::DATA_FOLDER."/pgn/$filename");
-            $movetext = new Movetext($move, $text);
-            if ($movetext->validate()) {
+            $movetext = file_get_contents(self::DATA_FOLDER."/pgn/$filename");
+            $san = new SAN($move, $movetext);
+            if ($san->validate()) {
                 $board = (new StrToBoard('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'))
                     ->create();
-                foreach ($movetext->getMoves() as $key => $val) {
+                foreach ($san->getMoves() as $key => $val) {
                     $this->assertTrue($board->play($board->getTurn(), $val));
                 }
             }

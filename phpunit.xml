@@ -13,6 +13,7 @@
             <directory>tests/unit/Eval</directory>
             <directory>tests/unit/Media</directory>
             <directory>tests/unit/ML</directory>
+            <directory>tests/unit/Movetext</directory>
             <directory>tests/unit/Piece</directory>
             <directory>tests/unit/Player</directory>
             <directory>tests/unit/UciEngine</directory>

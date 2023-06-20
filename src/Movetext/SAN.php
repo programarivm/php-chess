@@ -1,16 +1,16 @@
 <?php
 
-namespace Chess;
+namespace Chess\Movetext;
 
 use Chess\Variant\Classical\PGN\AN\Termination;
 use Chess\Variant\Classical\PGN\Move;
 
 /**
- * Movetext.
+ * Standard Algebraic Notation.
  *
  * @license GPL
  */
-class Movetext
+class SAN
 {
     const SYMBOL_ELLIPSIS = '...';
 

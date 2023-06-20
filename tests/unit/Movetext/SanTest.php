@@ -1,18 +1,18 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Classical\PGN;
+namespace Chess\Tests\Unit\Movetext;
 
-use Chess\Movetext;
+use Chess\Movetext\SAN;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\PGN\Move as ClassicalPgnMove;
+use Chess\Variant\Classical\PGN\Move;
 
-class MovetextTest extends AbstractUnitTestCase
+class SanTest extends AbstractUnitTestCase
 {
     static private $move;
 
     public static function setUpBeforeClass(): void
     {
-        self::$move = new ClassicalPgnMove();
+        self::$move = new Move();
     }
 
     public static $validData = [
@@ -35,7 +35,7 @@ class MovetextTest extends AbstractUnitTestCase
 
         $expected = [ 'd4', 'Nf6', 'Nf3', 'e6', 'c4', 'Bb4+', 'Nbd2', 'O-O', 'a3', 'Be7', 'e4', 'd6', 'Bd3', 'c5' ];
 
-        $this->assertEquals($expected, (new Movetext(self::$move, $text))->getMoves());
+        $this->assertEquals($expected, (new SAN(self::$move, $text))->getMoves());
     }
 
     /**
@@ -44,7 +44,7 @@ class MovetextTest extends AbstractUnitTestCase
      */
     public function sequence($text, $expected)
     {
-        $this->assertSame($expected, (new Movetext(self::$move, $text))->sequence());
+        $this->assertSame($expected, (new SAN(self::$move, $text))->sequence());
     }
 
     /**
@@ -54,7 +54,7 @@ class MovetextTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        (new Movetext(self::$move, 'foo'))->validate();
+        (new SAN(self::$move, 'foo'))->validate();
     }
 
     /**
@@ -63,7 +63,7 @@ class MovetextTest extends AbstractUnitTestCase
      */
     public function valid($expected, $text)
     {
-        $this->assertSame($expected, (new Movetext(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
     }
 
     /**
@@ -72,7 +72,7 @@ class MovetextTest extends AbstractUnitTestCase
      */
     public function wrong_numbers($expected, $text)
     {
-        $this->assertSame($expected, (new Movetext(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
     }
 
     /**
@@ -83,7 +83,7 @@ class MovetextTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        (new Movetext(self::$move, $text))->validate();
+        (new SAN(self::$move, $text))->validate();
     }
 
     /**
@@ -92,7 +92,7 @@ class MovetextTest extends AbstractUnitTestCase
      */
     public function curly_braces_filtered($expected, $text)
     {
-        $this->assertSame($expected, (new Movetext(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
     }
 
     /**
@@ -101,7 +101,7 @@ class MovetextTest extends AbstractUnitTestCase
      */
     public function parentheses_filtered($expected, $text)
     {
-        $this->assertSame($expected, (new Movetext(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
     }
 
     /**
@@ -110,7 +110,7 @@ class MovetextTest extends AbstractUnitTestCase
      */
     public function too_many_spaces_filtered($expected, $text)
     {
-        $this->assertSame($expected, (new Movetext(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
     }
 
     /**
@@ -119,7 +119,7 @@ class MovetextTest extends AbstractUnitTestCase
      */
     public function fide_filtered($expected, $text)
     {
-        $this->assertSame($expected, (new Movetext(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
     }
 
     /**
@@ -128,7 +128,7 @@ class MovetextTest extends AbstractUnitTestCase
      */
     public function with_result_filtered($expected, $text)
     {
-        $this->assertSame($expected, (new Movetext(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
     }
 
     public function validData()
