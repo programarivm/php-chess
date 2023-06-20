@@ -32,15 +32,15 @@ class SAN
      * Constructor.
      *
      * @param \Chess\Variant\Classical\PGN\Move $move
-     * @param string $text
+     * @param string $movetext
      */
-    public function __construct(Move $move, string $text)
+    public function __construct(Move $move, string $movetext)
     {
         $this->move = $move;
         $this->moves = [];
-        $text = $this->filter($text);
+        $movetext = $this->filter($movetext);
 
-        $this->fill($text);
+        $this->fill($movetext);
     }
 
     /**
@@ -76,23 +76,23 @@ class SAN
      */
     public function toString(): string
     {
-        $text = '';
+        $str = '';
         $offset = 0;
         if (isset($this->moves[0])) {
             if ($this->moves[0] === self::SYMBOL_ELLIPSIS) {
-                $text = '1' . self::SYMBOL_ELLIPSIS . "{$this->moves[1]} ";
+                $str = '1' . self::SYMBOL_ELLIPSIS . "{$this->moves[1]} ";
                 $offset = 2;
             }
         }
         for ($i = $offset; $i < count($this->moves); $i++) {
             if ($i % 2 === 0) {
-                $text .= (($i / 2) + 1) . ".{$this->moves[$i]}";
+                $str .= (($i / 2) + 1) . ".{$this->moves[$i]}";
             } else {
-                $text .= " {$this->moves[$i]} ";
+                $str .= " {$this->moves[$i]} ";
             }
         }
 
-        return trim($text);
+        return trim($str);
     }
 
     /**
@@ -126,34 +126,34 @@ class SAN
     }
 
     /**
-     * Filters the given text for further processing.
+     * Filters the given movetext for further processing.
      *
-     * @param string $text
+     * @param string $movetext
      */
-    protected function filter(string $text): string
+    protected function filter(string $movetext): string
     {
         // remove PGN symbols
-        $text = str_replace(Termination::values(), '', $text);
+        $movetext = str_replace(Termination::values(), '', $movetext);
         // remove comments
-        $text = preg_replace("/\{[^)]+\}/", '', $text);
-        $text = preg_replace("/\([^)]+\)/", '', $text);
+        $movetext = preg_replace("/\{[^)]+\}/", '', $movetext);
+        $movetext = preg_replace("/\([^)]+\)/", '', $movetext);
         // replace FIDE notation with PGN notation
-        $text = str_replace('0-0', 'O-O', $text);
-        $text = str_replace('0-0-0', 'O-O-O', $text);
+        $movetext = str_replace('0-0', 'O-O', $movetext);
+        $movetext = str_replace('0-0-0', 'O-O-O', $movetext);
         // remove spaces between dots
-        $text = preg_replace('/\s+\./', '.', $text);
+        $movetext = preg_replace('/\s+\./', '.', $movetext);
 
-        return $text;
+        return $movetext;
     }
 
     /**
      * Fills the array of PGN moves with data.
      *
-     * @param string $text
+     * @param string $movetext
      */
-    protected function fill(string $text): void
+    protected function fill(string $movetext): void
     {
-        $moves = explode(' ', $text);
+        $moves = explode(' ', $movetext);
         foreach ($moves as $key => $val) {
             if ($key === 0) {
                 if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {

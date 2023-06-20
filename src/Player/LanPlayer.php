@@ -18,13 +18,13 @@ class LanPlayer extends AbstractPlayer
     /**
      * Constructor.
      *
-     * @param string $text
+     * @param string $movetext
      * @param \Chess\Variant\Classical\Board $board
      */
-    public function __construct(string $text, Board $board = null)
+    public function __construct(string $movetext, Board $board = null)
     {
         $board ? $this->board = $board : $this->board = new Board();
-        $this->moves = array_values(array_filter(explode(' ', $text)));
+        $this->moves = array_values(array_filter(explode(' ', $movetext)));
         $this->fen = [(new Board())->toFen()];
     }
 

@@ -31,20 +31,20 @@ class SanTest extends AbstractUnitTestCase
      */
     public function get_movetext()
     {
-        $text = '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5';
+        $movetext = '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5';
 
         $expected = [ 'd4', 'Nf6', 'Nf3', 'e6', 'c4', 'Bb4+', 'Nbd2', 'O-O', 'a3', 'Be7', 'e4', 'd6', 'Bd3', 'c5' ];
 
-        $this->assertEquals($expected, (new SAN(self::$move, $text))->getMoves());
+        $this->assertEquals($expected, (new SAN(self::$move, $movetext))->getMoves());
     }
 
     /**
      * @dataProvider sequenceData
      * @test
      */
-    public function sequence($text, $expected)
+    public function sequence($movetext, $expected)
     {
-        $this->assertSame($expected, (new SAN(self::$move, $text))->sequence());
+        $this->assertSame($expected, (new SAN(self::$move, $movetext))->sequence());
     }
 
     /**
@@ -61,74 +61,74 @@ class SanTest extends AbstractUnitTestCase
      * @dataProvider validData
      * @test
      */
-    public function valid($expected, $text)
+    public function valid($expected, $movetext)
     {
-        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $movetext))->validate());
     }
 
     /**
      * @dataProvider wrongNumbersData
      * @test
      */
-    public function wrong_numbers($expected, $text)
+    public function wrong_numbers($expected, $movetext)
     {
-        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $movetext))->validate());
     }
 
     /**
      * @dataProvider invalidMovesData
      * @test
      */
-    public function invalid_moves($text)
+    public function invalid_moves($movetext)
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        (new SAN(self::$move, $text))->validate();
+        (new SAN(self::$move, $movetext))->validate();
     }
 
     /**
      * @dataProvider curlyBracesFilteredData
      * @test
      */
-    public function curly_braces_filtered($expected, $text)
+    public function curly_braces_filtered($expected, $movetext)
     {
-        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $movetext))->validate());
     }
 
     /**
      * @dataProvider parenthesesFilteredData
      * @test
      */
-    public function parentheses_filtered($expected, $text)
+    public function parentheses_filtered($expected, $movetext)
     {
-        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $movetext))->validate());
     }
 
     /**
      * @dataProvider tooManySpacesFilteredData
      * @test
      */
-    public function too_many_spaces_filtered($expected, $text)
+    public function too_many_spaces_filtered($expected, $movetext)
     {
-        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $movetext))->validate());
     }
 
     /**
      * @dataProvider fideFilteredData
      * @test
      */
-    public function fide_filtered($expected, $text)
+    public function fide_filtered($expected, $movetext)
     {
-        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $movetext))->validate());
     }
 
     /**
      * @dataProvider withResultData
      * @test
      */
-    public function with_result_filtered($expected, $text)
+    public function with_result_filtered($expected, $movetext)
     {
-        $this->assertSame($expected, (new SAN(self::$move, $text))->validate());
+        $this->assertSame($expected, (new SAN(self::$move, $movetext))->validate());
     }
 
     public function validData()
