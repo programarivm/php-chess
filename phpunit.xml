@@ -19,6 +19,7 @@
             <directory>tests/unit/UciEngine</directory>
             <directory>tests/unit/Variant</directory>
             <file>tests/unit/ArrayOfBoardsTest.php</file>
+            <file>tests/unit/FenToBoardFactoryTest.php</file>
             <file>tests/unit/GrandmasterTest.php</file>
             <file>tests/unit/HeuristicsByFenStringTest.php</file>
             <file>tests/unit/HeuristicsTest.php</file>
