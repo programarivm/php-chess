@@ -14,20 +14,20 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function foo_throws_exception()
+    public function classical_foo_throws_exception()
     {
         $this->expectException(UnknownNotationException::class);
 
-        $fen = 'foo';
-        $board = new ClassicalBoard();
-
-        $board = FenToBoardFactory::create($fen, $board);
+        $board = FenToBoardFactory::create(
+            'foo',
+            new ClassicalBoard()
+        );
     }
 
     /**
      * @test
      */
-    public function kaufman_01()
+    public function classical_kaufman_01()
     {
         $board = FenToBoardFactory::create(
             '1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+',
@@ -52,7 +52,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function kaufman_01_Qg4_a5()
+    public function classical_kaufman_01_Qg4_a5()
     {
         $board = FenToBoardFactory::create(
             '1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+',
@@ -81,7 +81,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function QNBRKBRN_e4_e5_Ng3_Nc6_Bc4_d6()
+    public function chess960_QNBRKBRN_e4_e5_Ng3_Nc6_Bc4_d6()
     {
         $board = FenToBoardFactory::create(
             'q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -',
