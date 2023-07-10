@@ -1384,4 +1384,44 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $ravPlay->getFen());
     }
+
+    /**
+     * @test
+     */
+    public function get_fen_e4_c6__Nd6_commented()
+    {
+        $movetext = "1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack }
+            3... dxe4 4. Nxe4 Nf6 5. Qe2 Nbd7 { 159.99 }
+                (5... Nxe4 6. Qxe4 Qd5 7. Qxd5 cxd5 8. c4 e6 9. cxd5 exd5 10. d4 { 0.26/12 })
+            6. Nd6# 1-0";
+
+        $expected = [
+            'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -',
+            'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
+            'rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -',
+            'rnbqkbnr/pp1ppppp/2p5/8/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq -',
+            'rnbqkbnr/pp2pppp/2p5/3p4/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq d6',
+            'rnbqkbnr/pp2pppp/2p5/3p4/4P3/2N2N2/PPPP1PPP/R1BQKB1R b KQkq -',
+            'rnbqkbnr/pp2pppp/2p5/8/4p3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq -',
+            'rnbqkbnr/pp2pppp/2p5/8/4N3/5N2/PPPP1PPP/R1BQKB1R b KQkq -',
+            'rnbqkb1r/pp2pppp/2p2n2/8/4N3/5N2/PPPP1PPP/R1BQKB1R w KQkq -',
+            'rnbqkb1r/pp2pppp/2p2n2/8/4N3/5N2/PPPPQPPP/R1B1KB1R b KQkq -',
+            'r1bqkb1r/pp1npppp/2p2n2/8/4N3/5N2/PPPPQPPP/R1B1KB1R w KQkq -',
+            'rnbqkb1r/pp2pppp/2p5/8/4n3/5N2/PPPPQPPP/R1B1KB1R w KQkq -',
+            'rnbqkb1r/pp2pppp/2p5/8/4Q3/5N2/PPPP1PPP/R1B1KB1R b KQkq -',
+            'rnb1kb1r/pp2pppp/2p5/3q4/4Q3/5N2/PPPP1PPP/R1B1KB1R w KQkq -',
+            'rnb1kb1r/pp2pppp/2p5/3Q4/8/5N2/PPPP1PPP/R1B1KB1R b KQkq -',
+            'rnb1kb1r/pp2pppp/8/3p4/8/5N2/PPPP1PPP/R1B1KB1R w KQkq -',
+            'rnb1kb1r/pp2pppp/8/3p4/2P5/5N2/PP1P1PPP/R1B1KB1R b KQkq c3',
+            'rnb1kb1r/pp3ppp/4p3/3p4/2P5/5N2/PP1P1PPP/R1B1KB1R w KQkq -',
+            'rnb1kb1r/pp3ppp/4p3/3P4/8/5N2/PP1P1PPP/R1B1KB1R b KQkq -',
+            'rnb1kb1r/pp3ppp/8/3p4/8/5N2/PP1P1PPP/R1B1KB1R w KQkq -',
+            'rnb1kb1r/pp3ppp/8/3p4/3P4/5N2/PP3PPP/R1B1KB1R b KQkq d3',
+            'r1bqkb1r/pp1npppp/2pN1n2/8/8/5N2/PPPPQPPP/R1B1KB1R b KQkq -',
+        ];
+
+        $ravPlay = (new RavPlay($movetext))->validate();
+
+        $this->assertSame($expected, $ravPlay->getFen());
+    }
 }
