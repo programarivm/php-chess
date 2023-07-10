@@ -1430,7 +1430,10 @@ class RavPlayTest extends AbstractUnitTestCase
      */
     public function get_fen_e4_c6__Nd6_commented_with_spaces()
     {
-        $movetext = "1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack } 3... dxe4 4. Nxe4 Nf6 5. Qe2 Nbd7 { 159.99 } ( 5... Nxe4 6. Qxe4 Qd5 7. Qxd5 cxd5 8. c4 e6 9. cxd5 exd5 10. d4 { 0.26/12 } ) 6. Nd6# 1-0";
+        $movetext = "1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack }
+            3... dxe4 4. Nxe4 Nf6 5. Qe2 Nbd7 { 159.99 }
+                ( 5... Nxe4 6. Qxe4 Qd5 7. Qxd5 cxd5 8. c4 e6 9. cxd5 exd5 10. d4 { 0.26/12 } )
+            6. Nd6# 1-0";
 
         $expected = [
             'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -',
