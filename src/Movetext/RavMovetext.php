@@ -122,7 +122,7 @@ class RavMovetext extends AbstractMovetext
             $str = preg_replace('/\s+/', ' ', $str);
         }
         // remove the blank space before and after parentheses
-        $str = preg_replace('/\( /', '', $str);
+        $str = preg_replace('/\( /', '(', $str);
         $str = preg_replace('/ \)/', ')', $str);
 
         return trim($str);
