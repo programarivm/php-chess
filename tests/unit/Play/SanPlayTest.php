@@ -66,4 +66,18 @@ class SanPlayTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, (new SanPlay($movetext))->getSanMovetext()->filtered());
     }
+
+    /**
+     * @test
+     */
+    public function get_fen_e4_c6__Nf3_dxe4_commented()
+    {
+        $movetext = '1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack } 3...dxe4';
+
+        $expected = '1.e4 c6 2.Nc3 d5 3.Nf3 dxe4';
+
+        $board = (new SanPlay($movetext))->validate()->getBoard();
+
+        $this->assertSame($expected, $board->getMovetext());
+    }
 }

@@ -108,7 +108,11 @@ class SanMovetext extends AbstractMovetext
                     $this->moves[] = $val;
                 }
             } else {
-                if (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
+                if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
+                    $exploded = explode(Move::ELLIPSIS, $val);
+                    $this->moves[] = Move::ELLIPSIS;
+                    $this->moves[] = $exploded[1];
+                } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
                     $this->moves[] = explode('.', $val)[1];
                 } else {
                     $this->moves[] = $val;

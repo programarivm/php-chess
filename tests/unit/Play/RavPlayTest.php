@@ -1338,4 +1338,26 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $ravPlay->getFen());
     }
+
+    /**
+     * @test
+     */
+    public function get_fen_e4_c6__Nf3_dxe4_commented()
+    {
+        $movetext = "1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack } 3...dxe4";
+
+        $expected = [
+          'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -',
+          'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
+          'rnbqkbnr/pp1ppppp/2p5/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -',
+          'rnbqkbnr/pp1ppppp/2p5/8/4P3/2N5/PPPP1PPP/R1BQKBNR b KQkq -',
+          'rnbqkbnr/pp2pppp/2p5/3p4/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq d6',
+          'rnbqkbnr/pp2pppp/2p5/3p4/4P3/2N2N2/PPPP1PPP/R1BQKB1R b KQkq -',
+          'rnbqkbnr/pp2pppp/2p5/8/4p3/2N2N2/PPPP1PPP/R1BQKB1R w KQkq -',
+        ];
+
+        $ravPlay = (new RavPlay($movetext))->validate();
+
+        $this->assertSame($expected, $ravPlay->getFen());
+    }
 }

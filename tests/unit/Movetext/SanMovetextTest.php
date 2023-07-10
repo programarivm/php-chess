@@ -209,6 +209,26 @@ class SanMovetextTest extends AbstractUnitTestCase
     }
 
     /**
+     * @test
+     */
+    public function get_moves_e4_c6__Nf3_dxe4_commented()
+    {
+        $movetext = '1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack } 3...dxe4';
+
+        $expected = [
+            'e4',
+            'c6',
+            'Nc3',
+            'd5',
+            'Nf3',
+            '...',
+            'dxe4',
+        ];
+
+        $this->assertEquals($expected, (new SanMovetext(self::$move, $movetext))->getMoves());
+    }
+
+    /**
      * @dataProvider sequenceData
      * @test
      */
