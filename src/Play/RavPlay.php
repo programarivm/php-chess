@@ -143,9 +143,23 @@ class RavPlay extends AbstractPlay
      */
     protected function breakdown(): void
     {
-        $arr = preg_split("/[()]+/", $this->ravMovetext->filtered(), -1, PREG_SPLIT_NO_EMPTY);
+        $str = $this->ravMovetext->filtered();
+        // escape parentheses enclosed in curly brackets
+        preg_match_all('/{(.*?)}/', $str, $matches);
+        foreach (array_filter($matches[0]) as $match) {
+            $replaced = str_replace('(', '<--', $match);
+            $replaced = str_replace(')', '-->', $replaced);
+            $str = str_replace($match, $replaced, $str);
+        }
+        // split by parentheses outside the curly brackets
+        $arr = preg_split("/[()]+/", $str, -1, PREG_SPLIT_NO_EMPTY);
         $arr = array_map('trim', $arr);
         $arr = array_values(array_filter($arr));
+        // unescape parentheses enclosed in curly brackets
+        foreach ($arr as &$item) {
+            $item = str_replace('<--', '(', $item);
+            $item = str_replace('-->', ')', $item);
+        }
 
         $this->breakdown = $arr;
     }

@@ -1464,4 +1464,25 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $ravPlay->getFen());
     }
+
+    /**
+     * @test
+     */
+    public function breakdown_with_parentheses_in_comments_e4_c6__Nd6()
+    {
+        $movetext = "{ Sjaak II 1.4.1 (x86_64) } 1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack }
+            3... dxe4 4. Nxe4 Nf6 5. Qe2 Nbd7 { 159.99 }
+                ( 5... Nxe4 6. Qxe4 Qd5 7. Qxd5 cxd5 8. c4 e6 9. cxd5 exd5 10. d4 { 0.26/12 } )
+            6. Nd6# 1-0";
+
+        $expected = [
+            '{ Sjaak II 1.4.1 (x86_64) } 1.e4 c6 2.Nc3 d5 3.Nf3 { B10 Caro-Kann Defense: Two Knights Attack } 3...dxe4 4.Nxe4 Nf6 5.Qe2 Nbd7 { 159.99 }',
+            '5...Nxe4 6.Qxe4 Qd5 7.Qxd5 cxd5 8.c4 e6 9.cxd5 exd5 10.d4 { 0.26/12 }',
+            '6.Nd6#',
+        ];
+
+        $ravPlay = (new RavPlay($movetext))->validate();
+
+        $this->assertSame($expected, $ravPlay->getBreakdown());
+    }
 }
