@@ -248,14 +248,22 @@ class SanMovetext extends AbstractMovetext
     /**
      * Filtered movetext.
      *
-     * The filtered movetext contains comments and parentheses.
-     *
+     * @param bool $nags
      * @return string
      */
-    public function filtered(): string
+    public function filtered($nags = true): string
     {
+        $str = $this->movetext;
+        // the filtered movetext contains NAGs by default
+        if (!$nags) {
+            // remove nags
+            preg_match_all('/\$[1-9][0-9]*/', $str, $matches);
+            foreach (array_filter($matches[0]) as $match) {
+                $str = str_replace($match, '', $str);
+            }
+        }
         // remove PGN symbols
-        $str = str_replace(Termination::values(), '', $this->movetext);
+        $str = str_replace(Termination::values(), '', $str);
         // remove variations
         $str = preg_replace('/\(([^()]|(?R))*\)/', '', $str);
         // replace FIDE notation with PGN notation
