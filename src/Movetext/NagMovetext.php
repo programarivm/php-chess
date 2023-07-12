@@ -18,7 +18,6 @@ class NagMovetext
         [
             'n' => 0,
             'meaning' => 'Null annotation',
-            'symbol' => null,
         ],
         [
             'n' => 1,
@@ -58,12 +57,10 @@ class NagMovetext
         [
             'n' => 8,
             'meaning' => 'singular move',
-            'symbol' => null,
         ],
         [
             'n' => 9,
             'meaning' => 'worse move',
-            'symbol' => null,
         ],
         [
             'n' => 10,
@@ -73,12 +70,10 @@ class NagMovetext
         [
             'n' => 11,
             'meaning' => 'equal chances, quiet position',
-            'symbol' => null,
         ],
         [
             'n' => 12,
             'meaning' => 'equal chances, active position',
-            'symbol' => null,
         ],
         [
             'n' => 13,
@@ -118,12 +113,10 @@ class NagMovetext
         [
             'n' => 20,
             'meaning' => 'White has a crushing advantage (Black should resign)',
-            'symbol' => null,
         ],
         [
             'n' => 21,
             'meaning' => 'Black has a crushing advantage (White should resign)',
-            'symbol' => null,
         ],
         [
             'n' => 22,
@@ -138,12 +131,10 @@ class NagMovetext
         [
             'n' => 24,
             'meaning' => 'White has a slight space advantage',
-            'symbol' => null,
         ],
         [
             'n' => 25,
             'meaning' => 'Black has a slight space advantage',
-            'symbol' => null,
         ],
         [
             'n' => 26,
@@ -158,22 +149,18 @@ class NagMovetext
         [
             'n' => 28,
             'meaning' => 'White has a decisive space advantage',
-            'symbol' => null,
         ],
         [
             'n' => 29,
             'meaning' => 'Black has a decisive space advantage',
-            'symbol' => null,
         ],
         [
             'n' => 30,
             'meaning' => 'White has a slight time (development) advantage',
-            'symbol' => null,
         ],
         [
             'n' => 31,
             'meaning' => 'Black has a slight time (development) advantage',
-            'symbol' => null,
         ],
         [
             'n' => 32,
@@ -188,12 +175,10 @@ class NagMovetext
         [
             'n' => 34,
             'meaning' => 'White has a decisive time (development) advantage',
-            'symbol' => null,
         ],
         [
             'n' => 35,
             'meaning' => 'Black has a decisive time (development) advantage',
-            'symbol' => null,
         ],
         [
             'n' => 36,
@@ -208,12 +193,10 @@ class NagMovetext
         [
             'n' => 38,
             'meaning' => 'White has a lasting initiative',
-            'symbol' => null,
         ],
         [
             'n' => 39,
             'meaning' => 'Black has a lasting initiative',
-            'symbol' => null,
         ],
         [
             'n' => 40,
@@ -228,12 +211,10 @@ class NagMovetext
         [
             'n' => 42,
             'meaning' => 'White has insufficient compensation for material deficit',
-            'symbol' => null,
         ],
         [
             'n' => 43,
             'meaning' => 'Black has insufficient compensation for material deficit',
-            'symbol' => null,
         ],
         [
             'n' => 44,
@@ -248,22 +229,106 @@ class NagMovetext
         [
             'n' => 46,
             'meaning' => 'White has more than adequate compensation for material deficit',
-            'symbol' => null,
         ],
         [
             'n' => 47,
             'meaning' => 'Black has more than adequate compensation for material deficit',
-            'symbol' => null,
         ],
         [
             'n' => 48,
             'meaning' => 'White has a slight center control advantage',
-            'symbol' => null,
         ],
         [
             'n' => 49,
             'meaning' => 'Black has a slight center control advantage',
-            'symbol' => null,
+        ],
+        [
+            'n' => 50,
+            'meaning' => 'White has a moderate center control advantage',
+        ],
+        [
+            'n' => 51,
+            'meaning' => 'Black has a moderate center control advantage',
+        ],
+        [
+            'n' => 52,
+            'meaning' => 'White has a decisive center control advantage',
+        ],
+        [
+            'n' => 53,
+            'meaning' => 'Black has a decisive center control advantage',
+        ],
+        [
+            'n' => 54,
+            'meaning' => 'White has a slight kingside control advantage',
+        ],
+        [
+            'n' => 55,
+            'meaning' => 'Black has a slight kingside control advantage',
+        ],
+        [
+            'n' => 56,
+            'meaning' => 'White has a moderate kingside control advantage',
+        ],
+        [
+            'n' => 57,
+            'meaning' => 'Black has a moderate kingside control advantage',
+        ],
+        [
+            'n' => 58,
+            'meaning' => 'White has a decisive kingside control advantage',
+        ],
+        [
+            'n' => 59,
+            'meaning' => 'Black has a decisive kingside control advantage',
+        ],
+        [
+            'n' => 60,
+            'meaning' => 'White has a slight queenside control advantage',
+        ],
+        [
+            'n' => 61,
+            'meaning' => 'Black has a slight queenside control advantage',
+        ],
+        [
+            'n' => 62,
+            'meaning' => 'White has a moderate queenside control advantage',
+        ],
+        [
+            'n' => 63,
+            'meaning' => 'Black has a moderate queenside control advantage',
+        ],
+        [
+            'n' => 64,
+            'meaning' => 'White has a decisive queenside control advantage',
+        ],
+        [
+            'n' => 65,
+            'meaning' => 'Black has a decisive queenside control advantage',
+        ],
+        [
+            'n' => 66,
+            'meaning' => 'White has a vulnerable first rank',
+        ],
+        [
+            'n' => 67,
+            'meaning' => 'Black has a vulnerable first rank',
+        ],
+        [
+            'n' => 68,
+            'meaning' => 'White has a well protected first rank',
+        ],
+        [
+            'n' => 69,
+            'meaning' => 'Black has a well protected first rank',
+        ],
+        [
+            'n' => 70,
+            'meaning' => 'White has a poorly protected king',
+        ],
+        [
+            'n' => 71,
+            'meaning' => 'Black has a poorly protected king',
         ],
         // TODO:
         // Add more glyphs from https://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs
@@ -280,22 +345,18 @@ class NagMovetext
         [
             'n' => 134,
             'meaning' => 'White has decisive counterplay',
-            'symbol' => null,
         ],
         [
             'n' => 135,
             'meaning' => 'Black has decisive counterplay',
-            'symbol' => null,
         ],
         [
             'n' => 136,
             'meaning' => 'White has moderate time control pressure',
-            'symbol' => null,
         ],
         [
             'n' => 137,
             'meaning' => 'Black has moderate time control pressure',
-            'symbol' => null,
         ],
         [
             'n' => 138,
