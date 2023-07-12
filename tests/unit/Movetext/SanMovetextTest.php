@@ -263,6 +263,18 @@ class SanMovetextTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function filtered_without_nags_e4_e5__Nd5()
+    {
+        $movetext = '1.e4 $1 e5 $2 2.Nf3 Nc6 3.Bb5 $3 Nf6 4.Nc3 Be7 5.d3 $4 d6 6.Be3 Bd7 $5 7.Qd2 a6 8.Ba4 b5 $10 9.Bb3 O-O 10.O-O-O $21 b4 11.Nd5';
+
+        $expected = '1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.Nc3 Be7 5.d3 d6 6.Be3 Bd7 7.Qd2 a6 8.Ba4 b5 9.Bb3 O-O 10.O-O-O b4 11.Nd5';
+
+        $this->assertEquals($expected, (new SanMovetext(self::$move, $movetext))->filtered($nags = false));
+    }
+
+    /**
+     * @test
+     */
     public function get_moves_e4_c6__Nf3_dxe4_commented()
     {
         $movetext = '1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack } 3...dxe4';
