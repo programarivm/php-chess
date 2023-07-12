@@ -96,6 +96,7 @@ class RavMovetext extends AbstractMovetext
      *
      * The filtered movetext contains comments and parentheses.
      *
+     * @param bool $comments
      * @return string
      */
     public function filtered($comments = true): string
