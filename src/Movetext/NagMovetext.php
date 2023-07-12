@@ -135,6 +135,96 @@ class NagMovetext
             'meaning' => 'Black is in zugzwang',
             'symbol' => '⨀',
         ],
+        [
+            'n' => 24,
+            'meaning' => 'White has a slight space advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 25,
+            'meaning' => 'Black has a slight space advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 26,
+            'meaning' => 'White has a moderate space advantage',
+            'symbol' => '○',
+        ],
+        [
+            'n' => 27,
+            'meaning' => 'Black has a moderate space advantage',
+            'symbol' => '○',
+        ],
+        [
+            'n' => 28,
+            'meaning' => 'White has a decisive space advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 29,
+            'meaning' => 'Black has a decisive space advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 30,
+            'meaning' => 'White has a slight time (development) advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 31,
+            'meaning' => 'Black has a slight time (development) advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 32,
+            'meaning' => 'White has a moderate time (development) advantage',
+            'symbol' => '⟳',
+        ],
+        [
+            'n' => 33,
+            'meaning' => 'Black has a moderate time (development) advantage',
+            'symbol' => '⟳',
+        ],
+        [
+            'n' => 34,
+            'meaning' => 'White has a decisive time (development) advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 35,
+            'meaning' => 'Black has a decisive time (development) advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 36,
+            'meaning' => 'White has the initiative',
+            'symbol' => '↑',
+        ],
+        [
+            'n' => 37,
+            'meaning' => 'Black has the initiative',
+            'symbol' => '↑',
+        ],
+        [
+            'n' => 38,
+            'meaning' => 'White has a lasting initiative',
+            'symbol' => null,
+        ],
+        [
+            'n' => 39,
+            'meaning' => 'Black has a lasting initiative',
+            'symbol' => null,
+        ],
+        [
+            'n' => 40,
+            'meaning' => 'White has the attack',
+            'symbol' => '→',
+        ],
+        [
+            'n' => 41,
+            'meaning' => 'Black has the attack',
+            'symbol' => '→',
+        ],
     ];
 
     /**
