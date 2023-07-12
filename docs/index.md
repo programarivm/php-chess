@@ -12,6 +12,7 @@ The PHP Chess docs are more of a tutorial rather than an API description.
 
 - Chess moves in LAN and PGN formats.
 - Movetext processing in LAN, SAN and RAV formats.
+- NAG support for SAN and RAV movetexts.
 - UCI protocol.
 - FEN conversion to chess board.
 - Chess board conversion to PNG and JPG image.
@@ -23,6 +24,7 @@ The PHP Chess docs are more of a tutorial rather than an API description.
 | PGN | Portable Game Notation |
 | SAN | Standard Algebraic Notation |
 | RAV | Recursive Annotation Variation |
+| NAG | Numeric Annotation Glyphs |
 | UCI | Universal Chess Interface |
 | FEN | Forsyth-Edwards Notation |
 
