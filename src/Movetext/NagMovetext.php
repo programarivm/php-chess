@@ -330,8 +330,246 @@ class NagMovetext
             'nag' => '$71',
             'meaning' => 'Black has a poorly protected king',
         ],
-        // TODO:
-        // Add more glyphs from https://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs
+        [
+            'nag' => '$72',
+            'meaning' => 'White has a well protected king',
+        ],
+        [
+            'nag' => '$73',
+            'meaning' => 'Black has a well protected king',
+        ],
+        [
+            'nag' => '$74',
+            'meaning' => 'White has a poorly placed king',
+        ],
+        [
+            'nag' => '$75',
+            'meaning' => 'Black has a poorly placed king',
+        ],
+        [
+            'nag' => '$76',
+            'meaning' => 'White has a well placed king',
+        ],
+        [
+            'nag' => '$77',
+            'meaning' => 'Black has a well placed king',
+        ],
+        [
+            'nag' => '$78',
+            'meaning' => 'White has a very weak pawn structure',
+        ],
+        [
+            'nag' => '$79',
+            'meaning' => 'Black has a very weak pawn structure',
+        ],
+        [
+            'nag' => '$80',
+            'meaning' => 'White has a moderately weak pawn structure',
+        ],
+        [
+            'nag' => '$81',
+            'meaning' => 'Black has a moderately weak pawn structure',
+        ],
+        [
+            'nag' => '$82',
+            'meaning' => 'White has a moderately strong pawn structure',
+        ],
+        [
+            'nag' => '$83',
+            'meaning' => 'Black has a moderately strong pawn structure',
+        ],
+        [
+            'nag' => '$84',
+            'meaning' => 'White has a very strong pawn structure',
+        ],
+        [
+            'nag' => '$85',
+            'meaning' => 'Black has a very strong pawn structure',
+        ],
+        [
+            'nag' => '$86',
+            'meaning' => 'White has poor knight placement',
+        ],
+        [
+            'nag' => '$87',
+            'meaning' => 'Black has poor knight placement',
+        ],
+        [
+            'nag' => '$88',
+            'meaning' => 'White has good knight placement',
+        ],
+        [
+            'nag' => '$89',
+            'meaning' => 'Black has good knight placement',
+        ],
+        [
+            'nag' => '$90',
+            'meaning' => 'White has poor bishop placement',
+        ],
+        [
+            'nag' => '$91',
+            'meaning' => 'Black has poor bishop placement',
+        ],
+        [
+            'nag' => '$92',
+            'meaning' => 'White has good bishop placement',
+        ],
+        [
+            'nag' => '$93',
+            'meaning' => 'Black has good bishop placement',
+        ],
+        [
+            'nag' => '$94',
+            'meaning' => 'White has poor rook placement',
+        ],
+        [
+            'nag' => '$95',
+            'meaning' => 'Black has poor rook placement',
+        ],
+        [
+            'nag' => '$96',
+            'meaning' => 'White has good rook placement',
+        ],
+        [
+            'nag' => '$97',
+            'meaning' => 'Black has good rook placement',
+        ],
+        [
+            'nag' => '$98',
+            'meaning' => 'White has poor queen placement',
+        ],
+        [
+            'nag' => '$99',
+            'meaning' => 'Black has poor queen placement',
+        ],
+        [
+            'nag' => '$100',
+            'meaning' => 'White has good queen placement',
+        ],
+        [
+            'nag' => '$101',
+            'meaning' => 'Black has good queen placement',
+        ],
+        [
+            'nag' => '$102',
+            'meaning' => 'White has poor piece coordination',
+        ],
+        [
+            'nag' => '$103',
+            'meaning' => 'Black has poor piece coordination',
+        ],
+        [
+            'nag' => '$104',
+            'meaning' => 'White has good piece coordination',
+        ],
+        [
+            'nag' => '$105',
+            'meaning' => 'Black has good piece coordination',
+        ],
+        [
+            'nag' => '$106',
+            'meaning' => 'White has played the opening very poorly',
+        ],
+        [
+            'nag' => '$107',
+            'meaning' => 'Black has played the opening very poorly',
+        ],
+        [
+            'nag' => '$108',
+            'meaning' => 'White has played the opening poorly',
+        ],
+        [
+            'nag' => '$109',
+            'meaning' => 'Black has played the opening poorly',
+        ],
+        [
+            'nag' => '$110',
+            'meaning' => 'White has played the opening well',
+        ],
+        [
+            'nag' => '$111',
+            'meaning' => 'Black has played the opening well',
+        ],
+        [
+            'nag' => '$112',
+            'meaning' => 'White has played the opening very well',
+        ],
+        [
+            'nag' => '$113',
+            'meaning' => 'Black has played the opening very well',
+        ],
+        [
+            'nag' => '$114',
+            'meaning' => 'White has played the middlegame very poorly',
+        ],
+        [
+            'nag' => '$115',
+            'meaning' => 'Black has played the middlegame very poorly',
+        ],
+        [
+            'nag' => '$116',
+            'meaning' => 'White has played the middlegame poorly',
+        ],
+        [
+            'nag' => '$117',
+            'meaning' => 'Black has played the middlegame poorly',
+        ],
+        [
+            'nag' => '$118',
+            'meaning' => 'White has played the middlegame well',
+        ],
+        [
+            'nag' => '$119',
+            'meaning' => 'Black has played the middlegame well',
+        ],
+        [
+            'nag' => '$120',
+            'meaning' => 'White has played the middlegame very well',
+        ],
+        [
+            'nag' => '$121',
+            'meaning' => 'Black has played the middlegame very well',
+        ],
+        [
+            'nag' => '$122',
+            'meaning' => 'White has played the ending very poorly',
+        ],
+        [
+            'nag' => '$123',
+            'meaning' => 'Black has played the ending very poorly',
+        ],
+        [
+            'nag' => '$124',
+            'meaning' => 'White has played the ending poorly',
+        ],
+        [
+            'nag' => '$125',
+            'meaning' => 'Black has played the ending poorly',
+        ],
+        [
+            'nag' => '$126',
+            'meaning' => 'White has played the ending well',
+        ],
+        [
+            'nag' => '$127',
+            'meaning' => 'Black has played the ending well',
+        ],
+        [
+            'nag' => '$128',
+            'meaning' => 'White has played the ending very well',
+        ],
+        [
+            'nag' => '$129',
+            'meaning' => 'Black has played the ending very well',
+        ],
+        [
+            'nag' => '$130',
+            'meaning' => 'White has slight counterplay',
+        ],
+        [
+            'nag' => '$131',
+            'meaning' => 'Black has slight counterplay',
+        ],
         [
             'nag' => '$132',
             'meaning' => 'White has moderate counterplay',
