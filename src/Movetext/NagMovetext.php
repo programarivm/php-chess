@@ -3,13 +3,18 @@
 namespace Chess\Movetext;
 
 /**
- * Numeric Annotation Glyph.
+ * Numeric Annotation Glyphs.
  *
  * @license GPL
  */
 class NagMovetext
 {
-    $glyphs = [
+    /**
+     * Array of NAGs.
+     *
+     * @var array
+     */
+    public static $glyphs = [
         [
             'n' => 0,
             'meaning' => 'Null annotation',
@@ -131,4 +136,24 @@ class NagMovetext
             'symbol' => '⨀',
         ],
     ];
+
+    /**
+     * Returns a glyph if found in the array of glyphs.
+     *
+     * @param string $glyph
+     * @return array
+     */
+    public static function glyph(string $glyph): ?array
+    {
+        if ($glyph) {
+            $n = intval(ltrim($glyph, $glyph[0]));
+            foreach (self::$glyphs as $key => $val) {
+                if ($glyph[0] === '$' && $n === $key) {
+                    return $val;
+                }
+            }
+        }
+
+        return null;
+    }
 }

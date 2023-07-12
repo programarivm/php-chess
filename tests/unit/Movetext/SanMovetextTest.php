@@ -211,6 +211,34 @@ class SanMovetextTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function validate_with_nags_Ra7_Kg8__Kf3()
+    {
+        $movetext = "1  . Ra7 $2 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+
+        $expected = "1.Ra7 $2 Kg8 2.Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+
+        $sanMovetext = new SanMovetext(self::$move, $movetext);
+
+        $sanMovetext->validate();
+
+        $this->assertEquals($expected, $sanMovetext->filtered());
+    }
+
+    /**
+     * @test
+     */
+    public function filtered_with_nags_Ra7_Kg8__Kf3()
+    {
+        $movetext = "1  . Ra7 $2 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+
+        $expected = "1.Ra7 $2 Kg8 2.Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+
+        $this->assertEquals($expected, (new SanMovetext(self::$move, $movetext))->filtered());
+    }
+
+    /**
+     * @test
+     */
     public function get_moves_e4_c6__Nf3_dxe4_commented()
     {
         $movetext = '1. e4 c6 2. Nc3 d5 3. Nf3 { B10 Caro-Kann Defense: Two Knights Attack } 3...dxe4';
