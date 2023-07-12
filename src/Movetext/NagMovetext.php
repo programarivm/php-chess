@@ -616,11 +616,9 @@ class NagMovetext
      */
     public static function glyph(string $nag): ?array
     {
-        if ($nag) {
-            foreach (self::$glyphs as $glyph) {
-                if ($glyph['nag'] === $nag) {
-                    return $glyph;
-                }
+        foreach (self::$glyphs as $glyph) {
+            if ($glyph['nag'] === $nag) {
+                return $glyph;
             }
         }
 
