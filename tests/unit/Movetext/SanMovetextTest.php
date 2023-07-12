@@ -211,7 +211,7 @@ class SanMovetextTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function validate_with_nags_Ra7_Kg8__Kf3()
+    public function validate_with_nag_2_Ra7_Kg8__Kf3()
     {
         $movetext = "1  . Ra7 $2 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
 
@@ -227,7 +227,19 @@ class SanMovetextTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function filtered_with_nags_Ra7_Kg8__Kf3()
+    public function validate_with_nag_1000_Ra7_Kg8__Kf3()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        $movetext = "1  . Ra7 $1000 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+
+        (new SanMovetext(self::$move, $movetext))->validate();
+    }
+
+    /**
+     * @test
+     */
+    public function filtered_with_nag_2_Ra7_Kg8__Kf3()
     {
         $movetext = "1  . Ra7 $2 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
 
