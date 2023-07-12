@@ -225,6 +225,88 @@ class NagMovetext
             'meaning' => 'Black has the attack',
             'symbol' => '→',
         ],
+        [
+            'n' => 42,
+            'meaning' => 'White has insufficient compensation for material deficit',
+            'symbol' => null,
+        ],
+        [
+            'n' => 43,
+            'meaning' => 'Black has insufficient compensation for material deficit',
+            'symbol' => null,
+        ],
+        [
+            'n' => 44,
+            'meaning' => 'White has sufficient compensation for material deficit',
+            'symbol' => '⯹',
+        ],
+        [
+            'n' => 45,
+            'meaning' => 'Black has sufficient compensation for material deficit',
+            'symbol' => '⯹',
+        ],
+        [
+            'n' => 46,
+            'meaning' => 'White has more than adequate compensation for material deficit',
+            'symbol' => null,
+        ],
+        [
+            'n' => 47,
+            'meaning' => 'Black has more than adequate compensation for material deficit',
+            'symbol' => null,
+        ],
+        [
+            'n' => 48,
+            'meaning' => 'White has a slight center control advantage',
+            'symbol' => null,
+        ],
+        [
+            'n' => 49,
+            'meaning' => 'Black has a slight center control advantage',
+            'symbol' => null,
+        ],
+        // TODO:
+        // Add more glyphs from https://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs
+        [
+            'n' => 132,
+            'meaning' => 'White has moderate counterplay',
+            'symbol' => '⇆',
+        ],
+        [
+            'n' => 133,
+            'meaning' => 'Black has moderate counterplay',
+            'symbol' => '⇆',
+        ],
+        [
+            'n' => 134,
+            'meaning' => 'White has decisive counterplay',
+            'symbol' => null,
+        ],
+        [
+            'n' => 135,
+            'meaning' => 'Black has decisive counterplay',
+            'symbol' => null,
+        ],
+        [
+            'n' => 136,
+            'meaning' => 'White has moderate time control pressure',
+            'symbol' => null,
+        ],
+        [
+            'n' => 137,
+            'meaning' => 'Black has moderate time control pressure',
+            'symbol' => null,
+        ],
+        [
+            'n' => 138,
+            'meaning' => 'White has severe time control pressure / zeitnot',
+            'symbol' => '⨁',
+        ],
+        [
+            'n' => 139,
+            'meaning' => 'Black has severe time control pressure / zeitnot',
+            'symbol' => '⨁',
+        ],
     ];
 
     /**
