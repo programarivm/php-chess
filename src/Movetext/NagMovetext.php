@@ -16,373 +16,372 @@ class NagMovetext
      */
     public static $glyphs = [
         [
-            'n' => 0,
+            'nag' => '$0',
             'meaning' => 'Null annotation',
         ],
         [
-            'n' => 1,
+            'nag' => '$1',
             'meaning' => 'good move',
             'symbol' => '!',
         ],
         [
-            'n' => 2,
+            'nag' => '$2',
             'meaning' => 'mistake',
             'symbol' => '?',
         ],
         [
-            'n' => 3,
+            'nag' => '$3',
             'meaning' => 'very good move',
             'symbol' => '!!',
         ],
         [
-            'n' => 4,
+            'nag' => '$4',
             'meaning' => 'blunder',
             'symbol' => '??',
         ],
         [
-            'n' => 5,
+            'nag' => '$5',
             'meaning' => 'interesting move',
             'symbol' => '!?',
         ],
         [
-            'n' => 6,
+            'nag' => '$6',
             'meaning' => 'questionable move',
             'symbol' => '?!',
         ],
         [
-            'n' => 7,
+            'nag' => '$7',
             'meaning' => 'forced move',
             'symbol' => '□',
         ],
         [
-            'n' => 8,
+            'nag' => '$8',
             'meaning' => 'singular move',
         ],
         [
-            'n' => 9,
+            'nag' => '$9',
             'meaning' => 'worse move',
         ],
         [
-            'n' => 10,
+            'nag' => '$10',
             'meaning' => 'drawish position',
             'symbol' => '=',
         ],
         [
-            'n' => 11,
+            'nag' => '$11',
             'meaning' => 'equal chances, quiet position',
         ],
         [
-            'n' => 12,
+            'nag' => '$12',
             'meaning' => 'equal chances, active position',
         ],
         [
-            'n' => 13,
+            'nag' => '$13',
             'meaning' => 'unclear position',
             'symbol' => '∞',
         ],
         [
-            'n' => 14,
+            'nag' => '$14',
             'meaning' => 'White has a slight advantage',
             'symbol' => '⩲',
         ],
         [
-            'n' => 15,
+            'nag' => '$15',
             'meaning' => 'Black has a slight advantage',
             'symbol' => '⩱',
         ],
         [
-            'n' => 16,
+            'nag' => '$16',
             'meaning' => 'White has a moderate advantage',
             'symbol' => '±',
         ],
         [
-            'n' => 17,
+            'nag' => '$17',
             'meaning' => 'Black has a moderate advantage',
             'symbol' => '∓',
         ],
         [
-            'n' => 18,
+            'nag' => '$18',
             'meaning' => 'White has a decisive advantage',
             'symbol' => '+ −',
         ],
         [
-            'n' => 19,
+            'nag' => '$19',
             'meaning' => 'Black has a decisive advantage',
             'symbol' => '− +',
         ],
         [
-            'n' => 20,
+            'nag' => '$20',
             'meaning' => 'White has a crushing advantage (Black should resign)',
         ],
         [
-            'n' => 21,
+            'nag' => '$21',
             'meaning' => 'Black has a crushing advantage (White should resign)',
         ],
         [
-            'n' => 22,
+            'nag' => '$22',
             'meaning' => 'White is in zugzwang',
             'symbol' => '⨀',
         ],
         [
-            'n' => 23,
+            'nag' => '$23',
             'meaning' => 'Black is in zugzwang',
             'symbol' => '⨀',
         ],
         [
-            'n' => 24,
+            'nag' => '$24',
             'meaning' => 'White has a slight space advantage',
         ],
         [
-            'n' => 25,
+            'nag' => '$25',
             'meaning' => 'Black has a slight space advantage',
         ],
         [
-            'n' => 26,
+            'nag' => '$26',
             'meaning' => 'White has a moderate space advantage',
             'symbol' => '○',
         ],
         [
-            'n' => 27,
+            'nag' => '$27',
             'meaning' => 'Black has a moderate space advantage',
             'symbol' => '○',
         ],
         [
-            'n' => 28,
+            'nag' => '$28',
             'meaning' => 'White has a decisive space advantage',
         ],
         [
-            'n' => 29,
+            'nag' => '$29',
             'meaning' => 'Black has a decisive space advantage',
         ],
         [
-            'n' => 30,
+            'nag' => '$30',
             'meaning' => 'White has a slight time (development) advantage',
         ],
         [
-            'n' => 31,
+            'nag' => '$31',
             'meaning' => 'Black has a slight time (development) advantage',
         ],
         [
-            'n' => 32,
+            'nag' => '$32',
             'meaning' => 'White has a moderate time (development) advantage',
             'symbol' => '⟳',
         ],
         [
-            'n' => 33,
+            'nag' => '$33',
             'meaning' => 'Black has a moderate time (development) advantage',
             'symbol' => '⟳',
         ],
         [
-            'n' => 34,
+            'nag' => '$34',
             'meaning' => 'White has a decisive time (development) advantage',
         ],
         [
-            'n' => 35,
+            'nag' => '$35',
             'meaning' => 'Black has a decisive time (development) advantage',
         ],
         [
-            'n' => 36,
+            'nag' => '$36',
             'meaning' => 'White has the initiative',
             'symbol' => '↑',
         ],
         [
-            'n' => 37,
+            'nag' => '$37',
             'meaning' => 'Black has the initiative',
             'symbol' => '↑',
         ],
         [
-            'n' => 38,
+            'nag' => '$38',
             'meaning' => 'White has a lasting initiative',
         ],
         [
-            'n' => 39,
+            'nag' => '$39',
             'meaning' => 'Black has a lasting initiative',
         ],
         [
-            'n' => 40,
+            'nag' => '$40',
             'meaning' => 'White has the attack',
             'symbol' => '→',
         ],
         [
-            'n' => 41,
+            'nag' => '$41',
             'meaning' => 'Black has the attack',
             'symbol' => '→',
         ],
         [
-            'n' => 42,
+            'nag' => '$42',
             'meaning' => 'White has insufficient compensation for material deficit',
         ],
         [
-            'n' => 43,
+            'nag' => '$43',
             'meaning' => 'Black has insufficient compensation for material deficit',
         ],
         [
-            'n' => 44,
+            'nag' => '$44',
             'meaning' => 'White has sufficient compensation for material deficit',
             'symbol' => '⯹',
         ],
         [
-            'n' => 45,
+            'nag' => '$45',
             'meaning' => 'Black has sufficient compensation for material deficit',
             'symbol' => '⯹',
         ],
         [
-            'n' => 46,
+            'nag' => '$46',
             'meaning' => 'White has more than adequate compensation for material deficit',
         ],
         [
-            'n' => 47,
+            'nag' => '$47',
             'meaning' => 'Black has more than adequate compensation for material deficit',
         ],
         [
-            'n' => 48,
+            'nag' => '$48',
             'meaning' => 'White has a slight center control advantage',
         ],
         [
-            'n' => 49,
+            'nag' => '$49',
             'meaning' => 'Black has a slight center control advantage',
         ],
         [
-            'n' => 50,
+            'nag' => '$50',
             'meaning' => 'White has a moderate center control advantage',
         ],
         [
-            'n' => 51,
+            'nag' => '$51',
             'meaning' => 'Black has a moderate center control advantage',
         ],
         [
-            'n' => 52,
+            'nag' => '$52',
             'meaning' => 'White has a decisive center control advantage',
         ],
         [
-            'n' => 53,
+            'nag' => '$53',
             'meaning' => 'Black has a decisive center control advantage',
         ],
         [
-            'n' => 54,
+            'nag' => '$54',
             'meaning' => 'White has a slight kingside control advantage',
         ],
         [
-            'n' => 55,
+            'nag' => '$55',
             'meaning' => 'Black has a slight kingside control advantage',
         ],
         [
-            'n' => 56,
+            'nag' => '$56',
             'meaning' => 'White has a moderate kingside control advantage',
         ],
         [
-            'n' => 57,
+            'nag' => '$57',
             'meaning' => 'Black has a moderate kingside control advantage',
         ],
         [
-            'n' => 58,
+            'nag' => '$58',
             'meaning' => 'White has a decisive kingside control advantage',
         ],
         [
-            'n' => 59,
+            'nag' => '$59',
             'meaning' => 'Black has a decisive kingside control advantage',
         ],
         [
-            'n' => 60,
+            'nag' => '$60',
             'meaning' => 'White has a slight queenside control advantage',
         ],
         [
-            'n' => 61,
+            'nag' => '$61',
             'meaning' => 'Black has a slight queenside control advantage',
         ],
         [
-            'n' => 62,
+            'nag' => '$62',
             'meaning' => 'White has a moderate queenside control advantage',
         ],
         [
-            'n' => 63,
+            'nag' => '$63',
             'meaning' => 'Black has a moderate queenside control advantage',
         ],
         [
-            'n' => 64,
+            'nag' => '$64',
             'meaning' => 'White has a decisive queenside control advantage',
         ],
         [
-            'n' => 65,
+            'nag' => '$65',
             'meaning' => 'Black has a decisive queenside control advantage',
         ],
         [
-            'n' => 66,
+            'nag' => '$66',
             'meaning' => 'White has a vulnerable first rank',
         ],
         [
-            'n' => 67,
+            'nag' => '$67',
             'meaning' => 'Black has a vulnerable first rank',
         ],
         [
-            'n' => 68,
+            'nag' => '$68',
             'meaning' => 'White has a well protected first rank',
         ],
         [
-            'n' => 69,
+            'nag' => '$69',
             'meaning' => 'Black has a well protected first rank',
         ],
         [
-            'n' => 70,
+            'nag' => '$70',
             'meaning' => 'White has a poorly protected king',
         ],
         [
-            'n' => 71,
+            'nag' => '$71',
             'meaning' => 'Black has a poorly protected king',
         ],
         // TODO:
         // Add more glyphs from https://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs
         [
-            'n' => 132,
+            'nag' => '$132',
             'meaning' => 'White has moderate counterplay',
             'symbol' => '⇆',
         ],
         [
-            'n' => 133,
+            'nag' => '$133',
             'meaning' => 'Black has moderate counterplay',
             'symbol' => '⇆',
         ],
         [
-            'n' => 134,
+            'nag' => '$134',
             'meaning' => 'White has decisive counterplay',
         ],
         [
-            'n' => 135,
+            'nag' => '$135',
             'meaning' => 'Black has decisive counterplay',
         ],
         [
-            'n' => 136,
+            'nag' => '$136',
             'meaning' => 'White has moderate time control pressure',
         ],
         [
-            'n' => 137,
+            'nag' => '$137',
             'meaning' => 'Black has moderate time control pressure',
         ],
         [
-            'n' => 138,
+            'nag' => '$138',
             'meaning' => 'White has severe time control pressure / zeitnot',
             'symbol' => '⨁',
         ],
         [
-            'n' => 139,
+            'nag' => '$139',
             'meaning' => 'Black has severe time control pressure / zeitnot',
             'symbol' => '⨁',
         ],
     ];
 
     /**
-     * Returns a glyph if found in the array of glyphs.
+     * Returns a glyph.
      *
-     * @param string $glyph
+     * @param string $nag
      * @return array
      */
-    public static function glyph(string $glyph): ?array
+    public static function glyph(string $nag): ?array
     {
-        if ($glyph) {
-            $n = intval(ltrim($glyph, $glyph[0]));
-            foreach (self::$glyphs as $key => $val) {
-                if ($glyph[0] === '$' && $n === $key) {
-                    return $val;
+        if ($nag) {
+            foreach (self::$glyphs as $glyph) {
+                if ($glyph['nag'] === $nag) {
+                    return $glyph;
                 }
             }
         }
