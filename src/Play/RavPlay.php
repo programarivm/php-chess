@@ -114,7 +114,7 @@ class RavPlay extends AbstractPlay
         $this->resume[$sanPlay->getSanMovetext()->filtered(false, false)] = $sanPlay->getBoard();
         for ($i = 1; $i < count($this->breakdown); $i++) {
             $sanMovetext = new SanMovetext($this->ravMovetext->getMove(), $this->breakdown[$i]);
-            foreach ($this->resume as $key => $val) {
+            foreach (array_reverse($this->resume, true) as $key => $val) {
                 $sanMovetextKey = new SanMovetext($this->ravMovetext->getMove(), $key);
                 if ($this->isParent($sanMovetextKey->getLastMove(), $sanMovetext->getFirstMove())) {
                     if ($this->isUndo($sanMovetextKey->getLastMove(), $sanMovetext->getFirstMove())) {
