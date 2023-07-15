@@ -125,14 +125,18 @@ class RavPlay extends AbstractPlay
                     }
                 }
             }
-            $sanPlay = (new SanPlay($this->breakdown[$i], $board))->validate();
-            $this->resume[$sanPlay->getSanMovetext()->filtered(false, false)] = $sanPlay->getBoard();
-            $fen = $sanPlay->getFen();
-            array_shift($fen);
-            $this->fen = [
-                ...$this->fen,
-                ...$fen,
-            ];
+            try {
+                $sanPlay = (new SanPlay($this->breakdown[$i], $board))->validate();
+                $this->resume[$sanPlay->getSanMovetext()->filtered(false, false)] = $sanPlay->getBoard();
+                $fen = $sanPlay->getFen();
+                array_shift($fen);
+                $this->fen = [
+                    ...$this->fen,
+                    ...$fen,
+                ];
+            } catch (\Exception $e) {
+
+            }
         }
 
         return $this;

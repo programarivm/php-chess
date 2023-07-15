@@ -1608,7 +1608,60 @@ class RavPlayTest extends AbstractUnitTestCase
             '10...Bxb3 11.cxb3 d5 12.exd5 Nxd5 13.Rc1 $14',
             '11.exd5 Nxd5 12.Nxd5 Bxd5 13.Rc1 Nd4 14.Bxd4 exd4 15.Bxd5 Qxd5 16.Re1 Bf6 17.Qe2 h6',
             '10...Kh8',
+        ];
 
+        $ravPlay = (new RavPlay($movetext))->validate();
+
+        $this->assertSame($expected, $ravPlay->getBreakdown());
+    }
+
+    /**
+     * @test
+     */
+    public function breakdown_e4_e5__Qe2()
+    {
+        $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 O-O 8. Nc3 d6 9. a3 Be6 10. Bg5
+            (10. Be3 d5 (10... Bxb3 11. cxb3 d5 12. exd5 Nxd5 13. Rc1 $14) 11. exd5 Nxd5 12. Nxd5 Bxd5 13. Rc1 Nd4 14. Bxd4 exd4 15. Bxd5 Qxd5 16. Re1 Bf6 17. Qe2 h6)
+            10... Kh8 $5
+            (10... Bg4 $5 11. Be3)
+            (10... Rb8 11. h3 h6 12. Bd2 d5 13. exd5 Nxd5 14. Re1 Bf6 15. Bxd5 Bxd5 16. Nxd5 Qxd5 17. Qe2)";
+
+        $expected = [
+            '1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.d3 b5 7.Bb3 O-O 8.Nc3 d6 9.a3 Be6 10.Bg5',
+            '10.Be3 d5',
+            '10...Bxb3 11.cxb3 d5 12.exd5 Nxd5 13.Rc1 $14',
+            '11.exd5 Nxd5 12.Nxd5 Bxd5 13.Rc1 Nd4 14.Bxd4 exd4 15.Bxd5 Qxd5 16.Re1 Bf6 17.Qe2 h6',
+            '10...Kh8 $5',
+            '10...Bg4 $5 11.Be3',
+            '10...Rb8 11.h3 h6 12.Bd2 d5 13.exd5 Nxd5 14.Re1 Bf6 15.Bxd5 Bxd5 16.Nxd5 Qxd5 17.Qe2',
+        ];
+
+        $ravPlay = (new RavPlay($movetext))->validate();
+
+        $this->assertSame($expected, $ravPlay->getBreakdown());
+    }
+
+    /**
+     * @test
+     */
+    public function breakdown_e4_e5__h3_Ng8()
+    {
+        $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 O-O 8. Nc3 d6 9. a3 Be6 10. Bg5
+            (10. Be3 d5 (10... Bxb3 11. cxb3 d5 12. exd5 Nxd5 13. Rc1 $14) 11. exd5 Nxd5 12. Nxd5 Bxd5 13. Rc1 Nd4 14. Bxd4 exd4 15. Bxd5 Qxd5 16. Re1 Bf6 17. Qe2 h6)
+            10... Kh8 $5
+            (10... Bg4 $5 11. Be3)
+            (10... Rb8 11. h3 h6 12. Bd2 d5 13. exd5 Nxd5 14. Re1 Bf6 15. Bxd5 Bxd5 16. Nxd5 Qxd5 17. Qe2)
+            11. h3 Ng8";
+
+        $expected = [
+            '1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.d3 b5 7.Bb3 O-O 8.Nc3 d6 9.a3 Be6 10.Bg5',
+            '10.Be3 d5',
+            '10...Bxb3 11.cxb3 d5 12.exd5 Nxd5 13.Rc1 $14',
+            '11.exd5 Nxd5 12.Nxd5 Bxd5 13.Rc1 Nd4 14.Bxd4 exd4 15.Bxd5 Qxd5 16.Re1 Bf6 17.Qe2 h6',
+            '10...Kh8 $5',
+            '10...Bg4 $5 11.Be3',
+            '10...Rb8 11.h3 h6 12.Bd2 d5 13.exd5 Nxd5 14.Re1 Bf6 15.Bxd5 Bxd5 16.Nxd5 Qxd5 17.Qe2',
+            '11.h3 Ng8',
         ];
 
         $ravPlay = (new RavPlay($movetext))->validate();
