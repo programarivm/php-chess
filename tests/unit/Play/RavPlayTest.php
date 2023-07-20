@@ -1779,29 +1779,35 @@ class RavPlayTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function get_fen_e4_e5__Kf2_Bh2()
+    public function get_fen_e4_e5__Rg7()
     {
-        $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 d6 8. a3 O-O 9. Nc3 Bb7 10. Bd2
-            (10. Re1 Na5 11. Ba2 c5  12. b4 Nc6 13. Nd5)
-            10... Qd7
-            (10... Nd4 11. Nxd4 exd4 12. Ne2 c5 13. Ng3)
-            11. a4 $1 Nd8 $5
-            (11... b4 12. Nd5 Nxd5 13. Bxd5 Rab8 14. a5)
-            (11... Na5 12. Ba2 c5 13. Nd5 Bxd5 14. exd5 b4)
-            12. axb5 axb5 13. Rxa8 Bxa8 14. Ne2
-            (14. Qa1)
-            14... Ne6 15. Ng3 c5 16. Nf5 Bd8
-            (16... c4 $1 17. dxc4 bxc4 18. Bxc4 Bxe4 19. Nxe7+ Qxe7 20. Ng5 Bf5 21. Nxe6 Bxe6)
-            17. c4 bxc4 18. Bxc4 Bc7 19. Re1 Re8
-            (19... Nf4 $5)
-            20. Qc1 $1 Nh5 $6
-            (20... Rb8)
-            (20... Bc6 21. h3 Bb5)
-            21. g3
-            (21. b4 $5)
-            21... g6 $2 22. Nh6+ Kg7 23. Ng5
-            (23. b4 $1 cxb4 24. Nxf7 $1 Bb6 25. N7g5)
-            23... Nxg5 24. Bxg5 d5 25. exd5 Bxd5 26. Ng4 Bf3 27. Bf6+ Kg8 28. Nh6+ Kf8 29. Qe3 Bb7 30. Bh4 Qh3 31. f3 Nf4 32. gxf4 Qxh4 33. Nxf7 Bxf3 34. Qf2 Qg4+ 35. Qg3 exf4 36. Rxe8+ Kxe8 37. Qxg4 Bxg4 38. Ng5 h6 39. Nf7 h5 40. Nh6 Bd1 41. Kf2 f3 42. h3 Bf4 43. Nf7 g5 44. Ke1 g4 45. hxg4 hxg4 46. Kxd1 g3 47. Ke1 g2 48. Kf2 Bh2 0-1";
+        $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 O-O 8. Nc3 d6 9. a3 Be6 10. Bg5
+            (10. Be3 d5
+                (10... Bxb3 11. cxb3 d5 12. exd5 Nxd5 13. Rc1 $14)
+            11. exd5 Nxd5 12. Nxd5 Bxd5 13. Rc1 Nd4 14. Bxd4 exd4 15. Bxd5 Qxd5 16. Re1 Bf6 17. Qe2 h6
+            )
+            10... Kh8 $5
+            (10... Bg4 $5 11. Be3)
+            (10... Rb8 11. h3 h6 12. Bd2 d5 13. exd5 Nxd5 14. Re1 Bf6 15. Bxd5 Bxd5 16. Nxd5 Qxd5 17. Qe2)
+            11. h3 Ng8 12. Be3 Qd7
+            (12... Bxb3 $5 13. cxb3 f5 14. Qc2 Qd7)
+            13. Bxe6
+            (13. Nd5 $142 Rac8
+                (13... f5 $140 14. Nxc7)
+                14. a4 f5 15. axb5 axb5 16. exf5 Rxf5 17. c4 $1 $14
+            )
+            13... fxe6 14. Ne2 Nf6 15. Ng3 a5 16. a4 b4 $11 17. c3 d5 18. Qc2 Bd6 19. Rac1
+            (19. c4 $5)
+            19... Rab8 20. Rfd1 Qe8 21. Qe2 h6 22. Re1 Kg8 23. c4 d4 24. Bxd4 Nxd4
+            25. Nxd4 Nd7 26. Nf3 Nc5 27. Ra1 Nb3 28. Ra2 Bc5 29. Rf1 Qg6 30. Kh2 Bd4
+            31. Qd1 Rxf3 32. Qxf3 Nd2 33. Qe2 Nxf1+ 34. Nxf1 b3 35. Ra3 Qf6 36. Kg1 Qg5
+            37. Ra1 Qe7 38. Nh2 Bc5 39. Nf3 Qd6 40. Qd2 Bb4 41. Qd1 Bc5 42. Qd2 Bb4
+            43. c5 Qxc5 44. Qd1 Rb6 45. Rc1 Qd6 46. Rc4 Ba3 47. bxa3 b2 48. Qb1 Rb3
+            49. Rc2 Qxd3 50. Nd2 Rb6 51. Kh2 Kh7 52. Rxb2 Qxd2 53. Rxd2 Rxb1 54. Rc2
+            Kg6 55. Rxc7 Rd1 56. Rc5 Rd4 57. Rxe5 Kf6 58. Rxa5 Rxe4 59. Ra8 Kf7 60. Kg3 Rc4
+            61. Kf3 Rc3+ 62. Ke4 Rxa3 63. a5 Ra2 64. a6 Rxf2 65. Rc8 Ra2 66. Rc7+ Kf6 67.
+            a7 Ra4+ 68. Kd3 e5 69. Kc3 e4 70. Kb3 Ra1 71. Kc4 e3 72. Kd3 Ra3+ 73. Ke2 h5
+            74. h4 g6 75. Kf3 Ke6 76. Rg7 Kf6 77. Rb7 Ke6 78. Rg7 1/2-1/2";
 
         $expected = [
             'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -',
@@ -1818,230 +1824,207 @@ class RavPlayTest extends AbstractUnitTestCase
             'r1bqk2r/1pppbppp/p1n2n2/4p3/B3P3/3P1N2/PPP2PPP/RNBQ1RK1 b kq -',
             'r1bqk2r/2ppbppp/p1n2n2/1p2p3/B3P3/3P1N2/PPP2PPP/RNBQ1RK1 w kq b6',
             'r1bqk2r/2ppbppp/p1n2n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQ1RK1 b kq -',
-            'r1bqk2r/2p1bppp/p1np1n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQ1RK1 w kq -',
-            'r1bqk2r/2p1bppp/p1np1n2/1p2p3/4P3/PB1P1N2/1PP2PPP/RNBQ1RK1 b kq -',
-            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PB1P1N2/1PP2PPP/RNBQ1RK1 w - -',
+            'r1bq1rk1/2ppbppp/p1n2n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQ1RK1 w - -',
+            'r1bq1rk1/2ppbppp/p1n2n2/1p2p3/4P3/1BNP1N2/PPP2PPP/R1BQ1RK1 b - -',
+            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/1BNP1N2/PPP2PPP/R1BQ1RK1 w - -',
             'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PP2PPP/R1BQ1RK1 b - -',
-            'r2q1rk1/1bp1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PP2PPP/R1BQ1RK1 w - -',
-            'r2q1rk1/1bp1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PPB1PPP/R2Q1RK1 b - -',
-            'r2q1rk1/1bp1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PP2PPP/R1BQR1K1 b - -',
-            'r2q1rk1/1bp1bppp/p2p1n2/np2p3/4P3/PBNP1N2/1PP2PPP/R1BQR1K1 w - -',
-            'r2q1rk1/1bp1bppp/p2p1n2/np2p3/4P3/P1NP1N2/BPP2PPP/R1BQR1K1 b - -',
-            'r2q1rk1/1b2bppp/p2p1n2/npp1p3/4P3/P1NP1N2/BPP2PPP/R1BQR1K1 w - c6',
-            'r2q1rk1/1b2bppp/p2p1n2/npp1p3/1P2P3/P1NP1N2/B1P2PPP/R1BQR1K1 b - b3',
-            'r2q1rk1/1b2bppp/p1np1n2/1pp1p3/1P2P3/P1NP1N2/B1P2PPP/R1BQR1K1 w - -',
-            'r2q1rk1/1b2bppp/p1np1n2/1ppNp3/1P2P3/P2P1N2/B1P2PPP/R1BQR1K1 b - -',
-            'r4rk1/1bpqbppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PPB1PPP/R2Q1RK1 w - -',
-            'r2q1rk1/1bp1bppp/p2p1n2/1p2p3/3nP3/PBNP1N2/1PPB1PPP/R2Q1RK1 w - -',
-            'r2q1rk1/1bp1bppp/p2p1n2/1p2p3/3NP3/PBNP4/1PPB1PPP/R2Q1RK1 b - -',
-            'r2q1rk1/1bp1bppp/p2p1n2/1p6/3pP3/PBNP4/1PPB1PPP/R2Q1RK1 w - -',
-            'r2q1rk1/1bp1bppp/p2p1n2/1p6/3pP3/PB1P4/1PPBNPPP/R2Q1RK1 b - -',
-            'r2q1rk1/1b2bppp/p2p1n2/1pp5/3pP3/PB1P4/1PPBNPPP/R2Q1RK1 w - c6',
-            'r2q1rk1/1b2bppp/p2p1n2/1pp5/3pP3/PB1P2N1/1PPB1PPP/R2Q1RK1 b - -',
-            'r4rk1/1bpqbppp/p1np1n2/1p2p3/P3P3/1BNP1N2/1PPB1PPP/R2Q1RK1 b - -',
-            'r2n1rk1/1bpqbppp/p2p1n2/1p2p3/P3P3/1BNP1N2/1PPB1PPP/R2Q1RK1 w - -',
-            'r4rk1/1bpqbppp/p1np1n2/4p3/Pp2P3/1BNP1N2/1PPB1PPP/R2Q1RK1 w - -',
-            'r4rk1/1bpqbppp/p1np1n2/3Np3/Pp2P3/1B1P1N2/1PPB1PPP/R2Q1RK1 b - -',
-            'r4rk1/1bpqbppp/p1np4/3np3/Pp2P3/1B1P1N2/1PPB1PPP/R2Q1RK1 w - -',
-            'r4rk1/1bpqbppp/p1np4/3Bp3/Pp2P3/3P1N2/1PPB1PPP/R2Q1RK1 b - -',
-            '1r3rk1/1bpqbppp/p1np4/3Bp3/Pp2P3/3P1N2/1PPB1PPP/R2Q1RK1 w - -',
-            '1r3rk1/1bpqbppp/p1np4/P2Bp3/1p2P3/3P1N2/1PPB1PPP/R2Q1RK1 b - -',
-            'r4rk1/1bpqbppp/p2p1n2/np2p3/P3P3/1BNP1N2/1PPB1PPP/R2Q1RK1 w - -',
-            'r4rk1/1bpqbppp/p2p1n2/np2p3/P3P3/2NP1N2/BPPB1PPP/R2Q1RK1 b - -',
-            'r4rk1/1b1qbppp/p2p1n2/npp1p3/P3P3/2NP1N2/BPPB1PPP/R2Q1RK1 w - c6',
-            'r4rk1/1b1qbppp/p2p1n2/nppNp3/P3P3/3P1N2/BPPB1PPP/R2Q1RK1 b - -',
-            'r4rk1/3qbppp/p2p1n2/nppbp3/P3P3/3P1N2/BPPB1PPP/R2Q1RK1 w - -',
-            'r4rk1/3qbppp/p2p1n2/nppPp3/P7/3P1N2/BPPB1PPP/R2Q1RK1 b - -',
-            'r4rk1/3qbppp/p2p1n2/n1pPp3/Pp6/3P1N2/BPPB1PPP/R2Q1RK1 w - -',
-            'r2n1rk1/1bpqbppp/p2p1n2/1P2p3/4P3/1BNP1N2/1PPB1PPP/R2Q1RK1 b - -',
-            'r2n1rk1/1bpqbppp/3p1n2/1p2p3/4P3/1BNP1N2/1PPB1PPP/R2Q1RK1 w - -',
-            'R2n1rk1/1bpqbppp/3p1n2/1p2p3/4P3/1BNP1N2/1PPB1PPP/3Q1RK1 b - -',
-            'b2n1rk1/2pqbppp/3p1n2/1p2p3/4P3/1BNP1N2/1PPB1PPP/3Q1RK1 w - -',
-            'b2n1rk1/2pqbppp/3p1n2/1p2p3/4P3/1B1P1N2/1PPBNPPP/3Q1RK1 b - -',
-            'b2n1rk1/2pqbppp/3p1n2/1p2p3/4P3/1BNP1N2/1PPB1PPP/Q4RK1 b - -',
-            'b4rk1/2pqbppp/3pnn2/1p2p3/4P3/1B1P1N2/1PPBNPPP/3Q1RK1 w - -',
-            'b4rk1/2pqbppp/3pnn2/1p2p3/4P3/1B1P1NN1/1PPB1PPP/3Q1RK1 b - -',
-            'b4rk1/3qbppp/3pnn2/1pp1p3/4P3/1B1P1NN1/1PPB1PPP/3Q1RK1 w - c6',
-            'b4rk1/3qbppp/3pnn2/1pp1pN2/4P3/1B1P1N2/1PPB1PPP/3Q1RK1 b - -',
-            'b2b1rk1/3q1ppp/3pnn2/1pp1pN2/4P3/1B1P1N2/1PPB1PPP/3Q1RK1 w - -',
-            'b4rk1/3qbppp/3pnn2/1p2pN2/2p1P3/1B1P1N2/1PPB1PPP/3Q1RK1 w - -',
-            'b4rk1/3qbppp/3pnn2/1p2pN2/2P1P3/1B3N2/1PPB1PPP/3Q1RK1 b - -',
-            'b4rk1/3qbppp/3pnn2/4pN2/2p1P3/1B3N2/1PPB1PPP/3Q1RK1 w - -',
-            'b4rk1/3qbppp/3pnn2/4pN2/2B1P3/5N2/1PPB1PPP/3Q1RK1 b - -',
-            '5rk1/3qbppp/3pnn2/4pN2/2B1b3/5N2/1PPB1PPP/3Q1RK1 w - -',
-            '5rk1/3qNppp/3pnn2/4p3/2B1b3/5N2/1PPB1PPP/3Q1RK1 b - -',
-            '5rk1/4qppp/3pnn2/4p3/2B1b3/5N2/1PPB1PPP/3Q1RK1 w - -',
-            '5rk1/4qppp/3pnn2/4p1N1/2B1b3/8/1PPB1PPP/3Q1RK1 b - -',
-            '5rk1/4qppp/3pnn2/4pbN1/2B5/8/1PPB1PPP/3Q1RK1 w - -',
-            '5rk1/4qppp/3pNn2/4pb2/2B5/8/1PPB1PPP/3Q1RK1 b - -',
-            '5rk1/4qppp/3pbn2/4p3/2B5/8/1PPB1PPP/3Q1RK1 w - -',
-            'b2b1rk1/3q1ppp/3pnn2/1pp1pN2/2P1P3/1B1P1N2/1P1B1PPP/3Q1RK1 b - c3',
-            'b2b1rk1/3q1ppp/3pnn2/2p1pN2/2p1P3/1B1P1N2/1P1B1PPP/3Q1RK1 w - -',
-            'b2b1rk1/3q1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/3Q1RK1 b - -',
-            'b4rk1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/3Q1RK1 w - -',
-            'b4rk1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/3QR1K1 b - -',
-            'b3r1k1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/3QR1K1 w - -',
-            'b4rk1/2bq1ppp/3p1n2/2p1pN2/2B1Pn2/3P1N2/1P1B1PPP/3QR1K1 w - -',
-            'b3r1k1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/2Q1R1K1 b - -',
-            'b3r1k1/2bq1ppp/3pn3/2p1pN1n/2B1P3/3P1N2/1P1B1PPP/2Q1R1K1 w - -',
-            'br4k1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/2Q1R1K1 w - -',
-            '4r1k1/2bq1ppp/2bpnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/2Q1R1K1 w - -',
-            '4r1k1/2bq1ppp/2bpnn2/2p1pN2/2B1P3/3P1N1P/1P1B1PP1/2Q1R1K1 b - -',
-            '4r1k1/2bq1ppp/3pnn2/1bp1pN2/2B1P3/3P1N1P/1P1B1PP1/2Q1R1K1 w - -',
-            'b3r1k1/2bq1ppp/3pn3/2p1pN1n/2B1P3/3P1NP1/1P1B1P1P/2Q1R1K1 b - -',
-            'b3r1k1/2bq1ppp/3pn3/2p1pN1n/1PB1P3/3P1N2/3B1PPP/2Q1R1K1 b - b3',
-            'b3r1k1/2bq1p1p/3pn1p1/2p1pN1n/2B1P3/3P1NP1/1P1B1P1P/2Q1R1K1 w - -',
-            'b3r1k1/2bq1p1p/3pn1pN/2p1p2n/2B1P3/3P1NP1/1P1B1P1P/2Q1R1K1 b - -',
-            'b3r3/2bq1pkp/3pn1pN/2p1p2n/2B1P3/3P1NP1/1P1B1P1P/2Q1R1K1 w - -',
-            'b3r3/2bq1pkp/3pn1pN/2p1p1Nn/2B1P3/3P2P1/1P1B1P1P/2Q1R1K1 b - -',
-            'b3r3/2bq1pkp/3pn1pN/2p1p2n/1PB1P3/3P1NP1/3B1P1P/2Q1R1K1 b - b3',
-            'b3r3/2bq1pkp/3pn1pN/4p2n/1pB1P3/3P1NP1/3B1P1P/2Q1R1K1 w - -',
-            'b3r3/2bq1Nkp/3pn1p1/4p2n/1pB1P3/3P1NP1/3B1P1P/2Q1R1K1 b - -',
-            'b3r3/3q1Nkp/1b1pn1p1/4p2n/1pB1P3/3P1NP1/3B1P1P/2Q1R1K1 w - -',
-            'b3r3/3q2kp/1b1pn1p1/4p1Nn/1pB1P3/3P1NP1/3B1P1P/2Q1R1K1 b - -',
-            'b3r3/2bq1pkp/3p2pN/2p1p1nn/2B1P3/3P2P1/1P1B1P1P/2Q1R1K1 w - -',
-            'b3r3/2bq1pkp/3p2pN/2p1p1Bn/2B1P3/3P2P1/1P3P1P/2Q1R1K1 b - -',
-            'b3r3/2bq1pkp/6pN/2ppp1Bn/2B1P3/3P2P1/1P3P1P/2Q1R1K1 w - -',
-            'b3r3/2bq1pkp/6pN/2pPp1Bn/2B5/3P2P1/1P3P1P/2Q1R1K1 b - -',
-            '4r3/2bq1pkp/6pN/2pbp1Bn/2B5/3P2P1/1P3P1P/2Q1R1K1 w - -',
-            '4r3/2bq1pkp/6p1/2pbp1Bn/2B3N1/3P2P1/1P3P1P/2Q1R1K1 b - -',
-            '4r3/2bq1pkp/6p1/2p1p1Bn/2B3N1/3P1bP1/1P3P1P/2Q1R1K1 w - -',
-            '4r3/2bq1pkp/5Bp1/2p1p2n/2B3N1/3P1bP1/1P3P1P/2Q1R1K1 b - -',
-            '4r1k1/2bq1p1p/5Bp1/2p1p2n/2B3N1/3P1bP1/1P3P1P/2Q1R1K1 w - -',
-            '4r1k1/2bq1p1p/5BpN/2p1p2n/2B5/3P1bP1/1P3P1P/2Q1R1K1 b - -',
-            '4rk2/2bq1p1p/5BpN/2p1p2n/2B5/3P1bP1/1P3P1P/2Q1R1K1 w - -',
-            '4rk2/2bq1p1p/5BpN/2p1p2n/2B5/3PQbP1/1P3P1P/4R1K1 b - -',
-            '4rk2/1bbq1p1p/5BpN/2p1p2n/2B5/3PQ1P1/1P3P1P/4R1K1 w - -',
-            '4rk2/1bbq1p1p/6pN/2p1p2n/2B4B/3PQ1P1/1P3P1P/4R1K1 b - -',
-            '4rk2/1bb2p1p/6pN/2p1p2n/2B4B/3PQ1Pq/1P3P1P/4R1K1 w - -',
-            '4rk2/1bb2p1p/6pN/2p1p2n/2B4B/3PQPPq/1P5P/4R1K1 b - -',
-            '4rk2/1bb2p1p/6pN/2p1p3/2B2n1B/3PQPPq/1P5P/4R1K1 w - -',
-            '4rk2/1bb2p1p/6pN/2p1p3/2B2P1B/3PQP1q/1P5P/4R1K1 b - -',
-            '4rk2/1bb2p1p/6pN/2p1p3/2B2P1q/3PQP2/1P5P/4R1K1 w - -',
-            '4rk2/1bb2N1p/6p1/2p1p3/2B2P1q/3PQP2/1P5P/4R1K1 b - -',
-            '4rk2/2b2N1p/6p1/2p1p3/2B2P1q/3PQb2/1P5P/4R1K1 w - -',
-            '4rk2/2b2N1p/6p1/2p1p3/2B2P1q/3P1b2/1P3Q1P/4R1K1 b - -',
-            '4rk2/2b2N1p/6p1/2p1p3/2B2Pq1/3P1b2/1P3Q1P/4R1K1 w - -',
-            '4rk2/2b2N1p/6p1/2p1p3/2B2Pq1/3P1bQ1/1P5P/4R1K1 b - -',
-            '4rk2/2b2N1p/6p1/2p5/2B2pq1/3P1bQ1/1P5P/4R1K1 w - -',
-            '4Rk2/2b2N1p/6p1/2p5/2B2pq1/3P1bQ1/1P5P/6K1 b - -',
-            '4k3/2b2N1p/6p1/2p5/2B2pq1/3P1bQ1/1P5P/6K1 w - -',
-            '4k3/2b2N1p/6p1/2p5/2B2pQ1/3P1b2/1P5P/6K1 b - -',
-            '4k3/2b2N1p/6p1/2p5/2B2pb1/3P4/1P5P/6K1 w - -',
-            '4k3/2b4p/6p1/2p3N1/2B2pb1/3P4/1P5P/6K1 b - -',
-            '4k3/2b5/6pp/2p3N1/2B2pb1/3P4/1P5P/6K1 w - -',
-            '4k3/2b2N2/6pp/2p5/2B2pb1/3P4/1P5P/6K1 b - -',
-            '4k3/2b2N2/6p1/2p4p/2B2pb1/3P4/1P5P/6K1 w - -',
-            '4k3/2b5/6pN/2p4p/2B2pb1/3P4/1P5P/6K1 b - -',
-            '4k3/2b5/6pN/2p4p/2B2p2/3P4/1P5P/3b2K1 w - -',
-            '4k3/2b5/6pN/2p4p/2B2p2/3P4/1P3K1P/3b4 b - -',
-            '4k3/2b5/6pN/2p4p/2B5/3P1p2/1P3K1P/3b4 w - -',
-            '4k3/2b5/6pN/2p4p/2B5/3P1p1P/1P3K2/3b4 b - -',
-            '4k3/8/6pN/2p4p/2B2b2/3P1p1P/1P3K2/3b4 w - -',
-            '4k3/5N2/6p1/2p4p/2B2b2/3P1p1P/1P3K2/3b4 b - -',
-            '4k3/5N2/8/2p3pp/2B2b2/3P1p1P/1P3K2/3b4 w - -',
-            '4k3/5N2/8/2p3pp/2B2b2/3P1p1P/1P6/3bK3 b - -',
-            '4k3/5N2/8/2p4p/2B2bp1/3P1p1P/1P6/3bK3 w - -',
-            '4k3/5N2/8/2p4p/2B2bP1/3P1p2/1P6/3bK3 b - -',
-            '4k3/5N2/8/2p5/2B2bp1/3P1p2/1P6/3bK3 w - -',
-            '4k3/5N2/8/2p5/2B2bp1/3P1p2/1P6/3K4 b - -',
-            '4k3/5N2/8/2p5/2B2b2/3P1pp1/1P6/3K4 w - -',
-            '4k3/5N2/8/2p5/2B2b2/3P1pp1/1P6/4K3 b - -',
-            '4k3/5N2/8/2p5/2B2b2/3P1p2/1P4p1/4K3 w - -',
-            '4k3/5N2/8/2p5/2B2b2/3P1p2/1P3Kp1/8 b - -',
-            '4k3/5N2/8/2p5/2B5/3P1p2/1P3Kpb/8 w - -',
+            'r2q1rk1/2p1bppp/p1npbn2/1p2p3/4P3/PBNP1N2/1PP2PPP/R1BQ1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1npbn2/1p2p1B1/4P3/PBNP1N2/1PP2PPP/R2Q1RK1 b - -',
+            'r2q1rk1/2p1bppp/p1npbn2/1p2p3/4P3/PBNPBN2/1PP2PPP/R2Q1RK1 b - -',
+            'r2q1rk1/2p1bppp/p1n1bn2/1p1pp3/4P3/PBNPBN2/1PP2PPP/R2Q1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PbNPBN2/1PP2PPP/R2Q1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PPNPBN2/1P3PPP/R2Q1RK1 b - -',
+            'r2q1rk1/2p1bppp/p1n2n2/1p1pp3/4P3/PPNPBN2/1P3PPP/R2Q1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1n2n2/1p1Pp3/8/PPNPBN2/1P3PPP/R2Q1RK1 b - -',
+            'r2q1rk1/2p1bppp/p1n5/1p1np3/8/PPNPBN2/1P3PPP/R2Q1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1n5/1p1np3/8/PPNPBN2/1P3PPP/2RQ1RK1 b - -',
+            'r2q1rk1/2p1bppp/p1n1bn2/1p1Pp3/8/PBNPBN2/1PP2PPP/R2Q1RK1 b - -',
+            'r2q1rk1/2p1bppp/p1n1b3/1p1np3/8/PBNPBN2/1PP2PPP/R2Q1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1n1b3/1p1Np3/8/PB1PBN2/1PP2PPP/R2Q1RK1 b - -',
+            'r2q1rk1/2p1bppp/p1n5/1p1bp3/8/PB1PBN2/1PP2PPP/R2Q1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1n5/1p1bp3/8/PB1PBN2/1PP2PPP/2RQ1RK1 b - -',
+            'r2q1rk1/2p1bppp/p7/1p1bp3/3n4/PB1PBN2/1PP2PPP/2RQ1RK1 w - -',
+            'r2q1rk1/2p1bppp/p7/1p1bp3/3B4/PB1P1N2/1PP2PPP/2RQ1RK1 b - -',
+            'r2q1rk1/2p1bppp/p7/1p1b4/3p4/PB1P1N2/1PP2PPP/2RQ1RK1 w - -',
+            'r2q1rk1/2p1bppp/p7/1p1B4/3p4/P2P1N2/1PP2PPP/2RQ1RK1 b - -',
+            'r4rk1/2p1bppp/p7/1p1q4/3p4/P2P1N2/1PP2PPP/2RQ1RK1 w - -',
+            'r4rk1/2p1bppp/p7/1p1q4/3p4/P2P1N2/1PP2PPP/2RQR1K1 b - -',
+            'r4rk1/2p2ppp/p4b2/1p1q4/3p4/P2P1N2/1PP2PPP/2RQR1K1 w - -',
+            'r4rk1/2p2ppp/p4b2/1p1q4/3p4/P2P1N2/1PP1QPPP/2R1R1K1 b - -',
+            'r4rk1/2p2pp1/p4b1p/1p1q4/3p4/P2P1N2/1PP1QPPP/2R1R1K1 w - -',
+            'r2q1r1k/2p1bppp/p1npbn2/1p2p1B1/4P3/PBNP1N2/1PP2PPP/R2Q1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1np1n2/1p2p1B1/4P1b1/PBNP1N2/1PP2PPP/R2Q1RK1 w - -',
+            'r2q1rk1/2p1bppp/p1np1n2/1p2p3/4P1b1/PBNPBN2/1PP2PPP/R2Q1RK1 b - -',
+            '1r1q1rk1/2p1bppp/p1npbn2/1p2p1B1/4P3/PBNP1N2/1PP2PPP/R2Q1RK1 w - -',
+            '1r1q1rk1/2p1bppp/p1npbn2/1p2p1B1/4P3/PBNP1N1P/1PP2PP1/R2Q1RK1 b - -',
+            '1r1q1rk1/2p1bpp1/p1npbn1p/1p2p1B1/4P3/PBNP1N1P/1PP2PP1/R2Q1RK1 w - -',
+            '1r1q1rk1/2p1bpp1/p1npbn1p/1p2p3/4P3/PBNP1N1P/1PPB1PP1/R2Q1RK1 b - -',
+            '1r1q1rk1/2p1bpp1/p1n1bn1p/1p1pp3/4P3/PBNP1N1P/1PPB1PP1/R2Q1RK1 w - -',
+            '1r1q1rk1/2p1bpp1/p1n1bn1p/1p1Pp3/8/PBNP1N1P/1PPB1PP1/R2Q1RK1 b - -',
+            '1r1q1rk1/2p1bpp1/p1n1b2p/1p1np3/8/PBNP1N1P/1PPB1PP1/R2Q1RK1 w - -',
+            '1r1q1rk1/2p1bpp1/p1n1b2p/1p1np3/8/PBNP1N1P/1PPB1PP1/R2QR1K1 b - -',
+            '1r1q1rk1/2p2pp1/p1n1bb1p/1p1np3/8/PBNP1N1P/1PPB1PP1/R2QR1K1 w - -',
+            '1r1q1rk1/2p2pp1/p1n1bb1p/1p1Bp3/8/P1NP1N1P/1PPB1PP1/R2QR1K1 b - -',
+            '1r1q1rk1/2p2pp1/p1n2b1p/1p1bp3/8/P1NP1N1P/1PPB1PP1/R2QR1K1 w - -',
+            '1r1q1rk1/2p2pp1/p1n2b1p/1p1Np3/8/P2P1N1P/1PPB1PP1/R2QR1K1 b - -',
+            '1r3rk1/2p2pp1/p1n2b1p/1p1qp3/8/P2P1N1P/1PPB1PP1/R2QR1K1 w - -',
+            '1r3rk1/2p2pp1/p1n2b1p/1p1qp3/8/P2P1N1P/1PPBQPP1/R3R1K1 b - -',
+            'r2q1r1k/2p1bppp/p1npbn2/1p2p1B1/4P3/PBNP1N1P/1PP2PP1/R2Q1RK1 b - -',
+            'r2q1rnk/2p1bppp/p1npb3/1p2p1B1/4P3/PBNP1N1P/1PP2PP1/R2Q1RK1 w - -',
+            'r2q1rnk/2p1bppp/p1npb3/1p2p3/4P3/PBNPBN1P/1PP2PP1/R2Q1RK1 b - -',
+            'r4rnk/2pqbppp/p1npb3/1p2p3/4P3/PBNPBN1P/1PP2PP1/R2Q1RK1 w - -',
+            'r2q1rnk/2p1bppp/p1np4/1p2p3/4P3/PbNPBN1P/1PP2PP1/R2Q1RK1 w - -',
+            'r2q1rnk/2p1bppp/p1np4/1p2p3/4P3/PPNPBN1P/1P3PP1/R2Q1RK1 b - -',
+            'r2q1rnk/2p1b1pp/p1np4/1p2pp2/4P3/PPNPBN1P/1P3PP1/R2Q1RK1 w - f6',
+            'r2q1rnk/2p1b1pp/p1np4/1p2pp2/4P3/PPNPBN1P/1PQ2PP1/R4RK1 b - -',
+            'r4rnk/2pqb1pp/p1np4/1p2pp2/4P3/PPNPBN1P/1PQ2PP1/R4RK1 w - -',
+            'r4rnk/2pqbppp/p1npB3/1p2p3/4P3/P1NPBN1P/1PP2PP1/R2Q1RK1 b - -',
+            'r4rnk/2pqbppp/p1npb3/1p1Np3/4P3/PB1PBN1P/1PP2PP1/R2Q1RK1 b - -',
+            '2r2rnk/2pqbppp/p1npb3/1p1Np3/4P3/PB1PBN1P/1PP2PP1/R2Q1RK1 w - -',
+            'r4rnk/2pqb1pp/p1npb3/1p1Npp2/4P3/PB1PBN1P/1PP2PP1/R2Q1RK1 w - f6',
+            'r4rnk/2Nqb1pp/p1npb3/1p2pp2/4P3/PB1PBN1P/1PP2PP1/R2Q1RK1 b - -',
+            '2r2rnk/2pqbppp/p1npb3/1p1Np3/P3P3/1B1PBN1P/1PP2PP1/R2Q1RK1 b - -',
+            '2r2rnk/2pqb1pp/p1npb3/1p1Npp2/P3P3/1B1PBN1P/1PP2PP1/R2Q1RK1 w - f6',
+            '2r2rnk/2pqb1pp/p1npb3/1P1Npp2/4P3/1B1PBN1P/1PP2PP1/R2Q1RK1 b - -',
+            '2r2rnk/2pqb1pp/2npb3/1p1Npp2/4P3/1B1PBN1P/1PP2PP1/R2Q1RK1 w - -',
+            '2r2rnk/2pqb1pp/2npb3/1p1NpP2/8/1B1PBN1P/1PP2PP1/R2Q1RK1 b - -',
+            '2r3nk/2pqb1pp/2npb3/1p1Npr2/8/1B1PBN1P/1PP2PP1/R2Q1RK1 w - -',
+            '2r3nk/2pqb1pp/2npb3/1p1Npr2/2P5/1B1PBN1P/1P3PP1/R2Q1RK1 b - c3',
+            'r4rnk/2pqb1pp/p1npp3/1p2p3/4P3/P1NPBN1P/1PP2PP1/R2Q1RK1 w - -',
+            'r4rnk/2pqb1pp/p1npp3/1p2p3/4P3/P2PBN1P/1PP1NPP1/R2Q1RK1 b - -',
+            'r4r1k/2pqb1pp/p1nppn2/1p2p3/4P3/P2PBN1P/1PP1NPP1/R2Q1RK1 w - -',
+            'r4r1k/2pqb1pp/p1nppn2/1p2p3/4P3/P2PBNNP/1PP2PP1/R2Q1RK1 b - -',
+            'r4r1k/2pqb1pp/2nppn2/pp2p3/4P3/P2PBNNP/1PP2PP1/R2Q1RK1 w - -',
+            'r4r1k/2pqb1pp/2nppn2/pp2p3/P3P3/3PBNNP/1PP2PP1/R2Q1RK1 b - -',
+            'r4r1k/2pqb1pp/2nppn2/p3p3/Pp2P3/3PBNNP/1PP2PP1/R2Q1RK1 w - -',
+            'r4r1k/2pqb1pp/2nppn2/p3p3/Pp2P3/2PPBNNP/1P3PP1/R2Q1RK1 b - -',
+            'r4r1k/2pqb1pp/2n1pn2/p2pp3/Pp2P3/2PPBNNP/1P3PP1/R2Q1RK1 w - -',
+            'r4r1k/2pqb1pp/2n1pn2/p2pp3/Pp2P3/2PPBNNP/1PQ2PP1/R4RK1 b - -',
+            'r4r1k/2pq2pp/2nbpn2/p2pp3/Pp2P3/2PPBNNP/1PQ2PP1/R4RK1 w - -',
+            'r4r1k/2pq2pp/2nbpn2/p2pp3/Pp2P3/2PPBNNP/1PQ2PP1/2R2RK1 b - -',
+            'r4r1k/2pq2pp/2nbpn2/p2pp3/PpP1P3/3PBNNP/1PQ2PP1/R4RK1 b - -',
+            '1r3r1k/2pq2pp/2nbpn2/p2pp3/Pp2P3/2PPBNNP/1PQ2PP1/2R2RK1 w - -',
+            '1r3r1k/2pq2pp/2nbpn2/p2pp3/Pp2P3/2PPBNNP/1PQ2PP1/2RR2K1 b - -',
+            '1r2qr1k/2p3pp/2nbpn2/p2pp3/Pp2P3/2PPBNNP/1PQ2PP1/2RR2K1 w - -',
+            '1r2qr1k/2p3pp/2nbpn2/p2pp3/Pp2P3/2PPBNNP/1P2QPP1/2RR2K1 b - -',
+            '1r2qr1k/2p3p1/2nbpn1p/p2pp3/Pp2P3/2PPBNNP/1P2QPP1/2RR2K1 w - -',
+            '1r2qr1k/2p3p1/2nbpn1p/p2pp3/Pp2P3/2PPBNNP/1P2QPP1/2R1R1K1 b - -',
+            '1r2qrk1/2p3p1/2nbpn1p/p2pp3/Pp2P3/2PPBNNP/1P2QPP1/2R1R1K1 w - -',
+            '1r2qrk1/2p3p1/2nbpn1p/p2pp3/PpP1P3/3PBNNP/1P2QPP1/2R1R1K1 b - -',
+            '1r2qrk1/2p3p1/2nbpn1p/p3p3/PpPpP3/3PBNNP/1P2QPP1/2R1R1K1 w - -',
+            '1r2qrk1/2p3p1/2nbpn1p/p3p3/PpPBP3/3P1NNP/1P2QPP1/2R1R1K1 b - -',
+            '1r2qrk1/2p3p1/3bpn1p/p3p3/PpPnP3/3P1NNP/1P2QPP1/2R1R1K1 w - -',
+            '1r2qrk1/2p3p1/3bpn1p/p3p3/PpPNP3/3P2NP/1P2QPP1/2R1R1K1 b - -',
+            '1r2qrk1/2pn2p1/3bp2p/p3p3/PpPNP3/3P2NP/1P2QPP1/2R1R1K1 w - -',
+            '1r2qrk1/2pn2p1/3bp2p/p3p3/PpP1P3/3P1NNP/1P2QPP1/2R1R1K1 b - -',
+            '1r2qrk1/2p3p1/3bp2p/p1n1p3/PpP1P3/3P1NNP/1P2QPP1/2R1R1K1 w - -',
+            '1r2qrk1/2p3p1/3bp2p/p1n1p3/PpP1P3/3P1NNP/1P2QPP1/R3R1K1 b - -',
+            '1r2qrk1/2p3p1/3bp2p/p3p3/PpP1P3/1n1P1NNP/1P2QPP1/R3R1K1 w - -',
+            '1r2qrk1/2p3p1/3bp2p/p3p3/PpP1P3/1n1P1NNP/RP2QPP1/4R1K1 b - -',
+            '1r2qrk1/2p3p1/4p2p/p1b1p3/PpP1P3/1n1P1NNP/RP2QPP1/4R1K1 w - -',
+            '1r2qrk1/2p3p1/4p2p/p1b1p3/PpP1P3/1n1P1NNP/RP2QPP1/5RK1 b - -',
+            '1r3rk1/2p3p1/4p1qp/p1b1p3/PpP1P3/1n1P1NNP/RP2QPP1/5RK1 w - -',
+            '1r3rk1/2p3p1/4p1qp/p1b1p3/PpP1P3/1n1P1NNP/RP2QPPK/5R2 b - -',
+            '1r3rk1/2p3p1/4p1qp/p3p3/PpPbP3/1n1P1NNP/RP2QPPK/5R2 w - -',
+            '1r3rk1/2p3p1/4p1qp/p3p3/PpPbP3/1n1P1NNP/RP3PPK/3Q1R2 b - -',
+            '1r4k1/2p3p1/4p1qp/p3p3/PpPbP3/1n1P1rNP/RP3PPK/3Q1R2 w - -',
+            '1r4k1/2p3p1/4p1qp/p3p3/PpPbP3/1n1P1QNP/RP3PPK/5R2 b - -',
+            '1r4k1/2p3p1/4p1qp/p3p3/PpPbP3/3P1QNP/RP1n1PPK/5R2 w - -',
+            '1r4k1/2p3p1/4p1qp/p3p3/PpPbP3/3P2NP/RP1nQPPK/5R2 b - -',
+            '1r4k1/2p3p1/4p1qp/p3p3/PpPbP3/3P2NP/RP2QPPK/5n2 w - -',
+            '1r4k1/2p3p1/4p1qp/p3p3/PpPbP3/3P3P/RP2QPPK/5N2 b - -',
+            '1r4k1/2p3p1/4p1qp/p3p3/P1PbP3/1p1P3P/RP2QPPK/5N2 w - -',
+            '1r4k1/2p3p1/4p1qp/p3p3/P1PbP3/Rp1P3P/1P2QPPK/5N2 b - -',
+            '1r4k1/2p3p1/4pq1p/p3p3/P1PbP3/Rp1P3P/1P2QPPK/5N2 w - -',
+            '1r4k1/2p3p1/4pq1p/p3p3/P1PbP3/Rp1P3P/1P2QPP1/5NK1 b - -',
+            '1r4k1/2p3p1/4p2p/p3p1q1/P1PbP3/Rp1P3P/1P2QPP1/5NK1 w - -',
+            '1r4k1/2p3p1/4p2p/p3p1q1/P1PbP3/1p1P3P/1P2QPP1/R4NK1 b - -',
+            '1r4k1/2p1q1p1/4p2p/p3p3/P1PbP3/1p1P3P/1P2QPP1/R4NK1 w - -',
+            '1r4k1/2p1q1p1/4p2p/p3p3/P1PbP3/1p1P3P/1P2QPPN/R5K1 b - -',
+            '1r4k1/2p1q1p1/4p2p/p1b1p3/P1P1P3/1p1P3P/1P2QPPN/R5K1 w - -',
+            '1r4k1/2p1q1p1/4p2p/p1b1p3/P1P1P3/1p1P1N1P/1P2QPP1/R5K1 b - -',
+            '1r4k1/2p3p1/3qp2p/p1b1p3/P1P1P3/1p1P1N1P/1P2QPP1/R5K1 w - -',
+            '1r4k1/2p3p1/3qp2p/p1b1p3/P1P1P3/1p1P1N1P/1P1Q1PP1/R5K1 b - -',
+            '1r4k1/2p3p1/3qp2p/p3p3/PbP1P3/1p1P1N1P/1P1Q1PP1/R5K1 w - -',
+            '1r4k1/2p3p1/3qp2p/p3p3/PbP1P3/1p1P1N1P/1P3PP1/R2Q2K1 b - -',
+            '1r4k1/2p3p1/3qp2p/p1b1p3/P1P1P3/1p1P1N1P/1P3PP1/R2Q2K1 w - -',
+            '1r4k1/2p3p1/3qp2p/p1b1p3/P1P1P3/1p1P1N1P/1P1Q1PP1/R5K1 b - -',
+            '1r4k1/2p3p1/3qp2p/p3p3/PbP1P3/1p1P1N1P/1P1Q1PP1/R5K1 w - -',
+            '1r4k1/2p3p1/3qp2p/p1P1p3/Pb2P3/1p1P1N1P/1P1Q1PP1/R5K1 b - -',
+            '1r4k1/2p3p1/4p2p/p1q1p3/Pb2P3/1p1P1N1P/1P1Q1PP1/R5K1 w - -',
+            '1r4k1/2p3p1/4p2p/p1q1p3/Pb2P3/1p1P1N1P/1P3PP1/R2Q2K1 b - -',
+            '6k1/2p3p1/1r2p2p/p1q1p3/Pb2P3/1p1P1N1P/1P3PP1/R2Q2K1 w - -',
+            '6k1/2p3p1/1r2p2p/p1q1p3/Pb2P3/1p1P1N1P/1P3PP1/2RQ2K1 b - -',
+            '6k1/2p3p1/1r1qp2p/p3p3/Pb2P3/1p1P1N1P/1P3PP1/2RQ2K1 w - -',
+            '6k1/2p3p1/1r1qp2p/p3p3/PbR1P3/1p1P1N1P/1P3PP1/3Q2K1 b - -',
+            '6k1/2p3p1/1r1qp2p/p3p3/P1R1P3/bp1P1N1P/1P3PP1/3Q2K1 w - -',
+            '6k1/2p3p1/1r1qp2p/p3p3/P1R1P3/Pp1P1N1P/5PP1/3Q2K1 b - -',
+            '6k1/2p3p1/1r1qp2p/p3p3/P1R1P3/P2P1N1P/1p3PP1/3Q2K1 w - -',
+            '6k1/2p3p1/1r1qp2p/p3p3/P1R1P3/P2P1N1P/1p3PP1/1Q4K1 b - -',
+            '6k1/2p3p1/3qp2p/p3p3/P1R1P3/Pr1P1N1P/1p3PP1/1Q4K1 w - -',
+            '6k1/2p3p1/3qp2p/p3p3/P3P3/Pr1P1N1P/1pR2PP1/1Q4K1 b - -',
+            '6k1/2p3p1/4p2p/p3p3/P3P3/Pr1q1N1P/1pR2PP1/1Q4K1 w - -',
+            '6k1/2p3p1/4p2p/p3p3/P3P3/Pr1q3P/1pRN1PP1/1Q4K1 b - -',
+            '6k1/2p3p1/1r2p2p/p3p3/P3P3/P2q3P/1pRN1PP1/1Q4K1 w - -',
+            '6k1/2p3p1/1r2p2p/p3p3/P3P3/P2q3P/1pRN1PPK/1Q6 b - -',
+            '8/2p3pk/1r2p2p/p3p3/P3P3/P2q3P/1pRN1PPK/1Q6 w - -',
+            '8/2p3pk/1r2p2p/p3p3/P3P3/P2q3P/1R1N1PPK/1Q6 b - -',
+            '8/2p3pk/1r2p2p/p3p3/P3P3/P6P/1R1q1PPK/1Q6 w - -',
+            '8/2p3pk/1r2p2p/p3p3/P3P3/P6P/3R1PPK/1Q6 b - -',
+            '8/2p3pk/4p2p/p3p3/P3P3/P6P/3R1PPK/1r6 w - -',
+            '8/2p3pk/4p2p/p3p3/P3P3/P6P/2R2PPK/1r6 b - -',
+            '8/2p3p1/4p1kp/p3p3/P3P3/P6P/2R2PPK/1r6 w - -',
+            '8/2R3p1/4p1kp/p3p3/P3P3/P6P/5PPK/1r6 b - -',
+            '8/2R3p1/4p1kp/p3p3/P3P3/P6P/5PPK/3r4 w - -',
+            '8/6p1/4p1kp/p1R1p3/P3P3/P6P/5PPK/3r4 b - -',
+            '8/6p1/4p1kp/p1R1p3/P2rP3/P6P/5PPK/8 w - -',
+            '8/6p1/4p1kp/p3R3/P2rP3/P6P/5PPK/8 b - -',
+            '8/6p1/4pk1p/p3R3/P2rP3/P6P/5PPK/8 w - -',
+            '8/6p1/4pk1p/R7/P2rP3/P6P/5PPK/8 b - -',
+            '8/6p1/4pk1p/R7/P3r3/P6P/5PPK/8 w - -',
+            'R7/6p1/4pk1p/8/P3r3/P6P/5PPK/8 b - -',
+            'R7/5kp1/4p2p/8/P3r3/P6P/5PPK/8 w - -',
+            'R7/5kp1/4p2p/8/P3r3/P5KP/5PP1/8 b - -',
+            'R7/5kp1/4p2p/8/P1r5/P5KP/5PP1/8 w - -',
+            'R7/5kp1/4p2p/8/P1r5/P4K1P/5PP1/8 b - -',
+            'R7/5kp1/4p2p/8/P7/P1r2K1P/5PP1/8 w - -',
+            'R7/5kp1/4p2p/8/P3K3/P1r4P/5PP1/8 b - -',
+            'R7/5kp1/4p2p/8/P3K3/r6P/5PP1/8 w - -',
+            'R7/5kp1/4p2p/P7/4K3/r6P/5PP1/8 b - -',
+            'R7/5kp1/4p2p/P7/4K3/7P/r4PP1/8 w - -',
+            'R7/5kp1/P3p2p/8/4K3/7P/r4PP1/8 b - -',
+            'R7/5kp1/P3p2p/8/4K3/7P/5rP1/8 w - -',
+            '2R5/5kp1/P3p2p/8/4K3/7P/5rP1/8 b - -',
+            '2R5/5kp1/P3p2p/8/4K3/7P/r5P1/8 w - -',
+            '8/2R2kp1/P3p2p/8/4K3/7P/r5P1/8 b - -',
+            '8/2R3p1/P3pk1p/8/4K3/7P/r5P1/8 w - -',
+            '8/P1R3p1/4pk1p/8/4K3/7P/r5P1/8 b - -',
+            '8/P1R3p1/4pk1p/8/r3K3/7P/6P1/8 w - -',
+            '8/P1R3p1/4pk1p/8/r7/3K3P/6P1/8 b - -',
+            '8/P1R3p1/5k1p/4p3/r7/3K3P/6P1/8 w - -',
+            '8/P1R3p1/5k1p/4p3/r7/2K4P/6P1/8 b - -',
+            '8/P1R3p1/5k1p/8/r3p3/2K4P/6P1/8 w - -',
+            '8/P1R3p1/5k1p/8/r3p3/1K5P/6P1/8 b - -',
+            '8/P1R3p1/5k1p/8/4p3/1K5P/6P1/r7 w - -',
+            '8/P1R3p1/5k1p/8/2K1p3/7P/6P1/r7 b - -',
+            '8/P1R3p1/5k1p/8/2K5/4p2P/6P1/r7 w - -',
+            '8/P1R3p1/5k1p/8/8/3Kp2P/6P1/r7 b - -',
+            '8/P1R3p1/5k1p/8/8/r2Kp2P/6P1/8 w - -',
+            '8/P1R3p1/5k1p/8/8/r3p2P/4K1P1/8 b - -',
+            '8/P1R3p1/5k2/7p/8/r3p2P/4K1P1/8 w - -',
+            '8/P1R3p1/5k2/7p/7P/r3p3/4K1P1/8 b - -',
+            '8/P1R5/5kp1/7p/7P/r3p3/4K1P1/8 w - -',
+            '8/P1R5/5kp1/7p/7P/r3pK2/6P1/8 b - -',
+            '8/P1R5/4k1p1/7p/7P/r3pK2/6P1/8 w - -',
+            '8/P5R1/4k1p1/7p/7P/r3pK2/6P1/8 b - -',
+            '8/P5R1/5kp1/7p/7P/r3pK2/6P1/8 w - -',
+            '8/PR6/5kp1/7p/7P/r3pK2/6P1/8 b - -',
+            '8/PR6/4k1p1/7p/7P/r3pK2/6P1/8 w - -',
+            '8/P5R1/4k1p1/7p/7P/r3pK2/6P1/8 b - -',
         ];
 
         $ravPlay = (new RavPlay($movetext))->validate();
 
         $this->assertSame($expected, $ravPlay->getFen());
-    }
-
-    /**
-     * @test
-     */
-    public function breakdown_e4_e5__Kf2_Bh2()
-    {
-        $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 d6 8. a3 O-O 9. Nc3 Bb7 10. Bd2
-            (10. Re1 Na5 11. Ba2 c5  12. b4 Nc6 13. Nd5)
-            10... Qd7
-            (10... Nd4 11. Nxd4 exd4 12. Ne2 c5 13. Ng3)
-            11. a4 $1 Nd8 $5
-            (11... b4 12. Nd5 Nxd5 13. Bxd5 Rab8 14. a5)
-            (11... Na5 12. Ba2 c5 13. Nd5 Bxd5 14. exd5 b4)
-            12. axb5 axb5 13. Rxa8 Bxa8 14. Ne2
-            (14. Qa1)
-            14... Ne6 15. Ng3 c5 16. Nf5 Bd8
-            (16... c4 $1 17. dxc4 bxc4 18. Bxc4 Bxe4 19. Nxe7+ Qxe7 20. Ng5 Bf5 21. Nxe6 Bxe6)
-            17. c4 bxc4 18. Bxc4 Bc7 19. Re1 Re8
-            (19... Nf4 $5)
-            20. Qc1 $1 Nh5 $6
-            (20... Rb8)
-            (20... Bc6 21. h3 Bb5)
-            21. g3
-            (21. b4 $5)
-            21... g6 $2 22. Nh6+ Kg7 23. Ng5
-            (23. b4 $1 cxb4 24. Nxf7 $1 Bb6 25. N7g5)
-            23... Nxg5 24. Bxg5 d5 25. exd5 Bxd5 26. Ng4 Bf3 27. Bf6+ Kg8 28. Nh6+ Kf8 29. Qe3 Bb7 30. Bh4 Qh3 31. f3 Nf4 32. gxf4 Qxh4 33. Nxf7 Bxf3 34. Qf2 Qg4+ 35. Qg3 exf4 36. Rxe8+ Kxe8 37. Qxg4 Bxg4 38. Ng5 h6 39. Nf7 h5 40. Nh6 Bd1 41. Kf2 f3 42. h3 Bf4 43. Nf7 g5 44. Ke1 g4 45. hxg4 hxg4 46. Kxd1 g3 47. Ke1 g2 48. Kf2 Bh2 0-1";
-
-        $expected = [
-            '1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.d3 b5 7.Bb3 d6 8.a3 O-O 9.Nc3 Bb7 10.Bd2',
-            '10.Re1 Na5 11.Ba2 c5 12.b4 Nc6 13.Nd5',
-            '10...Qd7',
-            '10...Nd4 11.Nxd4 exd4 12.Ne2 c5 13.Ng3',
-            '11.a4 $1 Nd8 $5',
-            '11...b4 12.Nd5 Nxd5 13.Bxd5 Rab8 14.a5',
-            '11...Na5 12.Ba2 c5 13.Nd5 Bxd5 14.exd5 b4',
-            '12.axb5 axb5 13.Rxa8 Bxa8 14.Ne2',
-            '14.Qa1',
-            '14...Ne6 15.Ng3 c5 16.Nf5 Bd8',
-            '16...c4 $1 17.dxc4 bxc4 18.Bxc4 Bxe4 19.Nxe7+ Qxe7 20.Ng5 Bf5 21.Nxe6 Bxe6',
-            '17.c4 bxc4 18.Bxc4 Bc7 19.Re1 Re8',
-            '19...Nf4 $5',
-            '20.Qc1 $1 Nh5 $6',
-            '20...Rb8',
-            '20...Bc6 21.h3 Bb5',
-            '21.g3',
-            '21.b4 $5',
-            '21...g6 $2 22.Nh6+ Kg7 23.Ng5',
-            '23.b4 $1 cxb4 24.Nxf7 $1 Bb6 25.N7g5',
-            '23...Nxg5 24.Bxg5 d5 25.exd5 Bxd5 26.Ng4 Bf3 27.Bf6+ Kg8 28.Nh6+ Kf8 29.Qe3 Bb7 30.Bh4 Qh3 31.f3 Nf4 32.gxf4 Qxh4 33.Nxf7 Bxf3 34.Qf2 Qg4+ 35.Qg3 exf4 36.Rxe8+ Kxe8 37.Qxg4 Bxg4 38.Ng5 h6 39.Nf7 h5 40.Nh6 Bd1 41.Kf2 f3 42.h3 Bf4 43.Nf7 g5 44.Ke1 g4 45.hxg4 hxg4 46.Kxd1 g3 47.Ke1 g2 48.Kf2 Bh2',
-        ];
-
-        $ravPlay = (new RavPlay($movetext))->validate();
-
-        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
-    }
-
-    /**
-     * @test
-     */
-    public function breakdown_e4_c5__e6()
-    {
-        $movetext = '1.e4 $1 c5
-            (2.Nf3
-                (2...Nc6)
-                (2...e6)
-                (2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 (5...a6) (5...g6) (5...Nc6) (5...e6))
-            )';
-
-        $expected = [
-            '1.e4 $1 c5',
-            '2.Nf3',
-            '2...Nc6',
-            '2...e6',
-            '2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3',
-            '5...a6',
-            '5...g6',
-            '5...Nc6',
-            '5...e6',
-        ];
-
-        $breakdown = (new RavPlay($movetext))
-            ->validate()
-            ->getRavMovetext()
-            ->getBreakdown();
-
-        $this->assertSame($expected, $breakdown);
     }
 }
