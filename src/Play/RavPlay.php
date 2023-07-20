@@ -8,7 +8,6 @@ use Chess\Movetext\RavMovetext;
 use Chess\Movetext\SanMovetext;
 use Chess\Play\SanPlay;
 use Chess\Variant\Classical\Board as ClassicalBoard;
-use Chess\Variant\Classical\PGN\AN\Color;
 
 /**
  * Recursive Annotation Variation.
@@ -24,13 +23,6 @@ class RavPlay extends AbstractPlay
      * @var array
      */
     protected RavMovetext $ravMovetext;
-
-    /**
-     * RAV breakdown.
-     *
-     * @var array
-     */
-    protected array $breakdown;
 
     /**
      * Resume the variations.
@@ -51,9 +43,8 @@ class RavPlay extends AbstractPlay
         $this->board = unserialize(serialize($board)) ?? new ClassicalBoard();
         $this->fen = [$this->board->toFen()];
         $this->ravMovetext = new RavMovetext($this->board->getMove(), $movetext);
-        $this->ravMovetext->validate();
 
-        $this->breakdown();
+        $this->ravMovetext->validate();
     }
 
     /**
@@ -64,16 +55,6 @@ class RavPlay extends AbstractPlay
     public function getRavMovetext(): RavMovetext
     {
         return $this->ravMovetext;
-    }
-
-    /**
-     * Returns the breakdown of the variations.
-     *
-     * @return array
-     */
-    public function getBreakdown(): array
-    {
-        return $this->breakdown;
     }
 
     /**
@@ -109,103 +90,57 @@ class RavPlay extends AbstractPlay
      */
     protected function fen(): RavPlay
     {
-        $sanPlay = (new SanPlay($this->breakdown[0], $this->initialBoard))->validate();
+        $sanPlay = (new SanPlay(
+            $this->getRavMovetext()->getBreakdown()[0],
+            $this->initialBoard
+        ))->validate();
         $this->fen = $sanPlay->getFen();
         $this->resume[$sanPlay->getSanMovetext()->filtered(false, false)] = $sanPlay->getBoard();
-        for ($i = 1; $i < count($this->breakdown); $i++) {
-            $sanMovetext = new SanMovetext($this->ravMovetext->getMove(), $this->breakdown[$i]);
-            foreach (array_reverse($this->resume, true) as $key => $val) {
+        for ($i = 1; $i < count($this->getRavMovetext()->getBreakdown()); $i++) {
+            $sanMovetext = new SanMovetext(
+                $this->ravMovetext->getMove(),
+                $this->getRavMovetext()->getBreakdown()[$i]
+            );
+            foreach ($this->resume as $key => $val) {
                 $sanMovetextKey = new SanMovetext($this->ravMovetext->getMove(), $key);
-                if ($this->isParent($sanMovetextKey->getLastMove(), $sanMovetext->getFirstMove())) {
-                    if ($this->isUndo($sanMovetextKey->getLastMove(), $sanMovetext->getFirstMove())) {
-                        $undo = $val->undo();
+                if ($this->getRavMovetext()->isPrevious($sanMovetextKey, $sanMovetext)) {
+                    if (
+                        $this->isUndo($sanMovetextKey->getMetadata()->lastMove, $sanMovetext->getMetadata()->firstMove)
+                    ) {
+                        $clone = unserialize(serialize($val));
+                        $undo = $clone->undo();
                         $board = FenToBoard::create($undo->toFen(), $this->initialBoard);
                     } else {
                         $board = FenToBoard::create($val->toFen(), $this->initialBoard);
                     }
                 }
             }
-            try {
-                $sanPlay = (new SanPlay($this->breakdown[$i], $board))->validate();
-                $this->resume[$sanPlay->getSanMovetext()->filtered(false, false)] = $sanPlay->getBoard();
-                $fen = $sanPlay->getFen();
-                array_shift($fen);
-                $this->fen = [
-                    ...$this->fen,
-                    ...$fen,
-                ];
-            } catch (\Exception $e) {
-
-            }
+            $sanPlay = (new SanPlay($this->getRavMovetext()->getBreakdown()[$i], $board))
+                ->validate();
+            $this->resume[$sanPlay->getSanMovetext()->filtered(false, false)] = $sanPlay->getBoard();
+            $fen = $sanPlay->getFen();
+            array_shift($fen);
+            $this->fen = [
+                ...$this->fen,
+                ...$fen,
+            ];
         }
 
         return $this;
     }
 
     /**
-     * A breakdown of the variations for further processing.
-     */
-    protected function breakdown(): void
-    {
-        $str = $this->ravMovetext->filtered();
-        // escape parentheses enclosed in curly brackets
-        preg_match_all('/{(.*?)}/', $str, $matches);
-        foreach (array_filter($matches[0]) as $match) {
-            $replaced = str_replace('(', '<--', $match);
-            $replaced = str_replace(')', '-->', $replaced);
-            $str = str_replace($match, $replaced, $str);
-        }
-        // split by parentheses outside the curly brackets
-        $arr = preg_split("/[()]+/", $str, -1, PREG_SPLIT_NO_EMPTY);
-        $arr = array_map('trim', $arr);
-        $arr = array_values(array_filter($arr));
-        // unescape parentheses enclosed in curly brackets
-        foreach ($arr as &$item) {
-            $item = str_replace('<--', '(', $item);
-            $item = str_replace('-->', ')', $item);
-        }
-
-        $this->breakdown = $arr;
-    }
-
-    /**
-     * Finds out if a node is a parent of another node.
-     *
-     * @param string $parent
-     * @param string $child
-     * @return bool
-     */
-    protected function isParent(string $parent, string $child): bool
-    {
-        $parent = new SanMovetext($this->ravMovetext->getMove(), $parent);
-        $child = new SanMovetext($this->ravMovetext->getMove(), $child);
-        if (!str_contains($this->ravMovetext->filtered(false, false), "{$parent->getMovetext()})")) {
-            if ($parent->getMetadata()->number->first === $child->getMetadata()->number->first) {
-                return true;
-            } elseif ($parent->getMetadata()->number->first !== $parent->getMetadata()->number->current) {
-                if ($parent->getMetadata()->number->first + 1 === $child->getMetadata()->number->first) {
-                    if ($child->getMetadata()->turn->start === Color::W) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Finds out if a move must be undone.
      *
-     * @param string $parent
-     * @param string $child
+     * @param string $previous
+     * @param string $current
      * @return bool
      */
-    protected function isUndo(string $parent, string $child)
+    protected function isUndo(string $previous, string $current)
     {
-        $parent = new SanMovetext($this->ravMovetext->getMove(), $parent);
-        $child = new SanMovetext($this->ravMovetext->getMove(), $child);
-        if ($parent->getMetadata()->turn->current === $child->getMetadata()->turn->current) {
+        $previous = new SanMovetext($this->ravMovetext->getMove(), $previous);
+        $current = new SanMovetext($this->ravMovetext->getMove(), $current);
+        if ($previous->getMetadata()->turn === $current->getMetadata()->turn) {
             return true;
         }
 

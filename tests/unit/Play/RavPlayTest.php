@@ -44,7 +44,7 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = (new RavPlay($movetext))->validate();
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -70,7 +70,7 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = new RavPlay($movetext);
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -98,7 +98,7 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = new RavPlay($movetext);
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -124,7 +124,7 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = new RavPlay($movetext);
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -150,32 +150,13 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = new RavPlay($movetext);
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
      * @test
      */
     public function validate_e4_e5__h5()
-    {
-        $movetext = '1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. Nc3 Be7 5. d3 d6 6. Be3 Bd7 7. Qd2 a6 8. Ba4 b5 9. Bb3 O-O 10. O-O-O b4 11. Nd5
-            (11. Nb1 h6 12. h4
-            (12. Nh4 g5 13. Nf5)
-            12... a5 13. g4 Nxg4)
-            11... Nxd5 12. Bxd5 Rb8 13. h4 h6 14. Rdg1 a5 15. g4 g5 16. h5
-            (16. hxg5 Bxg5 17. Nxg5 hxg5 18. Rh5)';
-
-        $expected = '1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.Nc3 Be7 5.d3 d6 6.Be3 Bd7 7.Qd2 a6 8.Ba4 b5 9.Bb3 O-O 10.O-O-O b4 11.Nd5 Nxd5 12.Bxd5 Rb8 13.h4 h6 14.Rdg1 a5 15.g4 g5 16.h5';
-
-        $ravPlay = (new RavPlay($movetext))->validate();
-
-        $this->assertSame($expected, $ravPlay->getBoard()->getMovetext());
-    }
-
-    /**
-     * @test
-     */
-    public function validate_with_nags_e4_e5__h5()
     {
         $movetext = '1. e4 $1 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. Nc3 Be7 5. d3 d6 6. Be3 Bd7 7. Qd2 a6 8. Ba4 b5 9. Bb3 O-O 10. O-O-O b4 11. Nd5
             (11. Nb1 h6 12. h4
@@ -404,7 +385,7 @@ class RavPlayTest extends AbstractUnitTestCase
         $board = (new StrToBoard($fen))->create();
         $ravPlay = new RavPlay($movetext, $board);
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -898,7 +879,7 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = (new RavPlay($movetext))->validate();
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -1503,7 +1484,7 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = (new RavPlay($movetext))->validate();
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -1549,7 +1530,7 @@ class RavPlayTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function validate_with_nags_e4_c5__e6()
+    public function validate_e4_c5__e6()
     {
         $movetext = '1.e4 $1 c5 (2.Nf3 (2...Nc6) (2...e6) (2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 (5...a6) (5...g6) (5...Nc6) (5...e6)))';
 
@@ -1565,7 +1546,7 @@ class RavPlayTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function get_fen_with_nags_e4_c5__e6()
+    public function get_fen_e4_c5__e6()
     {
         $movetext = '1.e4 $1 c5 (2.Nf3 (2...Nc6) (2...e6) (2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 (5...a6) (5...g6) (5...Nc6) (5...e6)))';
 
@@ -1612,7 +1593,7 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = (new RavPlay($movetext))->validate();
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -1621,7 +1602,9 @@ class RavPlayTest extends AbstractUnitTestCase
     public function breakdown_e4_e5__Qe2()
     {
         $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 O-O 8. Nc3 d6 9. a3 Be6 10. Bg5
-            (10. Be3 d5 (10... Bxb3 11. cxb3 d5 12. exd5 Nxd5 13. Rc1 $14) 11. exd5 Nxd5 12. Nxd5 Bxd5 13. Rc1 Nd4 14. Bxd4 exd4 15. Bxd5 Qxd5 16. Re1 Bf6 17. Qe2 h6)
+            (10. Be3 d5
+            (10... Bxb3 11. cxb3 d5 12. exd5 Nxd5 13. Rc1 $14)
+            11. exd5 Nxd5 12. Nxd5 Bxd5 13. Rc1 Nd4 14. Bxd4 exd4 15. Bxd5 Qxd5 16. Re1 Bf6 17. Qe2 h6)
             10... Kh8 $5
             (10... Bg4 $5 11. Be3)
             (10... Rb8 11. h3 h6 12. Bd2 d5 13. exd5 Nxd5 14. Re1 Bf6 15. Bxd5 Bxd5 16. Nxd5 Qxd5 17. Qe2)";
@@ -1638,7 +1621,7 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = (new RavPlay($movetext))->validate();
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
     }
 
     /**
@@ -1647,7 +1630,9 @@ class RavPlayTest extends AbstractUnitTestCase
     public function breakdown_e4_e5__h3_Ng8()
     {
         $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 O-O 8. Nc3 d6 9. a3 Be6 10. Bg5
-            (10. Be3 d5 (10... Bxb3 11. cxb3 d5 12. exd5 Nxd5 13. Rc1 $14) 11. exd5 Nxd5 12. Nxd5 Bxd5 13. Rc1 Nd4 14. Bxd4 exd4 15. Bxd5 Qxd5 16. Re1 Bf6 17. Qe2 h6)
+            (10. Be3 d5
+            (10... Bxb3 11. cxb3 d5 12. exd5 Nxd5 13. Rc1 $14)
+            11. exd5 Nxd5 12. Nxd5 Bxd5 13. Rc1 Nd4 14. Bxd4 exd4 15. Bxd5 Qxd5 16. Re1 Bf6 17. Qe2 h6)
             10... Kh8 $5
             (10... Bg4 $5 11. Be3)
             (10... Rb8 11. h3 h6 12. Bd2 d5 13. exd5 Nxd5 14. Re1 Bf6 15. Bxd5 Bxd5 16. Nxd5 Qxd5 17. Qe2)
@@ -1666,6 +1651,397 @@ class RavPlayTest extends AbstractUnitTestCase
 
         $ravPlay = (new RavPlay($movetext))->validate();
 
-        $this->assertSame($expected, $ravPlay->getBreakdown());
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
+    }
+
+    /**
+     * @test
+     */
+    public function get_fen_e4_e5__h3()
+    {
+        $movetext = "1. e4 e5 $1 2. Nf3 $1 Nc6 $1 3. Bb5 $1
+            (3. Bc4 Bc5 $1)
+            3... a6
+            (3... Nf6 4. O-O Nxe4 5. d4 Nd6 6. Bxc6 dxc6 7. dxe5 Nf5 8.Qxd8+ Kxd8 $14)
+            4. Ba4
+            (4. Bxc6 dxc6 5. O-O f6 6. d4 exd4 7. Nxd4 c5 8. Ne2 Qxd1 9. Rxd1)
+            4... Nf6
+            (4... d6 5. c3 $1)
+            5.O-O
+            (5. d3 b5 6. Bb3 Bc5)
+            5... Be7
+            (5... b5 6. Bb3 Bc5)
+            (5... Nxe4 6. d4 b5 7. Bb3 d5 8. dxe5 Be6 9. Nbd2)
+            6. d3 $142 $5 (6. Re1 b5 7. Bb3 O-O $1 8. a4 (8. c3 d5 $1) 8... b4 9. d4 d6 10. dxe5 dxe5)
+            6... b5
+            (6... d6 7. c3 O-O 8. h3 b5 9.Bc2)
+            7. Bb3 d6
+            (7... O-O 8. a4 b4 9. a5 $1 d6 10. Bg5 $5)
+            8. a3
+            (8. a4 Bd7)
+            8... O-O 9. Nc3
+            (9.h3)";
+
+        $expected = [
+            'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -',
+            'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
+            'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6',
+            'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -',
+            'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -',
+            'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
+            'r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
+            'r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
+            'r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
+            'r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
+            'r1bqkb1r/pppp1ppp/2n2n2/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -',
+            'r1bqkb1r/pppp1ppp/2n5/1B2p3/4n3/5N2/PPPP1PPP/RNBQ1RK1 w kq -',
+            'r1bqkb1r/pppp1ppp/2n5/1B2p3/3Pn3/5N2/PPP2PPP/RNBQ1RK1 b kq d3',
+            'r1bqkb1r/pppp1ppp/2nn4/1B2p3/3P4/5N2/PPP2PPP/RNBQ1RK1 w kq -',
+            'r1bqkb1r/pppp1ppp/2Bn4/4p3/3P4/5N2/PPP2PPP/RNBQ1RK1 b kq -',
+            'r1bqkb1r/ppp2ppp/2pn4/4p3/3P4/5N2/PPP2PPP/RNBQ1RK1 w kq -',
+            'r1bqkb1r/ppp2ppp/2pn4/4P3/8/5N2/PPP2PPP/RNBQ1RK1 b kq -',
+            'r1bqkb1r/ppp2ppp/2p5/4Pn2/8/5N2/PPP2PPP/RNBQ1RK1 w kq -',
+            'r1bQkb1r/ppp2ppp/2p5/4Pn2/8/5N2/PPP2PPP/RNB2RK1 b kq -',
+            'r1bk1b1r/ppp2ppp/2p5/4Pn2/8/5N2/PPP2PPP/RNB2RK1 w - -',
+            'r1bqkbnr/1ppp1ppp/p1n5/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
+            'r1bqkbnr/1ppp1ppp/p1B5/4p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
+            'r1bqkbnr/1pp2ppp/p1p5/4p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
+            'r1bqkbnr/1pp2ppp/p1p5/4p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -',
+            'r1bqkbnr/1pp3pp/p1p2p2/4p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 w kq -',
+            'r1bqkbnr/1pp3pp/p1p2p2/4p3/3PP3/5N2/PPP2PPP/RNBQ1RK1 b kq d3',
+            'r1bqkbnr/1pp3pp/p1p2p2/8/3pP3/5N2/PPP2PPP/RNBQ1RK1 w kq -',
+            'r1bqkbnr/1pp3pp/p1p2p2/8/3NP3/8/PPP2PPP/RNBQ1RK1 b kq -',
+            'r1bqkbnr/1pp3pp/p4p2/2p5/3NP3/8/PPP2PPP/RNBQ1RK1 w kq -',
+            'r1bqkbnr/1pp3pp/p4p2/2p5/4P3/8/PPP1NPPP/RNBQ1RK1 b kq -',
+            'r1b1kbnr/1pp3pp/p4p2/2p5/4P3/8/PPP1NPPP/RNBq1RK1 w kq -',
+            'r1b1kbnr/1pp3pp/p4p2/2p5/4P3/8/PPP1NPPP/RNBR2K1 b kq -',
+            'r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
+            'r1bqkbnr/1pp2ppp/p1np4/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
+            'r1bqkbnr/1pp2ppp/p1np4/4p3/B3P3/2P2N2/PP1P1PPP/RNBQK2R b KQkq -',
+            'r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -',
+            'r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/3P1N2/PPP2PPP/RNBQK2R b KQkq -',
+            'r1bqkb1r/2pp1ppp/p1n2n2/1p2p3/B3P3/3P1N2/PPP2PPP/RNBQK2R w KQkq b6',
+            'r1bqkb1r/2pp1ppp/p1n2n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQK2R b KQkq -',
+            'r1bqk2r/2pp1ppp/p1n2n2/1pb1p3/4P3/1B1P1N2/PPP2PPP/RNBQK2R w KQkq -',
+            'r1bqk2r/1pppbppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 w kq -',
+            'r1bqkb1r/2pp1ppp/p1n2n2/1p2p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 w kq b6',
+            'r1bqkb1r/2pp1ppp/p1n2n2/1p2p3/4P3/1B3N2/PPPP1PPP/RNBQ1RK1 b kq -',
+            'r1bqk2r/2pp1ppp/p1n2n2/1pb1p3/4P3/1B3N2/PPPP1PPP/RNBQ1RK1 w kq -',
+            'r1bqkb1r/1ppp1ppp/p1n5/4p3/B3n3/5N2/PPPP1PPP/RNBQ1RK1 w kq -',
+            'r1bqkb1r/1ppp1ppp/p1n5/4p3/B2Pn3/5N2/PPP2PPP/RNBQ1RK1 b kq d3',
+            'r1bqkb1r/2pp1ppp/p1n5/1p2p3/B2Pn3/5N2/PPP2PPP/RNBQ1RK1 w kq b6',
+            'r1bqkb1r/2pp1ppp/p1n5/1p2p3/3Pn3/1B3N2/PPP2PPP/RNBQ1RK1 b kq -',
+            'r1bqkb1r/2p2ppp/p1n5/1p1pp3/3Pn3/1B3N2/PPP2PPP/RNBQ1RK1 w kq d6',
+            'r1bqkb1r/2p2ppp/p1n5/1p1pP3/4n3/1B3N2/PPP2PPP/RNBQ1RK1 b kq -',
+            'r2qkb1r/2p2ppp/p1n1b3/1p1pP3/4n3/1B3N2/PPP2PPP/RNBQ1RK1 w kq -',
+            'r2qkb1r/2p2ppp/p1n1b3/1p1pP3/4n3/1B3N2/PPPN1PPP/R1BQ1RK1 b kq -',
+            'r1bqk2r/1pppbppp/p1n2n2/4p3/B3P3/3P1N2/PPP2PPP/RNBQ1RK1 b kq -',
+            'r1bqk2r/1pppbppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQR1K1 b kq -',
+            'r1bqk2r/2ppbppp/p1n2n2/1p2p3/B3P3/5N2/PPPP1PPP/RNBQR1K1 w kq b6',
+            'r1bqk2r/2ppbppp/p1n2n2/1p2p3/4P3/1B3N2/PPPP1PPP/RNBQR1K1 b kq -',
+            'r1bq1rk1/2ppbppp/p1n2n2/1p2p3/4P3/1B3N2/PPPP1PPP/RNBQR1K1 w - -',
+            'r1bq1rk1/2ppbppp/p1n2n2/1p2p3/P3P3/1B3N2/1PPP1PPP/RNBQR1K1 b - a3',
+            'r1bq1rk1/2ppbppp/p1n2n2/1p2p3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 b - -',
+            'r1bq1rk1/2p1bppp/p1n2n2/1p1pp3/4P3/1BP2N2/PP1P1PPP/RNBQR1K1 w - d6',
+            'r1bq1rk1/2ppbppp/p1n2n2/4p3/Pp2P3/1B3N2/1PPP1PPP/RNBQR1K1 w - -',
+            'r1bq1rk1/2ppbppp/p1n2n2/4p3/Pp1PP3/1B3N2/1PP2PPP/RNBQR1K1 b - d3',
+            'r1bq1rk1/2p1bppp/p1np1n2/4p3/Pp1PP3/1B3N2/1PP2PPP/RNBQR1K1 w - -',
+            'r1bq1rk1/2p1bppp/p1np1n2/4P3/Pp2P3/1B3N2/1PP2PPP/RNBQR1K1 b - -',
+            'r1bq1rk1/2p1bppp/p1n2n2/4p3/Pp2P3/1B3N2/1PP2PPP/RNBQR1K1 w - -',
+            'r1bqk2r/2ppbppp/p1n2n2/1p2p3/B3P3/3P1N2/PPP2PPP/RNBQ1RK1 w kq b6',
+            'r1bqk2r/1pp1bppp/p1np1n2/4p3/B3P3/3P1N2/PPP2PPP/RNBQ1RK1 w kq -',
+            'r1bqk2r/1pp1bppp/p1np1n2/4p3/B3P3/2PP1N2/PP3PPP/RNBQ1RK1 b kq -',
+            'r1bq1rk1/1pp1bppp/p1np1n2/4p3/B3P3/2PP1N2/PP3PPP/RNBQ1RK1 w - -',
+            'r1bq1rk1/1pp1bppp/p1np1n2/4p3/B3P3/2PP1N1P/PP3PP1/RNBQ1RK1 b - -',
+            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/B3P3/2PP1N1P/PP3PP1/RNBQ1RK1 w - b6',
+            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/2PP1N1P/PPB2PP1/RNBQ1RK1 b - -',
+            'r1bqk2r/2ppbppp/p1n2n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQ1RK1 b kq -',
+            'r1bqk2r/2p1bppp/p1np1n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQ1RK1 w kq -',
+            'r1bq1rk1/2ppbppp/p1n2n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQ1RK1 w - -',
+            'r1bq1rk1/2ppbppp/p1n2n2/1p2p3/P3P3/1B1P1N2/1PP2PPP/RNBQ1RK1 b - a3',
+            'r1bq1rk1/2ppbppp/p1n2n2/4p3/Pp2P3/1B1P1N2/1PP2PPP/RNBQ1RK1 w - -',
+            'r1bq1rk1/2ppbppp/p1n2n2/P3p3/1p2P3/1B1P1N2/1PP2PPP/RNBQ1RK1 b - -',
+            'r1bq1rk1/2p1bppp/p1np1n2/P3p3/1p2P3/1B1P1N2/1PP2PPP/RNBQ1RK1 w - -',
+            'r1bq1rk1/2p1bppp/p1np1n2/P3p1B1/1p2P3/1B1P1N2/1PP2PPP/RN1Q1RK1 b - -',
+            'r1bqk2r/2p1bppp/p1np1n2/1p2p3/4P3/PB1P1N2/1PP2PPP/RNBQ1RK1 b kq -',
+            'r1bqk2r/2p1bppp/p1np1n2/1p2p3/P3P3/1B1P1N2/1PP2PPP/RNBQ1RK1 b kq a3',
+            'r2qk2r/2pbbppp/p1np1n2/1p2p3/P3P3/1B1P1N2/1PP2PPP/RNBQ1RK1 w kq -',
+            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PB1P1N2/1PP2PPP/RNBQ1RK1 w - -',
+            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PP2PPP/R1BQ1RK1 b - -',
+            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PB1P1N1P/1PP2PP1/RNBQ1RK1 b - -',
+        ];
+
+        $ravPlay = (new RavPlay($movetext))->validate();
+
+        $this->assertSame($expected, $ravPlay->getFen());
+    }
+
+    /**
+     * @test
+     */
+    public function get_fen_e4_e5__Kf2_Bh2()
+    {
+        $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 d6 8. a3 O-O 9. Nc3 Bb7 10. Bd2
+            (10. Re1 Na5 11. Ba2 c5  12. b4 Nc6 13. Nd5)
+            10... Qd7
+            (10... Nd4 11. Nxd4 exd4 12. Ne2 c5 13. Ng3)
+            11. a4 $1 Nd8 $5
+            (11... b4 12. Nd5 Nxd5 13. Bxd5 Rab8 14. a5)
+            (11... Na5 12. Ba2 c5 13. Nd5 Bxd5 14. exd5 b4)
+            12. axb5 axb5 13. Rxa8 Bxa8 14. Ne2
+            (14. Qa1)
+            14... Ne6 15. Ng3 c5 16. Nf5 Bd8
+            (16... c4 $1 17. dxc4 bxc4 18. Bxc4 Bxe4 19. Nxe7+ Qxe7 20. Ng5 Bf5 21. Nxe6 Bxe6)
+            17. c4 bxc4 18. Bxc4 Bc7 19. Re1 Re8
+            (19... Nf4 $5)
+            20. Qc1 $1 Nh5 $6
+            (20... Rb8)
+            (20... Bc6 21. h3 Bb5)
+            21. g3
+            (21. b4 $5)
+            21... g6 $2 22. Nh6+ Kg7 23. Ng5
+            (23. b4 $1 cxb4 24. Nxf7 $1 Bb6 25. N7g5)
+            23... Nxg5 24. Bxg5 d5 25. exd5 Bxd5 26. Ng4 Bf3 27. Bf6+ Kg8 28. Nh6+ Kf8 29. Qe3 Bb7 30. Bh4 Qh3 31. f3 Nf4 32. gxf4 Qxh4 33. Nxf7 Bxf3 34. Qf2 Qg4+ 35. Qg3 exf4 36. Rxe8+ Kxe8 37. Qxg4 Bxg4 38. Ng5 h6 39. Nf7 h5 40. Nh6 Bd1 41. Kf2 f3 42. h3 Bf4 43. Nf7 g5 44. Ke1 g4 45. hxg4 hxg4 46. Kxd1 g3 47. Ke1 g2 48. Kf2 Bh2 0-1";
+
+        $expected = [
+            'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -',
+            'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
+            'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6',
+            'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -',
+            'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -',
+            'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
+            'r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
+            'r1bqkbnr/1ppp1ppp/p1n5/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
+            'r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
+            'r1bqkb1r/1ppp1ppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -',
+            'r1bqk2r/1pppbppp/p1n2n2/4p3/B3P3/5N2/PPPP1PPP/RNBQ1RK1 w kq -',
+            'r1bqk2r/1pppbppp/p1n2n2/4p3/B3P3/3P1N2/PPP2PPP/RNBQ1RK1 b kq -',
+            'r1bqk2r/2ppbppp/p1n2n2/1p2p3/B3P3/3P1N2/PPP2PPP/RNBQ1RK1 w kq b6',
+            'r1bqk2r/2ppbppp/p1n2n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQ1RK1 b kq -',
+            'r1bqk2r/2p1bppp/p1np1n2/1p2p3/4P3/1B1P1N2/PPP2PPP/RNBQ1RK1 w kq -',
+            'r1bqk2r/2p1bppp/p1np1n2/1p2p3/4P3/PB1P1N2/1PP2PPP/RNBQ1RK1 b kq -',
+            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PB1P1N2/1PP2PPP/RNBQ1RK1 w - -',
+            'r1bq1rk1/2p1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PP2PPP/R1BQ1RK1 b - -',
+            'r2q1rk1/1bp1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PP2PPP/R1BQ1RK1 w - -',
+            'r2q1rk1/1bp1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PPB1PPP/R2Q1RK1 b - -',
+            'r2q1rk1/1bp1bppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PP2PPP/R1BQR1K1 b - -',
+            'r2q1rk1/1bp1bppp/p2p1n2/np2p3/4P3/PBNP1N2/1PP2PPP/R1BQR1K1 w - -',
+            'r2q1rk1/1bp1bppp/p2p1n2/np2p3/4P3/P1NP1N2/BPP2PPP/R1BQR1K1 b - -',
+            'r2q1rk1/1b2bppp/p2p1n2/npp1p3/4P3/P1NP1N2/BPP2PPP/R1BQR1K1 w - c6',
+            'r2q1rk1/1b2bppp/p2p1n2/npp1p3/1P2P3/P1NP1N2/B1P2PPP/R1BQR1K1 b - b3',
+            'r2q1rk1/1b2bppp/p1np1n2/1pp1p3/1P2P3/P1NP1N2/B1P2PPP/R1BQR1K1 w - -',
+            'r2q1rk1/1b2bppp/p1np1n2/1ppNp3/1P2P3/P2P1N2/B1P2PPP/R1BQR1K1 b - -',
+            'r4rk1/1bpqbppp/p1np1n2/1p2p3/4P3/PBNP1N2/1PPB1PPP/R2Q1RK1 w - -',
+            'r2q1rk1/1bp1bppp/p2p1n2/1p2p3/3nP3/PBNP1N2/1PPB1PPP/R2Q1RK1 w - -',
+            'r2q1rk1/1bp1bppp/p2p1n2/1p2p3/3NP3/PBNP4/1PPB1PPP/R2Q1RK1 b - -',
+            'r2q1rk1/1bp1bppp/p2p1n2/1p6/3pP3/PBNP4/1PPB1PPP/R2Q1RK1 w - -',
+            'r2q1rk1/1bp1bppp/p2p1n2/1p6/3pP3/PB1P4/1PPBNPPP/R2Q1RK1 b - -',
+            'r2q1rk1/1b2bppp/p2p1n2/1pp5/3pP3/PB1P4/1PPBNPPP/R2Q1RK1 w - c6',
+            'r2q1rk1/1b2bppp/p2p1n2/1pp5/3pP3/PB1P2N1/1PPB1PPP/R2Q1RK1 b - -',
+            'r4rk1/1bpqbppp/p1np1n2/1p2p3/P3P3/1BNP1N2/1PPB1PPP/R2Q1RK1 b - -',
+            'r2n1rk1/1bpqbppp/p2p1n2/1p2p3/P3P3/1BNP1N2/1PPB1PPP/R2Q1RK1 w - -',
+            'r4rk1/1bpqbppp/p1np1n2/4p3/Pp2P3/1BNP1N2/1PPB1PPP/R2Q1RK1 w - -',
+            'r4rk1/1bpqbppp/p1np1n2/3Np3/Pp2P3/1B1P1N2/1PPB1PPP/R2Q1RK1 b - -',
+            'r4rk1/1bpqbppp/p1np4/3np3/Pp2P3/1B1P1N2/1PPB1PPP/R2Q1RK1 w - -',
+            'r4rk1/1bpqbppp/p1np4/3Bp3/Pp2P3/3P1N2/1PPB1PPP/R2Q1RK1 b - -',
+            '1r3rk1/1bpqbppp/p1np4/3Bp3/Pp2P3/3P1N2/1PPB1PPP/R2Q1RK1 w - -',
+            '1r3rk1/1bpqbppp/p1np4/P2Bp3/1p2P3/3P1N2/1PPB1PPP/R2Q1RK1 b - -',
+            'r4rk1/1bpqbppp/p2p1n2/np2p3/P3P3/1BNP1N2/1PPB1PPP/R2Q1RK1 w - -',
+            'r4rk1/1bpqbppp/p2p1n2/np2p3/P3P3/2NP1N2/BPPB1PPP/R2Q1RK1 b - -',
+            'r4rk1/1b1qbppp/p2p1n2/npp1p3/P3P3/2NP1N2/BPPB1PPP/R2Q1RK1 w - c6',
+            'r4rk1/1b1qbppp/p2p1n2/nppNp3/P3P3/3P1N2/BPPB1PPP/R2Q1RK1 b - -',
+            'r4rk1/3qbppp/p2p1n2/nppbp3/P3P3/3P1N2/BPPB1PPP/R2Q1RK1 w - -',
+            'r4rk1/3qbppp/p2p1n2/nppPp3/P7/3P1N2/BPPB1PPP/R2Q1RK1 b - -',
+            'r4rk1/3qbppp/p2p1n2/n1pPp3/Pp6/3P1N2/BPPB1PPP/R2Q1RK1 w - -',
+            'r2n1rk1/1bpqbppp/p2p1n2/1P2p3/4P3/1BNP1N2/1PPB1PPP/R2Q1RK1 b - -',
+            'r2n1rk1/1bpqbppp/3p1n2/1p2p3/4P3/1BNP1N2/1PPB1PPP/R2Q1RK1 w - -',
+            'R2n1rk1/1bpqbppp/3p1n2/1p2p3/4P3/1BNP1N2/1PPB1PPP/3Q1RK1 b - -',
+            'b2n1rk1/2pqbppp/3p1n2/1p2p3/4P3/1BNP1N2/1PPB1PPP/3Q1RK1 w - -',
+            'b2n1rk1/2pqbppp/3p1n2/1p2p3/4P3/1B1P1N2/1PPBNPPP/3Q1RK1 b - -',
+            'b2n1rk1/2pqbppp/3p1n2/1p2p3/4P3/1BNP1N2/1PPB1PPP/Q4RK1 b - -',
+            'b4rk1/2pqbppp/3pnn2/1p2p3/4P3/1B1P1N2/1PPBNPPP/3Q1RK1 w - -',
+            'b4rk1/2pqbppp/3pnn2/1p2p3/4P3/1B1P1NN1/1PPB1PPP/3Q1RK1 b - -',
+            'b4rk1/3qbppp/3pnn2/1pp1p3/4P3/1B1P1NN1/1PPB1PPP/3Q1RK1 w - c6',
+            'b4rk1/3qbppp/3pnn2/1pp1pN2/4P3/1B1P1N2/1PPB1PPP/3Q1RK1 b - -',
+            'b2b1rk1/3q1ppp/3pnn2/1pp1pN2/4P3/1B1P1N2/1PPB1PPP/3Q1RK1 w - -',
+            'b4rk1/3qbppp/3pnn2/1p2pN2/2p1P3/1B1P1N2/1PPB1PPP/3Q1RK1 w - -',
+            'b4rk1/3qbppp/3pnn2/1p2pN2/2P1P3/1B3N2/1PPB1PPP/3Q1RK1 b - -',
+            'b4rk1/3qbppp/3pnn2/4pN2/2p1P3/1B3N2/1PPB1PPP/3Q1RK1 w - -',
+            'b4rk1/3qbppp/3pnn2/4pN2/2B1P3/5N2/1PPB1PPP/3Q1RK1 b - -',
+            '5rk1/3qbppp/3pnn2/4pN2/2B1b3/5N2/1PPB1PPP/3Q1RK1 w - -',
+            '5rk1/3qNppp/3pnn2/4p3/2B1b3/5N2/1PPB1PPP/3Q1RK1 b - -',
+            '5rk1/4qppp/3pnn2/4p3/2B1b3/5N2/1PPB1PPP/3Q1RK1 w - -',
+            '5rk1/4qppp/3pnn2/4p1N1/2B1b3/8/1PPB1PPP/3Q1RK1 b - -',
+            '5rk1/4qppp/3pnn2/4pbN1/2B5/8/1PPB1PPP/3Q1RK1 w - -',
+            '5rk1/4qppp/3pNn2/4pb2/2B5/8/1PPB1PPP/3Q1RK1 b - -',
+            '5rk1/4qppp/3pbn2/4p3/2B5/8/1PPB1PPP/3Q1RK1 w - -',
+            'b2b1rk1/3q1ppp/3pnn2/1pp1pN2/2P1P3/1B1P1N2/1P1B1PPP/3Q1RK1 b - c3',
+            'b2b1rk1/3q1ppp/3pnn2/2p1pN2/2p1P3/1B1P1N2/1P1B1PPP/3Q1RK1 w - -',
+            'b2b1rk1/3q1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/3Q1RK1 b - -',
+            'b4rk1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/3Q1RK1 w - -',
+            'b4rk1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/3QR1K1 b - -',
+            'b3r1k1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/3QR1K1 w - -',
+            'b4rk1/2bq1ppp/3p1n2/2p1pN2/2B1Pn2/3P1N2/1P1B1PPP/3QR1K1 w - -',
+            'b3r1k1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/2Q1R1K1 b - -',
+            'b3r1k1/2bq1ppp/3pn3/2p1pN1n/2B1P3/3P1N2/1P1B1PPP/2Q1R1K1 w - -',
+            'br4k1/2bq1ppp/3pnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/2Q1R1K1 w - -',
+            '4r1k1/2bq1ppp/2bpnn2/2p1pN2/2B1P3/3P1N2/1P1B1PPP/2Q1R1K1 w - -',
+            '4r1k1/2bq1ppp/2bpnn2/2p1pN2/2B1P3/3P1N1P/1P1B1PP1/2Q1R1K1 b - -',
+            '4r1k1/2bq1ppp/3pnn2/1bp1pN2/2B1P3/3P1N1P/1P1B1PP1/2Q1R1K1 w - -',
+            'b3r1k1/2bq1ppp/3pn3/2p1pN1n/2B1P3/3P1NP1/1P1B1P1P/2Q1R1K1 b - -',
+            'b3r1k1/2bq1ppp/3pn3/2p1pN1n/1PB1P3/3P1N2/3B1PPP/2Q1R1K1 b - b3',
+            'b3r1k1/2bq1p1p/3pn1p1/2p1pN1n/2B1P3/3P1NP1/1P1B1P1P/2Q1R1K1 w - -',
+            'b3r1k1/2bq1p1p/3pn1pN/2p1p2n/2B1P3/3P1NP1/1P1B1P1P/2Q1R1K1 b - -',
+            'b3r3/2bq1pkp/3pn1pN/2p1p2n/2B1P3/3P1NP1/1P1B1P1P/2Q1R1K1 w - -',
+            'b3r3/2bq1pkp/3pn1pN/2p1p1Nn/2B1P3/3P2P1/1P1B1P1P/2Q1R1K1 b - -',
+            'b3r3/2bq1pkp/3pn1pN/2p1p2n/1PB1P3/3P1NP1/3B1P1P/2Q1R1K1 b - b3',
+            'b3r3/2bq1pkp/3pn1pN/4p2n/1pB1P3/3P1NP1/3B1P1P/2Q1R1K1 w - -',
+            'b3r3/2bq1Nkp/3pn1p1/4p2n/1pB1P3/3P1NP1/3B1P1P/2Q1R1K1 b - -',
+            'b3r3/3q1Nkp/1b1pn1p1/4p2n/1pB1P3/3P1NP1/3B1P1P/2Q1R1K1 w - -',
+            'b3r3/3q2kp/1b1pn1p1/4p1Nn/1pB1P3/3P1NP1/3B1P1P/2Q1R1K1 b - -',
+            'b3r3/2bq1pkp/3p2pN/2p1p1nn/2B1P3/3P2P1/1P1B1P1P/2Q1R1K1 w - -',
+            'b3r3/2bq1pkp/3p2pN/2p1p1Bn/2B1P3/3P2P1/1P3P1P/2Q1R1K1 b - -',
+            'b3r3/2bq1pkp/6pN/2ppp1Bn/2B1P3/3P2P1/1P3P1P/2Q1R1K1 w - -',
+            'b3r3/2bq1pkp/6pN/2pPp1Bn/2B5/3P2P1/1P3P1P/2Q1R1K1 b - -',
+            '4r3/2bq1pkp/6pN/2pbp1Bn/2B5/3P2P1/1P3P1P/2Q1R1K1 w - -',
+            '4r3/2bq1pkp/6p1/2pbp1Bn/2B3N1/3P2P1/1P3P1P/2Q1R1K1 b - -',
+            '4r3/2bq1pkp/6p1/2p1p1Bn/2B3N1/3P1bP1/1P3P1P/2Q1R1K1 w - -',
+            '4r3/2bq1pkp/5Bp1/2p1p2n/2B3N1/3P1bP1/1P3P1P/2Q1R1K1 b - -',
+            '4r1k1/2bq1p1p/5Bp1/2p1p2n/2B3N1/3P1bP1/1P3P1P/2Q1R1K1 w - -',
+            '4r1k1/2bq1p1p/5BpN/2p1p2n/2B5/3P1bP1/1P3P1P/2Q1R1K1 b - -',
+            '4rk2/2bq1p1p/5BpN/2p1p2n/2B5/3P1bP1/1P3P1P/2Q1R1K1 w - -',
+            '4rk2/2bq1p1p/5BpN/2p1p2n/2B5/3PQbP1/1P3P1P/4R1K1 b - -',
+            '4rk2/1bbq1p1p/5BpN/2p1p2n/2B5/3PQ1P1/1P3P1P/4R1K1 w - -',
+            '4rk2/1bbq1p1p/6pN/2p1p2n/2B4B/3PQ1P1/1P3P1P/4R1K1 b - -',
+            '4rk2/1bb2p1p/6pN/2p1p2n/2B4B/3PQ1Pq/1P3P1P/4R1K1 w - -',
+            '4rk2/1bb2p1p/6pN/2p1p2n/2B4B/3PQPPq/1P5P/4R1K1 b - -',
+            '4rk2/1bb2p1p/6pN/2p1p3/2B2n1B/3PQPPq/1P5P/4R1K1 w - -',
+            '4rk2/1bb2p1p/6pN/2p1p3/2B2P1B/3PQP1q/1P5P/4R1K1 b - -',
+            '4rk2/1bb2p1p/6pN/2p1p3/2B2P1q/3PQP2/1P5P/4R1K1 w - -',
+            '4rk2/1bb2N1p/6p1/2p1p3/2B2P1q/3PQP2/1P5P/4R1K1 b - -',
+            '4rk2/2b2N1p/6p1/2p1p3/2B2P1q/3PQb2/1P5P/4R1K1 w - -',
+            '4rk2/2b2N1p/6p1/2p1p3/2B2P1q/3P1b2/1P3Q1P/4R1K1 b - -',
+            '4rk2/2b2N1p/6p1/2p1p3/2B2Pq1/3P1b2/1P3Q1P/4R1K1 w - -',
+            '4rk2/2b2N1p/6p1/2p1p3/2B2Pq1/3P1bQ1/1P5P/4R1K1 b - -',
+            '4rk2/2b2N1p/6p1/2p5/2B2pq1/3P1bQ1/1P5P/4R1K1 w - -',
+            '4Rk2/2b2N1p/6p1/2p5/2B2pq1/3P1bQ1/1P5P/6K1 b - -',
+            '4k3/2b2N1p/6p1/2p5/2B2pq1/3P1bQ1/1P5P/6K1 w - -',
+            '4k3/2b2N1p/6p1/2p5/2B2pQ1/3P1b2/1P5P/6K1 b - -',
+            '4k3/2b2N1p/6p1/2p5/2B2pb1/3P4/1P5P/6K1 w - -',
+            '4k3/2b4p/6p1/2p3N1/2B2pb1/3P4/1P5P/6K1 b - -',
+            '4k3/2b5/6pp/2p3N1/2B2pb1/3P4/1P5P/6K1 w - -',
+            '4k3/2b2N2/6pp/2p5/2B2pb1/3P4/1P5P/6K1 b - -',
+            '4k3/2b2N2/6p1/2p4p/2B2pb1/3P4/1P5P/6K1 w - -',
+            '4k3/2b5/6pN/2p4p/2B2pb1/3P4/1P5P/6K1 b - -',
+            '4k3/2b5/6pN/2p4p/2B2p2/3P4/1P5P/3b2K1 w - -',
+            '4k3/2b5/6pN/2p4p/2B2p2/3P4/1P3K1P/3b4 b - -',
+            '4k3/2b5/6pN/2p4p/2B5/3P1p2/1P3K1P/3b4 w - -',
+            '4k3/2b5/6pN/2p4p/2B5/3P1p1P/1P3K2/3b4 b - -',
+            '4k3/8/6pN/2p4p/2B2b2/3P1p1P/1P3K2/3b4 w - -',
+            '4k3/5N2/6p1/2p4p/2B2b2/3P1p1P/1P3K2/3b4 b - -',
+            '4k3/5N2/8/2p3pp/2B2b2/3P1p1P/1P3K2/3b4 w - -',
+            '4k3/5N2/8/2p3pp/2B2b2/3P1p1P/1P6/3bK3 b - -',
+            '4k3/5N2/8/2p4p/2B2bp1/3P1p1P/1P6/3bK3 w - -',
+            '4k3/5N2/8/2p4p/2B2bP1/3P1p2/1P6/3bK3 b - -',
+            '4k3/5N2/8/2p5/2B2bp1/3P1p2/1P6/3bK3 w - -',
+            '4k3/5N2/8/2p5/2B2bp1/3P1p2/1P6/3K4 b - -',
+            '4k3/5N2/8/2p5/2B2b2/3P1pp1/1P6/3K4 w - -',
+            '4k3/5N2/8/2p5/2B2b2/3P1pp1/1P6/4K3 b - -',
+            '4k3/5N2/8/2p5/2B2b2/3P1p2/1P4p1/4K3 w - -',
+            '4k3/5N2/8/2p5/2B2b2/3P1p2/1P3Kp1/8 b - -',
+            '4k3/5N2/8/2p5/2B5/3P1p2/1P3Kpb/8 w - -',
+        ];
+
+        $ravPlay = (new RavPlay($movetext))->validate();
+
+        $this->assertSame($expected, $ravPlay->getFen());
+    }
+
+    /**
+     * @test
+     */
+    public function breakdown_e4_e5__Kf2_Bh2()
+    {
+        $movetext = "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. d3 b5 7. Bb3 d6 8. a3 O-O 9. Nc3 Bb7 10. Bd2
+            (10. Re1 Na5 11. Ba2 c5  12. b4 Nc6 13. Nd5)
+            10... Qd7
+            (10... Nd4 11. Nxd4 exd4 12. Ne2 c5 13. Ng3)
+            11. a4 $1 Nd8 $5
+            (11... b4 12. Nd5 Nxd5 13. Bxd5 Rab8 14. a5)
+            (11... Na5 12. Ba2 c5 13. Nd5 Bxd5 14. exd5 b4)
+            12. axb5 axb5 13. Rxa8 Bxa8 14. Ne2
+            (14. Qa1)
+            14... Ne6 15. Ng3 c5 16. Nf5 Bd8
+            (16... c4 $1 17. dxc4 bxc4 18. Bxc4 Bxe4 19. Nxe7+ Qxe7 20. Ng5 Bf5 21. Nxe6 Bxe6)
+            17. c4 bxc4 18. Bxc4 Bc7 19. Re1 Re8
+            (19... Nf4 $5)
+            20. Qc1 $1 Nh5 $6
+            (20... Rb8)
+            (20... Bc6 21. h3 Bb5)
+            21. g3
+            (21. b4 $5)
+            21... g6 $2 22. Nh6+ Kg7 23. Ng5
+            (23. b4 $1 cxb4 24. Nxf7 $1 Bb6 25. N7g5)
+            23... Nxg5 24. Bxg5 d5 25. exd5 Bxd5 26. Ng4 Bf3 27. Bf6+ Kg8 28. Nh6+ Kf8 29. Qe3 Bb7 30. Bh4 Qh3 31. f3 Nf4 32. gxf4 Qxh4 33. Nxf7 Bxf3 34. Qf2 Qg4+ 35. Qg3 exf4 36. Rxe8+ Kxe8 37. Qxg4 Bxg4 38. Ng5 h6 39. Nf7 h5 40. Nh6 Bd1 41. Kf2 f3 42. h3 Bf4 43. Nf7 g5 44. Ke1 g4 45. hxg4 hxg4 46. Kxd1 g3 47. Ke1 g2 48. Kf2 Bh2 0-1";
+
+        $expected = [
+            '1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.d3 b5 7.Bb3 d6 8.a3 O-O 9.Nc3 Bb7 10.Bd2',
+            '10.Re1 Na5 11.Ba2 c5 12.b4 Nc6 13.Nd5',
+            '10...Qd7',
+            '10...Nd4 11.Nxd4 exd4 12.Ne2 c5 13.Ng3',
+            '11.a4 $1 Nd8 $5',
+            '11...b4 12.Nd5 Nxd5 13.Bxd5 Rab8 14.a5',
+            '11...Na5 12.Ba2 c5 13.Nd5 Bxd5 14.exd5 b4',
+            '12.axb5 axb5 13.Rxa8 Bxa8 14.Ne2',
+            '14.Qa1',
+            '14...Ne6 15.Ng3 c5 16.Nf5 Bd8',
+            '16...c4 $1 17.dxc4 bxc4 18.Bxc4 Bxe4 19.Nxe7+ Qxe7 20.Ng5 Bf5 21.Nxe6 Bxe6',
+            '17.c4 bxc4 18.Bxc4 Bc7 19.Re1 Re8',
+            '19...Nf4 $5',
+            '20.Qc1 $1 Nh5 $6',
+            '20...Rb8',
+            '20...Bc6 21.h3 Bb5',
+            '21.g3',
+            '21.b4 $5',
+            '21...g6 $2 22.Nh6+ Kg7 23.Ng5',
+            '23.b4 $1 cxb4 24.Nxf7 $1 Bb6 25.N7g5',
+            '23...Nxg5 24.Bxg5 d5 25.exd5 Bxd5 26.Ng4 Bf3 27.Bf6+ Kg8 28.Nh6+ Kf8 29.Qe3 Bb7 30.Bh4 Qh3 31.f3 Nf4 32.gxf4 Qxh4 33.Nxf7 Bxf3 34.Qf2 Qg4+ 35.Qg3 exf4 36.Rxe8+ Kxe8 37.Qxg4 Bxg4 38.Ng5 h6 39.Nf7 h5 40.Nh6 Bd1 41.Kf2 f3 42.h3 Bf4 43.Nf7 g5 44.Ke1 g4 45.hxg4 hxg4 46.Kxd1 g3 47.Ke1 g2 48.Kf2 Bh2',
+        ];
+
+        $ravPlay = (new RavPlay($movetext))->validate();
+
+        $this->assertSame($expected, $ravPlay->getRavMovetext()->getBreakdown());
+    }
+
+    /**
+     * @test
+     */
+    public function breakdown_e4_c5__e6()
+    {
+        $movetext = '1.e4 $1 c5
+            (2.Nf3
+                (2...Nc6)
+                (2...e6)
+                (2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 (5...a6) (5...g6) (5...Nc6) (5...e6))
+            )';
+
+        $expected = [
+            '1.e4 $1 c5',
+            '2.Nf3',
+            '2...Nc6',
+            '2...e6',
+            '2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3',
+            '5...a6',
+            '5...g6',
+            '5...Nc6',
+            '5...e6',
+        ];
+
+        $breakdown = (new RavPlay($movetext))
+            ->validate()
+            ->getRavMovetext()
+            ->getBreakdown();
+
+        $this->assertSame($expected, $breakdown);
     }
 }
