@@ -19,6 +19,13 @@ class RavMovetext extends AbstractMovetext
     private SanMovetext $sanMovetext;
 
     /**
+     * RAV breakdown.
+     *
+     * @var array
+     */
+    protected array $breakdown;
+
+    /**
      * Constructor.
      *
      * @param \Chess\Variant\Classical\PGN\Move $move
@@ -29,6 +36,18 @@ class RavMovetext extends AbstractMovetext
         parent::__construct($move, $movetext);
 
         $this->sanMovetext = new SanMovetext($move, $movetext);
+
+        $this->breakdown();
+    }
+
+    /**
+     * Returns the breakdown of the variations.
+     *
+     * @return array
+     */
+    public function getBreakdown(): array
+    {
+        return $this->breakdown;
     }
 
     /**
@@ -38,15 +57,21 @@ class RavMovetext extends AbstractMovetext
      */
     protected function beforeInsert(): RavMovetext
     {
-        // remove comments
-        $str = preg_replace('(\{.*?\})', '', $this->filtered());
-        // remove parentheses
-        $str = preg_replace('/\(/', '', $str);
-        $str = preg_replace('/\)/', '', $str);
-        // replace multiple spaces with a single space
-        $str = preg_replace('/\s+/', ' ', $str);
+        $patterns = [
+            '(\{.*?\})',
+            '/\(/',
+            '/\)/',
+            '/\s+/',
+        ];
 
-        $this->validated = trim($str);
+        $replacements = [
+            '',
+            '',
+            '',
+            ' ',
+        ];
+
+        $this->validated = preg_replace($patterns, $replacements, $this->filtered());
 
         return $this;
     }
@@ -77,9 +102,6 @@ class RavMovetext extends AbstractMovetext
     /**
      * Syntactically validated movetext.
      *
-     * The syntactically validated movetext does not contain any comments or
-     * parentheses.
-     *
      * @throws \Chess\Exception\UnknownNotationException
      * @return string
      */
@@ -95,21 +117,198 @@ class RavMovetext extends AbstractMovetext
     /**
      * Returns the main variation.
      *
-     * The main variation does not contain any comments or parentheses.
-     *
      * @return string
      */
     public function main(): string
     {
-        // remove variations
-        $str = preg_replace('/\(([^()]|(?R))*\)/', '', $this->sanMovetext->filtered());
-        // remove comments
-        $str = preg_replace('(\{.*?\})', '', $str);
-        // remove ellipsis
-        $str = preg_replace('/[1-9][0-9]*\.\.\./', '', $str);
-        // replace multiple spaces with a single space
-        $str = preg_replace('/\s+/', ' ', $str);
+        $patterns = [
+            '/\(([^()]|(?R))*\)/',
+            '(\{.*?\})',
+            '/[1-9][0-9]*\.\.\./',
+            '/\s+/',
+        ];
 
-        return trim($str);
+        $replacements = [
+            '',
+            '',
+            '',
+            ' ',
+        ];
+
+        return preg_replace($patterns, $replacements, $this->sanMovetext->filtered());
     }
+
+    /**
+     * Finds out if an element is immediately preceding another one.
+     *
+     * @param string $previous
+     * @param string $current
+     * @return bool
+     */
+    public function isPrevious(SanMovetext $previous, SanMovetext $current): bool
+    {
+        foreach ($this->lines() as $line) {
+            foreach ($line as $key => $val) {
+                if (
+                    str_ends_with(current($val), $previous->getMetadata()->lastMove) &&
+                    str_starts_with(key($val), $current->getMetadata()->firstMove)
+                ) {
+                    return true;
+                } elseif (str_contains(key($val), "{$previous->getMetadata()->lastMove} {$current->getMetadata()->firstMove}")) {
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * A breakdown of the variations for further processing.
+     *
+     * @return RavMovetext
+     */
+    protected function breakdown(): RavMovetext
+    {
+        $str = $this->filtered();
+        // escape parentheses enclosed in curly brackets
+        preg_match_all('/{(.*?)}/', $str, $matches);
+        foreach (array_filter($matches[0]) as $match) {
+            $replaced = str_replace('(', '<--', $match);
+            $replaced = str_replace(')', '-->', $replaced);
+            $str = str_replace($match, $replaced, $str);
+        }
+        // split by parentheses outside the curly brackets
+        $arr = preg_split("/[()]+/", $str, -1, PREG_SPLIT_NO_EMPTY);
+        $arr = array_map('trim', $arr);
+        $arr = array_values(array_filter($arr));
+        // unescape parentheses enclosed in curly brackets
+        foreach ($arr as &$item) {
+            $item = str_replace('<--', '(', $item);
+            $item = str_replace('-->', ')', $item);
+        }
+
+        $this->breakdown = $arr;
+
+        return $this;
+    }
+
+    /**
+    * Returns the maximum depth of nested parentheses.
+    *
+    * @return int
+    */
+   public function maxDepth(): int
+   {
+       $str = $this->filtered(false, false);
+       $count = 0;
+       $stack = [];
+       for ($i = 0; $i < strlen($str); $i++) {
+           if ($str[$i] == '(') {
+               array_push($stack, $i);
+           } elseif ($str[$i] == ')') {
+               if ($count < count($stack)) {
+                   $count = count($stack);
+               }
+               array_pop($stack);
+           }
+       }
+
+       return $count;
+   }
+
+   /**
+    * Returns all occurrences enclosed in the innermost parentheses.
+    *
+    * @return array
+    */
+   public function maxDepthStrings(): array
+   {
+       $matches = [];
+       $str = $this->filtered(false, false);
+       $maxDepth = $this->maxDepth();
+       if ($maxDepth === 0) {
+           return [
+               $str,
+           ];
+       } else {
+           $count = 0;
+           for ($i = 0; $i < strlen($str); $i++) {
+               if ($str[$i] == ')') {
+                   $count -= 1;
+               } elseif ($str[$i] == '(') {
+                   $count += 1;
+               } elseif ($count === $maxDepth) {
+                   $substr = substr($str, $i);
+                   $match = str_replace('(', '', explode(')', $substr)[0]);
+                   $matches[] = [
+                       $match => $this->previous($substr),
+                   ];
+                   $count -= 1;
+                   $i += strlen($match);
+               }
+           }
+       }
+
+       return $matches;
+   }
+
+   /**
+    * Returns all lines sorted by depth level.
+    *
+    * @return array
+    */
+   public function lines(): array
+   {
+       $matches = [];
+       $str = $this->filtered(false, false);
+       $ravMovetext = unserialize(serialize($this));
+       $maxDepth = $ravMovetext->maxDepth();
+
+       do {
+           $matches[$maxDepth] = $ravMovetext->maxDepthStrings();
+           $enclosedMatches = [];
+           foreach ($matches[$maxDepth] as $match) {
+               $enclosedMatches[] = '(' . key($match) . ')';
+           }
+           $str = str_replace($enclosedMatches, '', $str);
+           $str = preg_replace('/\s+/', ' ', $str);
+           $str = preg_replace('/\( /', '(', $str);
+           $str = preg_replace('/ \)/', ')', $str);
+           $ravMovetext = new self($this->move, $str);
+           $maxDepth = $ravMovetext->maxDepth();
+       } while ($maxDepth > 0);
+
+       $mainLine = preg_replace('/\(([^()]|(?R))*\)/', '', $this->sanMovetext->filtered(false, false));
+       $mainLine = preg_replace('/\s+/', ' ', $mainLine);
+       $mainLine = preg_replace('/\( /', '(', $mainLine);
+       $mainLine = preg_replace('/ \)/', ')', $mainLine);
+
+       $matches[0] = [
+           [
+               $mainLine => null,
+           ],
+       ];
+
+       ksort($matches);
+
+       return $matches;
+   }
+
+   /**
+    * Returns the chunk of movetext immediately preceding the given substring.
+    *
+    * @param string $substr
+    * @return string
+    */
+   protected function previous(string $substr): string
+   {
+       $str = trim(explode("($substr", $this->filtered(false, false))[0]);
+       $str = preg_replace('/\(([^()]|(?R))*\)/', '', $str);
+       $str = preg_replace('/\s+/', ' ', $str);
+       $exploded = explode('(', $str);
+
+       return trim($exploded[count($exploded) - 1]);
+   }
 }
