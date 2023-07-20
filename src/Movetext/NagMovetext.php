@@ -606,6 +606,41 @@ class NagMovetext
             'meaning' => 'Black has severe time control pressure / zeitnot',
             'symbol' => '⨁',
         ],
+        [
+            'nag' => '$140',
+            'meaning' => 'With the idea',
+            'symbol' => '∆',
+        ],
+        [
+            'nag' => '$141',
+            'meaning' => 'Aimed against',
+            'symbol' => '∇',
+        ],
+        [
+            'nag' => '$142',
+            'meaning' => 'Better is',
+            'symbol' => '⌓',
+        ],
+        [
+            'nag' => '$143',
+            'meaning' => 'Worse is',
+            'symbol' => '<=',
+        ],
+        [
+            'nag' => '$144',
+            'meaning' => 'Equivalent is',
+            'symbol' => '==',
+        ],
+        [
+            'nag' => '$145',
+            'meaning' => 'Editorial comment',
+            'symbol' => 'RR',
+        ],
+        [
+            'nag' => '$146',
+            'meaning' => 'Novelty',
+            'symbol' => 'N',
+        ],
     ];
 
     /**
