@@ -19,10 +19,6 @@ class SanMovetext extends AbstractMovetext
      */
     protected object $metadata;
 
-    protected string $firstMove = '';
-
-    protected string $lastMove = '';
-
     /**
      * Constructor.
      *
@@ -33,21 +29,10 @@ class SanMovetext extends AbstractMovetext
     {
         parent::__construct($move, $movetext);
 
-        $this->firstMove();
-
-        $this->lastMove();
-
         $this->metadata = (object) [
-            'number' => (object) [
-                'first' => $this->firstNumber($this->validated),
-                'last' => $this->lastNumber($this->validated),
-                'current' => $this->currentNumber($this->validated),
-            ],
-            'turn' => (object) [
-                'start' => $this->startTurn($this->validated),
-                'end' => $this->endTurn($this->validated),
-                'current' => $this->currentTurn($this->validated),
-            ],
+            'firstMove' => $this->firstMove(),
+            'lastMove' => $this->lastMove(),
+            'turn' => $this->turn(),
         ];
     }
 
@@ -61,16 +46,6 @@ class SanMovetext extends AbstractMovetext
         return $this->metadata;
     }
 
-    public function getFirstMove(): string
-    {
-        return $this->firstMove;
-    }
-
-    public function getLastMove(): string
-    {
-        return $this->lastMove;
-    }
-
     /**
      * Before inserting elements into the array of moves.
      *
@@ -78,9 +53,7 @@ class SanMovetext extends AbstractMovetext
      */
     protected function beforeInsert(): SanMovetext
     {
-        // remove comments
         $str = preg_replace('(\{.*?\})', '', $this->filtered());
-        // replace multiple spaces with a single space
         $str = preg_replace('/\s+/', ' ', $str);
 
         $this->validated = trim($str);
@@ -125,56 +98,17 @@ class SanMovetext extends AbstractMovetext
     }
 
     /**
-     * Returns the first move.
+     * Returns the current turn.
+     *
+     * @return string
      */
-    protected function firstNumber(string $str): int
+    protected function turn(): string
     {
-        $exploded = explode(' ', $str);
-        $first = $exploded[0];
-        $exploded = explode('.', $first);
-
-        return intval($exploded[0]);
-    }
-
-    /**
-     * Returns the last move.
-     */
-    protected function lastNumber(string $str): int
-    {
-        $exploded = explode(' ', $str);
-        $last = end($exploded);
-        if (str_contains($last, '.')) {
-            $exploded = explode('.', $last);
-        } else {
-            $last = prev($exploded);
-            $exploded = explode('.', $last);
-        }
-
-        return intval($exploded[0]);
-    }
-
-    /**
-     * Returns the current move.
-     */
-    protected function currentNumber(string $str): int
-    {
-        $exploded = explode(' ', $str);
+        $exploded = explode(' ', $this->validated);
         $last = end($exploded);
         if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $last)) {
-            return $this->lastNumber($str) + 1;
+            return Color::W;
         } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $last)) {
-            return $this->lastNumber($str);
-        }
-
-        return $this->lastNumber($str) + 1;
-    }
-
-    /**
-     * Returns the starting turn.
-     */
-    protected function startTurn(string $str): string
-    {
-        if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $str)) {
             return Color::B;
         }
 
@@ -182,53 +116,36 @@ class SanMovetext extends AbstractMovetext
     }
 
     /**
-     * Returns the ending turn.
+     * Returns the first move.
+     *
+     * @return string
      */
-    protected function endTurn(string $str): string
-    {
-        $exploded = explode(' ', $str);
-        $last = end($exploded);
-        if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $last)) {
-            return Color::B;
-        } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $last)) {
-            return Color::W;
-        }
-
-        return Color::B;
-    }
-
-    /**
-     * Returns the current turn.
-     */
-    protected function currentTurn(string $str): string
-    {
-        return Color::opp($this->endTurn($str));
-    }
-
-    protected function firstMove()
+    protected function firstMove(): string
     {
         $exploded = explode(' ', $this->validated);
 
-        $this->firstMove = $exploded[0];
+        return $exploded[0];
     }
 
-    protected function lastMove()
+    /**
+     * Returns the last move.
+     *
+     * @return string
+     */
+    protected function lastMove(): string
     {
         $exploded = explode(' ', $this->validated);
         $last = end($exploded);
         if (!str_contains($last, '.')) {
             $nextToLast = prev($exploded);
-            $this->lastMove = "{$nextToLast} {$last}";
-        } else {
-            $this->lastMove = $last;
+            return "{$nextToLast} {$last}";
         }
+
+        return $last;
     }
 
     /**
      * Syntactically validated movetext.
-     *
-     * The syntactically validated movetext does not contain any comments or
-     * parentheses.
      *
      * @throws \Chess\Exception\UnknownNotationException
      * @return string
@@ -254,7 +171,6 @@ class SanMovetext extends AbstractMovetext
     public function filtered($comments = true, $nags = true): string
     {
         $str = parent::filtered($comments, $nags);
-        // remove variations
         $str = preg_replace('/\(([^()]|(?R))*\)/', '', $str);
 
         return trim($str);
