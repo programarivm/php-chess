@@ -4,8 +4,9 @@ namespace Chess;
 
 use Chess\Eval\InverseEvalInterface;
 use Chess\Play\SanPlay;
-use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\PGN\Move;
+use Chess\Variant\Classical\PGN\AN\Color;
 
 /**
  * Heuristics
@@ -88,17 +89,18 @@ class Heuristics extends SanPlay
     protected function calc(): Heuristics
     {
         foreach ($this->sanMovetext->getMoves() as $key => $val) {
-            $turn = $this->board->getTurn();
-            if ($key % 2 === 0) {
-                $this->board->play($turn, $this->sanMovetext->getMoves()[$key]);
-                $this->calcItem();
-                if (!empty($this->sanMovetext->getMoves()[$key+1])) {
-                     $this->board->play(
-                         Color::opp($turn),
-                         $this->sanMovetext->getMoves()[$key+1]
-                     );
+            if ($val !== Move::ELLIPSIS) {
+                $turn = $this->board->getTurn();
+                if ($this->board->play($turn, $val)) {
+                    $this->calcItem();
+                    if (!empty($this->sanMovetext->getMoves()[$key+1])) {
+                        $this->board->play(
+                            Color::opp($turn),
+                            $this->sanMovetext->getMoves()[$key+1]
+                        );
+                    }
+                    $this->calcItem();
                 }
-                $this->calcItem();
             }
         }
         $this->normalize()->balance();
