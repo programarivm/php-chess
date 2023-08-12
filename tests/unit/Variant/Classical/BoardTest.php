@@ -1924,6 +1924,30 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function init_board_and_play_lan_w_h8_r()
+    {
+        $pieces = [
+            new P('w', 'g2', self::$size),
+            new P('w', 'h7', self::$size),
+            new K('w', 'e1', self::$size),
+            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$size),
+            new P('b', 'd7', self::$size),
+            new P('b', 'e7', self::$size),
+            new B('b', 'd6', self::$size),
+            new K('b', 'e8', self::$size)
+        ];
+
+        $castlingAbility = 'K';
+
+        $board = new Board($pieces, $castlingAbility);
+
+        $this->assertTrue($board->playLan('w', 'h7h8r'));
+    }
+
+    /**
+     * @test
+     */
     public function init_board_and_play_w_h8_b()
     {
         $pieces = [
