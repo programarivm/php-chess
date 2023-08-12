@@ -1894,7 +1894,9 @@ class BoardTest extends AbstractUnitTestCase
 
         $board = new Board($pieces, $castlingAbility);
 
-        $this->assertTrue($board->playLan('w', 'h7h8n'));
+        $board->playLan('w', 'h7h8n');
+
+        $this->assertEquals('N', $board->getPieceBySq('h8')->getId());
     }
 
     /**
@@ -1942,7 +1944,9 @@ class BoardTest extends AbstractUnitTestCase
 
         $board = new Board($pieces, $castlingAbility);
 
-        $this->assertTrue($board->playLan('w', 'h7h8r'));
+        $board->playLan('w', 'h7h8r');
+
+        $this->assertEquals('R', $board->getPieceBySq('h8')->getId());
     }
 
     /**
@@ -1990,7 +1994,9 @@ class BoardTest extends AbstractUnitTestCase
 
         $board = new Board($pieces, $castlingAbility);
 
-        $this->assertTrue($board->playLan('w', 'h7h8b'));
+        $board->playLan('w', 'h7h8b');
+
+        $this->assertEquals('B', $board->getPieceBySq('h8')->getId());
     }
 
     /**
