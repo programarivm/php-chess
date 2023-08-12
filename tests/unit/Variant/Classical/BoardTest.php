@@ -1804,7 +1804,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_promote_w_h8_q()
+    public function init_board_and_play_w_h8_q()
     {
         $pieces = [
             new P('w', 'g2', self::$size),
@@ -1828,7 +1828,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_promote_w_h8_n()
+    public function init_board_and_play_w_h8_n()
     {
         $pieces = [
             new P('w', 'g2', self::$size),
@@ -1852,7 +1852,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_promote_w_h8_r()
+    public function init_board_and_play_w_h8_r()
     {
         $pieces = [
             new P('w', 'g2', self::$size),
@@ -1876,7 +1876,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_promote_w_h8_b()
+    public function init_board_and_play_w_h8_b()
     {
         $pieces = [
             new P('w', 'g2', self::$size),
