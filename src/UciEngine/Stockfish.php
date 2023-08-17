@@ -201,4 +201,35 @@ class Stockfish
 
         return $bestMove;
     }
+
+    /**
+     * Returns the evaluation of the current position.
+     *
+     * @param string $fen
+     * @return float
+     */
+    public function eval(string $fen): float
+    {
+        $eval = '(none)';
+        $process = proc_open($this->filepath, $this->descr, $this->pipes);
+        if (is_resource($process)) {
+            fwrite($this->pipes[0], "uci\n");
+            fwrite($this->pipes[0], "ucinewgame\n");
+            $this->configure();
+            fwrite($this->pipes[0], "position fen $fen\n");
+            fwrite($this->pipes[0], "eval\n");
+            while (!feof($this->pipes[1])) {
+                $line = fgets($this->pipes[1]);
+                if (str_starts_with($line, 'Total evaluation:')) {
+                    $exploded = explode(' ', $line);
+                    $eval = $exploded[2];
+                    fclose($this->pipes[0]);
+                }
+            }
+            fclose($this->pipes[1]);
+            proc_close($process);
+        }
+
+        return floatval($eval);
+    }
 }
