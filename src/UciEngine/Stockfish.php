@@ -232,4 +232,61 @@ class Stockfish
 
         return floatval($eval);
     }
+
+    /**
+     * Returns the evaluation of the current position in a readable format.
+     *
+     * @param string $fen
+     * @return string
+     */
+    public function evalNag(string $fen): string
+    {
+        $scores = [
+            [
+                'from' => -0.26,
+                'to' => 0.26,
+                'nag' => '$10',
+            ],
+            [
+                'from' => 0.27,
+                'to' => 0.7,
+                'nag' => '$14',
+            ],
+            [
+                'from' => 0.7,
+                'to' => 1.5,
+                'nag' => '$16',
+            ],
+            [
+                'from' => -0.27,
+                'to' => -0.7,
+                'nag' => '$15',
+            ],
+            [
+                'from' => -0.7,
+                'to' => -1.5,
+                'nag' => '$17',
+            ],
+        ];
+
+        $eval = $this->eval($fen);
+
+        foreach ($scores as $score) {
+            if ($eval >= 0) {
+                if ($eval >= $score['from'] && $eval <= $score['to']) {
+                    return $score['nag'];
+                }
+            } elseif ($eval < 0) {
+                if (!$eval <= $score['from'] && $eval >= $score['to']) {
+                    return $score['nag'];
+                }
+            }
+        }
+
+        if ($eval >= 1.5) {
+            return '$18';
+        }
+
+        return '$19';
+    }
 }
