@@ -8,8 +8,6 @@ use Chess\Variant\Classical\Board;
 /**
  * Stockfish >= 15.1
  *
- * PHP wrapper for the Stockfish chess engine.
- *
  * @author Jordi Bassagaña
  * @license GPL
  */
@@ -250,63 +248,20 @@ class Stockfish
     public function evalNag(string $fen, string $type): string
     {
         $this->validateEvalType($type);
-
-        $scores = [
-            [
-                'from' => -0.26,
-                'to' => 0.26,
-                'nag' => '$10',
-            ],
-            [
-                'from' => 0.27,
-                'to' => 0.7,
-                'nag' => '$14',
-            ],
-            [
-                'from' => 0.7,
-                'to' => 1.5,
-                'nag' => '$16',
-            ],
-            [
-                'from' => -0.27,
-                'to' => -0.7,
-                'nag' => '$15',
-            ],
-            [
-                'from' => -0.7,
-                'to' => -1.5,
-                'nag' => '$17',
-            ],
-        ];
-
         $eval = $this->eval($fen, $type);
+        $score = $this->score($eval);
 
-        foreach ($scores as $score) {
-            if ($eval >= 0) {
-                if ($eval >= $score['from'] && $eval <= $score['to']) {
-                    return $score['nag'];
-                }
-            } elseif ($eval < 0) {
-                if (!$eval <= $score['from'] && $eval >= $score['to']) {
-                    return $score['nag'];
-                }
-            }
-        }
-
-        if ($eval >= 1.5) {
-            return '$18';
-        }
-
-        return '$19';
+        return $this->nag($eval, $score);
     }
 
     /**
      * Validates the evaluation type.
      *
      * @param string $type
+     * @return string
      * @throws StockfishException
      */
-    protected function validateEvalType(string $type)
+    protected function validateEvalType(string $type): string
     {
         if (
             $type !== self::EVAL_CLASSICAL &&
@@ -315,5 +270,74 @@ class Stockfish
         ) {
             throw new StockfishException();
         }
+
+        return $type;
+    }
+
+    /**
+     * Assigns a score to the given evaluation.
+     *
+     * @param float $eval
+     * @return int
+     */
+    protected function score(float $eval): int
+    {
+        $eval = abs($eval);
+
+        $scores = [
+            [
+                'from' => 0,
+                'to' => 0.26,
+                'score' => 0,
+            ],
+            [
+                'from' => 0.27,
+                'to' => 0.7,
+                'score' => 1,
+            ],
+            [
+                'from' => 0.7,
+                'to' => 1.5,
+                'score' => 2,
+            ],
+        ];
+
+        foreach ($scores as $score) {
+            if ($eval >= $score['from'] && $eval <= $score['to']) {
+                return $score['score'];
+            }
+        }
+
+        return 3;
+    }
+
+    /**
+     * Returns a NAG given an evaluation along with a score.
+     *
+     * @param float $eval
+     * @param int $score
+     * @return string
+     */
+    protected function nag(float $eval, int $score): string
+    {
+        $w = [
+            0 => '$10',
+            1 => '$14',
+            2 => '$16',
+            3 => '$18',
+        ];
+
+        $b = [
+            0 => '$10',
+            1 => '$15',
+            2 => '$17',
+            3 => '$19',
+        ];
+
+        if ($eval > 0) {
+            return $w[$score];
+        }
+
+        return $b[$score];
     }
 }

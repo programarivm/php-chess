@@ -234,7 +234,7 @@ class StockfishTest extends AbstractUnitTestCase
 
         $stockfish = new Stockfish($board);
 
-        $expected = '$17';
+        $expected = '$14';
 
         $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final'));
     }
@@ -262,7 +262,35 @@ class StockfishTest extends AbstractUnitTestCase
 
         $stockfish = new Stockfish($board);
 
-        $expected = '$16';
+        $expected = '$15';
+
+        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final'));
+    }
+
+    /**
+     * @test
+     */
+    public function eval_kings()
+    {
+        $board = FenToBoard::create('8/8/8/5K2/8/2k5/8/8 w - -');
+
+        $stockfish = new Stockfish($board);
+
+        $expected = -0.03;
+
+        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Final'));
+    }
+
+    /**
+     * @test
+     */
+    public function eval_nag_kings()
+    {
+        $board = FenToBoard::create('8/8/8/5K2/8/2k5/8/8 w - -');
+
+        $stockfish = new Stockfish($board);
+
+        $expected = '$10';
 
         $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final'));
     }
