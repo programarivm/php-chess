@@ -25,6 +25,12 @@ class Stockfish
         'depth' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     ];
 
+    const EVAL_CLASSICAL = 'Classical';
+
+    const EVAL_NNUE = 'NNUE';
+
+    const EVAL_FINAL = 'Final';
+
     /**
      * PHP Chess board.
      *
@@ -211,6 +217,7 @@ class Stockfish
      */
     public function eval(string $fen, string $type): float
     {
+        $this->validateEvalType($type);
         $eval = '(none)';
         $process = proc_open($this->filepath, $this->descr, $this->pipes);
         if (is_resource($process)) {
@@ -220,7 +227,7 @@ class Stockfish
             fwrite($this->pipes[0], "eval\n");
             while (!feof($this->pipes[1])) {
                 $line = fgets($this->pipes[1]);
-                if (str_starts_with($line, $type)) {
+                if (str_starts_with($line, $type.' evaluation')) {
                     $exploded = array_values(array_filter(explode(' ', $line)));
                     $eval = $exploded[2];
                     fclose($this->pipes[0]);
@@ -242,6 +249,8 @@ class Stockfish
      */
     public function evalNag(string $fen, string $type): string
     {
+        $this->validateEvalType($type);
+
         $scores = [
             [
                 'from' => -0.26,
@@ -289,5 +298,22 @@ class Stockfish
         }
 
         return '$19';
+    }
+
+    /**
+     * Validates the evaluation type.
+     *
+     * @param string $type
+     * @throws StockfishException
+     */
+    protected function validateEvalType(string $type)
+    {
+        if (
+            $type !== self::EVAL_CLASSICAL &&
+            $type !== self::EVAL_NNUE &&
+            $type !== self::EVAL_FINAL
+        ) {
+            throw new StockfishException();
+        }
     }
 }
