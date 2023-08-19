@@ -93,9 +93,9 @@ class StockfishTest extends AbstractUnitTestCase
 
         $stockfish = new Stockfish($board);
 
-        $expected = 0.13;
+        $expected = 0.25;
 
-        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -109,7 +109,7 @@ class StockfishTest extends AbstractUnitTestCase
 
         $expected = '$10';
 
-        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -121,9 +121,9 @@ class StockfishTest extends AbstractUnitTestCase
 
         $stockfish = new Stockfish($board);
 
-        $expected = -1.5;
+        $expected = -0.84;
 
-        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -137,7 +137,7 @@ class StockfishTest extends AbstractUnitTestCase
 
         $expected = '$17';
 
-        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -149,9 +149,9 @@ class StockfishTest extends AbstractUnitTestCase
 
         $stockfish = new Stockfish($board);
 
-        $expected = -0.44;
+        $expected = -0.67;
 
-        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -165,7 +165,7 @@ class StockfishTest extends AbstractUnitTestCase
 
         $expected = '$15';
 
-        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -177,9 +177,9 @@ class StockfishTest extends AbstractUnitTestCase
 
         $stockfish = new Stockfish($board);
 
-        $expected = -1.24;
+        $expected = -1.02;
 
-        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -193,7 +193,7 @@ class StockfishTest extends AbstractUnitTestCase
 
         $expected = '$17';
 
-        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -205,9 +205,9 @@ class StockfishTest extends AbstractUnitTestCase
 
         $stockfish = new Stockfish($board);
 
-        $expected = -1.05;
+        $expected = 0.35;
 
-        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -221,7 +221,7 @@ class StockfishTest extends AbstractUnitTestCase
 
         $expected = '$17';
 
-        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -233,9 +233,9 @@ class StockfishTest extends AbstractUnitTestCase
 
         $stockfish = new Stockfish($board);
 
-        $expected = 0.84;
+        $expected = -0.54;
 
-        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->eval($board->toFen(), 'Final evaluation'));
     }
 
     /**
@@ -249,6 +249,6 @@ class StockfishTest extends AbstractUnitTestCase
 
         $expected = '$16';
 
-        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Total evaluation'));
+        $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final evaluation'));
     }
 }

@@ -6,7 +6,7 @@ use Chess\Exception\StockfishException;
 use Chess\Variant\Classical\Board;
 
 /**
- * Stockfish.
+ * Stockfish >= 15.1
  *
  * PHP wrapper for the Stockfish chess engine.
  *
