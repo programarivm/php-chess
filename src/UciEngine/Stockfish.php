@@ -247,7 +247,6 @@ class Stockfish
      */
     public function evalNag(string $fen, string $type): string
     {
-        $this->validateEvalType($type);
         $eval = $this->eval($fen, $type);
         $score = $this->score($eval);
 
