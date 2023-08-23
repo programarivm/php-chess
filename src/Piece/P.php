@@ -136,9 +136,6 @@ class P extends AbstractPiece
             }
         }
 
-        // the previously set en passant square if any
-        $sqs[] = $this->enPassantSq;
-
         // calculate the en passant square from the history
         $history = $this->board->getHistory();
         $end = end($history);
@@ -160,6 +157,8 @@ class P extends AbstractPiece
                     }
                 }
             }
+        } else {
+            $sqs[] = $this->enPassantSq;
         }
 
         $sqs = array_filter(array_unique($sqs));
