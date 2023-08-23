@@ -2808,4 +2808,52 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertFalse($board->play('w', 'exe4'));
         $this->assertFalse($board->play('b', 'exe5'));
     }
+
+    /**
+     * @test
+     */
+    public function play_h4_a5_h5_g5()
+    {
+        $board = new Board();
+
+        $board->play('w', 'h4');
+        $board->play('b', 'a5');
+        $board->play('w', 'h5');
+        $board->play('b', 'g5');
+
+        $expected = (object) [
+            'color' => 'w',
+            'id' => 'P',
+            'fen' => [
+                'h6' => 'rnbqkbnr/1ppppp1p/7P/p5p1/8/8/PPPPPPP1/RNBQKBNR b KQkq -',
+                'g6' => 'rnbqkbnr/1ppppp1p/6P1/p7/8/8/PPPPPPP1/RNBQKBNR b KQkq -',
+            ],
+        ];
+
+        $this->assertEquals($expected, $board->legal('h5'));
+    }
+
+    /**
+     * @test
+     */
+    public function play_lan_h2h4_a7a5_h4h5_g7g5()
+    {
+        $board = new Board();
+
+        $board->playLan('w', 'h2h4');
+        $board->playLan('b', 'a7a5');
+        $board->playLan('w', 'h4h5');
+        $board->playLan('b', 'g7g5');
+
+        $expected = (object) [
+            'color' => 'w',
+            'id' => 'P',
+            'fen' => [
+                'h6' => 'rnbqkbnr/1ppppp1p/7P/p5p1/8/8/PPPPPPP1/RNBQKBNR b KQkq -',
+                'g6' => 'rnbqkbnr/1ppppp1p/6P1/p7/8/8/PPPPPPP1/RNBQKBNR b KQkq -',
+            ],
+        ];
+
+        $this->assertEquals($expected, $board->legal('h5'));
+    }
 }
