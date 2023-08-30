@@ -8,9 +8,9 @@
 
 A chess library for PHP.
 
-### Install
+### Installation
 
-Via composer:
+via composer:
 ```
 composer require chesslablab/php-chess
 ```
@@ -25,7 +25,7 @@ Check out [this demo](https://www.chesslablab.com).
 
 ### License
 
-The GNU General Public License.
+This product is licensed under the [GNU General Public License](https://github.com/chesslablab/php-chess/blob/master/LICENSE).
 
 ### Contributions
 
