@@ -837,4 +837,34 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->getMovetext());
     }
+
+    /**
+     * @test
+     */
+    public function resume_Qd1()
+    {
+        $board = (new StrToBoard('R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3BQPBP/6K1 w - -'))
+            ->create();
+
+        $board->play('w', 'Qd1');
+
+        $expected = 'R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3B1PBP/3Q2K1 b - -';
+
+        $this->assertEquals($expected, $board->toFen());
+    }
+
+    /**
+     * @test
+     */
+    public function resume_e2d1()
+    {
+        $board = (new StrToBoard('R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3BQPBP/6K1 w - -'))
+            ->create();
+
+        $board->playLan('w', 'e2d1');
+
+        $expected = 'R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3B1PBP/3Q2K1 b - -';
+
+        $this->assertEquals($expected, $board->toFen());
+    }
 }
