@@ -945,7 +945,7 @@ class Board extends \SplObjectStorage
      */
     private function isPinned(AbstractPiece $piece): bool
     {
-        $clone = unserialize(serialize($this));
+        $clone = msgpack_unpack(msgpack_pack($this));
         if (
             $piece->getMove()->type === $clone->move->case(Move::CASTLE_SHORT) &&
             $clone->castle($piece, RType::CASTLE_SHORT)
@@ -1086,7 +1086,7 @@ class Board extends \SplObjectStorage
             $fen = [];
             $color = $piece->getColor();
             foreach ($piece->sqs() as $sq) {
-                $clone = unserialize(serialize($this));
+                $clone = msgpack_unpack(msgpack_pack($this));
                 if ($piece->getId() === Piece::K) {
                     if (
                         $this->castlingRule[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sq &&

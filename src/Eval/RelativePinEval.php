@@ -27,7 +27,7 @@ class RelativePinEval extends AbstractEval
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() !== Piece::K && $piece->getId() !== Piece::Q) {
                 $oppColor = $piece->oppColor();
-                $clone = unserialize(serialize($this->board));
+                $clone = msgpack_unpack(msgpack_pack($this->board));
                 $clone->detach($clone->getPieceBySq($piece->getSq()));
                 $clone->refresh();
                 $newAttackEval = (new AttackEval($clone))->eval();

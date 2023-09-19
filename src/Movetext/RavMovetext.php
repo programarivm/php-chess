@@ -263,11 +263,11 @@ class RavMovetext extends AbstractMovetext
     {
         $matches = [];
         $str = $this->filtered(false, false);
-        $ravMovetext = unserialize(serialize($this));
-        $maxDepth = $ravMovetext->maxDepth();
+        $clone = msgpack_unpack(msgpack_pack($this));
+        $maxDepth = $clone->maxDepth();
 
         while ($maxDepth > 0) {
-            $matches[$maxDepth] = $ravMovetext->maxDepthStrings();
+            $matches[$maxDepth] = $clone->maxDepthStrings();
             $enclosedMatches = [];
             foreach ($matches[$maxDepth] as $match) {
                 $enclosedMatches[] = '(' . key($match) . ')';
@@ -276,8 +276,8 @@ class RavMovetext extends AbstractMovetext
             $str = preg_replace('/\s+/', ' ', $str);
             $str = preg_replace('/\( /', '(', $str);
             $str = preg_replace('/ \)/', ')', $str);
-            $ravMovetext = new self($this->move, $str);
-            $maxDepth = $ravMovetext->maxDepth();
+            $clone = new self($this->move, $str);
+            $maxDepth = $clone->maxDepth();
         }
 
         $mainLine = preg_replace('/\(([^()]|(?R))*\)/', '', $this->sanMovetext->filtered(false, false));
