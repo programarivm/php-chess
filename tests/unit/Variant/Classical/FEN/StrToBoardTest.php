@@ -598,10 +598,10 @@ class StrToBoardTest extends AbstractUnitTestCase
         $expected = (object) [
             'color' => 'b',
             'id' => 'R',
-            'fen' => [
-                'e8' => 'r1Q1r1k1/p2p1pp1/1ppq1n1p/4p3/1PP1P3/P4N2/1B3PPP/R4RK1 w - -',
-                'd8' => 'r1Qr2k1/p2p1pp1/1ppq1n1p/4p3/1PP1P3/P4N2/1B3PPP/R4RK1 w - -',
-                'c8' => 'r1r3k1/p2p1pp1/1ppq1n1p/4p3/1PP1P3/P4N2/1B3PPP/R4RK1 w - -',
+            'sqs' => [
+                'e8',
+                'd8',
+                'c8',
             ],
         ];
 
@@ -619,11 +619,11 @@ class StrToBoardTest extends AbstractUnitTestCase
         $expected = (object) [
             'color' => 'w',
             'id' => 'N',
-            'fen' => [
-                'a7' => 'k5N1/N7/2K5/8/8/8/8/8 b - -',
-                'b6' => 'k5N1/8/1NK5/8/8/8/8/8 b - -',
-                'd6' => 'k5N1/8/2KN4/8/8/8/8/8 b - -',
-                'e7' => 'k5N1/4N3/2K5/8/8/8/8/8 b - -',
+            'sqs' => [
+                'a7',
+                'b6',
+                'd6',
+                'e7',
             ],
         ];
 
@@ -641,10 +641,10 @@ class StrToBoardTest extends AbstractUnitTestCase
         $expected = (object) [
             'color' => 'w',
             'id' => 'N',
-            'fen' => [
-                'e7' => 'k1N5/4N3/2K5/8/8/8/8/8 b - -',
-                'f6' => 'k1N5/8/2K2N2/8/8/8/8/8 b - -',
-                'h6' => 'k1N5/8/2K4N/8/8/8/8/8 b - -',
+            'sqs' => [
+                'e7',
+                'f6',
+                'h6',
             ],
         ];
 
