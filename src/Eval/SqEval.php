@@ -19,8 +19,6 @@ class SqEval extends AbstractEval
     const TYPE_FREE      = 'free';
     const TYPE_USED      = 'used';
 
-    private $all = [];
-
     private $used = [];
 
     private $free = [];
@@ -29,7 +27,6 @@ class SqEval extends AbstractEval
     {
         parent::__construct($board);
 
-        $this->all();
         $this->used = $this->used();
         $this->free = $this->free();
     }
@@ -43,25 +40,13 @@ class SqEval extends AbstractEval
     }
 
     /**
-     * All squares.
-     */
-    private function all(): void
-    {
-        for ($i = 0; $i < $this->board->getSize()['files']; $i++) {
-            for ($j = 0; $j < $this->board->getSize()['ranks']; $j++) {
-                $this->all[] = AsciiArray::fromIndexToAlgebraic($i, $j);
-            }
-        }
-    }
-
-    /**
      * Free squares.
      *
      * @return array
      */
     private function free(): array
     {
-        return array_diff($this->all, [...$this->used->{Color::W}, ...$this->used->{Color::B}]);
+        return array_diff($this->board->getSqs(), [...$this->used->{Color::W}, ...$this->used->{Color::B}]);
     }
 
     /**

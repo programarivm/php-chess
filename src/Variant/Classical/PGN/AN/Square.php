@@ -71,4 +71,21 @@ class Square extends AbstractNotation implements ValidationInterface
 
          return Color::W;
      }
+
+     /**
+      * Returns all squares.
+      *
+      * @return array
+      */
+     public static function all(): array
+     {
+         $all = [];
+         for ($i = 0; $i < static::SIZE['files']; $i++) {
+             for ($j = 0; $j < static::SIZE['ranks']; $j++) {
+                 $all[] = AsciiArray::fromIndexToAlgebraic($i, $j);
+             }
+         }
+
+         return $all;
+     }
 }

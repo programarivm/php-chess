@@ -42,6 +42,7 @@ class Board extends ClassicalBoard
         string $castlingAbility = '-'
     ) {
         $this->size = Square::SIZE;
+        $this->sqs = Square::all();
         $this->castlingAbility = CastlingAbility::START;
         $this->castlingRule = (new CastlingRule())->getRule();
         $this->move = new Move();

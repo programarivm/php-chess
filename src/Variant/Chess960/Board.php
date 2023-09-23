@@ -40,6 +40,7 @@ final class Board extends ClassicalBoard
         string $castlingAbility = '-'
     ) {
         $this->size = Square::SIZE;
+        $this->sqs = Square::all();
         $this->startPos = $startPos ?? (new StartPosition())->getClassical();
         $this->castlingRule =  (new CastlingRule($this->startPos))->getRule();
         $this->move = new Move();

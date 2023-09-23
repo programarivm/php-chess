@@ -91,6 +91,13 @@ class Board extends \SplObjectStorage
     protected array $size;
 
     /**
+     * Squares.
+     *
+     * @var array
+     */
+    protected array $sqs = [];
+
+    /**
      * Move.
      *
      * @var \Chess\Variant\Classical\PGN\Move
@@ -143,6 +150,7 @@ class Board extends \SplObjectStorage
         string $castlingAbility = '-'
     ) {
         $this->size = Square::SIZE;
+        $this->sqs = Square::all();
         $this->castlingAbility = CastlingAbility::START;
         $this->castlingRule = (new CastlingRule())->getRule();
         $this->move = new Move();
@@ -295,6 +303,16 @@ class Board extends \SplObjectStorage
     public function getSize(): array
     {
         return $this->size;
+    }
+
+    /**
+     * Returns the squares.
+     *
+     * @return array
+     */
+    public function getSqs(): array
+    {
+        return $this->sqs;
     }
 
     /**
