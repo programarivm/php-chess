@@ -13,7 +13,7 @@ class CTest extends AbstractUnitTestCase
     {
         self::$size = [
             'files' => 10,
-            'ranks' => 10,
+            'ranks' => 8,
         ];
     }
 

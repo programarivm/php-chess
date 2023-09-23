@@ -2,8 +2,10 @@
 
 namespace Chess\Piece;
 
+use Chess\Variant\Capablanca\PGN\AN\Square as CapablancaSquare;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square as ClassicalSquare;
 use Chess\Variant\Classical\Board;
 
 /**
@@ -240,19 +242,23 @@ abstract class AbstractPiece
 
     protected function isValidSq(string $sq)
     {
-        // TODO: Refactor this if statement
-        if ($this->size === ['files' => 8, 'ranks' => 8]) {
-            return \Chess\Variant\Classical\PGN\AN\Square::validate($sq);
-        } elseif ($this->size === ['files' => 10, 'ranks' => 8]) {
-            return \Chess\Variant\Capablanca\PGN\AN\Square::validate($sq);
-        } elseif ($this->size === ['files' => 10, 'ranks' => 10]) {
-            return \Chess\Variant\Capablanca\PGN\AN\Square::validate($sq);
+        if ($this->size === ClassicalSquare::SIZE) {
+            return ClassicalSquare::validate($sq);
+        } elseif ($this->size === CapablancaSquare::SIZE) {
+            return CapablancaSquare::validate($sq);
         }
 
         return false;
     }
 
-    public function fen($color, $sq)
+    /**
+     * Returns the FEN corresponding to a legal square.
+     *
+     * @param string $color
+     * @param string $sq
+     * @return string
+     */
+    public function fen($color, $sq): string
     {
         $clone = msgpack_unpack(msgpack_pack($this->board));
         if ($clone->play($color, "{$this->getId()}x$sq")) {

@@ -238,7 +238,14 @@ class P extends AbstractPiece
         return isset($this->move->newId) && $rank === $this->ranks->end;
     }
 
-    public function fen($color, $sq)
+    /**
+     * Returns the FEN corresponding to a legal square.
+     *
+     * @param string $color
+     * @param string $sq
+     * @return string
+     */
+    public function fen($color, $sq): string
     {
         $clone = msgpack_unpack(msgpack_pack($this->board));
         if ($clone->play($color, $this->getSqFile()."x$sq")) {

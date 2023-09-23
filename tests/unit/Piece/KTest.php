@@ -176,7 +176,7 @@ class KTest extends AbstractUnitTestCase
     {
         $king = new K('w', 'f1', [
             'files' => 10,
-            'ranks' => 10,
+            'ranks' => 8,
         ]);
 
         $mobility = (object) [
