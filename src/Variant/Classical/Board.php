@@ -737,17 +737,9 @@ class Board extends \SplObjectStorage
         if (isset($sqs[0]) && isset($sqs[1])) {
             if ($color === $this->getTurn() && $piece = $this->getPieceBySq($sqs[0])) {
                 if ($piece->getId() === Piece::K) {
-                    if (
-                        $this->castlingRule[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sqs[1] &&
-                        $piece->sqCastleShort() &&
-                        $this->play($color, Castle::SHORT)
-                    ) {
+                    if ($this->play($color, Castle::SHORT)) {
                         return $this->addSymbol();
-                    } elseif (
-                        $this->castlingRule[$color][Piece::K][Castle::LONG]['sq']['next'] === $sqs[1] &&
-                        $piece->sqCastleLong() &&
-                        $this->play($color, Castle::LONG)
-                    ) {
+                    } elseif ($this->play($color, Castle::LONG)) {
                         return $this->addSymbol();
                     } elseif ($this->play($color, Piece::K.'x'.$sqs[1])) {
                         return $this->addSymbol();
