@@ -66,7 +66,7 @@ class Str
                 !is_numeric($item[0])
                     ? $elem = [" {$item[0]} "]
                     : $elem = array_fill(0, $item[0], ' . ');
-                $row = array_values(array_merge($row, $elem));
+                $row = array_merge($row, $elem);
             }
             $array[$i] = $row;
         }

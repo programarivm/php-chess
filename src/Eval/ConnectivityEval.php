@@ -45,7 +45,7 @@ class ConnectivityEval extends AbstractEval
             switch ($piece->getId()) {
                 case Piece::K:
                     $this->result[$color] += count(
-                        array_intersect(array_values((array)$piece->getMobility()),
+                        array_intersect((array)$piece->getMobility(),
                         $this->sqEval->used->{$color})
                     );
                     break;

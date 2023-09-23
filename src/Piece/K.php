@@ -78,7 +78,7 @@ class K extends AbstractPiece
             ...[$this->sqCastleShort()]
         ];
 
-        return array_values(array_filter(array_unique($sqs)));
+        return array_filter(array_unique($sqs));
     }
 
     /**
@@ -133,7 +133,7 @@ class K extends AbstractPiece
     protected function sqsCaptures(): ?array
     {
         $sqsCaptures = array_intersect(
-            array_values((array)$this->mobility),
+            (array)$this->mobility,
             $this->board->getSqEval()->used->{$this->oppColor()}
         );
 
@@ -142,7 +142,7 @@ class K extends AbstractPiece
 
     protected function sqsKing(): ?array
     {
-        $sqsKing = array_intersect(array_values((array)$this->mobility), $this->board->getSqEval()->free);
+        $sqsKing = array_intersect((array)$this->mobility, $this->board->getSqEval()->free);
 
         return array_diff($sqsKing, $this->board->getSpaceEval()->{$this->oppColor()});
     }

@@ -46,11 +46,9 @@ class SpaceEval extends AbstractEval
                     $this->result[$piece->getColor()] = array_unique(
                         [
                             ...$this->result[$piece->getColor()],
-                            ...array_values(
-                                array_intersect(
-                                    array_values((array) $piece->getMobility()),
-                                    $this->sqEval->free
-                                )
+                            ...array_intersect(
+                                (array) $piece->getMobility(),
+                                $this->sqEval->free
                             )
                         ]
                     );

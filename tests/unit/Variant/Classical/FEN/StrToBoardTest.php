@@ -424,7 +424,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $expected = ['c5', 'b4', 'b5'];
 
-        $this->assertSame($expected, $legalMoves);
+        $this->assertEqualsCanonicalizing($expected, $legalMoves);
     }
 
     /**
@@ -439,7 +439,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $expected = ['c5', 'b4', 'b5', 'd3'];
 
-        $this->assertSame($expected, $legalMoves);
+        $this->assertEqualsCanonicalizing($expected, $legalMoves);
     }
 
     /**
@@ -454,7 +454,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $expected = ['c3', 'b2', 'd2', 'b3', 'd3'];
 
-        $this->assertSame($expected, $legalMoves);
+        $this->assertEqualsCanonicalizing($expected, $legalMoves);
     }
 
     /**

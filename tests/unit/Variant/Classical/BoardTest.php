@@ -2478,7 +2478,7 @@ class BoardTest extends AbstractUnitTestCase
             'g1',
         ];
 
-        $this->assertSame($expected, $king->sqs());
+        $this->assertEqualsCanonicalizing($expected, $king->sqs());
     }
 
     /**

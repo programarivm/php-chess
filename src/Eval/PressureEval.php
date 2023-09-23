@@ -53,11 +53,9 @@ class PressureEval extends AbstractEval
                 case Piece::K:
                     $this->result[$piece->getColor()] = [
                         ...$this->result[$piece->getColor()],
-                        ...array_values(
-                            array_intersect(
-                                array_values((array) $piece->getMobility()),
-                                $this->sqEval->used->{$piece->oppColor()}
-                            )
+                        ...array_intersect(
+                            (array) $piece->getMobility(),
+                            $this->sqEval->used->{$piece->oppColor()}
                         )
                     ];
                     break;

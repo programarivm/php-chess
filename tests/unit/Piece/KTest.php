@@ -166,7 +166,7 @@ class KTest extends AbstractUnitTestCase
 
         $expected = [ 'e1', 'e2', 'g2' ];
 
-        $this->assertSame($expected, $king->sqs());
+        $this->assertEqualsCanonicalizing($expected, $king->sqs());
     }
 
     /**
