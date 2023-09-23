@@ -237,4 +237,14 @@ class P extends AbstractPiece
 
         return isset($this->move->newId) && $rank === $this->ranks->end;
     }
+
+    public function fen($color, $sq)
+    {
+        $clone = msgpack_unpack(msgpack_pack($this->board));
+        if ($clone->play($color, $this->getSqFile()."x$sq")) {
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        } elseif ($clone->play($color, $sq)) {
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        }
+    }
 }

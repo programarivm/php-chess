@@ -251,4 +251,32 @@ abstract class AbstractPiece
 
         return false;
     }
+
+    public function fen($color, $sq)
+    {
+        $clone = msgpack_unpack(msgpack_pack($this->board));
+        if ($clone->play($color, "{$this->getId()}x$sq")) {
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        } elseif ($clone->play($color, "{$this->getId()}{$this->getSqFile()}x$sq")) {
+            // disambiguation by file
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        } elseif ($clone->play($color, "{$this->getId()}{$this->getSqRank()}x$sq")) {
+            // disambiguation by rank
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        } elseif ($clone->play($color, "{$this->getId()}{$this->getSq()}x$sq")) {
+            // disambiguation by square
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        } elseif ($clone->play($color, $this->getId().$sq)) {
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        } elseif ($clone->play($color, $this->getId().$this->getSqFile().$sq)) {
+            // disambiguation by file
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        } elseif ($clone->play($color, $this->getId().$this->getSqRank().$sq)) {
+            // disambiguation by rank
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        } elseif ($clone->play($color, $this->getId().$this->getSq().$sq)) {
+            // disambiguation by square
+            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        }
+    }
 }
