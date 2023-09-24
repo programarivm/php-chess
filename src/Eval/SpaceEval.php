@@ -33,54 +33,39 @@ class SpaceEval extends AbstractEval
 
     public function eval(): array
     {
-        $this->result = [
-            Color::W => [],
-            Color::B => [],
-        ];
-
-        $this->board->rewind();
-        while ($this->board->valid()) {
-            $piece = $this->board->current();
-            switch ($piece->getId()) {
-                case Piece::K:
-                    $this->result[$piece->getColor()] = array_unique(
-                        [
-                            ...$this->result[$piece->getColor()],
-                            ...array_intersect(
-                                (array) $piece->getMobility(),
-                                $this->sqEval->free
-                            )
-                        ]
-                    );
-                    break;
-                case Piece::P:
-                    $this->result[$piece->getColor()] = array_unique(
-                        [
-                            ...$this->result[$piece->getColor()],
-                            ...array_intersect(
-                                $piece->getCaptureSqs(),
-                                $this->sqEval->free
-                            )
-                        ]
-                    );
-                    break;
-                default:
-                    $this->result[$piece->getColor()] = array_unique(
-                        [
-                            ...$this->result[$piece->getColor()],
-                            ...array_diff(
-                                $piece->sqs(),
-                                $this->sqEval->used->{$piece->oppColor()}
-                            )
-                        ]
-                    );
-                    break;
+        foreach ($pieces = $this->board->getPieces() as $piece) {
+            if ($piece->getId() === Piece::K) {
+                $this->result[$piece->getColor()] = array_unique(
+                    [
+                        ...$this->result[$piece->getColor()],
+                        ...array_intersect(
+                            (array) $piece->getMobility(),
+                            $this->sqEval->free
+                        )
+                    ]
+                );
+            } elseif ($piece->getId() === Piece::P) {
+                $this->result[$piece->getColor()] = array_unique(
+                    [
+                        ...$this->result[$piece->getColor()],
+                        ...array_intersect(
+                            $piece->getCaptureSqs(),
+                            $this->sqEval->free
+                        )
+                    ]
+                );
+            } else {
+                $this->result[$piece->getColor()] = array_unique(
+                    [
+                        ...$this->result[$piece->getColor()],
+                        ...array_diff(
+                            $piece->sqs(),
+                            $this->sqEval->used->{$piece->oppColor()}
+                        )
+                    ]
+                );
             }
-            $this->board->next();
         }
-
-        sort($this->result[Color::W]);
-        sort($this->result[Color::B]);
 
         return $this->result;
     }

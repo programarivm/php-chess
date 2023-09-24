@@ -25,7 +25,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertSame($expected, $spEval);
+        $this->assertEqualsCanonicalizing($expected, $spEval);
     }
 
     /**
@@ -52,7 +52,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertSame($expected, $spEval);
+        $this->assertEqualsCanonicalizing($expected, $spEval);
     }
 
     /**
@@ -79,6 +79,6 @@ class SpaceEvalTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertSame($expected, $spEval);
+        $this->assertEqualsCanonicalizing($expected, $spEval);
     }
 }
