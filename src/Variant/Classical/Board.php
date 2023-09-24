@@ -639,8 +639,13 @@ class Board extends \SplObjectStorage
      */
     protected function isValidMove(object $move): bool
     {
-        return !$this->isAmbiguousMove($move) &&
-            !$this->isAmbiguousCapture($move);
+        if ($this->isAmbiguousCapture($move)) {
+            return false;
+        } elseif ($this->isAmbiguousMove($move)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -720,8 +725,11 @@ class Board extends \SplObjectStorage
     public function play(string $color, string $pgn): bool
     {
         $move = $this->move->toObj($color, $pgn, $this->castlingRule);
+        if ($this->isValidMove($move)) {
+            return $this->isLegalMove($move);
+        }
 
-        return $this->isValidMove($move) && $this->isLegalMove($move);
+        return false;
     }
 
     /**
