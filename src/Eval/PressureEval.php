@@ -48,40 +48,33 @@ class PressureEval extends AbstractEval
      */
     public function eval(): array
     {
-        foreach ($this->board->getPieces() as $piece) {
-            switch ($piece->getId()) {
-                case Piece::K:
-                    $this->result[$piece->getColor()] = [
-                        ...$this->result[$piece->getColor()],
-                        ...array_intersect(
-                            (array) $piece->getMobility(),
-                            $this->sqEval->used->{$piece->oppColor()}
-                        )
-                    ];
-                    break;
-                case Piece::P:
-                    $this->result[$piece->getColor()] = [
-                        ...$this->result[$piece->getColor()],
-                        ...array_intersect(
-                            $piece->getCaptureSqs(),
-                            $this->sqEval->used->{$piece->oppColor()}
-                        )
-                    ];
-                    break;
-                default:
-                    $this->result[$piece->getColor()] = [
-                        ...$this->result[$piece->getColor()],
-                        ...array_intersect(
-                            $piece->sqs(),
-                            $this->sqEval->used->{$piece->oppColor()}
-                        )
-                    ];
-                    break;
+        foreach ($pieces = $this->board->getPieces() as $piece) {
+            if ($piece->getId() === Piece::K) {
+                $this->result[$piece->getColor()] = [
+                    ...$this->result[$piece->getColor()],
+                    ...array_intersect(
+                        (array) $piece->getMobility(),
+                        $this->sqEval->used->{$piece->oppColor()}
+                    )
+                ];
+            } elseif ($piece->getId() === Piece::P) {
+                $this->result[$piece->getColor()] = [
+                    ...$this->result[$piece->getColor()],
+                    ...array_intersect(
+                        $piece->getCaptureSqs(),
+                        $this->sqEval->used->{$piece->oppColor()}
+                    )
+                ];
+            } else {
+                $this->result[$piece->getColor()] = [
+                    ...$this->result[$piece->getColor()],
+                    ...array_intersect(
+                        $piece->sqs(),
+                        $this->sqEval->used->{$piece->oppColor()}
+                    )
+                ];
             }
         }
-
-        sort($this->result[Color::W]);
-        sort($this->result[Color::B]);
 
         return $this->result;
     }

@@ -40,7 +40,8 @@ class PressureEvalTest extends AbstractUnitTestCase
             'b' => ['c3'],
         ];
 
-        $this->assertSame($expected, $pressEval);
+        $this->assertEqualsCanonicalizing($expected['w'], $pressEval['w']);
+        $this->assertEqualsCanonicalizing($expected['b'], $pressEval['b']);
     }
 
     /**
@@ -59,7 +60,8 @@ class PressureEvalTest extends AbstractUnitTestCase
             'b' => ['d4', 'e4'],
         ];
 
-        $this->assertSame($expected, $pressEval);
+        $this->assertEqualsCanonicalizing($expected['w'], $pressEval['w']);
+        $this->assertEqualsCanonicalizing($expected['b'], $pressEval['b']);
     }
 
     /**
@@ -78,6 +80,7 @@ class PressureEvalTest extends AbstractUnitTestCase
             'b' => ['d2', 'f2'],
         ];
 
-        $this->assertSame($expected, $pressEval);
+        $this->assertEqualsCanonicalizing($expected['w'], $pressEval['w']);
+        $this->assertEqualsCanonicalizing($expected['b'], $pressEval['b']);
     }
 }
