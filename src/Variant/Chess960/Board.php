@@ -41,7 +41,7 @@ final class Board extends ClassicalBoard
     ) {
         $this->size = Square::SIZE;
         $this->sqs = Square::all();
-        $this->startPos = $startPos ?? (new StartPosition())->getClassical();
+        $this->startPos = $startPos ?? (new StartPosition())->default();
         $this->castlingRule =  (new CastlingRule($this->startPos))->getRule();
         $this->move = new Move();
         if (!$pieces) {

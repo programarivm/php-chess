@@ -26,7 +26,7 @@ class StartPosition
         return $this->arr;
     }
 
-    public function getClassical(): array {
+    public function default(): array {
         return $this->arr;
     }
 
