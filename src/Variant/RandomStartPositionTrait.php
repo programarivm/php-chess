@@ -4,7 +4,7 @@ namespace Chess\Variant;
 
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class RandomStartPosition
+trait RandomStartPositionTrait
 {
     protected array $default = [];
 
@@ -21,7 +21,7 @@ class RandomStartPosition
         return $this->default;
     }
 
-    private function bishops()
+    public function bishops()
     {
         $keys = [];
 
@@ -37,7 +37,7 @@ class RandomStartPosition
         return !$even && !$odd;
     }
 
-    private function king()
+    public function king()
     {
         $str = implode('', $this->default);
 

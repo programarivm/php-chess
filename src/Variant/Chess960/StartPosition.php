@@ -2,11 +2,13 @@
 
 namespace Chess\Variant\Chess960;
 
-use Chess\Variant\RandomStartPosition;
+use Chess\Variant\RandomStartPositionTrait;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class StartPosition extends RandomStartPosition
+class StartPosition
 {
+    use RandomStartPositionTrait;
+    
     public function __construct()
     {
         $this->default =  [
