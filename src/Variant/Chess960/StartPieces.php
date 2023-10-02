@@ -27,9 +27,10 @@ class StartPieces
     public function create()
     {
         $longCastlingRook = null;
+        
         foreach ($this->startPos as $key => $val) {
-            $wSq = chr(97+$key) . '1';
-            $bSq = chr(97+$key) . $this->size['files'];
+            $wSq = chr(97 + $key) . '1';
+            $bSq = chr(97 + $key) . $this->size['files'];
             $className = "\\Chess\\Piece\\{$val}";
             if ($val === Piece::K) {
                 $this->startPieces[] =  new $className(Color::W, $wSq, $this->size);
@@ -46,22 +47,13 @@ class StartPieces
                 $this->startPieces[] =  new $className(Color::B, $bSq, $this->size, RType::CASTLE_SHORT);
             }
         }
-        $this->startPieces[] = new P(Color::W, 'a2', $this->size);
-        $this->startPieces[] = new P(Color::W, 'b2', $this->size);
-        $this->startPieces[] = new P(Color::W, 'c2', $this->size);
-        $this->startPieces[] = new P(Color::W, 'd2', $this->size);
-        $this->startPieces[] = new P(Color::W, 'e2', $this->size);
-        $this->startPieces[] = new P(Color::W, 'f2', $this->size);
-        $this->startPieces[] = new P(Color::W, 'g2', $this->size);
-        $this->startPieces[] = new P(Color::W, 'h2', $this->size);
-        $this->startPieces[] = new P(Color::B, 'a7', $this->size);
-        $this->startPieces[] = new P(Color::B, 'b7', $this->size);
-        $this->startPieces[] = new P(Color::B, 'c7', $this->size);
-        $this->startPieces[] = new P(Color::B, 'd7', $this->size);
-        $this->startPieces[] = new P(Color::B, 'e7', $this->size);
-        $this->startPieces[] = new P(Color::B, 'f7', $this->size);
-        $this->startPieces[] = new P(Color::B, 'g7', $this->size);
-        $this->startPieces[] = new P(Color::B, 'h7', $this->size);
+
+        for ($i = 0; $i < $this->size['files']; $i++) {
+            $wSq = chr(97 + $i) . 2;
+            $bSq = chr(97 + $i) . $this->size['files'] - 1;
+            $this->startPieces[] = new P(Color::W, $wSq, $this->size);
+            $this->startPieces[] = new P(Color::B, $bSq, $this->size);
+        }
 
         return $this->startPieces;
     }
