@@ -21,7 +21,7 @@ trait RandomStartPositionTrait
         return $this->default;
     }
 
-    public function bishops()
+    protected function bishops()
     {
         $keys = [];
 
@@ -37,7 +37,7 @@ trait RandomStartPositionTrait
         return !$even && !$odd;
     }
 
-    public function king()
+    protected function king()
     {
         $str = implode('', $this->default);
 

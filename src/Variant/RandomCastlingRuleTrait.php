@@ -8,7 +8,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 
 trait RandomCastlingRuleTrait
 {
-    public function sq()
+    protected function sq()
     {
         $longCastlingRook = false;
         foreach ($this->startPos as $key => $val) {
@@ -34,7 +34,7 @@ trait RandomCastlingRuleTrait
         return $this;
     }
 
-    public function sqs()
+    protected function sqs()
     {
         $kPath = $this->path(
             $this->rule[Color::W][Piece::K][Castle::SHORT]['sq']['current'],
