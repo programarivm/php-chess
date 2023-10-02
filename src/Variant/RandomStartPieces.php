@@ -23,10 +23,7 @@ class RandomStartPieces
             $wSq = chr(97 + $key) . '1';
             $bSq = chr(97 + $key) . $this->size['files'];
             $className = "\\Chess\\Piece\\{$val}";
-            if ($val === Piece::K) {
-                $this->startPieces[] =  new $className(Color::W, $wSq, $this->size);
-                $this->startPieces[] =  new $className(Color::B, $bSq, $this->size);
-            } elseif ($val !== Piece::R) {
+            if ($val !== Piece::R) {
                 $this->startPieces[] =  new $className(Color::W, $wSq, $this->size);
                 $this->startPieces[] =  new $className(Color::B, $bSq, $this->size);
             } elseif (!$longCastlingRook) {
