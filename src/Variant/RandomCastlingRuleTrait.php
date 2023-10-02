@@ -8,12 +8,14 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 
 trait RandomCastlingRuleTrait
 {
+    protected array $size;
+    
     protected function sq()
     {
         $longCastlingRook = false;
         foreach ($this->startPos as $key => $val) {
-            $wSq = chr(97+$key).'1';
-            $bSq = chr(97+$key).'8';
+            $wSq = chr(97 + $key) . '1';
+            $bSq = chr(97 + $key) . $this->size['files'];
             if ($val === Piece::R) {
                 if (!$longCastlingRook) {
                     $this->rule[Color::W][Piece::R][Castle::LONG]['sq']['current'] = $wSq;
