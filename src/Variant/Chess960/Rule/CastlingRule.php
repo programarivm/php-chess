@@ -10,12 +10,6 @@ class CastlingRule extends ClassicalCastlingRule
 {
     use RandomCastlingRuleTrait;
 
-    protected array $startPos;
-
-    protected array $startFiles;
-
-    protected array $size;
-
     public function __construct(array $startPos)
     {
         $this->startPos = $startPos;

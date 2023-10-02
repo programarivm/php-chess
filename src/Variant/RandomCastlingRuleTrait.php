@@ -8,8 +8,12 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 
 trait RandomCastlingRuleTrait
 {
-    protected array $size;
+    protected array $startPos;
+
+    protected array $startFiles;
     
+    protected array $size;
+
     protected function sq()
     {
         $longCastlingRook = false;
