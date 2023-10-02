@@ -6,6 +6,7 @@ use Chess\Piece\P;
 use Chess\Piece\RType;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Chess960\StartPosition;
 
 class StartPieces
@@ -20,18 +21,15 @@ class StartPieces
     {
         $this->startPos = $startPos;
         $this->startPieces = [];
-        $this->size = [
-            'files' => 8,
-            'ranks' => 8,
-        ];
+        $this->size = Square::SIZE;
     }
 
     public function create()
     {
         $longCastlingRook = null;
         foreach ($this->startPos as $key => $val) {
-            $wSq = chr(97+$key).'1';
-            $bSq = chr(97+$key).'8';
+            $wSq = chr(97+$key) . '1';
+            $bSq = chr(97+$key) . $this->size['files'];
             $className = "\\Chess\\Piece\\{$val}";
             if ($val === Piece::K) {
                 $this->startPieces[] =  new $className(Color::W, $wSq, $this->size);
