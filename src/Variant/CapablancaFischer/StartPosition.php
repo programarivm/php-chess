@@ -6,7 +6,7 @@ use Chess\Variant\Capablanca\PGN\AN\Piece;
 
 class StartPosition
 {
-    private $arr = [
+    private $default = [
         Piece::R,
         Piece::N,
         Piece::A,
@@ -22,21 +22,21 @@ class StartPosition
     public function create()
     {
         do {
-            shuffle($this->arr);
+            shuffle($this->default);
         } while (!$this->bishops() || !$this->king());
 
-        return $this->arr;
+        return $this->default;
     }
 
-    public function default(): array {
-        return $this->arr;
+    public function getDefault(): array {
+        return $this->default;
     }
 
     private function bishops()
     {
         $keys = [];
 
-        foreach ($this->arr as $key => $val) {
+        foreach ($this->default as $key => $val) {
             if ($val === Piece::B) {
                 $keys[] = $key;
             }
@@ -50,7 +50,7 @@ class StartPosition
 
     private function king()
     {
-        $str = implode('', $this->arr);
+        $str = implode('', $this->default);
 
         return preg_match('/^(.*)R(.*)K(.*)R(.*)$/', $str);
     }
