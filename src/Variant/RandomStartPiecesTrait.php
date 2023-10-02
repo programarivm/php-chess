@@ -7,7 +7,7 @@ use Chess\Piece\RType;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class RandomStartPieces
+trait RandomStartPiecesTrait
 {
     protected array $startPos;
 
