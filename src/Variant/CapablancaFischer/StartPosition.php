@@ -28,7 +28,7 @@ class StartPosition
         return $this->arr;
     }
 
-    public function getArray(): array {
+    public function default(): array {
         return $this->arr;
     }
 
