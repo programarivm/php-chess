@@ -12,7 +12,7 @@ use Chess\Variant\Chess960\Rule\CastlingRule;
 /**
  * Board
  *
- * Chess board representation to play Chess960.
+ * Fischer Random chessboard representation.
  *
  * @author Jordi Bassagaña
  * @license GPL

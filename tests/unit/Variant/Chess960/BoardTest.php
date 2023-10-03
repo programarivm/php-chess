@@ -2,11 +2,10 @@
 
 namespace Chess\Tests\Unit\Variant\Chess960;
 
-use Chess\Variant\Classical\FEN\Field\CastlingAbility;
+use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Chess960\Board;
 use Chess\Variant\Chess960\StartPosition;
 
