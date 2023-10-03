@@ -21,7 +21,7 @@ trait RandomStartPiecesTrait
 
         foreach ($this->startPos as $key => $val) {
             $wSq = chr(97 + $key) . '1';
-            $bSq = chr(97 + $key) . $this->size['files'];
+            $bSq = chr(97 + $key) . $this->size['ranks'];
             $className = "\\Chess\\Piece\\{$val}";
             if ($val !== Piece::R) {
                 $this->startPieces[] =  new $className(Color::W, $wSq, $this->size);
@@ -38,7 +38,7 @@ trait RandomStartPiecesTrait
 
         for ($i = 0; $i < $this->size['files']; $i++) {
             $wSq = chr(97 + $i) . 2;
-            $bSq = chr(97 + $i) . $this->size['files'] - 1;
+            $bSq = chr(97 + $i) . $this->size['ranks'] - 1;
             $this->startPieces[] = new P(Color::W, $wSq, $this->size);
             $this->startPieces[] = new P(Color::B, $bSq, $this->size);
         }
