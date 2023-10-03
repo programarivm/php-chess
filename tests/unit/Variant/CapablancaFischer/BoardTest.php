@@ -137,9 +137,9 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_QRBKRBNN_e4_e5()
+    public function play_AQRBKRBNNC_e4_e5()
     {
-        $startPos = ['Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N'];
+        $startPos = ['A', 'Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N', 'C'];
 
         $board = new Board($startPos);
 
@@ -147,14 +147,14 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('b', 'e5');
 
         $expected = [
-            7 => [ ' q ', ' r ', ' b ', ' k ', ' r ', ' b ', ' n ', ' n ' ],
-            6 => [ ' p ', ' p ', ' p ', ' p ', ' . ', ' p ', ' p ', ' p ' ],
-            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            4 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
-            3 => [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            1 => [ ' P ', ' P ', ' P ', ' P ', ' . ', ' P ', ' P ', ' P ' ],
-            0 => [ ' Q ', ' R ', ' B ', ' K ', ' R ', ' B ', ' N ', ' N ' ],
+            7 => [ ' a ', ' q ', ' r ', ' b ', ' k ', ' r ', ' b ', ' n ', ' n ', ' c ' ],
+            6 => [ ' p ', ' p ', ' p ', ' p ', ' . ', ' p ', ' p ', ' p ', ' p ', ' p ' ],
+            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' P ', ' P ', ' P ', ' P ', ' P ', ' . ', ' P ', ' P ', ' P ', ' P ' ],
+            0 => [ ' A ', ' Q ', ' R ', ' B ', ' K ', ' R ', ' B ', ' N ', ' N ', ' C ' ],
         ];
 
         $this->assertSame($expected, $board->toAsciiArray());
