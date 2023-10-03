@@ -11,7 +11,7 @@ trait RandomCastlingRuleTrait
     protected array $startPos;
 
     protected array $startFiles;
-    
+
     protected array $size;
 
     protected function sq()
@@ -19,7 +19,7 @@ trait RandomCastlingRuleTrait
         $longCastlingRook = false;
         foreach ($this->startPos as $key => $val) {
             $wSq = chr(97 + $key) . '1';
-            $bSq = chr(97 + $key) . $this->size['files'];
+            $bSq = chr(97 + $key) . $this->size['ranks'];
             if ($val === Piece::R) {
                 if (!$longCastlingRook) {
                     $this->rule[Color::W][Piece::R][Castle::LONG]['sq']['current'] = $wSq;
