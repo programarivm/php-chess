@@ -58,7 +58,7 @@ class Str
             $row = [];
             preg_match_all('!\d+!', $ranks[$i], $digits, PREG_OFFSET_CAPTURE);
             preg_match_all('/[a-zA-Z]{1}/', $ranks[$i], $letters, PREG_OFFSET_CAPTURE);
-            $all = array_merge($digits[0], $letters[0]);
+            $all = [...$digits[0], ...$letters[0]];
             usort($all, function ($a, $b) {
                 return $a[1] <=> $b[1];
             });
@@ -66,7 +66,7 @@ class Str
                 !is_numeric($item[0])
                     ? $elem = [" {$item[0]} "]
                     : $elem = array_fill(0, $item[0], ' . ');
-                $row = array_merge($row, $elem);
+                $row = [...$row, ...$elem];
             }
             $array[$i] = $row;
         }
