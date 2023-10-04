@@ -15,7 +15,7 @@ class SqEvalTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $sqEval = (new SqEval($board))->eval(SqEval::TYPE_FREE);
+        $sqEval = (new SqEval($board))->eval();
 
         $expected = [
             'a3', 'a4', 'a5', 'a6',

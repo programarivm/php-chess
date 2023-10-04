@@ -2321,7 +2321,7 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'e5');
 
-        $board = $board->undo($board->getCastlingAbility());
+        $board = $board->undo();
 
         $expected = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3';
 
