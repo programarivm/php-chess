@@ -21,7 +21,7 @@ class FenToBoard
 {
     public static function create(string $fen, ClassicalBoard $board = null)
     {
-        $board = $board ?? new ClassicalBoard();
+        $board ??= new ClassicalBoard();
         if (is_a($board, CapablancaBoard::class)) {
             $board = (new CapablancaFenStrToBoard($fen))->create();
         } elseif (is_a($board, CapablancaFischerBoard::class)) {
