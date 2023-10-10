@@ -5,6 +5,8 @@ namespace Chess;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Capablanca\FEN\StrToBoard as CapablancaFenStrToBoard;
+use Chess\Variant\CapablancaFischer\Board as CapablancaFischerBoard;
+use Chess\Variant\CapablancaFischer\FEN\StrToBoard as CapablancaFischerFenStrToBoard;
 use Chess\Variant\Chess960\Board as Chess960Board;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
@@ -28,8 +30,8 @@ class HeuristicsByFen
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
         } elseif ($variant === CapablancaBoard::VARIANT) {
             $this->board = (new CapablancaFenStrToBoard($fen))->create();
-        } elseif ($variant === ClassicalBoard::VARIANT) {
-            $this->board = (new ClassicalFenStrToBoard($fen))->create();
+        } elseif ($variant === CapablancaFischerBoard::VARIANT) {
+            $this->board = (new CapablancaFischerFenStrToBoard($fen))->create();
         } else {
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
         }
