@@ -82,7 +82,7 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Heuristics calc.
+     * Calculates the heuristics.
      *
      * @return \Chess\Heuristics
      */
@@ -109,7 +109,7 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Adds an item to $this->result.
+     * Adds an item to the result.
      */
     protected function calcItem(): void
     {
@@ -148,9 +148,6 @@ class Heuristics extends SanPlay
     /**
      * Normalizes the chess evaluations.
      *
-     * Material, Center, Connectivity, Space, and so on, are scaled to have
-     * values between 0 and 1.
-     *
      * @return \Chess\Heuristics
      */
     protected function normalize(): Heuristics
@@ -187,7 +184,7 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Balances the heuristic picture of $this->board.
+     * Calculates the balance.
      *
      * A chess game can be plotted in terms of balance. +1 is the best possible
      * evaluation for White and -1 the best possible evaluation for Black. Both
@@ -208,7 +205,7 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Returns the last element of the heuristic picture.
+     * Returns the last element in the result.
      *
      * @return array
      */
