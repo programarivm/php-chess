@@ -42,16 +42,6 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Returns the current evaluation.
-     *
-     * @return array
-     */
-    public function eval(): array
-    {
-        return $this->heuristicsByFen->eval();
-    }
-
-    /**
      * Calculates the heuristics.
      *
      * @return \Chess\Heuristics

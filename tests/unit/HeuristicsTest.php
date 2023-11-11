@@ -136,37 +136,6 @@ class HeuristicsTest extends AbstractUnitTestCase
 
     /*
     |--------------------------------------------------------------------------
-    | eval()
-    |--------------------------------------------------------------------------
-    |
-    | Returns the evaluation of the chess position in a human readable format.
-    | The result obtained suggests which player may be better.
-    |
-    */
-
-    /**
-     * @test
-     */
-    public function eval_A59()
-    {
-        $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
-
-        $board = (new SanPlay($A59))->validate()->getBoard();
-
-        $heuristics = new Heuristics($board->getMovetext());
-
-        $evaluation = $heuristics->eval();
-
-        $expected = [
-            'w' => 22.88,
-            'b' => 21.68,
-        ];
-
-        $this->assertSame($expected, $evaluation);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
     | getBalance()
     |--------------------------------------------------------------------------
     |
@@ -308,29 +277,6 @@ class HeuristicsTest extends AbstractUnitTestCase
         ];
 
         $this->assertEquals($expected, $balance);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | getEval()
-    |--------------------------------------------------------------------------
-    |
-    | Returns the evaluation features also known as dimensions.
-    |
-    */
-
-    /**
-     * @test
-     */
-    public function get_eval()
-    {
-        $heuristics = new Heuristics('');
-
-        $weights = array_values($heuristics->getEval());
-
-        $expected = 100;
-
-        $this->assertSame($expected, array_sum($weights));
     }
 
     /*
