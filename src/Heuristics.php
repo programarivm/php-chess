@@ -43,29 +43,6 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Returns the resized balanced heuristics given a new range of values.
-     *
-     * @param float $newMin
-     * @param float $newMax
-     * @return array
-     */
-    public function getResizedBalance(float $newMin, float $newMax): array
-    {
-        $oldMin = -1;
-        $oldMax = 1;
-        $resize = [];
-        foreach ($this->balance as $key => $val) {
-            foreach ($val as $v) {
-                $resized = (($v - $oldMin) / ($oldMax - $oldMin)) *
-                    ($newMax - $newMin) + $newMin;
-                $resize[$key][] = round($resized, 2);
-            }
-        }
-
-        return $resize;
-    }
-
-    /**
      * Calculates the heuristics.
      *
      * @return \Chess\Heuristics
@@ -76,112 +53,21 @@ class Heuristics extends SanPlay
             if ($val !== Move::ELLIPSIS) {
                 $turn = $this->board->getTurn();
                 if ($this->board->play($turn, $val)) {
-                    $this->calcItem();
+                    $result = (new HeuristicsByFen($this->board->toFen()))->getResult();
+                    $this->result[Color::W][] = $result[Color::W];
+                    $this->result[Color::B][] = $result[Color::B];
                     if (!empty($this->sanMovetext->getMoves()[$key+1])) {
                         $this->board->play(
                             Color::opp($turn),
                             $this->sanMovetext->getMoves()[$key+1]
                         );
                     }
-                    $this->calcItem();
+                    $result = (new HeuristicsByFen($this->board->toFen()))->getResult();
+                    $this->result[Color::W][] = $result[Color::W];
+                    $this->result[Color::B][] = $result[Color::B];
+
+                    $this->balance[] = (new HeuristicsByFen($this->board->toFen()))->getBalance();
                 }
-            }
-        }
-        $this->normalize()->balance();
-
-        return $this;
-    }
-
-    /**
-     * Adds an item to the result.
-     */
-    protected function calcItem(): void
-    {
-        $item = [];
-        foreach ($this->eval as $className => $weight) {
-            $heuristic = new $className($this->board);
-            $eval = $heuristic->eval();
-            if (is_array($eval[Color::W])) {
-                if ($heuristic instanceof InverseEvalInterface) {
-                    $item[] = [
-                        Color::W => count($eval[Color::B]),
-                        Color::B => count($eval[Color::W]),
-                    ];
-                } else {
-                    $item[] = [
-                        Color::W => count($eval[Color::W]),
-                        Color::B => count($eval[Color::B]),
-                    ];
-                }
-            } else {
-                if ($heuristic instanceof InverseEvalInterface) {
-                    $item[] = [
-                        Color::W => $eval[Color::B],
-                        Color::B => $eval[Color::W],
-                    ];
-                } else {
-                    $item[] = $eval;
-                }
-            }
-        }
-
-        $this->result[Color::W][] = array_column($item, Color::W);
-        $this->result[Color::B][] = array_column($item, Color::B);
-    }
-
-    /**
-     * Normalizes the chess evaluations.
-     *
-     * @return \Chess\Heuristics
-     */
-    protected function normalize(): Heuristics
-    {
-        $normd = [];
-        if (count($this->board->getHistory()) >= 2) {
-            for ($i = 0; $i < count($this->eval); $i++) {
-                $values = [
-                    ...array_column($this->result[Color::W], $i),
-                    ...array_column($this->result[Color::B], $i)
-                ];
-                $min = round(min($values), 2);
-                $max = round(max($values), 2);
-                for ($j = 0; $j < count($this->result[Color::W]); $j++) {
-                    if ($max - $min > 0) {
-                        $normd[Color::W][$j][$i] =
-                            round(($this->result[Color::W][$j][$i] - $min) / ($max - $min), 2);
-                        $normd[Color::B][$j][$i] =
-                            round(($this->result[Color::B][$j][$i] - $min) / ($max - $min), 2);
-                    } elseif ($max == $min) {
-                        $normd[Color::W][$j][$i] = 0;
-                        $normd[Color::B][$j][$i] = 0;
-                    }
-                }
-            }
-        } else {
-            $normd[Color::W][] =
-                $normd[Color::B][] = array_fill(0, count($this->eval), 0);
-        }
-
-        $this->result = $normd;
-
-        return $this;
-    }
-
-    /**
-     * Calculates the balance.
-     *
-     * A chess game can be plotted in terms of balance. +1 is the best possible
-     * evaluation for White and -1 the best possible evaluation for Black. Both
-     * forces being set to 0 means they're actually offset and, therefore, balanced.
-     *
-     * @return \Chess\Heuristics
-     */
-    protected function balance(): Heuristics
-    {
-        foreach ($this->result[Color::W] as $i => $color) {
-            foreach ($color as $j => $val) {
-                $this->balance[$i][$j] =
-                    round($this->result[Color::W][$i][$j] - $this->result[Color::B][$i][$j], 2);
             }
         }
 
