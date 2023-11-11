@@ -83,4 +83,23 @@ class BadBishopEvalTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $badBishopEval);
     }
+
+    /**
+     * @test
+     */
+    public function position_05()
+    {
+        $fen = '3k4/5RN1/4P3/5P2/7K/8/8/6q1 b - -';
+
+        $board = (new StrToBoard($fen))->create();
+
+        $expected = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $badBishopEval = (new BadBishopEval($board))->eval();
+
+        $this->assertSame($expected, $badBishopEval);
+    }
 }

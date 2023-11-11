@@ -60,9 +60,9 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEval = (new BishopPairEval($board))->eval();
+        $bishopPairEval = (new BishopPairEval($board))->eval();
 
-        $this->assertSame($expected, $absForkEval);
+        $this->assertSame($expected, $bishopPairEval);
     }
 
     /**
@@ -78,9 +78,9 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $absForkEval = (new BishopPairEval($board))->eval();
+        $bishopPairEval = (new BishopPairEval($board))->eval();
 
-        $this->assertSame($expected, $absForkEval);
+        $this->assertSame($expected, $bishopPairEval);
     }
 
     /**
@@ -96,8 +96,27 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $absForkEval = (new BishopPairEval($board))->eval();
+        $bishopPairEval = (new BishopPairEval($board))->eval();
 
-        $this->assertSame($expected, $absForkEval);
+        $this->assertSame($expected, $bishopPairEval);
+    }
+
+    /**
+     * @test
+     */
+    public function P_P_R_N_vs_q()
+    {
+        $fen = '3k4/5RN1/4P3/5P2/7K/8/8/6q1 b - -';
+
+        $board = (new StrToBoard($fen))->create();
+
+        $expected = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $bishopPairEval = (new BishopPairEval($board))->eval();
+
+        $this->assertSame($expected, $bishopPairEval);
     }
 }
