@@ -124,36 +124,7 @@ class HeuristicsByFen
         $this->result[Color::W] = array_column($item, Color::W);
         $this->result[Color::B] = array_column($item, Color::B);
 
-        $this->normalize()->balance();
-
-        return $this;
-    }
-
-    protected function normalize(): HeuristicsByFen
-    {
-        $normalization = [];
-
-        $values = [
-            ...$this->result[Color::W],
-            ...$this->result[Color::B]
-        ];
-
-        $min = min($values);
-        $max = max($values);
-
-        for ($i = 0; $i < count($this->eval); $i++) {
-            if ($max - $min > 0) {
-                $normalization[Color::W][$i] =
-                    round(($this->result[Color::W][$i] - $min) / ($max - $min), 2);
-                $normalization[Color::B][$i] =
-                    round(($this->result[Color::B][$i] - $min) / ($max - $min), 2);
-            } elseif ($max == $min) {
-                $normalization[Color::W][$i] = round(1 / count($values), 2);
-                $normalization[Color::B][$i] = round(1 / count($values), 2);
-            }
-        }
-
-        $this->result = $normalization;
+        $this->balance();
 
         return $this;
     }
