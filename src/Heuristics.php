@@ -17,7 +17,14 @@ use Chess\Variant\Classical\PGN\AN\Color;
  */
 class Heuristics extends SanPlay
 {
-    use HeuristicsTrait;
+    protected $heuristicsByFen;
+
+    /**
+     * The balanced heuristics.
+     *
+     * @var array
+     */
+    protected array $balance;
 
     /**
      * Constructor.
@@ -29,6 +36,8 @@ class Heuristics extends SanPlay
     {
         parent::__construct($movetext, $board);
 
+        $this->heuristicsByFen = new HeuristicsByFen($this->board->toFen());
+
         $this->calc()->normalize();
     }
 
@@ -39,7 +48,7 @@ class Heuristics extends SanPlay
      */
     public function eval(): array
     {
-        return (new HeuristicsByFen($this->board->toFen()))->eval();
+        return $this->heuristicsByFen->eval();
     }
 
     /**
@@ -53,18 +62,12 @@ class Heuristics extends SanPlay
             if ($val !== Move::ELLIPSIS) {
                 $turn = $this->board->getTurn();
                 if ($this->board->play($turn, $val)) {
-                    $result = (new HeuristicsByFen($this->board->toFen()))->getResult();
-                    $this->result[Color::W][] = $result[Color::W];
-                    $this->result[Color::B][] = $result[Color::B];
                     if (!empty($this->sanMovetext->getMoves()[$key+1])) {
                         $this->board->play(
                             Color::opp($turn),
                             $this->sanMovetext->getMoves()[$key+1]
                         );
                     }
-                    $result = (new HeuristicsByFen($this->board->toFen()))->getResult();
-                    $this->result[Color::W][] = $result[Color::W];
-                    $this->result[Color::B][] = $result[Color::B];
                     $this->balance[] = (new HeuristicsByFen($this->board->toFen()))->getBalance();
                 }
             }
@@ -84,7 +87,7 @@ class Heuristics extends SanPlay
         $mins = [];
         $maxs = [];
 
-        for ($i = 0; $i < count($this->eval); $i++) {
+        for ($i = 0; $i < count($this->heuristicsByFen->getEval()); $i++) {
             $columns[$i] = array_column($this->balance, $i);
             $mins[$i] = round(min($columns[$i]), 2);
             $maxs[$i] = round(max($columns[$i]), 2);
@@ -92,7 +95,7 @@ class Heuristics extends SanPlay
 
         $normd = [];
 
-        for ($i = 0; $i < count($this->eval); $i++) {
+        for ($i = 0; $i < count($this->heuristicsByFen->getEval()); $i++) {
             for ($j = 0; $j < count($columns[$i]); $j++) {
                 if ($maxs[$i] - $mins[$i] > 0) {
                     $normd[$i][$j] = round(($columns[$i][$j] - $mins[$i]) / ($maxs[$i] - $mins[$i]), 2);
@@ -126,5 +129,15 @@ class Heuristics extends SanPlay
             Color::W => end($this->result[Color::W]),
             Color::B => end($this->result[Color::B]),
         ];
+    }
+
+    /**
+     * Returns the balanced heuristics.
+     *
+     * @return array
+     */
+    public function getBalance(): array
+    {
+        return $this->balance;
     }
 }
