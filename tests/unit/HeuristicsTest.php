@@ -158,8 +158,8 @@ class HeuristicsTest extends AbstractUnitTestCase
         $evaluation = $heuristics->eval();
 
         $expected = [
-            'w' => 20.72,
-            'b' => 20.64,
+            'w' => 22.88,
+            'b' => 21.68,
         ];
 
         $this->assertSame($expected, $evaluation);

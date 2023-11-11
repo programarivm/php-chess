@@ -2,6 +2,7 @@
 
 namespace Chess;
 
+use Chess\HeuristicsByFen;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Play\SanPlay;
 use Chess\Variant\Classical\Board;
@@ -38,24 +39,7 @@ class Heuristics extends SanPlay
      */
     public function eval(): array
     {
-        $eval = [
-            Color::W => 0,
-            Color::B => 0,
-        ];
-
-        $weights = array_values($this->getEval());
-
-        $result = $this->getResult();
-
-        for ($i = 0; $i < count($this->getEval()); $i++) {
-            $eval[Color::W] += $weights[$i] * end($result[Color::W])[$i];
-            $eval[Color::B] += $weights[$i] * end($result[Color::B])[$i];
-        }
-
-        $eval[Color::W] = round($eval[Color::W], 2);
-        $eval[Color::B] = round($eval[Color::B], 2);
-
-        return $eval;
+        return (new HeuristicsByFen($this->board->toFen()))->eval();
     }
 
     /**
