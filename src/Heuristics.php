@@ -29,7 +29,7 @@ class Heuristics extends SanPlay
     {
         parent::__construct($movetext, $board);
 
-        $this->calc();
+        $this->calc()->normalize();
     }
 
     /**
@@ -65,11 +65,52 @@ class Heuristics extends SanPlay
                     $result = (new HeuristicsByFen($this->board->toFen()))->getResult();
                     $this->result[Color::W][] = $result[Color::W];
                     $this->result[Color::B][] = $result[Color::B];
-
                     $this->balance[] = (new HeuristicsByFen($this->board->toFen()))->getBalance();
                 }
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Normalizes the chess evaluations.
+     *
+     * @return \Chess\Heuristics
+     */
+    protected function normalize(): Heuristics
+    {
+        $columns = [];
+        $mins = [];
+        $maxs = [];
+
+        for ($i = 0; $i < count($this->eval); $i++) {
+            $columns[$i] = array_column($this->balance, $i);
+            $mins[$i] = round(min($columns[$i]), 2);
+            $maxs[$i] = round(max($columns[$i]), 2);
+        }
+
+        $normd = [];
+
+        for ($i = 0; $i < count($this->eval); $i++) {
+            for ($j = 0; $j < count($columns[$i]); $j++) {
+                if ($maxs[$i] - $mins[$i] > 0) {
+                    $normd[$i][$j] = round(($columns[$i][$j] - $mins[$i]) / ($maxs[$i] - $mins[$i]), 2);
+                } elseif ($maxs[$i] == $mins[$i]) {
+                    $normd[$i][$j] = 0;
+                }
+            }
+        }
+
+        $transpose = [];
+
+        for ($i = 0; $i < count($normd); $i++) {
+            for ($j = 0; $j < count($normd[$i]); $j++) {
+                $transpose[$j][$i] = $normd[$i][$j];
+            }
+        }
+
+        $this->balance = $transpose;
 
         return $this;
     }
