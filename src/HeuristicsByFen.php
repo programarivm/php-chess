@@ -66,27 +66,6 @@ class HeuristicsByFen
     }
 
     /**
-     * Returns the resized balance given a new range of values.
-     *
-     * @param float $newMin
-     * @param float $newMax
-     * @return array
-     */
-    public function getResizedBalance(float $newMin, float $newMax): array
-    {
-        $oldMin = -1;
-        $oldMax = 1;
-        $resize = [];
-        foreach ($this->balance as $val) {
-            $resized = (($val - $oldMin) / ($oldMax - $oldMin)) *
-                ($newMax - $newMin) + $newMin;
-            $resize[] = round($resized, 2);
-        }
-
-        return $resize;
-    }
-
-    /**
      * Heristics calc.
      *
      * @return HeuristicsByFen
