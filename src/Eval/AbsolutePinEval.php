@@ -25,7 +25,7 @@ class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
         $checkingPieces = $this->board->checkingPieces();
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() !== Piece::K) {
-                $clone = msgpack_unpack(msgpack_pack($this->board));
+                $clone = unserialize(serialize($this->board));
                 $clone->detach($clone->getPieceBySq($piece->getSq()));
                 $clone->refresh();
                 if ($newCheckingPieces = $clone->checkingPieces()) {

@@ -263,7 +263,7 @@ class RavMovetext extends AbstractMovetext
     {
         $matches = [];
         $str = $this->filtered(false, false);
-        $clone = msgpack_unpack(msgpack_pack($this));
+        $clone = unserialize(serialize($this));
         $maxDepth = $clone->maxDepth();
 
         while ($maxDepth > 0) {

@@ -40,7 +40,7 @@ class RavPlay extends AbstractPlay
     public function __construct(string $movetext, ClassicalBoard $board = null)
     {
         $this->initialBoard = $board ?? new ClassicalBoard();
-        $this->board = msgpack_unpack(msgpack_pack($board)) ?? new ClassicalBoard();
+        $this->board = unserialize(serialize($board)) ?? new ClassicalBoard();
         $this->fen = [$this->board->toFen()];
         $this->ravMovetext = new RavMovetext($this->board->getMove(), $movetext);
 
@@ -107,7 +107,7 @@ class RavPlay extends AbstractPlay
                     if (
                         $this->isUndo($sanMovetextKey->getMetadata()->lastMove, $sanMovetext->getMetadata()->firstMove)
                     ) {
-                        $clone = msgpack_unpack(msgpack_pack($val));
+                        $clone = unserialize(serialize($val));
                         $undo = $clone->undo();
                         $board = FenToBoard::create($undo->toFen(), $this->initialBoard);
                     } else {

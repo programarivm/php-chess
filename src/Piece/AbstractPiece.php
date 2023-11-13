@@ -260,7 +260,7 @@ abstract class AbstractPiece
      */
     public function fen($color, $sq): ?string
     {
-        $clone = msgpack_unpack(msgpack_pack($this->board));
+        $clone = unserialize(serialize($this->board));
         if ($clone->play($color, "{$this->getId()}x$sq")) {
             return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
         } elseif ($clone->play($color, "{$this->getId()}{$this->getSqFile()}x$sq")) {
