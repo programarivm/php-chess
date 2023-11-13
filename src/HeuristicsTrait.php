@@ -111,19 +111,6 @@ trait HeuristicsTrait
     }
 
     /**
-     * Sets the evaluations.
-     *
-     * @param array $eval
-     * @return self
-     */
-    public function setEval(array $eval)
-    {
-        $this->eval = $eval;
-
-        return $this;
-    }
-
-    /**
      * Returns the heuristics.
      *
      * @return array
