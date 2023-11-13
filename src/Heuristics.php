@@ -24,7 +24,7 @@ class Heuristics extends SanPlay
      *
      * @var array
      */
-    protected array $balance;
+    protected array $balance = [];
 
     /**
      * Constructor.
