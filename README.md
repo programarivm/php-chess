@@ -19,10 +19,6 @@ composer require chesslablab/php-chess
 
 Read the latest docs [here](https://php-chess.readthedocs.io/en/latest/).
 
-### Demo
-
-Check out [this demo](https://www.chesslablab.com).
-
 ### License
 
 The GNU General Public License.
