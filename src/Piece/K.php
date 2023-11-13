@@ -182,7 +182,7 @@ class K extends AbstractPiece
      */
     public function fen($color, $sq): string
     {
-        $clone = msgpack_unpack(msgpack_pack($this->board));
+        $clone = unserialize(serialize($this->board));
         if (
             $this->board->getCastlingRule()[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sq &&
             $this->sqCastleShort() &&

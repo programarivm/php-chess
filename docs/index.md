@@ -60,4 +60,3 @@ PHP dependencies required:
 
 - Rubix ML for machine learning.
 - Imagine for image processing.
-- MessagePack for data serialization.

@@ -247,7 +247,7 @@ class P extends AbstractPiece
      */
     public function fen($color, $sq): ?string
     {
-        $clone = msgpack_unpack(msgpack_pack($this->board));
+        $clone = unserialize(serialize($this->board));
         if ($clone->play($color, $this->getSqFile()."x$sq")) {
             return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
         } elseif ($clone->play($color, $sq)) {
