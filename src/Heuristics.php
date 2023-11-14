@@ -22,7 +22,6 @@ class Heuristics extends SanPlay
      *
      * @var array
      */
-
     protected EvalFunction $evalFunction;
 
     /**

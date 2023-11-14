@@ -20,14 +20,40 @@ use Chess\Variant\Classical\PGN\AN\Color;
  */
 class HeuristicsByFen
 {
+    /**
+     * Chess board.
+     *
+     * @var \Chess\Variant\Classical\Board
+     */
     protected ClassicalBoard $board;
 
+    /**
+     * The evaluation function.
+     *
+     * @var array
+     */
     protected EvalFunction $evalFunction;
 
+    /**
+     * The chess evaluations.
+     *
+     * @var array
+     */
     protected array $result;
 
-    protected array $balance;
+    /**
+     * The balanced evaluations.
+     *
+     * @var array
+     */
+    protected array $balance = [];
 
+    /**
+     * Constructor.
+     *
+     * @param string $fen
+     * @param string $variant
+     */
     public function __construct(string $fen, string $variant = '')
     {
         if ($variant === Chess960Board::VARIANT) {
@@ -46,7 +72,17 @@ class HeuristicsByFen
     }
 
     /**
-     * Returns the current evaluation.
+     * Returns the balance.
+     *
+     * @return array
+     */
+    public function getBalance(): array
+    {
+        return $this->balance;
+    }
+
+    /**
+     * Returns the evaluation result.
      *
      * @return array
      */
@@ -71,7 +107,7 @@ class HeuristicsByFen
     }
 
     /**
-     * Heristics calc.
+     * Calculates the evaluation.
      *
      * @return HeuristicsByFen
      */
@@ -110,6 +146,11 @@ class HeuristicsByFen
         return $this;
     }
 
+    /**
+     * Calculates the balance.
+     *
+     * @return HeuristicsByFen
+     */
     protected function balance(): HeuristicsByFen
     {
         foreach ($this->result[Color::W] as $key => $val) {
@@ -118,10 +159,5 @@ class HeuristicsByFen
         }
 
         return $this;
-    }
-
-    public function getBalance(): array
-    {
-        return $this->balance;
     }
 }
