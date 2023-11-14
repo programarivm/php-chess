@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\ML\Supervised\Classification;
 
+use Chess\EvalFunction;
 use Chess\Heuristics;
 use Chess\Combinatorics\RestrictedPermutationWithRepetition;
 use Chess\ML\Supervised\Classification\PermutationLabeller;
@@ -15,12 +16,12 @@ class PermutationLabellerTest extends AbstractUnitTestCase
 
     public static function setUpBeforeClass(): void
     {
-        $dimensions = (new Heuristics(''))->getEval();
+        $eval = (new EvalFunction())->getEval();
 
         self::$permutations = (new RestrictedPermutationWithRepetition())
             ->get(
                 [ 4, 16 ],
-                count($dimensions),
+                count($eval),
                 100
             );
     }
