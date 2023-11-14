@@ -22,6 +22,8 @@ class HeuristicsByFen
 {
     protected ClassicalBoard $board;
 
+    protected EvalFunction $evalFunction;
+
     protected array $result;
 
     protected array $balance;
@@ -38,6 +40,8 @@ class HeuristicsByFen
             $this->board = (new ClassicalFenStrToBoard($fen))->create();
         }
 
+        $this->evalFunction = new EvalFunction();
+
         $this->calc();
     }
 
@@ -48,16 +52,14 @@ class HeuristicsByFen
      */
     public function eval(): array
     {
-        $evalFunction = new EvalFunction();
-
         $result = [
             Color::W => 0,
             Color::B => 0,
         ];
 
-        $weights = $evalFunction->weights();
+        $weights = $this->evalFunction->weights();
 
-        for ($i = 0; $i < count($evalFunction->getEval()); $i++) {
+        for ($i = 0; $i < count($this->evalFunction->getEval()); $i++) {
             $result[Color::W] += $weights[$i] * $this->result[Color::W][$i];
             $result[Color::B] += $weights[$i] * $this->result[Color::B][$i];
         }
@@ -75,7 +77,7 @@ class HeuristicsByFen
      */
     protected function calc(): HeuristicsByFen
     {
-        foreach ((new EvalFunction())->getEval() as $key => $val) {
+        foreach ($this->evalFunction->getEval() as $key => $val) {
             $heuristic = new $key($this->board);
             $eval = $heuristic->eval();
             if (is_array($eval[Color::W])) {
@@ -118,11 +120,6 @@ class HeuristicsByFen
         }
 
         return $this;
-    }
-
-    public function getResult(): array
-    {
-        return $this->result;
     }
 
     public function getBalance(): array
