@@ -7,16 +7,6 @@ use Chess\Tests\AbstractUnitTestCase;
 
 class HeuristicsByFenTest extends AbstractUnitTestCase
 {
-    /*
-    |--------------------------------------------------------------------------
-    | eval()
-    |--------------------------------------------------------------------------
-    |
-    | Returns the evaluation of the chess position in a human readable format.
-    | The result obtained suggests which player may be better.
-    |
-    */
-
     /**
      * @test
      */
@@ -27,8 +17,8 @@ class HeuristicsByFenTest extends AbstractUnitTestCase
         $evaluation = (new HeuristicsByFen($fen))->eval();
 
         $expected = [
-            'w' => 22.88,
-            'b' => 22.88,
+            'w' => 916.96,
+            'b' => 916.96,
         ];
 
         $this->assertSame($expected, $evaluation);
@@ -44,8 +34,8 @@ class HeuristicsByFenTest extends AbstractUnitTestCase
         $evaluation = (new HeuristicsByFen($fen))->eval();
 
         $expected = [
-            'w' => 24.32,
-            'b' => 24.32,
+            'w' => 978.56,
+            'b' => 978.56,
         ];
 
         $this->assertSame($expected, $evaluation);
@@ -61,21 +51,12 @@ class HeuristicsByFenTest extends AbstractUnitTestCase
         $evaluation = (new HeuristicsByFen($fen))->eval();
 
         $expected = [
-            'w' => 22.88,
-            'b' => 21.68,
+            'w' => 929.28,
+            'b' => 877.28,
         ];
 
         $this->assertSame($expected, $evaluation);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | getBalance()
-    |--------------------------------------------------------------------------
-    |
-    | Returns the balanced heuristics.
-    |
-    */
 
     /**
      * @test
@@ -114,7 +95,7 @@ class HeuristicsByFenTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFen($fen))->getBalance();
 
-        $expected = [ 0.02, 0.22, -0.02, 0.09, -0.07, 0, 0, 0, 0, 0.05, 0, -0.02, 0, 0, 0, 0, 0, 0, 0, 0, -0.03, 0 ];
+        $expected = [ 1, 9, -1, 4, -3, 0, 0, 0, 0, 2, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -128,7 +109,7 @@ class HeuristicsByFenTest extends AbstractUnitTestCase
 
         $balance = (new HeuristicsByFen($fen))->getBalance();
 
-        $expected = [ 0.02, 0.12, -0.25, 0.04, 0.06, 0.08, -0.02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.02, 0 ];
+        $expected = [ 1, 5.66, -12, 2, 3, 4, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0 ];
 
         $this->assertEquals($expected, $balance);
     }
