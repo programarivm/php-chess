@@ -75,7 +75,6 @@ class HeuristicsByFen
      */
     protected function calc(): HeuristicsByFen
     {
-        $item = [];
         foreach ((new HeuristicsEval())->getEval() as $key => $val) {
             $heuristic = new $key($this->board);
             $eval = $heuristic->eval();
