@@ -2,6 +2,7 @@
 
 namespace Chess;
 
+use Chess\Eval\Heuristics as HeuristicsEval;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Capablanca\FEN\StrToBoard as CapablancaFenStrToBoard;
@@ -20,6 +21,10 @@ use Chess\Variant\Classical\PGN\AN\Color;
 class HeuristicsByFen
 {
     protected ClassicalBoard $board;
+
+    protected array $result;
+
+    protected array $balance;
 
     public function __construct(string $fen, string $variant = '')
     {
@@ -43,18 +48,18 @@ class HeuristicsByFen
      */
     public function eval(): array
     {
+        $heuristicsEval = new HeuristicsEval();
+
         $result = [
             Color::W => 0,
             Color::B => 0,
         ];
 
-        $weights = array_values($this->getEval());
+        $weights = $heuristicsEval->getWeights();
 
-        $pic = $this->getResult();
-
-        for ($i = 0; $i < count($this->getEval()); $i++) {
-            $result[Color::W] += $weights[$i] * $pic[Color::W][$i];
-            $result[Color::B] += $weights[$i] * $pic[Color::B][$i];
+        for ($i = 0; $i < count($heuristicsEval->getEval()); $i++) {
+            $result[Color::W] += $weights[$i] * $this->result[Color::W][$i];
+            $result[Color::B] += $weights[$i] * $this->result[Color::B][$i];
         }
 
         $result[Color::W] = round($result[Color::W], 2);
@@ -71,8 +76,8 @@ class HeuristicsByFen
     protected function calc(): HeuristicsByFen
     {
         $item = [];
-        foreach ($this->eval as $className => $weight) {
-            $heuristic = new $className($this->board);
+        foreach ((new HeuristicsEval())->getEval() as $key => $val) {
+            $heuristic = new $key($this->board);
             $eval = $heuristic->eval();
             if (is_array($eval[Color::W])) {
                 if ($heuristic instanceof InverseEvalInterface) {
@@ -114,5 +119,15 @@ class HeuristicsByFen
         }
 
         return $this;
+    }
+
+    public function getResult(): array
+    {
+        return $this->result;
+    }
+
+    public function getBalance(): array
+    {
+        return $this->balance;
     }
 }
