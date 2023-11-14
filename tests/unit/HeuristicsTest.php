@@ -3,7 +3,6 @@
 namespace Chess\Tests\Unit;
 
 use Chess\Heuristics;
-use Chess\Eval\Heuristics as HeuristicsEval;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
@@ -11,50 +10,6 @@ use Chess\Variant\Classical\FEN\StrToBoard;
 
 class HeuristicsTest extends AbstractUnitTestCase
 {
-    /*
-    |--------------------------------------------------------------------------
-    | getEvalNames()
-    |--------------------------------------------------------------------------
-    |
-    | Returns the dimensions names.
-    |
-    */
-
-    /**
-     * @test
-     */
-    public function get_eval_names()
-    {
-        $evalNames = (new HeuristicsEval())->names();
-
-        $expected = [
-            'Material',
-            'Center',
-            'Connectivity',
-            'Space',
-            'Pressure',
-            'King safety',
-            'Tactics',
-            'Attack',
-            'Doubled pawn',
-            'Passed pawn',
-            'Isolated pawn',
-            'Backward pawn',
-            'Absolute pin',
-            'Relative pin',
-            'Absolute fork',
-            'Relative fork',
-            'Square outpost',
-            'Knight outpost',
-            'Bishop outpost',
-            'Bishop pair',
-            'Bad bishop',
-            'Direct opposition',
-        ];
-
-        $this->assertSame($expected, $evalNames);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | end()

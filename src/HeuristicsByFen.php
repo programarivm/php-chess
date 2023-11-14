@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\Eval\Heuristics as HeuristicsEval;
+use Chess\EvalFunction;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Capablanca\FEN\StrToBoard as CapablancaFenStrToBoard;
@@ -48,16 +48,16 @@ class HeuristicsByFen
      */
     public function eval(): array
     {
-        $heuristicsEval = new HeuristicsEval();
+        $evalFunction = new EvalFunction();
 
         $result = [
             Color::W => 0,
             Color::B => 0,
         ];
 
-        $weights = $heuristicsEval->weights();
+        $weights = $evalFunction->weights();
 
-        for ($i = 0; $i < count($heuristicsEval->getEval()); $i++) {
+        for ($i = 0; $i < count($evalFunction->getEval()); $i++) {
             $result[Color::W] += $weights[$i] * $this->result[Color::W][$i];
             $result[Color::B] += $weights[$i] * $this->result[Color::B][$i];
         }
@@ -75,7 +75,7 @@ class HeuristicsByFen
      */
     protected function calc(): HeuristicsByFen
     {
-        foreach ((new HeuristicsEval())->getEval() as $key => $val) {
+        foreach ((new EvalFunction())->getEval() as $key => $val) {
             $heuristic = new $key($this->board);
             $eval = $heuristic->eval();
             if (is_array($eval[Color::W])) {
