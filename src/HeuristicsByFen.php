@@ -19,8 +19,6 @@ use Chess\Variant\Classical\PGN\AN\Color;
  */
 class HeuristicsByFen
 {
-    use HeuristicsTrait;
-
     protected ClassicalBoard $board;
 
     public function __construct(string $fen, string $variant = '')
