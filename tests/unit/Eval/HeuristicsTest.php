@@ -39,4 +39,37 @@ class HeuristicsTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, (new Heuristics())->getNames());
     }
+
+    /**
+     * @test
+     */
+    public function get_weights()
+    {
+        $expected = [
+            16,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+        ];
+
+        $this->assertSame($expected, (new Heuristics())->getWeights());
+    }
 }

@@ -38,4 +38,9 @@ class Heuristics
     {
         return array_keys($this->eval);
     }
+
+    public function getWeights(): array
+    {
+        return array_values($this->eval);
+    }
 }
