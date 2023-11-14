@@ -2,6 +2,7 @@
 
 namespace Chess;
 
+use Chess\EvalFunction;
 use Chess\HeuristicsByFen;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Play\SanPlay;
@@ -17,7 +18,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
  */
 class Heuristics extends SanPlay
 {
-    protected $heuristicsByFen;
+    protected EvalFunction $evalFunction;
 
     /**
      * The balanced heuristics.
@@ -36,7 +37,7 @@ class Heuristics extends SanPlay
     {
         parent::__construct($movetext, $board);
 
-        $this->heuristicsByFen = new HeuristicsByFen($this->board->toFen());
+        $this->evalFunction = new EvalFunction();
 
         $this->calc()->normalize();
     }
@@ -73,37 +74,33 @@ class Heuristics extends SanPlay
      */
     protected function normalize(): Heuristics
     {
-        $columns = [];
-        $mins = [];
-        $maxs = [];
-
-        for ($i = 0; $i < count($this->heuristicsByFen->eval()); $i++) {
-            $columns[$i] = array_column($this->balance, $i);
-            $mins[$i] = round(min($columns[$i]), 2);
-            $maxs[$i] = round(max($columns[$i]), 2);
-        }
-
-        $normd = [];
-
-        for ($i = 0; $i < count($this->heuristicsByFen->eval()); $i++) {
-            for ($j = 0; $j < count($columns[$i]); $j++) {
-                if ($maxs[$i] - $mins[$i] > 0) {
-                    $normd[$i][$j] = round(($columns[$i][$j] - $mins[$i]) / ($maxs[$i] - $mins[$i]), 2);
-                } elseif ($maxs[$i] == $mins[$i]) {
-                    $normd[$i][$j] = 0;
+        if ($this->balance) {
+            $columns = [];
+            $mins = [];
+            $maxs = [];
+            $normd = [];
+            $transpose = [];
+            for ($i = 0; $i < count($this->evalFunction->getEval()); $i++) {
+                $columns[$i] = array_column($this->balance, $i);
+                $mins[$i] = round(min($columns[$i]), 2);
+                $maxs[$i] = round(max($columns[$i]), 2);
+            }
+            for ($i = 0; $i < count($this->evalFunction->getEval()); $i++) {
+                for ($j = 0; $j < count($columns[$i]); $j++) {
+                    if ($maxs[$i] - $mins[$i] > 0) {
+                        $normd[$i][$j] = round(($columns[$i][$j] - $mins[$i]) / ($maxs[$i] - $mins[$i]), 2);
+                    } elseif ($maxs[$i] == $mins[$i]) {
+                        $normd[$i][$j] = 0;
+                    }
                 }
             }
-        }
-
-        $transpose = [];
-
-        for ($i = 0; $i < count($normd); $i++) {
-            for ($j = 0; $j < count($normd[$i]); $j++) {
-                $transpose[$j][$i] = $normd[$i][$j];
+            for ($i = 0; $i < count($normd); $i++) {
+                for ($j = 0; $j < count($normd[$i]); $j++) {
+                    $transpose[$j][$i] = $normd[$i][$j];
+                }
             }
+            $this->balance = $transpose;
         }
-
-        $this->balance = $transpose;
 
         return $this;
     }
