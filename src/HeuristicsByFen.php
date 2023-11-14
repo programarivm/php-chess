@@ -82,31 +82,6 @@ class HeuristicsByFen
     }
 
     /**
-     * Returns the evaluation result.
-     *
-     * @return array
-     */
-    public function eval(): array
-    {
-        $result = [
-            Color::W => 0,
-            Color::B => 0,
-        ];
-
-        $weights = $this->evalFunction->weights();
-
-        for ($i = 0; $i < count($this->evalFunction->getEval()); $i++) {
-            $result[Color::W] += $weights[$i] * $this->result[Color::W][$i];
-            $result[Color::B] += $weights[$i] * $this->result[Color::B][$i];
-        }
-
-        $result[Color::W] = round($result[Color::W], 2);
-        $result[Color::B] = round($result[Color::B], 2);
-
-        return $result;
-    }
-
-    /**
      * Calculates the evaluation.
      *
      * @return HeuristicsByFen
