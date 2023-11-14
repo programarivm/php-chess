@@ -5,28 +5,28 @@ namespace Chess\Eval;
 class Heuristics
 {
     protected $eval = [
-        MaterialEval::class => 16,
-        CenterEval::class => 4,
-        ConnectivityEval::class => 4,
-        SpaceEval::class => 4,
-        PressureEval::class => 4,
-        KingSafetyEval::class => 4,
-        TacticsEval::class => 4,
-        AttackEval::class => 4,
-        DoubledPawnEval::class => 4,
-        PassedPawnEval::class => 4,
-        IsolatedPawnEval::class => 4,
-        BackwardPawnEval::class => 4,
-        AbsolutePinEval::class => 4,
-        RelativePinEval::class => 4,
-        AbsoluteForkEval::class => 4,
-        RelativeForkEval::class => 4,
-        SqOutpostEval::class => 4,
-        KnightOutpostEval::class => 4,
-        BishopOutpostEval::class => 4,
-        BishopPairEval::class => 4,
-        BadBishopEval::class => 4,
-        DirectOppositionEval::class => 4,
+        MaterialEval::NAME => 16,
+        CenterEval::NAME => 4,
+        ConnectivityEval::NAME => 4,
+        SpaceEval::NAME => 4,
+        PressureEval::NAME => 4,
+        KingSafetyEval::NAME => 4,
+        TacticsEval::NAME => 4,
+        AttackEval::NAME => 4,
+        DoubledPawnEval::NAME => 4,
+        PassedPawnEval::NAME => 4,
+        IsolatedPawnEval::NAME => 4,
+        BackwardPawnEval::NAME => 4,
+        AbsolutePinEval::NAME => 4,
+        RelativePinEval::NAME => 4,
+        AbsoluteForkEval::NAME => 4,
+        RelativeForkEval::NAME => 4,
+        SqOutpostEval::NAME => 4,
+        KnightOutpostEval::NAME => 4,
+        BishopOutpostEval::NAME => 4,
+        BishopPairEval::NAME => 4,
+        BadBishopEval::NAME => 4,
+        DirectOppositionEval::NAME => 4,
     ];
 
     public function getEval(): array
@@ -36,11 +36,6 @@ class Heuristics
 
     public function getNames(): array
     {
-        $evalNames = [];
-        foreach ($this->eval as $key => $val) {
-            $evalNames[] = (new \ReflectionClass($key))->getConstant('NAME');
-        }
-
-        return $evalNames;
+        return array_keys($this->eval);
     }
 }
