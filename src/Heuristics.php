@@ -109,19 +109,6 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Returns the last element in the result.
-     *
-     * @return array
-     */
-    public function end(): array
-    {
-        return [
-            Color::W => end($this->result[Color::W]),
-            Color::B => end($this->result[Color::B]),
-        ];
-    }
-
-    /**
      * Returns the balanced heuristics.
      *
      * @return array
