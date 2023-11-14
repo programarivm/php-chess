@@ -42,7 +42,7 @@ class HeuristicsByFen
 
         $this->evalFunction = new EvalFunction();
 
-        $this->calc();
+        $this->calc()->balance();
     }
 
     /**
@@ -106,8 +106,6 @@ class HeuristicsByFen
 
         $this->result[Color::W] = array_column($item, Color::W);
         $this->result[Color::B] = array_column($item, Color::B);
-
-        $this->balance();
 
         return $this;
     }
