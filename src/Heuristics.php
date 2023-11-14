@@ -4,7 +4,6 @@ namespace Chess;
 
 use Chess\EvalFunction;
 use Chess\HeuristicsByFen;
-use Chess\Eval\InverseEvalInterface;
 use Chess\Play\SanPlay;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\Move;
@@ -18,10 +17,16 @@ use Chess\Variant\Classical\PGN\AN\Color;
  */
 class Heuristics extends SanPlay
 {
+    /**
+     * The evaluation function.
+     *
+     * @var array
+     */
+
     protected EvalFunction $evalFunction;
 
     /**
-     * The balanced heuristics.
+     * The balanced evaluations.
      *
      * @var array
      */
@@ -43,7 +48,17 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Calculates the heuristics.
+     * Returns the balance.
+     *
+     * @return array
+     */
+    public function getBalance(): array
+    {
+        return $this->balance;
+    }
+
+    /**
+     * Calculates the evaluation.
      *
      * @return \Chess\Heuristics
      */
@@ -53,14 +68,16 @@ class Heuristics extends SanPlay
             if ($val !== Move::ELLIPSIS) {
                 $turn = $this->board->getTurn();
                 if ($this->board->play($turn, $val)) {
-                    $this->balance[] = (new HeuristicsByFen($this->board->toFen()))->getBalance();
+                    $this->balance[] = (new HeuristicsByFen($this->board->toFen()))
+                        ->getBalance();
                     if (!empty($this->sanMovetext->getMoves()[$key+1])) {
                         $this->board->play(
                             Color::opp($turn),
                             $this->sanMovetext->getMoves()[$key+1]
                         );
                     }
-                    $this->balance[] = (new HeuristicsByFen($this->board->toFen()))->getBalance();
+                    $this->balance[] = (new HeuristicsByFen($this->board->toFen()))
+                        ->getBalance();
                 }
             }
         }
@@ -69,7 +86,7 @@ class Heuristics extends SanPlay
     }
 
     /**
-     * Normalizes the chess evaluations.
+     * Normalizes the evaluation.
      *
      * @return \Chess\Heuristics
      */
@@ -104,15 +121,5 @@ class Heuristics extends SanPlay
         }
 
         return $this;
-    }
-
-    /**
-     * Returns the balanced heuristics.
-     *
-     * @return array
-     */
-    public function getBalance(): array
-    {
-        return $this->balance;
     }
 }
