@@ -55,7 +55,7 @@ class HeuristicsByFen
             Color::B => 0,
         ];
 
-        $weights = $heuristicsEval->getWeights();
+        $weights = $heuristicsEval->weights();
 
         for ($i = 0; $i < count($heuristicsEval->getEval()); $i++) {
             $result[Color::W] += $weights[$i] * $this->result[Color::W][$i];

@@ -37,7 +37,7 @@ class HeuristicsTest extends AbstractUnitTestCase
             'Direct opposition',
         ];
 
-        $this->assertSame($expected, (new Heuristics())->getNames());
+        $this->assertSame($expected, (new Heuristics())->names());
     }
 
     /**
@@ -70,6 +70,6 @@ class HeuristicsTest extends AbstractUnitTestCase
             4,
         ];
 
-        $this->assertSame($expected, (new Heuristics())->getWeights());
+        $this->assertSame($expected, (new Heuristics())->weights());
     }
 }

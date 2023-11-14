@@ -3,6 +3,7 @@
 namespace Chess\Tests\Unit;
 
 use Chess\Heuristics;
+use Chess\Eval\Heuristics as HeuristicsEval;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
@@ -24,7 +25,7 @@ class HeuristicsTest extends AbstractUnitTestCase
      */
     public function get_eval_names()
     {
-        $evalNames = (new Heuristics())->getEvalNames();
+        $evalNames = (new HeuristicsEval())->names();
 
         $expected = [
             'Material',

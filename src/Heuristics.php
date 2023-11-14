@@ -77,7 +77,7 @@ class Heuristics extends SanPlay
         $mins = [];
         $maxs = [];
 
-        for ($i = 0; $i < count($this->heuristicsByFen->getEval()); $i++) {
+        for ($i = 0; $i < count($this->heuristicsByFen->eval()); $i++) {
             $columns[$i] = array_column($this->balance, $i);
             $mins[$i] = round(min($columns[$i]), 2);
             $maxs[$i] = round(max($columns[$i]), 2);
@@ -85,7 +85,7 @@ class Heuristics extends SanPlay
 
         $normd = [];
 
-        for ($i = 0; $i < count($this->heuristicsByFen->getEval()); $i++) {
+        for ($i = 0; $i < count($this->heuristicsByFen->eval()); $i++) {
             for ($j = 0; $j < count($columns[$i]); $j++) {
                 if ($maxs[$i] - $mins[$i] > 0) {
                     $normd[$i][$j] = round(($columns[$i][$j] - $mins[$i]) / ($maxs[$i] - $mins[$i]), 2);

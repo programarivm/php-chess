@@ -34,7 +34,7 @@ class Heuristics
         return $this->eval;
     }
 
-    public function getNames(): array
+    public function names(): array
     {
         foreach ($this->eval as $key => $val) {
             $names[] = (new \ReflectionClass($key))->getConstant('NAME');
@@ -43,7 +43,7 @@ class Heuristics
         return $names;
     }
 
-    public function getWeights(): array
+    public function weights(): array
     {
         return array_values($this->eval);
     }
