@@ -10,15 +10,6 @@ use Chess\Variant\Classical\FEN\StrToBoard;
 
 class HeuristicsTest extends AbstractUnitTestCase
 {
-    /*
-    |--------------------------------------------------------------------------
-    | getBalance()
-    |--------------------------------------------------------------------------
-    |
-    | Returns the balanced heuristics.
-    |
-    */
-
     /**
      * @test
      */
@@ -28,9 +19,7 @@ class HeuristicsTest extends AbstractUnitTestCase
 
         $balance = (new Heuristics($board->getMovetext()))->getBalance();
 
-        $expected = [
-            [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
-        ];
+        $expected = [];
 
         $this->assertSame($expected, $balance);
     }
@@ -45,8 +34,8 @@ class HeuristicsTest extends AbstractUnitTestCase
         $balance = (new Heuristics($movetext))->getBalance();
 
         $expected = [
-            [ 0.0, 1.0, -1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
-            [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+            [ 0, 1.0, 0.0, 1.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+            [ 0, 0.0, 1.0, 0.0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
         ];
 
         $this->assertSame($expected, $balance);

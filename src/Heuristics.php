@@ -53,6 +53,7 @@ class Heuristics extends SanPlay
             if ($val !== Move::ELLIPSIS) {
                 $turn = $this->board->getTurn();
                 if ($this->board->play($turn, $val)) {
+                    $this->balance[] = (new HeuristicsByFen($this->board->toFen()))->getBalance();
                     if (!empty($this->sanMovetext->getMoves()[$key+1])) {
                         $this->board->play(
                             Color::opp($turn),
