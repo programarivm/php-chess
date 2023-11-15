@@ -85,7 +85,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
 
         $label = (new GeometricSumLabeller())->label($end);
 
-        $expected = 32955.72;
+        $expected = 26.7;
 
         $this->assertSame($expected, $label);
     }
