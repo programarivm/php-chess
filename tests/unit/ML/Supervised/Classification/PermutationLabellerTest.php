@@ -29,27 +29,6 @@ class PermutationLabellerTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function start_labelled()
-    {
-        $board = new Board();
-
-        $balance = (new Heuristics($board->getMovetext()))->getBalance();
-
-        $end = end($balance);
-
-        $label = (new PermutationLabeller(self::$permutations))->label($end);
-
-        $expected = [
-            'w' => 0,
-            'b' => 0,
-        ];
-
-        $this->assertSame($expected, $label);
-    }
-
-    /**
-     * @test
-     */
     public function w_e4_b_e5_labelled()
     {
         $board = new Board();

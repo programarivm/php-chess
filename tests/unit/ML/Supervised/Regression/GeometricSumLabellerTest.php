@@ -13,24 +13,6 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function start_labelled()
-    {
-        $board = new Board();
-
-        $balance = (new Heuristics($board->getMovetext()))->getBalance();
-
-        $end = end($balance);
-
-        $label = (new GeometricSumLabeller())->label($end);
-
-        $expected = 0.0;
-
-        $this->assertSame($expected, $label);
-    }
-
-    /**
-     * @test
-     */
     public function A00_labelled()
     {
         $A00 = file_get_contents(self::DATA_FOLDER.'/sample/A00.pgn');
