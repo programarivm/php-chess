@@ -4,10 +4,30 @@ namespace Chess;
 
 use Chess\Variant\Classical\Board;
 
+/**
+ * Grandmaster
+ *
+ * Figures out the next move to be made based on the JSON file that is passed to
+ * its constructor. Typically this file would contain games by titled FIDE
+ * players.
+ *
+ * @author Jordi Bassagaña
+ * @license GPL
+ */
 class Grandmaster
 {
+    /**
+     * Chess games.
+     *
+     * @var \RecursiveIteratorIterator
+     */
     private \RecursiveIteratorIterator $items;
 
+    /**
+     * Constructor.
+     *
+     * @param string $filepath
+     */
     public function __construct(string $filepath)
     {
         $contents = file_get_contents($filepath);
@@ -18,7 +38,7 @@ class Grandmaster
     }
 
     /**
-     * Figures out the next move to be made.
+     * Returns a chess move.
      *
      * @param \Chess\Variant\Classical\Board $board
      * @return null|object
@@ -36,7 +56,13 @@ class Grandmaster
         return null;
     }
 
-    protected function find(string $movetext)
+    /**
+     * Finds a chess game by movetext.
+     *
+     * @param string $movetext
+     * @return array
+     */
+    protected function find(string $movetext): array
     {
         $found = [];
         foreach ($this->items as $item) {
@@ -51,6 +77,13 @@ class Grandmaster
         return $found;
     }
 
+    /**
+     * Finds out the next move to be made.
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @return string
+     */
     protected function next(string $haystack, string $needle): string
     {
         $moves = array_filter(explode(' ', str_replace($needle, '', $haystack)));

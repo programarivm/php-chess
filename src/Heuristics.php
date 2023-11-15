@@ -20,7 +20,7 @@ class Heuristics extends SanPlay
     /**
      * The evaluation function.
      *
-     * @var array
+     * @var \Chess\EvalFunction
      */
     protected EvalFunction $evalFunction;
 
@@ -35,7 +35,7 @@ class Heuristics extends SanPlay
      * Constructor.
      *
      * @param string $movetext
-     * @param Board|null $board
+     * @param \Chess\Variant\Classical\Board|null $board
      */
     public function __construct(string $movetext = '', Board $board = null)
     {

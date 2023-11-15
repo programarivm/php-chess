@@ -26,8 +26,19 @@ use Chess\Eval\BishopPairEval;
 use Chess\Eval\BadBishopEval;
 use Chess\Eval\DirectOppositionEval;
 
+/**
+ * EvalFunction
+ *
+ * @author Jordi Bassagaña
+ * @license GPL
+ */
 class EvalFunction
 {
+    /**
+     * The evaluation features.
+     *
+     * @var array
+     */
     protected $eval = [
         MaterialEval::class => 16,
         CenterEval::class => 4,
@@ -53,11 +64,21 @@ class EvalFunction
         DirectOppositionEval::class => 4,
     ];
 
+    /**
+     * Returns the evaluation features.
+     *
+     * @return array
+     */
     public function getEval(): array
     {
         return $this->eval;
     }
 
+    /**
+     * Returns the evaluation names.
+     *
+     * @return array
+     */
     public function names(): array
     {
         foreach ($this->eval as $key => $val) {
@@ -67,6 +88,11 @@ class EvalFunction
         return $names;
     }
 
+    /**
+     * Returns the evaluation weights.
+     *
+     * @return array
+     */
     public function weights(): array
     {
         return array_values($this->eval);

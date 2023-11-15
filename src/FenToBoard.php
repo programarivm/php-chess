@@ -19,6 +19,12 @@ use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
  */
 class FenToBoard
 {
+    /**
+     * Creates a chessboard object.
+     *
+     * @param string $fen
+     * @param \Chess\Variant\Classical\Board|null $board
+     */
     public static function create(string $fen, ClassicalBoard $board = null)
     {
         $board ??= new ClassicalBoard();

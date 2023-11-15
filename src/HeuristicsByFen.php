@@ -30,7 +30,7 @@ class HeuristicsByFen
     /**
      * The evaluation function.
      *
-     * @var array
+     * @var \Chess\EvalFunction
      */
     protected EvalFunction $evalFunction;
 
