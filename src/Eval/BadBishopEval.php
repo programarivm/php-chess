@@ -3,18 +3,32 @@
 namespace Chess\Eval;
 
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 
+/**
+ * BadBishopEval
+ *
+ * A bad bishop is a bishop that is blocked by its own pawns.
+ *
+ * @author Jordi Bassagaña
+ * @license GPL
+ */
 class BadBishopEval extends AbstractEval implements InverseEvalInterface
 {
     const NAME = 'Bad bishop';
 
+    /**
+     * Returns the result.
+     *
+     * @return array
+     */
     public function eval(): array
     {
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::B) {
                 $this->result[$piece->getColor()] += $this->count(
                     $piece->getColor(),
-                    $this->isValidSqColor($piece->getSq())
+                    Square::color($piece->getSq())
                 );
             }
         }
@@ -22,34 +36,27 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
         return $this->result;
     }
 
-    private function count(string $bColor, string $sqColor)
+    /**
+     * Counts the number of pawns blocking the bishop.
+     *
+     * @param string $bColor
+     * @param string $sqColor
+     * @return int
+     */
+    private function count(string $bColor, string $sqColor): int
     {
-        $pawns = 0;
+        $count = 0;
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
                 if (
                     $piece->getColor() === $bColor &&
-                    $this->isValidSqColor($piece->getSq()) === $sqColor
+                    Square::color($piece->getSq()) === $sqColor
                 ) {
-                    $pawns += 1;
+                    $count += 1;
                 }
             }
         }
 
-        return $pawns;
-    }
-
-    protected function isValidSqColor(string $sq)
-    {
-        // TODO: Refactor this if statement
-        if ($this->board->getSize() === ['files' => 8, 'ranks' => 8]) {
-            return \Chess\Variant\Classical\PGN\AN\Square::color($sq);
-        } elseif ($this->board->getSize() === ['files' => 10, 'ranks' => 8]) {
-            return \Chess\Variant\Capablanca\PGN\AN\Square::color($sq);
-        } elseif ($this->board->getSize() === ['files' => 10, 'ranks' => 10]) {
-            return \Chess\Variant\Capablanca\PGN\AN\Square::color($sq);
-        }
-
-        return false;
+        return $count;
     }
 }
