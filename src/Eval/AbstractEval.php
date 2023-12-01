@@ -20,6 +20,8 @@ abstract class AbstractEval
 
     protected array $result;
 
+    protected array $explanation = [];
+
     public function __construct(Board $board)
     {
         $this->board = $board;
@@ -39,5 +41,10 @@ abstract class AbstractEval
             Color::W => 0,
             Color::B => 0,
         ];
+    }
+
+    public function explanation()
+    {
+        return $this->explanation;
     }
 }

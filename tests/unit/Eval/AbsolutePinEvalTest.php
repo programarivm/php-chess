@@ -16,14 +16,21 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -'))
             ->create();
 
-        $expected = [
+        $expectedEval = [
             'w' => 0,
             'b' => 3.2,
         ];
 
-        $absPinEval = (new AbsolutePinEval($board))->eval();
+        $expectedExplanation = [
+            'N on c6 is pinned.',
+        ];
 
-        $this->assertSame($expected, $absPinEval);
+        $absPinEval = new AbsolutePinEval($board);
+        $eval = $absPinEval->eval();
+        $explanation = $absPinEval->explanation();
+
+        $this->assertSame($expectedEval, $eval);
+        $this->assertSame($expectedExplanation, $explanation);
     }
 
     /**

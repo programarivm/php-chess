@@ -16,16 +16,21 @@ class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
                 $clone = unserialize(serialize($this->board));
                 $clone->detach($clone->getPieceBySq($piece->getSq()));
                 $clone->refresh();
-                if ($newCheckingPieces = $clone->checkingPieces()) {
-                    if ($newCheckingPieces[0]->getColor() !== $piece->getColor() &&
-                        count($newCheckingPieces) > count($checkingPieces)
-                    ) {
-                        $this->result[$piece->getColor()] += $this->value[$piece->getId()];
-                    }
+                $newCheckingPieces = $clone->checkingPieces();
+                if (count($newCheckingPieces) > count($checkingPieces)) {
+                    $this->result[$piece->getColor()] += $this->value[$piece->getId()];
+                    $this->explain($piece);
                 }
             }
         }
 
         return $this->result;
+    }
+
+    private function explain($subject, $target = null)
+    {
+        $this->explanation[] = "{$subject->getId()} on {$subject->getSq()} is pinned.";
+
+        return $this->explanation;
     }
 }
