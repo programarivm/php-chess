@@ -19,6 +19,22 @@ class PiecePhrase
      */
     public static $phrase = [
         [
+            'id' => "K",
+            'color' => "w",
+            'meanings' => [
+                "White's king",
+                "white king",
+            ],
+        ],
+        [
+            'id' => "K",
+            'color' => "b",
+            'meanings' => [
+                "Black's king",
+                "black king",
+            ],
+        ],
+        [
             'id' => "N",
             'color' => "w",
             'meanings' => [
@@ -32,6 +48,54 @@ class PiecePhrase
             'meanings' => [
                 "Black's knight",
                 "black knight",
+            ],
+        ],
+        [
+            'id' => "P",
+            'color' => "w",
+            'meanings' => [
+                "White's pawn",
+                "white pawn",
+            ],
+        ],
+        [
+            'id' => "P",
+            'color' => "b",
+            'meanings' => [
+                "Black's pawn",
+                "black pawn",
+            ],
+        ],
+        [
+            'id' => "Q",
+            'color' => "w",
+            'meanings' => [
+                "White's queen",
+                "white queen",
+            ],
+        ],
+        [
+            'id' => "Q",
+            'color' => "b",
+            'meanings' => [
+                "Black's queen",
+                "black queen",
+            ],
+        ],
+        [
+            'id' => "R",
+            'color' => "w",
+            'meanings' => [
+                "White's rook",
+                "white rook",
+            ],
+        ],
+        [
+            'id' => "R",
+            'color' => "b",
+            'meanings' => [
+                "Black's rook",
+                "black rook",
             ],
         ],
     ];

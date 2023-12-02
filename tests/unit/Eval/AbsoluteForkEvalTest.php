@@ -34,14 +34,14 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/1k6/5b1n/6P1/7K/8/8/8 w - -'))
             ->create();
 
-        $expected = [
+        $expectedEval = [
             'w' => 0,
             'b' => 0,
         ];
 
         $result = (new AbsoluteForkEval($board))->getResult();
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $result);
     }
 
     /**
@@ -52,14 +52,19 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/8/5k1n/6P1/7K/8/8/8 w - -'))
             ->create();
 
-        $expected = [
+        $expectedEval = [
             'w' => 3.2,
             'b' => 0,
         ];
 
-        $result = (new AbsoluteForkEval($board))->getResult();
+        $expectedPhrase = [
+            "Absolute fork attack on Black's knight on h6.",
+        ];
 
-        $this->assertSame($expected, $result);
+        $absForkEval = new AbsoluteForkEval($board);
+
+        $this->assertSame($expectedEval, $absForkEval->getResult());
+        $this->assertSame($expectedPhrase, $absForkEval->getPhrase());
     }
 
     /**
@@ -70,14 +75,19 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/8/5k1r/6P1/7K/8/8/8 w - -'))
             ->create();
 
-        $expected = [
+        $expectedEval = [
             'w' => 5.1,
             'b' => 0,
         ];
 
-        $result = (new AbsoluteForkEval($board))->getResult();
+        $expectedPhrase = [
+            "Absolute fork attack on Black's rook on h6.",
+        ];
 
-        $this->assertSame($expected, $result);
+        $absForkEval = new AbsoluteForkEval($board);
+
+        $this->assertSame($expectedEval, $absForkEval->getResult());
+        $this->assertSame($expectedPhrase, $absForkEval->getPhrase());
     }
 
     /**
@@ -88,14 +98,20 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/8/5k1q/6P1/7K/8/8/8 w - -'))
             ->create();
 
-        $expected = [
+        $expectedEval = [
             'w' => 8.8,
-            'b' => 0,
+            'b' => 1,
         ];
 
-        $result = (new AbsoluteForkEval($board))->getResult();
+        $expectedPhrase = [
+            "Absolute fork attack on White's pawn on g5.",
+            "Absolute fork attack on Black's queen on h6.",
+        ];
 
-        $this->assertSame($expected, $result);
+        $absForkEval = new AbsoluteForkEval($board);
+
+        $this->assertSame($expectedEval, $absForkEval->getResult());
+        $this->assertSame($expectedPhrase, $absForkEval->getPhrase());
     }
 
     /**
@@ -125,7 +141,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             ->create();
 
         $expected = [
-            'w' => 0,
+            'w' => 3.2,
             'b' => 0,
         ];
 
@@ -180,7 +196,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
 
         $expected = [
             'w' => 0,
-            'b' => 0,
+            'b' => 3.2,
         ];
 
         $result = (new AbsoluteForkEval($board))->getResult();
