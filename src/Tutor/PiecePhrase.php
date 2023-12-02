@@ -19,6 +19,22 @@ class PiecePhrase
      */
     public static $phrase = [
         [
+            'id' => "B",
+            'color' => "w",
+            'meanings' => [
+                "White's bishop",
+                "white bishop",
+            ],
+        ],
+        [
+            'id' => "B",
+            'color' => "b",
+            'meanings' => [
+                "Black's bishop",
+                "black bishop",
+            ],
+        ],
+        [
             'id' => "K",
             'color' => "w",
             'meanings' => [

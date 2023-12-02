@@ -16,7 +16,6 @@ class AbsoluteForkEval extends AbstractEval
 
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->isAttackingKing()) {
-                $this->result[$piece->getColor()] = 0;
                 foreach ($piece->attackedPieces() as $attackedPiece) {
                     if ($attackedPiece->getId() !== Piece::K) {
                         $this->result[$piece->getColor()] += self::$value[$attackedPiece->getId()];

@@ -2,9 +2,11 @@
 
 namespace Chess\Eval;
 
+use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\PGN\AN\Piece;
 
-class RelativeForkEval extends AbstractForkEval
+class RelativeForkEval extends AbstractEval
 {
     const NAME = 'Relative fork';
 
@@ -16,10 +18,23 @@ class RelativeForkEval extends AbstractForkEval
             if (!$piece->isAttackingKing()) {
                 $attackedPieces = $piece->attackedPieces();
                 if (count($attackedPieces) >= 2) {
-                    $this->result[$piece->getColor()] =
-                        $this->sumValues($piece, $attackedPieces);
+                    foreach ($attackedPieces as $attackedPiece) {
+                        if ($attackedPiece->getId() !== Piece::K) {
+                            $this->result[$piece->getColor()] += self::$value[$attackedPiece->getId()];
+                            $this->explain($attackedPiece);
+                        }
+                    }
+
                 }
             }
         }
+    }
+
+    private function explain($subject, $target = null)
+    {
+        $phrase = PiecePhrase::deterministic($subject);
+        $this->explanation[] = "Relative fork attack on {$phrase}.";
+
+        return $this->explanation;
     }
 }
