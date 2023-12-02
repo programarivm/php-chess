@@ -200,17 +200,23 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
      */
     public function knight_forks_rook_and_rook()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 10.2,
             'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "Relative fork attack on Black's rook on b2.",
+            "Relative fork attack on Black's rook on d6.",
         ];
 
         $board = (new StrToBoard('8/2k5/3r4/8/2N5/5K2/1r6/8 w - -'))
             ->create();
 
-        $result = (new RelativeForkEval($board))->getResult();
+        $relativeForkEval = new RelativeForkEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $relativeForkEval->getResult());
+        $this->assertSame($expectedPhrase, $relativeForkEval->getPhrase());
     }
 
     /**
