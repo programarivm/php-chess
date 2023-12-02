@@ -31,16 +31,21 @@ class BishopPairEvalTest extends AbstractUnitTestCase
      */
     public function C68()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 0,
             'b' => 1,
         ];
 
+        $expectedPhrase = [
+            "Black has the bishop pair.",
+        ];
+
         $C68 = file_get_contents(self::DATA_FOLDER.'/sample/C68.pgn');
         $board = (new SanPlay($C68))->validate()->getBoard();
-        $result = (new BishopPairEval($board))->getResult();
+        $bishopPairEval = new BishopPairEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $bishopPairEval->getResult());
+        $this->assertSame($expectedPhrase, $bishopPairEval->getPhrase());
     }
 
     /**
@@ -64,15 +69,20 @@ class BishopPairEvalTest extends AbstractUnitTestCase
      */
     public function B_B_vs_n_b()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 1,
             'b' => 0,
         ];
 
-        $board = (new StrToBoard('8/5n2/4k3/4b3/8/8/1KBB4/8 w - -'))->create();
-        $result = (new BishopPairEval($board))->getResult();
+        $expectedPhrase = [
+            "White has the bishop pair.",
+        ];
 
-        $this->assertSame($expected, $result);
+        $board = (new StrToBoard('8/5n2/4k3/4b3/8/8/1KBB4/8 w - -'))->create();
+        $bishopPairEval = new BishopPairEval($board);
+
+        $this->assertSame($expectedEval, $bishopPairEval->getResult());
+        $this->assertSame($expectedPhrase, $bishopPairEval->getPhrase());
     }
 
     /**
@@ -80,15 +90,20 @@ class BishopPairEvalTest extends AbstractUnitTestCase
      */
     public function N_B_vs_b_b()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 0,
             'b' => 1,
         ];
 
-        $board = (new StrToBoard('8/3k4/2bb4/8/8/4BN2/4K3/8 w - -'))->create();
-        $result = (new BishopPairEval($board))->getResult();
+        $expectedPhrase = [
+            "Black has the bishop pair.",
+        ];
 
-        $this->assertSame($expected, $result);
+        $board = (new StrToBoard('8/3k4/2bb4/8/8/4BN2/4K3/8 w - -'))->create();
+        $bishopPairEval = new BishopPairEval($board);
+
+        $this->assertSame($expectedEval, $bishopPairEval->getResult());
+        $this->assertSame($expectedPhrase, $bishopPairEval->getPhrase());
     }
 
     /**
