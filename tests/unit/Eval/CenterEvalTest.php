@@ -14,16 +14,21 @@ class CenterEvalTest extends AbstractUnitTestCase
      */
     public function B25()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 37.73,
             'b' => 34.73,
         ];
 
+        $expectedPhrase = [
+            "White has a somewhat better control of the center.",
+        ];
+
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
         $board = (new SanPlay($B25))->validate()->getBoard();
-        $result = (new CenterEval($board))->getResult();
+        $centerEval = new CenterEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $centerEval->getResult());
+        $this->assertSame($expectedPhrase, $centerEval->getPhrases());
     }
 
     /**
@@ -31,16 +36,21 @@ class CenterEvalTest extends AbstractUnitTestCase
      */
     public function B56()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 47.0,
             'b' => 36.8,
         ];
 
+        $expectedPhrase = [
+            "White has an absolute control of the center.",
+        ];
+
         $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
         $board = (new SanPlay($B56))->validate()->getBoard();
-        $result = (new CenterEval($board))->getResult();
+        $centerEval = new CenterEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $centerEval->getResult());
+        $this->assertSame($expectedPhrase, $centerEval->getPhrases());
     }
 
     /**
@@ -48,15 +58,20 @@ class CenterEvalTest extends AbstractUnitTestCase
      */
     public function C60()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 37.73,
             'b' => 34.73,
         ];
 
+        $expectedPhrase = [
+            "White has a somewhat better control of the center.",
+        ];
+
         $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
         $board = (new SanPlay($C60))->validate()->getBoard();
-        $result = (new CenterEval($board))->getResult();
+        $centerEval = new CenterEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $centerEval->getResult());
+        $this->assertSame($expectedPhrase, $centerEval->getPhrases());
     }
 }

@@ -13,6 +13,7 @@ class FenParagraphTest extends AbstractUnitTestCase
     public function endgame()
     {
         $expected = [
+            "White has a remarkable control of the center.",
             "The white pieces are slightly better connected.",
             "Black's knight on e6 is pinned.",
             "White has the bishop pair.",

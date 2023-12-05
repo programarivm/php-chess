@@ -3,6 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Eval\SpaceEval;
+use Chess\Tutor\CenterEvalSentence;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 
@@ -48,6 +49,13 @@ class CenterEval extends AbstractEval
         $this->result[Color::W] = round($this->result[Color::W], 2);
         $this->result[Color::B] = round($this->result[Color::B], 2);
 
-        return $this->result;
+        $this->explain($this->result);
+    }
+
+    private function explain($subject, $target = null)
+    {
+        $this->phrases[] = CenterEvalSentence::predictable($subject);
+
+        return $this->phrases;
     }
 }
