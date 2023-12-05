@@ -16,6 +16,7 @@ class FenParagraphTest extends AbstractUnitTestCase
         $expected = [
             "Black has a remarkable control of the center.",
             "The white pieces are absolutely better connected.",
+            "Black has a somewhat better space advantage.",
         ];
 
         $sentence = (new FenParagraph('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1'))
@@ -24,9 +25,9 @@ class FenParagraphTest extends AbstractUnitTestCase
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
         $board = (new SanPlay($A08))->validate()->getBoard();
 
-        $sentence = (new FenParagraph($board->toFen()))->getParagraph();
+        $paragraph = (new FenParagraph($board->toFen()))->getParagraph();
 
-        $this->assertSame($expected, $sentence);
+        $this->assertSame($expected, $paragraph);
     }
 
     /**
@@ -41,9 +42,9 @@ class FenParagraphTest extends AbstractUnitTestCase
             "White has the bishop pair.",
         ];
 
-        $sentence = (new FenParagraph('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1'))
+        $paragraph = (new FenParagraph('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1'))
             ->getParagraph();
 
-        $this->assertSame($expected, $sentence);
+        $this->assertSame($expected, $paragraph);
     }
 }

@@ -33,13 +33,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
      */
     public function B25()
     {
-        $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
-
-        $board = (new SanPlay($B25))->validate()->getBoard();
-
-        $spEval = (new SpaceEval($board))->getResult();
-
-        $expected = [
+        $expectedEval = [
             'w' => [
                 'a3', 'a4', 'b1', 'b3', 'b5', 'c4', 'd2', 'd5',
                 'e2', 'e3', 'f1', 'f3', 'f4', 'f5', 'g4', 'g5',
@@ -52,7 +46,16 @@ class SpaceEvalTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEqualsCanonicalizing($expected, $spEval);
+        $expectedPhrase = [
+            "White has a slightly better space advantage.",
+        ];
+
+        $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
+        $board = (new SanPlay($B25))->validate()->getBoard();
+        $spEval = new SpaceEval($board);
+
+        $this->assertEqualsCanonicalizing($expectedEval, $spEval->getResult());
+        $this->assertEqualsCanonicalizing($expectedPhrase, $spEval->getPhrases());
     }
 
     /**
@@ -60,13 +63,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
      */
     public function B56()
     {
-        $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
-
-        $board = (new SanPlay($B56))->validate()->getBoard();
-
-        $spEval = (new SpaceEval($board))->getResult();
-
-        $expected = [
+        $expectedEval = [
             'w' => [
                 'a3', 'a4', 'a6', 'b1', 'b3', 'b5', 'c4', 'd2',
                 'd3', 'd5', 'e2', 'e3', 'e6', 'f3', 'f4', 'f5',
@@ -79,6 +76,15 @@ class SpaceEvalTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEqualsCanonicalizing($expected, $spEval);
+        $expectedPhrase = [
+            "White has a somewhat better space advantage.",
+        ];
+
+        $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
+        $board = (new SanPlay($B56))->validate()->getBoard();
+        $spEval = new SpaceEval($board);
+
+        $this->assertEqualsCanonicalizing($expectedEval, $spEval->getResult());
+        $this->assertEqualsCanonicalizing($expectedPhrase, $spEval->getPhrases());
     }
 }

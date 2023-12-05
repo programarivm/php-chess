@@ -3,6 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Eval\SqCount;
+use Chess\Tutor\SpaceEvalSentence;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Board;
@@ -63,5 +64,16 @@ class SpaceEval extends AbstractEval
                 );
             }
         }
+
+        $this->explain($this->result);
+    }
+
+    private function explain($subject, $target = null)
+    {
+        if ($sentence = SpaceEvalSentence::predictable($subject)) {
+            $this->phrases[] = $sentence;
+        }
+
+        return $this->phrases;
     }
 }
