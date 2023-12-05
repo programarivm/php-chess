@@ -63,9 +63,13 @@ class AttackEvalTest extends AbstractUnitTestCase
      */
     public function e4_e5_Nf3_Nc6_Bb5_a6_Nxe5()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 0,
             'b' => 2.33,
+        ];
+
+        $expectedPhrase = [
+            "Black's pawn on a6 is attacking White's bishop on b5.",
         ];
 
         $board = new Board();
@@ -77,9 +81,10 @@ class AttackEvalTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $result = (new AttackEval($board))->getResult();
+        $attackEval = new AttackEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $attackEval->getResult());
+        $this->assertSame($expectedPhrase, $attackEval->getPhrases());
     }
 
     /**
@@ -87,9 +92,13 @@ class AttackEvalTest extends AbstractUnitTestCase
      */
     public function e4_e5_Nf3_Nf6_a3_Nxe4_d3()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 2.2,
             'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "White's pawn on d3 is attacking Black's knight on e4.",
         ];
 
         $board = new Board();
@@ -101,9 +110,10 @@ class AttackEvalTest extends AbstractUnitTestCase
         $board->play('b', 'Nxe4');
         $board->play('w', 'd3');
 
-        $result = (new AttackEval($board))->getResult();
+        $attackEval = new AttackEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $attackEval->getResult());
+        $this->assertSame($expectedPhrase, $attackEval->getPhrases());
     }
 
     /**
@@ -111,9 +121,13 @@ class AttackEvalTest extends AbstractUnitTestCase
      */
     public function e4_Nf6_e5()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 2.2,
             'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "White's pawn on e5 is attacking Black's knight on f6.",
         ];
 
         $board = new Board();
@@ -121,8 +135,9 @@ class AttackEvalTest extends AbstractUnitTestCase
         $board->play('b', 'Nf6');
         $board->play('w', 'e5');
 
-        $result = (new AttackEval($board))->getResult();
+        $attackEval = new AttackEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $attackEval->getResult());
+        $this->assertSame($expectedPhrase, $attackEval->getPhrases());
     }
 }

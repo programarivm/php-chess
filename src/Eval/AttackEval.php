@@ -2,6 +2,7 @@
 
 namespace Chess\Eval;
 
+use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
@@ -31,6 +32,7 @@ class AttackEval extends AbstractEval
                                 $id = $item->getId();
                                 if ($id !== Piece::K && self::$value[Piece::P] < self::$value[$id]) {
                                     $this->result[$piece->getColor()] += self::$value[$id] - self::$value[Piece::P];
+                                    $this->explain($piece, $item);
                                 }
                             }
                         }
@@ -43,6 +45,7 @@ class AttackEval extends AbstractEval
                                 $id = $item->getId();
                                 if ($id !== Piece::K && self::$value[$piece->getId()] < self::$value[$id]) {
                                     $this->result[$piece->getColor()] += self::$value[$id] - self::$value[$piece->getId()];
+                                    $this->explain($piece, $item);
                                 }
                             }
                         }
@@ -50,5 +53,14 @@ class AttackEval extends AbstractEval
                     break;
             }
         }
+    }
+
+    private function explain($subject, $target = null)
+    {
+        $subjectPhrase = PiecePhrase::predictable($subject);
+        $targetPhrase = PiecePhrase::predictable($target);
+        $this->phrases[] = "{$subjectPhrase} is attacking {$targetPhrase}.";
+
+        return $this->phrases;
     }
 }
