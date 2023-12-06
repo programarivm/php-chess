@@ -2,6 +2,7 @@
 
 namespace Chess\Eval;
 
+use Chess\Tutor\DoubledPawnEvalSentence;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
@@ -25,5 +26,16 @@ class DoubledPawnEval extends AbstractEval implements InverseEvalInterface
                 }
             }
         }
+
+        $this->explain($this->result);
+    }
+
+    private function explain($subject, $target = null)
+    {
+        if ($sentence = DoubledPawnEvalSentence::predictable($subject)) {
+            $this->phrases[] = $sentence;
+        }
+
+        return $this->phrases;
     }
 }
