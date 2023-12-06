@@ -26,9 +26,13 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
      */
     public function kaufman_13()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 0,
             'b' => 4,
+        ];
+
+        $expectedPhrase = [
+            "The pawn on d5 is passed.",
         ];
 
         $position = [
@@ -45,9 +49,10 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $board = (new AsciiArray($position, self::$size, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
-        $result = (new PassedPawnEval($board))->getResult();
+        $passedPawnEval = new PassedPawnEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $passedPawnEval->getResult());
+        $this->assertSame($expectedPhrase, $passedPawnEval->getPhrases());
     }
 
     /**
@@ -55,9 +60,13 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
      */
     public function kaufman_14()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 2,
             'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "The pawn on c2 is passed.",
         ];
 
         $position = [
@@ -74,9 +83,10 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $board = (new AsciiArray($position, self::$size, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
-        $result = (new PassedPawnEval($board))->getResult();
+        $passedPawnEval = new PassedPawnEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $passedPawnEval->getResult());
+        $this->assertSame($expectedPhrase, $passedPawnEval->getPhrases());
     }
 
     /**
@@ -84,9 +94,14 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
      */
     public function kaufman_21()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 0,
             'b' => 11,
+        ];
+
+        $expectedPhrase = [
+            "The pawn on c4 is passed.",
+            "The pawn on d3 is passed.",
         ];
 
         $position = [
@@ -103,8 +118,9 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $board = (new AsciiArray($position, self::$size, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
-        $result = (new PassedPawnEval($board))->getResult();
+        $passedPawnEval = new PassedPawnEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $passedPawnEval->getResult());
+        $this->assertSame($expectedPhrase, $passedPawnEval->getPhrases());
     }
 }

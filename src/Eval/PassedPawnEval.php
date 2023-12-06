@@ -2,7 +2,9 @@
 
 namespace Chess\Eval;
 
+use Chess\Piece\AbstractPiece;
 use Chess\Piece\P;
+use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -42,7 +44,7 @@ class PassedPawnEval extends AbstractEval
             } else {
                 $listRanks = range($ranks->next, $ranks->end + 1);
             }
-            $sqsFile = array_map(function($rank) use ($file){
+            $sqsFile = array_map(function($rank) use ($file) {
                 return $file . $rank;
             }, $listRanks);
             $sqs = [...$sqs, ...$sqsFile];
@@ -59,14 +61,21 @@ class PassedPawnEval extends AbstractEval
         }
 
         if ($passedPawn) {
-            $position = $pawn->getSq();
+            $this->explain($pawn);
             if ($color === Color::W) {
-                return $position[ 1 ];
+                return $pawn->getSq()[1];
             } else {
-                return 9 - $position[ 1 ];
+                return 9 - $pawn->getSq()[1];
             }
         }
 
         return 0;
+    }
+
+    private function explain(AbstractPiece $piece): void
+    {
+        $phrase = PiecePhrase::create($piece);
+
+        $this->phrases[] = ucfirst("{$phrase} is passed.");
     }
 }
