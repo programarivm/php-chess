@@ -2,7 +2,9 @@
 
 namespace Chess\Eval;
 
+use Chess\Piece\AbstractPiece;
 use Chess\Piece\P;
+use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
@@ -17,7 +19,10 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();
             if ($piece->getId() === Piece::P) {
-                $this->result[ $color ] += $this->checkIsolatedPawn($piece);
+                if ($this->checkIsolatedPawn($piece)) {
+                    $this->result[$color] += 1;
+                    $this->explain($piece);
+                }
             }
         }
     }
@@ -51,5 +56,12 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
         }
 
         return 1;
+    }
+
+    private function explain(AbstractPiece $piece): void
+    {
+        $phrase = PiecePhrase::create($piece);
+
+        $this->phrases[] = ucfirst("{$phrase} is isolated.");
     }
 }

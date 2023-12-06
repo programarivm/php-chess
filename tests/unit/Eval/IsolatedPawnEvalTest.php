@@ -26,9 +26,14 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
      */
     public function kaufman_09()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 0,
             'b' => 2,
+        ];
+
+        $expectedPhrase = [
+            "The pawn on a7 is isolated.",
+            "The pawn on d5 is isolated.",
         ];
 
         $position = [
@@ -45,9 +50,10 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
         $board = (new AsciiArray($position, self::$size, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
-        $result = (new IsolatedPawnEval($board))->getResult();
+        $isolatedPawnEval = new IsolatedPawnEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $isolatedPawnEval->getResult());
+        $this->assertSame($expectedPhrase, $isolatedPawnEval->getPhrases());
     }
 
     /**
@@ -55,9 +61,14 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
      */
     public function kaufman_13()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 1,
             'b' => 1,
+        ];
+
+        $expectedPhrase = [
+            "The pawn on d5 is isolated.",
+            "The pawn on h2 is isolated.",
         ];
 
         $position = [
@@ -74,9 +85,10 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
         $board = (new AsciiArray($position, self::$size, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
-        $result = (new IsolatedPawnEval($board))->getResult();
+        $isolatedPawnEval = new IsolatedPawnEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $isolatedPawnEval->getResult());
+        $this->assertSame($expectedPhrase, $isolatedPawnEval->getPhrases());
     }
 
     /**
@@ -84,9 +96,15 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
      */
     public function kaufman_14()
     {
-        $expected = [
+        $expectedEval = [
             'w' => 2,
             'b' => 1,
+        ];
+
+        $expectedPhrase = [
+            "The pawn on a7 is isolated.",
+            "The pawn on a2 is isolated.",
+            "The pawn on c2 is isolated.",
         ];
 
         $position = [
@@ -103,8 +121,9 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
         $board = (new AsciiArray($position, self::$size, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
-        $result = (new IsolatedPawnEval($board))->getResult();
+        $isolatedPawnEval = new IsolatedPawnEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedEval, $isolatedPawnEval->getResult());
+        $this->assertSame($expectedPhrase, $isolatedPawnEval->getPhrases());
     }
 }
