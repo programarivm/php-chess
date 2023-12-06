@@ -21,25 +21,25 @@ class DoubledPawnEvalSentence
             [
                 'diff' => 4,
                 'meanings' => [
-                    "The white pieces have absolutely more doubled pawns.",
+                    "The white pieces are absolutely better in terms of doubled pawns.",
                 ],
             ],
             [
                 'diff' => 3,
                 'meanings' => [
-                    "The white pieces have remarkably more doubled pawns.",
+                    "The white pieces are remarkably better in terms of doubled pawns.",
                 ],
             ],
             [
                 'diff' => 2,
                 'meanings' => [
-                    "The white pieces have somewhat more doubled pawns.",
+                    "The white pieces are somewhat better in terms of doubled pawns.",
                 ],
             ],
             [
                 'diff' => 1,
                 'meanings' => [
-                    "The white pieces have slightly more doubled pawns.",
+                    "The white pieces are slightly better in terms of doubled pawns.",
                 ],
             ],
         ],
@@ -47,25 +47,25 @@ class DoubledPawnEvalSentence
             [
                 'diff' => -4,
                 'meanings' => [
-                    "The black pieces have absolutely more doubled pawns.",
+                    "The black pieces are absolutely better in terms of doubled pawns.",
                 ],
             ],
             [
                 'diff' => -3,
                 'meanings' => [
-                    "The black pieces have remarkably more doubled pawns.",
+                    "The black pieces are remarkably better in terms of doubled pawns.",
                 ],
             ],
             [
                 'diff' => -2,
                 'meanings' => [
-                    "The black pieces have somewhat more doubled pawns.",
+                    "The black pieces are somewhat better in terms of doubled pawns.",
                 ],
             ],
             [
                 'diff' => -1,
                 'meanings' => [
-                    "The black pieces have slightly more doubled pawns.",
+                    "The black pieces are slightly better in terms of doubled pawns.",
                 ],
             ],
         ],
