@@ -27,6 +27,50 @@ class PressureEval extends AbstractEval
     private object $sqCount;
 
     /**
+     * Human-like phrases.
+     *
+     * @var array
+     */
+    protected array $phrase = [
+        Color::W => [
+            [
+                'diff' => 4,
+                'meaning' => "White is utterly pressuring more squares than its opponent.",
+            ],
+            [
+                'diff' => 3,
+                'meaning' => "White is really pressuring more squares than its opponent.",
+            ],
+            [
+                'diff' => 2,
+                'meaning' => "White is somewhat pressuring more squares than its opponent.",
+            ],
+            [
+                'diff' => 1,
+                'meaning' => "White is pressuring a little bit more squares than its opponent.",
+            ],
+        ],
+        Color::B => [
+            [
+                'diff' => -4,
+                'meaning' => "Black is utterly pressuring more squares than its opponent.",
+            ],
+            [
+                'diff' => -3,
+                'meaning' => "Black is really pressuring more squares than its opponent.",
+            ],
+            [
+                'diff' => -2,
+                'meaning' => "Black is somewhat pressuring more squares than its opponent.",
+            ],
+            [
+                'diff' => -1,
+                'meaning' => "Black is pressuring a little bit more squares than its opponent.",
+            ],
+        ],
+    ];
+
+    /**
      * Constructor.
      *
      * @param \Chess\Variant\Classical\Board $board
@@ -68,6 +112,18 @@ class PressureEval extends AbstractEval
                     )
                 ];
             }
+        }
+
+        $this->explain($this->result);
+    }
+
+    private function explain(array $result): void
+    {
+        $result[Color::W] = count($result[Color::W]);
+        $result[Color::B] = count($result[Color::B]);
+
+        if ($sentence = $this->sentence($result)) {
+            $this->phrases[] = $sentence;
         }
     }
 }

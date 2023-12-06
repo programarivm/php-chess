@@ -29,17 +29,21 @@ class PressureEvalTest extends AbstractUnitTestCase
      */
     public function B25()
     {
-        $expected = [
+        $expectedEval = [
             'w' => [],
             'b' => ['c3'],
         ];
 
+        $expectedPhrase = [
+            "Black is pressuring a little bit more squares than its opponent.",
+        ];
+
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
         $board = (new SanPlay($B25))->validate()->getBoard();
-        $result = (new PressureEval($board))->getResult();
+        $pressureEval = new PressureEval($board);
 
-        $this->assertEqualsCanonicalizing($expected['w'], $result['w']);
-        $this->assertEqualsCanonicalizing($expected['b'], $result['b']);
+        $this->assertEqualsCanonicalizing($expectedEval, $pressureEval->getResult());
+        $this->assertEqualsCanonicalizing($expectedPhrase, $pressureEval->getPhrases());
     }
 
     /**
@@ -47,17 +51,21 @@ class PressureEvalTest extends AbstractUnitTestCase
      */
     public function B56()
     {
-        $expected = [
+        $expectedEval = [
             'w' => ['c6'],
             'b' => ['d4', 'e4'],
         ];
 
+        $expectedPhrase = [
+            "Black is pressuring a little bit more squares than its opponent.",
+        ];
+
         $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
         $board = (new SanPlay($B56))->validate()->getBoard();
-        $result = (new PressureEval($board))->getResult();
+        $pressureEval = new PressureEval($board);
 
-        $this->assertEqualsCanonicalizing($expected['w'], $result['w']);
-        $this->assertEqualsCanonicalizing($expected['b'], $result['b']);
+        $this->assertEqualsCanonicalizing($expectedEval, $pressureEval->getResult());
+        $this->assertEqualsCanonicalizing($expectedPhrase, $pressureEval->getPhrases());
     }
 
     /**
