@@ -14,7 +14,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @author Jordi Bassagaña
  * @license GPL
  */
-class KingSafetyEval extends AbstractEval
+class KingSafetyEval extends AbstractEval implements InverseEvalInterface
 {
     const NAME = 'King safety';
 
@@ -35,14 +35,14 @@ class KingSafetyEval extends AbstractEval
         foreach ($king->getMobility() as $key => $sq) {
             if ($piece = $this->board->getPieceBySq($sq)) {
                 if ($piece->getColor() === $king->oppColor()) {
-                    $this->result[$color] -= 1;
+                    $this->result[$color] += 1;
                 }
             }
             if (in_array($sq, $pressEval[$king->oppColor()])) {
-                $this->result[$color] -= 1;
+                $this->result[$color] += 1;
             }
             if (in_array($sq, $spEval[$king->oppColor()])) {
-                $this->result[$color] -= 1;
+                $this->result[$color] += 1;
             }
         }
     }

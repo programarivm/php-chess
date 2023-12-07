@@ -30,7 +30,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
     public function A00()
     {
         $expected = [
-            'w' => -1,
+            'w' => 1,
             'b' => 0,
         ];
 
