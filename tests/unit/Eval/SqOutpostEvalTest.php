@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoard;
 use Chess\Eval\SqOutpostEval;
 use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
@@ -85,6 +86,56 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         $result = (new SqOutpostEval($board))->getResult();
 
         $this->assertSame($expected, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function b4()
+    {
+        $expectedEval = [
+            'w' => ['b4'],
+            'b' => [],
+        ];
+
+        $expectedPhrase = [
+            "b4 is an outpost.",
+        ];
+
+        $board = FenToBoard::create('5k2/7K/8/8/8/P7/8/8 w - -');
+
+        $sqOutpostEval = new SqOutpostEval($board);
+
+        $this->assertSame($expectedEval, $sqOutpostEval->getResult());
+        $this->assertSame($expectedPhrase, $sqOutpostEval->getPhrases());
+    }
+
+    /**
+     * @test
+     */
+    public function d4_b4_b5()
+    {
+        $expectedEval = [
+            'w' => [
+                'b5',
+            ],
+            'b' => [
+                'b4', 'd4',
+            ],
+        ];
+
+        $expectedPhrase = [
+            "d4 is an outpost.",
+            "b4 is an outpost.",
+            "b5 is an outpost.",
+        ];
+
+        $board = FenToBoard::create('5k2/7K/8/2p5/P7/8/8/8 w - -');
+
+        $sqOutpostEval = new SqOutpostEval($board);
+
+        $this->assertSame($expectedEval, $sqOutpostEval->getResult());
+        $this->assertSame($expectedPhrase, $sqOutpostEval->getPhrases());
     }
 
     public function wAdvancingData()
