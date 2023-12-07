@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoard;
 use Chess\Eval\KnightOutpostEval;
 use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
@@ -344,5 +345,27 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
                 '8/8/8/8/5P2/8/K6p/2k3n1 w - -',
             ],
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function asdfg()
+    {
+        $expectedResult = [
+            'w' => 1,
+            'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "The knight on b5 is nicely placed on an outpost.",
+        ];
+
+        $board = FenToBoard::create('5k2/7K/8/1N6/P7/8/8/8 w - -');
+
+        $sqOutpostEval = new KnightOutpostEval($board);
+
+        $this->assertSame($expectedResult, $sqOutpostEval->getResult());
+        $this->assertSame($expectedPhrase, $sqOutpostEval->getPhrases());
     }
 }
