@@ -2,7 +2,6 @@
 
 namespace Chess\Eval;
 
-use Chess\Piece\AbstractPiece;
 use Chess\Piece\P;
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
@@ -16,15 +15,18 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
     {
         $this->board = $board;
 
+        $sqs = [];
         foreach ($this->board->getPieces() as $piece) {
             $color = $piece->getColor();
             if ($piece->getId() === Piece::P) {
                 if ($this->checkIsolatedPawn($piece)) {
                     $this->result[$color] += 1;
-                    $this->explain($piece);
+                    $sqs[] = $piece->getSq();
                 }
             }
         }
+
+        $this->explain($sqs);
     }
 
     private function checkIsolatedPawn(P $pawn): int
@@ -58,10 +60,27 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
         return 1;
     }
 
-    private function explain(AbstractPiece $piece): void
+    private function explain(array $sqs): void
     {
-        $phrase = PiecePhrase::create($piece);
-
-        $this->phrases[] = ucfirst("$phrase is isolated.");
+        if (count($sqs) > 1) {
+            $str = 'The pawns on ';
+            $keys = array_keys($sqs);
+            $lastKey = end($keys);
+            foreach ($sqs as $key => $val) {
+                if ($key === $lastKey) {
+                    $str = substr($str, 0, -2);
+                    $str .= " and $val are isolated.";
+                } else {
+                    $str .= "$val, ";
+                }
+            }
+            $this->phrases = [
+                $str,
+            ];
+        } elseif (count($sqs) === 1) {
+            $this->phrases = [
+                "The pawn on $sqs[0] is isolated.",
+            ];
+        }
     }
 }
