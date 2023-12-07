@@ -29,16 +29,21 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
      */
     public function A00()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 1,
             'b' => 0,
         ];
 
+        $expectedPhrase = [
+            "The black pieces are timidly approaching the other side's king.",
+        ];
+
         $A00 = file_get_contents(self::DATA_FOLDER.'/sample/A00.pgn');
         $board = (new SanPlay($A00))->validate()->getBoard();
-        $result = (new KingSafetyEval($board))->getResult();
+        $kingSafetyEval = new KingSafetyEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $kingSafetyEval->getResult());
+        $this->assertSame($expectedPhrase, $kingSafetyEval->getPhrases());
     }
 
     /**
