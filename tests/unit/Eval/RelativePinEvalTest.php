@@ -32,17 +32,22 @@ class RelativePinEvalTest extends AbstractUnitTestCase
      */
     public function c62_ruy_lopez_steinitz_defense_center_gambit_Bg4()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 5.47,
+        ];
+
+        $expectedPhrase = [
+            "the knight on f3 is pinned shielding a piece that is more valuable than the attacking piece.",
         ];
 
         $board = (new StrToBoard('r2qkbnr/ppp2ppp/2np4/1B2p3/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQkq -'))
             ->create();
 
-        $result = (new RelativePinEval($board))->getResult();
+        $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedPhrase, $relativePinEval->getPhrases());
     }
 
     /**
@@ -50,17 +55,22 @@ class RelativePinEvalTest extends AbstractUnitTestCase
      */
     public function pinnig_rook_pinned_knight_shielded_queen()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 3.7,
             'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "the knight on e6 is pinned shielding a piece that is more valuable than the attacking piece.",
         ];
 
         $board = (new StrToBoard('4q1k1/8/4n3/8/8/4R3/8/6K1 w - -'))
             ->create();
 
-        $result = (new RelativePinEval($board))->getResult();
+        $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedPhrase, $relativePinEval->getPhrases());
     }
 
     /**
@@ -68,17 +78,22 @@ class RelativePinEvalTest extends AbstractUnitTestCase
      */
     public function pinnig_bishop_pinned_knight_shielded_queen()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 5.47,
             'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "the knight on c6 is pinned shielding a piece that is more valuable than the attacking piece.",
         ];
 
         $board = (new StrToBoard('4q1k1/8/2n5/8/B7/8/8/6K1 w - -'))
             ->create();
 
-        $result = (new RelativePinEval($board))->getResult();
+        $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedPhrase, $relativePinEval->getPhrases());
     }
 
     /**
@@ -86,17 +101,22 @@ class RelativePinEvalTest extends AbstractUnitTestCase
      */
     public function pinnig_bishop_pinned_knight_shielded_rook()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 1.77,
             'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "the knight on c6 is pinned shielding a piece that is more valuable than the attacking piece.",
         ];
 
         $board = (new StrToBoard('4r1k1/8/2n5/8/B7/8/8/6K1 w - -'))
             ->create();
 
-        $result = (new RelativePinEval($board))->getResult();
+        $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedPhrase, $relativePinEval->getPhrases());
     }
 
     /**
@@ -104,16 +124,21 @@ class RelativePinEvalTest extends AbstractUnitTestCase
      */
     public function pinnig_bishop_pinned_knight_shielded_rook_and_attacked_rock()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 1.77,
             'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "the knight on c6 is pinned shielding a piece that is more valuable than the attacking piece.",
         ];
 
         $board = (new StrToBoard('4r1k1/8/2n5/8/B2R4/8/8/6K1 w - -'))
             ->create();
 
-        $result = (new RelativePinEval($board))->getResult();
+        $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedPhrase, $relativePinEval->getPhrases());
     }
 }
