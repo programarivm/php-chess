@@ -28,6 +28,7 @@ class SqOutpostEval extends AbstractEval
             Color::B => [],
         ];
 
+        $sqs = [];
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
                 $captureSquares = $piece->getCaptureSqs();
@@ -43,14 +44,14 @@ class SqOutpostEval extends AbstractEval
                     if (!$this->opposition($piece, $piece->getSqFile())) {
                         if ($lFile >= 'a' && $lFile <= 'h' && !$this->opposition($piece, $lFile)) {
                             $this->result[$piece->getColor()][] = $captureSquares[0];
-                            $this->explain([$captureSquares[0]]);
+                            $sqs[] = $captureSquares[0];
                         }
                         if ($rFile >= 'a' && $rFile <= 'h' &&
                             !$this->opposition($piece, $rFile)
                         ) {
                             $this->result[$piece->getColor()][] = $captureSquares[0];
                             empty($captureSquares[1]) ?: $this->result[$piece->getColor()][] = $captureSquares[1];
-                            $this->explain($captureSquares);
+                            $sqs = [...$sqs, ...$captureSquares];
                         }
                     }
                 }
@@ -62,6 +63,8 @@ class SqOutpostEval extends AbstractEval
 
         sort($this->result[Color::W]);
         sort($this->result[Color::B]);
+
+        $this->explain(array_unique($sqs));
     }
 
     protected function opposition(P $pawn, string $file): bool
@@ -85,13 +88,27 @@ class SqOutpostEval extends AbstractEval
         return false;
     }
 
-    private function explain($sqs): void
+    private function explain(array $sqs): void
     {
-        foreach ($sqs as $sq) {
-            $sentence = "{$sq} is an outpost.";
-            if (!in_array($sentence, $this->phrases)) {
-                $this->phrases[] = "{$sq} is an outpost.";
+        if (count($sqs) > 1) {
+            $str = '';
+            $keys = array_keys($sqs);
+            $lastKey = end($keys);
+            foreach ($sqs as $key => $val) {
+                if ($key === $lastKey) {
+                    $str = substr($str, 0, -2);
+                    $str .= " and $val are outpost squares.";
+                } else {
+                    $str .= "$val, ";
+                }
             }
+            $this->phrases = [
+                $str,
+            ];
+        } elseif (count($sqs) === 1) {
+            $this->phrases = [
+                "$sqs[0] is an outpost square.",
+            ];
         }
     }
 }
