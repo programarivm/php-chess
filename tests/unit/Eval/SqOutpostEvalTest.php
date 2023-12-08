@@ -389,7 +389,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
             [
                 [
                     'w' => ['e5', 'g5'],
-                    'b' => [],
+                    'b' => ['g1'],
                 ],
                 '8/8/8/8/5P2/8/K6p/2k5 w - -',
             ],
