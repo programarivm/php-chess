@@ -92,7 +92,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
         return [
             [
                 [
-                    'w' => 0,
+                    'w' => 1,
                     'b' => 0,
                 ],
                 '5k2/7K/8/8/8/1N6/P7/8 w - -',
@@ -223,7 +223,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
             [
                 [
                     'w' => 0,
-                    'b' => 0,
+                    'b' => 1,
                 ],
                 '8/7p/6n1/8/8/8/K7/2k5 w - -',
             ],
