@@ -412,4 +412,30 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $result);
     }
+
+    /**
+     * @test
+     */
+    public function c99_ruy_lopez()
+    {
+        $expectedResult = [
+            'w' => [
+                'd5',
+            ],
+            'b' => [
+                'd4',
+            ],
+        ];
+
+        $expectedPhrase = [
+            "d4 and d5 are outpost squares.",
+        ];
+
+        $fen = 'r1b2rk1/2q1bppp/p2p1n2/np2p3/3PP3/5N1P/PPBN1PP1/R1BQR1K1 b - - 0 13';
+        $board = (new StrToBoard($fen))->create();
+        $sqOutpostEval = new SqOutpostEval($board);
+
+        $this->assertSame($expectedResult, $sqOutpostEval->getResult());
+        $this->assertSame($expectedPhrase, $sqOutpostEval->getPhrases());
+    }
 }
