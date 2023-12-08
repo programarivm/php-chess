@@ -17,8 +17,6 @@ class SqOutpostEval extends AbstractEval
 {
     const NAME = 'Square outpost';
 
-    private array $ranks = [3, 4, 5, 6];
-
     public function __construct(Board $board)
     {
         $this->board = $board;
@@ -32,28 +30,14 @@ class SqOutpostEval extends AbstractEval
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
                 $captureSquares = $piece->getCaptureSqs();
-                if ($piece->getColor() === Color::W) {
-                    $lFile = chr(ord($piece->getSqFile()) - 2);
-                    $rFile = chr(ord($piece->getSqFile()) + 2);
-                } else {
-                    $lFile = chr(ord($piece->getSqFile()) + 2);
-                    $rFile = chr(ord($piece->getSqFile()) - 2);
-                    rsort($captureSquares);
+                if (!$this->isSqAttacked($piece->getColor(), $captureSquares[0])) {
+                    $this->result[$piece->getColor()][] = $captureSquares[0];
+                    $sqs[] = $captureSquares[0];
                 }
-                if (in_array($piece->getSq()[1], $this->ranks)) {
-                    if (!$this->opposition($piece, $piece->getSqFile())) {
-                        if ($lFile >= 'a' && $lFile <= 'h' && !$this->opposition($piece, $lFile)) {
-                            $this->result[$piece->getColor()][] = $captureSquares[0];
-                            $sqs[] = $captureSquares[0];
-                        }
-                        if ($rFile >= 'a' && $rFile <= 'h' && !$this->opposition($piece, $rFile)) {
-                            $this->result[$piece->getColor()][] = $captureSquares[0];
-                            $sqs[] = $captureSquares[0];
-                            if (!empty($captureSquares[1])) {
-                                $this->result[$piece->getColor()][] = $captureSquares[1];
-                                $sqs[] = $captureSquares[1];
-                            }
-                        }
+                if (isset($captureSquares[1])) {
+                    if (!$this->isSqAttacked($piece->getColor(), $captureSquares[1])) {
+                        $this->result[$piece->getColor()][] = $captureSquares[1];
+                        $sqs[] = $captureSquares[1];
                     }
                 }
             }
@@ -68,18 +52,29 @@ class SqOutpostEval extends AbstractEval
         $this->explain(array_unique($sqs));
     }
 
-    protected function opposition(P $pawn, string $file): bool
+    protected function isSqAttacked(string $color, string $sq): bool
     {
+        $lFile = chr(ord($sq[0]) - 1);
+        $rFile = chr(ord($sq[0]) + 1);
+
+        return $this->isFileAttacked($color, $sq, $lFile) || $this->isFileAttacked($color, $sq, $rFile);
+    }
+
+    private function isFileAttacked($color, $sq, $file): bool
+    {
+        $rank = substr($sq, 1);
         for ($i = 2; $i < 8; $i++) {
             if ($piece = $this->board->getPieceBySq($file.$i)) {
                 if ($piece->getId() === Piece::P) {
-                    if ($pawn->getColor() === Color::W) {
-                        if ($pawn->getSq()[1] + 2 <= $piece->getSq()[1]) {
-                            return true;
-                        }
-                    } else {
-                        if ($pawn->getSq()[1] - 2 >= $piece->getSq()[1]) {
-                            return true;
+                    if ($piece->getColor() === Color::opp($color)) {
+                        if ($color === Color::W) {
+                            if ($i > $rank) {
+                                return true;
+                            }
+                        } else {
+                            if ($i < $rank) {
+                                return true;
+                            }
                         }
                     }
                 }
