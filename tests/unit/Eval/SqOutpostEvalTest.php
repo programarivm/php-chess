@@ -141,7 +141,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         return [
             [
                 [
-                    'w' => [],
+                    'w' => ['b3'],
                     'b' => [],
                 ],
                 '5k2/7K/8/8/8/8/P7/8 w - -',
@@ -211,7 +211,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
             [
                 [
                     'w' => [],
-                    'b' => [],
+                    'b' => ['d6'],
                 ],
                 '5k2/2p4K/8/P7/8/8/8/8 w - -',
             ],
@@ -272,7 +272,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
             [
                 [
                     'w' => [],
-                    'b' => [],
+                    'b' => ['g6'],
                 ],
                 '8/7p/8/8/8/8/K7/2k5 w - -',
             ],
@@ -389,7 +389,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
             [
                 [
                     'w' => ['e5', 'g5'],
-                    'b' => ['g1'],
+                    'b' => [],
                 ],
                 '8/8/8/8/5P2/8/K6p/2k5 w - -',
             ],

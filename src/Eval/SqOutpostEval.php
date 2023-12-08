@@ -30,24 +30,26 @@ class SqOutpostEval extends AbstractEval
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
                 $captureSqs = $piece->getCaptureSqs();
-                $left = chr(ord($captureSqs[0]) - 1);
-                $right = chr(ord($captureSqs[0]) + 1);
-                if (
-                    !$this->isFileAttacked($piece->getColor(), $captureSqs[0], $left) &&
-                    !$this->isFileAttacked($piece->getColor(), $captureSqs[0], $right)
-                ) {
-                    $this->result[$piece->getColor()][] = $captureSqs[0];
-                    $sqs[] = $captureSqs[0];
-                }
-                if (isset($captureSqs[1])) {
-                    $left = chr(ord($captureSqs[1]) - 1);
-                    $right = chr(ord($captureSqs[1]) + 1);
+                if ($piece->getRanks()->end !== (int) substr($captureSqs[0], 1)) {
+                    $left = chr(ord($captureSqs[0]) - 1);
+                    $right = chr(ord($captureSqs[0]) + 1);
                     if (
-                        !$this->isFileAttacked($piece->getColor(), $captureSqs[1], $left) &&
-                        !$this->isFileAttacked($piece->getColor(), $captureSqs[1], $right)
+                        !$this->isFileAttacked($piece->getColor(), $captureSqs[0], $left) &&
+                        !$this->isFileAttacked($piece->getColor(), $captureSqs[0], $right)
                     ) {
-                        $this->result[$piece->getColor()][] = $captureSqs[1];
-                        $sqs[] = $captureSqs[1];
+                        $this->result[$piece->getColor()][] = $captureSqs[0];
+                        $sqs[] = $captureSqs[0];
+                    }
+                    if (isset($captureSqs[1])) {
+                        $left = chr(ord($captureSqs[1]) - 1);
+                        $right = chr(ord($captureSqs[1]) + 1);
+                        if (
+                            !$this->isFileAttacked($piece->getColor(), $captureSqs[1], $left) &&
+                            !$this->isFileAttacked($piece->getColor(), $captureSqs[1], $right)
+                        ) {
+                            $this->result[$piece->getColor()][] = $captureSqs[1];
+                            $sqs[] = $captureSqs[1];
+                        }
                     }
                 }
             }
