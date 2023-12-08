@@ -58,9 +58,6 @@ class SqOutpostEval extends AbstractEval
         $this->result[Color::W] = array_unique($this->result[Color::W]);
         $this->result[Color::B] = array_unique($this->result[Color::B]);
 
-        sort($this->result[Color::W]);
-        sort($this->result[Color::B]);
-
         $this->explain(array_unique($sqs));
     }
 
