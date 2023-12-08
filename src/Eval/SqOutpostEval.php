@@ -29,15 +29,25 @@ class SqOutpostEval extends AbstractEval
         $sqs = [];
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
-                $captureSquares = $piece->getCaptureSqs();
-                if (!$this->isSqAttacked($piece->getColor(), $captureSquares[0])) {
-                    $this->result[$piece->getColor()][] = $captureSquares[0];
-                    $sqs[] = $captureSquares[0];
+                $captureSqs = $piece->getCaptureSqs();
+                $left = chr(ord($captureSqs[0]) - 1);
+                $right = chr(ord($captureSqs[0]) + 1);
+                if (
+                    !$this->isFileAttacked($piece->getColor(), $captureSqs[0], $left) &&
+                    !$this->isFileAttacked($piece->getColor(), $captureSqs[0], $right)
+                ) {
+                    $this->result[$piece->getColor()][] = $captureSqs[0];
+                    $sqs[] = $captureSqs[0];
                 }
-                if (isset($captureSquares[1])) {
-                    if (!$this->isSqAttacked($piece->getColor(), $captureSquares[1])) {
-                        $this->result[$piece->getColor()][] = $captureSquares[1];
-                        $sqs[] = $captureSquares[1];
+                if (isset($captureSqs[1])) {
+                    $left = chr(ord($captureSqs[1]) - 1);
+                    $right = chr(ord($captureSqs[1]) + 1);
+                    if (
+                        !$this->isFileAttacked($piece->getColor(), $captureSqs[1], $left) &&
+                        !$this->isFileAttacked($piece->getColor(), $captureSqs[1], $right)
+                    ) {
+                        $this->result[$piece->getColor()][] = $captureSqs[1];
+                        $sqs[] = $captureSqs[1];
                     }
                 }
             }
@@ -50,14 +60,6 @@ class SqOutpostEval extends AbstractEval
         sort($this->result[Color::B]);
 
         $this->explain(array_unique($sqs));
-    }
-
-    protected function isSqAttacked(string $color, string $sq): bool
-    {
-        $lFile = chr(ord($sq[0]) - 1);
-        $rFile = chr(ord($sq[0]) + 1);
-
-        return $this->isFileAttacked($color, $sq, $lFile) || $this->isFileAttacked($color, $sq, $rFile);
     }
 
     private function isFileAttacked($color, $sq, $file): bool
