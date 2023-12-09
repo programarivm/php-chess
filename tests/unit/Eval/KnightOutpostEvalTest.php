@@ -350,7 +350,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function asdfg()
+    public function endgame()
     {
         $expectedResult = [
             'w' => 1,
@@ -363,9 +363,9 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
 
         $board = FenToBoard::create('5k2/7K/8/1N6/P7/8/8/8 w - -');
 
-        $sqOutpostEval = new KnightOutpostEval($board);
+        $knightOutpostEval = new KnightOutpostEval($board);
 
-        $this->assertSame($expectedResult, $sqOutpostEval->getResult());
-        $this->assertSame($expectedPhrase, $sqOutpostEval->getPhrases());
+        $this->assertSame($expectedResult, $knightOutpostEval->getResult());
+        $this->assertSame($expectedPhrase, $knightOutpostEval->getPhrases());
     }
 }

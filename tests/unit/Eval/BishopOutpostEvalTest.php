@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoard;
 use Chess\Eval\BishopOutpostEval;
 use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
@@ -344,5 +345,27 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
                 '8/8/8/8/5P2/8/K6p/2k3b1 w - -',
             ],
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function endgame()
+    {
+        $expectedResult = [
+            'w' => 0,
+            'b' => 1,
+        ];
+
+        $expectedPhrase = [
+            "The bishop on g4 is nicely placed on an outpost.",
+        ];
+
+        $board = FenToBoard::create('8/8/8/7p/6b1/8/K7/2k5 w - -');
+
+        $bishopOutpostEval = new BishopOutpostEval($board);
+
+        $this->assertSame($expectedResult, $bishopOutpostEval->getResult());
+        $this->assertSame($expectedPhrase, $bishopOutpostEval->getPhrases());
     }
 }
