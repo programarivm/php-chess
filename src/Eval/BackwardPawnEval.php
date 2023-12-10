@@ -23,9 +23,13 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
     {
         $this->board = $board;
 
+        $this->result = [
+            Color::W => [],
+            Color::B => [],
+        ];
+
         $this->isolatedPawnEval = (new IsolatedPawnEval($board))->getResult();
 
-        $sqs = [];
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
                 $left = chr(ord($piece->getSq()) - 1);
@@ -38,16 +42,18 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
                         ...$this->isolatedPawnEval[Color::B]
                     ])
                 ) {
-                    $this->result[$piece->getColor()] += 1;
-                    $sqs[] = $piece->getSq();
+                    $this->result[$piece->getColor()][] = $piece->getSq();
                 }
             }
         }
+
+        $this->explain($this->result);
     }
 
     private function isDefensible($pawn, $file): bool
     {
         $rank = (int) $pawn->getSqRank();
+
         for ($i = 1; $i <= 8; $i++) {
             if ($piece = $this->board->getPieceBySq($file.$i)) {
                 if (
@@ -68,5 +74,31 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
         }
 
         return false;
+    }
+
+    private function explain(array $result): void
+    {
+        $sqs = [...$result[Color::W], ...$result[Color::B]];
+
+        if (count($sqs) > 1) {
+            $str = 'The pawns on ';
+            $keys = array_keys($sqs);
+            $lastKey = end($keys);
+            foreach ($sqs as $key => $val) {
+                if ($key === $lastKey) {
+                    $str = substr($str, 0, -2);
+                    $str .= " and $val are backward.";
+                } else {
+                    $str .= "$val, ";
+                }
+            }
+            $this->phrases = [
+                $str,
+            ];
+        } elseif (count($sqs) === 1) {
+            $this->phrases = [
+                "The pawn on $sqs[0] is backward.",
+            ];
+        }
     }
 }
