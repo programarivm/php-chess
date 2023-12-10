@@ -2,6 +2,7 @@
 
 namespace Chess\Eval;
 
+use Chess\Eval\IsolatedPawnEval;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -16,9 +17,13 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
 {
     const NAME = 'Backward pawn';
 
+    private array $isolatedPawnEval;
+
     public function __construct(Board $board)
     {
         $this->board = $board;
+
+        $this->isolatedPawnEval = (new IsolatedPawnEval($board))->getResult();
 
         $sqs = [];
         foreach ($this->board->getPieces() as $piece) {
@@ -27,7 +32,11 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
                 $right = chr(ord($piece->getSq()) + 1);
                 if (
                     !$this->isDefensible($piece, $left) &&
-                    !$this->isDefensible($piece, $right)
+                    !$this->isDefensible($piece, $right) &&
+                    !in_array($piece->getSq(), [
+                        ...$this->isolatedPawnEval[Color::W],
+                        ...$this->isolatedPawnEval[Color::B]
+                    ])
                 ) {
                     $this->result[$piece->getColor()] += 1;
                     $sqs[] = $piece->getSq();
