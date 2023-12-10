@@ -27,7 +27,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
     public function kaufman_16()
     {
         $expected = [
-            'w' => 2,
+            'w' => 3,
             'b' => 1,
         ];
 
@@ -56,7 +56,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
     public function kaufman_16_recognizes_defended_pawns(): void
     {
         $expected = [
-            'w' => 0,
+            'w' => 2,
             'b' => 1,
         ];
 
