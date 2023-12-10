@@ -27,8 +27,8 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
     public function kaufman_09()
     {
         $expectedResult = [
-            'w' => 0,
-            'b' => 2,
+            'w' => [],
+            'b' => ['a7', 'd5'],
         ];
 
         $expectedPhrase = [
@@ -61,12 +61,12 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
     public function kaufman_13()
     {
         $expectedResult = [
-            'w' => 1,
-            'b' => 1,
+            'w' => ['h2'],
+            'b' => ['d5'],
         ];
 
         $expectedPhrase = [
-            "The pawns on d5 and h2 are isolated.",
+            "The pawns on h2 and d5 are isolated.",
         ];
 
         $position = [
@@ -95,12 +95,12 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
     public function kaufman_14()
     {
         $expectedResult = [
-            'w' => 2,
-            'b' => 1,
+            'w' => ['a2', 'c2'],
+            'b' => ['a7'],
         ];
 
         $expectedPhrase = [
-            "The pawns on a7, a2 and c2 are isolated.",
+            "The pawns on a2, c2 and a7 are isolated.",
         ];
 
         $position = [

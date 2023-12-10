@@ -5,6 +5,7 @@ namespace Chess\Eval;
 use Chess\Piece\P;
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
@@ -15,21 +16,23 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
     {
         $this->board = $board;
 
-        $sqs = [];
+        $this->result = [
+            Color::W => [],
+            Color::B => [],
+        ];
+
         foreach ($this->board->getPieces() as $piece) {
-            $color = $piece->getColor();
             if ($piece->getId() === Piece::P) {
-                if ($this->checkIsolatedPawn($piece)) {
-                    $this->result[$color] += 1;
-                    $sqs[] = $piece->getSq();
+                if ($this->isIsolatedPawn($piece)) {
+                    $this->result[$piece->getColor()][] = $piece->getSq();
                 }
             }
         }
 
-        $this->explain($sqs);
+        $this->explain($this->result);
     }
 
-    private function checkIsolatedPawn(P $pawn): int
+    private function isIsolatedPawn(P $pawn): int
     {
         $color = $pawn->getColor();
         $pawnFile = $pawn->getSqFile();
@@ -60,8 +63,10 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
         return 1;
     }
 
-    private function explain(array $sqs): void
+    private function explain(array $result): void
     {
+        $sqs = [...$result[Color::W], ...$result[Color::B]];
+
         if (count($sqs) > 1) {
             $str = 'The pawns on ';
             $keys = array_keys($sqs);
