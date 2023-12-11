@@ -180,7 +180,7 @@ class K extends AbstractPiece
      * @param string $sq
      * @return string
      */
-    public function fen($color, $sq): string
+    public function fen($color, $sq): ?string
     {
         $clone = unserialize(serialize($this->board));
         if (
@@ -200,5 +200,7 @@ class K extends AbstractPiece
         } elseif ($clone->play($color, Piece::K.$sq)) {
             return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
         }
+
+        return null;
     }
 }
