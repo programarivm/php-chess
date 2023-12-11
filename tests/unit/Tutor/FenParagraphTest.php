@@ -19,9 +19,6 @@ class FenParagraphTest extends AbstractUnitTestCase
             "Black has a significant space advantage.",
         ];
 
-        $sentence = (new FenParagraph('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1'))
-            ->getParagraph();
-
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
         $board = (new SanPlay($A08))->validate()->getBoard();
 
