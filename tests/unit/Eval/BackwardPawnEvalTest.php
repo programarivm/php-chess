@@ -2,8 +2,10 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoard;
 use Chess\Eval\BackwardPawnEval;
 use Chess\Piece\AsciiArray;
+use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Rule\CastlingRule;
@@ -27,12 +29,12 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
     public function kaufman_16()
     {
         $expectedResult = [
-            'w' => ['e4', 'b3', 'b2'],
-            'b' => ['e7'],
+            'w' => ['e4', 'b3'],
+            'b' => [],
         ];
 
         $expectedPhrase = [
-            "The pawns on e4, b3, b2 and e7 are backward.",
+            "The pawns on e4 and b3 are backward.",
         ];
 
         $position = [
@@ -61,12 +63,12 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
     public function kaufman_16_recognizes_defended_pawns(): void
     {
         $expectedResult = [
-            'w' => ['d4', 'e4', 'b2'],
-            'b' => ['e7'],
+            'w' => ['d4', 'e4'],
+            'b' => [],
         ];
 
         $expectedPhrase = [
-            "The pawns on d4, e4, b2 and e7 are backward.",
+            "The pawns on d4 and e4 are backward.",
         ];
 
         $position = [

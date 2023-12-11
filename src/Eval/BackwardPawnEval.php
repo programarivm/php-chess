@@ -8,12 +8,6 @@ use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-/**
- * Backward P
- *
- * @author Boas Falke
- * @license GPL
- */
 class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
 {
     const NAME = 'Backward pawn';
@@ -53,25 +47,24 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
 
     private function isDefensible(AbstractPiece $pawn, string $file): bool
     {
+        if ($pawn->getSqRank() == 2 || $pawn->getSqRank() == $this->board->getSize()['ranks'] - 1) {
+            return true;
+        }
+
         $rank = (int) $pawn->getSqRank();
 
         if ($pawn->getColor() === Color::W) {
             for ($i = $rank - 1; $i >= 2; $i--) {
                 if ($piece = $this->board->getPieceBySq($file.$i)) {
-                    if (
-                        $piece->getId() === Piece::P &&
-                        $piece->getColor() === $pawn->getColor()
-                    ) {
+                    if ($piece->getId() === Piece::P && $piece->getColor() === $pawn->getColor()) {
                         return true;
                     }
                 }
             }
         } else {
-            for ($i = $rank + 1; $i <= 7; $i++) {
+            for ($i = $rank + 1; $i <= $this->board->getSize()['ranks'] - 1; $i++) {
                 if ($piece = $this->board->getPieceBySq($file.$i)) {
-                    if (
-                        $piece->getId() === Piece::P &&
-                        $piece->getColor() === $pawn->getColor()
+                    if ($piece->getId() === Piece::P && $piece->getColor() === $pawn->getColor()
                     ) {
                         return true;
                     }
