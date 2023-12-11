@@ -3,6 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Eval\IsolatedPawnEval;
+use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -50,24 +51,29 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
         $this->explain($this->result);
     }
 
-    private function isDefensible($pawn, $file): bool
+    private function isDefensible(AbstractPiece $pawn, string $file): bool
     {
         $rank = (int) $pawn->getSqRank();
 
-        for ($i = 1; $i <= 8; $i++) {
-            if ($piece = $this->board->getPieceBySq($file.$i)) {
-                if (
-                    $piece->getId() === Piece::P &&
-                    $piece->getColor() === $pawn->getColor()
-                ) {
-                    if ($piece->getColor() === Color::W) {
-                        if ($i <= $rank - 1) {
-                            return true;
-                        }
-                    } else {
-                        if ($i >= $rank + 1) {
-                            return true;
-                        }
+        if ($pawn->getColor() === Color::W) {
+            for ($i = $rank - 1; $i >= 2; $i--) {
+                if ($piece = $this->board->getPieceBySq($file.$i)) {
+                    if (
+                        $piece->getId() === Piece::P &&
+                        $piece->getColor() === $pawn->getColor()
+                    ) {
+                        return true;
+                    }
+                }
+            }
+        } else {
+            for ($i = $rank + 1; $i <= 7; $i++) {
+                if ($piece = $this->board->getPieceBySq($file.$i)) {
+                    if (
+                        $piece->getId() === Piece::P &&
+                        $piece->getColor() === $pawn->getColor()
+                    ) {
+                        return true;
                     }
                 }
             }
