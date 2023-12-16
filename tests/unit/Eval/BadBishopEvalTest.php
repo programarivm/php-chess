@@ -13,16 +13,21 @@ class BadBishopEvalTest extends AbstractUnitTestCase
      */
     public function position_01()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 5,
         ];
 
+        $expectedPhrase = [
+            "Black has a bad bishop because too many of its pawns are blocking it.",
+        ];
+
         $fen = '8/5b2/p2k4/1p1p1p1p/1P1K1P1P/2P1PB2/8/8 w - - 0 1';
         $board = (new StrToBoard($fen))->create();
-        $result = (new BadBishopEval($board))->getResult();
+        $badBishopEval = new BadBishopEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $badBishopEval->getResult());
+        $this->assertSame($expectedPhrase, $badBishopEval->getPhrases());
     }
 
     /**
@@ -30,16 +35,21 @@ class BadBishopEvalTest extends AbstractUnitTestCase
      */
     public function position_02()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 7,
             'b' => 4,
         ];
 
+        $expectedPhrase = [
+            "White has a bishop which is not too good because a few of its pawns are blocking it.",
+        ];
+
         $fen = '2bqr3/r4pkp/1n1p2p1/2pP4/ppP1PQ2/1P3N1P/P1B2RP1/5RK1 w - - 0 1';
         $board = (new StrToBoard($fen))->create();
-        $result = (new BadBishopEval($board))->getResult();
+        $badBishopEval = new BadBishopEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $badBishopEval->getResult());
+        $this->assertSame($expectedPhrase, $badBishopEval->getPhrases());
     }
 
     /**
@@ -47,16 +57,21 @@ class BadBishopEvalTest extends AbstractUnitTestCase
      */
     public function position_03()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 2,
             'b' => 5,
         ];
 
+        $expectedPhrase = [
+            "Black has a bishop which is not too good because a few of its pawns are blocking it.",
+        ];
+
         $fen = '2r1k2r/1p1bnpp1/pq2p2p/3pP3/PP1N1P2/2PB4/6PP/R3QR1K w - - 0 1';
         $board = (new StrToBoard($fen))->create();
-        $result = (new BadBishopEval($board))->getResult();
+        $badBishopEval = new BadBishopEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $badBishopEval->getResult());
+        $this->assertSame($expectedPhrase, $badBishopEval->getPhrases());
     }
 
     /**
@@ -64,16 +79,21 @@ class BadBishopEvalTest extends AbstractUnitTestCase
      */
     public function position_04()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 1,
             'b' => 6,
         ];
 
+        $expectedPhrase = [
+            "Black has a bad bishop because too many of its pawns are blocking it.",
+        ];
+
         $fen = '2b3k1/3nqr1p/2p1p1p1/1pPpP3/1P1Q1P2/8/1N2B1PP/R5K1 w - - 0 1';
         $board = (new StrToBoard($fen))->create();
-        $result = (new BadBishopEval($board))->getResult();
+        $badBishopEval = new BadBishopEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $badBishopEval->getResult());
+        $this->assertSame($expectedPhrase, $badBishopEval->getPhrases());
     }
 
     /**

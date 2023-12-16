@@ -21,6 +21,29 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
 {
     const NAME = 'Bad bishop';
 
+    protected array $phrase = [
+        Color::W => [
+            [
+                'diff' => 5,
+                'meaning' => "White has a bad bishop because too many of its pawns are blocking it.",
+            ],
+            [
+                'diff' => 3,
+                'meaning' => "White has a bishop which is not too good because a few of its pawns are blocking it.",
+            ],
+        ],
+        Color::B => [
+            [
+                'diff' => -5,
+                'meaning' => "Black has a bad bishop because too many of its pawns are blocking it.",
+            ],
+            [
+                'diff' => -3,
+                'meaning' => "Black has a bishop which is not too good because a few of its pawns are blocking it.",
+            ],
+        ],
+    ];
+
     /**
      * Constructor.
      *
@@ -42,6 +65,8 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
                 }
             }
         }
+
+        $this->explain($this->result);
     }
 
     /**
@@ -66,5 +91,12 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
         }
 
         return $count;
+    }
+
+    private function explain(array $result): void
+    {
+        if ($sentence = $this->sentence($result)) {
+            $this->phrases[] = $sentence;
+        }
     }
 }
