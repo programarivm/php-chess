@@ -2,8 +2,10 @@
 
 namespace Chess\Eval;
 
+use Chess\Eval\BishopPairEval;
 use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 
@@ -28,12 +30,16 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
     {
         $this->board = $board;
 
-        foreach ($this->board->getPieces() as $piece) {
-            if ($piece->getId() === Piece::B) {
-                $this->result[$piece->getColor()] += $this->countBlockingPawns(
-                    $piece,
-                    Square::color($piece->getSq())
-                );
+        $bishopPairEval = (new BishopPairEval($board))->getResult();
+
+        if (!$bishopPairEval[Color::W] && !$bishopPairEval[Color::B]) {
+            foreach ($this->board->getPieces() as $piece) {
+                if ($piece->getId() === Piece::B) {
+                    $this->result[$piece->getColor()] += $this->countBlockingPawns(
+                        $piece,
+                        Square::color($piece->getSq())
+                    );
+                }
             }
         }
     }
