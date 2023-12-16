@@ -2,6 +2,7 @@
 
 namespace Chess\Eval;
 
+use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
@@ -29,8 +30,8 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
 
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::B) {
-                $this->result[$piece->getColor()] += $this->count(
-                    $piece->getColor(),
+                $this->result[$piece->getColor()] += $this->countBlockingPawns(
+                    $piece,
                     Square::color($piece->getSq())
                 );
             }
@@ -38,19 +39,19 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
     }
 
     /**
-     * Counts the number of pawns blocking the bishop.
+     * Counts the number of pawns blocking a bishop.
      *
-     * @param string $bColor
+     * @param \Chess\Piece\AbstractPiece $bishop
      * @param string $sqColor
      * @return int
      */
-    private function count(string $bColor, string $sqColor): int
+    private function countBlockingPawns($bishop, string $sqColor): int
     {
         $count = 0;
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
                 if (
-                    $piece->getColor() === $bColor &&
+                    $piece->getColor() === $bishop->getColor() &&
                     Square::color($piece->getSq()) === $sqColor
                 ) {
                     $count += 1;
