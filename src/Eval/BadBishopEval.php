@@ -51,7 +51,7 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
      * @param string $sqColor
      * @return int
      */
-    private function countBlockingPawns($bishop, string $sqColor): int
+    private function countBlockingPawns(AbstractPiece $bishop, string $sqColor): int
     {
         $count = 0;
         foreach ($this->board->getPieces() as $piece) {
