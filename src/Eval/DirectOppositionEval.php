@@ -10,6 +10,21 @@ class DirectOppositionEval extends AbstractEval implements TernaryEvalInterface
 {
     const NAME = 'Direct opposition';
 
+    protected array $phrase = [
+        Color::W => [
+            [
+                'diff' => 1,
+                'meaning' => "The white king has the opposition preventing the advance of the other king.",
+            ],
+        ],
+        Color::B => [
+            [
+                'diff' => -1,
+                'meaning' => "The black king has the opposition preventing the advance of the other king.",
+            ],
+        ],
+    ];
+
     public function __construct(Board $board)
     {
         $this->board = $board;
@@ -33,6 +48,15 @@ class DirectOppositionEval extends AbstractEval implements TernaryEvalInterface
                     Color::B => (int) ($this->board->getTurn() !== Color::B),
                 ];
             }
+        }
+
+        $this->explain($this->result);
+    }
+
+    private function explain(array $result): void
+    {
+        if ($sentence = $this->sentence($result)) {
+            $this->phrases[] = $sentence;
         }
     }
 }
