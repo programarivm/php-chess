@@ -65,6 +65,16 @@ class FenParagraph
     }
 
     /**
+     * Returns the board.
+     *
+     * @return \Chess\Variant\Classical\Board
+     */
+    public function getBoard(): ClassicalBoard
+    {
+        return $this->board;
+    }
+
+    /**
      * Returns the paragraph.
      *
      * @return array
@@ -77,7 +87,7 @@ class FenParagraph
     /**
      * Calculates the paragraph.
      *
-     * @return FenParagraph
+     * @return \Chess\Tutor\FenParagraph
      */
     protected function explain(): FenParagraph
     {
