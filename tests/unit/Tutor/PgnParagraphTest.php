@@ -2,11 +2,31 @@
 
 namespace Chess\Tests\Unit\Tutor;
 
+use Chess\Play\SanPlay;
 use Chess\Tutor\PgnParagraph;
 use Chess\Tests\AbstractUnitTestCase;
 
 class PgnParagraphTest extends AbstractUnitTestCase
 {
+    /**
+     * @test
+     */
+    public function A08()
+    {
+        $expected = [
+            "Black has a kind of space advantage.",
+            "The pawn on c5 is unprotected.",
+        ];
+
+        $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
+        $board = (new SanPlay($A08))->validate()->getBoard();
+
+        $paragraph = (new PgnParagraph('d4', $board->toFen()))
+            ->getParagraph();
+
+        $this->assertSame($expected, $paragraph);
+    }
+
     /**
      * @test
      */
