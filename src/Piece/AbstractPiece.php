@@ -111,7 +111,9 @@ abstract class AbstractPiece
         $pieces = [];
         foreach ($sqs = $this->sqs() as $sq) {
             if ($piece = $this->board->getPieceBySq($sq)) {
-                $pieces[] = $piece;
+                if ($this->color !== $piece->getColor()) {
+                    $pieces[] = $piece;
+                }
             }
         }
 
