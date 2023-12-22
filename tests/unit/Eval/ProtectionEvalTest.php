@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoard;
 use Chess\Eval\ProtectionEval;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
@@ -42,10 +43,10 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'd5');
 
-        $tacticsEval = new ProtectionEval($board);
+        $protectionEval = new ProtectionEval($board);
 
-        $this->assertSame($expectedResult, $tacticsEval->getResult());
-        $this->assertSame($expectedPhrase, $tacticsEval->getPhrases());
+        $this->assertSame($expectedResult, $protectionEval->getResult());
+        $this->assertSame($expectedPhrase, $protectionEval->getPhrases());
     }
 
     /**
@@ -106,10 +107,10 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $board->play('b', 'a6');
         $board->play('w', 'Nxe5');
 
-        $tacticsEval = new ProtectionEval($board);
+        $protectionEval = new ProtectionEval($board);
 
-        $this->assertSame($expectedResult, $tacticsEval->getResult());
-        $this->assertSame($expectedPhrase, $tacticsEval->getPhrases());
+        $this->assertSame($expectedResult, $protectionEval->getResult());
+        $this->assertSame($expectedPhrase, $protectionEval->getPhrases());
     }
 
     /**
@@ -136,10 +137,10 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $board->play('b', 'Nxe4');
         $board->play('w', 'd3');
 
-        $tacticsEval = new ProtectionEval($board);
+        $protectionEval = new ProtectionEval($board);
 
-        $this->assertSame($expectedResult, $tacticsEval->getResult());
-        $this->assertSame($expectedPhrase, $tacticsEval->getPhrases());
+        $this->assertSame($expectedResult, $protectionEval->getResult());
+        $this->assertSame($expectedPhrase, $protectionEval->getPhrases());
     }
 
     /**
@@ -154,8 +155,28 @@ class ProtectionEvalTest extends AbstractUnitTestCase
 
         $B56 = file_get_contents(self::DATA_FOLDER.'/sample/D07.pgn');
         $board = (new SanPlay($B56))->validate()->getBoard();
-        $tacticsEval = new ProtectionEval($board);
+        $protectionEval = new ProtectionEval($board);
 
-        $this->assertSame($expectedResult, $tacticsEval->getResult());
+        $this->assertSame($expectedResult, $protectionEval->getResult());
+    }
+
+    /**
+     * @test
+     */
+    public function c5_pawn()
+    {
+        $expectedResult = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $expectedPhrase = [];
+
+        $board = FenToBoard::create('r2q1rk1/pb1nbppp/2p1pn2/1pPp4/3P4/1PN2NP1/P1Q1PPBP/R1BR2K1 b - -');
+
+        $protectionEval = new ProtectionEval($board);
+
+        $this->assertSame($expectedResult, $protectionEval->getResult());
+        $this->assertSame($expectedPhrase, $protectionEval->getPhrases());
     }
 }
