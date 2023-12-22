@@ -121,6 +121,23 @@ abstract class AbstractPiece
     }
 
     /**
+     * Returns the opponent's pieces that attack this piece.
+     *
+     * @return array|null
+     */
+    public function attackingPieces(): ?array
+    {
+        $pieces = [];
+        foreach ($this->board->getPieces($this->oppColor()) as $attackingPiece) {
+            if (in_array($this->sq, $attackingPiece->sqs())) {
+                $pieces[] = $piece;
+            }
+        }
+
+        return $pieces;
+    }
+
+    /**
      * Checks out if the opponent's king is attacked by the piece.
      *
      * @return bool
