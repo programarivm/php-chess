@@ -148,12 +148,8 @@ class ProtectionEvalTest extends AbstractUnitTestCase
     public function D07()
     {
         $expectedResult = [
-            'w' => 4,
+            'w' => 0,
             'b' => 0,
-        ];
-
-        $expectedPhrase = [
-            "The pawn on d4 is unprotected.",
         ];
 
         $B56 = file_get_contents(self::DATA_FOLDER.'/sample/D07.pgn');
@@ -161,6 +157,5 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $tacticsEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $tacticsEval->getResult());
-        $this->assertSame($expectedPhrase, $tacticsEval->getPhrases());
     }
 }

@@ -2,12 +2,10 @@
 
 namespace Chess\Eval;
 
-use Chess\Eval\DefenseEval;
-use Chess\Eval\PressureEval;
 use Chess\Piece\AbstractPiece;
 use Chess\Tutor\PiecePhrase;
-use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
  * Protection evaluation.
@@ -22,47 +20,31 @@ class ProtectionEval extends AbstractEval
     const NAME = 'Protection';
 
     /**
-     * Defense evaluation containing the defended squares.
+     * Constructor.
      *
-     * @var array
-     */
-    private array $defenseEval;
-
-    /**
-     * Pressure evaluation containing the squares being pressured.
-     *
-     * @var array
-     */
-    private array $pressEval;
-
-    /**
      * @param \Chess\Variant\Classical\Board $board
      */
     public function __construct(Board $board)
     {
         $this->board = $board;
 
-        $this->defenseEval = (new DefenseEval($board))->getResult();
-        $this->pressEval = (new PressureEval($board))->getResult();
-
-        foreach ($this->pressEval as $color => $sqs) {
-            $countPress = array_count_values($sqs);
-            $countDefense = array_count_values($this->defenseEval[Color::opp($color)]);
-            foreach ($sqs as $sq) {
-                $piece = $this->board->getPieceBySq($sq);
-                if (in_array($sq, $this->defenseEval[Color::opp($color)])) {
-                    if ($countPress[$sq] > $countDefense[$sq]) {
-                        $this->result[$color] += self::$value[$piece->getId()];
-                        $this->explain($piece);
+        foreach ($this->board->getPieces() as $piece) {
+            foreach ($piece->attackedPieces() as $attackedPiece) {
+                if ($attackedPiece->getId() !== Piece::K) {
+                    if (empty($attackedPiece->defendingPieces())) {
+                        $this->result[$attackedPiece->oppColor()] += self::$value[$attackedPiece->getId()];
+                        $this->explain($attackedPiece);
                     }
-                } else {
-                    $this->result[$color] += self::$value[$piece->getId()];
-                    $this->explain($piece);
                 }
             }
         }
     }
 
+    /**
+     * Explain the result.
+     *
+     * @param \Chess\Piece\AbstractPiece $piece
+     */
     private function explain(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);

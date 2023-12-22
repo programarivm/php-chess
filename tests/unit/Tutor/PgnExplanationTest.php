@@ -37,7 +37,6 @@ class PgnExplanationTest extends AbstractUnitTestCase
             "White is just controlling the center.",
             "White has a total space advantage.",
             "The white pieces are timidly approaching the other side's king.",
-            "Black's king on f7 is unprotected.",
             "The bishop on e6 is unprotected.",
         ];
 
