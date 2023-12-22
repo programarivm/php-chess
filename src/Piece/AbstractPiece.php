@@ -128,9 +128,9 @@ abstract class AbstractPiece
     public function attackingPieces(): ?array
     {
         $attackingPieces = [];
-        foreach ($this->board->getPieces($this->oppColor()) as $attackingPiece) {
-            if (in_array($this->sq, $attackingPiece->sqs())) {
-                $attackingPieces[] = $attackingPiece;
+        foreach ($this->board->getPieces($this->oppColor()) as $piece) {
+            if (in_array($this->sq, $piece->sqs())) {
+                $attackingPieces[] = $piece;
             }
         }
 
