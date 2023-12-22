@@ -15,14 +15,14 @@ class ProtectionEvalTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $result = (new ProtectionEval(new Board()))->getResult();
+        $protectionEval = new ProtectionEval(new Board());
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $protectionEval->getResult());
     }
 
     /**
@@ -54,16 +54,16 @@ class ProtectionEvalTest extends AbstractUnitTestCase
      */
     public function B56()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
         $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
         $board = (new SanPlay($B56))->validate()->getBoard();
-        $result = (new ProtectionEval($board))->getResult();
+        $protectionEval = new ProtectionEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $protectionEval->getResult());
     }
 
     /**
@@ -71,16 +71,16 @@ class ProtectionEvalTest extends AbstractUnitTestCase
      */
     public function B25()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
         $board = (new SanPlay($B25))->validate()->getBoard();
-        $result = (new ProtectionEval($board))->getResult();
+        $protectionEval = new ProtectionEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $protectionEval->getResult());
     }
 
     /**

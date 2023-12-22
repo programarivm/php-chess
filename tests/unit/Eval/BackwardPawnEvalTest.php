@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoard;
 use Chess\Eval\BackwardPawnEval;
 use Chess\Piece\AsciiArray;
 use Chess\Play\SanPlay;
