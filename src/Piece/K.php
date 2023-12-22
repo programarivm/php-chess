@@ -132,12 +132,19 @@ class K extends AbstractPiece
 
     protected function sqsCaptures(): ?array
     {
-        $sqsCaptures = array_intersect(
-            (array)$this->mobility,
-            $this->board->getSqCount()->used->{$this->oppColor()}
-        );
+        $sqsCaptures = [];
+        foreach ((array)$this->mobility as $sq) {
+            if ($piece = $this->board->getPieceBySq($sq)) {
+                if ($this->oppColor() === $piece->getColor()) {
+                    if (empty($piece->defendingPieces())) {
+                        $sqsCaptures[] = $sq;
+                    }
+                }
+            }
 
-        return array_diff($sqsCaptures, $this->board->getDefenseEval()->{$this->oppColor()});
+        }
+
+        return $sqsCaptures;
     }
 
     protected function sqsKing(): ?array
