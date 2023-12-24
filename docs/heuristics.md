@@ -32,11 +32,12 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | Material | [Chess\Eval\MaterialEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/MaterialEvalTest.php) |
 | Passed pawn | [Chess\Eval\PassedPawnEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/PassedPawnEvalTest.php) |
 | Pressure | [Chess\Eval\PressureEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/PressureEvalTest.php) |
+| Protection | [Chess\Eval\ProtectionEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/ProtectionEvalTest.php) |
 | Relative fork | [Chess\Eval\RelativeForkEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/RelativeForkEvalTest.php) |
 | Relative pin | [Chess\Eval\RelativePinEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/RelativePinEvalTest.php) |
 | Space | [Chess\Eval\SpaceEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/SpaceEvalTest.php) |
 | Square outpost | [Chess\Eval\SqOutpostEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/SqOutpostEvalTest.php) |
-| Tactics | [Chess\Eval\TacticsEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/TacticsEvalTest.php) |
+| Threat | [Chess\Eval\ThreatEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/ThreatEvalTest.php) |
 
 The evaluation features are used in two heuristics classes: [Chess\Heuristics\FenHeuristics](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Heuristics/FenHeuristicsTest.php) and [Chess\Heuristics\SanHeuristics](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Heuristics/SanHeuristicsTest.php). The former allows to transform a FEN position to numbers while the latter transforms an entire chess game in SAN format to numbers.
 
