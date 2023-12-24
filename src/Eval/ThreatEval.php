@@ -29,6 +29,6 @@ class ThreatEval extends AbstractEval
     {
         $phrase = PiecePhrase::create($piece);
 
-        $this->phrases[] = ucfirst("$phrase is being threatened.");
+        $this->phrases[] = ucfirst("$phrase is being threatened and may be lost if not defended properly.");
     }
 }

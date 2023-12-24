@@ -19,7 +19,7 @@ class ThreatEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The pawn on d4 is being threatened.",
+            "The pawn on d4 is being threatened and may be lost if not defended properly.",
         ];
 
         $board = (new StrToBoard('6k1/6p1/2n2b2/8/3P4/5N2/2K5/8 w - -'))->create();
