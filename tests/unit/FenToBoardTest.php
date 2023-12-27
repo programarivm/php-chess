@@ -129,4 +129,30 @@ class FenToBoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $array);
     }
+
+    /**
+     * @test
+     */
+    public function classical_en_passant_bxc6()
+    {
+        $board = FenToBoard::create(
+            'rnbqkbnr/pp1p1ppp/4p3/1Pp5/8/8/P1PPPPPP/RNBQKBNR w KQkq c6',
+            new ClassicalBoard()
+        );
+
+        $board->play('w', 'bxc6');
+
+        $expected = [
+            7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
+            6 => [ ' p ', ' p ', ' . ', ' p ', ' . ', ' p ', ' p ', ' p ' ],
+            5 => [ ' . ', ' . ', ' P ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' P ', ' . ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ' ],
+            0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
+        ];
+
+        $this->assertSame($expected, $board->toAsciiArray());
+    }
 }

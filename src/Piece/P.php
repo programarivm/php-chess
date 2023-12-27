@@ -136,34 +136,20 @@ class P extends AbstractPiece
             }
         }
 
-        // calculate the en passant square from the history
+        // en passant square
         $history = $this->board->getHistory();
         $end = end($history);
-        if ($end && $end->move->id === Piece::P && $end->move->color === $this->oppColor()) {
-            if ($this->color === Color::W) {
-                if (intval($this->getSqRank()) === $this->size['ranks'] - 3) {
-                    $captureSq = $end->move->sq->next[0].($end->move->sq->next[1]+1);
-                    if (in_array($captureSq, $this->captureSqs)) {
-                        $this->enPassantSq = $end->move->sq->next;
-                        $sqs[] = $captureSq;
-                    }
-                }
-            } elseif ($this->color === Color::B) {
-                if (intval($this->getSqRank()) === 4) {
-                    $captureSq = $end->move->sq->next[0].($end->move->sq->next[1]-1);
-                    if (in_array($captureSq, $this->captureSqs)) {
-                        $this->enPassantSq = $end->move->sq->next;
-                        $sqs[] = $captureSq;
-                    }
-                }
+        if ($end) {
+            $fen = explode(' ', $end->fen);
+            if ($fen[3] !== '-') {
+                $this->enPassantSq = $fen[3];
+                $sqs[] = $this->enPassantSq;
             }
         } else {
             $sqs[] = $this->enPassantSq;
         }
 
-        $sqs = array_filter(array_unique($sqs));
-
-        return $sqs;
+        return array_unique($sqs);
     }
 
     /**
@@ -252,6 +238,22 @@ class P extends AbstractPiece
             return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
         } elseif ($clone->play($color, $sq)) {
             return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the en passant pawn.
+     *
+     * @return \Chess\Piece\P|null
+     */
+    public function enPassantPawn(): ?P
+    {
+        if ($this->enPassantSq) {
+            $rank = (int) substr($this->enPassantSq, 1);
+            $this->getColor() === Color::W ? $rank-- : $rank++;
+            return $this->board->getPieceBySq($this->enPassantSq[0].$rank);
         }
 
         return null;

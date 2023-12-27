@@ -531,16 +531,15 @@ class Board extends \SplObjectStorage
      */
     private function capture(AbstractPiece $piece): Board
     {
-        $piece->sqs(); // creates the enPassantSquare property if the piece is a pawn
         if (
             $piece->getId() === Piece::P &&
             $piece->getEnPassantSq() &&
             !$this->getPieceBySq($piece->getMove()->sq->next)
         ) {
-            if ($captured = $this->getPieceBySq($piece->getEnPassantSq())) {
+            if ($captured = $piece->enPassantPawn()) {
                 $capturedData = (object) [
                     'id' => $captured->getId(),
-                    'sq' => $piece->getEnPassantSq(),
+                    'sq' => $captured->getSq(),
                 ];
             }
         } elseif ($captured = $this->getPieceBySq($piece->getMove()->sq->next)) {
