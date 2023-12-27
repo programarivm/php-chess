@@ -83,7 +83,7 @@ class RelativeSkewerEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The knight on e6 is attacked shielding a piece that is unprotected.",
+            "The knight on e6 is under attack because it is shielding a piece that is unprotected.",
         ];
 
         $board = (new StrToBoard('4q1k1/8/4n3/8/8/4R3/8/6K1 w - -'))
@@ -127,7 +127,7 @@ class RelativeSkewerEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The knight on c6 is attacked shielding a piece that is unprotected.",
+            "The knight on c6 is under attack because it is shielding a piece that is unprotected.",
         ];
 
         $board = (new StrToBoard('4q1k1/8/2n5/8/B7/8/8/6K1 w - -'))
@@ -150,7 +150,7 @@ class RelativeSkewerEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The knight on c6 is attacked shielding a piece that is unprotected.",
+            "The knight on c6 is under attack because it is shielding a piece that is unprotected.",
         ];
 
         $board = (new StrToBoard('4r1k1/8/2n5/8/B7/8/8/6K1 w - -'))
