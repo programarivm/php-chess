@@ -30,4 +30,27 @@ class AbsoluteSkewerEvalTest extends AbstractUnitTestCase
         $this->assertSame($expectedResult, $absoluteSkewerEval->getResult());
         $this->assertSame($expectedPhrase, $absoluteSkewerEval->getPhrases());
     }
+
+    /**
+     * @test
+     */
+    public function black_king_skewered_white_bishop()
+    {
+        $expectedResult = [
+            'w' => 1,
+            'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "When Black's king on f6 will be moved, a piece that is more valuable than the bishop on e5 will be exposed to attack.",
+        ];
+
+        $board = (new StrToBoard('2Q5/1p4q1/p4k2/4B1p1/P3b3/7P/5PP1/6K1 b - - 0 1'))
+            ->create();
+
+        $absoluteSkewerEval = new AbsoluteSkewerEval($board);
+
+        $this->assertSame($expectedResult, $absoluteSkewerEval->getResult());
+        $this->assertSame($expectedPhrase, $absoluteSkewerEval->getPhrases());
+    }
 }
