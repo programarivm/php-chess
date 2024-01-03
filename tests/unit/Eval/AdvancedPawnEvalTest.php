@@ -29,4 +29,26 @@ class AdvancedPawnEvalTest extends AbstractUnitTestCase
         $this->assertSame($expectedResult, $advancedPawnEval->getResult());
         $this->assertSame($expectedPhrase, $advancedPawnEval->getPhrases());
     }
+
+    /**
+     * @test
+     */
+    public function e6_c3_e2()
+    {
+        $expectedResult = [
+            'w' => ['e6'],
+            'b' => ['c3', 'e2'],
+        ];
+
+        $expectedPhrase = [
+            "e6, c3 and e2 are advanced pawns.",
+        ];
+
+        $board = FenToBoard::create('8/8/4P3/4K3/8/2p2k2/4p3/8 w - - 0 1');
+
+        $advancedPawnEval = new AdvancedPawnEval($board);
+
+        $this->assertSame($expectedResult, $advancedPawnEval->getResult());
+        $this->assertSame($expectedPhrase, $advancedPawnEval->getPhrases());
+    }
 }
