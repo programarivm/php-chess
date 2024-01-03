@@ -11,7 +11,7 @@ class AdvancedPawnEvalTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function a4()
+    public function b6()
     {
         $expectedResult = [
             'w' => ['b6'],
