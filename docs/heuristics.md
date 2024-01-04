@@ -26,6 +26,7 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | Center | [Chess\Eval\CenterEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/CenterEvalTest.php) |
 | Connectivity | [Chess\Eval\ConnectivityEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/ConnectivityEvalTest.php) |
 | Defense | [Chess\Eval\DefenseEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/DefenseEvalTest.php) |
+| Diagonal opposition | [Chess\Eval\DiagonalOppositionEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/DiagonalOppositionEvalTest.php) |
 | Direct opposition | [Chess\Eval\DirectOppositionEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/DirectOppositionEvalTest.php) |
 | Doubled pawn | [Chess\Eval\DoubledPawnEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/DoubledPawnEvalTest.php) |
 | Far-advanced pawn | [Chess\Eval\FarAdvancedPawnEval](https://github.com/chesslablab/php-chess/blob/master/tests/unit/Eval/FarAdvancedPawnEvalTest.php) |
