@@ -22,7 +22,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
             "The white king has the diagonal opposition preventing the advance of the other king.",
         ];
 
-        $fen = '8/8/2K5/8/4k3/8/8/8 w - - 0 1';
+        $fen = '8/8/2K5/8/4k3/8/8/8 b - - 0 1';
         $board = (new StrToBoard($fen))->create();
         $directOppositionEval = new DiagonalOppositionEval($board);
 
