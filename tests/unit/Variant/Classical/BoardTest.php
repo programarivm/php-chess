@@ -2912,4 +2912,23 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->legal('e7'));
     }
+
+    /**
+     * @test
+     */
+    public function legal_e1()
+    {
+        $board = (new SanPlay('1.f4 e5 2.e4 a6 3.Bc4 a5 4.Nh3 Qh4+'))->validate()->getBoard();
+
+        $expected = (object) [
+            'color' => 'w',
+            'id' => 'K',
+            'fen' => (object) [
+                'e2' => 'rnb1kbnr/1ppp1ppp/8/p3p3/2B1PP1q/7N/PPPPK1PP/RNBQ3R b kq -',
+                'f1' => 'rnb1kbnr/1ppp1ppp/8/p3p3/2B1PP1q/7N/PPPP2PP/RNBQ1K1R b kq -',
+            ],
+        ];
+
+        $this->assertEquals($expected, $board->legal('e1'));
+    }
 }

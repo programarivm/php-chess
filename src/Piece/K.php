@@ -104,6 +104,7 @@ class K extends AbstractPiece
 
         if (CastlingAbility::long($this->board->getCastlingAbility(), $this->getColor())) {
             if (
+                !in_array($this->getSq(), $this->board->getPressureEval()->{$this->oppColor()}) &&
                 !array_diff($rule['free'], $this->board->getSqCount()->free) &&
                 empty(array_intersect($rule['attack'], $this->board->getSpaceEval()->{$this->oppColor()}))
             ) {
@@ -120,6 +121,7 @@ class K extends AbstractPiece
 
         if (CastlingAbility::short($this->board->getCastlingAbility(), $this->getColor())) {
             if (
+                !in_array($this->getSq(), $this->board->getPressureEval()->{$this->oppColor()}) &&
                 !array_diff($rule['free'], $this->board->getSqCount()->free) &&
                 empty(array_intersect($rule['attack'], $this->board->getSpaceEval()->{$this->oppColor()}))
             ) {
