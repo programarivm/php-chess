@@ -62,7 +62,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "If the knight on e6 is moved, a piece will be exposed to attack.",
+            "If the knight on e6 is moved, these pieces will be exposed to attack: The rook on e3, Black's queen on e8.",
         ];
 
         $board = (new StrToBoard('4q1k1/8/4n3/8/8/4R3/8/6K1 w - -'))
@@ -106,7 +106,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "If the knight on c6 is moved, a piece will be exposed to attack.",
+            "If the knight on c6 is moved, these pieces will be exposed to attack: The bishop on a4, Black's queen on e8.",
         ];
 
         $board = (new StrToBoard('4q1k1/8/2n5/8/B7/8/8/6K1 w - -'))
@@ -129,10 +129,33 @@ class DefenseEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "If the knight on c6 is moved, a piece will be exposed to attack.",
+            "If the knight on c6 is moved, the rook on e8 will be exposed to attack.",
         ];
 
         $board = (new StrToBoard('4r1k1/8/2n5/8/B7/8/8/6K1 w - -'))
+            ->create();
+
+        $relativeSkewerEval = new DefenseEval($board);
+
+        $this->assertSame($expectedResult, $relativeSkewerEval->getResult());
+        $this->assertSame($expectedPhrase, $relativeSkewerEval->getPhrases());
+    }
+
+    /**
+     * @test
+     */
+    public function c60()
+    {
+        $expectedResult = [
+            'w' => 1.0,
+            'b' => 0,
+        ];
+
+        $expectedPhrase = [
+            "If the knight on c6 is moved, the pawn on e5 will be exposed to attack.",
+        ];
+
+        $board = (new StrToBoard('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -'))
             ->create();
 
         $relativeSkewerEval = new DefenseEval($board);

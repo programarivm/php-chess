@@ -16,7 +16,7 @@ class DefenseEval extends AbstractEval
     {
         $this->board = $board;
 
-        $protectionEval = (new ProtectionEval($this->board))->getResult();
+        $protectionEval = new ProtectionEval($this->board);
 
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() !== Piece::K) {
@@ -24,21 +24,41 @@ class DefenseEval extends AbstractEval
                     $clone = unserialize(serialize($this->board));
                     $clone->detach($clone->getPieceBySq($piece->getSq()));
                     $clone->refresh();
-                    $newProtectionEval = (new ProtectionEval($clone))->getResult();
-                    $protectionEvalDiff = $newProtectionEval[$piece->oppColor()] - $protectionEval[$piece->oppColor()];
-                    if ($protectionEvalDiff > 0) {
-                        $this->result[$piece->oppColor()] += round($protectionEvalDiff, 2);
-                        $this->explain($piece);
+                    $newProtectionEval = new ProtectionEval($clone);
+                    $diffResult = $newProtectionEval->getResult()[$piece->oppColor()] - $protectionEval->getResult()[$piece->oppColor()];
+                    if ($diffResult > 0) {
+                        foreach ($newProtectionEval->getPhrases() as $key => $val) {
+                            if (!in_array($val, $protectionEval->getPhrases())) {
+                                $diffPhrases[] = $val;
+                            }
+                        }
+                        $this->result[$piece->oppColor()] += round($diffResult, 2);
+                        $this->explain($piece, $diffPhrases);
                     }
                 }
             }
         }
     }
 
-    private function explain(AbstractPiece $piece): void
+    private function explain(AbstractPiece $piece, array $diffPhrases): void
     {
         $phrase = PiecePhrase::create($piece);
+        $phrase = "If $phrase is moved, ";
+        $count = count($diffPhrases);
+        if ($count === 1) {
+            $diffPhrase = mb_strtolower($diffPhrases[0]);
+            $rephrase = str_replace('is unprotected', 'will be exposed to attack', $diffPhrase);
+            $phrase .= $rephrase;
+        } elseif ($count > 1) {
+            $phrase .= 'these pieces will be exposed to attack: ';
+            $rephrase = '';
+            foreach ($diffPhrases as $diffPhrase) {
+                $rephrase .= str_replace(' is unprotected.', ', ', $diffPhrase);
+            }
+            $phrase .= $rephrase;
+            $phrase = substr_replace(trim($phrase), '.', -1);
+        }
 
-        $this->phrases[] = ucfirst("if $phrase is moved, a piece will be exposed to attack.");
+        $this->phrases[] = $phrase;
     }
 }
