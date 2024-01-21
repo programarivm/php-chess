@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Play Computer - PHP Chess</title>
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Play Computer";
+    var mkdocs_page_input_path = "play-computer.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> PHP Chess</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Features</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../read-pgn/">Read PGN</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../read-lan/">Read LAN</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../read-rav/">Read RAV</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../convert-fen-to-board/">Convert FEN to Board</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../convert-board-to-png-image/">Convert Board to PNG Image</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../convert-board-to-mp4/">Convert Board to MP4</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../explain-fen/">Explain FEN</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../explain-pgn/">Explain PGN</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../play-like-a-pro/">Play Like a Pro</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Play Computer</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../heuristics/">Heuristics</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">PHP Chess</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Play Computer</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="play-computer">Play Computer</h1>
+<p>✨ UCI engines not only allow to play chess with the computer but are also a helpful tool when analyzing chess games.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/UciEngine/StockfishTest.php">Chess\UciEngine\Stockfish</a> allows to play chess against the Stockfish chess engine using PHP, but first things first, make sure to install it on your computer.</p>
+<pre><code class="language-text">sudo apt-get install stockfish
+</code></pre>
+<p>Then, you're set up to play chess against Stockfish as described in the following example.</p>
+<pre><code class="language-php">use Chess\UciEngine\Stockfish;
+use Chess\Variant\Classical\Board;
+
+$board = new Board();
+$board-&gt;play('w', 'e4');
+
+$stockfish = (new Stockfish($board))
+    -&gt;setOptions([
+        'Skill Level' =&gt; 9
+    ])
+    -&gt;setParams([
+        'depth' =&gt; 3
+    ]);
+
+$lan = $stockfish-&gt;play($board-&gt;toFen());
+
+$board-&gt;playLan('b', $lan);
+</code></pre>
+<p>PHP Chess classes can be combined to do different things. For example, you may want to play against Stockfish from this FEN position published in your favorite online publication.</p>
+<pre><code class="language-php">use Chess\FenToBoard;
+use Chess\UciEngine\Stockfish;
+
+$board = FenToBoard::create('4k2r/pp1b1pp1/8/3pPp1p/P2P1P2/1P3N2/1qr3PP/R3QR1K w k -');
+
+$stockfish = (new Stockfish($board))
+    -&gt;setOptions([
+        'Skill Level' =&gt; 20
+    ])
+    -&gt;setParams([
+        'depth' =&gt; 12
+    ]);
+
+$lan = $stockfish-&gt;play($board-&gt;toFen());
+
+$board-&gt;playLan('w', $lan);
+
+echo $board-&gt;getMovetext();
+</code></pre>
+<pre><code class="language-text">1.Qb4
+</code></pre>
+<p>The FEN is converted to a chessboard object as described in <a href="https://php-chess.readthedocs.io/en/latest/convert-fen-to-board/">Convert FEN to Board</a>. The <code>Skill Level</code> is set to <code>20</code> and the depth is set to <code>12</code> in order to get a more accurate response from Stockfish.</p>
+<p>The same thing goes for PGN annotated games. This is how to play against Stockfish after loading a SAN movetext into a chess board object.</p>
+<pre><code class="language-php">use Chess\Play\SanPlay;
+use Chess\UciEngine\Stockfish;
+
+$movetext = '1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7';
+
+$board = (new SanPlay($movetext))
+    -&gt;validate()
+    -&gt;getBoard();
+
+$stockfish = (new Stockfish($board))
+    -&gt;setOptions([
+        'Skill Level' =&gt; 20
+    ])
+    -&gt;setParams([
+        'depth' =&gt; 12
+    ]);
+
+$lan = $stockfish-&gt;play($board-&gt;toFen());
+
+$board-&gt;playLan('w', $lan);
+
+echo $board-&gt;getMovetext();
+</code></pre>
+<pre><code class="language-text">1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.h3
+</code></pre>
+<p>As you can see, Stockfish responds with 8.h3.</p>
+<p>🎉 Can you beat the computer? Keep it up!</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../heuristics/" class="btn btn-neutral float-right" title="Heuristics">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../play-like-a-pro/" class="btn btn-neutral" title="Play Like a Pro"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../play-like-a-pro/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../heuristics/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
