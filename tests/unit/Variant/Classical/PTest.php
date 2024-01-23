@@ -28,7 +28,7 @@ class PTest extends AbstractUnitTestCase
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($captureSquares, $pawn->xSqs);
     }
 
     /**
@@ -44,7 +44,7 @@ class PTest extends AbstractUnitTestCase
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($captureSquares, $pawn->xSqs);
     }
 
     /**
@@ -60,7 +60,7 @@ class PTest extends AbstractUnitTestCase
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($captureSquares, $pawn->xSqs);
     }
 
     /**
@@ -76,7 +76,7 @@ class PTest extends AbstractUnitTestCase
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($captureSquares, $pawn->xSqs);
     }
 
     /**
@@ -92,7 +92,7 @@ class PTest extends AbstractUnitTestCase
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($captureSquares, $pawn->xSqs);
     }
 
     /**
@@ -108,6 +108,6 @@ class PTest extends AbstractUnitTestCase
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($captureSquares, $pawn->xSqs);
     }
 }

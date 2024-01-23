@@ -9,7 +9,7 @@ use Chess\Variant\Classical\PGN\Square;
 
 class P extends AbstractPiece
 {
-    public array $captureSqs;
+    public array $xSqs;
 
     public string $enPassant = '';
 
@@ -17,7 +17,7 @@ class P extends AbstractPiece
     {
         parent::__construct($color, $sq, Piece::P);
 
-        $this->captureSqs = [];
+        $this->xSqs = [];
 
         $this->flow = [];
 
@@ -38,7 +38,7 @@ class P extends AbstractPiece
         // capture square
         $file = ord($this->file()) - 1;
         if ($file >= 97 && $this->nextRank() <= $square::SIZE['ranks']) {
-            $this->captureSqs[] = chr($file) . $this->nextRank();
+            $this->xSqs[] = chr($file) . $this->nextRank();
         }
 
         // capture square
@@ -46,7 +46,7 @@ class P extends AbstractPiece
         if ($file <= 97 + $square::SIZE['files'] - 1 &&
             $this->nextRank() <= $square::SIZE['ranks']
         ) {
-            $this->captureSqs[] = chr($file) . $this->nextRank();
+            $this->xSqs[] = chr($file) . $this->nextRank();
         }
     }
 
@@ -96,7 +96,7 @@ class P extends AbstractPiece
         }
 
         // capture squares
-        foreach ($this->captureSqs as $sq) {
+        foreach ($this->xSqs as $sq) {
             if (in_array($sq, $this->board->sqCount['used'][$this->oppColor()])) {
                 $sqs[] = $sq;
             }
@@ -106,7 +106,7 @@ class P extends AbstractPiece
         $end = end($this->board->history);
         if ($end && $end['color'] === $this->oppColor()) {
             $enPassant = explode(' ', $end['fen'])[3];
-            if (in_array($enPassant, $this->captureSqs)) {
+            if (in_array($enPassant, $this->xSqs)) {
                 $this->enPassant = $enPassant;
                 $sqs[] = $enPassant;
             }
@@ -120,7 +120,7 @@ class P extends AbstractPiece
     public function defendedSqs(): array
     {
         $sqs = [];
-        foreach ($this->captureSqs as $sq) {
+        foreach ($this->xSqs as $sq) {
             if (in_array($sq, $this->board->sqCount['used'][$this->color])) {
                 $sqs[] = $sq;
             }

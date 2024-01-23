@@ -73,25 +73,25 @@ class Board extends AbstractBoard
         return false;
     }
 
-    protected function captureSqs(): array
+    protected function xSqs(): array
     {
-        $captureSqs = [];
+        $xSqs = [];
         foreach ($this->pieces($this->turn) as $piece) {
             foreach ($piece->attacked() as $attacked) {
-                $captureSqs[] = $attacked->sq;
+                $xSqs[] = $attacked->sq;
             }
         }
 
-        return $captureSqs;
+        return $xSqs;
     }
 
     public function legal(string $sq): array
     {
         $moveSqs = $this->pieceBySq($sq)->moveSqs();
-        $captureSqs = $this->captureSqs();
-        if ($intersect = array_intersect($moveSqs, $captureSqs)) {
+        $xSqs = $this->xSqs();
+        if ($intersect = array_intersect($moveSqs, $xSqs)) {
             return array_values($intersect);
-        } elseif (!$captureSqs) {
+        } elseif (!$xSqs) {
             return $moveSqs;
         }
 
@@ -100,9 +100,9 @@ class Board extends AbstractBoard
 
     public function play(string $color, string $pgn): bool
     {
-        if ($captureSqs = $this->captureSqs()) {
+        if ($xSqs = $this->xSqs()) {
             $move = $this->move->toArray($color, $pgn, $this->castlingRule);
-            if (in_array($move['to'], $captureSqs)) {
+            if (in_array($move['to'], $xSqs)) {
                 return parent::play($color, $pgn);
             }
         } else {

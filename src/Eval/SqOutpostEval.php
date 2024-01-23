@@ -50,26 +50,26 @@ class SqOutpostEval extends AbstractEval
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::P) {
-                $captureSqs = $piece->captureSqs;
-                if ($piece->promoRank($this->board->square) !== (int) substr($captureSqs[0], 1)) {
-                    $left = chr(ord($captureSqs[0]) - 1);
-                    $right = chr(ord($captureSqs[0]) + 1);
+                $xSqs = $piece->xSqs;
+                if ($piece->promoRank($this->board->square) !== (int) substr($xSqs[0], 1)) {
+                    $left = chr(ord($xSqs[0]) - 1);
+                    $right = chr(ord($xSqs[0]) + 1);
                     if (
-                        !$this->isFileAttacked($piece->color, $captureSqs[0], $left) &&
-                        !$this->isFileAttacked($piece->color, $captureSqs[0], $right)
+                        !$this->isFileAttacked($piece->color, $xSqs[0], $left) &&
+                        !$this->isFileAttacked($piece->color, $xSqs[0], $right)
                     ) {
-                        $this->result[$piece->color][] = $captureSqs[0];
-                        $this->toElaborate[] = $captureSqs[0];
+                        $this->result[$piece->color][] = $xSqs[0];
+                        $this->toElaborate[] = $xSqs[0];
                     }
-                    if (isset($captureSqs[1])) {
-                        $left = chr(ord($captureSqs[1]) - 1);
-                        $right = chr(ord($captureSqs[1]) + 1);
+                    if (isset($xSqs[1])) {
+                        $left = chr(ord($xSqs[1]) - 1);
+                        $right = chr(ord($xSqs[1]) + 1);
                         if (
-                            !$this->isFileAttacked($piece->color, $captureSqs[1], $left) &&
-                            !$this->isFileAttacked($piece->color, $captureSqs[1], $right)
+                            !$this->isFileAttacked($piece->color, $xSqs[1], $left) &&
+                            !$this->isFileAttacked($piece->color, $xSqs[1], $right)
                         ) {
-                            $this->result[$piece->color][] = $captureSqs[1];
-                            $this->toElaborate[] = $captureSqs[1];
+                            $this->result[$piece->color][] = $xSqs[1];
+                            $this->toElaborate[] = $xSqs[1];
                         }
                     }
                 }

@@ -24,11 +24,11 @@ class PTest extends AbstractUnitTestCase
 
         $position = 'a2';
         $flow = ['a3'];
-        $captureSquares = ['b3'];
+        $xSqs = ['b3'];
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($xSqs, $pawn->xSqs);
     }
 
     /**
@@ -40,11 +40,11 @@ class PTest extends AbstractUnitTestCase
 
         $position = 'd5';
         $flow = ['d6'];
-        $captureSquares = ['c6', 'e6'];
+        $xSqs = ['c6', 'e6'];
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($xSqs, $pawn->xSqs);
     }
 
     /**
@@ -56,11 +56,11 @@ class PTest extends AbstractUnitTestCase
 
         $position = 'f7';
         $flow = ['f8'];
-        $captureSquares = ['e8', 'g8'];
+        $xSqs = ['e8', 'g8'];
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($xSqs, $pawn->xSqs);
     }
 
     /**
@@ -72,11 +72,11 @@ class PTest extends AbstractUnitTestCase
 
         $position = 'f8';
         $flow = [];
-        $captureSquares = [];
+        $xSqs = [];
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($xSqs, $pawn->xSqs);
     }
 
     /**
@@ -88,11 +88,11 @@ class PTest extends AbstractUnitTestCase
 
         $position = 'a2';
         $flow = ['a1'];
-        $captureSquares = ['b1'];
+        $xSqs = ['b1'];
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($xSqs, $pawn->xSqs);
     }
 
     /**
@@ -104,10 +104,10 @@ class PTest extends AbstractUnitTestCase
 
         $position = 'd5';
         $flow = ['d4'];
-        $captureSquares = ['c4', 'e4'];
+        $xSqs = ['c4', 'e4'];
 
         $this->assertSame($position, $pawn->sq);
         $this->assertEquals($flow, $pawn->flow);
-        $this->assertSame($captureSquares, $pawn->captureSqs);
+        $this->assertSame($xSqs, $pawn->xSqs);
     }
 }
