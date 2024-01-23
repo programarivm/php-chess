@@ -144,4 +144,16 @@ class P extends AbstractPiece
 
         return null;
     }
+
+    /**
+     * Captures a piece.
+     */
+    public function capture(): void
+    {
+        if (str_contains($this->move['case'], 'x')) {
+            if ($piece = $this->enPassant ? $this->enPassantPawn() : $this->board->pieceBySq($this->move['to'])) {
+                $this->board->detach($piece);
+            }
+        }
+    }
 }
