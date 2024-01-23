@@ -151,7 +151,7 @@ class P extends AbstractPiece
     public function capture(): void
     {
         if (str_contains($this->move['case'], 'x')) {
-            if ($piece = $this->enPassant ? $this->enPassantPawn() : $this->board->pieceBySq($this->move['to'])) {
+            if ($piece = $this->enPassantPawn() ?? $this->board->pieceBySq($this->move['to'])) {
                 $this->board->detach($piece);
             }
         }
