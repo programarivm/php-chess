@@ -137,7 +137,7 @@
               
                 <h1 id="explain-pgn">Explain PGN</h1>
 <p>✨ Typically, chess engines won't provide an explanation in easy-to-understand language about why a move is good.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Tutor/PgnExplanationTest.php">Chess\Tutor\PgnExplanation</a> can explain the implications of making a particular move in terms of <a href="https://php-chess.readthedocs.io/en/latest/heuristics/">chess concepts</a> and combined with an <a href="https://php-chess.readthedocs.io/en/latest/play-computer/">UCI engine</a> it will explain the why of a good move. Stockfish has been set up with a skill level of <code>20</code> and a depth of <code>15</code> to suggest a good move. In order to use this functionality, make sure to install Stockfish &gt;= 15.1 as it is described in <a href="https://php-chess.readthedocs.io/en/latest/play-computer/">Play Computer</a>.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Tutor/PgnExplanationTest.php">Chess\Tutor\PgnExplanation</a> can explain the implications of making a particular move in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a> and combined with an UCI engine it will explain the why of a good move. Stockfish has been set up with a skill level of <code>20</code> and a depth of <code>15</code> to suggest a good move. In order to use this functionality, make sure to install Stockfish &gt;= 15.1 as it is described in <a href="https://php-chess.docs.chesslablab.org/play-computer/">Play Computer</a>.</p>
 <pre><code class="language-php">use Chess\Play\SanPlay;
 use Chess\Tutor\PgnExplanation;
 

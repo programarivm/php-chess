@@ -181,7 +181,7 @@ echo $board-&gt;getMovetext();
 </code></pre>
 <pre><code class="language-text">1.Qb4
 </code></pre>
-<p>The FEN is converted to a chessboard object as described in <a href="https://php-chess.readthedocs.io/en/latest/convert-fen-to-board/">Convert FEN to Board</a>. The <code>Skill Level</code> is set to <code>20</code> and the depth is set to <code>12</code> in order to get a more accurate response from Stockfish.</p>
+<p>The FEN is converted to a chessboard object as described in <a href="https://php-chess.docs.chesslablab.org/convert-fen-to-board/">Convert FEN to Board</a>. The <code>Skill Level</code> is set to <code>20</code> and the depth is set to <code>12</code> in order to get a more accurate response from Stockfish.</p>
 <p>The same thing goes for PGN annotated games. This is how to play against Stockfish after loading a SAN movetext into a chess board object.</p>
 <pre><code class="language-php">use Chess\Play\SanPlay;
 use Chess\UciEngine\Stockfish;
