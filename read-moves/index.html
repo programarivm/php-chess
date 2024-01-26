@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Read Moves - PHP Chess</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Read Moves";
+        var mkdocs_page_input_path = "read-moves.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PHP Chess
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Read Moves</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#portable-game-notation-pgn">Portable Game Notation (PGN)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#long-algebraic-notation-lan">Long Algebraic Notation (LAN)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#recursive-annotation-variation-rav">Recursive Annotation Variation (RAV)</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../data-conversion/">Data Conversion</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../heuristics/">Heuristics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chess-tutor/">Chess Tutor</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../play-chess/">Play Chess</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PHP Chess</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Read Moves</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="read-moves">Read Moves</h1>
+<h2 id="portable-game-notation-pgn">Portable Game Notation (PGN)</h2>
+<p>✨ Portable Game Notation is a human-readable text format that allows chess players to read and write chess games.</p>
+<p>Multiple variants are supported with the default one being classical chess.</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Chessboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capablanca</td>
+<td><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Variant/Capablanca/BoardTest.php">Chess\Variant\Capablanca\Board</a></td>
+</tr>
+<tr>
+<td>Capablanca-Fischer</td>
+<td><a href="https://github.com/chesslablab/php-chess/blob/master/src/Variant/CapablancaFischer/Board.php">Chess\Variant\CapablancaFischer\Board</a></td>
+</tr>
+<tr>
+<td>Chess960</td>
+<td><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Variant/Chess960/BoardTest.php">Chess\Variant\Chess960\Board</a></td>
+</tr>
+<tr>
+<td>Classical</td>
+<td><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Variant/Classical/BoardTest.php">Chess\Variant\Classical\Board</a></td>
+</tr>
+</tbody>
+</table>
+<p>There is no such thing as a chess opening in either Capablanca chess or Chess960. Those two variants were originally conceived to minimize memorization so when it comes to chess openings, it is assumed that we're in the realms of classical chess.</p>
+<p>Let's now have a look at B54 which is the ECO code for "Sicilian Defense: Modern Variations, Main Line".</p>
+<pre><code class="language-php">use Chess\Variant\Classical\Board;
+
+$board = new Board();
+$board-&gt;play('w', 'e4');
+$board-&gt;play('b', 'c5');
+$board-&gt;play('w', 'Nf3');
+$board-&gt;play('b', 'd6');
+$board-&gt;play('w', 'd4');
+$board-&gt;play('b', 'cxd4');
+$board-&gt;play('w', 'Nxd4');
+
+echo $board-&gt;toAsciiString();
+</code></pre>
+<pre><code class="language-text">r  n  b  q  k  b  n  r
+p  p  .  .  p  p  p  p
+.  .  .  p  .  .  .  .
+.  .  .  .  .  .  .  .
+.  .  .  N  P  .  .  .
+.  .  .  .  .  .  .  .
+P  P  P  .  .  P  P  P
+R  N  B  Q  K  B  .  R
+</code></pre>
+<p>As discussed in <a href="https://php-chess.docs.chesslablab.org/getting-started/">Getting Started</a>, the PGN format is convenient for when reading chess games annotated by humans, for example, those ones available in online databases or published in chess websites.</p>
+<blockquote>
+<p>1.e4 e5 2.Nf3 Nf6 3.d4 Nxe4 4.Bd3 d5 5.Nxe5 Nd7 6.Nxd7 Bxd7 7.Nd2 Nxd2 8.Bxd2 Bd6 9.O-O h5 10.Qe1+ Kf8 11.Bb4 Qe7 12.Bxd6 Qxd6 13.Qd2 Re8 14.Rae1 Rh6 15.Qg5 c6 16.Rxe8+ Bxe8 17.Re1 Qf6 18.Qe3 Bd7 19.h3 h4 20.c4 dxc4 21.Bxc4 b5 22.Qa3+ Kg8 23.Qxa7 Qd8 24.Bb3 Rd6 25.Re4 Be6 26.Bxe6 Rxe6 27.Rxe6 fxe6 28.Qc5 Qa5 29.Qxc6 Qe1+ 30.Kh2 Qxf2 31.Qxe6+ Kh7 32.Qe4+ Kg8 33.b3 Qxa2 34.Qe8+ Kh7 35.Qxb5 Qf2 36.Qe5 Qb2 37.Qe4+ Kg8 38.Qd3 Qf2 39.Qc3 Qf4+ 40.Kg1 Kh7 41.Qd3+ g6 42.Qd1 Qe3+ 43.Kh1 g5 44.d5 g4 45.hxg4 h3 46.Qf3 1–0</p>
+</blockquote>
+<p>World Chess Championship 2021. (2023, July 3). In Wikipedia. <a href="https://en.wikipedia.org/wiki/World_Chess_Championship_2021">https://en.wikipedia.org/wiki/World_Chess_Championship_2021</a></p>
+<p>So far so good, but if you're new to chess you may well play a wrong move in the Sicilian Defense: 4...Na6.</p>
+<pre><code class="language-php">$board-&gt;play('b', 'Na6');
+
+echo $board-&gt;toAsciiString();
+</code></pre>
+<pre><code class="language-text">r  .  b  q  k  b  n  r
+p  p  .  .  p  p  p  p
+n  .  .  p  .  .  .  .
+.  .  .  .  .  .  .  .
+.  .  .  N  P  .  .  .
+.  .  .  .  .  .  .  .
+P  P  P  .  .  P  P  P
+R  N  B  Q  K  B  .  R
+</code></pre>
+<p>No worries! We've all been there. The <code>undo()</code> method comes to the rescue to fix mistakes like this one.</p>
+<pre><code class="language-php">$board = $board-&gt;undo();
+$board-&gt;play('b', 'Nf6');
+
+echo $board-&gt;getMovetext();
+</code></pre>
+<pre><code class="language-text">1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6
+</code></pre>
+<p>Now, what if you want to play a bunch of PGN moves at once instead of one by one as in the previous example? This is a common use case, and <a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Play/SanPlayTest.php">Chess\Play\SanPlay</a> allows to easily do so. As it name implies, this class is intended to play a Standard Algebaric Notation (SAN) movetext. The <code>validate()</code> method will throw a Chess\Exception\PlayException if the movetext is not valid.</p>
+<pre><code class="language-php">use Chess\Play\SanPlay;
+
+$movetext = '1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6';
+
+$board = (new SanPlay($movetext))
+    -&gt;validate()
+    -&gt;getBoard();
+
+echo $board-&gt;toAsciiString();
+</code></pre>
+<pre><code class="language-text">r  n  b  q  k  b  .  r
+p  p  .  .  p  p  p  p
+.  .  .  p  .  n  .  .
+.  .  .  .  .  .  .  .
+.  .  .  N  P  .  .  .
+.  .  .  .  .  .  .  .
+P  P  P  .  .  P  P  P
+R  N  B  Q  K  B  .  R
+</code></pre>
+<p>The game can be continued from this position — remember, almost everything in PHP Chess is done using a chessboard object.</p>
+<pre><code class="language-php">$board-&gt;play('w', 'Bb5+');
+
+echo $board-&gt;toAsciiString();
+</code></pre>
+<pre><code class="language-text">r  n  b  q  k  b  .  r
+ p  p  .  .  p  p  p  p
+ .  .  .  p  .  n  .  .
+ .  B  .  .  .  .  .  .
+ .  .  .  N  P  .  .  .
+ .  .  .  .  .  .  .  .
+ P  P  P  .  .  P  P  P
+ R  N  B  Q  K  .  .  R
+</code></pre>
+<p>Every time a move is made, the state of the board changes and now the white king is in check.</p>
+<pre><code class="language-php">var_dump($board-&gt;isCheck());
+</code></pre>
+<pre><code class="language-text">bool(true)
+</code></pre>
+<p>Of course the king is not mated in this position.</p>
+<pre><code class="language-php">var_dump($board-&gt;isMate());
+</code></pre>
+<pre><code class="language-text">bool(false)
+</code></pre>
+<p>Also it is not stalemated.</p>
+<pre><code class="language-php">var_dump($board-&gt;isStalemate());
+</code></pre>
+<pre><code class="language-text">bool(false)
+</code></pre>
+<p>And it is not a fivefold repetition yet.</p>
+<pre><code class="language-php">var_dump($board-&gt;isFivefoldRepetition());
+</code></pre>
+<pre><code class="language-text">bool(false)
+</code></pre>
+<p>Otherwise the game would end.</p>
+<p><a href="https://en.wikipedia.org/wiki/Numeric_Annotation_Glyphs">Numeric Annotation Glyphs</a> (NAGs) can optionally be used in SAN movetexts, so this is how you'd typically validate a SAN movetext using NAGs for further processing. Remember, the <code>validate()</code> method will throw a Chess\Exception\PlayException if the movetext is not valid.</p>
+<pre><code class="language-php">use Chess\Play\SanPlay;
+
+$movetext = '1.e4 c5 2.Nf3 $1 d6 3.d4 cxd4 4.Nxd4 $48 Nf6 $113';
+
+$sanPlay = (new SanPlay($movetext))-&gt;validate();
+
+echo $sanPlay-&gt;getSanMovetext()-&gt;filtered();
+</code></pre>
+<pre><code class="language-text">1.e4 c5 2.Nf3 $1 d6 3.d4 cxd4 4.Nxd4 $48 Nf6 $113
+</code></pre>
+<p>NAGs can be removed by passing the false value to the second argument of the <code>filtered()</code> method.</p>
+<pre><code class="language-php">echo $sanPlay-&gt;getSanMovetext()-&gt;filtered($comments = true, $nags = false);
+</code></pre>
+<pre><code class="language-text">1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6
+</code></pre>
+<p>🎉 Next, let's learn how to process chess moves from a graphical user interface.</p>
+<h2 id="long-algebraic-notation-lan">Long Algebraic Notation (LAN)</h2>
+<p>✨ Computers and graphical user interfaces (GUI) often prefer an easy-to-use, machine-readable format called Long Algebraic Notation.</p>
+<p>Remember, if reading the main line of the Sicilian Defense from a JavaScript application, you may want to use the LAN format rather than the PGN format. Chances are that the JavaScript chessboard will be using the LAN format for move generation.</p>
+<pre><code class="language-php">use Chess\Variant\Classical\Board;
+
+$board = new Board();
+$board-&gt;playLan('w', 'e2e4');
+$board-&gt;playLan('b', 'c7c5');
+$board-&gt;playLan('w', 'g1f3');
+$board-&gt;playLan('b', 'd7d6');
+$board-&gt;playLan('w', 'd2d4');
+$board-&gt;playLan('b', 'c5d4');
+$board-&gt;playLan('w', 'f3d4');
+$board-&gt;playLan('b', 'g8f6');
+
+echo $board-&gt;getMovetext();
+</code></pre>
+<pre><code class="language-text">1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6
+</code></pre>
+<p>Also <a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Play/LanPlayTest.php">Chess\Play\LanPlay</a> allows to easily play a bunch of LAN moves at once instead of one by one. As it name implies, this class is intended to play a LAN movetext.</p>
+<pre><code class="language-php">use Chess\Play\LanPlay;
+
+$movetext = '1.e2e4 c7c5 2.g1f3 d7d6 3.d2d4 c5d4 4.f3d4 g8f6';
+
+$board = (new LanPlay($movetext))
+    -&gt;validate()
+    -&gt;getBoard();
+
+echo $board-&gt;toAsciiString();
+</code></pre>
+<pre><code class="language-text">r  n  b  q  k  b  .  r
+p  p  .  .  p  p  p  p
+.  .  .  p  .  n  .  .
+.  .  .  .  .  .  .  .
+.  .  .  N  P  .  .  .
+.  .  .  .  .  .  .  .
+P  P  P  .  .  P  P  P
+R  N  B  Q  K  B  .  R
+</code></pre>
+<p>🎉 And, it's easy! The UCI protocol enables chess engines to communicate with user interfaces using LAN for moves.</p>
+<h2 id="recursive-annotation-variation-rav">Recursive Annotation Variation (RAV)</h2>
+<p>✨ RAV stands for Recursive Annotation Variation. This format is especially useful to write and read tutorials about openings, notable games, chess studies and so on.</p>
+<p>RAV is an extension of the Standard Algebaric Notation (SAN) format and allows to annotate chess variations. After all, a RAV movetext is still a SAN movetext with support for comments. Comments are enclosed in curly brackets. Variations are enclosed in parentheses which can be nested recursively as many times as required with the trait that the previous move may need to be undone in order to play a certain variation.</p>
+<p>The example below describes how to play the Open Sicilian.</p>
+<blockquote>
+<p>1.e4 c5 {enters the Sicilian Defense, the most popular and best-scoring response to White's first move.} (2.Nf3 {is played in about 80% of Master-level games after which there are three main options for Black.} (2... Nc6) (2... e6) (2... d6 {is Black's most common move.} 3.d4 {lines are collectively known as the Open Sicilian.} cxd4 4.Nxd4 Nf6 5.Nc3 {allows Black choose between four major variations: the Najdorf, Dragon, Classical and Scheveningen.} (5...a6 {is played in the Najdorf variation.}) (5...g6 {is played in the Dragon variation.}) (5...Nc6 {is played in the Classical variation.}) (5...e6 {is played in the Scheveningen variation.})))</p>
+</blockquote>
+<p>Sicilian Defense. (2023, July 2). In Wikipedia. <a href="https://en.wikipedia.org/wiki/Sicilian_Defence">https://en.wikipedia.org/wiki/Sicilian_Defence</a></p>
+<p>Then all you need is a RAV reader.</p>
+<p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/master/docs/read-moves_01.png" />
+Figure 1. The response received from PHP Chess can be displayed as an HTML table.</p>
+<p>The RAV reader shown in Figure 1 displays the variation levels in different shades of gray. It is a 2D scrollable HTML table where the main line is shown in a white background color. The deeper the level, the darker the background color is displayed.</p>
+<p>Similarly as with Chess\Play\SanPlay and Chess\Play\LanPlay, <a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Play/RavPlayTest.php">Chess\Play\RavPlay</a> allows to play a RAV movetext. The most important method in this class is the <code>getFen()</code> method. This method retrieves the FEN history of a RAV movetext to be displayed for reading purposes as shown in Figure 1.</p>
+<pre><code class="language-php">use Chess\Play\RavPlay;
+
+$movetext = &quot;1.e4 c5
+    (2.Nf3 (2... Nc6) (2... e6)
+        (2... d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3
+            (5...a6)
+            (5...g6)
+            (5...Nc6)
+            (5...e6)
+        )
+    )&quot;;
+
+$ravPlay = (new RavPlay($movetext))-&gt;validate();
+
+$fen = $ravPlay-&gt;getFen();
+
+print_r($fen);
+</code></pre>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -
+    [1] =&gt; rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3
+    [2] =&gt; rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6
+    [3] =&gt; rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -
+    [4] =&gt; r1bqkbnr/pp1ppppp/2n5/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -
+    [5] =&gt; rnbqkbnr/pp1p1ppp/4p3/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -
+    [6] =&gt; rnbqkbnr/pp2pppp/3p4/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -
+    [7] =&gt; rnbqkbnr/pp2pppp/3p4/2p5/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq d3
+    [8] =&gt; rnbqkbnr/pp2pppp/3p4/8/3pP3/5N2/PPP2PPP/RNBQKB1R w KQkq -
+    [9] =&gt; rnbqkbnr/pp2pppp/3p4/8/3NP3/8/PPP2PPP/RNBQKB1R b KQkq -
+    [10] =&gt; rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -
+    [11] =&gt; rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -
+    [12] =&gt; rnbqkb1r/1p2pppp/p2p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+    [13] =&gt; rnbqkb1r/pp2pp1p/3p1np1/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+    [14] =&gt; r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+    [15] =&gt; rnbqkb1r/pp3ppp/3ppn2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+)
+</code></pre>
+<p>Let's give this a try. Add some comments and get the FEN history.</p>
+<pre><code class="language-php">use Chess\Play\RavPlay;
+
+$movetext = &quot;1.e4 c5 {enters the Sicilian Defense.}
+    (2.Nf3 (2... Nc6) (2... e6)
+        (2... d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3
+            (5...a6 {is played in the Najdorf variation.})
+            (5...g6 {is played in the Dragon variation.})
+            (5...Nc6 {is played in the Classical variation.})
+            (5...e6 {is played in the Scheveningen variation.})
+        )
+    )&quot;;
+
+$ravPlay = (new RavPlay($movetext))-&gt;validate();
+
+$fen = $ravPlay-&gt;getFen();
+
+print_r($fen);
+</code></pre>
+<p>Cool! The result obtained is exactly the same as in the previous example.</p>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -
+    [1] =&gt; rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3
+    [2] =&gt; rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6
+    [3] =&gt; rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -
+    [4] =&gt; r1bqkbnr/pp1ppppp/2n5/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -
+    [5] =&gt; rnbqkbnr/pp1p1ppp/4p3/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -
+    [6] =&gt; rnbqkbnr/pp2pppp/3p4/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -
+    [7] =&gt; rnbqkbnr/pp2pppp/3p4/2p5/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq d3
+    [8] =&gt; rnbqkbnr/pp2pppp/3p4/8/3pP3/5N2/PPP2PPP/RNBQKB1R w KQkq -
+    [9] =&gt; rnbqkbnr/pp2pppp/3p4/8/3NP3/8/PPP2PPP/RNBQKB1R b KQkq -
+    [10] =&gt; rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -
+    [11] =&gt; rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -
+    [12] =&gt; rnbqkb1r/1p2pppp/p2p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+    [13] =&gt; rnbqkb1r/pp2pp1p/3p1np1/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+    [14] =&gt; r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+    [15] =&gt; rnbqkb1r/pp3ppp/3ppn2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+)
+</code></pre>
+<p>In both cases the <code>validate()</code> method will throw a Chess\Exception\PlayException if the RAV movetext is not valid. This is how to obtain the validated movetext.</p>
+<pre><code class="language-php">$movetext = $ravPlay-&gt;getRavMovetext()-&gt;getMovetext();
+</code></pre>
+<p>You may want to remove tabs and spaces from a valid RAV movetext with the help of the <code>filtered()</code> method.</p>
+<pre><code class="language-php">$movetext = $ravPlay-&gt;getRavMovetext()-&gt;filtered();
+
+echo $movetext;
+</code></pre>
+<pre><code class="language-text">1.e4 c5 {enters the Sicilian Defense, the most popular and best-scoring response to White's first move.} (2.Nf3 {is played in about 80% of Master-level games after which there are three main options for Black.} (2...Nc6) (2...e6) (2...d6 {is Black's most common move.} 3.d4 {lines are collectively known as the Open Sicilian.} cxd4 4.Nxd4 Nf6 5.Nc3 {allows Black choose between four major variations: the Najdorf, Dragon, Classical and Scheveningen.} (5...a6 {is played in the Najdorf variation.}) (5...g6 {is played in the Dragon variation.}) (5...Nc6 {is played in the Classical variation.}) (5...e6 {is played in the Scheveningen variation.})))
+</code></pre>
+<p>Comments are removed by passing the false value to the first argument of the <code>filtered()</code> method.</p>
+<pre><code class="language-php">$movetext = $ravPlay-&gt;getRavMovetext()-&gt;filtered($comments = false);
+
+echo $movetext;
+</code></pre>
+<pre><code class="language-text">1.e4 c5 (2.Nf3 (2...Nc6) (2...e6) (2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 (5...a6) (5...g6) (5...Nc6) (5...e6)))
+</code></pre>
+<p>RAV files can also be loaded from a particular FEN position as opposed to the start position.</p>
+<pre><code class="language-php">use Chess\FenToBoard;
+use Chess\Play\RavPlay;
+
+$movetext = &quot;1.Ra7 Kg8 2.Kg2 Kf8 3.Kf3 Ke8 4.Ke4 Kd8 5.Kd5 Kc8
+    (5...Ke8 6.Kd6 Kf8 7.Ke6 Kg8 8.Kf6 Kh8 9.Kg6 Kg8 10.Ra8#)
+    6.Kd6 Kb8
+    (6...Kd8 7.Ra8#)
+    7.Rc7 Ka8 8.Kc6 Kb8 9.Kb6 Ka8 10.Rc8#&quot;;
+
+$board = FenToBoard::create('7k/8/8/8/8/8/8/R6K w - -');
+
+$ravPlay = (new RavPlay($movetext, $board))-&gt;validate();
+
+$fen = $ravPlay-&gt;getFen();
+
+print_r($fen);
+</code></pre>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; 7k/8/8/8/8/8/8/R6K w - -
+    [1] =&gt; 7k/R7/8/8/8/8/8/7K b - -
+    [2] =&gt; 6k1/R7/8/8/8/8/8/7K w - -
+    [3] =&gt; 6k1/R7/8/8/8/8/6K1/8 b - -
+    [4] =&gt; 5k2/R7/8/8/8/8/6K1/8 w - -
+    [5] =&gt; 5k2/R7/8/8/8/5K2/8/8 b - -
+    [6] =&gt; 4k3/R7/8/8/8/5K2/8/8 w - -
+    [7] =&gt; 4k3/R7/8/8/4K3/8/8/8 b - -
+    [8] =&gt; 3k4/R7/8/8/4K3/8/8/8 w - -
+    [9] =&gt; 3k4/R7/8/3K4/8/8/8/8 b - -
+    [10] =&gt; 2k5/R7/8/3K4/8/8/8/8 w - -
+    [11] =&gt; 4k3/R7/8/3K4/8/8/8/8 w - -
+    [12] =&gt; 4k3/R7/3K4/8/8/8/8/8 b - -
+    [13] =&gt; 5k2/R7/3K4/8/8/8/8/8 w - -
+    [14] =&gt; 5k2/R7/4K3/8/8/8/8/8 b - -
+    [15] =&gt; 6k1/R7/4K3/8/8/8/8/8 w - -
+    [16] =&gt; 6k1/R7/5K2/8/8/8/8/8 b - -
+    [17] =&gt; 7k/R7/5K2/8/8/8/8/8 w - -
+    [18] =&gt; 7k/R7/6K1/8/8/8/8/8 b - -
+    [19] =&gt; 6k1/R7/6K1/8/8/8/8/8 w - -
+    [20] =&gt; R5k1/8/6K1/8/8/8/8/8 b - -
+    [21] =&gt; 2k5/R7/3K4/8/8/8/8/8 b - -
+    [22] =&gt; 1k6/R7/3K4/8/8/8/8/8 w - -
+    [23] =&gt; 3k4/R7/3K4/8/8/8/8/8 w - -
+    [24] =&gt; R2k4/8/3K4/8/8/8/8/8 b - -
+    [25] =&gt; 1k6/2R5/3K4/8/8/8/8/8 b - -
+    [26] =&gt; k7/2R5/3K4/8/8/8/8/8 w - -
+    [27] =&gt; k7/2R5/2K5/8/8/8/8/8 b - -
+    [28] =&gt; 1k6/2R5/2K5/8/8/8/8/8 w - -
+    [29] =&gt; 1k6/2R5/1K6/8/8/8/8/8 b - -
+    [30] =&gt; k7/2R5/1K6/8/8/8/8/8 w - -
+    [31] =&gt; k1R5/8/1K6/8/8/8/8/8 b - -
+)
+</code></pre>
+<p>🎉 So this is amazing! That's all we need to read and write chess tutorials, guides and how-tos.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../getting-started/" class="btn btn-neutral float-left" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../data-conversion/" class="btn btn-neutral float-right" title="Data Conversion">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../getting-started/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../data-conversion/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

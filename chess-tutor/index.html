@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Chess Tutor - PHP Chess</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Chess Tutor";
+        var mkdocs_page_input_path = "chess-tutor.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PHP Chess
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../read-moves/">Read Moves</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../data-conversion/">Data Conversion</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../heuristics/">Heuristics</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Chess Tutor</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#explain-fen">Explain FEN</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#explain-pgn">Explain PGN</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../play-chess/">Play Chess</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PHP Chess</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Chess Tutor</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="chess-tutor">Chess Tutor</h1>
+<h2 id="explain-fen">Explain FEN</h2>
+<p>✨ Chess beginners often think they can checkmate the opponent's king quickly. However, there are so many different things to consider in order to understand a position.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Tutor/FenExplanationTest.php">Chess\Tutor\FenExplanation</a> helps you improve your chess thinking process by explaining a FEN position in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a>.</p>
+<pre><code class="language-php">use Chess\FenToBoard;
+use Chess\Tutor\FenExplanation;
+
+$board = FenToBoard::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');
+
+$paragraph = (new FenExplanation($board))-&gt;getParagraph();
+
+$text = implode(' ', $paragraph);
+
+echo $text;
+</code></pre>
+<pre><code class="language-text">White has a significant material advantage. White has a significant control of the center. The white pieces are somewhat better connected. The white player is pressuring a little bit more squares than its opponent. The knight on e6 is pinned so it can't be moved because the king would be put in check. White has the bishop pair.
+</code></pre>
+<p>The resulting text may sound a little robotic but it can be easily rephrased by the AI of your choice to make it sound more human-like. Also a quick numerical estimate of the position can be obtained by passing the <code>$isEvaluated</code> parameter to the constructor.</p>
+<pre><code class="language-php">use Chess\FenToBoard;
+use Chess\Tutor\FenExplanation;
+
+$board = FenToBoard::create('rnb1kbnr/ppppqppp/8/4p3/4PP2/6P1/PPPP3P/RNBQKBNR w KQkq -');
+
+$paragraph = (new FenExplanation($board, $isEvaluated = true))-&gt;getParagraph();
+
+$text = implode(' ', $paragraph);
+
+echo $text;
+</code></pre>
+<pre><code class="language-text">Black has a somewhat better control of the center. The black pieces are significantly better connected. White has a kind of space advantage. Overall, 1 heuristic evaluation feature is favoring White while 2 are favoring Black.
+</code></pre>
+<p>A heuristic evaluation is a quick numerical estimate of a chess position that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail as long as they are based on probabilities more than anything else.</p>
+<p>🎉 This is a form of abductive reasoning.</p>
+<h2 id="explain-pgn">Explain PGN</h2>
+<p>✨ Typically, chess engines won't provide an explanation in easy-to-understand language about why a move is good.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Tutor/PgnExplanationTest.php">Chess\Tutor\PgnExplanation</a> can explain the implications of making a particular move in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a> and combined with an UCI engine it will explain the why of a good move. Stockfish has been set up with a skill level of <code>20</code> and a depth of <code>15</code> to suggest a good move. In order to use this functionality, make sure to install Stockfish &gt;= 15.1 as it is described in <a href="https://php-chess.docs.chesslablab.org/play-computer/">Play Computer</a>.</p>
+<pre><code class="language-php">use Chess\Play\SanPlay;
+use Chess\Tutor\PgnExplanation;
+
+$movetext = '1.Nf3 d5 2.g3 c5';
+
+$board = (new SanPlay($movetext))-&gt;validate()-&gt;getBoard();
+
+$paragraph = (new PgnExplanation('d4', $board-&gt;toFen()))-&gt;getParagraph();
+
+$text = implode(' ', $paragraph);
+
+echo $text;
+</code></pre>
+<pre><code class="language-text">Black has a kind of space advantage. The pawn on c5 is unprotected.
+</code></pre>
+<p>The resulting text may sound a little robotic but it can be easily rephrased by the AI of your choice to make it sound more human-like. Also a quick numerical estimate of the position can be obtained by passing the <code>$isEvaluated</code> parameter to the constructor.</p>
+<pre><code class="language-php">use Chess\Tutor\PgnExplanation;
+
+$paragraph = (new PgnExplanation('Bxe6+', '8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1', $isEvaluated = true))
+    -&gt;getParagraph();
+
+$text = implode(' ', $paragraph);
+
+echo $text;
+</code></pre>
+<pre><code class="language-text">White has a decisive material advantage. White is just controlling the center. White has a total space advantage. The white pieces are timidly approaching the other side's king. The bishop on e6 is unprotected. Overall, 6 heuristic evaluation features are favoring White while 1 is favoring Black.
+</code></pre>
+<p>🎉 Let's do this!</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../heuristics/" class="btn btn-neutral float-left" title="Heuristics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../play-chess/" class="btn btn-neutral float-right" title="Play Chess">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../heuristics/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../play-chess/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

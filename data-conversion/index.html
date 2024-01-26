@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Data Conversion - PHP Chess</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Data Conversion";
+        var mkdocs_page_input_path = "data-conversion.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> PHP Chess
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../read-moves/">Read Moves</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Data Conversion</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#fen-to-board">FEN to Board</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#board-to-png-image">Board to PNG Image</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#board-to-mp4">Board to MP4</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../heuristics/">Heuristics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../chess-tutor/">Chess Tutor</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../play-chess/">Play Chess</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">PHP Chess</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Data Conversion</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="data-conversion">Data Conversion</h1>
+<h2 id="fen-to-board">FEN to Board</h2>
+<p>✨ FEN stands for Forsyth-Edwards Notation and is the standard way for describing chess positions using text strings.</p>
+<p>Almost everything in PHP Chess can be done with a chessboard object. At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the <a href="https://github.com/chesslablab/php-chess/blob/master/src/FenToBoard.php">Chess\FenToBoard</a> class according to the variants supported.</p>
+<p>Let's continue a classical game from the FEN position of B54, which is the ECO code for "Sicilian Defense: Modern Variations, Main Line" previously discussed in <a href="https://php-chess.docs.chesslablab.org/read-pgn/">Read PGN</a>.</p>
+<pre><code class="language-php">use Chess\FenToBoard;
+
+$board = FenToBoard::create('rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -');
+
+$board-&gt;play('w', 'Nc3');
+$board-&gt;play('b', 'Nc6');
+
+echo $board-&gt;toFen();
+</code></pre>
+<pre><code class="language-text">r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
+</code></pre>
+<p>It is worth saying that after 5.Nc3 Nc6, B54 has turned into B56 which is the ECO code for "Sicilian Defense: Classical Variation" and the history contains two moves only.</p>
+<pre><code class="language-php">var_dump($board-&gt;getHistory());
+</code></pre>
+<pre><code class="language-text">array(2) {
+  [0]=&gt;
+  object(stdClass)#323 (4) {
+    [&quot;castlingAbility&quot;]=&gt;
+    string(4) &quot;KQkq&quot;
+    [&quot;sq&quot;]=&gt;
+    string(2) &quot;b1&quot;
+    [&quot;move&quot;]=&gt;
+    object(stdClass)#2 (7) {
+      [&quot;pgn&quot;]=&gt;
+      string(3) &quot;Nc3&quot;
+      [&quot;isCapture&quot;]=&gt;
+      bool(false)
+      [&quot;isCheck&quot;]=&gt;
+      bool(false)
+      [&quot;type&quot;]=&gt;
+      string(48) &quot;N[a-h]{0,1}[1-8]{0,1}[a-h]{1}[1-8]{1}[\+\#]{0,1}&quot;
+      [&quot;color&quot;]=&gt;
+      string(1) &quot;w&quot;
+      [&quot;id&quot;]=&gt;
+      string(1) &quot;N&quot;
+      [&quot;sq&quot;]=&gt;
+      object(stdClass)#3 (2) {
+        [&quot;current&quot;]=&gt;
+        string(0) &quot;&quot;
+        [&quot;next&quot;]=&gt;
+        string(2) &quot;c3&quot;
+      }
+    }
+    [&quot;fen&quot;]=&gt;
+    string(59) &quot;rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -&quot;
+  }
+  [1]=&gt;
+  object(stdClass)#581 (4) {
+    [&quot;castlingAbility&quot;]=&gt;
+    string(4) &quot;KQkq&quot;
+    [&quot;sq&quot;]=&gt;
+    string(2) &quot;b8&quot;
+    [&quot;move&quot;]=&gt;
+    object(stdClass)#82 (7) {
+      [&quot;pgn&quot;]=&gt;
+      string(3) &quot;Nc6&quot;
+      [&quot;isCapture&quot;]=&gt;
+      bool(false)
+      [&quot;isCheck&quot;]=&gt;
+      bool(false)
+      [&quot;type&quot;]=&gt;
+      string(48) &quot;N[a-h]{0,1}[1-8]{0,1}[a-h]{1}[1-8]{1}[\+\#]{0,1}&quot;
+      [&quot;color&quot;]=&gt;
+      string(1) &quot;b&quot;
+      [&quot;id&quot;]=&gt;
+      string(1) &quot;N&quot;
+      [&quot;sq&quot;]=&gt;
+      object(stdClass)#59 (2) {
+        [&quot;current&quot;]=&gt;
+        string(0) &quot;&quot;
+        [&quot;next&quot;]=&gt;
+        string(2) &quot;c6&quot;
+      }
+    }
+    [&quot;fen&quot;]=&gt;
+    string(60) &quot;r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -&quot;
+  }
+}
+</code></pre>
+<p>The initial FEN string is always accessible through the <code>getStartFen()</code> method.</p>
+<pre><code class="language-php">echo $board-&gt;getStartFen();
+</code></pre>
+<pre><code class="language-text">rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -
+</code></pre>
+<p>🎉 Well done! You just learned a well-known and frequently played chess opening.</p>
+<h2 id="board-to-png-image">Board to PNG Image</h2>
+<p>✨ PNG stands for Portable Network Graphics and is a widely used format for image files. Not to be confused with PGN, the text-based file format to annotate chess games.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Media/BoardToPngTest.php">Chess\Media\BoardToPng</a> converts a chess board object to a PNG image.</p>
+<pre><code class="language-php">use Chess\FenToBoard;
+use Chess\Media\BoardToPng;
+
+$board = FenToBoard::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
+
+$filename = (new BoardToPng($board, $flip = true))-&gt;output();
+</code></pre>
+<p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/master/docs/data-conversion_01.png" /></p>
+<p>🎉 Try this thing! Share a puzzling chess position with friends for further study.</p>
+<h2 id="board-to-mp4">Board to MP4</h2>
+<p>✨ Text-based PGN movetexts can be easily converted to MP4, a widely-used video format which comes in handy for pausing the games.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Media/BoardToMp4Test.php">Chess\Media\BoardToMp4</a> allows to convert a chess board object to an MP4 video.</p>
+<pre><code class="language-php">use Chess\Media\BoardToMp4;
+use Chess\Variant\Classical\Board;
+
+$movetext = '1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7';
+
+$board = new Board();
+
+$filename = (new BoardToMp4(
+    $movetext,
+    $board,
+    $flip = false
+))-&gt;output(__DIR__.'/../../storage/tmp');
+</code></pre>
+<p>🎉 That's it!</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../read-moves/" class="btn btn-neutral float-left" title="Read Moves"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../heuristics/" class="btn btn-neutral float-right" title="Heuristics">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../read-moves/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../heuristics/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
