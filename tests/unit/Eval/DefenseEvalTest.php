@@ -163,4 +163,28 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $this->assertSame($expectedResult, $relativeSkewerEval->getResult());
         $this->assertSame($expectedPhrase, $relativeSkewerEval->getPhrases());
     }
+
+    /**
+     * @test
+     */
+    public function a13()
+    {
+        $expectedResult = [
+            'w' => 5.1,
+            'b' => 9.8,
+        ];
+
+        $expectedPhrase = [
+            "If the pawn on a7 is moved, these pieces may well be exposed to attack: White's queen on a4, the rook on a8.",
+            "If the knight on b5 is moved, these pieces may well be exposed to attack: White's queen on a4, the rook on a8, White's queen on a4, the pawn on b2.",
+        ];
+
+        $board = (new StrToBoard('rn2k1nr/pp1b1ppp/1q6/1N1p4/Q1pP4/4P3/PP1K1PPP/R4BNR w kq -'))
+            ->create();
+
+        $relativeSkewerEval = new DefenseEval($board);
+
+        $this->assertSame($expectedResult, $relativeSkewerEval->getResult());
+        $this->assertSame($expectedPhrase, $relativeSkewerEval->getPhrases());
+    }
 }

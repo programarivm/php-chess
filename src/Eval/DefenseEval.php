@@ -56,6 +56,7 @@ class DefenseEval extends AbstractEval
                 $rephrase .= str_replace(' is unprotected.', ', ', $diffPhrase);
             }
             $phrase .= $rephrase;
+            $phrase = str_replace(', The', ', the', $phrase);
             $phrase = substr_replace(trim($phrase), '.', -1);
         }
 
