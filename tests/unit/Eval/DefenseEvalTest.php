@@ -62,7 +62,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "If the knight on e6 is moved, these pieces may well be exposed to attack: The rook on e3, Black's queen on e8.",
+            "If the knight on e6 moved, these pieces may well be exposed to attack: The rook on e3, Black's queen on e8.",
         ];
 
         $board = (new StrToBoard('4q1k1/8/4n3/8/8/4R3/8/6K1 w - -'))
@@ -106,7 +106,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "If the knight on c6 is moved, these pieces may well be exposed to attack: The bishop on a4, Black's queen on e8.",
+            "If the knight on c6 moved, these pieces may well be exposed to attack: The bishop on a4, Black's queen on e8.",
         ];
 
         $board = (new StrToBoard('4q1k1/8/2n5/8/B7/8/8/6K1 w - -'))
@@ -129,7 +129,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "If the knight on c6 is moved, the rook on e8 may well be exposed to attack.",
+            "If the knight on c6 moved, the rook on e8 may well be exposed to attack.",
         ];
 
         $board = (new StrToBoard('4r1k1/8/2n5/8/B7/8/8/6K1 w - -'))
@@ -152,7 +152,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "If the knight on c6 is moved, the pawn on e5 may well be exposed to attack.",
+            "If the knight on c6 moved, the pawn on e5 may well be exposed to attack.",
         ];
 
         $board = (new StrToBoard('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -'))
@@ -175,8 +175,8 @@ class DefenseEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "If the pawn on a7 is moved, these pieces may well be exposed to attack: White's queen on a4, the rook on a8.",
-            "If the knight on b5 is moved, these pieces may well be exposed to attack: White's queen on a4, the rook on a8, White's queen on a4, the pawn on b2.",
+            "If the pawn on a7 moved, these pieces may well be exposed to attack: White's queen on a4, the rook on a8.",
+            "If the knight on b5 moved, these pieces may well be exposed to attack: White's queen on a4, the rook on a8, White's queen on a4, the pawn on b2.",
         ];
 
         $board = (new StrToBoard('rn2k1nr/pp1b1ppp/1q6/1N1p4/Q1pP4/4P3/PP1K1PPP/R4BNR w kq -'))

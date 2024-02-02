@@ -43,7 +43,7 @@ class DefenseEval extends AbstractEval
     private function explain(AbstractPiece $piece, array $diffPhrases): void
     {
         $phrase = PiecePhrase::create($piece);
-        $phrase = "If $phrase is moved, ";
+        $phrase = "If $phrase moved, ";
         $count = count($diffPhrases);
         if ($count === 1) {
             $diffPhrase = mb_strtolower($diffPhrases[0]);
