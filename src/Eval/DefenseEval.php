@@ -21,6 +21,7 @@ class DefenseEval extends AbstractEval
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() !== Piece::K) {
                 if (!empty($piece->attackingPieces())) {
+                    $diffPhrases = [];
                     $clone = unserialize(serialize($this->board));
                     $clone->detach($clone->getPieceBySq($piece->getSq()));
                     $clone->refresh();

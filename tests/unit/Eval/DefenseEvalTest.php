@@ -176,7 +176,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $expectedPhrase = [
             "If the pawn on a7 moved, these pieces may well be exposed to attack: White's queen on a4, the rook on a8.",
-            "If the knight on b5 moved, these pieces may well be exposed to attack: White's queen on a4, the rook on a8, White's queen on a4, the pawn on b2.",
+            "If the knight on b5 moved, these pieces may well be exposed to attack: White's queen on a4, the pawn on b2.",
         ];
 
         $board = (new StrToBoard('rn2k1nr/pp1b1ppp/1q6/1N1p4/Q1pP4/4P3/PP1K1PPP/R4BNR w kq -'))
