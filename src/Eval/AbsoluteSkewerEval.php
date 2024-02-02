@@ -37,6 +37,6 @@ class AbsoluteSkewerEval extends AbstractEval
         $attacking = PiecePhrase::create($attackingPiece);
         $attacked = PiecePhrase::create($attackedPiece);
 
-        $this->phrases[] = ucfirst("when $attacked will be moved, a piece that is more valuable than $attacking will be exposed to attack.");
+        $this->phrases[] = ucfirst("when $attacked will be moved, a piece that is more valuable than $attacking may well be exposed to attack.");
     }
 }

@@ -47,10 +47,10 @@ class DefenseEval extends AbstractEval
         $count = count($diffPhrases);
         if ($count === 1) {
             $diffPhrase = mb_strtolower($diffPhrases[0]);
-            $rephrase = str_replace('is unprotected', 'will be exposed to attack', $diffPhrase);
+            $rephrase = str_replace('is unprotected', 'may well be exposed to attack', $diffPhrase);
             $phrase .= $rephrase;
         } elseif ($count > 1) {
-            $phrase .= 'these pieces will be exposed to attack: ';
+            $phrase .= 'these pieces may well be exposed to attack: ';
             $rephrase = '';
             foreach ($diffPhrases as $diffPhrase) {
                 $rephrase .= str_replace(' is unprotected.', ', ', $diffPhrase);
