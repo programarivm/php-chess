@@ -10,17 +10,13 @@ class JpgToPiece
 {
     const ML_PATH = __DIR__ . '/../../../../ml';
 
-    protected string $filename;
-
     protected \GdImage $image;
 
     protected PersistentModel $estimator;
 
-    public function __construct(string $filename)
+    public function __construct(\GdImage $image)
     {
-        $this->filename = $filename;
-
-        $this->image = imagecreatefromjpeg($filename);
+        $this->image = $image;
 
         $this->estimator = PersistentModel::load(
             new Filesystem(self::ML_PATH.'/piece.rbx')
