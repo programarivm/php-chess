@@ -6,35 +6,18 @@ use Chess\Media\PGN\AN\JpgToPiece;
 
 class JpgToPiecePlacement
 {
-    const STORAGE_TMP_FOLDER = __DIR__.'/../../../../storage/tmp';
-
-    protected string $filename;
-
     protected \GdImage $image;
 
-    protected array $size;
-
-    protected string $uniqid;
-
-    protected array $filepaths;
-
-    protected string $piecePlacement;
-
-    public function __construct(string $filename)
+    public function __construct(\GdImage $image)
     {
-        $this->filename = $filename;
-        $this->image = imagecreatefromjpeg($filename);
-        $this->size = getimagesize($filename);
-        $this->uniqid = uniqid();
-        $this->filepaths = [];
-        $this->piecePlacement = '';
-
-        $this->calcTiles();
+        $this->image = $image;
     }
 
-    protected function calcTiles(): void
+    public function predict(): string
     {
-        $side = $this->size[0] / 8;
+        $result = '';
+
+        $side  = imagesx($this->image) / 8;
         $y = 0;
         for ($i = 0; $i < 8; $i++) {
             $x = 0;
@@ -46,48 +29,24 @@ class JpgToPiecePlacement
                     'height' => $side,
                 ]);
                 if ($tile !== false) {
-                    $filepath = self::STORAGE_TMP_FOLDER."/{$this->uniqid}$i$j.jpg";
-                    $this->filepaths[$i][] = $filepath;
-                    imagejpeg($tile, $filepath);
+                    $result .= (new JpgToPiece($tile))->predict();
                     imagedestroy($tile);
                 }
                 $x += $side;
             }
+            $result .= '/';
             $y += $side;
         }
-    }
 
-    protected function cleanup(): void
-    {
-        $files = glob(self::STORAGE_TMP_FOLDER."/{$this->uniqid}*");
-        foreach ($files as $file) {
-            if (is_file($file)) {
-                unlink($file);
-            }
-        }
-    }
+        $result = substr($result, 0, -1);
+        $result = str_replace('11111111', '8', $result);
+        $result = str_replace('1111111', '7', $result);
+        $result = str_replace('111111', '6', $result);
+        $result = str_replace('11111', '5', $result);
+        $result = str_replace('1111', '4', $result);
+        $result = str_replace('111', '3', $result);
+        $result = str_replace('11', '2', $result);
 
-    public function predict(): string
-    {
-        foreach ($this->filepaths as $key => $val) {
-            foreach ($val as $filepath) {
-                $prediction = (new JpgToPiece($filepath))->predict();
-                $this->piecePlacement .= $prediction;
-            }
-            $this->piecePlacement .= '/';
-        }
-
-        $this->cleanup();
-
-        $this->piecePlacement = substr($this->piecePlacement, 0, -1);
-        $this->piecePlacement = str_replace('11111111', '8', $this->piecePlacement);
-        $this->piecePlacement = str_replace('1111111', '7', $this->piecePlacement);
-        $this->piecePlacement = str_replace('111111', '6', $this->piecePlacement);
-        $this->piecePlacement = str_replace('11111', '5', $this->piecePlacement);
-        $this->piecePlacement = str_replace('1111', '4', $this->piecePlacement);
-        $this->piecePlacement = str_replace('111', '3', $this->piecePlacement);
-        $this->piecePlacement = str_replace('11', '2', $this->piecePlacement);
-
-        return $this->piecePlacement;
+        return $result;
     }
 }
