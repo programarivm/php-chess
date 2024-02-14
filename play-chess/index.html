@@ -102,8 +102,8 @@
               
                 <h1 id="play-chess">Play Chess</h1>
 <h2 id="play-like-a-pro">Play Like a Pro</h2>
-<p>✨ The <a href="https://github.com/chesslablab/chess-server/blob/master/data/players.json">players.json</a> file in the <a href="https://github.com/chesslablab/chess-server">Chess Server</a> contains thousands of games by titled FIDE players. This file can be generated and customized with the command line tools available in the <a href="https://github.com/chesslablab/chess-data">Chess Data</a> repo.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/GrandmasterTest.php">Chess\Grandmaster</a> figures out the next move to be made based on the JSON file that is passed to its constructor. Please make sure to first create one for it or feel free to use the players.json linked above.</p>
+<p>✨ The <a href="https://github.com/chesslablab/chess-server/blob/main/data/players.json">players.json</a> file in the <a href="https://github.com/chesslablab/chess-server">Chess Server</a> contains thousands of games by titled FIDE players. This file can be generated and customized with the command line tools available in the <a href="https://github.com/chesslablab/chess-data">Chess Data</a> repo.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/GrandmasterTest.php">Chess\Grandmaster</a> figures out the next move to be made based on the JSON file that is passed to its constructor. Please make sure to first create one for it or feel free to use the players.json linked above.</p>
 <pre><code class="language-php">use Chess\Grandmaster;
 use Chess\Variant\Classical\Board;
 
@@ -135,7 +135,7 @@ print_r($move);
 <p>🎉 Let's now put our knowledge of chess openings to the test.</p>
 <h2 id="play-computer">Play Computer</h2>
 <p>✨ UCI engines not only allow to play chess with the computer but are also a helpful tool when analyzing chess games.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/UciEngine/StockfishTest.php">Chess\UciEngine\Stockfish</a> allows to play chess against the Stockfish chess engine using PHP, but first things first, make sure to install it on your computer.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/UciEngine/StockfishTest.php">Chess\UciEngine\Stockfish</a> allows to play chess against the Stockfish chess engine using PHP, but first things first, make sure to install it on your computer.</p>
 <pre><code class="language-text">sudo apt-get install stockfish
 </code></pre>
 <p>Then, you're set up to play chess against Stockfish as described in the following example.</p>

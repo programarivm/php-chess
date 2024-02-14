@@ -103,7 +103,7 @@
                 <h1 id="chess-tutor">Chess Tutor</h1>
 <h2 id="explain-fen">Explain FEN</h2>
 <p>✨ Chess beginners often think they can checkmate the opponent's king quickly. However, there are so many different things to consider in order to understand a position.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Tutor/FenExplanationTest.php">Chess\Tutor\FenExplanation</a> helps you improve your chess thinking process by explaining a FEN position in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a>.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/FenExplanationTest.php">Chess\Tutor\FenExplanation</a> helps you improve your chess thinking process by explaining a FEN position in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a>.</p>
 <pre><code class="language-php">use Chess\FenToBoard;
 use Chess\Tutor\FenExplanation;
 
@@ -135,7 +135,7 @@ echo $text;
 <p>🎉 This is a form of abductive reasoning.</p>
 <h2 id="explain-pgn">Explain PGN</h2>
 <p>✨ Typically, chess engines won't provide an explanation in easy-to-understand language about why a move is good.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/master/tests/unit/Tutor/PgnExplanationTest.php">Chess\Tutor\PgnExplanation</a> can explain the implications of making a particular move in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a> and combined with an UCI engine it will explain the why of a good move. Stockfish has been set up with a skill level of <code>20</code> and a depth of <code>15</code> to suggest a good move. In order to use this functionality, make sure to install Stockfish &gt;= 15.1 as it is described in <a href="https://php-chess.docs.chesslablab.org/play-computer/">Play Computer</a>.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/PgnExplanationTest.php">Chess\Tutor\PgnExplanation</a> can explain the implications of making a particular move in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a> and combined with an UCI engine it will explain the why of a good move. Stockfish has been set up with a skill level of <code>20</code> and a depth of <code>15</code> to suggest a good move. In order to use this functionality, make sure to install Stockfish &gt;= 15.1 as it is described in <a href="https://php-chess.docs.chesslablab.org/play-computer/">Play Computer</a>.</p>
 <pre><code class="language-php">use Chess\Play\SanPlay;
 use Chess\Tutor\PgnExplanation;
 
