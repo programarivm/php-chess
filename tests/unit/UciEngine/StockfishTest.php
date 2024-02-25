@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\UciEngine;
 
+use Chess\Grandmaster;
 use Chess\FenToBoard;
 use Chess\Exception\StockfishException;
 use Chess\UciEngine\Stockfish;
@@ -10,6 +11,8 @@ use Chess\Variant\Classical\Board;
 
 class StockfishTest extends AbstractUnitTestCase
 {
+    const FILEPATH = __DIR__.'/../../data/json/players.json';
+
     /**
      * @test
      */
@@ -293,5 +296,32 @@ class StockfishTest extends AbstractUnitTestCase
         $expected = '$10';
 
         $this->assertSame($expected, $stockfish->evalNag($board->toFen(), 'Final'));
+    }
+
+    /**
+     * @test
+     */
+    public function play_against_itself()
+    {
+        $skillLevel = 14;
+        $depth = 6;
+
+        $skillLevelOffset = 3;
+        $depthOffset = 2;
+
+        $board = new Board();
+        $move = (new Grandmaster(self::FILEPATH))->move($board);
+
+        do {
+            $stockfish = (new Stockfish($board))
+                ->setOptions([
+                    'Skill Level' => $skillLevel + rand(0, $skillLevelOffset)
+                ])
+                ->setParams([
+                    'depth' => $depth + rand(0, $depthOffset)
+                ]);
+            $lan = $stockfish->play($board->toFen());
+            $this->assertTrue($board->playLan($board->getTurn(), $lan));
+        } while (!$board->isMate() && !$board->isStalemate());
     }
 }

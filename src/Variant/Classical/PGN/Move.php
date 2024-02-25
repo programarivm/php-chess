@@ -298,6 +298,6 @@ class Move extends AbstractNotation
             ];
         }
 
-        throw new UnknownNotationException();
+        throw new UnknownNotationException($pgn);
     }
 }
