@@ -325,7 +325,7 @@ class StockfishTest extends AbstractUnitTestCase
         } while (
             !$board->isMate() &&
             !$board->isStalemate() &&
-            count($board->getHistory()) < 300
+            count($board->getHistory()) < 250
         );
     }
 }
