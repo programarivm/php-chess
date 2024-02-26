@@ -8,6 +8,7 @@ use Chess\Variant\Classical\Board;
 /**
  * Stockfish >= 15.1
  *
+ * @deprecated Use the Engine class instead.
  * @author Jordi Bassagaña
  * @license GPL
  */
@@ -225,7 +226,7 @@ class Stockfish
             fwrite($this->pipes[0], "eval\n");
             while (!feof($this->pipes[1])) {
                 $line = fgets($this->pipes[1]);
-                if (str_starts_with($line, $type.' evaluation')) {
+                if (str_starts_with($line, $type . ' evaluation')) {
                     $exploded = array_values(array_filter(explode(' ', $line)));
                     $eval = $exploded[2];
                     fclose($this->pipes[0]);
