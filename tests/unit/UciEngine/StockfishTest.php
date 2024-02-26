@@ -322,6 +322,10 @@ class StockfishTest extends AbstractUnitTestCase
                 ]);
             $lan = $stockfish->play($board->toFen());
             $this->assertTrue($board->playLan($board->getTurn(), $lan));
-        } while (!$board->isMate() && !$board->isStalemate());
+        } while (
+            !$board->isMate() &&
+            !$board->isStalemate() &&
+            count($board->getHistory()) < 300
+        );
     }
 }
