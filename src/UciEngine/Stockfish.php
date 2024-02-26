@@ -171,7 +171,7 @@ class Stockfish
                 $line = fgets($this->pipes[1]);
                 if (str_starts_with($line, 'bestmove')) {
                     $exploded = explode(' ', $line);
-                    $bestMove = $exploded[1];
+                    $bestMove = trim($exploded[1]);
                     fclose($this->pipes[0]);
                 }
             }
