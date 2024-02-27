@@ -22,7 +22,7 @@ class StockfishTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function instantiation_path()
+    public function instantiation_with_path()
     {
         $stockfish = new Stockfish('/usr/games/stockfish');
 
