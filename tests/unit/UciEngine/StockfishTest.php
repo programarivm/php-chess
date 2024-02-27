@@ -14,6 +14,16 @@ class StockfishTest extends AbstractUnitTestCase
      */
     public function instantiation()
     {
+        $stockfish = new Stockfish();
+
+        $this->assertTrue(is_a($stockfish, Stockfish::class));
+    }
+
+    /**
+     * @test
+     */
+    public function instantiation_path()
+    {
         $stockfish = new Stockfish('/usr/games/stockfish');
 
         $this->assertTrue(is_a($stockfish, Stockfish::class));
@@ -24,7 +34,7 @@ class StockfishTest extends AbstractUnitTestCase
      */
     public function get_options()
     {
-        $stockfish = new Stockfish('/usr/games/stockfish');
+        $stockfish = new Stockfish();
 
         $expected = [
             'Debug Log File',
@@ -66,7 +76,7 @@ class StockfishTest extends AbstractUnitTestCase
         $limit = new Limit();
         $limit->time = 3000;
 
-        $stockfish = new Stockfish('/usr/games/stockfish');
+        $stockfish = new Stockfish();
 
         $expected = 'c7c5';
         $analysis = $stockfish->analyse($board, $limit);
@@ -85,7 +95,7 @@ class StockfishTest extends AbstractUnitTestCase
         $limit = new Limit();
         $limit->depth = 8;
 
-        $stockfish = (new Stockfish('/usr/games/stockfish'))
+        $stockfish = (new Stockfish())
             ->setOption('Skill Level', 20)
             ->setOption('UCI_Elo', 1500);
 

@@ -10,6 +10,8 @@ use Chess\Variant\Classical\Board;
 
 class Stockfish
 {
+    const PATH = '/usr/games/stockfish';
+
     /**
      * Process for the engine.
      *
@@ -24,9 +26,9 @@ class Stockfish
      */
     private array $options;
 
-    public function __construct(string $path)
+    public function __construct(string $path = '')
     {
-        $this->process = new Process($path);
+        $this->process = new Process(!$path ? self::PATH : $path);
 
         $this->process->writeLine('uci');
         $this->process->readUntil('uciok');
