@@ -8,7 +8,7 @@ use Chess\UciEngine\Details\UCIInfoLine;
 use Chess\UciEngine\Details\UCIOption;
 use Chess\Variant\Classical\Board;
 
-class StockfishEngine
+class Stockfish
 {
     /**
      * Process for the engine.
