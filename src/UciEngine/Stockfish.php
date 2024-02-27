@@ -85,9 +85,9 @@ class Stockfish
      *
      * @param string $name
      * @param string $value
-     * @return void
+     * @return \Chess\UciEngine\Stockfish
      */
-    public function setOption(string $name, string $value)
+    public function setOption(string $name, string $value): Stockfish
     {
         if (!array_key_exists($name, $this->options)) {
             throw new \InvalidArgumentException("Option $name does not exist");
@@ -100,6 +100,8 @@ class Stockfish
         $this->options[$name]->value = $value;
 
         $this->process->writeLine("setoption name $name value $value");
+
+        return $this;
     }
 
     /**
