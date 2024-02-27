@@ -135,20 +135,19 @@ print_r($move);
 <p>🎉 Let's now put our knowledge of chess openings to the test.</p>
 <h2 id="play-computer">Play Computer</h2>
 <p>✨ UCI engines not only allow to play chess with the computer but are also a helpful tool when analyzing chess games.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/UciEngine/StockfishTest.php">Chess\UciEngine\Stockfish</a> allows to play chess against the Stockfish chess engine using PHP, but first things first, make sure to install it on your computer.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/UciEngine/UciEngineTest.php">Chess\UciEngine\UciEngine</a> allows to play chess against the Stockfish chess engine using PHP, but first things first, make sure to install Stockfish on your computer.</p>
 <pre><code class="language-text">sudo apt-get install stockfish
 </code></pre>
 <p>Then, you're set up to play chess against Stockfish as described in the following example.</p>
-<pre><code class="language-php">use Chess\UciEngine\Stockfish;
+<pre><code class="language-php">use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
 use Chess\Variant\Classical\Board;
 
 $board = new Board();
 $board-&gt;play('w', 'e4');
 
-$stockfish = (new Stockfish())-&gt;setOption('Skill Level', 9);
-$limit = new Limit();
-$limit-&gt;depth = 3;
+$limit = (new Limit())-&gt;setDepth(3);
+$stockfish = (new UciEngine('/usr/games/stockfish'))-&gt;setOption('Skill Level', 9);
 $analysis = $stockfish-&gt;analyse($board, $limit);
 
 $board-&gt;playLan('b', $analysis['bestmove']);
@@ -159,14 +158,13 @@ echo $board-&gt;getMovetext();
 </code></pre>
 <p>PHP Chess classes can be combined to do different things. For example, you may want to play against Stockfish from this FEN position published in your favorite online publication.</p>
 <pre><code class="language-php">use Chess\FenToBoard;
-use Chess\UciEngine\Stockfish;
+use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
 
 $board = FenToBoard::create('4k2r/pp1b1pp1/8/3pPp1p/P2P1P2/1P3N2/1qr3PP/R3QR1K w k -');
 
-$stockfish = (new Stockfish())-&gt;setOption('Skill Level', 20);
-$limit = new Limit();
-$limit-&gt;depth = 12;
+$limit = (new Limit())-&gt;setDepth(12);
+$stockfish = (new UciEngine('/usr/games/stockfish'))-&gt;setOption('Skill Level', 20);
 $analysis = $stockfish-&gt;analyse($board, $limit);
 
 $board-&gt;playLan('w', $analysis['bestmove']);
@@ -178,7 +176,7 @@ echo $board-&gt;getMovetext();
 <p>The FEN is converted to a chessboard object as described in <a href="https://php-chess.docs.chesslablab.org/convert-fen-to-board/">Convert FEN to Board</a>. The <code>Skill Level</code> is set to <code>20</code> and the depth is set to <code>12</code> in order to get a more accurate response from Stockfish.</p>
 <p>The same thing goes for PGN annotated games. This is how to play against Stockfish after loading a SAN movetext into a chess board object.</p>
 <pre><code class="language-php">use Chess\Play\SanPlay;
-use Chess\UciEngine\Stockfish;
+use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
 
 $movetext = '1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7';
@@ -187,9 +185,8 @@ $board = (new SanPlay($movetext))
     -&gt;validate()
     -&gt;getBoard();
 
-$stockfish = (new Stockfish())-&gt;setOption('Skill Level', 20);
-$limit = new Limit();
-$limit-&gt;depth = 12;
+$limit = (new Limit())-&gt;setDepth(12);
+$stockfish = (new UciEngine('/usr/games/stockfish'))-&gt;setOption('Skill Level', 20);
 $analysis = $stockfish-&gt;analyse($board, $limit);
 
 $board-&gt;playLan('w', $analysis['bestmove']);
