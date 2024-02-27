@@ -71,6 +71,8 @@ class UCIOption
             $result['default'] = '';
         }
 
+        $result = array_map('trim', $result);
+
         return new self(
             $result['name'],
             $result['type'],

@@ -16,4 +16,40 @@ class StockfishEngineTest extends AbstractUnitTestCase
 
         $this->assertTrue(is_a($stockfishEngine, StockfishEngine::class));
     }
+
+    /**
+     * @test
+     */
+    public function get_options()
+    {
+        $stockfishEngine = new StockfishEngine('/usr/games/stockfish');
+
+        $expected = [
+            'Debug Log File',
+            'Threads',
+            'Hash',
+            'Clear Hash',
+            'Ponder',
+            'MultiPV',
+            'Skill Level',
+            'Move Overhead',
+            'Slow Mover',
+            'nodestime',
+            'UCI_Chess960',
+            'UCI_AnalyseMode',
+            'UCI_LimitStrength',
+            'UCI_Elo',
+            'UCI_ShowWDL',
+            'SyzygyPath',
+            'SyzygyProbeDepth',
+            'Syzygy50MoveRule',
+            'SyzygyProbeLimit',
+            'Use NNUE',
+            'EvalFile',
+        ];
+
+        $options = $stockfishEngine->getOptions();
+
+        $this->assertSame($expected, array_keys($options));
+    }
 }
