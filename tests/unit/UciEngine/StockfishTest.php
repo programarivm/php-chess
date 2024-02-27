@@ -95,4 +95,25 @@ class StockfishTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $analysis['bestmove']);
     }
+
+    /**
+     * @test
+     */
+    public function analyse_e4_skill_level_20_depth_8()
+    {
+        $board = new Board();
+        $board->play('w', 'e4');
+
+        $limit = new Limit();
+        $limit->depth = 8;
+
+        $stockfish = new Stockfish('/usr/games/stockfish');
+        $stockfish->setOption('Skill Level', 20);
+
+        $expected = 'c7c5';
+
+        $analysis = $stockfish->analyse($board, $limit);
+
+        $this->assertSame($expected, $analysis['bestmove']);
+    }
 }
