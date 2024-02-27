@@ -12,6 +12,16 @@ class StockfishTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function instantiation()
+    {
+        $stockfish = new Stockfish('/usr/games/stockfish');
+
+        $this->assertTrue(is_a($stockfish, Stockfish::class));
+    }
+
+    /**
+     * @test
+     */
     public function get_options()
     {
         $stockfish = new Stockfish('/usr/games/stockfish');
