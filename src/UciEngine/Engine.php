@@ -12,14 +12,14 @@ class Engine
 {
     /**
      * Process for the engine.
-     * 
+     *
      * @var Process
      */
     private Process $process;
 
     /**
      * Array of UCIOptions
-     * 
+     *
      * @var array
      */
     private array $options;
@@ -117,7 +117,7 @@ class Engine
         $output = $this->process->readUntil('bestmove');
 
         return [
-            "bestmove" => explode(' ', end($output))[0],
+            "bestmove" => explode(' ', end($output))[1],
             "info" => array_map(function ($line) {
                 return new UCIInfoLine($line);
             }, $output)
@@ -126,7 +126,7 @@ class Engine
 
     /**
      * Sends the ucinewgame command to the engine. Does not reset the options.
-     * 
+     *
      * @return void
      */
     public function newGame(): void

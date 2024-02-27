@@ -68,10 +68,10 @@ class StockfishEngineTest extends AbstractUnitTestCase
 
         $stockfishEngine = new StockfishEngine('/usr/games/stockfish');
 
+        $expected = 'c7c5';
+
         $analysis = $stockfishEngine->analyse($board, $limit);
 
-        // TODO
-
-        $this->assertTrue(false);
+        $this->assertSame($expected, $analysis['bestmove']);
     }
 }
