@@ -15,7 +15,6 @@ class LimitTest extends AbstractUnitTestCase
         $limit = new Limit();
 
         $this->assertTrue(is_a($limit, Limit::class));
-
         $this->assertSame(null, $limit->time);
         $this->assertSame(null, $limit->depth);
         $this->assertSame(null, $limit->nodes);
@@ -25,5 +24,16 @@ class LimitTest extends AbstractUnitTestCase
         $this->assertSame(null, $limit->white_inc);
         $this->assertSame(null, $limit->black_inc);
         $this->assertSame(null, $limit->remaining_moves);
+    }
+
+    /**
+     * @test
+     */
+    public function time_3000()
+    {
+        $limit = new Limit();
+        $limit->time = 3000;
+
+        $this->assertSame(3000, $limit->time);
     }
 }
