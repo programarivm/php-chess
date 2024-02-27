@@ -63,10 +63,14 @@ class StockfishEngineTest extends AbstractUnitTestCase
         $board = new Board();
         $board->play('w', 'e4');
 
+        $limit = new Limit();
+        $limit->time = 3000;
+
         $stockfishEngine = new StockfishEngine('/usr/games/stockfish');
 
+        $analysis = $stockfishEngine->analyse($board, $limit);
+
         // TODO
-        // $analyse = $stockfishEngine->analyse($board, new Limit());
 
         $this->assertTrue(false);
     }
