@@ -4,6 +4,8 @@ namespace Chess\Tests\Unit\UciEngine;
 
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\UciEngine\StockfishEngine;
+use Chess\UciEngine\Details\Limit;
+use Chess\Variant\Classical\Board;
 
 class StockfishEngineTest extends AbstractUnitTestCase
 {
@@ -51,5 +53,21 @@ class StockfishEngineTest extends AbstractUnitTestCase
         $options = $stockfishEngine->getOptions();
 
         $this->assertSame($expected, array_keys($options));
+    }
+
+    /**
+     * @test
+     */
+    public function analyse_e4()
+    {
+        $board = new Board();
+        $board->play('w', 'e4');
+
+        $stockfishEngine = new StockfishEngine('/usr/games/stockfish');
+
+        // TODO
+        // $analyse = $stockfishEngine->analyse($board, new Limit());
+
+        $this->assertTrue(false);
     }
 }
