@@ -48,7 +48,7 @@ class StockfishTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function analyse_e4_limit_time_300()
+    public function analyse_e4_limit_time()
     {
         $board = new Board();
         $board->play('w', 'e4');
@@ -67,7 +67,7 @@ class StockfishTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function analyse_e4_skill_level_20_uci_elo_1500_depth_8()
+    public function analyse_e4_limit_depth_set_options()
     {
         $board = new Board();
         $board->play('w', 'e4');
