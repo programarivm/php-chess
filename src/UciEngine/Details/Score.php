@@ -2,12 +2,6 @@
 
 namespace Chess\UciEngine\Details;
 
-enum Type
-{
-    case CP;
-    case MATE;
-}
-
 /**
  * UCI Score Structure for handling the analysis score.
  */
