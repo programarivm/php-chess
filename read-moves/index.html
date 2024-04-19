@@ -404,7 +404,7 @@ echo $movetext;
 <pre><code class="language-text">1.e4 c5 (2.Nf3 (2...Nc6) (2...e6) (2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 (5...a6) (5...g6) (5...Nc6) (5...e6)))
 </code></pre>
 <p>RAV files can also be loaded from a particular FEN position as opposed to the start position.</p>
-<pre><code class="language-php">use Chess\FenToBoard;
+<pre><code class="language-php">use Chess\FenToBoardFactory;
 use Chess\Play\RavPlay;
 
 $movetext = &quot;1.Ra7 Kg8 2.Kg2 Kf8 3.Kf3 Ke8 4.Ke4 Kd8 5.Kd5 Kc8
@@ -413,7 +413,7 @@ $movetext = &quot;1.Ra7 Kg8 2.Kg2 Kf8 3.Kf3 Ke8 4.Ke4 Kd8 5.Kd5 Kc8
     (6...Kd8 7.Ra8#)
     7.Rc7 Ka8 8.Kc6 Kb8 9.Kb6 Ka8 10.Rc8#&quot;;
 
-$board = FenToBoard::create('7k/8/8/8/8/8/8/R6K w - -');
+$board = FenToBoardFactory::create('7k/8/8/8/8/8/8/R6K w - -');
 
 $ravPlay = (new RavPlay($movetext, $board))-&gt;validate();
 

@@ -230,13 +230,13 @@
 </tbody>
 </table>
 <p>The evaluation features are used in two heuristics classes: <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Heuristics/FenHeuristicsTest.php">Chess\Heuristics\FenHeuristics</a> and <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Heuristics/SanHeuristicsTest.php">Chess\Heuristics\SanHeuristics</a>. The former allows to transform a FEN position to numbers while the latter transforms an entire chess game in SAN format to numbers.</p>
-<pre><code class="language-php">use Chess\FenToBoard;
+<pre><code class="language-php">use Chess\FenToBoardFactory;
 use Chess\Function\StandardFunction;
 use Chess\Heuristics\FenHeuristics;
 
 $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
-$board = FenToBoard::create($fen);
+$board = FenToBoardFactory::create($fen);
 
 $result = [
     'names' =&gt; (new StandardFunction())-&gt;names(),

@@ -105,11 +105,11 @@
                 <h1 id="data-conversion">Data Conversion</h1>
 <h2 id="fen-to-board">FEN to Board</h2>
 <p>✨ FEN stands for Forsyth-Edwards Notation and is the standard way for describing chess positions using text strings.</p>
-<p>Almost everything in PHP Chess can be done with a chessboard object. At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the <a href="https://github.com/chesslablab/php-chess/blob/main/src/FenToBoard.php">Chess\FenToBoard</a> class according to the variants supported.</p>
+<p>Almost everything in PHP Chess can be done with a chessboard object. At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the <a href="https://github.com/chesslablab/php-chess/blob/main/src/FenToBoardFactory.php">Chess\FenToBoardFactory</a> class according to the variants supported.</p>
 <p>Let's continue a classical game from the FEN position of B54, which is the ECO code for "Sicilian Defense: Modern Variations, Main Line" previously discussed in <a href="https://php-chess.docs.chesslablab.org/read-pgn/">Read PGN</a>.</p>
-<pre><code class="language-php">use Chess\FenToBoard;
+<pre><code class="language-php">use Chess\FenToBoardFactory;
 
-$board = FenToBoard::create('rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -');
+$board = FenToBoardFactory::create('rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -');
 
 $board-&gt;play('w', 'Nc3');
 $board-&gt;play('b', 'Nc6');
@@ -195,10 +195,10 @@ echo $board-&gt;toFen();
 <h2 id="board-to-png-image">Board to PNG Image</h2>
 <p>✨ PNG stands for Portable Network Graphics and is a widely used format for image files. Not to be confused with PGN, the text-based file format to annotate chess games.</p>
 <p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Media/BoardToPngTest.php">Chess\Media\BoardToPng</a> converts a chess board object to a PNG image.</p>
-<pre><code class="language-php">use Chess\FenToBoard;
+<pre><code class="language-php">use Chess\FenToBoardFactory;
 use Chess\Media\BoardToPng;
 
-$board = FenToBoard::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
+$board = FenToBoardFactory::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
 
 $filename = (new BoardToPng($board, $flip = true))-&gt;output();
 </code></pre>
