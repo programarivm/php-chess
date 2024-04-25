@@ -7,7 +7,7 @@ use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
+class IsolatedPawnEval extends AbstractEval implements DiscreteEvalInterface, InverseEvalInterface
 {
     const NAME = 'Isolated pawn';
 

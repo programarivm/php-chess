@@ -15,7 +15,7 @@ use Chess\Variant\Classical\Board;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class PressureEval extends AbstractEval
+class PressureEval extends AbstractEval implements DiscreteEvalInterface
 {
     const NAME = 'Pressure';
 

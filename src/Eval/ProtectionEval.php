@@ -15,7 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class ProtectionEval extends AbstractEval
+class ProtectionEval extends AbstractEval implements DiscreteEvalInterface
 {
     const NAME = 'Protection';
 

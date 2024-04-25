@@ -14,7 +14,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class KingSafetyEval extends AbstractEval implements InverseEvalInterface
+class KingSafetyEval extends AbstractEval implements DiscreteEvalInterface, InverseEvalInterface
 {
     const NAME = 'King safety';
 

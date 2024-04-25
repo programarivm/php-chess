@@ -12,7 +12,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class MaterialEval extends AbstractEval
+class MaterialEval extends AbstractEval implements DiscreteEvalInterface
 {
     const NAME = 'Material';
 

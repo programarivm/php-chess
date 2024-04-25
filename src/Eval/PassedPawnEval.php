@@ -16,7 +16,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class PassedPawnEval extends AbstractEval
+class PassedPawnEval extends AbstractEval implements DiscreteEvalInterface
 {
     const NAME = 'Passed pawn';
 

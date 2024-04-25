@@ -17,7 +17,7 @@ use Chess\Variant\Classical\PGN\AN\Square;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class BadBishopEval extends AbstractEval implements InverseEvalInterface
+class BadBishopEval extends AbstractEval implements DiscreteEvalInterface, InverseEvalInterface
 {
     const NAME = 'Bad bishop';
 

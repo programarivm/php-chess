@@ -8,7 +8,7 @@ use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
+class BackwardPawnEval extends AbstractEval implements DiscreteEvalInterface, InverseEvalInterface
 {
     const NAME = 'Backward pawn';
 

@@ -13,7 +13,7 @@ use Chess\Variant\Classical\Board;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class ConnectivityEval extends AbstractEval
+class ConnectivityEval extends AbstractEval implements DiscreteEvalInterface
 {
     const NAME = 'Connectivity';
 
