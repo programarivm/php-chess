@@ -39,7 +39,7 @@ class FarAdvancedPawnEval extends AbstractEval
             }
         }
 
-        $this->explain($this->result);
+        $this->elaborate($this->result);
     }
 
     /**
@@ -64,11 +64,11 @@ class FarAdvancedPawnEval extends AbstractEval
     }
 
     /**
-     * Explain the result.
+     * Elaborate on the result.
      *
      * @param array $result
      */
-    private function explain(array $result): void
+    private function elaborate(array $result): void
     {
         $singular = $plural = 'threatening to promote';
 
