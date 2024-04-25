@@ -33,7 +33,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "e4 and b3 are backward pawns.",
+            "Black has some backward pawn advantage.",
         ];
 
         $position = [
@@ -67,7 +67,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "d4 and e4 are backward pawns.",
+            "Black has some backward pawn advantage.",
         ];
 
         $position = [

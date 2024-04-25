@@ -12,6 +12,50 @@ class BackwardPawnEval extends AbstractEval implements DiscreteEvalInterface, In
 {
     const NAME = 'Backward pawn';
 
+    /**
+     * Phrase.
+     *
+     * @var array
+     */
+    protected array $phrase = [
+        Color::W => [
+            [
+                'diff' => 4,
+                'meaning' => "Black has a decisive backward pawn advantage.",
+            ],
+            [
+                'diff' => 3,
+                'meaning' => "Black has a significant backward pawn advantage.",
+            ],
+            [
+                'diff' => 2,
+                'meaning' => "Black has some backward pawn advantage.",
+            ],
+            [
+                'diff' => 1,
+                'meaning' => "Black has a tiny backward pawn advantage.",
+            ],
+        ],
+        Color::B => [
+            [
+                'diff' => -4,
+                'meaning' => "White has a decisive backward pawn advantage.",
+            ],
+            [
+                'diff' => -3,
+                'meaning' => "White has a significant backward pawn advantage.",
+            ],
+            [
+                'diff' => -2,
+                'meaning' => "White has some backward pawn advantage.",
+            ],
+            [
+                'diff' => -1,
+                'meaning' => "White has a tiny backward pawn advantage.",
+            ],
+        ],
+    ];
+
     private array $isolatedPawnEval;
 
     public function __construct(Board $board)
@@ -42,6 +86,8 @@ class BackwardPawnEval extends AbstractEval implements DiscreteEvalInterface, In
             }
         }
 
+        $this->explain($this->result);
+
         $this->elaborate($this->result);
     }
 
@@ -71,6 +117,21 @@ class BackwardPawnEval extends AbstractEval implements DiscreteEvalInterface, In
         }
 
         return false;
+    }
+
+    /**
+     * Explain the result.
+     *
+     * @param array $result
+     */
+    private function explain(array $result): void
+    {
+        $result[Color::W] = count($result[Color::W]);
+        $result[Color::B] = count($result[Color::B]);
+
+        if ($sentence = $this->sentence($result)) {
+            $this->phrases[] = $sentence;
+        }
     }
 
     /**
