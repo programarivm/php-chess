@@ -113,4 +113,23 @@ class FenExplanationTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $paragraph);
     }
+
+    /**
+     * @test
+     */
+    public function passed_pawn()
+    {
+        $expected = [
+            "Black has a tiny material advantage.",
+            "The black pieces are slightly better connected.",
+            "Black has a tiny passed pawn advantage.",
+            "The black king has the diagonal opposition preventing the advance of the other king.",
+        ];
+
+        $board = FenToBoardFactory::create('8/8/8/8/7p/7k/8/5K2 w - - 0 1');
+
+        $paragraph = (new FenExplanation($board))->getParagraph();
+
+        $this->assertSame($expected, $paragraph);
+    }
 }

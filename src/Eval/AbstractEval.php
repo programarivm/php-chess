@@ -34,6 +34,8 @@ abstract class AbstractEval
 
     protected array $phrases = [];
 
+    protected array $elaboration = [];
+
     public function getResult()
     {
         return $this->result;
@@ -42,6 +44,11 @@ abstract class AbstractEval
     public function getPhrases()
     {
         return $this->phrases;
+    }
+
+    public function getElaboration()
+    {
+        return $this->elaboration;
     }
 
     protected function diffPieces(array $array1, array $array2): array
@@ -104,11 +111,11 @@ abstract class AbstractEval
                     $str .= "$val, ";
                 }
             }
-            $this->phrases = [
+            $this->elaboration = [
                 $str,
             ];
         } elseif (count($sqs) === 1) {
-            $this->phrases = [
+            $this->elaboration = [
                 "$sqs[0] is {$singular}.",
             ];
         }
