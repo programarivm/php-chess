@@ -123,10 +123,11 @@ class FenExplanationTest extends AbstractUnitTestCase
             "Black has a tiny material advantage.",
             "The black pieces are slightly better connected.",
             "Black has a tiny advanced pawn advantage.",
-            "The black king has the diagonal opposition preventing the advance of the other king.",
+            "Black has a tiny far advanced pawn advantage.",
+            "White has a tiny isolated pawn advantage.",
         ];
 
-        $board = FenToBoardFactory::create('8/8/8/8/7p/7k/8/5K2 w - - 0 1');
+        $board = FenToBoardFactory::create('8/8/8/8/8/8/7p/K6k b - - 0 1');
 
         $paragraph = (new FenExplanation($board))->getParagraph();
 
@@ -143,6 +144,7 @@ class FenExplanationTest extends AbstractUnitTestCase
             "The black pieces are slightly better connected.",
             "Black has a tiny advanced pawn advantage.",
             "Black has a tiny far advanced pawn advantage.",
+            "White has a tiny isolated pawn advantage.",
         ];
 
         $board = FenToBoardFactory::create('8/8/8/8/8/8/7p/K6k b - - 0 1');
@@ -165,6 +167,25 @@ class FenExplanationTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('k7/7p/6p1/5p2/1PP5/P2P4/8/7K w - - 0 1');
+
+        $paragraph = (new FenExplanation($board))->getParagraph();
+
+        $this->assertSame($expected, $paragraph);
+    }
+
+    /**
+     * @test
+     */
+    public function isolated_pawn()
+    {
+        $expected = [
+            "White has a significant material advantage.",
+            "White is just controlling the center.",
+            "White has a tiny space advantage.",
+            "Black has a significant isolated pawn advantage.",
+        ];
+
+        $board = FenToBoardFactory::create('k7/5p2/8/8/P1P1P1P1/8/8/K7 w - - 0 1');
 
         $paragraph = (new FenExplanation($board))->getParagraph();
 
