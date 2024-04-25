@@ -33,7 +33,7 @@ class ProtectionEval extends AbstractEval implements DiscreteEvalInterface
                 if ($attackedPiece->getId() !== Piece::K) {
                     if (empty($attackedPiece->defendingPieces())) {
                         $this->result[$attackedPiece->oppColor()] += self::$value[$attackedPiece->getId()];
-                        $this->explain($attackedPiece);
+                        $this->elaborate($attackedPiece);
                     }
                 }
             }
@@ -45,7 +45,7 @@ class ProtectionEval extends AbstractEval implements DiscreteEvalInterface
      *
      * @param \Chess\Piece\AbstractPiece $piece
      */
-    private function explain(AbstractPiece $piece): void
+    private function elaborate(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);
         $phrase = ucfirst("$phrase is unprotected.");
