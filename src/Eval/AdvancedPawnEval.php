@@ -40,7 +40,7 @@ class AdvancedPawnEval extends AbstractEval implements DiscreteEvalInterface
             }
         }
 
-        $this->explain($this->result);
+        $this->elaborate($this->result);
     }
 
     /**
@@ -65,11 +65,11 @@ class AdvancedPawnEval extends AbstractEval implements DiscreteEvalInterface
     }
 
     /**
-     * Explain the result.
+     * Elaborate on the result.
      *
      * @param array $result
      */
-    private function explain(array $result): void
+    private function elaborate(array $result): void
     {
         $singular = mb_strtolower('an ' . self::NAME);
         $plural = mb_strtolower(self::NAME.'s');
