@@ -28,7 +28,7 @@ class IsolatedPawnEval extends AbstractEval implements DiscreteEvalInterface, In
             }
         }
 
-        $this->explain($this->result);
+        $this->elaborate($this->result);
     }
 
     private function isIsolatedPawn(P $pawn): int
@@ -51,7 +51,12 @@ class IsolatedPawnEval extends AbstractEval implements DiscreteEvalInterface, In
         return true;
     }
 
-    private function explain(array $result): void
+    /**
+     * Elaborate on the result.
+     *
+     * @param array $result
+     */
+    private function elaborate(array $result): void
     {
         $singular = mb_strtolower('an ' . self::NAME);
         $plural = mb_strtolower(self::NAME.'s');
