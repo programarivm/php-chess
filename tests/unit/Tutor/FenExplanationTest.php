@@ -132,4 +132,23 @@ class FenExplanationTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $paragraph);
     }
+
+    /**
+     * @test
+     */
+    public function far_advanced_pawn()
+    {
+        $expected = [
+            "Black has a tiny material advantage.",
+            "The black pieces are slightly better connected.",
+            "Black has a tiny advanced pawn advantage.",
+            "Black has a tiny far advanced pawn advantage.",
+        ];
+
+        $board = FenToBoardFactory::create('8/8/8/8/8/8/7p/K6k b - - 0 1');
+
+        $paragraph = (new FenExplanation($board))->getParagraph();
+
+        $this->assertSame($expected, $paragraph);
+    }
 }

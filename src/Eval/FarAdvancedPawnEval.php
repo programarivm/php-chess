@@ -20,6 +20,50 @@ class FarAdvancedPawnEval extends AbstractEval
     const NAME = 'Far-advanced pawn';
 
     /**
+     * Phrase.
+     *
+     * @var array
+     */
+    protected array $phrase = [
+        Color::W => [
+            [
+                'diff' => 4,
+                'meaning' => "White has a decisive far advanced pawn advantage.",
+            ],
+            [
+                'diff' => 3,
+                'meaning' => "White has a significant far advanced pawn advantage.",
+            ],
+            [
+                'diff' => 2,
+                'meaning' => "White has some far advanced pawn advantage.",
+            ],
+            [
+                'diff' => 1,
+                'meaning' => "White has a tiny far advanced pawn advantage.",
+            ],
+        ],
+        Color::B => [
+            [
+                'diff' => -4,
+                'meaning' => "Black has a decisive far advanced pawn advantage.",
+            ],
+            [
+                'diff' => -3,
+                'meaning' => "Black has a significant far advanced pawn advantage.",
+            ],
+            [
+                'diff' => -2,
+                'meaning' => "Black has some far advanced pawn advantage.",
+            ],
+            [
+                'diff' => -1,
+                'meaning' => "Black has a tiny far advanced pawn advantage.",
+            ],
+        ],
+    ];
+
+    /**
      * Constructor.
      *
      * @param \Chess\Variant\Classical\Board $board
@@ -38,6 +82,8 @@ class FarAdvancedPawnEval extends AbstractEval
                 $this->result[$piece->getColor()][] = $piece->getSq();
             }
         }
+
+        $this->explain($this->result);
 
         $this->elaborate($this->result);
     }
@@ -61,6 +107,21 @@ class FarAdvancedPawnEval extends AbstractEval
         }
 
         return false;
+    }
+
+    /**
+     * Explain the result.
+     *
+     * @param array $result
+     */
+    private function explain(array $result): void
+    {
+        $result[Color::W] = count($result[Color::W]);
+        $result[Color::B] = count($result[Color::B]);
+
+        if ($sentence = $this->sentence($result)) {
+            $this->phrases[] = $sentence;
+        }
     }
 
     /**
