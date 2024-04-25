@@ -36,7 +36,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The pawn on e4 is unprotected.",
+            "Black has a tiny protection advantage.",
         ];
 
         $board = new Board();
@@ -94,8 +94,8 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The knight on e5 is unprotected.",
-            "The bishop on b5 is unprotected.",
+            "Black has a significant protection advantage.",
+            "Black has a decisive protection advantage.",
         ];
 
         $board = new Board();
@@ -124,8 +124,8 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The pawn on e5 is unprotected.",
-            "The knight on e4 is unprotected.",
+            "White has a tiny protection advantage.",
+            "White has a decisive protection advantage.",
         ];
 
         $board = new Board();
