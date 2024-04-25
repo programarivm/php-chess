@@ -42,7 +42,7 @@ class BackwardPawnEval extends AbstractEval implements DiscreteEvalInterface, In
             }
         }
 
-        $this->explain($this->result);
+        $this->elaborate($this->result);
     }
 
     private function isDefensible(AbstractPiece $pawn, string $file): bool
@@ -73,7 +73,12 @@ class BackwardPawnEval extends AbstractEval implements DiscreteEvalInterface, In
         return false;
     }
 
-    private function explain(array $result): void
+    /**
+     * Elaborate on the result.
+     *
+     * @param array $result
+     */
+    private function elaborate(array $result): void
     {
         $singular = mb_strtolower('a ' . self::NAME);
         $plural = mb_strtolower(self::NAME.'s');
