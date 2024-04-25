@@ -78,12 +78,13 @@ class ProtectionEval extends AbstractEval implements DiscreteEvalInterface
                 if ($attackedPiece->getId() !== Piece::K) {
                     if (empty($attackedPiece->defendingPieces())) {
                         $this->result[$attackedPiece->oppColor()] += self::$value[$attackedPiece->getId()];
-                        $this->explain($this->result);
                         $this->elaborate($attackedPiece);
                     }
                 }
             }
         }
+
+        $this->explain($this->result);
     }
 
     /**

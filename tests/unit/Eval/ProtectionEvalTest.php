@@ -94,7 +94,6 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "Black has a significant protection advantage.",
             "Black has a decisive protection advantage.",
         ];
 
@@ -124,7 +123,6 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "White has a tiny protection advantage.",
             "White has a decisive protection advantage.",
         ];
 
