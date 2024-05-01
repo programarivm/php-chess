@@ -1066,6 +1066,30 @@ class Board extends \SplObjectStorage
     }
 
     /**
+     * Checks out if no capture has been made and no pawn has been moved in the
+     * last fifty moves.
+     *
+     * @return bool
+     */
+    public function isFiftyMoveDraw(): bool
+    {
+        foreach (array_reverse($this->getHistory()) as $key => $value) {
+            if ($key < 50) {
+                if ($value->move->isCapture) {
+                    return  false;
+                } elseif (
+                    $value->move->type === $this->move->case(Move::PAWN) ||
+                    $value->move->type === $this->move->case(Move::PAWN_PROMOTES)
+                ) {
+                    return  false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Returns the legal FEN positions of a piece.
      *
      * @param string $sq
