@@ -2931,4 +2931,16 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->legal('e1'));
     }
+
+    /**
+     * @test
+     */
+    public function is_fifty_move_draw_C68()
+    {
+        $C68 = file_get_contents(self::DATA_FOLDER.'/sample/C68.pgn');
+
+        $board = (new SanPlay($C68))->validate()->getBoard();
+
+        $this->assertEquals(false, $board->isFiftyMoveDraw());
+    }
 }
