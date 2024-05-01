@@ -1073,8 +1073,10 @@ class Board extends \SplObjectStorage
      */
     public function isFiftyMoveDraw(): bool
     {
+        return count($this->history) >= 100;
+
         foreach (array_reverse($this->getHistory()) as $key => $value) {
-            if ($key < 50) {
+            if ($key < 100) {
                 if ($value->move->isCapture) {
                     return  false;
                 } elseif (
