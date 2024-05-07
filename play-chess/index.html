@@ -70,7 +70,9 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Play Chess</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#play-like-a-pro">Play Like a Pro</a>
+    <li class="toctree-l2"><a class="reference internal" href="#play-randomly">Play Randomly</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#play-like-a-grandmaster">Play Like a Grandmaster</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#play-computer">Play Computer</a>
     </li>
@@ -101,44 +103,62 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="play-chess">Play Chess</h1>
-<h2 id="play-like-a-pro">Play Like a Pro</h2>
-<p>✨ The <a href="https://github.com/chesslablab/chess-server/blob/main/data/players.json">players.json</a> file in the <a href="https://github.com/chesslablab/chess-server">Chess Server</a> contains thousands of games by titled FIDE players. This file can be generated and customized with the command line tools available in the <a href="https://github.com/chesslablab/chess-data">Chess Data</a> repo.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/GrandmasterTest.php">Chess\Grandmaster</a> figures out the next move to be made based on the JSON file that is passed to its constructor. Please make sure to first create one for it or feel free to use the players.json linked above.</p>
-<pre><code class="language-php">use Chess\Grandmaster;
+<h2 id="play-randomly">Play Randomly</h2>
+<p>✨ Sometimes you want to play a random game of chess.</p>
+<p>You could loop 50 times and play a move by instantiating the <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Computer/RandomMoveTest.php">Chess\Computer\RandomMove</a> class like in the example below.</p>
+<pre><code class="language-php">use Chess\Computer\RandomMove;
+use Chess\Variant\Classical\Board;
+
+$board = new Board();
+
+for ($i = 0; $i &lt; 50; $i++) {
+    if ($move = (new RandomMove($board))-&gt;move()) {
+        $board-&gt;play($board-&gt;getTurn(), $move-&gt;pgn);
+    }
+}
+
+echo $board-&gt;getMovetext();
+</code></pre>
+<pre><code class="language-text">1.c4 g6 2.Nf3 Nf6 3.d4 c5 4.Nfd2 Rg8 5.Qa4 Rg7 6.a3 Qc7 7.Kd1 g5 8.h3 Kd8 9.f3 Nc6 10.f4 a6 11.Qxc6 Rg6 12.e3 Bg7 13.Nb3 h6 14.a4 e6 15.g3 Ne4 16.Ke2 g4 17.N3d2 e5 18.Qe6 Bf6 19.Kd1 h5 20.Na3 Bh8 21.dxe5 a5 22.b4 Nxg3 23.Nf3 Qd6+ 24.exd6 Rb8
+</code></pre>
+<p>The result obtained is a 24 move game since a move is considered to be completed after both players have played a turn.</p>
+<h2 id="play-like-a-grandmaster">Play Like a Grandmaster</h2>
+<p>✨ The <a href="https://github.com/chesslablab/chess-server/blob/main/data/players.json">players.json</a> file in the <a href="https://github.com/chesslablab/chess-server">Chess Server</a> contains thousands of games by titled FIDE players. This file can be generated with the command line tools available in the <a href="https://github.com/chesslablab/chess-data">Chess Data</a> repo.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/src/Computer/GrandmasterMove.php">Chess\Computer\GrandmasterMove</a> figures out the next move to be made based on the players.json file that is passed to its constructor.</p>
+<pre><code class="language-php">use Chess\Computer\GrandmasterMove;
 use Chess\Variant\Classical\Board;
 
 $board = new Board();
 $board-&gt;play('w', 'e4');
 
-$move = (new Grandmaster(__DIR__.'/../data/players.json'))-&gt;move($board);
+$gmMove = (new GrandmasterMove(__DIR__.'/../data/players.json'))-&gt;move($board);
 
-print_r($move);
+print_r($gmMove);
 </code></pre>
 <pre><code class="language-text">stdClass Object
 (
-    [move] =&gt; e5
+    [pgn] =&gt; c5
     [game] =&gt; Array
         (
-            [Event] =&gt; Barmen-B
-            [Site] =&gt; Barmen
-            [Date] =&gt; 1905.??.??
-            [White] =&gt; Neumann, Augustin
-            [Black] =&gt; Spielmann, Rudolf
-            [Result] =&gt; 1/2-1/2
-            [ECO] =&gt; C63
-            [movetext] =&gt; 1.e4 e5 2.Nf3 Nc6 3.Bb5 f5 4.exf5 e4 5.Qe2 Qe7 6.Bxc6 bxc6 7.Nd4 Nf6 8.O-O c5 9.Nb5 d5 10.f3 c6 11.N5c3 Bxf5 12.fxe4 Bxe4 13.Nxe4 Qxe4 14.Qa6 Qe6 15.d3 Be7 16.Bf4 O-O 17.Nd2 Nh5 18.Rae1 Qg4 19.h3 Qg6 20.Be5 Bh4 21.Rxf8+ Rxf8 22.Rf1 Rxf1+ 23.Kxf1 Qe6 24.Nf3 Bg3 25.Bxg3 Nxg3+ 26.Kf2 Nf5 27.Kg1 h6 28.Qxa7 Qe3+ 29.Kh2 Qf4+ 30.Kg1 Qe3+ 31.Kh2 Qf2 32.Qd7 Ne3 33.Qe8+ Kh7
+            [Event] =&gt; Tilburg
+            [Site] =&gt; Tilburg
+            [Date] =&gt; 1993.??.??
+            [White] =&gt; Morozevich, Alexander
+            [Black] =&gt; Adams, Michael
+            [Result] =&gt; 1-0
+            [ECO] =&gt; B23
+            [movetext] =&gt; 1.e4 c5 2.Nc3 Nc6 3.f4 g6 4.Nf3 Bg7 5.Bb5 Nd4 6.Nxd4 cxd4 7.Ne2 a6 8.Ba4 b5 9.Bb3 e6 10.O-O Ne7 11.d3 O-O 12.Qe1 f5 13.Bd2 Nc6 14.Kh1 Bb7 15.Ng1 h6 16.Nf3 Kh7 17.Qg3 Qe7 18.Rae1 a5 19.a3 Rab8 20.Nh4 Qf7 21.Qh3 Ba8 22.Rf3 a4 23.Ba2 b4 24.Bc1 b3 25.cxb3 axb3 26.Bb1 d6 27.Bd2 Kg8 28.g4 Ne7 29.gxf5 gxf5 30.Rg3 Kh7 31.Nf3 Bf6 32.Ng5+ Bxg5 33.fxg5 Ng6 34.Qxh6+ Kg8 35.h4 f4 36.Rh3 Rb7 37.h5 Ne5 38.Rg1 Rc7 39.Rh4 Qe8 40.g6
         )
 
 )
 </code></pre>
-<p>1.e4 e5 is the move that a grandmaster would play. As you can see in this example, Chess\Grandmaster could find a response to 1.e4 returning the corresponding game's metadata.</p>
 <p>🎉 Let's now put our knowledge of chess openings to the test.</p>
 <h2 id="play-computer">Play Computer</h2>
-<p>✨ UCI engines not only allow to play chess with the computer but are also a helpful tool when analyzing chess games.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/UciEngine/UciEngineTest.php">Chess\UciEngine\UciEngine</a> allows to play chess against the Stockfish chess engine using PHP, but first things first, make sure to install Stockfish on your computer.</p>
+<p>✨ The Universal Chess Interface (UCI) is an open communication protocol that enables chess engines to communicate with user interfaces.</p>
+<p>PHP Chess provides the <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/UciEngine/UciEngineTest.php">Chess\UciEngine\UciEngine</a> class representing an UCI engine. To follow this tutorial make sure to install Stockfish if you haven't already.</p>
 <pre><code class="language-text">sudo apt-get install stockfish
 </code></pre>
-<p>Then, you're set up to play chess against Stockfish as described in the following example.</p>
+<p>Then, you are set up to play chess against the computer as described in the following example.</p>
 <pre><code class="language-php">use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
 use Chess\Variant\Classical\Board;
@@ -156,7 +176,7 @@ echo $board-&gt;getMovetext();
 </code></pre>
 <pre><code class="language-text">1.e4 Nf6
 </code></pre>
-<p>PHP Chess classes can be combined to do different things. For example, you may want to play against Stockfish from this FEN position published in your favorite online publication.</p>
+<p>You may want to play against Stockfish starting from a particular FEN with the help of <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenToBoardFactoryTest.php">Chess\FenToBoardFactory</a>.</p>
 <pre><code class="language-php">use Chess\FenToBoardFactory;
 use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
@@ -173,8 +193,8 @@ echo $board-&gt;getMovetext();
 </code></pre>
 <pre><code class="language-text">1.Rb1
 </code></pre>
-<p>The FEN is converted to a chessboard object as described in <a href="https://php-chess.docs.chesslablab.org/convert-fen-to-board/">Convert FEN to Board</a>. The <code>Skill Level</code> is set to <code>20</code> and the depth is set to <code>12</code> in order to get a more accurate response from Stockfish.</p>
-<p>The same thing goes for PGN annotated games. This is how to play against Stockfish after loading a SAN movetext into a chess board object.</p>
+<p>The FEN is converted to a chess board object as described in the <a href="https://php-chess.docs.chesslablab.org/data-conversion/#fen-to-board">Data Conversion</a> section. Then Stockfish's depth limit is set to <code>12</code> and the skill level to <code>20</code>.</p>
+<p>The same thing goes to starting a game from a particular SAN movetext. As you can see in the example below, <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Play/SanPlayTest.php">Chess\Play\SanPlay</a> is used for this purpose.</p>
 <pre><code class="language-php">use Chess\Play\SanPlay;
 use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
@@ -195,7 +215,6 @@ echo $board-&gt;getMovetext();
 </code></pre>
 <pre><code class="language-text">1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7 8.h3
 </code></pre>
-<p>As you can see, Stockfish responds with 8.h3.</p>
 <p>🎉 Can you beat the computer? Keep it up!</p>
               
             </div>

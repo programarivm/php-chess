@@ -103,16 +103,15 @@
 
 $board = new Board();
 </code></pre>
-<p>Then, you're set up to play classical chess either in PGN or LAN format.</p>
+<p>If you have ever attended a chess tournament, you've probably noticed that each player writes down their move in PGN format on a piece of paper. PGN stands for Portable Game Notation and is a human-readable format that allows chess players to read and write chess games. When it comes to computer chess, though, a more appropriate machine-readable format called Long Algebraic Notation (LAN) is often used instead.</p>
+<p>Be that as it may, you're already set up to play classical chess either in PGN or LAN format.</p>
 <p>In PGN format:</p>
 <pre><code class="language-php">$board-&gt;play('w', 'e4');
 </code></pre>
 <p>In LAN format:</p>
 <pre><code class="language-php">$board-&gt;playLan('w', 'e2e4');
 </code></pre>
-<p>Have you ever attended a chess tournament or watched one streamed on a website? If so, you've probably noticed that each player writes down their move on a piece of paper. PGN stands for Portable Game Notation and is a human-readable format that allows chess players to read and write chess games. Computers and graphical user interfaces (GUI) often prefer an easy-to-use, machine-readable format called Long Algebraic Notation (LAN) instead.</p>
-<p>So, for example, if you're integrating a JavaScript chessboard with a backend, you may want to make the chess moves in LAN format. On the other hand, PGN is more suitable for loading games annotated by humans.</p>
-<p>Be that as it may, every time a move is made, the state of the board changes.</p>
+<p>Every time a move is made, the state of the board changes.</p>
 <pre><code class="language-php">var_dump($board-&gt;toFen());
 </code></pre>
 <pre><code class="language-text">string(55) &quot;rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3&quot;

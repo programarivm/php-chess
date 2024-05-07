@@ -66,9 +66,11 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Chess Tutor</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#explain-fen">Explain FEN</a>
+    <li class="toctree-l2"><a class="reference internal" href="#explain-a-fen-position">Explain a FEN Position</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#explain-pgn">Explain PGN</a>
+    <li class="toctree-l2"><a class="reference internal" href="#explain-a-pgn-move">Explain a PGN Move</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#explain-a-good-pgn-move">Explain a Good PGN Move</a>
     </li>
     </ul>
                 </li>
@@ -101,9 +103,9 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="chess-tutor">Chess Tutor</h1>
-<h2 id="explain-fen">Explain FEN</h2>
+<h2 id="explain-a-fen-position">Explain a FEN Position</h2>
 <p>✨ Chess beginners often think they can checkmate the opponent's king quickly. However, there are so many different things to consider in order to understand a position.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/FenEvaluationTest.php">Chess\Tutor\FenEvaluation</a> helps you improve your chess thinking process by evaluating a FEN position in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a>.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/FenEvaluationTest.php">Chess\Tutor\FenEvaluation</a> helps you improve your chess thinking process by evaluating a FEN position in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a> like in the example below.</p>
 <pre><code class="language-php">use Chess\FenToBoardFactory;
 use Chess\Tutor\FenEvaluation;
 
@@ -115,13 +117,13 @@ $text = implode(' ', $paragraph);
 
 echo $text;
 </code></pre>
-<pre><code class="language-text">White has a significant material advantage. White has a significant control of the center. The white pieces are somewhat better connected. The white player is pressuring a little bit more squares than its opponent. White has some absolute pin advantage. White has the bishop pair. The knight on e6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check. Overall, 6 heuristic evaluation features are favoring White while 0 are favoring Black.
+<pre><code class="language-text">White has a decisive material advantage. White has a slightly better control of the center. The white pieces are significantly better connected. The white player is pressuring a little bit more squares than its opponent. White has a slight absolute pin advantage. White has the bishop pair. The knight on e6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check. Overall, 6 heuristic evaluation features are favoring White while 0 are favoring Black.
 </code></pre>
 <p>A heuristic evaluation is a quick numerical estimate of a chess position that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail as long as they are based on probabilities more than anything else.</p>
 <p>🎉 This is a form of abductive reasoning.</p>
-<h2 id="explain-pgn">Explain PGN</h2>
-<p>✨ Typically, chess engines won't provide an explanation in easy-to-understand language about why a move is good.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/PgnEvaluationTest.php">Chess\Tutor\PgnEvaluation</a> can explain the implications of making a particular move in terms of <a href="https://php-chess.docs.chesslablab.org/heuristics/">chess concepts</a> and combined with an UCI engine it will explain the why of a good move. Stockfish has been set up with a skill level of <code>20</code> and a depth of <code>15</code> to suggest a good move. In order to use this functionality, make sure to install Stockfish &gt;= 15.1 as it is described in <a href="https://php-chess.docs.chesslablab.org/play-computer/">Play Computer</a>.</p>
+<h2 id="explain-a-pgn-move">Explain a PGN Move</h2>
+<p>✨ Typically, chess engines won't provide an explanation in easy-to-understand language about how a move changes the position on the board.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/PgnEvaluationTest.php">Chess\Tutor\PgnEvaluation</a> explains how a particular move changes the position.</p>
 <pre><code class="language-php">use Chess\Play\SanPlay;
 use Chess\Tutor\PgnEvaluation;
 
@@ -135,9 +137,29 @@ $text = implode(' ', $paragraph);
 
 echo $text;
 </code></pre>
-<pre><code class="language-text">Black has some space advantage. White has a small protection advantage. The pawn on c5 is unprotected. Overall, 2 heuristic evaluation features are favoring White while 2 are favoring Black.
+<pre><code class="language-text">Black has a slight space advantage. White has a slight protection advantage. The pawn on c5 is unprotected. Overall, 2 heuristic evaluation features are favoring White while 2 are favoring Black.
 </code></pre>
 <p>The resulting text may sound a little robotic but it can be easily rephrased by the AI of your choice to make it sound more human-like.</p>
+<h2 id="explain-a-good-pgn-move">Explain a Good PGN Move</h2>
+<p>✨ It's often difficult for beginners to understand why a move is good.</p>
+<p>With the help of an UCI engine <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/GoodPgnEvaluationTest.php">Chess\Tutor\GoodPgnEvaluation</a> can explain the why of a good move.</p>
+<pre><code class="language-php">$movetext = '1.d4 d5 2.c4 Nc6 3.cxd5 Qxd5 4.e3 e5 5.Nc3 Bb4 6.Bd2 Bxc3 7.Bxc3 exd4 8.Ne2';
+
+$limit = (new Limit())-&gt;setDepth(12);
+$stockfish = new UciEngine('/usr/games/stockfish');
+$board = (new SanPlay($movetext))-&gt;validate()-&gt;getBoard();
+
+$goodPgnEvaluation = new GoodPgnEvaluation($limit, $stockfish, $board);
+
+$pgn = $goodPgnEvaluation-&gt;getPgn();
+$paragraph = implode(' ', $goodPgnEvaluation-&gt;getParagraph());
+
+echo $pgn . PHP_EOL;
+echo $paragraph . PHP_EOL;
+</code></pre>
+<pre><code class="language-text">Bg4
+The black player is pressuring a little bit more squares than its opponent. The black pieces are timidly approaching the other side's king. Black has a moderate relative pin advantage. The knight on e2 is pinned shielding a piece that is more valuable than the attacking piece. Overall, 4 heuristic evaluation features are favoring White while 9 are favoring Black.
+</code></pre>
 <p>🎉 Let's do this!</p>
               
             </div>
