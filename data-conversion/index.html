@@ -105,8 +105,7 @@
                 <h1 id="data-conversion">Data Conversion</h1>
 <h2 id="fen-to-board">FEN to Board</h2>
 <p>✨ FEN stands for Forsyth-Edwards Notation and is the standard way for describing chess positions using text strings.</p>
-<p>Almost everything in PHP Chess can be done with a chessboard object. At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the <a href="https://github.com/chesslablab/php-chess/blob/main/src/FenToBoardFactory.php">Chess\FenToBoardFactory</a> class according to the variants supported.</p>
-<p>Let's continue a classical game from the FEN position of B54, which is the ECO code for "Sicilian Defense: Modern Variations, Main Line" previously discussed in <a href="https://php-chess.docs.chesslablab.org/read-pgn/">Read PGN</a>.</p>
+<p>At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the <a href="https://github.com/chesslablab/php-chess/blob/main/src/FenToBoardFactory.php">Chess\FenToBoardFactory</a> class according to the variants supported.</p>
 <pre><code class="language-php">use Chess\FenToBoardFactory;
 
 $board = FenToBoardFactory::create('rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -');
@@ -118,7 +117,7 @@ echo $board-&gt;toFen();
 </code></pre>
 <pre><code class="language-text">r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
 </code></pre>
-<p>It is worth saying that after 5.Nc3 Nc6, B54 has turned into B56 which is the ECO code for "Sicilian Defense: Classical Variation" and the history contains two moves only.</p>
+<p>When a single parameter is passed in the form of a FEN string into the factory create method, it will be assumed that you want to create a classical chess board object. In this example the game history contains two moves only.</p>
 <pre><code class="language-php">var_dump($board-&gt;getHistory());
 </code></pre>
 <pre><code class="language-text">array(2) {

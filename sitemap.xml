@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://php-chess.docs.chesslablab.org/</loc>
-         <lastmod>2024-05-07</lastmod>
+         <lastmod>2024-05-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://php-chess.docs.chesslablab.org/chess-tutor/</loc>
-         <lastmod>2024-05-07</lastmod>
+         <lastmod>2024-05-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://php-chess.docs.chesslablab.org/data-conversion/</loc>
-         <lastmod>2024-05-07</lastmod>
+         <lastmod>2024-05-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://php-chess.docs.chesslablab.org/getting-started/</loc>
-         <lastmod>2024-05-07</lastmod>
+         <lastmod>2024-05-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://php-chess.docs.chesslablab.org/heuristics/</loc>
-         <lastmod>2024-05-07</lastmod>
+         <lastmod>2024-05-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://php-chess.docs.chesslablab.org/installation/</loc>
-         <lastmod>2024-05-07</lastmod>
+         <lastmod>2024-05-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://php-chess.docs.chesslablab.org/play-chess/</loc>
-         <lastmod>2024-05-07</lastmod>
+         <lastmod>2024-05-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://php-chess.docs.chesslablab.org/read-moves/</loc>
-         <lastmod>2024-05-07</lastmod>
+         <lastmod>2024-05-08</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
