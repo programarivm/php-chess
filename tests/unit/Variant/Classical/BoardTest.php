@@ -2932,4 +2932,74 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertTrue($board->isFiftyMoveDraw());
     }
+
+    /**
+     * @test
+     */
+    public function is_dead_position_draw_K_vs_k()
+    {
+        $board = FenToBoardFactory::create('8/5k2/8/8/8/2K5/8/8 w - - 0 1');
+
+        $this->assertTrue($board->isDeadPositionDraw());
+    }
+
+    /**
+     * @test
+     */
+    public function is_dead_position_draw_K_B_vs_k()
+    {
+        $board = FenToBoardFactory::create('8/5k2/8/8/8/2KB4/8/8 w - - 0 1');
+
+        $this->assertTrue($board->isDeadPositionDraw());
+    }
+
+    /**
+     * @test
+     */
+    public function is_dead_position_draw_K_B_vs_k_b()
+    {
+        $board = FenToBoardFactory::create('k2B/b1K5/8/8/8/8/8/8 w - - 0 1');
+
+        $this->assertTrue($board->isDeadPositionDraw());
+    }
+
+    /**
+     * @test
+     */
+    public function is_dead_position_draw_K_B_B_vs_k()
+    {
+        $board = FenToBoardFactory::create('8/5k2/8/8/8/2KB4/4B3/8 w - - 0 1');
+
+        $this->assertTrue($board->isDeadPositionDraw());
+    }
+
+    /**
+     * @test
+     */
+    public function is_not_dead_position_draw_K_B_vs_k_b()
+    {
+        $board = FenToBoardFactory::create('k7/b1K5/8/8/8/8/4B3/8 w - - 0 1');
+
+        $this->assertFalse($board->isDeadPositionDraw());
+    }
+
+    /**
+     * @test
+     */
+    public function is_not_dead_position_draw_K_P_vs_k()
+    {
+        $board = FenToBoardFactory::create('8/5k2/8/8/8/2KP4/8/8 w - - 0 1');
+
+        $this->assertFalse($board->isDeadPositionDraw());
+    }
+
+    /**
+     * @test
+     */
+    public function is_not_dead_position_draw_K_B_B_vs_k()
+    {
+        $board = FenToBoardFactory::create('8/5k2/8/8/8/2KBB3/8/8 w - - 0 1');
+
+        $this->assertFalse($board->isDeadPositionDraw());
+    }
 }

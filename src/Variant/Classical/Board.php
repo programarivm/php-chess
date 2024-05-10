@@ -403,6 +403,37 @@ class Board extends AbstractPgnParser
     }
 
     /**
+     * Returns true if no sequence of legal moves can lead to checkmate.
+     *
+     * @return bool
+     */
+    public function isDeadPositionDraw(): bool
+    {
+        $count = count($this->getPieces());
+        if ($count === 2) {
+            return true;
+        } elseif ($count === 3) {
+            foreach ($this->getPieces() as $piece) {
+                if ($piece->getId() === Piece::N) {
+                    return true;
+                } elseif ($piece->getId() === Piece::B) {
+                    return true;
+                }
+            }
+        } elseif ($count === 4) {
+            $colors = '';
+            foreach ($this->getPieces() as $piece) {
+                if ($piece->getId() === Piece::B) {
+                    $colors .= Square::color($piece->getSq());
+                }
+            }
+            return $colors === Color::W . Color::W || $colors === Color::B . Color::B;
+        }
+
+        return false;
+    }
+
+    /**
      * Returns the legal squares of a piece.
      *
      * @param string $sq
