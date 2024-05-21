@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://php-chess.docs.chesslablab.org/</loc>
+         <loc>https://chesslablab.github.io/php-chess/</loc>
          <lastmod>2024-05-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://php-chess.docs.chesslablab.org/chess-tutor/</loc>
+         <loc>https://chesslablab.github.io/php-chess/chess-tutor/</loc>
          <lastmod>2024-05-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://php-chess.docs.chesslablab.org/data-conversion/</loc>
+         <loc>https://chesslablab.github.io/php-chess/data-conversion/</loc>
          <lastmod>2024-05-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://php-chess.docs.chesslablab.org/getting-started/</loc>
+         <loc>https://chesslablab.github.io/php-chess/getting-started/</loc>
          <lastmod>2024-05-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://php-chess.docs.chesslablab.org/heuristics/</loc>
+         <loc>https://chesslablab.github.io/php-chess/heuristics/</loc>
          <lastmod>2024-05-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://php-chess.docs.chesslablab.org/installation/</loc>
+         <loc>https://chesslablab.github.io/php-chess/installation/</loc>
          <lastmod>2024-05-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://php-chess.docs.chesslablab.org/play-chess/</loc>
+         <loc>https://chesslablab.github.io/php-chess/play-chess/</loc>
          <lastmod>2024-05-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://php-chess.docs.chesslablab.org/read-moves/</loc>
+         <loc>https://chesslablab.github.io/php-chess/read-moves/</loc>
          <lastmod>2024-05-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
