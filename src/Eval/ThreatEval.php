@@ -3,11 +3,15 @@
 namespace Chess\Eval;
 
 use Chess\Piece\AbstractPiece;
+use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 
-class ThreatEval extends AbstractEval implements ExplainEvalInterface
+class ThreatEval extends AbstractEval implements
+    ElaborateEvalInterface,
+    ExplainEvalInterface
 {
+    use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
     const NAME = 'Threat';
@@ -58,14 +62,23 @@ class ThreatEval extends AbstractEval implements ExplainEvalInterface
             if ($piece->oppColor() === Color::W) {
                 if ($diff > 0) {
                     $this->result[Color::W] += $diff;
+                    $this->elaborate($piece);
                 }
             } else {
                 if ($diff < 0) {
                     $this->result[Color::B] += abs($diff);
+                    $this->elaborate($piece);
                 }
             }
         }
 
         $this->explain($this->result);
+    }
+
+    private function elaborate(AbstractPiece $piece): void
+    {
+        $phrase = PiecePhrase::create($piece);
+
+        $this->elaboration[] = ucfirst("$phrase is being threatened and may be lost if not defended properly.");
     }
 }
