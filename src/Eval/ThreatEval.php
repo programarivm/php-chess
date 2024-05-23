@@ -30,30 +30,28 @@ class ThreatEval extends AbstractEval implements ExplainEvalInterface
         ];
 
         foreach ($this->board->getPieces() as $piece) {
-            $sq = $piece->getSq();
-            $attackingPieces = $piece->attackingPieces();
             $clone = unserialize(serialize($this->board));
             $clone->setTurn($piece->oppColor());
+
             $threat = [
                 Color::W => 0,
                 Color::B => 0,
             ];
 
-            do {
-                if ($attackingPiece = current($attackingPieces)) {
-                    $capturedPiece = $clone->getPieceBySq($sq);
-                    if ($clone->playLan($clone->getTurn(), $attackingPiece->getSq() . $sq)) {
-                        $threat[$attackingPiece->getColor()] += self::$value[$capturedPiece->getId()];
-                        if ($defendingPiece = current($piece->defendingPieces())) {
-                            $capturedPiece = $clone->getPieceBySq($sq);
-                            if ($clone->playLan($clone->getTurn(), $defendingPiece->getSq() . $sq)) {
-                                $threat[$defendingPiece->getColor()] += self::$value[$capturedPiece->getId()];
-                            }
+            $attackingPiece = current($piece->attackingPieces());
+            while ($attackingPiece) {
+                $capturedPiece = $clone->getPieceBySq($piece->getSq());
+                if ($clone->playLan($clone->getTurn(), $attackingPiece->getSq() . $piece->getSq())) {
+                    $threat[$attackingPiece->getColor()] += self::$value[$capturedPiece->getId()];
+                    if ($defendingPiece = current($piece->defendingPieces())) {
+                        $capturedPiece = $clone->getPieceBySq($piece->getSq());
+                        if ($clone->playLan($clone->getTurn(), $defendingPiece->getSq() . $piece->getSq())) {
+                            $threat[$defendingPiece->getColor()] += self::$value[$capturedPiece->getId()];
                         }
-                        $attackingPieces = $clone->getPieceBySq($sq)->attackingPieces();
                     }
+                    $attackingPiece = current($clone->getPieceBySq($piece->getSq())->attackingPieces());
                 }
-            } while ($attackingPieces);
+            }
 
             $diff = $threat[Color::W] - $threat[Color::B];
 
