@@ -3,14 +3,10 @@
 namespace Chess\Eval;
 
 use Chess\Piece\AbstractPiece;
-use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
 
-class ThreatEval extends AbstractEval implements
-    ElaborateEvalInterface,
-    ExplainEvalInterface
+class ThreatEval extends AbstractEval implements ExplainEvalInterface
 {
-    use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
     const NAME = 'Threat';
@@ -33,48 +29,28 @@ class ThreatEval extends AbstractEval implements
         ];
 
         foreach ($this->board->getPieces() as $piece) {
-            $countAttacking = count($piece->attackingPieces());
-            $countDefending = count($piece->defendingPieces());
-            $diff = $countAttacking - $countDefending;
-            if ($diff > 0 && $countDefending > 0) {
-                $valueDefending = $this->valueDefending($piece->defendingPieces());
-                $valueAttacking = $this->valueAttacking($piece->attackingPieces());
-                if (($valueDefending + self::$value[$piece->getId()]) >= $valueAttacking) {
-                    $this->result[$piece->oppColor()] += $diff;
-                    $this->elaborate($piece);
+            $sq = $piece->getSq();
+            $attackingPieces = $piece->attackingPieces();
+            $clone = unserialize(serialize($this->board));
+            $clone->setTurn($piece->oppColor());
+
+            do {
+                if ($attackingPiece = current($attackingPieces)) {
+                    $capturedPiece = $clone->getPieceBySq($sq);
+                    if ($clone->playLan($clone->getTurn(), $attackingPiece->getSq() . $sq)) {
+                        $this->result[$attackingPiece->getColor()] += self::$value[$capturedPiece->getId()];
+                        if ($defendingPiece = current($piece->defendingPieces())) {
+                            $capturedPiece = $clone->getPieceBySq($sq);
+                            if ($clone->playLan($clone->getTurn(), $defendingPiece->getSq() . $sq)) {
+                                $this->result[$defendingPiece->getColor()] += self::$value[$capturedPiece->getId()];
+                            }
+                        }
+                        $attackingPieces = $clone->getPieceBySq($sq)->attackingPieces();
+                    }
                 }
-            }
+            } while ($attackingPieces);
         }
 
         $this->explain($this->result);
-    }
-
-    private function valueDefending(array $pieces)
-    {
-        $sum = 0;
-        foreach ($pieces as $piece) {
-            $sum += self::$value[$piece->getId()];
-        }
-
-        return $sum;
-    }
-
-    private function valueAttacking(array $pieces)
-    {
-        $values = [];
-        foreach ($pieces as $piece) {
-            $values[] = self::$value[$piece->getId()];
-        }
-        sort($values);
-        array_pop($values);
-
-        return array_sum($values);
-    }
-
-    private function elaborate(AbstractPiece $piece): void
-    {
-        $phrase = PiecePhrase::create($piece);
-
-        $this->elaboration[] = ucfirst("$phrase is being threatened and may be lost if not defended properly.");
     }
 }
