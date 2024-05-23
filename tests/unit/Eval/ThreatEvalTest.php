@@ -14,12 +14,12 @@ class ThreatEvalTest extends AbstractUnitTestCase
     public function B21()
     {
         $expectedResult = [
-            'w' => 4,
-            'b' => 9.99,
+            'w' => 0,
+            'b' => 2.33,
         ];
 
         $expectedExplanation = [
-            "Black has a total threat advantage.",
+            "Black has a slight threat advantage.",
         ];
 
         $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1p6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6'))->create();
@@ -32,15 +32,34 @@ class ThreatEvalTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function B21_Bb3()
+    {
+        $expectedResult = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $expectedExplanation = [];
+
+        $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1p6/4P3/1BN2N2/PP2QPPP/R1B2RK1 b kq -'))->create();
+        $threatEval = new ThreatEval($board);
+
+        $this->assertSame($expectedResult, $threatEval->getResult());
+        $this->assertSame($expectedExplanation, $threatEval->getExplanation());
+    }
+
+    /**
+     * @test
+     */
     public function middlegame()
     {
         $expectedResult = [
-            'w' => 8.4,
-            'b' => 9.86,
+            'w' => 0.8700000000000001,
+            'b' => 0,
         ];
 
         $expectedExplanation = [
-            "Black has a slight threat advantage.",
+            "White has a slight threat advantage.",
         ];
 
         $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1n6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6'))->create();
@@ -56,8 +75,8 @@ class ThreatEvalTest extends AbstractUnitTestCase
     public function endgame()
     {
         $expectedResult = [
-            'w' => 3.2,
-            'b' => 4.2,
+            'w' => 0,
+            'b' => 1.0,
         ];
 
         $expectedExplanation = [
