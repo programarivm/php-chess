@@ -35,36 +35,38 @@ class ThreatEval extends AbstractEval implements
 
         if (!$this->board->isMate()) {
             foreach ($this->board->getPieces() as $piece) {
-                $clone = unserialize(serialize($this->board));
-                $clone->setTurn($piece->oppColor());
-                $threat = [
-                    Color::W => 0,
-                    Color::B => 0,
-                ];
-                $attackingPiece = current($piece->attackingPieces());
-                while ($attackingPiece && $piece->getId() !== Piece::K) {
-                    $capturedPiece = $clone->getPieceBySq($piece->getSq());
-                    if ($clone->playLan($clone->getTurn(), $attackingPiece->getSq() . $piece->getSq())) {
-                        $threat[$attackingPiece->getColor()] += self::$value[$capturedPiece->getId()];
-                        if ($defendingPiece = current($piece->defendingPieces())) {
-                            $capturedPiece = $clone->getPieceBySq($piece->getSq());
-                            if ($clone->playLan($clone->getTurn(), $defendingPiece->getSq() . $piece->getSq())) {
-                                $threat[$defendingPiece->getColor()] += self::$value[$capturedPiece->getId()];
+                if ($piece->getId() !== Piece::K) {
+                    $clone = unserialize(serialize($this->board));
+                    $clone->setTurn($piece->oppColor());
+                    $threat = [
+                        Color::W => 0,
+                        Color::B => 0,
+                    ];
+                    $attackingPiece = current($piece->attackingPieces());
+                    while ($attackingPiece) {
+                        $capturedPiece = $clone->getPieceBySq($piece->getSq());
+                        if ($clone->playLan($clone->getTurn(), $attackingPiece->getSq() . $piece->getSq())) {
+                            $threat[$attackingPiece->getColor()] += self::$value[$capturedPiece->getId()];
+                            if ($defendingPiece = current($piece->defendingPieces())) {
+                                $capturedPiece = $clone->getPieceBySq($piece->getSq());
+                                if ($clone->playLan($clone->getTurn(), $defendingPiece->getSq() . $piece->getSq())) {
+                                    $threat[$defendingPiece->getColor()] += self::$value[$capturedPiece->getId()];
+                                }
                             }
+                            $attackingPiece = current($clone->getPieceBySq($piece->getSq())->attackingPieces());
                         }
-                        $attackingPiece = current($clone->getPieceBySq($piece->getSq())->attackingPieces());
                     }
-                }
-                $diff = $threat[Color::W] - $threat[Color::B];
-                if ($piece->oppColor() === Color::W) {
-                    if ($diff > 0) {
-                        $this->result[Color::W] += $diff;
-                        $this->elaborate($piece);
-                    }
-                } else {
-                    if ($diff < 0) {
-                        $this->result[Color::B] += abs($diff);
-                        $this->elaborate($piece);
+                    $diff = $threat[Color::W] - $threat[Color::B];
+                    if ($piece->oppColor() === Color::W) {
+                        if ($diff > 0) {
+                            $this->result[Color::W] += $diff;
+                            $this->elaborate($piece);
+                        }
+                    } else {
+                        if ($diff < 0) {
+                            $this->result[Color::B] += abs($diff);
+                            $this->elaborate($piece);
+                        }
                     }
                 }
             }
