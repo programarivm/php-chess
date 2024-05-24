@@ -3,7 +3,6 @@
 namespace Chess\Eval;
 
 use Chess\Piece\AbstractPiece;
-use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 
@@ -77,8 +76,6 @@ class ThreatEval extends AbstractEval implements
 
     private function elaborate(AbstractPiece $piece): void
     {
-        $phrase = PiecePhrase::create($piece);
-
-        $this->elaboration[] = ucfirst("$phrase is being threatened and may be lost if not defended properly.");
+        $this->elaboration[] = "The {$piece->getSq()}-square is under threat of being attacked.";
     }
 }

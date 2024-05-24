@@ -23,7 +23,7 @@ class ThreatEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The bishop on c4 is being threatened and may be lost if not defended properly.",
+            "The c4-square is under threat of being attacked.",
         ];
 
         $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1p6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6'))->create();
@@ -71,7 +71,7 @@ class ThreatEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The knight on b5 is being threatened and may be lost if not defended properly.",
+            "The b5-square is under threat of being attacked.",
         ];
 
         $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1n6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6'))->create();
@@ -97,7 +97,7 @@ class ThreatEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The pawn on d4 is being threatened and may be lost if not defended properly.",
+            "The d4-square is under threat of being attacked.",
         ];
 
         $board = (new StrToBoard('6k1/6p1/2n2b2/8/3P4/5N2/2K5/8 w - -'))->create();
