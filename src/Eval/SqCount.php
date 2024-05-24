@@ -60,6 +60,11 @@ class SqCount
      */
     private function used(): object
     {
+        $used = [
+            Color::W => [],
+            Color::B => [],
+        ];
+
         foreach ($this->board->getPieces() as $piece) {
             $used[$piece->getColor()][] = $piece->getSq();
         }
