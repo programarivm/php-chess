@@ -7,6 +7,14 @@ use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Threat evaluation.
+ *
+ * Total piece value obtained from the squares under threat of being attacked.
+ *
+ * @author Jordi Bassagaña
+ * @license MIT
+ */
 class ThreatEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface
@@ -16,6 +24,11 @@ class ThreatEval extends AbstractEval implements
 
     const NAME = 'Threat';
 
+    /**
+     * Constructor.
+     *
+     * @param \Chess\Variant\Classical\Board $board
+     */
     public function __construct(Board $board)
     {
         $this->board = $board;
@@ -75,6 +88,11 @@ class ThreatEval extends AbstractEval implements
         $this->explain($this->result);
     }
 
+    /**
+     * Elaborate on the result.
+     *
+     * @param \Chess\Piece\AbstractPiece $piece
+     */
     private function elaborate(AbstractPiece $piece): void
     {
         $this->elaboration[] = "The {$piece->getSq()}-square is under threat of being attacked.";
