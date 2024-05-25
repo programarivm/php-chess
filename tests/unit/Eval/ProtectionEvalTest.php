@@ -39,6 +39,10 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             "Black has a slight protection advantage.",
         ];
 
+        $expectedElaboration = [
+            "The pawn on e4 is unprotected.",
+        ];
+
         $board = new Board();
         $board->play('w', 'e4');
         $board->play('b', 'd5');
@@ -47,6 +51,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
         $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 
     /**
@@ -97,6 +102,11 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             "Black has a decisive protection advantage.",
         ];
 
+        $expectedElaboration = [
+            "The knight on e5 is unprotected.",
+            "The bishop on b5 is unprotected.",
+        ];
+
         $board = new Board();
         $board->play('w', 'e4');
         $board->play('b', 'e5');
@@ -110,6 +120,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
         $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 
     /**
@@ -126,6 +137,11 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             "White has a decisive protection advantage.",
         ];
 
+        $expectedElaboration = [
+            "The pawn on e5 is unprotected.",
+            "The knight on e4 is unprotected.",
+        ];
+
         $board = new Board();
         $board->play('w', 'e4');
         $board->play('b', 'e5');
@@ -139,6 +155,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
         $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 
     /**
@@ -170,11 +187,42 @@ class ProtectionEvalTest extends AbstractUnitTestCase
 
         $expectedPhrase = [];
 
+        $expectedElaboration = [];
+
         $board = FenToBoardFactory::create('r2q1rk1/pb1nbppp/2p1pn2/1pPp4/3P4/1PN2NP1/P1Q1PPBP/R1BR2K1 b - -');
 
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
         $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
+    }
+
+    /**
+     * @test
+     */
+    public function b7_pawn()
+    {
+        $expectedResult = [
+            'w' => 2,
+            'b' => 1,
+        ];
+
+        $expectedPhrase = [
+            "White has a slight protection advantage.",
+        ];
+
+        $expectedElaboration = [
+            "The pawn on c6 is unprotected.",
+            "The pawn on b7 is unprotected.",
+        ];
+
+        $board = FenToBoardFactory::create('r7/pp3p2/2P2nk1/P1Pp1p2/3Pp3/4NpPq/1R1Q1P2/6K1 w - -');
+
+        $protectionEval = new ProtectionEval($board);
+
+        $this->assertSame($expectedResult, $protectionEval->getResult());
+        $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 }

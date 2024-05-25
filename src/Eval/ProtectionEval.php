@@ -73,5 +73,7 @@ class ProtectionEval extends AbstractEval implements
         if (!in_array($phrase, $this->explanation)) {
             $this->elaboration[] = $phrase;
         }
+
+        $this->elaboration = array_unique($this->elaboration);
     }
 }
