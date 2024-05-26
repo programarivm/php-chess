@@ -34,11 +34,11 @@ class RelativePinEvalTest extends AbstractUnitTestCase
     {
         $expectedResult = [
             'w' => 0,
-            'b' => 5.6,
+            'b' => 5.47,
         ];
 
         $expectedExplanation = [
-            "Black has a moderate relative pin advantage.",
+            "Black has a total relative pin advantage.",
         ];
 
         $expectedElaboration = [
@@ -61,7 +61,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
     public function pinning_rook_pinned_knight_shielded_queen()
     {
         $expectedResult = [
-            'w' => 5.6,
+            'w' => 3.7,
             'b' => 0,
         ];
 
@@ -89,12 +89,12 @@ class RelativePinEvalTest extends AbstractUnitTestCase
     public function pinning_bishop_pinned_knight_shielded_queen()
     {
         $expectedResult = [
-            'w' => 5.6,
+            'w' => 5.47,
             'b' => 0,
         ];
 
         $expectedExplanation = [
-            "White has a moderate relative pin advantage.",
+            "White has a total relative pin advantage.",
         ];
 
         $expectedElaboration = [
@@ -117,7 +117,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
     public function pinning_bishop_pinned_knight_shielded_rook()
     {
         $expectedResult = [
-            'w' => 1.9,
+            'w' => 1.77,
             'b' => 0,
         ];
 
@@ -145,7 +145,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
     public function pinning_bishop_pinned_knight_shielded_rook_and_attacked_rook()
     {
         $expectedResult = [
-            'w' => 1.9,
+            'w' => 1.77,
             'b' => 0,
         ];
 
@@ -158,6 +158,30 @@ class RelativePinEvalTest extends AbstractUnitTestCase
         ];
 
         $board = (new StrToBoard('4r1k1/8/2n5/8/B2R4/8/8/6K1 w - -'))
+            ->create();
+
+        $relativePinEval = new RelativePinEval($board);
+
+        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
+        $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
+    }
+
+    /**
+     * @test
+     */
+    public function e6_pawn()
+    {
+        $expectedResult = [
+            'w' => 0,
+            'b' => 0,
+        ];
+
+        $expectedExplanation = [];
+
+        $expectedElaboration = [];
+
+        $board = (new StrToBoard('4r1k1/4r3/4p3/8/8/8/8/4R1K1 w - -'))
             ->create();
 
         $relativePinEval = new RelativePinEval($board);

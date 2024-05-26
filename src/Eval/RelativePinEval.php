@@ -21,7 +21,7 @@ class RelativePinEval extends AbstractEval implements
     {
         $this->board = $board;
 
-        $this->range = [1, 9];
+        $this->range = [1, 6.8];
 
         $this->subject = [
             'White',
@@ -39,16 +39,27 @@ class RelativePinEval extends AbstractEval implements
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() !== Piece::K && $piece->getId() !== Piece::Q) {
                 if (!$piece->isPinned()) {
+                    $attackingPieces = $piece->attackingPieces($pinned = false);
                     $clone = unserialize(serialize($this->board));
                     $clone->detach($clone->getPieceBySq($piece->getSq()));
                     $clone->refresh();
                     $newPressureEval = (new PressureEval($clone))->getResult();
-                    $arrayDiff = array_diff($newPressureEval[$piece->oppColor()] , $pressureEval[$piece->oppColor()]);
+                    $arrayDiff = array_diff(
+                        $newPressureEval[$piece->oppColor()],
+                        $pressureEval[$piece->oppColor()]
+                    );
                     foreach ($arrayDiff as $sq) {
-                        $diff = self::$value[$clone->getPieceBySq($sq)->getId()] - self::$value[$piece->getId()];
-                        if ($diff > 0) {
-                            $this->result[$piece->oppColor()] += round($diff, 2);
-                            $this->elaborate($piece);
+                        foreach ($clone->getPieceBySq($sq)->attackingPieces($pinned = false) as $newAttackingPiece) {
+                            foreach ($attackingPieces as $attackingPiece) {
+                                if ($newAttackingPiece->getSq() === $attackingPiece->getSq()) {
+                                    $valDiff = abs(self::$value[$attackingPiece->getId()] -
+                                        self::$value[$clone->getPieceBySq($sq)->getId()]);
+                                    if ($valDiff > 0) {
+                                        $this->result[$piece->oppColor()] += round($valDiff, 2);
+                                        $this->elaborate($piece);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
