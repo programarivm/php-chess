@@ -183,37 +183,6 @@ class K extends AbstractPiece
     }
 
     /**
-     * Returns the FEN corresponding to a legal square.
-     *
-     * @param string $color
-     * @param string $sq
-     * @return string
-     */
-    public function fen($color, $sq): ?string
-    {
-        $clone = unserialize(serialize($this->board));
-        if (
-            $this->board->getCastlingRule()[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sq &&
-            $this->sqCastleShort() &&
-            $clone->play($color, Castle::SHORT)
-        ) {
-            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
-        } elseif (
-            $this->board->getCastlingRule()[$color][Piece::K][Castle::LONG]['sq']['next'] === $sq &&
-            $this->sqCastleLong() &&
-            $clone->play($color, Castle::LONG)
-        ) {
-            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
-        } elseif ($clone->play($color, Piece::K.'x'.$sq)) {
-            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
-        } elseif ($clone->play($color, Piece::K.$sq)) {
-            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
-        }
-
-        return null;
-    }
-
-    /**
      * Returns false.
      *
      * @return boolean

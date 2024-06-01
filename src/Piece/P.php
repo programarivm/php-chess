@@ -237,25 +237,6 @@ class P extends AbstractPiece
     }
 
     /**
-     * Returns the FEN corresponding to a legal square.
-     *
-     * @param string $color
-     * @param string $sq
-     * @return string|null
-     */
-    public function fen($color, $sq): ?string
-    {
-        $clone = unserialize(serialize($this->board));
-        if ($clone->play($color, $this->getSqFile()."x$sq")) {
-            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
-        } elseif ($clone->play($color, $sq)) {
-            return $clone->getHistory()[count($clone->getHistory()) - 1]->fen;
-        }
-
-        return null;
-    }
-
-    /**
      * Returns the en passant pawn.
      *
      * @return \Chess\Piece\P|null
