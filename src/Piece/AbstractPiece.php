@@ -308,15 +308,14 @@ abstract class AbstractPiece
      */
     public function isPinned(): bool
     {
+        $king = $this->board->getPiece($this->getColor(), Piece::K);
         $clone = unserialize(serialize($this->board));
-        $piece = $clone->getPieceBySq($this->getSq());
-        $clone->detach($piece);
+        $clone->detach($clone->getPieceBySq($this->getSq()));
         $clone->refresh();
-        $checkingPieces = $this->board->checkingPieces();
-        $newCheckingPieces = $clone->checkingPieces();
-        $diffPieces = $this->board->diffPieces($checkingPieces, $newCheckingPieces);
+        $newKing = $clone->getPiece($this->getColor(), Piece::K);
+        $diffPieces = $this->board->diffPieces($king->attackingPieces(), $newKing->attackingPieces());
         foreach ($diffPieces as $diffPiece) {
-            if ($diffPiece->getColor() !== $piece->getColor()) {
+            if ($diffPiece->getColor() !== $king->getColor()) {
                 return true;
             }
         }
