@@ -556,23 +556,6 @@ class Board extends AbstractPgnParser
     }
 
     /**
-     * Returns the checking pieces.
-     *
-     * @return array
-     */
-    public function checkingPieces(): array
-    {
-        $pieces = [];
-        foreach ($this->getPieces() as $piece) {
-            if ($piece->isAttackingKing()) {
-                $pieces[] = $piece;
-            }
-        }
-
-        return $pieces;
-    }
-
-    /**
      * Returns the difference between two arrays of pieces.
      *
      * @return array

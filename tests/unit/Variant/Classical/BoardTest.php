@@ -2261,51 +2261,6 @@ class BoardTest extends AbstractUnitTestCase
 
     /*
     |--------------------------------------------------------------------------
-    | checkingPieces()
-    |--------------------------------------------------------------------------
-    |
-    | Possible moves.
-    |
-    */
-
-    /**
-     * @test
-     */
-    public function king_not_attacked()
-    {
-        $board = (new StrToBoard('5k2/R7/8/4N3/4K3/8/8/8 w - -'))->create();
-        $expected = 0;
-        $count = count($board->checkingPieces());
-
-        $this->assertSame($expected, $count);
-    }
-
-    /**
-     * @test
-     */
-    public function rook_attacking_king()
-    {
-        $board = (new StrToBoard('R4k2/8/8/8/4K3/8/8/8 w - -'))->create();
-        $expected = 1;
-        $count = count($board->checkingPieces());
-
-        $this->assertSame($expected, $count);
-    }
-
-    /**
-     * @test
-     */
-    public function rook_and_knight_attacking_king()
-    {
-        $board = (new StrToBoard('R4k2/3N4/8/8/4K3/8/8/8 w - -'))->create();
-        $expected = 2;
-        $count = count($board->checkingPieces());
-
-        $this->assertSame($expected, $count);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
     | undo()
     |--------------------------------------------------------------------------
     |
