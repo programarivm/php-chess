@@ -2,6 +2,7 @@
 
 namespace Chess\Variant\Classical;
 
+use Chess\Exception\BoardException;
 use Chess\Piece\AbstractPiece;
 use Chess\Piece\B;
 use Chess\Piece\K;
@@ -636,7 +637,11 @@ class AbstractPgnParser extends \SplObjectStorage
             $king = $clone->getPiece($piece->getColor(), Piece::K);
         }
 
-        return !empty($king->attackingPieces());
+        if ($king) {
+            return !empty($king->attackingPieces());
+        }
+
+        throw new BoardException();
     }
 
     /**
