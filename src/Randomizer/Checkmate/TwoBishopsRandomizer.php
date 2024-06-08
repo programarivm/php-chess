@@ -3,7 +3,6 @@
 namespace Chess\Randomizer\Checkmate;
 
 use Chess\Randomizer\Randomizer;
-use Chess\Variant\Classical\PGN\AN\Square;
 
 class TwoBishopsRandomizer extends Randomizer
 {
@@ -18,7 +17,7 @@ class TwoBishopsRandomizer extends Randomizer
             $colors = '';
             foreach ($this->board->getPieces($turn) as $piece) {
                 if ($piece->getId() === 'B') {
-                    $colors .= Square::color($piece->getSq());
+                    $colors .= $this->board->getSquare()->color($piece->getSq());
                 }
             }
         } while ($colors === 'ww' || $colors === 'bb');
