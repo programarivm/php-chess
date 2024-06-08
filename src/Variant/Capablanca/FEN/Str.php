@@ -5,6 +5,7 @@ namespace Chess\Variant\Capablanca\FEN;
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\Capablanca\FEN\Field\PiecePlacement;
 use Chess\Variant\Capablanca\PGN\AN\Square;
+use Chess\Variant\Classical\FEN\Str as ClassicalFenStr;
 use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\PGN\AN\Color;
 
@@ -14,7 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class Str
+class Str extends ClassicalFenStr
 {
     /**
      * String validation.
@@ -26,15 +27,6 @@ class Str
     public function validate(string $string): string
     {
         $fields = explode(' ', $string);
-
-        if (
-            !isset($fields[0]) ||
-            !isset($fields[1]) ||
-            !isset($fields[2]) ||
-            !isset($fields[3])
-        ) {
-            throw new UnknownNotationException();
-        }
 
         PiecePlacement::validate($fields[0]);
 
