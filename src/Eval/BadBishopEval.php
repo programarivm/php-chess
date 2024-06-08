@@ -7,7 +7,6 @@ use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
 
 /**
  * BadBishopEval
@@ -53,7 +52,7 @@ class BadBishopEval extends AbstractEval implements
                 if ($piece->getId() === Piece::B) {
                     $this->result[$piece->getColor()] += $this->countBlockingPawns(
                         $piece,
-                        Square::color($piece->getSq())
+                        $this->board->getSquare()->color($piece->getSq())
                     );
                 }
             }
@@ -76,7 +75,7 @@ class BadBishopEval extends AbstractEval implements
             if ($piece->getId() === Piece::P) {
                 if (
                     $piece->getColor() === $bishop->getColor() &&
-                    Square::color($piece->getSq()) === $sqColor
+                    $this->board->getSquare()->color($piece->getSq()) === $sqColor
                 ) {
                     $count += 1;
                 }
