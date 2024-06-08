@@ -3,19 +3,17 @@
 namespace Chess\Tests\Unit\Tutor;
 
 use Chess\Piece\N;
-use Chess\Tutor\PiecePhrase;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Tutor\PiecePhrase;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 class PiecePhraseTest extends AbstractUnitTestCase
 {
-    static private $size;
+    static private $square;
 
     public static function setUpBeforeClass(): void
     {
-        self::$size = [
-            'files' => 8,
-            'ranks' => 8,
-        ];
+        self::$square = new Square();
     }
 
     /**
@@ -25,7 +23,7 @@ class PiecePhraseTest extends AbstractUnitTestCase
     {
         $expected = "the knight on d4";
 
-        $piece = new N('w', 'd4', self::$size);
+        $piece = new N('w', 'd4', self::$square);
 
         $explanation = PiecePhrase::create($piece);
 
@@ -39,7 +37,7 @@ class PiecePhraseTest extends AbstractUnitTestCase
     {
         $expected = "the knight on e4";
 
-        $piece = new N('b', 'e4', self::$size);
+        $piece = new N('b', 'e4', self::$square);
 
         $explanation = PiecePhrase::create($piece);
 
