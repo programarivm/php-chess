@@ -20,7 +20,7 @@ use Chess\Variant\Classical\Rule\CastlingRule;
  */
 class StrToBoard
 {
-    protected array $size;
+    protected Square $square;
 
     protected Str $fenStr;
 
@@ -34,7 +34,7 @@ class StrToBoard
 
     public function __construct(string $string)
     {
-        $this->size = Square::SIZE;
+        $this->square = new Square();
         $this->fenStr = new Str();
         $this->string = $this->fenStr->validate($string);
         $this->fields = array_filter(explode(' ', $this->string));
@@ -47,7 +47,7 @@ class StrToBoard
         try {
             $pieces = (new PieceArray(
                 $this->fenStr->toAsciiArray($this->fields[0]),
-                $this->size,
+                $this->square,
                 $this->castlingRule
             ))->getArray();
             $board = (new Board(

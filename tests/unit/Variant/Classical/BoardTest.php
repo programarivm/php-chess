@@ -17,20 +17,18 @@ use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\Rule\CastlingRule;
 
 class BoardTest extends AbstractUnitTestCase
 {
-    static private $size;
+    static private $square;
 
     public static function setUpBeforeClass(): void
     {
-        self::$size = [
-            'files' => 8,
-            'ranks' => 8,
-        ];
+        self::$square = new Square();
     }
 
     /*
@@ -615,18 +613,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_pick_a_nonexistent_piece()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'g3', self::$size),
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'g3', self::$square),
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -708,18 +706,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kf4()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'g3', self::$size),
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'g3', self::$square),
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -735,18 +733,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kf4_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -762,18 +760,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kf2_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -789,18 +787,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Re7_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -816,18 +814,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_a4_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -843,18 +841,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kxf2()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'g3', self::$size),
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f2', self::$size, RType::CASTLE_SHORT), // rook defended by knight
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'g3', self::$square),
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f2', self::$square, RType::CASTLE_SHORT), // rook defended by knight
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -902,23 +900,23 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_CASTLE_SHORT_with_threats_on_f1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd4', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f2', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new B('b', 'a6', self::$size), // bishop threatening f1
-            new K('b', 'e8', self::$size),
-            new B('b', 'f8', self::$size),
-            new N('b', 'g8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd4', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f2', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new B('b', 'a6', self::$square), // bishop threatening f1
+            new K('b', 'e8', self::$square),
+            new B('b', 'f8', self::$square),
+            new N('b', 'g8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -934,23 +932,23 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_CASTLE_SHORT_with_threats_on_f1_g1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd5', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f3', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new B('b', 'a6', self::$size), // bishop threatening f1
-            new K('b', 'e8', self::$size),
-            new B('b', 'c5', self::$size), // bishop threatening g1
-            new N('b', 'g8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd5', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f3', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new B('b', 'a6', self::$square), // bishop threatening f1
+            new K('b', 'e8', self::$square),
+            new B('b', 'c5', self::$square), // bishop threatening g1
+            new N('b', 'g8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -966,22 +964,22 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_CASTLE_SHORT_with_threats_on_g1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd5', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f3', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'e8', self::$size),
-            new B('b', 'c5', self::$size), // bishop threatening g1
-            new N('b', 'g8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd5', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f3', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'e8', self::$square),
+            new B('b', 'c5', self::$square), // bishop threatening g1
+            new N('b', 'g8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -997,22 +995,22 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_CASTLE_LONG_with_threats_on_c1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd5', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f3', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'e8', self::$size),
-            new B('b', 'f4', self::$size), // bishop threatening c1
-            new N('b', 'g8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd5', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f3', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'e8', self::$square),
+            new B('b', 'f4', self::$square), // bishop threatening c1
+            new N('b', 'g8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -1028,22 +1026,22 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_castle_with_threats_on_d1_f1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd5', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f3', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'e8', self::$size),
-            new B('b', 'f8', self::$size),
-            new N('b', 'e3', self::$size), // knight threatening d1 and f1
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd5', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f3', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'e8', self::$square),
+            new B('b', 'f8', self::$square),
+            new N('b', 'e3', self::$square), // knight threatening d1 and f1
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -1060,22 +1058,22 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_castle_with_threats_on_b1_f1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd5', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f3', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'e8', self::$size),
-            new B('b', 'f8', self::$size),
-            new N('b', 'd2', self::$size), // knight threatening b1 and f1
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd5', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f3', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'e8', self::$square),
+            new B('b', 'f8', self::$square),
+            new N('b', 'd2', self::$square), // knight threatening b1 and f1
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -1092,22 +1090,22 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_CASTLE_LONG_with_threats_on_b1_d1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd5', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f3', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'e8', self::$size),
-            new B('b', 'f8', self::$size),
-            new N('b', 'c3', self::$size), // knight threatening b1 and d1
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd5', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f3', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'e8', self::$square),
+            new B('b', 'f8', self::$square),
+            new N('b', 'c3', self::$square), // knight threatening b1 and d1
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -1123,22 +1121,22 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_CASTLE_SHORT_after_Kf1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd5', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f3', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'e8', self::$size),
-            new B('b', 'f8', self::$size),
-            new N('b', 'g8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd5', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f3', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'e8', self::$square),
+            new B('b', 'f8', self::$square),
+            new N('b', 'g8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -1158,22 +1156,22 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_CASTLE_SHORT_after_Rg1()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'd5', self::$size),
-            new P('w', 'e4', self::$size),
-            new P('w', 'f3', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'e8', self::$size),
-            new B('b', 'f8', self::$size),
-            new N('b', 'g8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'd5', self::$square),
+            new P('w', 'e4', self::$square),
+            new P('w', 'f3', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'e8', self::$square),
+            new B('b', 'f8', self::$square),
+            new N('b', 'g8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -1193,32 +1191,32 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_b_CASTLE_SHORT_with_threats()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'c2', self::$size),
-            new P('w', 'c3', self::$size),
-            new P('w', 'd4', self::$size),
-            new P('w', 'f2', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new N('w', 'g1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new B('w', 'a3', self::$size),
-            new B('w', 'd3', self::$size),
-            new P('b', 'a7', self::$size),
-            new P('b', 'b6', self::$size),
-            new P('b', 'c7', self::$size),
-            new P('b', 'e6', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h6', self::$size),
-            new R('b', 'a8', self::$size, RType::CASTLE_LONG),
-            new B('b', 'c8', self::$size),
-            new Q('b', 'd8', self::$size),
-            new K('b', 'e8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new N('b', 'd7', self::$size),
-            new N('b', 'f6', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'c2', self::$square),
+            new P('w', 'c3', self::$square),
+            new P('w', 'd4', self::$square),
+            new P('w', 'f2', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new N('w', 'g1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new B('w', 'a3', self::$square),
+            new B('w', 'd3', self::$square),
+            new P('b', 'a7', self::$square),
+            new P('b', 'b6', self::$square),
+            new P('b', 'c7', self::$square),
+            new P('b', 'e6', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h6', self::$square),
+            new R('b', 'a8', self::$square, RType::CASTLE_LONG),
+            new B('b', 'c8', self::$square),
+            new Q('b', 'd8', self::$square),
+            new K('b', 'e8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new N('b', 'd7', self::$square),
+            new N('b', 'f6', self::$square)
         ];
 
         $castlingAbility = 'KQk';
@@ -1244,35 +1242,35 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Ra6()
     {
         $pieces = [
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new Q('w', 'd1', self::$size),
-            new K('w', 'e1', self::$size),
-            new B('w', 'f1', self::$size),
-            new N('w', 'g1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('w', 'b2', self::$size),
-            new P('w', 'c2', self::$size),
-            new P('w', 'd2', self::$size),
-            new P('w', 'e2', self::$size),
-            new P('w', 'f2', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('b', 'a8', self::$size, RType::CASTLE_LONG),
-            new N('b', 'b8', self::$size),
-            new B('b', 'c8', self::$size),
-            new Q('b', 'd8', self::$size),
-            new K('b', 'e8', self::$size),
-            new B('b', 'f8', self::$size),
-            new N('b', 'g8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'a7', self::$size),
-            new P('b', 'b7', self::$size),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new Q('w', 'd1', self::$square),
+            new K('w', 'e1', self::$square),
+            new B('w', 'f1', self::$square),
+            new N('w', 'g1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('w', 'b2', self::$square),
+            new P('w', 'c2', self::$square),
+            new P('w', 'd2', self::$square),
+            new P('w', 'e2', self::$square),
+            new P('w', 'f2', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('b', 'a8', self::$square, RType::CASTLE_LONG),
+            new N('b', 'b8', self::$square),
+            new B('b', 'c8', self::$square),
+            new Q('b', 'd8', self::$square),
+            new K('b', 'e8', self::$square),
+            new B('b', 'f8', self::$square),
+            new N('b', 'g8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'a7', self::$square),
+            new P('b', 'b7', self::$square),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQkq';
@@ -1288,12 +1286,12 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Rxa6()
     {
         $pieces = [
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new K('b', 'e8', self::$size),
-            new B('b', 'a6', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new K('b', 'e8', self::$square),
+            new B('b', 'a6', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'Q';
@@ -1309,12 +1307,12 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_b_h6()
     {
         $pieces = [
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new K('b', 'e8', self::$size),
-            new B('b', 'a6', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new K('b', 'e8', self::$square),
+            new B('b', 'a6', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'Q';
@@ -1331,13 +1329,13 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_b_hxg6()
     {
         $pieces = [
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$size),
-            new P('w', 'g6', self::$size),
-            new K('b', 'e8', self::$size),
-            new B('b', 'a6', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e1', self::$square),
+            new P('w', 'g6', self::$square),
+            new K('b', 'e8', self::$square),
+            new B('b', 'a6', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'Q';
@@ -1354,13 +1352,13 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Nxc3()
     {
         $pieces = [
-            new N('w', 'b1', self::$size),
-            new K('w', 'e1', self::$size),
-            new P('w', 'g6', self::$size),
-            new K('b', 'e8', self::$size),
-            new B('b', 'a6', self::$size),
-            new P('b', 'c3', self::$size),
-            new P('b', 'h7', self::$size)
+            new N('w', 'b1', self::$square),
+            new K('w', 'e1', self::$square),
+            new P('w', 'g6', self::$square),
+            new K('b', 'e8', self::$square),
+            new B('b', 'a6', self::$square),
+            new P('b', 'c3', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1376,35 +1374,35 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_b_CASTLE_SHORT()
     {
         $pieces = [
-            new R('w', 'a1', self::$size, RType::CASTLE_LONG),
-            new N('w', 'b1', self::$size),
-            new B('w', 'c1', self::$size),
-            new Q('w', 'd1', self::$size),
-            new K('w', 'e1', self::$size),
-            new B('w', 'f1', self::$size),
-            new N('w', 'g1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('w', 'a2', self::$size),
-            new P('w', 'b2', self::$size),
-            new P('w', 'c2', self::$size),
-            new P('w', 'd2', self::$size),
-            new P('w', 'e2', self::$size),
-            new P('w', 'f2', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('b', 'a8', self::$size, RType::CASTLE_LONG),
-            new N('b', 'b8', self::$size),
-            new B('b', 'c8', self::$size),
-            new Q('b', 'd8', self::$size),
-            new K('b', 'e8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'a7', self::$size),
-            new P('b', 'b7', self::$size),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
+            new N('w', 'b1', self::$square),
+            new B('w', 'c1', self::$square),
+            new Q('w', 'd1', self::$square),
+            new K('w', 'e1', self::$square),
+            new B('w', 'f1', self::$square),
+            new N('w', 'g1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('w', 'a2', self::$square),
+            new P('w', 'b2', self::$square),
+            new P('w', 'c2', self::$square),
+            new P('w', 'd2', self::$square),
+            new P('w', 'e2', self::$square),
+            new P('w', 'f2', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('b', 'a8', self::$square, RType::CASTLE_LONG),
+            new N('b', 'b8', self::$square),
+            new B('b', 'c8', self::$square),
+            new Q('b', 'd8', self::$square),
+            new K('b', 'e8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'a7', self::$square),
+            new P('b', 'b7', self::$square),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = 'KQkq';
@@ -1421,18 +1419,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Ke4_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1448,18 +1446,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kg3_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1475,18 +1473,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kg2_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1502,18 +1500,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Ke2_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1529,18 +1527,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Ke3_in_check()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'f3', self::$size), // in check!
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'f3', self::$square), // in check!
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1556,18 +1554,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kg2()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'g3', self::$size),
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f5', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'g3', self::$square),
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f5', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1583,18 +1581,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kxh2()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'g3', self::$size),
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'h2', self::$size, RType::CASTLE_SHORT),
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'g3', self::$square),
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'h2', self::$square, RType::CASTLE_SHORT),
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1610,18 +1608,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_Kxf3()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'a3', self::$size),
-            new P('w', 'c3', self::$size),
-            new R('w', 'e6', self::$size, RType::CASTLE_LONG),
-            new K('w', 'g3', self::$size),
-            new P('b', 'a6', self::$size),
-            new P('b', 'b5', self::$size),
-            new P('b', 'c4', self::$size),
-            new N('b', 'd3', self::$size),
-            new R('b', 'f3', self::$size, RType::CASTLE_SHORT), // rook not defended
-            new K('b', 'g5', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'a2', self::$square),
+            new P('w', 'a3', self::$square),
+            new P('w', 'c3', self::$square),
+            new R('w', 'e6', self::$square, RType::CASTLE_LONG),
+            new K('w', 'g3', self::$square),
+            new P('b', 'a6', self::$square),
+            new P('b', 'b5', self::$square),
+            new P('b', 'c4', self::$square),
+            new N('b', 'd3', self::$square),
+            new R('b', 'f3', self::$square, RType::CASTLE_SHORT), // rook not defended
+            new K('b', 'g5', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -1637,18 +1635,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_b_exf3()
     {
         $pieces = [
-            new P('w', 'e2', self::$size),
-            new P('w', 'f2', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'e4', self::$size),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size),
-            new K('b', 'e8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT)
+            new P('w', 'e2', self::$square),
+            new P('w', 'f2', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'e4', self::$square),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square),
+            new K('b', 'e8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT)
         ];
 
         $castlingAbility = 'Kk';
@@ -1665,18 +1663,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_exf6()
     {
         $pieces = [
-            new P('w', 'e5', self::$size),
-            new P('w', 'f2', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'e7', self::$size),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size),
-            new K('b', 'e8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT)
+            new P('w', 'e5', self::$square),
+            new P('w', 'f2', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'e7', self::$square),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square),
+            new K('b', 'e8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT)
         ];
 
         $castlingAbility = 'Kk';
@@ -1694,18 +1692,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_b_gxh3()
     {
         $pieces = [
-            new P('w', 'e2', self::$size),
-            new P('w', 'f2', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'e7', self::$size),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g4', self::$size),
-            new P('b', 'h7', self::$size),
-            new K('b', 'e8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT)
+            new P('w', 'e2', self::$square),
+            new P('w', 'f2', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'e7', self::$square),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g4', self::$square),
+            new P('b', 'h7', self::$square),
+            new K('b', 'e8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT)
         ];
 
         $castlingAbility = 'Kk';
@@ -1722,18 +1720,18 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_b_hxg3()
     {
         $pieces = [
-            new P('w', 'e2', self::$size),
-            new P('w', 'f2', self::$size),
-            new P('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'e7', self::$size),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h4', self::$size),
-            new K('b', 'e8', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_SHORT)
+            new P('w', 'e2', self::$square),
+            new P('w', 'f2', self::$square),
+            new P('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'e7', self::$square),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h4', self::$square),
+            new K('b', 'e8', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_SHORT)
         ];
 
         $castlingAbility = 'Kk';
@@ -1782,16 +1780,16 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_cxb6()
     {
         $pieces = [
-            new P('w', 'a2', self::$size),
-            new P('w', 'b2', self::$size),
-            new P('w', 'c5', self::$size),
-            new R('w', 'd1', self::$size, RType::CASTLE_LONG),
-            new K('w', 'e4', self::$size),
-            new P('b', 'a7', self::$size),
-            new P('b', 'b7', self::$size),
-            new P('b', 'c7', self::$size),
-            new K('b', 'g6', self::$size),
-            new R('b', 'h8', self::$size, RType::CASTLE_LONG),
+            new P('w', 'a2', self::$square),
+            new P('w', 'b2', self::$square),
+            new P('w', 'c5', self::$square),
+            new R('w', 'd1', self::$square, RType::CASTLE_LONG),
+            new K('w', 'e4', self::$square),
+            new P('b', 'a7', self::$square),
+            new P('b', 'b7', self::$square),
+            new P('b', 'c7', self::$square),
+            new K('b', 'g6', self::$square),
+            new R('b', 'h8', self::$square, RType::CASTLE_LONG),
         ];
 
         $castlingAbility = '-';
@@ -1809,15 +1807,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_h8_q()
     {
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -1833,15 +1831,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_lan_w_h8_q()
     {
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -1857,15 +1855,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_h8_n()
     {
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -1881,15 +1879,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_lan_w_h8_n()
     {
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -1907,15 +1905,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_h8_r()
     {
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -1931,15 +1929,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_lan_w_h8_r()
     {
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -1957,15 +1955,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_w_h8_b()
     {
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -1981,15 +1979,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_play_lan_w_h8_b()
     {
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -2009,15 +2007,15 @@ class BoardTest extends AbstractUnitTestCase
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
         $pieces = [
-            new P('w', 'g2', self::$size),
-            new P('w', 'h7', self::$size),
-            new K('w', 'e1', self::$size),
-            new R('w', 'h1', self::$size, RType::CASTLE_SHORT),
-            new P('b', 'c7', self::$size),
-            new P('b', 'd7', self::$size),
-            new P('b', 'e7', self::$size),
-            new B('b', 'd6', self::$size),
-            new K('b', 'e8', self::$size)
+            new P('w', 'g2', self::$square),
+            new P('w', 'h7', self::$square),
+            new K('w', 'e1', self::$square),
+            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
+            new P('b', 'c7', self::$square),
+            new P('b', 'd7', self::$square),
+            new P('b', 'e7', self::$square),
+            new B('b', 'd6', self::$square),
+            new K('b', 'e8', self::$square)
         ];
 
         $castlingAbility = 'K';
@@ -2033,15 +2031,15 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_and_checkmate_w_Qd7()
     {
         $pieces = [
-            new P('w', 'd5', self::$size),
-            new Q('w', 'f5', self::$size),
-            new K('w', 'g2', self::$size),
-            new P('w', 'h2', self::$size),
-            new R('w', 'h8', self::$size, RType::CASTLE_LONG),
-            new K('b', 'e7', self::$size),
-            new P('b', 'f7', self::$size),
-            new P('b', 'g7', self::$size),
-            new P('b', 'h7', self::$size)
+            new P('w', 'd5', self::$square),
+            new Q('w', 'f5', self::$square),
+            new K('w', 'g2', self::$square),
+            new P('w', 'h2', self::$square),
+            new R('w', 'h8', self::$square, RType::CASTLE_LONG),
+            new K('b', 'e7', self::$square),
+            new P('b', 'f7', self::$square),
+            new P('b', 'g7', self::$square),
+            new P('b', 'h7', self::$square)
         ];
 
         $castlingAbility = '-';
@@ -2083,9 +2081,9 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_stalemate_king_and_queen_vs_king()
     {
         $pieces = [
-            new K('b', 'h1', self::$size),
-            new K('w', 'a8', self::$size),
-            new Q('w', 'f2', self::$size),
+            new K('b', 'h1', self::$square),
+            new K('w', 'a8', self::$square),
+            new Q('w', 'f2', self::$square),
         ];
 
         $castlingAbility = '-';
@@ -2102,9 +2100,9 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_stalemate_king_and_pawn_vs_king()
     {
         $pieces = [
-            new K('w', 'f6', self::$size),
-            new P('w', 'f7', self::$size),
-            new K('b', 'f8', self::$size),
+            new K('w', 'f6', self::$square),
+            new P('w', 'f7', self::$square),
+            new K('b', 'f8', self::$square),
         ];
 
         $castlingAbility = '-';
@@ -2121,10 +2119,10 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_stalemate_king_and_rook_vs_king_and_bishop()
     {
         $pieces = [
-            new K('w', 'b6', self::$size),
-            new R('w', 'h8', self::$size, RType::CASTLE_LONG),
-            new K('b', 'a8', self::$size),
-            new B('b', 'b8', self::$size),
+            new K('w', 'b6', self::$square),
+            new R('w', 'h8', self::$square, RType::CASTLE_LONG),
+            new K('b', 'a8', self::$square),
+            new B('b', 'b8', self::$square),
         ];
 
         $castlingAbility = '-';
@@ -2141,13 +2139,13 @@ class BoardTest extends AbstractUnitTestCase
     public function init_board_stalemate_endgame()
     {
         $pieces = [
-            new K('w', 'g1', self::$size),
-            new Q('w', 'd1', self::$size),
-            new R('w', 'a5', self::$size, RType::CASTLE_SHORT),
-            new R('w', 'b7', self::$size, RType::CASTLE_LONG),
-            new P('w', 'f6', self::$size),
-            new P('w', 'g5', self::$size),
-            new K('b', 'e6', self::$size),
+            new K('w', 'g1', self::$square),
+            new Q('w', 'd1', self::$square),
+            new R('w', 'a5', self::$square, RType::CASTLE_SHORT),
+            new R('w', 'b7', self::$square, RType::CASTLE_LONG),
+            new P('w', 'f6', self::$square),
+            new P('w', 'g5', self::$square),
+            new K('b', 'e6', self::$square),
         ];
 
         $castlingAbility = '-';
