@@ -5,6 +5,7 @@ namespace Chess\Piece;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 /**
  * Piece array.
@@ -22,11 +23,11 @@ class PieceArray
     protected array $array;
 
     /**
-     * Size.
+     * Square.
      *
-     * @var array
+     * @var \Chess\Variant\Classical\PGN\Square
      */
-    private array $size;
+    protected Square $square;
 
     /**
      * Castling rule.
@@ -39,12 +40,12 @@ class PieceArray
      * Constructor.
      *
      * @param array $array
-     * @param array $size
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      * @param array $castlingRule
      */
-    public function __construct(array $array, array $size, array $castlingRule)
+    public function __construct(array $array, Square $square, array $castlingRule)
     {
-        $this->size = $size;
+        $this->square = $square;
 
         $this->castlingRule = $castlingRule;
 
@@ -55,9 +56,9 @@ class PieceArray
                 $char = trim($item);
                 if (ctype_lower($char)) {
                     $char = strtoupper($char);
-                    $this->push(Color::B, $char, $file.$rank);
+                    $this->push(Color::B, $char, $file . $rank);
                 } elseif (ctype_upper($char)) {
-                    $this->push(Color::W, $char, $file.$rank);
+                    $this->push(Color::W, $char, $file . $rank);
                 }
                 $file = chr(ord($file) + 1);
             }
@@ -90,28 +91,28 @@ class PieceArray
                 $color === Color::B &&
                 $sq === $this->castlingRule[Color::B][Piece::R][Castle::LONG]['sq']['current']
             ) {
-                $this->array[] = new R($color, $sq, $this->size, RType::CASTLE_LONG);
+                $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
             } elseif (
                 $color === Color::B &&
                 $sq === $this->castlingRule[Color::B][Piece::R][Castle::SHORT]['sq']['current']
             ) {
-                $this->array[] = new R($color, $sq, $this->size, RType::CASTLE_SHORT);
+                $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
             } elseif (
                 $color === Color::W &&
                 $sq === $this->castlingRule[Color::B][Piece::R][Castle::LONG]['sq']['current']
             ) {
-                $this->array[] = new R($color, $sq, $this->size, RType::CASTLE_LONG);
+                $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
             } elseif (
                 $color === Color::W &&
                 $sq === $this->castlingRule[Color::W][Piece::R][Castle::SHORT]['sq']['current']
             ) {
-                $this->array[] = new R($color, $sq, $this->size, RType::CASTLE_SHORT);
+                $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
             } else { // it doesn't matter which RType is assigned
-                $this->array[] = new R($color, $sq, $this->size, RType::PROMOTED);
+                $this->array[] = new R($color, $sq, $this->square, RType::PROMOTED);
             }
         } else {
             $className = "\\Chess\\Piece\\$id";
-            $this->array[] = new $className($color, $sq, $this->size);
+            $this->array[] = new $className($color, $sq, $this->square);
         }
     }
 }

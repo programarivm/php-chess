@@ -5,10 +5,11 @@ namespace Chess\Tests\Unit\Piece;
 use Chess\Piece\K;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Capablanca\PGN\AN\Square as CapablancaSquare;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\AN\Square as ClassicalSquare;
 use Chess\Variant\Classical\Rule\CastlingRule;
 
 class KTest extends AbstractUnitTestCase
@@ -21,7 +22,7 @@ class KTest extends AbstractUnitTestCase
     {
         self::$castlingRule = (new CastlingRule())->getRule();
 
-        self::$square = new Square();
+        self::$square = new ClassicalSquare();
     }
 
     /**
@@ -143,12 +144,9 @@ class KTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function mobility_w_f1_size_10_10()
+    public function capablanca_mobility_w_f1()
     {
-        $king = new K('w', 'f1', [
-            'files' => 10,
-            'ranks' => 8,
-        ]);
+        $king = new K('w', 'f1', new CapablancaSquare());
 
         $mobility = ['f2', 'e1', 'g1', 'e2', 'g2'];
 

@@ -16,13 +16,14 @@ use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 /**
  * AbstractPgnParser
  *
  * The root class in the hierarchy of chess boards defines the getter and the
- * setter methods, in addition to implementing the internal methods required to
- * convert a PGN move in text format into a data structure.
+ * setter methods, which are public methods, in addition to implementing the
+ * internal methods required to convert PGN moves into a data structure.
  *
  * @author Jordi Bassagaña
  * @license MIT
@@ -75,18 +76,11 @@ class AbstractPgnParser extends \SplObjectStorage
     protected string $startFen = '';
 
     /**
-     * Size.
+     * Square.
      *
-     * @var array
+     * @var \Chess\Variant\Classical\PGN\Square
      */
-    protected array $size;
-
-    /**
-     * Squares.
-     *
-     * @var array
-     */
-    protected array $sqs = [];
+    protected Square $square;
 
     /**
      * Move.
@@ -108,8 +102,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    protected $square;
 
     /**
      * Returns the current turn.
@@ -198,23 +190,13 @@ class AbstractPgnParser extends \SplObjectStorage
     }
 
     /**
-     * Returns the size.
+     * Returns the square.
      *
-     * @return array
+     * @return \Chess\Variant\Classical\PGN\Square
      */
-    public function getSize(): array
+    public function getSquare(): Square
     {
-        return $this->size;
-    }
-
-    /**
-     * Returns the squares.
-     *
-     * @return array
-     */
-    public function getSqs(): array
-    {
-        return $this->sqs;
+        return $this->square;
     }
 
     /**
@@ -373,7 +355,7 @@ class AbstractPgnParser extends \SplObjectStorage
         $this->attach(new $class(
             $piece->getColor(),
             $piece->getMove()->sq->next,
-            $this->size,
+            $this->square,
             $piece->getId() === Piece::R ? $piece->getType() : null
         ));
         if ($piece->getId() === Piece::P) {
@@ -401,7 +383,7 @@ class AbstractPgnParser extends \SplObjectStorage
                 new K(
                     $king->getColor(),
                     $this->castlingRule[$king->getColor()][Piece::K][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
-                    $this->size
+                    $this->square
                 )
              );
             $this->detach($rook);
@@ -409,7 +391,7 @@ class AbstractPgnParser extends \SplObjectStorage
                 new R(
                     $rook->getColor(),
                     $this->castlingRule[$king->getColor()][Piece::R][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
-                    $this->size,
+                    $this->square,
                     $rook->getType()
                 )
             );
@@ -549,26 +531,26 @@ class AbstractPgnParser extends \SplObjectStorage
             $this->attach(new N(
                 $pawn->getColor(),
                 $pawn->getMove()->sq->next,
-                $this->size
+                $this->square
             ));
         } elseif ($pawn->getMove()->newId === Piece::B) {
             $this->attach(new B(
                 $pawn->getColor(),
                 $pawn->getMove()->sq->next,
-                $this->size
+                $this->square
             ));
         } elseif ($pawn->getMove()->newId === Piece::R) {
             $this->attach(new R(
                 $pawn->getColor(),
                 $pawn->getMove()->sq->next,
-                $this->size,
+                $this->square,
                 RType::PROMOTED
             ));
         } else {
             $this->attach(new Q(
                 $pawn->getColor(),
                 $pawn->getMove()->sq->next,
-                $this->size
+                $this->square
             ));
         }
 

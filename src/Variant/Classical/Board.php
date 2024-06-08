@@ -47,9 +47,9 @@ class Board extends AbstractPgnParser
         array $pieces = null,
         string $castlingAbility = '-'
     ) {
-        $this->square = new Square();
         $this->castlingAbility = CastlingAbility::START;
         $this->castlingRule = (new CastlingRule())->getRule();
+        $this->square = new Square();
         $this->move = new Move();
         if (!$pieces) {
             $this->attach(new R(Color::W, 'a1', $this->square, RType::CASTLE_LONG));
@@ -532,7 +532,7 @@ class Board extends AbstractPgnParser
     {
         $string = '';
         $array = $this->toAsciiArray();
-        for ($i = $this->getSize()['ranks'] - 1; $i >= 0; $i--) {
+        for ($i = $this->getSquare()::SIZE['ranks'] - 1; $i >= 0; $i--) {
             $string .= str_replace(' ', '', implode('', $array[$i]));
             if ($i != 0) {
                 $string .= '/';
