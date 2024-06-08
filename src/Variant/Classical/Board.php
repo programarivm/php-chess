@@ -428,7 +428,7 @@ class Board extends AbstractPgnParser
             $colors = '';
             foreach ($this->getPieces() as $piece) {
                 if ($piece->getId() === Piece::B) {
-                    $colors .= Square::color($piece->getSq());
+                    $colors .= $this->square->color($piece->getSq());
                 }
             }
             return $colors === Color::W . Color::W || $colors === Color::B . Color::B;
