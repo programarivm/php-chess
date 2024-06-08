@@ -2,19 +2,17 @@
 
 namespace Chess\Tests\Unit\Piece;
 
-use Chess\Tests\AbstractUnitTestCase;
 use Chess\Piece\P;
+use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 class PTest extends AbstractUnitTestCase
 {
-    static private $size;
+    static private $square;
 
     public static function setUpBeforeClass(): void
     {
-        self::$size = [
-            'files' => 8,
-            'ranks' => 8,
-        ];
+        self::$square = new Square();
     }
 
     /**
@@ -22,7 +20,7 @@ class PTest extends AbstractUnitTestCase
      */
     public function white_a2()
     {
-        $pawn = new P('w', 'a2', self::$size);
+        $pawn = new P('w', 'a2', self::$square);
 
         $position = 'a2';
         $mobility = ['a3', 'a4'];
@@ -38,7 +36,7 @@ class PTest extends AbstractUnitTestCase
      */
     public function white_d5()
     {
-        $pawn = new P('w', 'd5', self::$size);
+        $pawn = new P('w', 'd5', self::$square);
 
         $position = 'd5';
         $mobility = ['d6'];
@@ -54,7 +52,7 @@ class PTest extends AbstractUnitTestCase
      */
     public function white_f7()
     {
-        $pawn = new P('w', 'f7', self::$size);
+        $pawn = new P('w', 'f7', self::$square);
 
         $position = 'f7';
         $mobility = ['f8'];
@@ -70,7 +68,7 @@ class PTest extends AbstractUnitTestCase
      */
     public function white_f8()
     {
-        $pawn = new P('w', 'f8', self::$size);
+        $pawn = new P('w', 'f8', self::$square);
 
         $position = 'f8';
         $mobility = [];
@@ -86,7 +84,7 @@ class PTest extends AbstractUnitTestCase
      */
     public function black_a2()
     {
-        $pawn = new P('b', 'a2', self::$size);
+        $pawn = new P('b', 'a2', self::$square);
 
         $position = 'a2';
         $mobility = ['a1'];
@@ -102,7 +100,7 @@ class PTest extends AbstractUnitTestCase
      */
     public function black_d5()
     {
-        $pawn = new P('b', 'd5', self::$size);
+        $pawn = new P('b', 'd5', self::$square);
 
         $position = 'd5';
         $mobility = ['d4'];

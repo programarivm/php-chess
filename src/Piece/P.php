@@ -6,6 +6,7 @@ use Chess\Exception\UnknownNotationException;
 use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 /**
  * Pawn.
@@ -35,21 +36,21 @@ class P extends AbstractPiece
      *
      * @param string $color
      * @param string $sq
-     * @param array $size
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      */
-    public function __construct(string $color, string $sq, array $size)
+    public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $size, Piece::P);
+        parent::__construct($color, $sq, $square, Piece::P);
 
         if ($this->color === Color::W) {
             $this->ranks = (object) [
                 'start' => 2,
                 'next' => $this->getSqRank() + 1,
-                'end' => $this->size['ranks'],
+                'end' => $this->square::SIZE['ranks'],
             ];
         } elseif ($this->color === Color::B) {
             $this->ranks = (object) [
-                'start' => $this->size['ranks'] - 1,
+                'start' => $this->square::SIZE['ranks'] - 1,
                 'next' => $this->getSqRank() - 1,
                 'end' => 1,
             ];
@@ -71,7 +72,7 @@ class P extends AbstractPiece
     {
         // next rank
         try {
-            if ($this->isValidSq($this->getSqFile().$this->ranks->next)) {
+            if ($this->square->validate($this->getSqFile() . $this->ranks->next)) {
                 $this->mobility[] = $this->getSqFile() . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
@@ -82,8 +83,8 @@ class P extends AbstractPiece
         if ($this->getSqRank() === 2 && $this->ranks->start == 2) {
             $this->mobility[] = $this->getSqFile() . ($this->ranks->start + 2);
         } elseif (
-            $this->getSqRank() === $this->size['ranks'] - 1 &&
-            $this->ranks->start == $this->size['ranks'] - 1
+            $this->getSqRank() === $this->square::SIZE['ranks'] - 1 &&
+            $this->ranks->start == $this->square::SIZE['ranks'] - 1
         ) {
             $this->mobility[] = $this->getSqFile() . ($this->ranks->start - 2);
         }
@@ -91,7 +92,7 @@ class P extends AbstractPiece
         // capture square
         try {
             $file = chr(ord($this->getSqFile()) - 1);
-            if ($this->isValidSq($file.$this->ranks->next)) {
+            if ($this->square->validate($file . $this->ranks->next)) {
                 $this->captureSqs[] = $file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
@@ -101,7 +102,7 @@ class P extends AbstractPiece
         // capture square
         try {
             $file = chr(ord($this->getSqFile()) + 1);
-            if ($this->isValidSq($file.$this->ranks->next)) {
+            if ($this->square->validate($file . $this->ranks->next)) {
                 $this->captureSqs[] = $file . $this->ranks->next;
             }
         } catch (UnknownNotationException $e) {
@@ -141,7 +142,7 @@ class P extends AbstractPiece
         $end = end($history);
         if ($end && $end->move->id === Piece::P && $end->move->color === $this->oppColor()) {
            if ($this->color === Color::W) {
-               if ($this->getSqRank() === $this->size['ranks'] - 3) {
+               if ($this->getSqRank() === $this->square::SIZE['ranks'] - 3) {
                    $captureSq = $end->move->sq->next[0] . ($this->getSqRank() + 1);
                    if (in_array($captureSq, $this->captureSqs)) {
                         $this->enPassantSq = $captureSq;
@@ -246,7 +247,7 @@ class P extends AbstractPiece
         if ($this->enPassantSq) {
             $rank = (int) substr($this->enPassantSq, 1);
             $this->getColor() === Color::W ? $rank-- : $rank++;
-            return $this->board->getPieceBySq($this->enPassantSq[0].$rank);
+            return $this->board->getPieceBySq($this->enPassantSq[0] . $rank);
         }
 
         return null;
