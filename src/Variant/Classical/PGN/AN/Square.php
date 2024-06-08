@@ -5,7 +5,6 @@ namespace Chess\Variant\Classical\PGN\AN;
 use Chess\Piece\AsciiArray;
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\Classical\PGN\AbstractNotation;
-use Chess\Variant\Classical\PGN\ValidationInterface;
 
 /**
  * Square.
@@ -13,7 +12,7 @@ use Chess\Variant\Classical\PGN\ValidationInterface;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class Square extends AbstractNotation implements ValidationInterface
+class Square extends AbstractNotation
 {
     const REGEX = '[a-h]{1}[1-8]{1}';
 
@@ -31,7 +30,7 @@ class Square extends AbstractNotation implements ValidationInterface
      * @return string if the value is valid
      * @throws UnknownNotationException
      */
-    public static function validate(string $value): string
+    public function validate(string $value): string
     {
         if (!preg_match('/^' . static::REGEX . '$/', $value)) {
             throw new UnknownNotationException();
@@ -46,7 +45,7 @@ class Square extends AbstractNotation implements ValidationInterface
      * @param string $sq
      * @return string
      */
-     public static function color(string $sq): string
+     public function color(string $sq): string
      {
         $file = $sq[0];
         $rank = substr($sq, 1);
@@ -69,7 +68,7 @@ class Square extends AbstractNotation implements ValidationInterface
       *
       * @return array
       */
-     public static function all(): array
+     public function all(): array
      {
          $all = [];
          for ($i = 0; $i < static::SIZE['files']; $i++) {

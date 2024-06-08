@@ -2,6 +2,8 @@
 
 namespace Chess\Piece;
 
+use Chess\Variant\Classical\PGN\AN\Square;
+
 /**
  * Class that represents a bishop, a rook or a queen.
  *
@@ -15,12 +17,12 @@ abstract class Slider extends AbstractPiece
      *
      * @param string $color
      * @param string $sq
-     * @param array $size
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square
      * @param string $id
      */
-    public function __construct(string $color, string $sq, array $size, string $id)
+    public function __construct(string $color, string $sq, Square $square, string $id)
     {
-        parent::__construct($color, $sq, $size, $id);
+        parent::__construct($color, $sq, $square, $id);
     }
 
     /**

@@ -2,10 +2,9 @@
 
 namespace Chess\Piece;
 
-use Chess\Variant\Capablanca\PGN\AN\Square as CapablancaSquare;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square as ClassicalSquare;
+use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Board;
 
 /**
@@ -26,16 +25,18 @@ abstract class AbstractPiece
     protected string $color;
 
     /**
-     * The piece's square.
+     * The piece's square string.
      *
      * @var string
      */
     protected string $sq;
 
     /**
-     * @var array
+     * The piece's square object.
+     *
+     * @var \Chess\Variant\Classical\PGN\AN\Square
      */
-    protected array $size;
+    protected Square $square;
 
     /**
      * The piece's id in PGN format.
@@ -70,13 +71,14 @@ abstract class AbstractPiece
      *
      * @param string $color
      * @param string $sq
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square
      * @param string $id
      */
-    public function __construct(string $color, string $sq, array $size, string $id)
+    public function __construct(string $color, string $sq, Square $square, string $id)
     {
         $this->color = $color;
         $this->sq = $sq;
-        $this->size = $size;
+        $this->square = $square;
         $this->id = $id;
     }
 
@@ -271,22 +273,6 @@ abstract class AbstractPiece
     {
         if ($this->move) {
             return in_array($this->move->sq->next, $this->sqs());
-        }
-
-        return false;
-    }
-
-    /**
-     * Returns true if the square is valid.
-     *
-     * @return boolean
-     */
-    protected function isValidSq(string $sq): bool
-    {
-        if ($this->size === ClassicalSquare::SIZE) {
-            return ClassicalSquare::validate($sq);
-        } elseif ($this->size === CapablancaSquare::SIZE) {
-            return CapablancaSquare::validate($sq);
         }
 
         return false;

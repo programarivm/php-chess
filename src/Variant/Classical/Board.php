@@ -47,44 +47,43 @@ class Board extends AbstractPgnParser
         array $pieces = null,
         string $castlingAbility = '-'
     ) {
-        $this->size = Square::SIZE;
-        $this->sqs = Square::all();
+        $this->square = new Square();
         $this->castlingAbility = CastlingAbility::START;
         $this->castlingRule = (new CastlingRule())->getRule();
         $this->move = new Move();
         if (!$pieces) {
-            $this->attach(new R(Color::W, 'a1', $this->size, RType::CASTLE_LONG));
-            $this->attach(new N(Color::W, 'b1', $this->size));
-            $this->attach(new B(Color::W, 'c1', $this->size));
-            $this->attach(new Q(Color::W, 'd1', $this->size));
-            $this->attach(new K(Color::W, 'e1', $this->size));
-            $this->attach(new B(Color::W, 'f1', $this->size));
-            $this->attach(new N(Color::W, 'g1', $this->size));
-            $this->attach(new R(Color::W, 'h1', $this->size, RType::CASTLE_SHORT));
-            $this->attach(new P(Color::W, 'a2', $this->size));
-            $this->attach(new P(Color::W, 'b2', $this->size));
-            $this->attach(new P(Color::W, 'c2', $this->size));
-            $this->attach(new P(Color::W, 'd2', $this->size));
-            $this->attach(new P(Color::W, 'e2', $this->size));
-            $this->attach(new P(Color::W, 'f2', $this->size));
-            $this->attach(new P(Color::W, 'g2', $this->size));
-            $this->attach(new P(Color::W, 'h2', $this->size));
-            $this->attach(new R(Color::B, 'a8', $this->size, RType::CASTLE_LONG));
-            $this->attach(new N(Color::B, 'b8', $this->size));
-            $this->attach(new B(Color::B, 'c8', $this->size));
-            $this->attach(new Q(Color::B, 'd8', $this->size));
-            $this->attach(new K(Color::B, 'e8', $this->size));
-            $this->attach(new B(Color::B, 'f8', $this->size));
-            $this->attach(new N(Color::B, 'g8', $this->size));
-            $this->attach(new R(Color::B, 'h8', $this->size, RType::CASTLE_SHORT));
-            $this->attach(new P(Color::B, 'a7', $this->size));
-            $this->attach(new P(Color::B, 'b7', $this->size));
-            $this->attach(new P(Color::B, 'c7', $this->size));
-            $this->attach(new P(Color::B, 'd7', $this->size));
-            $this->attach(new P(Color::B, 'e7', $this->size));
-            $this->attach(new P(Color::B, 'f7', $this->size));
-            $this->attach(new P(Color::B, 'g7', $this->size));
-            $this->attach(new P(Color::B, 'h7', $this->size));
+            $this->attach(new R(Color::W, 'a1', $this->square, RType::CASTLE_LONG));
+            $this->attach(new N(Color::W, 'b1', $this->square));
+            $this->attach(new B(Color::W, 'c1', $this->square));
+            $this->attach(new Q(Color::W, 'd1', $this->square));
+            $this->attach(new K(Color::W, 'e1', $this->square));
+            $this->attach(new B(Color::W, 'f1', $this->square));
+            $this->attach(new N(Color::W, 'g1', $this->square));
+            $this->attach(new R(Color::W, 'h1', $this->square, RType::CASTLE_SHORT));
+            $this->attach(new P(Color::W, 'a2', $this->square));
+            $this->attach(new P(Color::W, 'b2', $this->square));
+            $this->attach(new P(Color::W, 'c2', $this->square));
+            $this->attach(new P(Color::W, 'd2', $this->square));
+            $this->attach(new P(Color::W, 'e2', $this->square));
+            $this->attach(new P(Color::W, 'f2', $this->square));
+            $this->attach(new P(Color::W, 'g2', $this->square));
+            $this->attach(new P(Color::W, 'h2', $this->square));
+            $this->attach(new R(Color::B, 'a8', $this->square, RType::CASTLE_LONG));
+            $this->attach(new N(Color::B, 'b8', $this->square));
+            $this->attach(new B(Color::B, 'c8', $this->square));
+            $this->attach(new Q(Color::B, 'd8', $this->square));
+            $this->attach(new K(Color::B, 'e8', $this->square));
+            $this->attach(new B(Color::B, 'f8', $this->square));
+            $this->attach(new N(Color::B, 'g8', $this->square));
+            $this->attach(new R(Color::B, 'h8', $this->square, RType::CASTLE_SHORT));
+            $this->attach(new P(Color::B, 'a7', $this->square));
+            $this->attach(new P(Color::B, 'b7', $this->square));
+            $this->attach(new P(Color::B, 'c7', $this->square));
+            $this->attach(new P(Color::B, 'd7', $this->square));
+            $this->attach(new P(Color::B, 'e7', $this->square));
+            $this->attach(new P(Color::B, 'f7', $this->square));
+            $this->attach(new P(Color::B, 'g7', $this->square));
+            $this->attach(new P(Color::B, 'h7', $this->square));
         } else {
             foreach ($pieces as $piece) {
                 $this->attach($piece);
@@ -485,16 +484,16 @@ class Board extends AbstractPgnParser
     public function toAsciiArray(bool $flip = false): array
     {
         $array = [];
-        for ($i = $this->size['ranks'] - 1; $i >= 0; $i--) {
-            $array[$i] = array_fill(0, $this->size['files'], ' . ');
+        for ($i = Square::SIZE['ranks'] - 1; $i >= 0; $i--) {
+            $array[$i] = array_fill(0, Square::SIZE['files'], ' . ');
         }
 
         foreach ($this->getPieces() as $piece) {
             list($file, $rank) = AsciiArray::fromAlgebraicToIndex($piece->getSq());
             if ($flip) {
-                $diff = $this->size['files'] - $this->size['ranks'];
-                $file = $this->size['files'] - 1 - $file - $diff;
-                $rank = $this->size['ranks'] - 1 - $rank + $diff;
+                $diff = Square::SIZE['files'] - Square::SIZE['ranks'];
+                $file = Square::SIZE['files'] - 1 - $file - $diff;
+                $rank = Square::SIZE['ranks'] - 1 - $rank + $diff;
             }
             $piece->getColor() === Color::W
                 ? $array[$file][$rank] = ' ' . $piece->getId() . ' '

@@ -109,6 +109,8 @@ class AbstractPgnParser extends \SplObjectStorage
      */
     protected object $sqCount;
 
+    protected $square;
+
     /**
      * Returns the current turn.
      *
