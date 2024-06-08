@@ -5,6 +5,7 @@ namespace Chess\Piece;
 use Chess\Exception\UnknownNotationException;
 use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 /**
  * Bishop.
@@ -19,11 +20,11 @@ class B extends Slider
      *
      * @param string $color
      * @param string $sq
-     * @param array $size
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      */
-    public function __construct(string $color, string $sq, array $size)
+    public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $size, Piece::B);
+        parent::__construct($color, $sq, $square, Piece::B);
 
         $this->mobility = [
             'upLeft' => [],
@@ -45,7 +46,7 @@ class B extends Slider
         try {
             $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->getSqRank() + 1;
-            while ($this->isValidSq($file . $rank)) {
+            while ($this->square->validate($file . $rank)) {
                 $this->mobility['upLeft'][] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank + 1;
@@ -56,7 +57,7 @@ class B extends Slider
         try {
             $file = chr(ord($this->sq[0]) + 1);
             $rank = $this->getSqRank() + 1;
-            while ($this->isValidSq($file . $rank)) {
+            while ($this->square->validate($file . $rank)) {
                 $this->mobility['upRight'][]  = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank + 1;
@@ -67,8 +68,7 @@ class B extends Slider
         try {
             $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->getSqRank() - 1;
-            while ($this->isValidSq($file . $rank))
-            {
+            while ($this->square->validate($file . $rank)) {
                 $this->mobility['downLeft'][] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank - 1;
@@ -79,8 +79,7 @@ class B extends Slider
         try {
             $file = chr(ord($this->sq[0]) + 1);
             $rank = $this->getSqRank() - 1;
-            while ($this->isValidSq($file . $rank))
-            {
+            while ($this->square->validate($file . $rank)) {
                 $this->mobility['downRight'][] = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank - 1;

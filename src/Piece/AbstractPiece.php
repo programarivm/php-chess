@@ -71,7 +71,7 @@ abstract class AbstractPiece
      *
      * @param string $color
      * @param string $sq
-     * @param Square \Chess\Variant\Classical\PGN\AN\Square
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      * @param string $id
      */
     public function __construct(string $color, string $sq, Square $square, string $id)

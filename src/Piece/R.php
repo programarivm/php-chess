@@ -26,7 +26,7 @@ class R extends Slider
      *
      * @param string $color
      * @param string $sq
-     * @param Square \Chess\Variant\Classical\PGN\AN\Square
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      * @param string $type
      * @throws \Chess\Exception\PieceTypeException
      */

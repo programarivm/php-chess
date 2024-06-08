@@ -4,17 +4,15 @@ namespace Chess\Tests\Unit\Piece;
 
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Piece\B;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 class BTest extends AbstractUnitTestCase
 {
-    static private $size;
+    static private $square;
 
     public static function setUpBeforeClass(): void
     {
-        self::$size = [
-            'files' => 8,
-            'ranks' => 8,
-        ];
+        self::$square = new Square();
     }
 
     /**
@@ -22,7 +20,7 @@ class BTest extends AbstractUnitTestCase
      */
     public function mobility_a2()
     {
-        $bishop = new B('w', 'a2', self::$size);
+        $bishop = new B('w', 'a2', self::$square);
         $mobility = [
             'upLeft' => [],
             'upRight' => ['b3', 'c4', 'd5', 'e6', 'f7', 'g8'],
@@ -38,7 +36,7 @@ class BTest extends AbstractUnitTestCase
      */
     public function mobility_d5()
     {
-        $bishop = new B('w', 'd5', self::$size);
+        $bishop = new B('w', 'd5', self::$square);
         $mobility = [
             'upLeft' => ['c6', 'b7', 'a8'],
             'upRight' => ['e6', 'f7', 'g8'],
@@ -54,7 +52,7 @@ class BTest extends AbstractUnitTestCase
      */
     public function mobility_a8()
     {
-        $bishop = new B('w', 'a8', self::$size);
+        $bishop = new B('w', 'a8', self::$square);
         $mobility = [
             'upLeft' => [],
             'upRight' => [],
