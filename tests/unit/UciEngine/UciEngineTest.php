@@ -73,8 +73,8 @@ class UciEngineTest extends AbstractUnitTestCase
 
         preg_match_all('/'.Square::REGEX.'/', $analysis['bestmove'], $matches);
 
-        $this->assertIsString(Square::validate($matches[0][0]));
-        $this->assertIsString(Square::validate($matches[0][1]));
+        $this->assertIsString($board->getSquare()->validate($matches[0][0]));
+        $this->assertIsString($board->getSquare()->validate($matches[0][1]));
     }
 
     /**
@@ -96,8 +96,8 @@ class UciEngineTest extends AbstractUnitTestCase
 
         preg_match_all('/'.Square::REGEX.'/', $analysis['bestmove'], $matches);
 
-        $this->assertIsString(Square::validate($matches[0][0]));
-        $this->assertIsString(Square::validate($matches[0][1]));
+        $this->assertIsString($board->getSquare()->validate($matches[0][0]));
+        $this->assertIsString($board->getSquare()->validate($matches[0][1]));
     }
 
     /**

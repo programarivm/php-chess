@@ -8,6 +8,13 @@ use Chess\Variant\Capablanca\PGN\AN\Square;
 
 class SquareTest extends AbstractUnitTestCase
 {
+    static private $square;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$square = new Square();
+    }
+
     /**
      * @test
      */
@@ -15,7 +22,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        Square::validate(9);
+        self::$square->validate(9);
     }
 
     /**
@@ -25,7 +32,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        Square::validate(9.75);
+        self::$square->validate(9.75);
     }
 
     /**
@@ -35,7 +42,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        Square::validate('foo');
+        self::$square->validate('foo');
     }
 
     /**
@@ -45,7 +52,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        Square::validate('k1');
+        self::$square->validate('k1');
     }
 
     /**
@@ -55,7 +62,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        Square::validate('a9');
+        self::$square->validate('a9');
     }
 
     /**
@@ -63,7 +70,7 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function j1()
     {
-        $this->assertSame(Square::validate('j1'), 'j1');
+        $this->assertSame(self::$square->validate('j1'), 'j1');
     }
 
     /**
@@ -71,7 +78,7 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function a1()
     {
-        $this->assertSame(Square::validate('a1'), 'a1');
+        $this->assertSame(self::$square->validate('a1'), 'a1');
     }
 
     /**
@@ -81,7 +88,7 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        Square::validate('a10');
+        self::$square->validate('a10');
     }
 
     /**
@@ -89,7 +96,7 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function color_a1()
     {
-        $this->assertSame(Square::color('a1'), 'b');
+        $this->assertSame(self::$square->color('a1'), 'b');
     }
 
     /**
@@ -97,6 +104,6 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function color_j8()
     {
-        $this->assertSame(Square::color('j8'), 'b');
+        $this->assertSame(self::$square->color('j8'), 'b');
     }
 }
