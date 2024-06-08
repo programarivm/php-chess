@@ -484,16 +484,16 @@ class Board extends AbstractPgnParser
     public function toAsciiArray(bool $flip = false): array
     {
         $array = [];
-        for ($i = Square::SIZE['ranks'] - 1; $i >= 0; $i--) {
-            $array[$i] = array_fill(0, Square::SIZE['files'], ' . ');
+        for ($i = $this->square::SIZE['ranks'] - 1; $i >= 0; $i--) {
+            $array[$i] = array_fill(0, $this->square::SIZE['files'], ' . ');
         }
 
         foreach ($this->getPieces() as $piece) {
             list($file, $rank) = AsciiArray::fromAlgebraicToIndex($piece->getSq());
             if ($flip) {
-                $diff = Square::SIZE['files'] - Square::SIZE['ranks'];
-                $file = Square::SIZE['files'] - 1 - $file - $diff;
-                $rank = Square::SIZE['ranks'] - 1 - $rank + $diff;
+                $diff = $this->square::SIZE['files'] - $this->square::SIZE['ranks'];
+                $file = $this->square::SIZE['files'] - 1 - $file - $diff;
+                $rank = $this->square::SIZE['ranks'] - 1 - $rank + $diff;
             }
             $piece->getColor() === Color::W
                 ? $array[$file][$rank] = ' ' . $piece->getId() . ' '
