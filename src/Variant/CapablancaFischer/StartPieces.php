@@ -13,6 +13,6 @@ class StartPieces
     {
         $this->startPos = $startPos;
 
-        $this->size = Square::SIZE;
+        $this->square = new Square();
     }
 }

@@ -24,7 +24,7 @@ class StrToBoard extends ClassicalFenStrToBoard
 
     public function __construct(string $string, array $startPos)
     {
-        $this->size = Square::SIZE;
+        $this->square = new Square();
         $this->fenStr = new Str();
         $this->string = $this->fenStr->validate($string);
         $this->fields = array_filter(explode(' ', $this->string));
@@ -38,7 +38,7 @@ class StrToBoard extends ClassicalFenStrToBoard
         try {
             $pieces = (new PieceArray(
                 $this->fenStr->toAsciiArray($this->fields[0]),
-                $this->size,
+                $this->square,
                 $this->castlingRule
             ))->getArray();
             $board = (new Board(
