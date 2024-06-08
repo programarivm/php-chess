@@ -8,6 +8,7 @@ use Chess\Piece\N;
 use Chess\Piece\R;
 use Chess\Piece\RType;
 use Chess\Variant\Capablanca\PGN\AN\Piece;
+use Chess\Variant\Capablanca\PGN\AN\Square;
 
 /**
  * Chancellor.
@@ -34,14 +35,14 @@ class C extends AbstractPiece
      *
      * @param string $color
      * @param string $sq
-     * @param array $size
+     * @param Square \Chess\Variant\Capablanca\PGN\AN\Square $square
      */
-    public function __construct(string $color, string $sq, array $size)
+    public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $size, Piece::C);
+        parent::__construct($color, $sq, $square, Piece::C);
 
-        $this->rook = new R($color, $sq, $size, RType::PROMOTED);
-        $this->knight = new N($color, $sq, $size);
+        $this->rook = new R($color, $sq, $square, RType::PROMOTED);
+        $this->knight = new N($color, $sq, $square);
 
         $this->mobility();
     }
