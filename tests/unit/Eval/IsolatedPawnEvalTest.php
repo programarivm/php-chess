@@ -12,13 +12,13 @@ use Chess\Variant\Classical\Rule\CastlingRule;
 
 class IsolatedPawnEvalTest extends AbstractUnitTestCase
 {
-    static private $size;
+    static private $square;
 
     static private $castlingRule;
 
     public static function setUpBeforeClass(): void
     {
-        self::$size = Square::SIZE;
+        self::$square = new Square();
 
         self::$castlingRule = (new CastlingRule())->getRule();
     }
@@ -52,7 +52,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' . ', ' . ', ' K ', ' . ', ' . ', ' R ' ],
         ];
 
-        $board = (new AsciiArray($position, self::$size, self::$castlingRule))
+        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $isolatedPawnEval = new IsolatedPawnEval($board);
@@ -89,7 +89,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' N ', ' . ', ' R ', ' K ', ' . ' ],
         ];
 
-        $board = (new AsciiArray($position, self::$size, self::$castlingRule))
+        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $isolatedPawnEval = new IsolatedPawnEval($board);
@@ -128,7 +128,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             0 => [ ' . ', ' R ', ' . ', ' . ', ' . ', ' R ', ' . ', ' . ' ],
         ];
 
-        $board = (new AsciiArray($position, self::$size, self::$castlingRule))
+        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $isolatedPawnEval = new IsolatedPawnEval($board);

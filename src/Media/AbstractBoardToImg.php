@@ -43,8 +43,8 @@ class AbstractBoardToImg
 
     protected function chessboard(string $filepath)
     {
-        $nSqs = $this->board->getSize()['files'] * $this->board->getSize()['ranks'];
-        $sqSize = $this->size / $this->board->getSize()['files'];
+        $nSqs = $this->board->getSquare()::SIZE['files'] * $this->board->getSquare()::SIZE['ranks'];
+        $sqSize = $this->size / $this->board->getSquare()::SIZE['files'];
         $chessboard = $this->imagine->open(self::FILEPATH.'/chessboard/'."{$this->size}_{$nSqs}".'.png');
         $x = $y = 0;
         foreach ($this->board->toAsciiArray($this->flip) as $i => $rank) {

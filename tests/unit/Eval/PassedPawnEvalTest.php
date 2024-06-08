@@ -11,13 +11,13 @@ use Chess\Variant\Classical\Rule\CastlingRule;
 
 class PassedPawnEvalTest extends AbstractUnitTestCase
 {
-    static private $size;
+    static private $square;
 
     static private $castlingRule;
 
     public static function setUpBeforeClass(): void
     {
-        self::$size = Square::SIZE;
+        self::$square = new Square();
 
         self::$castlingRule = (new CastlingRule())->getRule();
     }
@@ -47,7 +47,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' N ', ' . ', ' R ', ' K ', ' . ' ],
         ];
 
-        $board = (new AsciiArray($position, self::$size, self::$castlingRule))
+        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $passedPawnEval = new PassedPawnEval($board);
@@ -81,7 +81,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             0 => [ ' . ', ' R ', ' . ', ' . ', ' . ', ' R ', ' . ', ' . ' ],
         ];
 
-        $board = (new AsciiArray($position, self::$size, self::$castlingRule))
+        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
             ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
 
         $passedPawnEval = new PassedPawnEval($board);

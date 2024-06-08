@@ -127,7 +127,7 @@ class Randomizer
                 $pieces[] = new $className(
                     $color,
                     $sq,
-                    $this->board->getSize(),
+                    $this->board->getSquare()::SIZE,
                     $id !== Piece::R ?: RType::PROMOTED
                 );
                 unset($freeSqs[$arrayRand]);

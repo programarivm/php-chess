@@ -79,7 +79,7 @@ class PassedPawnEval extends AbstractEval implements
 
         foreach ([$leftFile, $pawn->getSqFile(), $rightFile] as $file) {
             if ($pawn->getColor() === Color::W) {
-                for ($i = $pawn->getSqRank() + 1; $i <= $this->board->getSize()['ranks'] - 1; $i++) {
+                for ($i = $pawn->getSqRank() + 1; $i <= $this->board->getSquare()::SIZE['ranks'] - 1; $i++) {
                     if ($piece = $this->board->getPieceBySq($file.$i)) {
                         if ($piece->getId() === Piece::P && $piece->getColor() !== $pawn->getColor()) {
                             return false;
