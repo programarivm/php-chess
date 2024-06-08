@@ -8,6 +8,7 @@ use Chess\Piece\RType;
 use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 /**
  * King.
@@ -22,11 +23,11 @@ class K extends AbstractPiece
      *
      * @param string $color
      * @param string $sq
-     * @param array $size
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      */
-    public function __construct(string $color, string $sq, array $size)
+    public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $size, Piece::K);
+        parent::__construct($color, $sq, $square, Piece::K);
 
         $this->mobility = [];
 
@@ -43,7 +44,7 @@ class K extends AbstractPiece
         try {
             $file = $this->sq[0];
             $rank = $this->getSqRank() + 1;
-            if ($this->isValidSq($file . $rank)) {
+            if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -52,7 +53,7 @@ class K extends AbstractPiece
         try {
             $file = $this->sq[0];
             $rank = $this->getSqRank() - 1;
-            if ($this->isValidSq($file . $rank)) {
+            if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -61,7 +62,7 @@ class K extends AbstractPiece
         try {
             $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->getSqRank();
-            if ($this->isValidSq($file . $rank)) {
+            if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -70,7 +71,7 @@ class K extends AbstractPiece
         try {
             $file = chr(ord($this->sq[0]) + 1);
             $rank = $this->getSqRank();
-            if ($this->isValidSq($file . $rank)) {
+            if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -79,7 +80,7 @@ class K extends AbstractPiece
         try {
             $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->getSqRank() + 1;
-            if ($this->isValidSq($file . $rank)) {
+            if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -88,7 +89,7 @@ class K extends AbstractPiece
         try {
             $file = chr(ord($this->sq[0]) + 1);
             $rank = $this->getSqRank() + 1;
-            if ($this->isValidSq($file . $rank)) {
+            if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -97,7 +98,7 @@ class K extends AbstractPiece
         try {
             $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->getSqRank() - 1;
-            if ($this->isValidSq($file . $rank)) {
+            if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -106,7 +107,7 @@ class K extends AbstractPiece
         try {
             $file = chr(ord($this->sq[0]) + 1);
             $rank = $this->getSqRank() - 1;
-            if ($this->isValidSq($file . $rank)) {
+            if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
