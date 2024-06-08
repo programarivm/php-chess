@@ -4,6 +4,7 @@ namespace Chess\Piece;
 
 use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\AN\Square;
 
 /**
  * Queen.
@@ -28,14 +29,14 @@ class Q extends Slider
      *
      * @param string $color
      * @param string $sq
-     * @param array $size
+     * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      */
-    public function __construct(string $color, string $sq, array $size)
+    public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $size, Piece::Q);
+        parent::__construct($color, $sq, $square, Piece::Q);
 
-        $this->rook = new R($color, $sq, $size, RType::SLIDER);
-        $this->bishop = new B($color, $sq, $size);
+        $this->rook = new R($color, $sq, $square, RType::SLIDER);
+        $this->bishop = new B($color, $sq, $square);
 
         $this->mobility();
     }
