@@ -8,11 +8,11 @@ use Chess\Variant\Classical\PGN\AN\Square;
 class StartPieces
 {
     use RandomStartPiecesTrait;
-    
+
     public function __construct(array $startPos)
     {
         $this->startPos = $startPos;
 
-        $this->size = Square::SIZE;
+        $this->square = new Square();
     }
 }
