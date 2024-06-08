@@ -2,11 +2,11 @@
 
 namespace Chess\Variant\Capablanca\FEN;
 
+use Chess\Exception\UnknownNotationException;
 use Chess\Variant\Capablanca\FEN\Field\PiecePlacement;
+use Chess\Variant\Capablanca\PGN\AN\Square;
 use Chess\Variant\Classical\FEN\Field\CastlingAbility;
-use Chess\Variant\Classical\FEN\Field\EnPassantTargetSquare;
-use Chess\Variant\Classical\FEN\Field\SideToMove;
-use Chess\Variant\Classical\FEN\Str as ClassicalFenStr;
+use Chess\Variant\Classical\PGN\AN\Color;
 
 /**
  * FEN string.
@@ -14,7 +14,7 @@ use Chess\Variant\Classical\FEN\Str as ClassicalFenStr;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class Str extends ClassicalFenStr
+class Str
 {
     /**
      * String validation.
@@ -27,10 +27,26 @@ class Str extends ClassicalFenStr
     {
         $fields = explode(' ', $string);
 
+        if (
+            !isset($fields[0]) ||
+            !isset($fields[1]) ||
+            !isset($fields[2]) ||
+            !isset($fields[3])
+        ) {
+            throw new UnknownNotationException();
+        }
+
         PiecePlacement::validate($fields[0]);
-        SideToMove::validate($fields[1]);
+
+        // side to move
+        Color::validate($fields[1]);
+
         CastlingAbility::validate($fields[2]);
-        EnPassantTargetSquare::validate($fields[3]);
+
+        // en passant square
+        if ('-' !== $fields[3]) {
+            (new Square())->validate($fields[3]);
+        }
 
         return $string;
     }
