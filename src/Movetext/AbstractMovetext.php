@@ -117,7 +117,7 @@ abstract class AbstractMovetext
             }
         }
         // remove PGN symbols
-        $str = str_replace(Termination::values(), '', $str);
+        $str = str_replace((new Termination())->values(), '', $str);
         // replace FIDE notation with PGN notation
         $str = str_replace('0-0', 'O-O', $str);
         $str = str_replace('0-0-0', 'O-O-O', $str);

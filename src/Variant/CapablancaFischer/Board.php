@@ -8,6 +8,7 @@ use Chess\Variant\Capablanca\PGN\AN\Square;
 use Chess\Variant\CapablancaFischer\StartPieces;
 use Chess\Variant\CapablancaFischer\Rule\CastlingRule;
 use Chess\Variant\Classical\Board as ClassicalBoard;
+use Chess\Variant\Classical\PGN\AN\Color;
 
 /**
  * Board
@@ -38,6 +39,7 @@ final class Board extends ClassicalBoard implements RandomBoardInterface
         array $pieces = null,
         string $castlingAbility = '-'
     ) {
+        $this->color = new Color();
         $this->startPos = $startPos ?? (new StartPosition())->getDefault();
         $this->castlingRule = new CastlingRule($this->startPos);
         $this->square = new Square();

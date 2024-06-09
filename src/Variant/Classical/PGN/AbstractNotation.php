@@ -10,7 +10,7 @@ namespace Chess\Variant\Classical\PGN;
  */
 abstract class AbstractNotation
 {
-    public static function values(): array
+    public function values(): array
     {
         return (new \ReflectionClass(get_called_class()))->getConstants();
     }

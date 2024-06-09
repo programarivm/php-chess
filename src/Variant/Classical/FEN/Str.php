@@ -39,7 +39,7 @@ class Str
         PiecePlacement::validate($fields[0]);
 
         // side to move
-        Color::validate($fields[1]);
+        (new Color())->validate($fields[1]);
 
         // castling
         (new CastlingRule())->validate($fields[2]);

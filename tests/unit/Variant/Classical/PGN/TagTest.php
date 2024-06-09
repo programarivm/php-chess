@@ -7,6 +7,13 @@ use Chess\Tests\AbstractUnitTestCase;
 
 class TagTest extends AbstractUnitTestCase
 {
+    static private $tag;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$tag = new Tag();
+    }
+
     /**
      * @test
      */
@@ -14,7 +21,7 @@ class TagTest extends AbstractUnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        Tag::validate('Foo');
+        self::$tag->validate('Foo');
     }
 
     /**
@@ -22,7 +29,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function Event_Vladimir_Dvorkovich_Cup()
     {
-        $tag = Tag::validate('[Event "Vladimir Dvorkovich Cup"]');
+        $tag = self::$tag->validate('[Event "Vladimir Dvorkovich Cup"]');
 
         $this->assertSame('Event', $tag->name);
         $this->assertSame('Vladimir Dvorkovich Cup', $tag->value);
@@ -33,7 +40,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function Site_Saint_Louis_USA()
     {
-        $tag = Tag::validate('[Site "Saint Louis USA"]');
+        $tag = self::$tag->validate('[Site "Saint Louis USA"]');
 
         $this->assertSame('Site', $tag->name);
         $this->assertSame('Saint Louis USA', $tag->value);
@@ -44,7 +51,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function Date_2018_05_10()
     {
-        $tag = Tag::validate('[Date "2018.05.10"]');
+        $tag = self::$tag->validate('[Date "2018.05.10"]');
 
         $this->assertSame('Date', $tag->name);
         $this->assertSame('2018.05.10', $tag->value);
@@ -55,7 +62,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function Round_9_6()
     {
-        $tag = Tag::validate('[Round "9.6"]');
+        $tag = self::$tag->validate('[Round "9.6"]');
 
         $this->assertSame('Round', $tag->name);
         $this->assertSame('9.6', $tag->value);
@@ -66,7 +73,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function White_Kantor_Gergely()
     {
-        $tag = Tag::validate('[White "Kantor, Gergely"]');
+        $tag = self::$tag->validate('[White "Kantor, Gergely"]');
 
         $this->assertSame('White', $tag->name);
         $this->assertSame('Kantor, Gergely', $tag->value);
@@ -77,7 +84,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function Black_Gelfand_Boris()
     {
-        $tag = Tag::validate('[Black "Gelfand, Boris"]');
+        $tag = self::$tag->validate('[Black "Gelfand, Boris"]');
 
         $this->assertSame('Black', $tag->name);
         $this->assertSame('Gelfand, Boris', $tag->value);
@@ -88,7 +95,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function Result_12_12()
     {
-        $tag = Tag::validate('[Result "1/2-1/2"]');
+        $tag = self::$tag->validate('[Result "1/2-1/2"]');
 
         $this->assertSame('Result', $tag->name);
         $this->assertSame('1/2-1/2', $tag->value);
@@ -99,7 +106,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function WhiteElo_2579()
     {
-        $tag = Tag::validate('[WhiteElo "2579"]');
+        $tag = self::$tag->validate('[WhiteElo "2579"]');
 
         $this->assertSame('WhiteElo', $tag->name);
         $this->assertSame('2579', $tag->value);
@@ -110,7 +117,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function BlackElo_2474()
     {
-        $tag = Tag::validate('[BlackElo "2474"]');
+        $tag = self::$tag->validate('[BlackElo "2474"]');
 
         $this->assertSame('BlackElo', $tag->name);
         $this->assertSame('2474', $tag->value);
@@ -121,7 +128,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function ECO_D35()
     {
-        $tag = Tag::validate('[ECO "D35"]');
+        $tag = self::$tag->validate('[ECO "D35"]');
 
         $this->assertSame('ECO', $tag->name);
         $this->assertSame('D35', $tag->value);
@@ -132,7 +139,7 @@ class TagTest extends AbstractUnitTestCase
      */
     public function EventDate_2017_12_17()
     {
-        $tag = Tag::validate('[EventDate "2017.12.17"]');
+        $tag = self::$tag->validate('[EventDate "2017.12.17"]');
 
         $this->assertSame('EventDate', $tag->name);
         $this->assertSame('2017.12.17', $tag->value);

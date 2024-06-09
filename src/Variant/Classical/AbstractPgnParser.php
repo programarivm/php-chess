@@ -55,6 +55,13 @@ class AbstractPgnParser extends \SplObjectStorage
     protected array $history = [];
 
     /**
+     * Color.
+     *
+     * @var \Chess\Variant\Classical\PGN\AN\Color
+     */
+    protected Color $color;
+
+    /**
      * Castling rule.
      *
      * @var \Chess\Variant\Classical\Rule\CastlingRule
@@ -121,7 +128,7 @@ class AbstractPgnParser extends \SplObjectStorage
      */
     public function setTurn(string $color): Board
     {
-        $this->turn = Color::validate($color);
+        $this->turn = $this->color->validate($color);
 
         return $this;
     }
@@ -144,6 +151,16 @@ class AbstractPgnParser extends \SplObjectStorage
     public function getHistory(): ?array
     {
         return $this->history;
+    }
+
+    /**
+     * Returns the color.
+     *
+     * @return \Chess\Variant\Classical\PGN\AN\Color
+     */
+    public function getColor(): Color
+    {
+        return $this->color;
     }
 
     /**
@@ -434,7 +451,7 @@ class AbstractPgnParser extends \SplObjectStorage
                 }
             }
         }
-        $oppColor = Color::opp($this->turn);
+        $oppColor = $this->color->opp($this->turn);
         if ($this->castlingRule->can($this->castlingAbility, $oppColor)) {
             if ($piece->getMove()->isCapture) {
                 if ($piece->getMove()->sq->next ===
@@ -569,25 +586,25 @@ class AbstractPgnParser extends \SplObjectStorage
             foreach ($piece->sqs() as $sq) {
                 if ($piece->getId() === Piece::K) {
                     if ($sq === $piece->sqCastleShort()) {
-                        $move = $this->move->toObj($this->turn, Castle::SHORT, $this->castlingRule);
+                        $move = $this->move->toObj($this->turn, Castle::SHORT, $this->castlingRule, $this->color);
                     } elseif ($sq === $piece->sqCastleLong()) {
-                        $move = $this->move->toObj($this->turn, CASTLE::LONG, $this->castlingRule);
+                        $move = $this->move->toObj($this->turn, CASTLE::LONG, $this->castlingRule, $this->color);
                     } elseif (in_array($sq, $this->sqCount->used->{$piece->oppColor()})) {
-                        $move = $this->move->toObj($this->turn, Piece::K."x$sq", $this->castlingRule);
+                        $move = $this->move->toObj($this->turn, Piece::K."x$sq", $this->castlingRule, $this->color);
                     } elseif (!in_array($sq, $this->spaceEval->{$piece->oppColor()})) {
-                        $move = $this->move->toObj($this->turn, Piece::K.$sq, $this->castlingRule);
+                        $move = $this->move->toObj($this->turn, Piece::K.$sq, $this->castlingRule, $this->color);
                     }
                 } elseif ($piece->getId() === Piece::P) {
                     if (in_array($sq, $this->sqCount->used->{$piece->oppColor()})) {
-                        $move = $this->move->toObj($this->turn, $piece->getSqFile()."x$sq", $this->castlingRule);
+                        $move = $this->move->toObj($this->turn, $piece->getSqFile()."x$sq", $this->castlingRule, $this->color);
                     } else {
-                        $move = $this->move->toObj($this->turn, $sq, $this->castlingRule);
+                        $move = $this->move->toObj($this->turn, $sq, $this->castlingRule, $this->color);
                     }
                 } else {
                     if (in_array($sq, $this->sqCount->used->{$piece->oppColor()})) {
-                        $move = $this->move->toObj($this->turn, $piece->getId()."x$sq", $this->castlingRule);
+                        $move = $this->move->toObj($this->turn, $piece->getId()."x$sq", $this->castlingRule, $this->color);
                     } else {
-                        $move = $this->move->toObj($this->turn, $piece->getId().$sq, $this->castlingRule);
+                        $move = $this->move->toObj($this->turn, $piece->getId().$sq, $this->castlingRule, $this->color);
                     }
                 }
                 $escape += (int) !$this->isPinned($piece->setMove($move));

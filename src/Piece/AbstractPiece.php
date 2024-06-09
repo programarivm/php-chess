@@ -261,7 +261,7 @@ abstract class AbstractPiece
      */
     public function oppColor(): string
     {
-        return Color::opp($this->color);
+        return $this->board->getColor()->opp($this->color);
     }
 
     /**

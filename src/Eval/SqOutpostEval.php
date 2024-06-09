@@ -88,7 +88,7 @@ class SqOutpostEval extends AbstractEval implements
             if ($piece = $this->board->getPieceBySq($file.$i)) {
                 if (
                     $piece->getId() === Piece::P &&
-                    $piece->getColor() === Color::opp($color)
+                    $piece->getColor() === $this->board->getColor()->opp($color)
                 ) {
                     if ($color === Color::W) {
                         if ($i > $rank) {

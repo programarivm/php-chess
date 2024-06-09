@@ -122,13 +122,14 @@ class Move extends AbstractNotation
     /**
      * Returns an object for further processing.
      *
-     * @param string $color
+     * @param string $str
      * @param string $pgn
      * @param \Chess\Variant\Classical\Rule\CastlingRule $castlingRule
+     * @param \Chess\Variant\Classical\PGN\AN\Color $color
      * @return object
      * @throws \Chess\Exception\UnknownNotationException
      */
-    public function toObj(string $color, string $pgn, CastlingRule $castlingRule): object
+    public function toObj(string $str, string $pgn, CastlingRule $castlingRule, Color $color): object
     {
         $isCheck = substr($pgn, -1) === '+' || substr($pgn, -1) === '#';
         if (preg_match('/^' . static::KING . '$/', $pgn)) {
@@ -137,7 +138,7 @@ class Move extends AbstractNotation
                 'isCapture' => false,
                 'isCheck' => $isCheck,
                 'type' => static::KING,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::K,
                 'sq' => (object) [
                     'current' => '',
@@ -150,9 +151,9 @@ class Move extends AbstractNotation
                 'isCapture' => false,
                 'isCheck' => $isCheck,
                 'type' => static::CASTLE_SHORT,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::K,
-                'sq' => (object) $castlingRule->getRule()[$color][Piece::K][Castle::SHORT]['sq'],
+                'sq' => (object) $castlingRule->getRule()[$str][Piece::K][Castle::SHORT]['sq'],
             ];
         } elseif (preg_match('/^' . static::CASTLE_LONG . '$/', $pgn)) {
             return (object) [
@@ -160,9 +161,9 @@ class Move extends AbstractNotation
                 'isCapture' => false,
                 'isCheck' => $isCheck,
                 'type' => static::CASTLE_LONG,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::K,
-                'sq' => (object) $castlingRule->getRule()[$color][Piece::K][Castle::LONG]['sq'],
+                'sq' => (object) $castlingRule->getRule()[$str][Piece::K][Castle::LONG]['sq'],
             ];
         } elseif (preg_match('/^' . static::KING_CAPTURES . '$/', $pgn)) {
             return (object) [
@@ -170,7 +171,7 @@ class Move extends AbstractNotation
                 'isCapture' => true,
                 'isCheck' => $isCheck,
                 'type' => static::KING_CAPTURES,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::K,
                 'sq' => (object) [
                     'current' => '',
@@ -186,7 +187,7 @@ class Move extends AbstractNotation
                 'isCapture' => false,
                 'isCheck' => $isCheck,
                 'type' => static::PIECE,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => mb_substr($pgn, 0, 1),
                 'sq' => (object) [
                     'current' => $current,
@@ -200,7 +201,7 @@ class Move extends AbstractNotation
                 'isCapture' => true,
                 'isCheck' => $isCheck,
                 'type' => static::PIECE_CAPTURES,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => mb_substr($pgn, 0, 1),
                 'sq' => (object) [
                     'current' => $this->extractSqs($arr[0]),
@@ -216,7 +217,7 @@ class Move extends AbstractNotation
                 'isCapture' => false,
                 'isCheck' => $isCheck,
                 'type' => static::KNIGHT,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::N,
                 'sq' => (object) [
                     'current' => $current,
@@ -230,7 +231,7 @@ class Move extends AbstractNotation
                 'isCapture' => true,
                 'isCheck' => $isCheck,
                 'type' => static::KNIGHT_CAPTURES,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::N,
                 'sq' => (object) [
                     'current' => $this->extractSqs($arr[0]),
@@ -243,7 +244,7 @@ class Move extends AbstractNotation
                 'isCapture' => false,
                 'isCheck' => $isCheck,
                 'type' => static::PAWN_PROMOTES,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::P,
                 'newId' => $isCheck
                     ? mb_substr($pgn, -2, -1)
@@ -260,7 +261,7 @@ class Move extends AbstractNotation
                 'isCapture' => true,
                 'isCheck' => $isCheck,
                 'type' => static::PAWN_CAPTURES_AND_PROMOTES,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::P,
                 'newId' => $isCheck
                     ? mb_substr($pgn, -2, -1)
@@ -276,7 +277,7 @@ class Move extends AbstractNotation
                 'isCapture' => false,
                 'isCheck' => $isCheck,
                 'type' => static::PAWN,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::P,
                 'sq' => (object) [
                     'current' => mb_substr($pgn, 0, 1),
@@ -290,7 +291,7 @@ class Move extends AbstractNotation
                 'isCapture' => true,
                 'isCheck' => $isCheck,
                 'type' => static::PAWN_CAPTURES,
-                'color' => Color::validate($color),
+                'color' => $color->validate($str),
                 'id' => Piece::P,
                 'sq' => (object) [
                     'current' => mb_substr($pgn, 0, 1),

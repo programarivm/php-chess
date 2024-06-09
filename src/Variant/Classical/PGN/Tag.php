@@ -86,11 +86,11 @@ class Tag extends AbstractNotation
      * @return object if the tag is valid
      * @throws UnknownNotationException
      */
-    public static function validate(string $tag): object
+    public function validate(string $tag): object
     {
         $isValid = false;
 
-        foreach (self::values() as $val) {
+        foreach ($this->values() as $val) {
             if (preg_match('/^\[' . $val . ' \"(.*)\"\]$/', $tag)) {
                 $isValid = true;
             }
@@ -115,7 +115,7 @@ class Tag extends AbstractNotation
      *
      * @return array
      */
-    public static function mandatory(): array
+    public function mandatory(): array
     {
         return [
             self::EVENT,
@@ -132,7 +132,7 @@ class Tag extends AbstractNotation
      *
      * @return array
      */
-    public static function loadable(): array
+    public function loadable(): array
     {
         return [
             self::EVENT,

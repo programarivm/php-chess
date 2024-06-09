@@ -46,10 +46,11 @@ class Board extends AbstractPgnParser
         array $pieces = null,
         string $castlingAbility = '-'
     ) {
-        $this->castlingAbility = CastlingRule::START;
+        $this->color = new Color();
         $this->castlingRule = new CastlingRule();
         $this->square = new Square();
         $this->move = new Move();
+        $this->castlingAbility = CastlingRule::START;
         if (!$pieces) {
             $this->attach(new R(Color::W, 'a1', $this->square, RType::CASTLE_LONG));
             $this->attach(new N(Color::W, 'b1', $this->square));
@@ -100,7 +101,7 @@ class Board extends AbstractPgnParser
      */
     public function refresh(): void
     {
-        $this->turn = Color::opp($this->turn);
+        $this->turn = $this->color->opp($this->turn);
 
         $this->sqCount = (new SqCount($this))->count();
 
@@ -221,7 +222,7 @@ class Board extends AbstractPgnParser
      */
     public function play(string $color, string $pgn): bool
     {
-        $move = $this->move->toObj($color, $pgn, $this->castlingRule);
+        $move = $this->move->toObj($color, $pgn, $this->castlingRule, $this->color);
         if ($this->isValidMove($move)) {
             return $this->isLegalMove($move);
         }
