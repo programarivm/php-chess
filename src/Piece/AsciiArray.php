@@ -3,9 +3,9 @@
 namespace Chess\Piece;
 
 use Chess\Piece\PieceArray;
-use Chess\Variant\Classical\FEN\Field\CastlingAbility;
-use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\Rule\CastlingRule;
 
 /**
  * Ascii array.
@@ -79,7 +79,7 @@ class AsciiArray
         ))->getArray();
 
         if (!$castlingAbility) {
-            $castlingAbility = CastlingAbility::START;
+            $castlingAbility = CastlingRule::START;
         }
 
         $newBoard = (new $className($pieces, $castlingAbility))->setTurn($turn);
@@ -112,7 +112,7 @@ class AsciiArray
         ))->getArray();
 
         if (!$castlingAbility) {
-            $castlingAbility = CastlingAbility::START;
+            $castlingAbility = CastlingRule::START;
         }
 
         $newBoard = (new $className($startPos, $pieces, $castlingAbility))

@@ -30,7 +30,7 @@ class StrToBoard extends ClassicalFenStrToBoard
         $this->fields = array_filter(explode(' ', $this->string));
         $this->castlingAbility = $this->fields[2];
         $this->startPos = $startPos;
-        $this->castlingRule =  (new CastlingRule($this->startPos))->getRule();
+        $this->castlingRule = new CastlingRule($this->startPos);
     }
 
     public function create(): Board

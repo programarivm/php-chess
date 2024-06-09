@@ -3,10 +3,10 @@
 namespace Chess\Variant\Classical\FEN;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\FEN\Field\PiecePlacement;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\Rule\CastlingRule;
 
 /**
  * FEN string.
@@ -41,7 +41,8 @@ class Str
         // side to move
         Color::validate($fields[1]);
 
-        CastlingAbility::validate($fields[2]);
+        // castling
+        (new CastlingRule())->validate($fields[2]);
 
         // en passant square
         if ('-' !== $fields[3]) {

@@ -15,7 +15,6 @@ use Chess\Piece\P;
 use Chess\Piece\Q;
 use Chess\Piece\R;
 use Chess\Piece\RType;
-use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
@@ -47,8 +46,8 @@ class Board extends AbstractPgnParser
         array $pieces = null,
         string $castlingAbility = '-'
     ) {
-        $this->castlingAbility = CastlingAbility::START;
-        $this->castlingRule = (new CastlingRule())->getRule();
+        $this->castlingAbility = CastlingRule::START;
+        $this->castlingRule = new CastlingRule();
         $this->square = new Square();
         $this->move = new Move();
         if (!$pieces) {
@@ -244,13 +243,13 @@ class Board extends AbstractPgnParser
             if ($color === $this->getTurn() && $piece = $this->getPieceBySq($sqs[0])) {
                 if ($piece->getId() === Piece::K) {
                     if (
-                        $this->castlingRule[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sqs[1] &&
+                        $this->castlingRule->getRule()[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sqs[1] &&
                         $piece->sqCastleShort() &&
                         $this->play($color, Castle::SHORT)
                     ) {
                         return $this->afterPlayLan();
                     } elseif (
-                        $this->castlingRule[$color][Piece::K][Castle::LONG]['sq']['next'] === $sqs[1] &&
+                        $this->castlingRule->getRule()[$color][Piece::K][Castle::LONG]['sq']['next'] === $sqs[1] &&
                         $piece->sqCastleLong() &&
                         $this->play($color, Castle::LONG)
                     ) {

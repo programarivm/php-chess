@@ -6,6 +6,7 @@ use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\Rule\CastlingRule;
 
 /**
  * Piece array.
@@ -32,9 +33,9 @@ class PieceArray
     /**
      * Castling rule.
      *
-     * @var array
+     * @var \Chess\Variant\Classical\Rule\CastlingRule
      */
-     private array $castlingRule;
+     private CastlingRule $castlingRule;
 
     /**
      * Constructor.
@@ -43,7 +44,7 @@ class PieceArray
      * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      * @param array $castlingRule
      */
-    public function __construct(array $array, Square $square, array $castlingRule)
+    public function __construct(array $array, Square $square, CastlingRule $castlingRule)
     {
         $this->square = $square;
 
@@ -89,22 +90,22 @@ class PieceArray
         if ($id === Piece::R) {
             if (
                 $color === Color::B &&
-                $sq === $this->castlingRule[Color::B][Piece::R][Castle::LONG]['sq']['current']
+                $sq === $this->castlingRule->getRule()[Color::B][Piece::R][Castle::LONG]['sq']['current']
             ) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
             } elseif (
                 $color === Color::B &&
-                $sq === $this->castlingRule[Color::B][Piece::R][Castle::SHORT]['sq']['current']
+                $sq === $this->castlingRule->getRule()[Color::B][Piece::R][Castle::SHORT]['sq']['current']
             ) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
             } elseif (
                 $color === Color::W &&
-                $sq === $this->castlingRule[Color::B][Piece::R][Castle::LONG]['sq']['current']
+                $sq === $this->castlingRule->getRule()[Color::B][Piece::R][Castle::LONG]['sq']['current']
             ) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
             } elseif (
                 $color === Color::W &&
-                $sq === $this->castlingRule[Color::W][Piece::R][Castle::SHORT]['sq']['current']
+                $sq === $this->castlingRule->getRule()[Color::W][Piece::R][Castle::SHORT]['sq']['current']
             ) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
             } else { // it doesn't matter which RType is assigned

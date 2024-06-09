@@ -14,7 +14,6 @@ use Chess\Piece\RType;
 use Chess\Variant\Capablanca\Rule\CastlingRule;
 use Chess\Variant\Capablanca\PGN\Move;
 use Chess\Variant\Capablanca\PGN\AN\Square;
-use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 
@@ -40,8 +39,8 @@ class Board extends ClassicalBoard
         array $pieces = null,
         string $castlingAbility = '-'
     ) {
-        $this->castlingAbility = CastlingAbility::START;
-        $this->castlingRule = (new CastlingRule())->getRule();
+        $this->castlingAbility = CastlingRule::START;
+        $this->castlingRule = new CastlingRule();
         $this->square = new Square();
         $this->move = new Move();
         if (!$pieces) {

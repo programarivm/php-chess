@@ -16,7 +16,7 @@ class MoveTest extends AbstractUnitTestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$castlingRule = (new CastlingRule())->getRule();
+        self::$castlingRule = new CastlingRule();
         self::$move = new Move();
     }
 
@@ -299,7 +299,7 @@ class MoveTest extends AbstractUnitTestCase
             'type' => self::$move->case(MOVE::CASTLE_SHORT),
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) self::$castlingRule['w'][Piece::K][Castle::SHORT]['sq']
+            'sq' => (object) self::$castlingRule->getRule()['w'][Piece::K][Castle::SHORT]['sq']
         ];
 
         $this->assertEquals(self::$move->toObj('w', $move, self::$castlingRule), $example);
@@ -318,7 +318,7 @@ class MoveTest extends AbstractUnitTestCase
             'type' => self::$move->case(MOVE::CASTLE_LONG),
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) self::$castlingRule['w'][Piece::K][Castle::LONG]['sq']
+            'sq' => (object) self::$castlingRule->getRule()['w'][Piece::K][Castle::LONG]['sq']
         ];
 
         $this->assertEquals(self::$move->toObj('w', $move, self::$castlingRule), $example);

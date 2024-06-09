@@ -9,6 +9,7 @@ use Chess\Variant\Classical\PGN\AN\Check;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\Rule\CastlingRule;
 
 /**
  * Move.
@@ -123,11 +124,11 @@ class Move extends AbstractNotation
      *
      * @param string $color
      * @param string $pgn
-     * @param array $castlingRule
+     * @param \Chess\Variant\Classical\Rule\CastlingRule $castlingRule
      * @return object
      * @throws \Chess\Exception\UnknownNotationException
      */
-    public function toObj(string $color, string $pgn, array $castlingRule): object
+    public function toObj(string $color, string $pgn, CastlingRule $castlingRule): object
     {
         $isCheck = substr($pgn, -1) === '+' || substr($pgn, -1) === '#';
         if (preg_match('/^' . static::KING . '$/', $pgn)) {
@@ -151,7 +152,7 @@ class Move extends AbstractNotation
                 'type' => static::CASTLE_SHORT,
                 'color' => Color::validate($color),
                 'id' => Piece::K,
-                'sq' => (object) $castlingRule[$color][Piece::K][Castle::SHORT]['sq'],
+                'sq' => (object) $castlingRule->getRule()[$color][Piece::K][Castle::SHORT]['sq'],
             ];
         } elseif (preg_match('/^' . static::CASTLE_LONG . '$/', $pgn)) {
             return (object) [
@@ -161,7 +162,7 @@ class Move extends AbstractNotation
                 'type' => static::CASTLE_LONG,
                 'color' => Color::validate($color),
                 'id' => Piece::K,
-                'sq' => (object) $castlingRule[$color][Piece::K][Castle::LONG]['sq'],
+                'sq' => (object) $castlingRule->getRule()[$color][Piece::K][Castle::LONG]['sq'],
             ];
         } elseif (preg_match('/^' . static::KING_CAPTURES . '$/', $pgn)) {
             return (object) [

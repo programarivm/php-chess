@@ -11,12 +11,12 @@ use Chess\Piece\P;
 use Chess\Piece\Q;
 use Chess\Piece\R;
 use Chess\Piece\RType;
-use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\Rule\CastlingRule;
 
 /**
  * AbstractPgnParser
@@ -57,9 +57,9 @@ class AbstractPgnParser extends \SplObjectStorage
     /**
      * Castling rule.
      *
-     * @var array
+     * @var \Chess\Variant\Classical\Rule\CastlingRule
      */
-    protected array $castlingRule = [];
+    protected CastlingRule $castlingRule;
 
     /**
      * Castling ability.
@@ -149,9 +149,9 @@ class AbstractPgnParser extends \SplObjectStorage
     /**
      * Returns the castling rule.
      *
-     * @return array
+     * @return \Chess\Variant\Classical\Rule\CastlingRule
      */
-    public function getCastlingRule(): array
+    public function getCastlingRule(): CastlingRule
     {
         return $this->castlingRule;
     }
@@ -382,7 +382,7 @@ class AbstractPgnParser extends \SplObjectStorage
             $this->attach(
                 new K(
                     $king->getColor(),
-                    $this->castlingRule[$king->getColor()][Piece::K][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
+                    $this->castlingRule->getRule()[$king->getColor()][Piece::K][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
                     $this->square
                 )
              );
@@ -390,12 +390,12 @@ class AbstractPgnParser extends \SplObjectStorage
             $this->attach(
                 new R(
                     $rook->getColor(),
-                    $this->castlingRule[$king->getColor()][Piece::R][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
+                    $this->castlingRule->getRule()[$king->getColor()][Piece::R][rtrim($king->getMove()->pgn, '+')]['sq']['next'],
                     $this->square,
                     $rook->getType()
                 )
             );
-            $this->castlingAbility = CastlingAbility::castle($this->castlingAbility, $this->turn);
+            $this->castlingAbility = $this->castlingRule->castle($this->castlingAbility, $this->turn);
             $this->pushHistory($king)->refresh();
             return true;
         }
@@ -411,22 +411,22 @@ class AbstractPgnParser extends \SplObjectStorage
      */
     protected function updateCastle(AbstractPiece $piece): Board
     {
-        if (CastlingAbility::can($this->castlingAbility, $this->turn)) {
+        if ($this->castlingRule->can($this->castlingAbility, $this->turn)) {
             if ($piece->getId() === Piece::K) {
-                $this->castlingAbility = CastlingAbility::remove(
+                $this->castlingAbility = $this->castlingRule->remove(
                     $this->castlingAbility,
                     $this->turn,
                     [Piece::K, Piece::Q]
                 );
             } elseif ($piece->getId() === Piece::R) {
                 if ($piece->getType() === RType::CASTLE_SHORT) {
-                    $this->castlingAbility = CastlingAbility::remove(
+                    $this->castlingAbility = $this->castlingRule->remove(
                         $this->castlingAbility,
                         $this->turn,
                         [Piece::K]
                     );
                 } elseif ($piece->getType() === RType::CASTLE_LONG) {
-                    $this->castlingAbility = CastlingAbility::remove(
+                    $this->castlingAbility = $this->castlingRule->remove(
                         $this->castlingAbility,
                         $this->turn,
                         [Piece::Q]
@@ -435,21 +435,21 @@ class AbstractPgnParser extends \SplObjectStorage
             }
         }
         $oppColor = Color::opp($this->turn);
-        if (CastlingAbility::can($this->castlingAbility, $oppColor)) {
+        if ($this->castlingRule->can($this->castlingAbility, $oppColor)) {
             if ($piece->getMove()->isCapture) {
                 if ($piece->getMove()->sq->next ===
-                    $this->castlingRule[$oppColor][Piece::R][Castle::SHORT]['sq']['current']
+                    $this->castlingRule->getRule()[$oppColor][Piece::R][Castle::SHORT]['sq']['current']
                 ) {
-                    $this->castlingAbility = CastlingAbility::remove(
+                    $this->castlingAbility = $this->castlingRule->remove(
                         $this->castlingAbility,
                         $oppColor,
                         [Piece::K]
                     );
                 } elseif (
                     $piece->getMove()->sq->next ===
-                    $this->castlingRule[$oppColor][Piece::R][Castle::LONG]['sq']['current']
+                    $this->castlingRule->getRule()[$oppColor][Piece::R][Castle::LONG]['sq']['current']
                 ) {
-                    $this->castlingAbility = CastlingAbility::remove(
+                    $this->castlingAbility = $this->castlingRule->remove(
                         $this->castlingAbility,
                         $oppColor,
                         [Piece::Q]

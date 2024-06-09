@@ -5,7 +5,6 @@ namespace Chess\Piece;
 use Chess\Exception\UnknownNotationException;
 use Chess\Piece\AbstractPiece;
 use Chess\Piece\RType;
-use Chess\Variant\Classical\FEN\Field\CastlingAbility;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
@@ -152,9 +151,9 @@ class K extends AbstractPiece
 
     public function sqCastleLong(): ?string
     {
-        $rule = $this->board->getCastlingRule()[$this->getColor()][Piece::K][Castle::LONG];
+        $rule = $this->board->getCastlingRule()->getRule()[$this->getColor()][Piece::K][Castle::LONG];
 
-        if (CastlingAbility::long($this->board->getCastlingAbility(), $this->getColor())) {
+        if ($this->board->getCastlingRule()->long($this->board->getCastlingAbility(), $this->getColor())) {
             if (
                 ($this->board->getTurn() === $this->getColor() && !$this->board->isCheck()) &&
                 !array_diff($rule['free'], $this->board->getSqCount()->free) &&
@@ -169,9 +168,9 @@ class K extends AbstractPiece
 
     public function sqCastleShort(): ?string
     {
-        $rule = $this->board->getCastlingRule()[$this->getColor()][Piece::K][Castle::SHORT];
+        $rule = $this->board->getCastlingRule()->getRule()[$this->getColor()][Piece::K][Castle::SHORT];
 
-        if (CastlingAbility::short($this->board->getCastlingAbility(), $this->getColor())) {
+        if ($this->board->getCastlingRule()->short($this->board->getCastlingAbility(), $this->getColor())) {
             if (
                 ($this->board->getTurn() === $this->getColor() && !$this->board->isCheck()) &&
                 !array_diff($rule['free'], $this->board->getSqCount()->free) &&
@@ -216,7 +215,7 @@ class K extends AbstractPiece
      */
     public function getCastleRook(string $type): ?R
     {
-        $rule = $this->board->getCastlingRule()[$this->getColor()][Piece::R][$type];
+        $rule = $this->board->getCastlingRule()->getRule()[$this->getColor()][Piece::R][$type];
         if ($type === RType::CASTLE_LONG && $this->sqCastleLong()) {
             if ($piece = $this->board->getPieceBySq($rule['sq']['current'])) {
                 if ($piece->getId() === Piece::R) {

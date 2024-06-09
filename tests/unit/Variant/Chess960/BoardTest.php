@@ -121,7 +121,7 @@ class BoardTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $castlingRule);
+        $this->assertEquals($expected, $castlingRule->getRule($startPos));
     }
 
     /**
@@ -204,7 +204,7 @@ class BoardTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $castlingRule);
+        $this->assertEquals($expected, $castlingRule->getRule($startPos));
     }
 
     /**
@@ -287,7 +287,7 @@ class BoardTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $castlingRule);
+        $this->assertEquals($expected, $castlingRule->getRule($startPos));
     }
 
     /*

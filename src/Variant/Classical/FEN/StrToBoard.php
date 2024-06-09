@@ -30,7 +30,7 @@ class StrToBoard
 
     protected string $castlingAbility;
 
-    protected array $castlingRule;
+    protected CastlingRule $castlingRule;
 
     public function __construct(string $string)
     {
@@ -39,7 +39,7 @@ class StrToBoard
         $this->string = $this->fenStr->validate($string);
         $this->fields = array_filter(explode(' ', $this->string));
         $this->castlingAbility = $this->fields[2];
-        $this->castlingRule = (new CastlingRule())->getRule();
+        $this->castlingRule = new CastlingRule();
     }
 
     public function create(): Board

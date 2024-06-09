@@ -27,7 +27,7 @@ class StrToBoard extends ClassicalFenStrToBoard
         $this->string = $this->fenStr->validate($string);
         $this->fields = array_filter(explode(' ', $this->string));
         $this->castlingAbility = $this->fields[2];
-        $this->castlingRule = (new CastlingRule())->getRule();
+        $this->castlingRule = new CastlingRule();
     }
 
     public function create(): Board
