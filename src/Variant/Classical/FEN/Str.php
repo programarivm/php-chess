@@ -36,15 +36,12 @@ class Str
             throw new UnknownNotationException();
         }
 
-        PiecePlacement::validate($fields[0]);
+        (new PiecePlacement())->validate($fields[0]);
 
-        // side to move
         (new Color())->validate($fields[1]);
 
-        // castling
         (new CastlingRule())->validate($fields[2]);
 
-        // en passant square
         if ('-' !== $fields[3]) {
             (new Square())->validate($fields[3]);
         }

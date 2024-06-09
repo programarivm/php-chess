@@ -20,14 +20,14 @@ class PiecePlacement extends ClassicalFenPiecePlacement
      * @return string if the value is valid
      * @throws UnknownNotationException
      */
-    public static function validate(string $value): string
+    public function validate(string $value): string
     {
         $fields = explode('/', $value);
 
         if (
-            self::eightFields($fields) &&
-            self::twoKings($fields) &&
-            self::validChars($fields)
+            $this->eightFields($fields) &&
+            $this->twoKings($fields) &&
+            $this->validChars($fields)
         ) {
             return $value;
         }
@@ -41,7 +41,7 @@ class PiecePlacement extends ClassicalFenPiecePlacement
      * @param array $fields
      * @return bool
      */
-    protected static function validChars(array $fields)
+    protected function validChars(array $fields)
     {
         foreach ($fields as $field) {
             if (!preg_match("#^[rnbqkpacRNBQKPAC0-9]+$#", $field)) {

@@ -15,7 +15,9 @@ class PiecePlacementTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        PiecePlacement::validate('foobar');
+        $piecePlacement = new PiecePlacement();
+
+        $piecePlacement->validate('foobar');
     }
 
     /**
@@ -25,9 +27,11 @@ class PiecePlacementTest extends AbstractUnitTestCase
     {
         $expected = 'rnabqkbcnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABQKBCNR';
 
+        $piecePlacement = new PiecePlacement();
+
         $this->assertSame(
             $expected,
-            PiecePlacement::validate('rnabqkbcnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABQKBCNR'
-        ));
+            $piecePlacement->validate('rnabqkbcnr/pppppppppp/10/10/10/10/PPPPPPPPPP/RNABQKBCNR')
+        );
     }
 }
