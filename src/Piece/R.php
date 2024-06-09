@@ -2,7 +2,6 @@
 
 namespace Chess\Piece;
 
-use Chess\Exception\PieceTypeException;
 use Chess\Exception\UnknownNotationException;
 use Chess\Piece\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -28,14 +27,9 @@ class R extends Slider
      * @param string $sq
      * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
      * @param string $type
-     * @throws \Chess\Exception\PieceTypeException
      */
     public function __construct(string $color, string $sq, Square $square, string $type)
     {
-        if (!in_array($type, RType::all())) {
-            throw new PieceTypeException();
-        }
-
         parent::__construct($color, $sq, $square, Piece::R);
 
         $this->type = $type;

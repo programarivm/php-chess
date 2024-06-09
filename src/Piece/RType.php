@@ -16,14 +16,4 @@ class RType
     const CASTLE_LONG = Castle::LONG;
     const PROMOTED = 'promoted';
     const SLIDER = 'slider';
-
-    public static function all(): array
-    {
-        return [
-            self::CASTLE_SHORT,
-            self::CASTLE_LONG,
-            self::PROMOTED,
-            self::SLIDER
-        ];
-    }
 }
