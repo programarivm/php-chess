@@ -4,7 +4,6 @@ namespace Chess\Variant\Classical\PGN\AN;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\Classical\PGN\AbstractNotation;
-use Chess\Variant\Classical\PGN\ValidationInterface;
 
 /**
  * Color.
@@ -12,7 +11,7 @@ use Chess\Variant\Classical\PGN\ValidationInterface;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class Color extends AbstractNotation implements ValidationInterface
+class Color extends AbstractNotation
 {
     const W = 'w';
     const B = 'b';

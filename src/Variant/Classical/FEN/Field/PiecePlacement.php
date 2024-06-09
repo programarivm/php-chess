@@ -3,7 +3,6 @@
 namespace Chess\Variant\Classical\FEN\Field;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Variant\Classical\FEN\ValidationInterface;
 use Chess\Variant\Classical\PGN\AN\Color;
 
 /**
@@ -12,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class PiecePlacement implements ValidationInterface
+class PiecePlacement
 {
     /**
      * String validation.
