@@ -83,13 +83,6 @@ abstract class AbstractPiece
     }
 
     /**
-     * Calculates the piece's mobility.
-     *
-     * @return \Chess\Piece\AbstractPiece
-     */
-    abstract protected function mobility(): AbstractPiece;
-
-    /**
      * Returns the piece's legal moves.
      *
      * @return array

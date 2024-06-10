@@ -21,16 +21,6 @@ class C extends AbstractPiece
     use CapablancaTrait;
 
     /**
-     * @var \Chess\Piece\R
-     */
-    private R $rook;
-
-    /**
-     * @var \Chess\Piece\N
-     */
-    private N $knight;
-
-    /**
      * Constructor.
      *
      * @param string $color
@@ -41,10 +31,10 @@ class C extends AbstractPiece
     {
         parent::__construct($color, $sq, $square, Piece::C);
 
-        $this->rook = new R($color, $sq, $square, RType::PROMOTED);
-        $this->knight = new N($color, $sq, $square);
+        $rook = new R($color, $sq, $square, RType::PROMOTED);
+        $knight = new N($color, $sq, $square);
 
-        $this->mobility();
+        $this->mobility($rook, $knight);
     }
 
     /**
@@ -52,11 +42,11 @@ class C extends AbstractPiece
      *
      * @return \Chess\Piece\AbstractPiece
      */
-    protected function mobility(): AbstractPiece
+    protected function mobility(R $rook, N $knight): AbstractPiece
     {
         $this->mobility = [
-            ...$this->rook->getMobility(),
-            'knight' => $this->knight->getMobility(),
+            ...$rook->getMobility(),
+            'knight' => $knight->getMobility(),
         ];
 
         return $this;
