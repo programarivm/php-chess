@@ -15,20 +15,30 @@ use Chess\Variant\Classical\PGN\AN\Square;
 class Q extends Slider
 {
     /**
+     * @var \Chess\Piece\R
+     */
+    private R $rook;
+
+    /**
+     * @var \Chess\Piece\B
+     */
+    private B $bishop;
+
+    /**
      * Constructor.
      *
      * @param string $color
      * @param string $sq
-     * @param Square \Chess\Variant\Classical\PGN\AN\Square $square
+     * @param array $size
      */
     public function __construct(string $color, string $sq, Square $square)
     {
         parent::__construct($color, $sq, $square, Piece::Q);
 
-        $rook = new R($color, $sq, $square, RType::SLIDER);
-        $bishop = new B($color, $sq, $square);
+        $this->rook = new R($color, $sq, $square, RType::SLIDER);
+        $this->bishop = new B($color, $sq, $square);
 
-        $this->mobility($rook, $bishop);
+        $this->mobility();
     }
 
     /**
@@ -36,11 +46,11 @@ class Q extends Slider
      *
      * @return \Chess\Piece\AbstractPiece
      */
-    protected function mobility(R $rook, B $bishop): AbstractPiece
+    protected function mobility(): AbstractPiece
     {
         $this->mobility = [
-            ...$rook->getMobility(),
-            ...$bishop->getMobility(),
+            ...$this->rook->getMobility(),
+            ...$this->bishop->getMobility(),
         ];
 
         return $this;

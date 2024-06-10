@@ -20,20 +20,30 @@ class A extends AbstractPiece
     use CapablancaTrait;
 
     /**
+     * @var \Chess\Piece\B
+     */
+    private B $bishop;
+
+    /**
+     * @var \Chess\Piece\N
+     */
+    private N $knight;
+
+    /**
      * Constructor.
      *
      * @param string $color
      * @param string $sq
-     * @param Square \Chess\Variant\Capablanca\PGN\AN\Square $square
+     * @param array $size
      */
     public function __construct(string $color, string $sq, Square $square)
     {
         parent::__construct($color, $sq, $square, Piece::A);
 
-        $bishop = new B($color, $sq, $square);
-        $knight = new N($color, $sq, $square);
+        $this->bishop = new B($color, $sq, $square);
+        $this->knight = new N($color, $sq, $square);
 
-        $this->mobility($bishop, $knight);
+        $this->mobility();
     }
 
     /**
@@ -41,11 +51,11 @@ class A extends AbstractPiece
      *
      * @return \Chess\Piece\AbstractPiece
      */
-    protected function mobility(B $bishop, N $knight): AbstractPiece
+    protected function mobility(): AbstractPiece
     {
         $this->mobility = [
-            ...$bishop->getMobility(),
-            'knight' => $knight->getMobility(),
+            ...$this->bishop->getMobility(),
+            'knight' => $this->knight->getMobility(),
         ];
 
         return $this;
