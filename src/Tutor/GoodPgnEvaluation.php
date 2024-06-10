@@ -55,7 +55,7 @@ class GoodPgnEvaluation extends AbstractParagraph
 
         $last = array_slice($clone->getHistory(), -1)[0];
 
-        $this->pgn = $last->move->pgn;
+        $this->pgn = $last['move']['pgn'];
 
         $this->paragraph = (new PgnEvaluation($this->pgn, $this->board))->getParagraph();
     }

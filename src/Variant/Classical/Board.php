@@ -114,7 +114,7 @@ class Board extends AbstractPgnParser
         $this->notifyPieces();
 
         if ($this->history) {
-            $this->history[count($this->history) - 1]->fen = $this->toFen();
+            $this->history[count($this->history) - 1]['fen'] = $this->toFen();
         }
     }
 
@@ -128,18 +128,18 @@ class Board extends AbstractPgnParser
         $movetext = '';
         foreach ($this->history as $key => $val) {
             if ($key === 0) {
-                $movetext .= $val->move->color === Color::W
-                    ? "1.{$val->move->pgn}"
-                    : '1' . Move::ELLIPSIS . "{$val->move->pgn} ";
+                $movetext .= $val['move']['color'] === Color::W
+                    ? "1.{$val['move']['pgn']}"
+                    : '1' . Move::ELLIPSIS . "{$val['move']['pgn']} ";
             } else {
-                if ($this->history[0]->move->color === Color::W) {
+                if ($this->history[0]['move']['color'] === Color::W) {
                     $movetext .= $key % 2 === 0
-                        ? ($key / 2 + 1) . ".{$val->move->pgn}"
-                        : " {$val->move->pgn} ";
+                        ? ($key / 2 + 1) . ".{$val['move']['pgn']}"
+                        : " {$val['move']['pgn']} ";
                 } else {
                     $movetext .= $key % 2 === 0
-                        ? " {$val->move->pgn} "
-                        : (ceil($key / 2) + 1) . ".{$val->move->pgn}";
+                        ? " {$val['move']['pgn']} "
+                        : (ceil($key / 2) + 1) . ".{$val['move']['pgn']}";
                 }
             }
         }
@@ -222,7 +222,7 @@ class Board extends AbstractPgnParser
      */
     public function play(string $color, string $pgn): bool
     {
-        $move = $this->move->toObj($color, $pgn, $this->castlingRule, $this->color);
+        $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
         if ($this->isValidMove($move)) {
             return $this->isLegalMove($move);
         }
@@ -255,18 +255,18 @@ class Board extends AbstractPgnParser
                         $this->play($color, Castle::LONG)
                     ) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, Piece::K.'x'.$sqs[1])) {
+                    } elseif ($this->play($color, Piece::K.'x' . $sqs[1])) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, Piece::K.$sqs[1])) {
+                    } elseif ($this->play($color, Piece::K . $sqs[1])) {
                         return $this->afterPlayLan();
                     }
                 } elseif ($piece->getId() === Piece::P) {
                     strlen($lan) === 5
                         ? $promotion = '='.mb_strtoupper(substr($lan, -1))
                         : $promotion = '';
-                    if ($this->play($color, $piece->getSqFile()."x$sqs[1]".$promotion)) {
+                    if ($this->play($color, $piece->getSqFile()."x$sqs[1]" . $promotion)) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, $sqs[1].$promotion)) {
+                    } elseif ($this->play($color, $sqs[1] . $promotion)) {
                         return $this->afterPlayLan();
                     }
                 } else {
@@ -276,15 +276,15 @@ class Board extends AbstractPgnParser
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, "{$piece->getId()}{$piece->getSqRank()}x$sqs[1]")) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, $piece->getId().$sqs[1])) {
+                    } elseif ($this->play($color, $piece->getId() . $sqs[1])) {
                         return $this->afterPlayLan();
-                    }  elseif ($this->play($color, $piece->getId().$piece->getSqFile().$sqs[1])) {
+                    }  elseif ($this->play($color, $piece->getId() . $piece->getSqFile() . $sqs[1])) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, $piece->getId().$piece->getSqRank().$sqs[1])) {
+                    } elseif ($this->play($color, $piece->getId() . $piece->getSqRank() . $sqs[1])) {
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, "{$piece->getId()}{$piece->getSq()}x$sqs[1]")) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, $piece->getId().$piece->getSq().$sqs[1])) {
+                    } elseif ($this->play($color, $piece->getId() . $piece->getSq() . $sqs[1])) {
                         return $this->afterPlayLan();
                     }
                 }
@@ -301,13 +301,11 @@ class Board extends AbstractPgnParser
      */
     protected function afterPlayLan(): bool
     {
-        $end = $this->getHistory()[count($this->getHistory()) - 1];
         if ($this->isMate()) {
-            $end->move->pgn .= '#';
+            $this->history[count($this->getHistory()) - 1]['move']['pgn'] .= '#';
         } elseif ($this->isCheck()) {
-            $end->move->pgn .= '+';
+            $this->history[count($this->getHistory()) - 1]['move']['pgn'] .= '+';
         }
-        $this->getHistory()[count($this->getHistory()) - 1] = $end;
 
         return true;
     }
@@ -321,7 +319,7 @@ class Board extends AbstractPgnParser
     {
         $board = FenToBoardFactory::create($this->getStartFen(), $this);
         foreach ($this->popHistory()->getHistory() as $key => $val) {
-            $board->play($val->move->color, $val->move->pgn);
+            $board->play($val['move']['color'], $val['move']['pgn']);
         }
 
         return $board;
@@ -457,17 +455,17 @@ class Board extends AbstractPgnParser
      {
          if ($this->history) {
              $last = array_slice($this->history, -1)[0];
-             if ($last->move->id === Piece::P) {
-                 $prevFile = intval(substr($last->sq, 1));
-                 $nextFile = intval(substr($last->move->sq->next, 1));
-                 if ($last->move->color === Color::W) {
+             if ($last['move']['id'] === Piece::P) {
+                 $prevFile = intval(substr($last['sq'], 1));
+                 $nextFile = intval(substr($last['move']['sq']['next'], 1));
+                 if ($last['move']['color'] === Color::W) {
                      if ($nextFile - $prevFile === 2) {
                          $rank = $prevFile + 1;
-                         return $last->move->sq->current.$rank;
+                         return $last['move']['sq']['current'] . $rank;
                      }
                  } elseif ($prevFile - $nextFile === 2) {
                      $rank = $prevFile - 1;
-                     return $last->move->sq->current.$rank;
+                     return $last['move']['sq']['current'] . $rank;
                  }
              }
          }

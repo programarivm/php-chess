@@ -30,7 +30,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('w', 'Ua5', self::$castlingRule, self::$color);
+        self::$move->toArray('w', 'Ua5', self::$castlingRule, self::$color);
     }
 
     /**
@@ -40,7 +40,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('b', 'foo5', self::$castlingRule, self::$color);
+        self::$move->toArray('b', 'foo5', self::$castlingRule, self::$color);
     }
 
     /**
@@ -50,7 +50,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('w', 'cb3b7', self::$castlingRule, self::$color);
+        self::$move->toArray('w', 'cb3b7', self::$castlingRule, self::$color);
     }
 
     /**
@@ -60,7 +60,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('b', 'a-a', self::$castlingRule, self::$color);
+        self::$move->toArray('b', 'a-a', self::$castlingRule, self::$color);
     }
 
     /**
@@ -70,7 +70,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('w', 'c-c-c', self::$castlingRule, self::$color);
+        self::$move->toArray('w', 'c-c-c', self::$castlingRule, self::$color);
     }
 
     /**
@@ -80,7 +80,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('b', 'a', self::$castlingRule, self::$color);
+        self::$move->toArray('b', 'a', self::$castlingRule, self::$color);
     }
 
     /**
@@ -90,7 +90,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('w', 3, self::$castlingRule, self::$color);
+        self::$move->toArray('w', 3, self::$castlingRule, self::$color);
     }
 
     /**
@@ -100,7 +100,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('b', 'K3', self::$castlingRule, self::$color);
+        self::$move->toArray('b', 'K3', self::$castlingRule, self::$color);
     }
 
     /**
@@ -110,7 +110,7 @@ class MoveTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        self::$move->toObj('w', 'Fxa7', self::$castlingRule, self::$color);
+        self::$move->toArray('w', 'Fxa7', self::$castlingRule, self::$color);
     }
 
     /**
@@ -119,20 +119,20 @@ class MoveTest extends AbstractUnitTestCase
     public function Bg5()
     {
         $move = 'Bg5';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'Bg5',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::PIECE),
             'color' => 'w',
             'id' => Piece::B,
-            'sq' => (object) [
+            'sq' => [
                 'current' => '',
                 'next' =>'g5'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('w', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -141,20 +141,20 @@ class MoveTest extends AbstractUnitTestCase
     public function Ra5()
     {
         $move = 'Ra5';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'Ra5',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::R,
-            'sq' => (object) [
+            'sq' => [
                 'current' => '',
                 'next' => 'a5'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('b', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -163,20 +163,20 @@ class MoveTest extends AbstractUnitTestCase
     public function Qbb7()
     {
         $move = 'Qbb7';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'Qbb7',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::Q,
-            'sq' => (object) [
+            'sq' => [
                 'current' => 'b',
                 'next' => 'b7'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('b', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -185,20 +185,20 @@ class MoveTest extends AbstractUnitTestCase
     public function Ndb4()
     {
         $move = 'Ndb4';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'Ndb4',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::KNIGHT),
             'color' => 'b',
             'id' => Piece::N,
-            'sq' => (object) [
+            'sq' => [
                 'current' => 'd',
                 'next' => 'b4'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('b', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -207,20 +207,20 @@ class MoveTest extends AbstractUnitTestCase
     public function Kg7()
     {
         $move = 'Kg7';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'Kg7',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::KING),
             'color' => 'w',
             'id' => Piece::K,
-            'sq' => (object) [
+            'sq' => [
                 'current' => '',
                 'next' => 'g7'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('w', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -229,20 +229,20 @@ class MoveTest extends AbstractUnitTestCase
     public function Qh8g7()
     {
         $move = 'Qh8g7';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'Qh8g7',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::Q,
-            'sq' => (object) [
+            'sq' => [
                 'current' => 'h8',
                 'next' => 'g7'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('b', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -251,20 +251,20 @@ class MoveTest extends AbstractUnitTestCase
     public function c3()
     {
         $move = 'c3';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'c3',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::PAWN),
             'color' => 'w',
             'id' => Piece::P,
-            'sq' => (object) [
+            'sq' => [
                 'current' => 'c',
                 'next' => 'c3'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('w', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -273,20 +273,20 @@ class MoveTest extends AbstractUnitTestCase
     public function h4()
     {
         $move = 'h3';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'h3',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::PAWN),
             'color' => 'w',
             'id' => Piece::P,
-            'sq' => (object) [
+            'sq' => [
                 'current' => 'h',
                 'next' => 'h3'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('w', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -295,17 +295,17 @@ class MoveTest extends AbstractUnitTestCase
     public function CASTLE_SHORT()
     {
         $move = 'O-O';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'O-O',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::CASTLE_SHORT),
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) self::$castlingRule->getRule()['w'][Piece::K][Castle::SHORT]['sq']
+            'sq' => self::$castlingRule->getRule()['w'][Piece::K][Castle::SHORT]['sq']
         ];
 
-        $this->assertEquals(self::$move->toObj('w', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -314,17 +314,17 @@ class MoveTest extends AbstractUnitTestCase
     public function CASTLE_LONG()
     {
         $move = 'O-O-O';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'O-O-O',
             'isCapture' => false,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::CASTLE_LONG),
             'color' => 'w',
             'id' => 'K',
-            'sq' => (object) self::$castlingRule->getRule()['w'][Piece::K][Castle::LONG]['sq']
+            'sq' => self::$castlingRule->getRule()['w'][Piece::K][Castle::LONG]['sq']
         ];
 
-        $this->assertEquals(self::$move->toObj('w', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -333,20 +333,20 @@ class MoveTest extends AbstractUnitTestCase
     public function fxg5()
     {
         $move = 'fxg5';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'fxg5',
             'isCapture' => true,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::PAWN_CAPTURES),
             'color' => 'b',
             'id' => Piece::P,
-            'sq' => (object) [
+            'sq' => [
                 'current' => 'f',
                 'next' => 'g5'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('b', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -355,20 +355,20 @@ class MoveTest extends AbstractUnitTestCase
     public function Nxe4()
     {
         $move = 'Nxe4';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'Nxe4',
             'isCapture' => true,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::KNIGHT_CAPTURES),
             'color' => 'b',
             'id' => Piece::N,
-            'sq' => (object) [
+            'sq' => [
                 'current' => '',
                 'next' => 'e4'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('b', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
     }
 
     /**
@@ -377,19 +377,19 @@ class MoveTest extends AbstractUnitTestCase
     public function Q7xg7()
     {
         $move = 'Q7xg7';
-        $expected = (object) [
+        $expected = [
             'pgn' => 'Q7xg7',
             'isCapture' => true,
             'isCheck' => false,
             'type' => self::$move->case(MOVE::PIECE_CAPTURES),
             'color' => 'b',
             'id' => Piece::Q,
-            'sq' => (object) [
+            'sq' => [
                 'current' => '7',
                 'next' => 'g7'
             ]
         ];
 
-        $this->assertEquals(self::$move->toObj('b', $move, self::$castlingRule, self::$color), $expected);
+        $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
     }
 }

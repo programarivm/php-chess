@@ -83,6 +83,6 @@ class CheckmateInOneEval extends AbstractEval implements
     {
         $end = end($history);
 
-        $this->elaboration[] = ColorPhrase::sentence($piece->getColor()) . " threatens to play {$end->move->pgn} delivering checkmate in one move.";
+        $this->elaboration[] = ColorPhrase::sentence($piece->getColor()) . " threatens to play {$end['move']['pgn']} delivering checkmate in one move.";
     }
 }

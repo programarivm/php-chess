@@ -192,68 +192,68 @@ class BoardTest extends AbstractUnitTestCase
         $board = (new SanPlay($D06))->validate()->getBoard();
 
         $expected = [
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'd2',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'd4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'd',
                         'next' => 'd4',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'd7',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'd5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'd',
                         'next' => 'd5',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq d6',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'c2',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'c4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'c',
                         'next' => 'c4',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq c3',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'c7',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'c5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'c',
                         'next' => 'c5',
                     ],
@@ -276,102 +276,102 @@ class BoardTest extends AbstractUnitTestCase
         $board = (new SanPlay($C60))->validate()->getBoard();
 
         $expected = [
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'e2',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'e4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'e',
                         'next' => 'e4',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'e7',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'e5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'e',
                         'next' => 'e5',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'g1',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'Nf3',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Color::W,
                     'id' => Piece::N,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => null,
                         'next' => 'f3',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'b8',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'Nc6',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Color::B,
                     'id' => Piece::N,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => null,
                         'next' => 'c6',
                     ],
                 ],
                 'fen' => 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'f1',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'Bb5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PIECE,
                     'color' => Color::W,
                     'id' => Piece::B,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => null,
                         'next' => 'b5',
                     ],
                 ],
                 'fen' => 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'f8',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'Be7',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PIECE,
                     'color' => Color::B,
                     'id' => Piece::B,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => null,
                         'next' => 'e7',
                     ],
@@ -394,102 +394,102 @@ class BoardTest extends AbstractUnitTestCase
         $board = (new SanPlay($C11))->validate()->getBoard();
 
         $expected = [
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'e2',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'e4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'e',
                         'next' => 'e4',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'e7',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'e6',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'e',
                         'next' => 'e6',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'd2',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'd4',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'd',
                         'next' => 'd4',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'd7',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'd5',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => 'd',
                         'next' => 'd5',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq d6',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'b1',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'Nc3',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Color::W,
                     'id' => Piece::N,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => null,
                         'next' => 'c3',
                     ],
                 ],
                 'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -',
             ],
-            (object) [
+            [
                 'castlingAbility' => 'KQkq',
                 'sq' => 'g8',
-                'move' => (object) [
+                'move' => [
                     'pgn' => 'Nf6',
                     'isCapture' => false,
                     'isCheck' => false,
                     'type' => Move::KNIGHT,
                     'color' => Color::B,
                     'id' => Piece::N,
-                    'sq' => (object) [
+                    'sq' => [
                         'current' => null,
                         'next' => 'f6',
                     ],

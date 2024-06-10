@@ -55,9 +55,9 @@ abstract class AbstractPiece
     /**
      * The piece's next move.
      *
-     * @var object
+     * @var array
      */
-    protected object $move;
+    protected array $move;
 
     /**
      * The chessboard.
@@ -228,9 +228,9 @@ abstract class AbstractPiece
     /**
      * Gets the piece's move.
      *
-     * @return object
+     * @return array
      */
-    public function getMove(): object
+    public function getMove(): array
     {
         return $this->move;
     }
@@ -238,9 +238,9 @@ abstract class AbstractPiece
     /**
      * Sets the piece's next move.
      *
-     * @param object $move
+     * @param array $move
      */
-    public function setMove(object $move): AbstractPiece
+    public function setMove(array $move): AbstractPiece
     {
         $this->move = $move;
 
@@ -265,7 +265,7 @@ abstract class AbstractPiece
     public function isMovable(): bool
     {
         if ($this->move) {
-            return in_array($this->move->sq->next, $this->sqs());
+            return in_array($this->move['sq']['next'], $this->sqs());
         }
 
         return false;
