@@ -19,7 +19,7 @@ class P extends AbstractPiece
     /**
      * @var object
      */
-    private object $ranks;
+    private array $ranks;
 
     /**
      * @var array
@@ -43,13 +43,13 @@ class P extends AbstractPiece
         parent::__construct($color, $sq, $square, Piece::P);
 
         if ($this->color === Color::W) {
-            $this->ranks = (object) [
+            $this->ranks = [
                 'start' => 2,
                 'next' => $this->getSqRank() + 1,
                 'end' => $this->square::SIZE['ranks'],
             ];
         } elseif ($this->color === Color::B) {
-            $this->ranks = (object) [
+            $this->ranks = [
                 'start' => $this->square::SIZE['ranks'] - 1,
                 'next' => $this->getSqRank() - 1,
                 'end' => 1,
@@ -72,28 +72,28 @@ class P extends AbstractPiece
     {
         // next rank
         try {
-            if ($this->square->validate($this->getSqFile() . $this->ranks->next)) {
-                $this->mobility[] = $this->getSqFile() . $this->ranks->next;
+            if ($this->square->validate($this->getSqFile() . $this->ranks['next'])) {
+                $this->mobility[] = $this->getSqFile() . $this->ranks['next'];
             }
         } catch (UnknownNotationException $e) {
 
         }
 
         // two square advance
-        if ($this->getSqRank() === 2 && $this->ranks->start == 2) {
-            $this->mobility[] = $this->getSqFile() . ($this->ranks->start + 2);
+        if ($this->getSqRank() === 2 && $this->ranks['start'] == 2) {
+            $this->mobility[] = $this->getSqFile() . ($this->ranks['start'] + 2);
         } elseif (
             $this->getSqRank() === $this->square::SIZE['ranks'] - 1 &&
-            $this->ranks->start == $this->square::SIZE['ranks'] - 1
+            $this->ranks['start'] == $this->square::SIZE['ranks'] - 1
         ) {
-            $this->mobility[] = $this->getSqFile() . ($this->ranks->start - 2);
+            $this->mobility[] = $this->getSqFile() . ($this->ranks['start'] - 2);
         }
 
         // capture square
         try {
             $file = chr(ord($this->getSqFile()) - 1);
-            if ($this->square->validate($file . $this->ranks->next)) {
-                $this->captureSqs[] = $file . $this->ranks->next;
+            if ($this->square->validate($file . $this->ranks['next'])) {
+                $this->captureSqs[] = $file . $this->ranks['next'];
             }
         } catch (UnknownNotationException $e) {
 
@@ -102,8 +102,8 @@ class P extends AbstractPiece
         // capture square
         try {
             $file = chr(ord($this->getSqFile()) + 1);
-            if ($this->square->validate($file . $this->ranks->next)) {
-                $this->captureSqs[] = $file . $this->ranks->next;
+            if ($this->square->validate($file . $this->ranks['next'])) {
+                $this->captureSqs[] = $file . $this->ranks['next'];
             }
         } catch (UnknownNotationException $e) {
 
@@ -185,9 +185,9 @@ class P extends AbstractPiece
     /**
      * Gets the pawn's rank info.
      *
-     * @return object
+     * @return array
      */
-    public function getRanks(): object
+    public function getRanks(): array
     {
         return $this->ranks;
     }
@@ -234,7 +234,7 @@ class P extends AbstractPiece
     {
         $rank = (int) substr($this->getMove()['sq']['next'], 1);
 
-        return isset($this->move['newId']) && $rank === $this->ranks->end;
+        return isset($this->move['newId']) && $rank === $this->ranks['end'];
     }
 
     /**
