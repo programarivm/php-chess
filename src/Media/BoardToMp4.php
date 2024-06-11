@@ -54,7 +54,7 @@ class BoardToMp4
         $boardToPng->output($filepath, "{$filename}_000");
         foreach ($this->sanMovetext->getMoves() as $key => $val) {
             $n = sprintf("%03d", $key + 1);
-            $this->board->play($this->board->getTurn(), $val);
+            $this->board->play($this->board->turn, $val);
             $boardToPng->setBoard($this->board)->output($filepath, "{$filename}_{$n}");
         }
 

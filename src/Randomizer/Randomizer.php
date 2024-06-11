@@ -39,7 +39,9 @@ class Randomizer
             $board = new Board($pieces);
         } while ($this->isAttackingKing($board));
 
-        $this->board = $board->setTurn($turn);
+        $board->turn = $turn;
+
+        $this->board = $board;
     }
 
     /**

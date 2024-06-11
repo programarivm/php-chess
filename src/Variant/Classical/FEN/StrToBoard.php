@@ -50,10 +50,9 @@ class StrToBoard
                 $this->square,
                 $this->castlingRule
             ))->getArray();
-            $board = (new Board(
-                $pieces,
-                $this->castlingAbility
-            ))->setTurn($this->fields[1])->setStartFen($this->string);
+            $board = new Board($pieces, $this->castlingAbility);
+            $board->turn = $this->fields[1];
+            $board->setStartFen($this->string);
         } catch (\Throwable $e) {
             throw new UnknownNotationException();
         }

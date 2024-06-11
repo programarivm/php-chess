@@ -35,7 +35,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var string
      */
-    protected string $turn = '';
+    public string $turn = '';
 
     /**
      * Captured pieces.
@@ -109,29 +109,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    /**
-     * Returns the current turn.
-     *
-     * @return string
-     */
-    public function getTurn(): string
-    {
-        return $this->turn;
-    }
-
-    /**
-     * Sets the current turn.
-     *
-     * @param string $color
-     * @return \Chess\Variant\Classical\Board
-     */
-    public function setTurn(string $color): Board
-    {
-        $this->turn = $this->color->validate($color);
-
-        return $this;
-    }
 
     /**
      * Returns the pieces captured by both players.

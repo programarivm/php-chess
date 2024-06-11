@@ -48,11 +48,11 @@ class CheckmateInOneEval extends AbstractEval implements
 
         try {
             $cloneA = unserialize(serialize($this->board));
-            $cloneA->setTurn($this->board->getColor()->opp($this->board->getTurn()));
-            foreach ($cloneA->getPieces($this->board->getColor()->opp($this->board->getTurn())) as $piece) {
+            $cloneA->turn = $this->board->getColor()->opp($this->board->turn);
+            foreach ($cloneA->getPieces($this->board->getColor()->opp($this->board->turn)) as $piece) {
                 foreach ($piece->sqs() as $sq) {
                     $cloneB = unserialize(serialize($cloneA));
-                    if ($cloneB->playLan($cloneB->getTurn(), $piece->getSq() . $sq)) {
+                    if ($cloneB->playLan($cloneB->turn, $piece->getSq() . $sq)) {
                         if ($cloneB->isMate()) {
                             $this->result[$piece->getColor()] = 1;
                             $this->explain($this->result);

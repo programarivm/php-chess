@@ -55,7 +55,7 @@ class BoardTest extends AbstractUnitTestCase
                 $board = (new StrToBoard('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'))
                     ->create();
                 foreach ($san->getMoves() as $key => $val) {
-                    $this->assertTrue($board->play($board->getTurn(), $val));
+                    $this->assertTrue($board->play($board->turn, $val));
                 }
             }
         }
@@ -1318,7 +1318,7 @@ class BoardTest extends AbstractUnitTestCase
         $castlingAbility = 'Q';
 
         $board = new Board($pieces, $castlingAbility);
-        $board->setTurn('b');
+        $board->turn = 'b';
 
         $this->assertTrue($board->play('b', 'h6'));
     }
@@ -1341,7 +1341,7 @@ class BoardTest extends AbstractUnitTestCase
         $castlingAbility = 'Q';
 
         $board = new Board($pieces, $castlingAbility);
-        $board->setTurn('b');
+        $board->turn = 'b';
 
         $this->assertTrue($board->play('b', 'hxg6'));
     }
@@ -1408,7 +1408,7 @@ class BoardTest extends AbstractUnitTestCase
         $castlingAbility = 'KQkq';
 
         $board = new Board($pieces, $castlingAbility);
-        $board->setTurn('b');
+        $board->turn = 'b';
 
         $this->assertTrue($board->play('b', 'O-O'));
     }
@@ -1680,7 +1680,7 @@ class BoardTest extends AbstractUnitTestCase
         $castlingAbility = 'Kk';
 
         $board = new Board($pieces, $castlingAbility);
-        $board->setTurn('b');
+        $board->turn = 'b';
 
         $this->assertTrue($board->play('b', 'f5'));
         $this->assertTrue($board->play('w', 'exf6')); // en passant
@@ -1795,7 +1795,7 @@ class BoardTest extends AbstractUnitTestCase
         $castlingAbility = '-';
 
         $board = new Board($pieces, $castlingAbility);
-        $board->setTurn('b');
+        $board->turn = 'b';
 
         $this->assertTrue($board->play('b', 'b5'));
         $this->assertTrue($board->play('w', 'cxb6')); // en passant
@@ -2088,7 +2088,8 @@ class BoardTest extends AbstractUnitTestCase
 
         $castlingAbility = '-';
 
-        $board = (new Board($pieces, $castlingAbility))->setTurn('b');
+        $board = new Board($pieces, $castlingAbility);
+        $board->turn = 'b';
 
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
@@ -2107,7 +2108,8 @@ class BoardTest extends AbstractUnitTestCase
 
         $castlingAbility = '-';
 
-        $board = (new Board($pieces, $castlingAbility))->setTurn('b');
+        $board = new Board($pieces, $castlingAbility);
+        $board->turn = 'b';
 
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
@@ -2127,7 +2129,8 @@ class BoardTest extends AbstractUnitTestCase
 
         $castlingAbility = '-';
 
-        $board = (new Board($pieces, $castlingAbility))->setTurn('b');
+        $board = new Board($pieces, $castlingAbility);
+        $board->turn = 'b';
 
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
@@ -2150,7 +2153,8 @@ class BoardTest extends AbstractUnitTestCase
 
         $castlingAbility = '-';
 
-        $board = (new Board($pieces, $castlingAbility))->setTurn('b');
+        $board = new Board($pieces, $castlingAbility);
+        $board->turn = 'b';
 
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->isStalemate());
@@ -2863,7 +2867,7 @@ class BoardTest extends AbstractUnitTestCase
 
         for ($i = 0; $i < 99; $i++) {
             if ($move = (new RandomMove($board))->move()) {
-                $board->play($board->getTurn(), $move->pgn);
+                $board->play($board->turn, $move->pgn);
             }
         }
 
@@ -2879,7 +2883,7 @@ class BoardTest extends AbstractUnitTestCase
 
         for ($i = 0; $i < 100; $i++) {
             if ($move = (new RandomMove($board))->move()) {
-                $board->play($board->getTurn(), $move->pgn);
+                $board->play($board->turn, $move->pgn);
             }
         }
 

@@ -74,7 +74,7 @@ class SanHeuristic extends SanPlay
         $this->result[] = $this->item(EvalFactory::create($this->name, $this->board));
         foreach ($this->sanMovetext->getMoves() as $key => $val) {
             if ($val !== Move::ELLIPSIS) {
-                if ($this->board->play($this->board->getTurn(), $val)) {
+                if ($this->board->play($this->board->turn, $val)) {
                     $this->result[] = $this->item(EvalFactory::create($this->name, $this->board));
                 }
             }

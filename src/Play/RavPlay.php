@@ -73,7 +73,7 @@ class RavPlay extends AbstractPlay
         ))->getMoves();
 
         foreach ($moves as $key => $val) {
-            if (!$this->board->play($this->board->getTurn(), $val)) {
+            if (!$this->board->play($this->board->turn, $val)) {
                 throw new PlayException();
             }
         }

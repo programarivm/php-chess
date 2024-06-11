@@ -52,7 +52,7 @@ class RandomMoveTest extends AbstractUnitTestCase
         $board = new Board();
         for ($i = 0; $i < 50; $i++) {
             if ($move = (new RandomMove($board))->move()) {
-                $board->play($board->getTurn(), $move->pgn);
+                $board->play($board->turn, $move->pgn);
             }
         }
 

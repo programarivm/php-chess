@@ -33,15 +33,15 @@ class DirectOppositionEval extends AbstractEval implements ExplainEvalInterface
         if ($wKSq[0] === $bKSq[0]) {
             if (abs($wKSq[1] - $bKSq[1]) === 2) {
                 $this->result = [
-                    Color::W => (int) ($this->board->getTurn() !== Color::W),
-                    Color::B => (int) ($this->board->getTurn() !== Color::B),
+                    Color::W => (int) ($this->board->turn !== Color::W),
+                    Color::B => (int) ($this->board->turn !== Color::B),
                 ];
             }
         } elseif ($wKSq[1] === $bKSq[1]) {
             if (abs(ord($wKSq[0]) - ord($bKSq[0])) === 2) {
                 $this->result = [
-                    Color::W => (int) ($this->board->getTurn() !== Color::W),
-                    Color::B => (int) ($this->board->getTurn() !== Color::B),
+                    Color::W => (int) ($this->board->turn !== Color::W),
+                    Color::B => (int) ($this->board->turn !== Color::B),
                 ];
             }
         }

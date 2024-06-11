@@ -82,7 +82,8 @@ class AsciiArray
             $castlingAbility = CastlingRule::START;
         }
 
-        $newBoard = (new $className($pieces, $castlingAbility))->setTurn($turn);
+        $newBoard = new $className($pieces, $castlingAbility);
+        $newBoard->turn = $turn;
 
         return $newBoard;
     }
@@ -115,8 +116,8 @@ class AsciiArray
             $castlingAbility = CastlingRule::START;
         }
 
-        $newBoard = (new $className($startPos, $pieces, $castlingAbility))
-            ->setTurn($turn);
+        $newBoard = new $className($startPos, $pieces, $castlingAbility);
+        $newBoard->turn = $turn;
 
         return $newBoard;
     }

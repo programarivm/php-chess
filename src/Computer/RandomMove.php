@@ -37,7 +37,7 @@ class RandomMove
     public function move(): ?object
     {
         $legal = [];
-        foreach ($this->board->getPieces($this->board->getTurn()) as $piece) {
+        foreach ($this->board->getPieces($this->board->turn) as $piece) {
             if ($sqs = $piece->sqs()) {
                 $legal[$piece->getSq()] = $sqs;
             }
@@ -49,7 +49,7 @@ class RandomMove
 
         $lan = "{$from}{$to}";
 
-        if ($this->board->playLan($this->board->getTurn(), $lan)) {
+        if ($this->board->playLan($this->board->turn, $lan)) {
             $last = array_slice($this->board->getHistory(), -1)[0];
             return (object) [
                 'pgn' => $last['move']['pgn'],

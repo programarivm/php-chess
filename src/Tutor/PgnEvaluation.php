@@ -24,7 +24,7 @@ class PgnEvaluation extends AbstractParagraph
 
         $fenEvaluation = new FenEvaluation($this->board);
         $this->board = $fenEvaluation->getBoard();
-        $this->board->play($board->getTurn(), $pgn);
+        $this->board->play($board->turn, $pgn);
 
         foreach ((new FenEvaluation($this->board))->getParagraph() as $key => $val) {
             if (!in_array($val, $fenEvaluation->getParagraph())) {

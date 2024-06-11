@@ -56,7 +56,7 @@ class AttackEval extends AbstractEval implements
             foreach ($this->board->getPieces() as $piece) {
                 if ($piece->getId() !== Piece::K) {
                     $clone = unserialize(serialize($this->board));
-                    $clone->setTurn($piece->oppColor());
+                    $clone->turn = $piece->oppColor();
                     $attack = [
                         Color::W => 0,
                         Color::B => 0,
@@ -65,11 +65,11 @@ class AttackEval extends AbstractEval implements
                     $defendingPieces = $piece->defendingPieces();
                     foreach ($attackingPieces as $attackingPiece) {
                         $capturedPiece = $clone->getPieceBySq($piece->getSq());
-                        if ($clone->playLan($clone->getTurn(), $attackingPiece->getSq() . $piece->getSq())) {
+                        if ($clone->playLan($clone->turn, $attackingPiece->getSq() . $piece->getSq())) {
                             $attack[$attackingPiece->getColor()] += self::$value[$capturedPiece->getId()];
                             foreach ($defendingPieces as $defendingPiece) {
                                 $capturedPiece = $clone->getPieceBySq($piece->getSq());
-                                if ($clone->playLan($clone->getTurn(), $defendingPiece->getSq() . $piece->getSq())) {
+                                if ($clone->playLan($clone->turn, $defendingPiece->getSq() . $piece->getSq())) {
                                     $attack[$defendingPiece->getColor()] += self::$value[$capturedPiece->getId()];
                                 }
                             }

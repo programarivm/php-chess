@@ -36,8 +36,8 @@ class DiagonalOppositionEval extends AbstractEval implements ExplainEvalInterfac
 
         if (count($intersect) === 1) {
             $this->result = [
-                Color::W => (int) ($this->board->getTurn() !== Color::W),
-                Color::B => (int) ($this->board->getTurn() !== Color::B),
+                Color::W => (int) ($this->board->turn !== Color::W),
+                Color::B => (int) ($this->board->turn !== Color::B),
             ];
         }
 

@@ -241,7 +241,7 @@ class Board extends AbstractPgnParser
     {
         $sqs = $this->move->explodeSqs($lan);
         if (isset($sqs[0]) && isset($sqs[1])) {
-            if ($color === $this->getTurn() && $piece = $this->getPieceBySq($sqs[0])) {
+            if ($color === $this->turn && $piece = $this->getPieceBySq($sqs[0])) {
                 if ($piece->getId() === Piece::K) {
                     if (
                         $this->castlingRule->getRule()[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sqs[1] &&
@@ -554,7 +554,7 @@ class Board extends AbstractPgnParser
             }
         }
 
-        return "{$filtered} {$this->getTurn()} {$this->getCastlingAbility()} {$this->enPassant()}";
+        return "{$filtered} {$this->turn} {$this->getCastlingAbility()} {$this->enPassant()}";
     }
 
     /**
