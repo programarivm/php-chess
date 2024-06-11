@@ -101,7 +101,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var object
      */
-    protected object $spaceEval;
+    public object $spaceEval;
 
     /**
      * Count squares.
@@ -109,16 +109,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    /**
-     * Returns the space evaluation.
-     *
-     * @return object
-     */
-    public function getSpaceEval(): object
-    {
-        return $this->spaceEval;
-    }
 
     /**
      * Returns the square evaluation.

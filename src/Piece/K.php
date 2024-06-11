@@ -157,7 +157,7 @@ class K extends AbstractPiece
             if (
                 ($this->board->turn === $this->getColor() && !$this->board->isCheck()) &&
                 !array_diff($rule['free'], $this->board->getSqCount()->free) &&
-                empty(array_intersect($rule['attack'], $this->board->getSpaceEval()->{$this->oppColor()}))
+                empty(array_intersect($rule['attack'], $this->board->spaceEval->{$this->oppColor()}))
             ) {
                 return $rule['sq']['next'];
             }
@@ -174,7 +174,7 @@ class K extends AbstractPiece
             if (
                 ($this->board->turn === $this->getColor() && !$this->board->isCheck()) &&
                 !array_diff($rule['free'], $this->board->getSqCount()->free) &&
-                empty(array_intersect($rule['attack'], $this->board->getSpaceEval()->{$this->oppColor()}))
+                empty(array_intersect($rule['attack'], $this->board->spaceEval->{$this->oppColor()}))
             ) {
                 return $rule['sq']['next'];
             }
@@ -204,7 +204,7 @@ class K extends AbstractPiece
     {
         $sqsKing = array_intersect((array)$this->mobility, $this->board->getSqCount()->free);
 
-        return array_diff($sqsKing, $this->board->getSpaceEval()->{$this->oppColor()});
+        return array_diff($sqsKing, $this->board->spaceEval->{$this->oppColor()});
     }
 
     /**
