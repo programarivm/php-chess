@@ -111,16 +111,6 @@ class AbstractPgnParser extends \SplObjectStorage
     public object $sqCount;
 
     /**
-     * Returns the square evaluation.
-     *
-     * @return object
-     */
-    public function getSqCount(): object
-    {
-        return $this->sqCount;
-    }
-
-    /**
      * Picks a piece from the board.
      *
      * @param array $move
