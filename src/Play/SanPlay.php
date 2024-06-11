@@ -30,8 +30,13 @@ class SanPlay extends AbstractPlay
      */
     public function __construct(string $movetext, Board $board = null)
     {
-        $this->initialBoard = $board ?? new Board();
-        $this->board = unserialize(serialize($board)) ?? new Board();
+        if ($board) {
+            $this->initialBoard = $board;
+            $this->board = $board->clone();
+        } else {
+            $this->initialBoard = new Board();
+            $this->board = new Board();
+        }
         $this->fen = [$this->board->toFen()];
         $this->sanMovetext = new SanMovetext($this->board->move, $movetext);
         $this->sanMovetext->validate();

@@ -58,7 +58,7 @@ class RelativePinEval extends AbstractEval implements
                 !$piece->isPinned()
             ) {
                 $attackingPieces = $piece->attackingPieces();
-                $clone = unserialize(serialize($this->board));
+                $clone = $this->board->clone();
                 $clone->detach($clone->getPieceBySq($piece->getSq()));
                 $clone->refresh();
                 $newPressureEval = (new PressureEval($clone))->getResult();

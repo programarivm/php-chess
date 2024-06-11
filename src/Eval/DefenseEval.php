@@ -40,7 +40,7 @@ class DefenseEval extends AbstractEval implements
             if ($piece->getId() !== Piece::K) {
                 if (!empty($piece->attackingPieces())) {
                     $diffPhrases = [];
-                    $clone = unserialize(serialize($this->board));
+                    $clone = $this->board->clone();
                     $clone->detach($clone->getPieceBySq($piece->getSq()));
                     $clone->refresh();
                     $newProtectionEval = new ProtectionEval($clone);

@@ -568,4 +568,18 @@ class Board extends AbstractPgnParser
             return $a->getSq() <=> $b->getSq();
         });
      }
+
+     /**
+      * Clones the board.
+      *
+      * @return \Chess\Variant\Classical\Board
+      */
+     public function clone(): Board
+     {
+         $board = FenToBoardFactory::create($this->startFen, $this);
+         $board->captures = $this->captures;
+         $board->history = $this->history;
+
+         return $board;
+     }
 }

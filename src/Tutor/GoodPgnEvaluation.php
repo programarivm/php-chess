@@ -50,7 +50,7 @@ class GoodPgnEvaluation extends AbstractParagraph
 
         $analysis = $uciEngine->analysis($this->board, $limit);
 
-        $clone = unserialize(serialize($this->board));
+        $clone = $this->board->clone();
         $clone->playLan($clone->turn, $analysis['bestmove']);
 
         $last = array_slice($clone->history, -1)[0];

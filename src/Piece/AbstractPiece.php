@@ -276,10 +276,11 @@ abstract class AbstractPiece
      *
      * @return boolean
      */
+
     public function isPinned(): bool
     {
         $king = $this->board->getPiece($this->getColor(), Piece::K);
-        $clone = unserialize(serialize($this->board));
+        $clone = $this->board->clone();
         $clone->detach($clone->getPieceBySq($this->getSq()));
         $clone->refresh();
         $newKing = $clone->getPiece($this->getColor(), Piece::K);

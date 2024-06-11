@@ -26,7 +26,7 @@ class RandomMove
      */
     public function __construct(Board $board)
     {
-        $this->board = unserialize(serialize($board));
+        $this->board = $board->clone();
     }
 
     /**

@@ -37,7 +37,7 @@ class DiscoveredCheckEval extends AbstractEval implements
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() !== Piece::K) {
                 $king = $this->board->getPiece($piece->oppColor(), Piece::K);
-                $clone = unserialize(serialize($this->board));
+                $clone = $this->board->clone();
                 $clone->detach($clone->getPieceBySq($piece->getSq()));
                 $clone->refresh();
                 $newKing = $clone->getPiece($piece->oppColor(), Piece::K);

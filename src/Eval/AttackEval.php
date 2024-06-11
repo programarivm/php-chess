@@ -55,7 +55,7 @@ class AttackEval extends AbstractEval implements
         ) {
             foreach ($this->board->getPieces() as $piece) {
                 if ($piece->getId() !== Piece::K) {
-                    $clone = unserialize(serialize($this->board));
+                    $clone = $this->board->clone();
                     $clone->turn = $piece->oppColor();
                     $attack = [
                         Color::W => 0,
