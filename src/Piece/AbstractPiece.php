@@ -254,7 +254,7 @@ abstract class AbstractPiece
      */
     public function oppColor(): string
     {
-        return $this->board->getColor()->opp($this->color);
+        return $this->board->color->opp($this->color);
     }
 
     /**

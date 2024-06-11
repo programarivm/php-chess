@@ -59,7 +59,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var \Chess\Variant\Classical\PGN\AN\Color
      */
-    protected Color $color;
+    public Color $color;
 
     /**
      * Castling rule.
@@ -109,16 +109,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    /**
-     * Returns the color.
-     *
-     * @return \Chess\Variant\Classical\PGN\AN\Color
-     */
-    public function getColor(): Color
-    {
-        return $this->color;
-    }
 
     /**
      * Returns the castling rule.
