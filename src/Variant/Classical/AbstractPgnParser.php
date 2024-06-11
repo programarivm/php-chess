@@ -42,7 +42,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var array
      */
-    protected array $captures = [
+    public array $captures = [
         Color::W => [],
         Color::B => [],
     ];
@@ -109,16 +109,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    /**
-     * Returns the pieces captured by both players.
-     *
-     * @return array|null
-     */
-    public function getCaptures(): ?array
-    {
-        return $this->captures;
-    }
 
     /**
      * Returns the history.
