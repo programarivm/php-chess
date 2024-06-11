@@ -576,7 +576,7 @@ class Board extends AbstractPgnParser
       */
      public function clone(): Board
      {
-         $board = FenToBoardFactory::create($this->startFen, $this);
+         $board = FenToBoardFactory::create($this->toFen(), $this);
          $board->captures = $this->captures;
          $board->history = $this->history;
 
