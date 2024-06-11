@@ -126,7 +126,7 @@ class UciEngineTest extends AbstractUnitTestCase
         } while (
             !$board->isMate() &&
             !$board->isStalemate() &&
-            count($board->getHistory()) < 250
+            count($board->history) < 250
         );
     }
 }

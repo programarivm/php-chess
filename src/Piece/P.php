@@ -138,7 +138,7 @@ class P extends AbstractPiece
         }
 
         // en passant square
-        $history = $this->board->getHistory();
+        $history = $this->board->history;
         $end = end($history);
         if ($end && $end['move']['id'] === Piece::P && $end['move']['color'] === $this->oppColor()) {
            if ($this->color === Color::W) {

@@ -56,7 +56,7 @@ class CheckmateInOneEval extends AbstractEval implements
                         if ($cloneB->isMate()) {
                             $this->result[$piece->getColor()] = 1;
                             $this->explain($this->result);
-                            $this->elaborate($piece, $cloneB->getHistory());
+                            $this->elaborate($piece, $cloneB->history);
                             break 2;
                         }
                     }

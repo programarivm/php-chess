@@ -146,7 +146,7 @@ class BoardTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $board->getCaptures());
+        $this->assertEquals($expected, $board->captures);
     }
 
     /*
@@ -262,7 +262,7 @@ class BoardTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $board->getHistory());
+        $this->assertEquals($expected, $board->history);
     }
 
     /**
@@ -380,7 +380,7 @@ class BoardTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $board->getHistory());
+        $this->assertEquals($expected, $board->history);
     }
 
     /**
@@ -498,7 +498,7 @@ class BoardTest extends AbstractUnitTestCase
             ],
         ];
 
-        $this->assertEquals($expected, $board->getHistory());
+        $this->assertEquals($expected, $board->history);
     }
 
     /*

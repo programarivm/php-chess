@@ -50,7 +50,7 @@ class CheckmateInPlyEval extends AbstractEval implements
                         if ($clone->isMate()) {
                             $this->result[$piece->getColor()] = 1;
                             $this->explain($this->result);
-                            $this->elaborate($piece, $clone->getHistory());
+                            $this->elaborate($piece, $clone->history);
                             break 2;
                         }
                     }

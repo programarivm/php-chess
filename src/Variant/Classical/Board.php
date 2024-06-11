@@ -302,9 +302,9 @@ class Board extends AbstractPgnParser
     protected function afterPlayLan(): bool
     {
         if ($this->isMate()) {
-            $this->history[count($this->getHistory()) - 1]['move']['pgn'] .= '#';
+            $this->history[count($this->history) - 1]['move']['pgn'] .= '#';
         } elseif ($this->isCheck()) {
-            $this->history[count($this->getHistory()) - 1]['move']['pgn'] .= '+';
+            $this->history[count($this->history) - 1]['move']['pgn'] .= '+';
         }
 
         return true;
@@ -318,7 +318,7 @@ class Board extends AbstractPgnParser
     public function undo(): Board
     {
         $board = FenToBoardFactory::create($this->getStartFen(), $this);
-        foreach ($this->popHistory()->getHistory() as $key => $val) {
+        foreach ($this->popHistory()->history as $key => $val) {
             $board->play($val['move']['color'], $val['move']['pgn']);
         }
 
@@ -388,7 +388,7 @@ class Board extends AbstractPgnParser
     {
         return count($this->history) >= 100;
 
-        foreach (array_reverse($this->getHistory()) as $key => $value) {
+        foreach (array_reverse($this->history) as $key => $value) {
             if ($key < 100) {
                 if ($value->move->isCapture) {
                     return  false;

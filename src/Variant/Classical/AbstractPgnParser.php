@@ -52,7 +52,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var array
      */
-    protected array $history = [];
+    public array $history = [];
 
     /**
      * Color.
@@ -109,16 +109,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    /**
-     * Returns the history.
-     *
-     * @return array|null
-     */
-    public function getHistory(): ?array
-    {
-        return $this->history;
-    }
 
     /**
      * Returns the color.
