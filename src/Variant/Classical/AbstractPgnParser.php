@@ -66,7 +66,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var \Chess\Variant\Classical\Rule\CastlingRule
      */
-    protected CastlingRule $castlingRule;
+    public CastlingRule $castlingRule;
 
     /**
      * Castling ability.
@@ -109,16 +109,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    /**
-     * Returns the castling rule.
-     *
-     * @return \Chess\Variant\Classical\Rule\CastlingRule
-     */
-    public function getCastlingRule(): CastlingRule
-    {
-        return $this->castlingRule;
-    }
 
     /**
      * Returns the castling ability.

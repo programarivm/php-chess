@@ -48,7 +48,7 @@ class BoardTest extends AbstractUnitTestCase
     {
         $startPos = ['A', 'R', 'B', 'B', 'K', 'R', 'Q', 'N', 'N', 'C'];
 
-        $castlingRule = (new Board($startPos))->getCastlingRule();
+        $castlingRule = (new Board($startPos))->castlingRule;
 
         $expected = [
             Color::W => [

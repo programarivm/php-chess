@@ -48,7 +48,7 @@ class BoardTest extends AbstractUnitTestCase
     {
         $startPos = ['R', 'B', 'B', 'K', 'R', 'Q', 'N', 'N'];
 
-        $castlingRule = (new Board($startPos))->getCastlingRule();
+        $castlingRule = (new Board($startPos))->castlingRule;
 
         $expected = [
             Color::W => [
@@ -131,7 +131,7 @@ class BoardTest extends AbstractUnitTestCase
     {
         $startPos = ['Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N'];
 
-        $castlingRule = (new Board($startPos))->getCastlingRule();
+        $castlingRule = (new Board($startPos))->castlingRule;
 
         $expected = [
             Color::W => [
@@ -214,7 +214,7 @@ class BoardTest extends AbstractUnitTestCase
     {
         $startPos = ['B', 'Q', 'N', 'R', 'K', 'B', 'R', 'N'];
 
-        $castlingRule = (new Board($startPos))->getCastlingRule();
+        $castlingRule = (new Board($startPos))->castlingRule;
 
         $expected = [
             Color::W => [
