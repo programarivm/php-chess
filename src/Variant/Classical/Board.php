@@ -554,7 +554,7 @@ class Board extends AbstractPgnParser
             }
         }
 
-        return "{$filtered} {$this->turn} {$this->getCastlingAbility()} {$this->enPassant()}";
+        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()}";
     }
 
     /**

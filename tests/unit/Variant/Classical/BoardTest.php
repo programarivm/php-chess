@@ -169,7 +169,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $expected = 'kq';
 
-        $this->assertSame($expected, $board->getCastlingAbility());
+        $this->assertSame($expected, $board->castlingAbility);
     }
 
     /*

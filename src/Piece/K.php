@@ -153,7 +153,7 @@ class K extends AbstractPiece
     {
         $rule = $this->board->castlingRule->getRule()[$this->getColor()][Piece::K][Castle::LONG];
 
-        if ($this->board->castlingRule->long($this->board->getCastlingAbility(), $this->getColor())) {
+        if ($this->board->castlingRule->long($this->board->castlingAbility, $this->getColor())) {
             if (
                 ($this->board->turn === $this->getColor() && !$this->board->isCheck()) &&
                 !array_diff($rule['free'], $this->board->getSqCount()->free) &&
@@ -170,7 +170,7 @@ class K extends AbstractPiece
     {
         $rule = $this->board->castlingRule->getRule()[$this->getColor()][Piece::K][Castle::SHORT];
 
-        if ($this->board->castlingRule->short($this->board->getCastlingAbility(), $this->getColor())) {
+        if ($this->board->castlingRule->short($this->board->castlingAbility, $this->getColor())) {
             if (
                 ($this->board->turn === $this->getColor() && !$this->board->isCheck()) &&
                 !array_diff($rule['free'], $this->board->getSqCount()->free) &&

@@ -73,7 +73,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var string
      */
-    protected string $castlingAbility = '';
+    public string $castlingAbility = '';
 
     /**
      * Start FEN position.
@@ -109,16 +109,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    /**
-     * Returns the castling ability.
-     *
-     * @return string
-     */
-    public function getCastlingAbility(): string
-    {
-        return $this->castlingAbility;
-    }
 
     /**
      * Returns the start FEN.
