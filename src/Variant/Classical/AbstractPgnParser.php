@@ -94,7 +94,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var \Chess\Variant\Classical\PGN\Move
      */
-    protected Move $move;
+    public Move $move;
 
     /**
      * Space evaluation.
@@ -109,16 +109,6 @@ class AbstractPgnParser extends \SplObjectStorage
      * @var object
      */
     protected object $sqCount;
-
-    /**
-     * Returns the move.
-     *
-     * @return \Chess\Variant\Classical\PGN\Move
-     */
-    public function getMove(): Move
-    {
-        return $this->move;
-    }
 
     /**
      * Returns the space evaluation.

@@ -20,7 +20,7 @@ class BoardToMp4
 
     public function __construct(string $movetext, Board $board, bool $flip = false)
     {
-        $this->sanMovetext = new SanMovetext($board->getMove(), $movetext);
+        $this->sanMovetext = new SanMovetext($board->move, $movetext);
         if (!$this->sanMovetext->validate()) {
             throw new MediaException();
         }

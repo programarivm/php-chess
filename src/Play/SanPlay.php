@@ -33,7 +33,7 @@ class SanPlay extends AbstractPlay
         $this->initialBoard = $board ?? new Board();
         $this->board = unserialize(serialize($board)) ?? new Board();
         $this->fen = [$this->board->toFen()];
-        $this->sanMovetext = new SanMovetext($this->board->getMove(), $movetext);
+        $this->sanMovetext = new SanMovetext($this->board->move, $movetext);
         $this->sanMovetext->validate();
     }
 

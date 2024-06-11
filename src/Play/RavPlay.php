@@ -42,7 +42,7 @@ class RavPlay extends AbstractPlay
         $this->initialBoard = $board ?? new Board();
         $this->board = unserialize(serialize($board)) ?? new Board();
         $this->fen = [$this->board->toFen()];
-        $this->ravMovetext = new RavMovetext($this->board->getMove(), $movetext);
+        $this->ravMovetext = new RavMovetext($this->board->move, $movetext);
 
         $this->ravMovetext->validate();
     }
