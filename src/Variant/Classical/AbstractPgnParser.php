@@ -111,29 +111,6 @@ class AbstractPgnParser extends \SplObjectStorage
     protected object $sqCount;
 
     /**
-     * Returns the start FEN.
-     *
-     * @return string
-     */
-    public function getStartFen(): string
-    {
-        return $this->startFen;
-    }
-
-    /**
-     * Sets the start FEN.
-     *
-     * @param string $fen
-     * @return \Chess\Variant\Classical\Board
-     */
-    public function setStartFen(string $fen): Board
-    {
-        $this->startFen = $fen;
-
-        return $this;
-    }
-
-    /**
      * Returns the square.
      *
      * @return \Chess\Variant\Classical\PGN\Square
