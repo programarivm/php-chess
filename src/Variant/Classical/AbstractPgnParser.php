@@ -108,7 +108,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var object
      */
-    protected object $sqCount;
+    public object $sqCount;
 
     /**
      * Returns the square evaluation.

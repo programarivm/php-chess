@@ -123,7 +123,7 @@ class P extends AbstractPiece
 
         // mobility squares
         foreach ($this->mobility as $sq) {
-            if (in_array($sq, $this->board->getSqCount()->free)) {
+            if (in_array($sq, $this->board->sqCount->free)) {
                 $sqs[] = $sq;
             } else {
                 break;
@@ -132,7 +132,7 @@ class P extends AbstractPiece
 
         // capture squares
         foreach ($this->captureSqs as $sq) {
-            if (in_array($sq, $this->board->getSqCount()->used->{$this->oppColor()})) {
+            if (in_array($sq, $this->board->sqCount->used->{$this->oppColor()})) {
                 $sqs[] = $sq;
             }
         }
@@ -174,7 +174,7 @@ class P extends AbstractPiece
     {
         $sqs = [];
         foreach($this->captureSqs as $sq) {
-            if (in_array($sq, $this->board->getSqCount()->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
                 $sqs[] = $sq;
             }
         }

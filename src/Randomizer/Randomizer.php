@@ -120,7 +120,7 @@ class Randomizer
      */
     protected function rand(array $items, array $pieces): array
     {
-        $freeSqs = $this->board->getSqCount()->free;
+        $freeSqs = $this->board->sqCount->free;
         foreach ($items as $color => $ids) {
             foreach ($ids as $id) {
                 $arrayRand = array_rand($freeSqs, 1);

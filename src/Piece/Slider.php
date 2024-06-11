@@ -35,9 +35,9 @@ abstract class Slider extends AbstractPiece
         $sqs = [];
         foreach ($this->mobility as $key => $val) {
             foreach ($val as $sq) {
-                if (in_array($sq, $this->board->getSqCount()->free)) {
+                if (in_array($sq, $this->board->sqCount->free)) {
                     $sqs[] = $sq;
-                } elseif (in_array($sq, $this->board->getSqCount()->used->{$this->oppColor()})) {
+                } elseif (in_array($sq, $this->board->sqCount->used->{$this->oppColor()})) {
                     $sqs[] = $sq;
                     break 1;
                 } else {
@@ -59,10 +59,10 @@ abstract class Slider extends AbstractPiece
         $sqs = [];
         foreach ($this->mobility as $key => $val) {
             foreach ($val as $sq) {
-                if (in_array($sq, $this->board->getSqCount()->used->{$this->getColor()})) {
+                if (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
                     $sqs[] = $sq;
                     break 1;
-                } elseif (in_array($sq, $this->board->getSqCount()->used->{$this->oppColor()})) {
+                } elseif (in_array($sq, $this->board->sqCount->used->{$this->oppColor()})) {
                     break 1;
                 }
             }
