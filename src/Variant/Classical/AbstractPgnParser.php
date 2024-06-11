@@ -486,7 +486,7 @@ class AbstractPgnParser extends \SplObjectStorage
      */
     protected function isPinned(AbstractPiece $piece): bool
     {
-        $clone = unserialize(serialize($this));
+        $clone = $this->clone();
         if (
             $piece->getMove()['type'] === $clone->move->case(Move::CASTLE_SHORT) &&
             $clone->castle($piece, RType::CASTLE_SHORT)
