@@ -530,7 +530,7 @@ class Board extends AbstractPgnParser
     {
         $string = '';
         $array = $this->toAsciiArray();
-        for ($i = $this->getSquare()::SIZE['ranks'] - 1; $i >= 0; $i--) {
+        for ($i = $this->square::SIZE['ranks'] - 1; $i >= 0; $i--) {
             $string .= str_replace(' ', '', implode('', $array[$i]));
             if ($i != 0) {
                 $string .= '/';

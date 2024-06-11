@@ -74,7 +74,7 @@ class AsciiArray
 
         $pieces = (new PieceArray(
             $this->array,
-            $board->getSquare(),
+            $board->square,
             $board->castlingRule
         ))->getArray();
 
@@ -108,7 +108,7 @@ class AsciiArray
 
         $pieces = (new PieceArray(
             $this->array,
-            $board->getSquare(),
+            $board->square,
             $board->castlingRule
         ))->getArray();
 

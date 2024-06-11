@@ -50,7 +50,7 @@ class SqCount
      */
     private function free(): array
     {
-        return array_diff($this->board->getSquare()->all(), [...$this->used->{Color::W}, ...$this->used->{Color::B}]);
+        return array_diff($this->board->square->all(), [...$this->used->{Color::W}, ...$this->used->{Color::B}]);
     }
 
     /**

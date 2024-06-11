@@ -61,7 +61,7 @@ class Randomizer
      */
     protected function sq(): string
     {
-        $sqs = $this->board->getSquare()->all();
+        $sqs = $this->board->square->all();
         shuffle($sqs);
 
         return $sqs[0];
@@ -102,8 +102,8 @@ class Randomizer
         );
 
         $pieces = [
-            new K(Color::W, $wSq, $this->board->getSquare()),
-            new K(Color::B, $bSq, $this->board->getSquare()),
+            new K(Color::W, $wSq, $this->board->square),
+            new K(Color::B, $bSq, $this->board->square),
         ];
 
         $this->board = new Board($pieces);
@@ -129,7 +129,7 @@ class Randomizer
                 $pieces[] = new $className(
                     $color,
                     $sq,
-                    $this->board->getSquare(),
+                    $this->board->square,
                     $id !== Piece::R ?: RType::PROMOTED
                 );
                 unset($freeSqs[$arrayRand]);

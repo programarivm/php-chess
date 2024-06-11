@@ -17,7 +17,7 @@ class TwoBishopsRandomizer extends Randomizer
             $colors = '';
             foreach ($this->board->getPieces($turn) as $piece) {
                 if ($piece->getId() === 'B') {
-                    $colors .= $this->board->getSquare()->color($piece->getSq());
+                    $colors .= $this->board->square->color($piece->getSq());
                 }
             }
         } while ($colors === 'ww' || $colors === 'bb');

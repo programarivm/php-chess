@@ -59,7 +59,7 @@ class IsolatedPawnEval extends AbstractEval implements
     {
         $left = chr(ord($pawn->getSq()) - 1);
         $right = chr(ord($pawn->getSq()) + 1);
-        for ($i = 2; $i < $this->board->getSquare()::SIZE['ranks']; $i++) {
+        for ($i = 2; $i < $this->board->square::SIZE['ranks']; $i++) {
             if ($piece = $this->board->getPieceBySq($left.$i)) {
                 if ($piece->getId() === Piece::P && $piece->getColor() === $pawn->getColor()) {
                     return false;

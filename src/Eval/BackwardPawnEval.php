@@ -71,7 +71,7 @@ class BackwardPawnEval extends AbstractEval implements
 
     private function isDefensible(AbstractPiece $pawn, string $file): bool
     {
-        if ($pawn->getSqRank() == 2 || $pawn->getSqRank() == $this->board->getSquare()::SIZE['ranks'] - 1) {
+        if ($pawn->getSqRank() == 2 || $pawn->getSqRank() == $this->board->square::SIZE['ranks'] - 1) {
             return true;
         }
 
@@ -84,7 +84,7 @@ class BackwardPawnEval extends AbstractEval implements
                 }
             }
         } else {
-            for ($i = $pawn->getSqRank() + 1; $i <= $this->board->getSquare()::SIZE['ranks'] - 1; $i++) {
+            for ($i = $pawn->getSqRank() + 1; $i <= $this->board->square::SIZE['ranks'] - 1; $i++) {
                 if ($piece = $this->board->getPieceBySq($file.$i)) {
                     if ($piece->getId() === Piece::P && $piece->getColor() === $pawn->getColor()
                     ) {
