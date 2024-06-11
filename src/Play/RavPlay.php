@@ -112,7 +112,7 @@ class RavPlay extends AbstractPlay
                     if (
                         $this->isUndo($sanMovetextKey->getMetadata()->lastMove, $sanMovetext->getMetadata()->firstMove)
                     ) {
-                        $clone = $val->clone();
+                        $clone = unserialize(serialize($val));
                         $undo = $clone->undo();
                         $board = FenToBoardFactory::create($undo->toFen(), $this->initialBoard);
                     } else {
