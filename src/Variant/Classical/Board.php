@@ -317,7 +317,7 @@ class Board extends AbstractPgnParser
      */
     public function undo(): Board
     {
-        $board = FenToBoardFactory::create($this->getStartFen(), $this);
+        $board = FenToBoardFactory::create($this->startFen, $this);
         foreach ($this->popHistory()->history as $key => $val) {
             $board->play($val['move']['color'], $val['move']['pgn']);
         }

@@ -80,7 +80,7 @@ class AbstractPgnParser extends \SplObjectStorage
      *
      * @var string
      */
-    protected string $startFen = '';
+    public string $startFen = '';
 
     /**
      * Square.

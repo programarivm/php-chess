@@ -485,7 +485,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $expected = '8/8/R7/8/4Q3/rk3K2/8/8 w - -';
 
-        $startFen = $board->getStartFen();
+        $startFen = $board->startFen;
 
         $this->assertSame($expected, $startFen);
     }
@@ -507,7 +507,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $expected = '8/8/R7/8/4Q3/rk3K2/8/8 w - -';
 
-        $startFen = $board->getStartFen();
+        $startFen = $board->startFen;
 
         $this->assertSame($expected, $startFen);
     }
