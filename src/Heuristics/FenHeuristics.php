@@ -4,6 +4,7 @@ namespace Chess\Heuristics;
 
 use Chess\Eval\InverseEvalInterface;
 use Chess\Function\AbstractFunction;
+use Chess\Function\LinearComplexityFunction;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 
@@ -52,11 +53,15 @@ class FenHeuristics
      * @param \Chess\Variant\Classical\Board $board
      * @param \Chess\Variant\Classical\AbstractFunction $function
      */
-    public function __construct(Board $board, AbstractFunction $function)
+    public function __construct(Board $board, AbstractFunction $function = null)
     {
         $this->board = $board;
 
-        $this->function = $function;
+        if ($function) {
+            $this->function = $function;
+        } else {
+            $this->function = new LinearComplexityFunction();
+        }
 
         $this->calc()->balance();
     }
