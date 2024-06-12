@@ -50,7 +50,7 @@ abstract class AbstractPiece
      *
      * @var array
      */
-    protected array $mobility;
+    public array $mobility;
 
     /**
      * The piece's next move.
@@ -183,16 +183,6 @@ abstract class AbstractPiece
     public function getSqRank(): int
     {
         return (int) substr($this->sq, 1);
-    }
-
-    /**
-     * Gets the piece's mobility.
-     *
-     * @return array|object
-     */
-    public function getMobility(): array|object
-    {
-        return $this->mobility;
     }
 
     /**

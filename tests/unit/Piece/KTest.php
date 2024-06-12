@@ -89,7 +89,7 @@ class KTest extends AbstractUnitTestCase
         $king = new K('w', 'a2', self::$square);
         $mobility = ['a3', 'a1', 'b2', 'b3', 'b1'];
 
-        $this->assertEquals($mobility, $king->getMobility());
+        $this->assertEquals($mobility, $king->mobility);
     }
 
     /**
@@ -100,7 +100,7 @@ class KTest extends AbstractUnitTestCase
         $king = new K('w', 'd5', self::$square);
         $mobility = ['d6', 'd4', 'c5', 'e5', 'c6', 'e6', 'c4', 'e4'];
 
-        $this->assertEquals($mobility, $king->getMobility());
+        $this->assertEquals($mobility, $king->mobility);
     }
 
     /**
@@ -111,7 +111,7 @@ class KTest extends AbstractUnitTestCase
         $king = new K('w', 'f1', self::$square);
         $mobility = ['f2', 'e1', 'g1', 'e2', 'g2'];
 
-        $this->assertEquals($mobility, $king->getMobility());
+        $this->assertEquals($mobility, $king->mobility);
     }
 
     /**
@@ -122,7 +122,7 @@ class KTest extends AbstractUnitTestCase
         $king = new K('b', 'f8', self::$square);
         $mobility = ['f7', 'e8', 'g8', 'e7', 'g7'];
 
-        $this->assertEquals($mobility, $king->getMobility());
+        $this->assertEquals($mobility, $king->mobility);
     }
 
     /**
@@ -150,6 +150,6 @@ class KTest extends AbstractUnitTestCase
 
         $mobility = ['f2', 'e1', 'g1', 'e2', 'g2'];
 
-        $this->assertEquals($mobility, $king->getMobility());
+        $this->assertEquals($mobility, $king->mobility);
     }
 }

@@ -33,7 +33,7 @@ class QTest extends AbstractUnitTestCase
             'downRight' => ['b1']
         ];
 
-        $this->assertEquals($mobility, $queen->getMobility());
+        $this->assertEquals($mobility, $queen->mobility);
     }
 
     /**
@@ -53,7 +53,7 @@ class QTest extends AbstractUnitTestCase
             'downRight' => ['e4', 'f3', 'g2', 'h1']
         ];
 
-        $this->assertEquals($mobility, $queen->getMobility());
+        $this->assertEquals($mobility, $queen->mobility);
     }
 
     /**

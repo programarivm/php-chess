@@ -49,8 +49,8 @@ class Q extends Slider
     protected function mobility(): AbstractPiece
     {
         $this->mobility = [
-            ...$this->rook->getMobility(),
-            ...$this->bishop->getMobility(),
+            ...$this->rook->mobility,
+            ...$this->bishop->mobility,
         ];
 
         return $this;

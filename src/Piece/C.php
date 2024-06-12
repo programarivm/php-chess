@@ -55,8 +55,8 @@ class C extends AbstractPiece
     protected function mobility(): AbstractPiece
     {
         $this->mobility = [
-            ...$this->rook->getMobility(),
-            'knight' => $this->knight->getMobility(),
+            ...$this->rook->mobility,
+            'knight' => $this->knight->mobility,
         ];
 
         return $this;

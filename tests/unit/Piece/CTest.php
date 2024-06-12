@@ -29,7 +29,7 @@ class CTest extends AbstractUnitTestCase
             'knight' => ['c2', 'b3'],
         ];
 
-        $this->assertEquals($mobility, $chancellor->getMobility());
+        $this->assertEquals($mobility, $chancellor->mobility);
     }
 
     /**
@@ -46,7 +46,7 @@ class CTest extends AbstractUnitTestCase
             'knight' => ['d6', 'c5', 'c3', 'd2', 'f2', 'g3', 'g5', 'f6'],
         ];
 
-        $this->assertEquals($mobility, $chancellor->getMobility());
+        $this->assertEquals($mobility, $chancellor->mobility);
     }
 
     /**
@@ -63,6 +63,6 @@ class CTest extends AbstractUnitTestCase
             'knight' => ['c6', 'b5', 'b3', 'c2', 'e2', 'f3', 'f5', 'e6'],
         ];
 
-        $this->assertEquals($mobility, $chancellor->getMobility());
+        $this->assertEquals($mobility, $chancellor->mobility);
     }
 }

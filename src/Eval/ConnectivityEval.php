@@ -43,13 +43,13 @@ class ConnectivityEval extends AbstractEval implements ExplainEvalInterface
             switch ($piece->id) {
                 case Piece::K:
                     $this->result[$piece->color] += count(
-                        array_intersect($piece->getMobility(),
+                        array_intersect($piece->mobility,
                         $this->sqCount->used->{$piece->color})
                     );
                     break;
                 case Piece::N:
                     $this->result[$piece->color] += count(
-                        array_intersect($piece->getMobility(),
+                        array_intersect($piece->mobility,
                         $this->sqCount->used->{$piece->color})
                     );
                     break;
@@ -60,7 +60,7 @@ class ConnectivityEval extends AbstractEval implements ExplainEvalInterface
                     );
                     break;
                 default:
-                    foreach ($piece->getMobility() as $key => $val) {
+                    foreach ($piece->mobility as $key => $val) {
                         foreach ($val as $sq) {
                             if (in_array($sq, $this->sqCount->used->{$piece->color})) {
                                 $this->result[$piece->color] += 1;

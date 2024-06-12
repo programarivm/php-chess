@@ -28,7 +28,7 @@ class BTest extends AbstractUnitTestCase
             'downRight' => ['b1']
         ];
 
-        $this->assertEquals($mobility, $bishop->getMobility());
+        $this->assertEquals($mobility, $bishop->mobility);
     }
 
     /**
@@ -44,7 +44,7 @@ class BTest extends AbstractUnitTestCase
             'downRight' => ['e4', 'f3', 'g2', 'h1']
         ];
 
-        $this->assertEquals($mobility, $bishop->getMobility());
+        $this->assertEquals($mobility, $bishop->mobility);
     }
 
     /**
@@ -60,6 +60,6 @@ class BTest extends AbstractUnitTestCase
             'downRight' => ['b7', 'c6', 'd5', 'e4', 'f3', 'g2', 'h1']
         ];
 
-        $this->assertEquals($mobility, $bishop->getMobility());
+        $this->assertEquals($mobility, $bishop->mobility);
     }
 }

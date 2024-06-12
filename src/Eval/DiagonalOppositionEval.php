@@ -26,8 +26,8 @@ class DiagonalOppositionEval extends AbstractEval implements ExplainEvalInterfac
             "has the diagonal opposition preventing the advance of the other king",
         ];
 
-        $wKingMobility = $this->board->getPiece(Color::W, Piece::K)->getMobility();
-        $bKingMobility = $this->board->getPiece(Color::B, Piece::K)->getMobility();
+        $wKingMobility = $this->board->getPiece(Color::W, Piece::K)->mobility;
+        $bKingMobility = $this->board->getPiece(Color::B, Piece::K)->mobility;
 
         $wKingMobilityArr = array_values($wKingMobility);
         $bKingMobilityArr = array_values($bKingMobility);

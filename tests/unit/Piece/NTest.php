@@ -32,7 +32,7 @@ class NTest extends AbstractUnitTestCase
             'e6'
         ];
 
-        $this->assertSame($mobility, $knight->getMobility());
+        $this->assertSame($mobility, $knight->mobility);
     }
 
     /**
@@ -46,7 +46,7 @@ class NTest extends AbstractUnitTestCase
             'f2'
         ];
 
-        $this->assertSame($mobility, $knight->getMobility());
+        $this->assertSame($mobility, $knight->mobility);
     }
 
     /**
@@ -61,6 +61,6 @@ class NTest extends AbstractUnitTestCase
             'c3'
         ];
 
-        $this->assertSame($mobility, $knight->getMobility());
+        $this->assertSame($mobility, $knight->mobility);
     }
 }

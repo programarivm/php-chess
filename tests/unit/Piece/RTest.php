@@ -29,7 +29,7 @@ class RTest extends AbstractUnitTestCase
             'right' => ['b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2']
         ];
 
-        $this->assertEquals($mobility, $rook->getMobility());
+        $this->assertEquals($mobility, $rook->mobility);
     }
 
     /**
@@ -45,6 +45,6 @@ class RTest extends AbstractUnitTestCase
             'right' => ['e5', 'f5', 'g5', 'h5']
         ];
 
-        $this->assertEquals($mobility, $rook->getMobility());
+        $this->assertEquals($mobility, $rook->mobility);
     }
 }
