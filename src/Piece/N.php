@@ -141,7 +141,7 @@ class N extends AbstractPiece
     {
         $sqs = [];
         foreach ($this->mobility as $sq) {
-            if (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->sqCount->used->{$this->color})) {
                 $sqs[] = $sq;
             }
         }

@@ -50,7 +50,7 @@ class BadBishopEval extends AbstractEval implements
         if (!$bishopPairEval[Color::W] && !$bishopPairEval[Color::B]) {
             foreach ($this->board->getPieces() as $piece) {
                 if ($piece->getId() === Piece::B) {
-                    $this->result[$piece->getColor()] += $this->countBlockingPawns(
+                    $this->result[$piece->color] += $this->countBlockingPawns(
                         $piece,
                         $this->board->square->color($piece->getSq())
                     );
@@ -74,7 +74,7 @@ class BadBishopEval extends AbstractEval implements
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
                 if (
-                    $piece->getColor() === $bishop->getColor() &&
+                    $piece->color === $bishop->color &&
                     $this->board->square->color($piece->getSq()) === $sqColor
                 ) {
                     $count += 1;

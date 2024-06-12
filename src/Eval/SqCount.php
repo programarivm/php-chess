@@ -66,7 +66,7 @@ class SqCount
         ];
 
         foreach ($this->board->getPieces() as $piece) {
-            $used[$piece->getColor()][] = $piece->getSq();
+            $used[$piece->color][] = $piece->getSq();
         }
 
         return (object) $used;

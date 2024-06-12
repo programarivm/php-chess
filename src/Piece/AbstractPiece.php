@@ -22,7 +22,7 @@ abstract class AbstractPiece
      *
      * @var string
      */
-    protected string $color;
+    public string $color;
 
     /**
      * The piece's square string.
@@ -106,7 +106,7 @@ abstract class AbstractPiece
         $attackedPieces = [];
         foreach ($sqs = $this->sqs() as $sq) {
             if ($piece = $this->board->getPieceBySq($sq)) {
-                if ($piece->getColor() === $this->oppColor()) {
+                if ($piece->color === $this->oppColor()) {
                     $attackedPieces[] = $piece;
                 }
             }
@@ -163,16 +163,6 @@ abstract class AbstractPiece
         }
 
         return false;
-    }
-
-    /**
-     * Gets the piece's color.
-     *
-     * @return string
-     */
-    public function getColor(): string
-    {
-        return $this->color;
     }
 
     /**
@@ -279,14 +269,14 @@ abstract class AbstractPiece
 
     public function isPinned(): bool
     {
-        $king = $this->board->getPiece($this->getColor(), Piece::K);
+        $king = $this->board->getPiece($this->color, Piece::K);
         $clone = $this->board->clone();
         $clone->detach($clone->getPieceBySq($this->getSq()));
         $clone->refresh();
-        $newKing = $clone->getPiece($this->getColor(), Piece::K);
+        $newKing = $clone->getPiece($this->color, Piece::K);
         $diffPieces = $this->board->diffPieces($king->attackingPieces(), $newKing->attackingPieces());
         foreach ($diffPieces as $diffPiece) {
-            if ($diffPiece->getColor() !== $king->getColor()) {
+            if ($diffPiece->color !== $king->color) {
                 return true;
             }
         }

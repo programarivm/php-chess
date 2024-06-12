@@ -56,7 +56,7 @@ class BackwardPawnEval extends AbstractEval implements
                         ...$this->isolatedPawnEval[Color::B]
                     ])
                 ) {
-                    $this->result[$piece->getColor()][] = $piece->getSq();
+                    $this->result[$piece->color][] = $piece->getSq();
                 }
             }
         }
@@ -75,10 +75,10 @@ class BackwardPawnEval extends AbstractEval implements
             return true;
         }
 
-        if ($pawn->getColor() === Color::W) {
+        if ($pawn->color === Color::W) {
             for ($i = $pawn->getSqRank() - 1; $i >= 2; $i--) {
                 if ($piece = $this->board->getPieceBySq($file.$i)) {
-                    if ($piece->getId() === Piece::P && $piece->getColor() === $pawn->getColor()) {
+                    if ($piece->getId() === Piece::P && $piece->color === $pawn->color) {
                         return true;
                     }
                 }
@@ -86,7 +86,7 @@ class BackwardPawnEval extends AbstractEval implements
         } else {
             for ($i = $pawn->getSqRank() + 1; $i <= $this->board->square::SIZE['ranks'] - 1; $i++) {
                 if ($piece = $this->board->getPieceBySq($file.$i)) {
-                    if ($piece->getId() === Piece::P && $piece->getColor() === $pawn->getColor()
+                    if ($piece->getId() === Piece::P && $piece->color === $pawn->color
                     ) {
                         return true;
                     }

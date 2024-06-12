@@ -16,14 +16,14 @@ trait CapablancaTrait
             if ($key !== 'knight') {
                 foreach ($val as $sq) {
                     if (
-                        !in_array($sq, $this->board->sqCount->used->{$this->getColor()}) &&
+                        !in_array($sq, $this->board->sqCount->used->{$this->color}) &&
                         !in_array($sq, $this->board->sqCount->used->{$this->oppColor()})
                     ) {
                         $sqs[] = $sq;
                     } elseif (in_array($sq, $this->board->sqCount->used->{$this->oppColor()})) {
                         $sqs[] = $sq;
                         break 1;
-                    } elseif (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
+                    } elseif (in_array($sq, $this->board->sqCount->used->{$this->color})) {
                         break 1;
                     }
                 }
@@ -52,7 +52,7 @@ trait CapablancaTrait
         foreach ($this->mobility as $key => $val) {
             if ($key !== 'knight') {
                 foreach ($val as $sq) {
-                    if (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
+                    if (in_array($sq, $this->board->sqCount->used->{$this->color})) {
                         $sqs[] = $sq;
                         break 1;
                     } elseif (in_array($sq, $this->board->sqCount->used->{$this->oppColor()})) {
@@ -61,7 +61,7 @@ trait CapablancaTrait
                 }
             } else {
                 foreach ($val as $sq) {
-                    if (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
+                    if (in_array($sq, $this->board->sqCount->used->{$this->color})) {
                         $sqs[] = $sq;
                     }
                 }

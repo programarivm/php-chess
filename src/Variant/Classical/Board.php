@@ -159,7 +159,7 @@ class Board extends AbstractPgnParser
         $this->rewind();
         while ($this->valid()) {
             $piece = $this->current();
-            if ($piece->getColor() === $color && $piece->getId() === $id) {
+            if ($piece->color === $color && $piece->getId() === $id) {
                 return $piece;
             }
             $this->next();
@@ -181,7 +181,7 @@ class Board extends AbstractPgnParser
         while ($this->valid()) {
             $piece = $this->current();
             if ($color) {
-                if ($piece->getColor() === $color) {
+                if ($piece->color === $color) {
                     $pieces[] = $piece;
                 }
             } else {
@@ -493,7 +493,7 @@ class Board extends AbstractPgnParser
                 $file = $this->square::SIZE['files'] - 1 - $file - $diff;
                 $rank = $this->square::SIZE['ranks'] - 1 - $rank + $diff;
             }
-            $piece->getColor() === Color::W
+            $piece->color === Color::W
                 ? $array[$file][$rank] = ' ' . $piece->getId() . ' '
                 : $array[$file][$rank] = ' ' . strtolower($piece->getId()) . ' ';
         }

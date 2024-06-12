@@ -54,7 +54,7 @@ class KingSafetyEval extends AbstractEval implements
         $king = $this->board->getPiece($color, Piece::K);
         foreach ($king->getMobility() as $sq) {
             if ($piece = $this->board->getPieceBySq($sq)) {
-                if ($piece->getColor() === $king->oppColor()) {
+                if ($piece->color === $king->oppColor()) {
                     $this->result[$color] += 1;
                 }
             }

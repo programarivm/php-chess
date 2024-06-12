@@ -174,7 +174,7 @@ class P extends AbstractPiece
     {
         $sqs = [];
         foreach($this->captureSqs as $sq) {
-            if (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->sqCount->used->{$this->color})) {
                 $sqs[] = $sq;
             }
         }
@@ -246,7 +246,7 @@ class P extends AbstractPiece
     {
         if ($this->enPassantSq) {
             $rank = (int) substr($this->enPassantSq, 1);
-            $this->getColor() === Color::W ? $rank-- : $rank++;
+            $this->color === Color::W ? $rank-- : $rank++;
             return $this->board->getPieceBySq($this->enPassantSq[0] . $rank);
         }
 

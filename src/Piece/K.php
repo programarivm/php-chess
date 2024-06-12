@@ -141,7 +141,7 @@ class K extends AbstractPiece
     {
         $sqs = [];
         foreach ($this->mobility as $sq) {
-            if (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
+            if (in_array($sq, $this->board->sqCount->used->{$this->color})) {
                 $sqs[] = $sq;
             }
         }
@@ -151,11 +151,11 @@ class K extends AbstractPiece
 
     public function sqCastleLong(): ?string
     {
-        $rule = $this->board->castlingRule->getRule()[$this->getColor()][Piece::K][Castle::LONG];
+        $rule = $this->board->castlingRule->getRule()[$this->color][Piece::K][Castle::LONG];
 
-        if ($this->board->castlingRule->long($this->board->castlingAbility, $this->getColor())) {
+        if ($this->board->castlingRule->long($this->board->castlingAbility, $this->color)) {
             if (
-                ($this->board->turn === $this->getColor() && !$this->board->isCheck()) &&
+                ($this->board->turn === $this->color && !$this->board->isCheck()) &&
                 !array_diff($rule['free'], $this->board->sqCount->free) &&
                 empty(array_intersect($rule['attack'], $this->board->spaceEval->{$this->oppColor()}))
             ) {
@@ -168,11 +168,11 @@ class K extends AbstractPiece
 
     public function sqCastleShort(): ?string
     {
-        $rule = $this->board->castlingRule->getRule()[$this->getColor()][Piece::K][Castle::SHORT];
+        $rule = $this->board->castlingRule->getRule()[$this->color][Piece::K][Castle::SHORT];
 
-        if ($this->board->castlingRule->short($this->board->castlingAbility, $this->getColor())) {
+        if ($this->board->castlingRule->short($this->board->castlingAbility, $this->color)) {
             if (
-                ($this->board->turn === $this->getColor() && !$this->board->isCheck()) &&
+                ($this->board->turn === $this->color && !$this->board->isCheck()) &&
                 !array_diff($rule['free'], $this->board->sqCount->free) &&
                 empty(array_intersect($rule['attack'], $this->board->spaceEval->{$this->oppColor()}))
             ) {
@@ -188,7 +188,7 @@ class K extends AbstractPiece
         $sqsCaptures = [];
         foreach ($this->mobility as $sq) {
             if ($piece = $this->board->getPieceBySq($sq)) {
-                if ($this->oppColor() === $piece->getColor()) {
+                if ($this->oppColor() === $piece->color) {
                     if (empty($piece->defendingPieces())) {
                         $sqsCaptures[] = $sq;
                     }
@@ -215,7 +215,7 @@ class K extends AbstractPiece
      */
     public function getCastleRook(string $type): ?R
     {
-        $rule = $this->board->castlingRule->getRule()[$this->getColor()][Piece::R][$type];
+        $rule = $this->board->castlingRule->getRule()[$this->color][Piece::R][$type];
         if ($type === RType::CASTLE_LONG && $this->sqCastleLong()) {
             if ($piece = $this->board->getPieceBySq($rule['sq']['current'])) {
                 if ($piece->getId() === Piece::R) {

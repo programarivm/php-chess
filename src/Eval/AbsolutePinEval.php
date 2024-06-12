@@ -35,7 +35,7 @@ class AbsolutePinEval extends AbstractEval implements
 
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->isPinned()) {
-                $this->result[$piece->getColor()] += self::$value[$piece->getId()];
+                $this->result[$piece->color] += self::$value[$piece->getId()];
                 $this->elaborate($piece);
             }
         }

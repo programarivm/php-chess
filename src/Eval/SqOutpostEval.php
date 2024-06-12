@@ -51,19 +51,19 @@ class SqOutpostEval extends AbstractEval implements
                     $left = chr(ord($captureSqs[0]) - 1);
                     $right = chr(ord($captureSqs[0]) + 1);
                     if (
-                        !$this->isFileAttacked($piece->getColor(), $captureSqs[0], $left) &&
-                        !$this->isFileAttacked($piece->getColor(), $captureSqs[0], $right)
+                        !$this->isFileAttacked($piece->color, $captureSqs[0], $left) &&
+                        !$this->isFileAttacked($piece->color, $captureSqs[0], $right)
                     ) {
-                        $this->result[$piece->getColor()][] = $captureSqs[0];
+                        $this->result[$piece->color][] = $captureSqs[0];
                     }
                     if (isset($captureSqs[1])) {
                         $left = chr(ord($captureSqs[1]) - 1);
                         $right = chr(ord($captureSqs[1]) + 1);
                         if (
-                            !$this->isFileAttacked($piece->getColor(), $captureSqs[1], $left) &&
-                            !$this->isFileAttacked($piece->getColor(), $captureSqs[1], $right)
+                            !$this->isFileAttacked($piece->color, $captureSqs[1], $left) &&
+                            !$this->isFileAttacked($piece->color, $captureSqs[1], $right)
                         ) {
-                            $this->result[$piece->getColor()][] = $captureSqs[1];
+                            $this->result[$piece->color][] = $captureSqs[1];
                         }
                     }
                 }
@@ -88,7 +88,7 @@ class SqOutpostEval extends AbstractEval implements
             if ($piece = $this->board->getPieceBySq($file.$i)) {
                 if (
                     $piece->getId() === Piece::P &&
-                    $piece->getColor() === $this->board->color->opp($color)
+                    $piece->color === $this->board->color->opp($color)
                 ) {
                     if ($color === Color::W) {
                         if ($i > $rank) {

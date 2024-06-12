@@ -58,7 +58,7 @@ class CheckmateInOneEval extends AbstractEval implements
                     $cloneB = $cloneA->clone();
                     if ($cloneB->playLan($cloneB->turn, $piece->getSq() . $sq)) {
                         if ($cloneB->isMate()) {
-                            $this->result[$piece->getColor()] = 1;
+                            $this->result[$piece->color] = 1;
                             $this->explain($this->result);
                             $this->elaborate($piece, $cloneB->history);
                             break 2;
@@ -79,6 +79,6 @@ class CheckmateInOneEval extends AbstractEval implements
     {
         $end = end($history);
 
-        $this->elaboration[] = ColorPhrase::sentence($piece->getColor()) . " threatens to play {$end['move']['pgn']} delivering checkmate in one move.";
+        $this->elaboration[] = ColorPhrase::sentence($piece->color) . " threatens to play {$end['move']['pgn']} delivering checkmate in one move.";
     }
 }

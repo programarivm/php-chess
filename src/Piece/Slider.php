@@ -59,7 +59,7 @@ abstract class Slider extends AbstractPiece
         $sqs = [];
         foreach ($this->mobility as $key => $val) {
             foreach ($val as $sq) {
-                if (in_array($sq, $this->board->sqCount->used->{$this->getColor()})) {
+                if (in_array($sq, $this->board->sqCount->used->{$this->color})) {
                     $sqs[] = $sq;
                     break 1;
                 } elseif (in_array($sq, $this->board->sqCount->used->{$this->oppColor()})) {
