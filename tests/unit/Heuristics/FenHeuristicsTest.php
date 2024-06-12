@@ -4,6 +4,7 @@ namespace Chess\Tests\Unit;
 
 use Chess\FenToBoardFactory;
 use Chess\Heuristics\FenHeuristics;
+use Chess\Function\QuadraticComplexityFunction;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 
@@ -18,7 +19,9 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create($fen);
 
-        $balance = (new FenHeuristics($board))->getBalance();
+        $function = new QuadraticComplexityFunction();
+
+        $balance = (new FenHeuristics($board, $function))->getBalance();
 
         $expected = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 
@@ -34,7 +37,9 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create($fen);
 
-        $balance = (new FenHeuristics($board))->getBalance();
+        $function = new QuadraticComplexityFunction();
+
+        $balance = (new FenHeuristics($board, $function))->getBalance();
 
         $expected = [ 0.0, 12.0, -4.0, 8.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 
@@ -50,7 +55,9 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create($fen);
 
-        $balance = (new FenHeuristics($board))->getBalance();
+        $function = new QuadraticComplexityFunction();
+
+        $balance = (new FenHeuristics($board, $function))->getBalance();
 
         $expected = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 
@@ -66,7 +73,9 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create($fen);
 
-        $balance = (new FenHeuristics($board))->getBalance();
+        $function = new QuadraticComplexityFunction();
+
+        $balance = (new FenHeuristics($board, $function))->getBalance();
 
         $expected = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 
@@ -82,9 +91,11 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create($fen);
 
-        $balance = (new FenHeuristics($board))->getBalance();
+        $function = new QuadraticComplexityFunction();
 
-        $expected = [ 1.0, 9.0, -1.0, 4.0, -3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, -5.1, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0 ];
+        $balance = (new FenHeuristics($board, $function))->getBalance();
+
+        $expected = [ 1.0, 9.0, -1.0, 4.0, -3.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, -5.1, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -98,9 +109,11 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create($fen);
 
-        $balance = (new FenHeuristics($board))->getBalance();
+        $function = new QuadraticComplexityFunction();
 
-        $expected = [ 1.0, 5.66, -12.0, 2.0, 3.0, 4.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0 ];
+        $balance = (new FenHeuristics($board, $function))->getBalance();
+
+        $expected = [ 1.0, 5.66, -12.0, 2.0, 3.0, 4.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -114,7 +127,9 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create($fen, new CapablancaBoard());
 
-        $balance = (new FenHeuristics($board))->getBalance();
+        $function = new QuadraticComplexityFunction();
+
+        $balance = (new FenHeuristics($board, $function))->getBalance();
 
         $expected = [ 0.0, 12.0, -3.0, 9.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 

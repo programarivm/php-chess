@@ -56,7 +56,6 @@ class LinearComplexityFunction extends AbstractFunction
         PressureEval::class,
         KingSafetyEval::class,
         ProtectionEval::class,
-        AttackEval::class,
         DiscoveredCheckEval::class,
         DoubledPawnEval::class,
         PassedPawnEval::class,
