@@ -2,8 +2,8 @@
 
 namespace Chess\Tests\Unit;
 
+use Chess\FenHeuristics;
 use Chess\FenToBoardFactory;
-use Chess\Heuristics\FenHeuristics;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 

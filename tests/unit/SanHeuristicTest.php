@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\Heuristic\SanHeuristic;
+use Chess\SanHeuristic;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\FEN\StrToBoard;

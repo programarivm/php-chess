@@ -1,9 +1,8 @@
 <?php
 
-namespace Chess\Heuristics;
+namespace Chess;
 
 use Chess\Eval\InverseEvalInterface;
-use Chess\Function\StandardFunction;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 

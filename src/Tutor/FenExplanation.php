@@ -2,8 +2,8 @@
 
 namespace Chess\Tutor;
 
+use Chess\StandardFunction;
 use Chess\Eval\ExplainEvalInterface;
-use Chess\Function\StandardFunction;
 use Chess\Variant\Classical\Board;
 
 /**

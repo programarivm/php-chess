@@ -2,7 +2,7 @@
 
 namespace Chess\Tutor;
 
-use Chess\Heuristics\FenHeuristics;
+use Chess\FenHeuristics;
 use Chess\ML\Supervised\Classification\CountLabeller;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\Board;

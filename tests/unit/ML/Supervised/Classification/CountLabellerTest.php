@@ -2,8 +2,8 @@
 
 namespace Chess\Tests\Unit\ML\Supervised\Classification;
 
+use Chess\FenHeuristics;
 use Chess\FenToBoardFactory;
-use Chess\Heuristics\FenHeuristics;
 use Chess\ML\Supervised\Classification\CountLabeller;
 use Chess\Tests\AbstractUnitTestCase;
 

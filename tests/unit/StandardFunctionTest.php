@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\Function\StandardFunction;
+use Chess\StandardFunction;
 use Chess\Tests\AbstractUnitTestCase;
 
 class StandardFunctionTest extends AbstractUnitTestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Heuristic;
+namespace Chess;
 
 use Chess\EvalFactory;
 use Chess\Eval\AbstractEval;
