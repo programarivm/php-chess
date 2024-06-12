@@ -20,7 +20,6 @@ class QuadraticComplexityFunctionTest extends AbstractUnitTestCase
             'Pressure',
             'King safety',
             'Protection',
-            'Attack',
             'Discovered check',
             'Doubled pawn',
             'Passed pawn',
@@ -41,8 +40,7 @@ class QuadraticComplexityFunctionTest extends AbstractUnitTestCase
             'Bad bishop',
             'Diagonal opposition',
             'Direct opposition',
-            'Checkmate in a ply',
-            'Checkmate in one',
+            'Attack',
         ];
 
         $this->assertSame($expected, (new QuadraticComplexityFunction())->names());

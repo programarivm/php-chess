@@ -3,8 +3,6 @@
 namespace Chess\Function;
 
 use Chess\Eval\AttackEval;
-use Chess\Eval\CheckmateInOneEval;
-use Chess\Eval\CheckmateInPlyEval;
 
 /**
  * QuadraticComplexityFunction
@@ -20,13 +18,9 @@ class QuadraticComplexityFunction extends AbstractFunction
 
     public function __construct()
     {
-        $this->eval = (new LinearComplexityFunction())->getEval();
-
         $this->eval = [
-            ...$this->eval,
+            ...(new LinearComplexityFunction())->getEval(),
             AttackEval::class,
-            CheckmateInPlyEval::class,
-            CheckmateInOneEval::class,
         ];
     }
 }

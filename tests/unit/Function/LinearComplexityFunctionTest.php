@@ -20,7 +20,6 @@ class LinearComplexityFunctionTest extends AbstractUnitTestCase
             'Pressure',
             'King safety',
             'Protection',
-            'Attack',
             'Discovered check',
             'Doubled pawn',
             'Passed pawn',
