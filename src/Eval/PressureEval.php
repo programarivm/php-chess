@@ -15,8 +15,7 @@ use Chess\Variant\Classical\Board;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class PressureEval extends AbstractEval implements
-    ExplainEvalInterface
+class PressureEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 

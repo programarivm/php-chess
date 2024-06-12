@@ -8,8 +8,7 @@ use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Board;
 
-class BishopOutpostEval extends AbstractEval implements
-    ElaborateEvalInterface
+class BishopOutpostEval extends AbstractEval implements ElaborateEvalInterface
 {
     use ElaborateEvalTrait;
 
