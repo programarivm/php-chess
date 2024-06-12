@@ -42,7 +42,11 @@ class CheckmateInPlyEval extends AbstractEval implements
             "could checkmate in half a move",
         ];
 
-        try {
+        if (
+            !$this->board->isCheck() &&
+            !$this->board->isMate() &&
+            !$this->board->isStalemate()
+        ) {
             foreach ($this->board->getPieces($this->board->turn) as $piece) {
                 foreach ($piece->sqs() as $sq) {
                     $clone = $this->board->clone();
@@ -56,14 +60,6 @@ class CheckmateInPlyEval extends AbstractEval implements
                     }
                 }
             }
-        } catch (\Exception $e) {
-            // prevents the program from stopping if a checkmated position is evaluated
-            $this->result = [
-                Color::W => 0,
-                Color::B => 0,
-            ];
-
-            $this->elaboration = [];
         }
     }
 
