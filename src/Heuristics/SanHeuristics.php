@@ -2,7 +2,8 @@
 
 namespace Chess\Heuristics;
 
-use Chess\Function\QuadraticComplexityFunction;
+use Chess\Function\AbstractFunction;
+use Chess\Function\LinearComplexityFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\Move;
@@ -21,9 +22,9 @@ class SanHeuristics extends SanPlay
     /**
      * The evaluation function.
      *
-     * @var \Chess\Function\QuadraticComplexityFunction
+     * @var \Chess\Function\AbstractFunction
      */
-    protected QuadraticComplexityFunction $function;
+    protected AbstractFunction $function;
 
     /**
      * The balance.
@@ -37,12 +38,17 @@ class SanHeuristics extends SanPlay
      *
      * @param string $movetext
      * @param \Chess\Variant\Classical\Board|null $board
+     * @param \Chess\Variant\Classical\AbstractFunction|null $function
      */
-    public function __construct(string $movetext = '', Board $board = null)
+    public function __construct(string $movetext = '', Board $board = null, AbstractFunction $function = null)
     {
         parent::__construct($movetext, $board);
 
-        $this->function = new QuadraticComplexityFunction();
+        if ($function) {
+            $this->function = $function;
+        } else {
+            $this->function = new LinearComplexityFunction();
+        }
 
         $this->balance()->normalize(-1, 1);
     }
