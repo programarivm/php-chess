@@ -23,7 +23,7 @@ class BishopOutpostEval extends AbstractEval implements ElaborateEvalInterface
         foreach ($sqOutpostEval as $key => $val) {
             foreach ($val as $sq) {
                 if ($piece = $this->board->getPieceBySq($sq)) {
-                    if ($piece->color === $key && $piece->getId() === Piece::B) {
+                    if ($piece->color === $key && $piece->id === Piece::B) {
                         $this->result[$key] += 1;
                         $this->elaborate($piece);
                     }

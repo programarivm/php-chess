@@ -16,7 +16,7 @@ class TwoBishopsRandomizer extends Randomizer
             parent::__construct($turn, $items);
             $colors = '';
             foreach ($this->board->getPieces($turn) as $piece) {
-                if ($piece->getId() === 'B') {
+                if ($piece->id === 'B') {
                     $colors .= $this->board->square->color($piece->sq);
                 }
             }

@@ -23,7 +23,7 @@ class KnightOutpostEval extends AbstractEval implements ElaborateEvalInterface
         foreach ($sqOutpostEval as $key => $val) {
             foreach ($val as $sq) {
                 if ($piece = $this->board->getPieceBySq($sq)) {
-                    if ($piece->color === $key && $piece->getId() === Piece::N) {
+                    if ($piece->color === $key && $piece->id === Piece::N) {
                         $this->result[$key] += 1;
                         $this->elaborate($piece);
                     }

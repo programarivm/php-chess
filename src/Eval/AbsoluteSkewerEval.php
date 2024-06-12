@@ -25,7 +25,7 @@ class AbsoluteSkewerEval extends AbstractEval implements ElaborateEvalInterface
                 $attackedPieces = $piece->attackedPieces();
                 $newAttackedPieces = $clone->getPieceBySq($piece->sq)->attackedPieces();
                 if ($diffPieces = $this->board->diffPieces($attackedPieces, $newAttackedPieces)) {
-                    if (self::$value[$piece->getId()] < self::$value[current($diffPieces)->getId()]) {
+                    if (self::$value[$piece->id] < self::$value[current($diffPieces)->id]) {
                         $this->result[$piece->color] = 1;
                         $this->elaborate($piece, $king);
                     }

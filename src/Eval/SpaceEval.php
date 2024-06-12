@@ -46,7 +46,7 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
         ];
 
         foreach ($pieces = $this->board->getPieces() as $piece) {
-            if ($piece->getId() === Piece::K) {
+            if ($piece->id === Piece::K) {
                 $this->result[$piece->color] = array_unique(
                     [
                         ...$this->result[$piece->color],
@@ -56,7 +56,7 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
                         )
                     ]
                 );
-            } elseif ($piece->getId() === Piece::P) {
+            } elseif ($piece->id === Piece::P) {
                 $this->result[$piece->color] = array_unique(
                     [
                         ...$this->result[$piece->color],

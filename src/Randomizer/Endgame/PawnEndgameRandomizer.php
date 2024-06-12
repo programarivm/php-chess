@@ -16,7 +16,7 @@ class PawnEndgameRandomizer extends Randomizer
         do {
             parent::__construct($turn, $items);
             foreach ($this->board->getPieces() as $piece) {
-                if ($piece->getId() === 'P') {
+                if ($piece->id === 'P') {
                     $ranks = $piece->getRanks();
                 }
             }

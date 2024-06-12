@@ -40,7 +40,7 @@ class ConnectivityEval extends AbstractEval implements ExplainEvalInterface
         ];
 
         foreach ($this->board->getPieces() as $piece) {
-            switch ($piece->getId()) {
+            switch ($piece->id) {
                 case Piece::K:
                     $this->result[$piece->color] += count(
                         array_intersect($piece->getMobility(),

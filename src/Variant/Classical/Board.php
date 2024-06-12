@@ -159,7 +159,7 @@ class Board extends AbstractPgnParser
         $this->rewind();
         while ($this->valid()) {
             $piece = $this->current();
-            if ($piece->color === $color && $piece->getId() === $id) {
+            if ($piece->color === $color && $piece->id === $id) {
                 return $piece;
             }
             $this->next();
@@ -242,7 +242,7 @@ class Board extends AbstractPgnParser
         $sqs = $this->move->explodeSqs($lan);
         if (isset($sqs[0]) && isset($sqs[1])) {
             if ($color === $this->turn && $piece = $this->getPieceBySq($sqs[0])) {
-                if ($piece->getId() === Piece::K) {
+                if ($piece->id === Piece::K) {
                     if (
                         $this->castlingRule->getRule()[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sqs[1] &&
                         $piece->sqCastleShort() &&
@@ -260,7 +260,7 @@ class Board extends AbstractPgnParser
                     } elseif ($this->play($color, Piece::K . $sqs[1])) {
                         return $this->afterPlayLan();
                     }
-                } elseif ($piece->getId() === Piece::P) {
+                } elseif ($piece->id === Piece::P) {
                     strlen($lan) === 5
                         ? $promotion = '='.mb_strtoupper(substr($lan, -1))
                         : $promotion = '';
@@ -270,21 +270,21 @@ class Board extends AbstractPgnParser
                         return $this->afterPlayLan();
                     }
                 } else {
-                    if ($this->play($color, "{$piece->getId()}x$sqs[1]")) {
+                    if ($this->play($color, "{$piece->id}x$sqs[1]")) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$piece->getId()}{$piece->getSqFile()}x$sqs[1]")) {
+                    } elseif ($this->play($color, "{$piece->id}{$piece->getSqFile()}x$sqs[1]")) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$piece->getId()}{$piece->getSqRank()}x$sqs[1]")) {
+                    } elseif ($this->play($color, "{$piece->id}{$piece->getSqRank()}x$sqs[1]")) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, $piece->getId() . $sqs[1])) {
+                    } elseif ($this->play($color, $piece->id . $sqs[1])) {
                         return $this->afterPlayLan();
-                    }  elseif ($this->play($color, $piece->getId() . $piece->getSqFile() . $sqs[1])) {
+                    }  elseif ($this->play($color, $piece->id . $piece->getSqFile() . $sqs[1])) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, $piece->getId() . $piece->getSqRank() . $sqs[1])) {
+                    } elseif ($this->play($color, $piece->id . $piece->getSqRank() . $sqs[1])) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$piece->getId()}{$piece->sq}x$sqs[1]")) {
+                    } elseif ($this->play($color, "{$piece->id}{$piece->sq}x$sqs[1]")) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, $piece->getId() . $piece->sq . $sqs[1])) {
+                    } elseif ($this->play($color, $piece->id . $piece->sq . $sqs[1])) {
                         return $this->afterPlayLan();
                     }
                 }
@@ -416,16 +416,16 @@ class Board extends AbstractPgnParser
             return true;
         } elseif ($count === 3) {
             foreach ($this->getPieces() as $piece) {
-                if ($piece->getId() === Piece::N) {
+                if ($piece->id === Piece::N) {
                     return true;
-                } elseif ($piece->getId() === Piece::B) {
+                } elseif ($piece->id === Piece::B) {
                     return true;
                 }
             }
         } elseif ($count === 4) {
             $colors = '';
             foreach ($this->getPieces() as $piece) {
-                if ($piece->getId() === Piece::B) {
+                if ($piece->id === Piece::B) {
                     $colors .= $this->square->color($piece->sq);
                 }
             }
@@ -494,8 +494,8 @@ class Board extends AbstractPgnParser
                 $rank = $this->square::SIZE['ranks'] - 1 - $rank + $diff;
             }
             $piece->color === Color::W
-                ? $array[$file][$rank] = ' ' . $piece->getId() . ' '
-                : $array[$file][$rank] = ' ' . strtolower($piece->getId()) . ' ';
+                ? $array[$file][$rank] = ' ' . $piece->id . ' '
+                : $array[$file][$rank] = ' ' . strtolower($piece->id) . ' ';
         }
 
         return $array;

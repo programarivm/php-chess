@@ -120,7 +120,7 @@ class AbstractPgnParser extends \SplObjectStorage
     {
         $pieces = [];
         foreach ($this->getPieces($move['color']) as $piece) {
-            if ($piece->getId() === $move['id']) {
+            if ($piece->id === $move['id']) {
                 if (strstr($piece->sq, $move['sq']['current'])) {
                     $pieces[] = $piece->setMove($move);
                 }
@@ -232,14 +232,14 @@ class AbstractPgnParser extends \SplObjectStorage
         if ($toDetach = $this->getPieceBySq($piece->sq)) {
             $this->detach($toDetach);
         }
-        $class = "\\Chess\\Piece\\{$piece->getId()}";
+        $class = "\\Chess\\Piece\\{$piece->id}";
         $this->attach(new $class(
             $piece->color,
             $piece->getMove()['sq']['next'],
             $this->square,
-            $piece->getId() === Piece::R ? $piece->getType() : null
+            $piece->id === Piece::R ? $piece->getType() : null
         ));
-        if ($piece->getId() === Piece::P) {
+        if ($piece->id === Piece::P) {
             if ($piece->isPromoted()) {
                 $this->promote($piece);
             }
@@ -293,13 +293,13 @@ class AbstractPgnParser extends \SplObjectStorage
     protected function updateCastle(AbstractPiece $piece): Board
     {
         if ($this->castlingRule->can($this->castlingAbility, $this->turn)) {
-            if ($piece->getId() === Piece::K) {
+            if ($piece->id === Piece::K) {
                 $this->castlingAbility = $this->castlingRule->remove(
                     $this->castlingAbility,
                     $this->turn,
                     [Piece::K, Piece::Q]
                 );
-            } elseif ($piece->getId() === Piece::R) {
+            } elseif ($piece->id === Piece::R) {
                 if ($piece->getType() === RType::CASTLE_SHORT) {
                     $this->castlingAbility = $this->castlingRule->remove(
                         $this->castlingAbility,
@@ -351,29 +351,29 @@ class AbstractPgnParser extends \SplObjectStorage
     protected function capture(AbstractPiece $piece): Board
     {
         if (
-            $piece->getId() === Piece::P &&
+            $piece->id === Piece::P &&
             $piece->getEnPassantSq() &&
             !$this->getPieceBySq($piece->getMove()['sq']['next'])
         ) {
             if ($captured = $piece->enPassantPawn()) {
                 $capturedData = (object) [
-                    'id' => $captured->getId(),
+                    'id' => $captured->id,
                     'sq' => $captured->sq,
                 ];
             }
         } elseif ($captured = $this->getPieceBySq($piece->getMove()['sq']['next'])) {
             $capturedData = (object) [
-                'id' => $captured->getId(),
+                'id' => $captured->id,
                 'sq' => $captured->sq,
             ];
         }
         if ($captured) {
             $capturingData = (object) [
-                'id' => $piece->getId(),
+                'id' => $piece->id,
                 'sq' => $piece->sq,
             ];
-            $piece->getId() !== Piece::R ?: $capturingData->type = $piece->getType();
-            $captured->getId() !== Piece::R ?: $capturedData->type = $captured->getType();
+            $piece->id !== Piece::R ?: $capturingData->type = $piece->getType();
+            $captured->id !== Piece::R ?: $capturedData->type = $captured->getType();
             $capture = (object) [
                 'capturing' => $capturingData,
                 'captured' => $capturedData,
@@ -448,7 +448,7 @@ class AbstractPgnParser extends \SplObjectStorage
         $escape = 0;
         foreach ($this->getPieces($this->turn) as $piece) {
             foreach ($piece->sqs() as $sq) {
-                if ($piece->getId() === Piece::K) {
+                if ($piece->id === Piece::K) {
                     if ($sq === $piece->sqCastleShort()) {
                         $move = $this->move->toArray($this->turn, Castle::SHORT, $this->castlingRule, $this->color);
                     } elseif ($sq === $piece->sqCastleLong()) {
@@ -458,7 +458,7 @@ class AbstractPgnParser extends \SplObjectStorage
                     } elseif (!in_array($sq, $this->spaceEval->{$piece->oppColor()})) {
                         $move = $this->move->toArray($this->turn, Piece::K.$sq, $this->castlingRule, $this->color);
                     }
-                } elseif ($piece->getId() === Piece::P) {
+                } elseif ($piece->id === Piece::P) {
                     if (in_array($sq, $this->sqCount->used->{$piece->oppColor()})) {
                         $move = $this->move->toArray($this->turn, $piece->getSqFile()."x$sq", $this->castlingRule, $this->color);
                     } else {
@@ -466,9 +466,9 @@ class AbstractPgnParser extends \SplObjectStorage
                     }
                 } else {
                     if (in_array($sq, $this->sqCount->used->{$piece->oppColor()})) {
-                        $move = $this->move->toArray($this->turn, $piece->getId()."x$sq", $this->castlingRule, $this->color);
+                        $move = $this->move->toArray($this->turn, $piece->id."x$sq", $this->castlingRule, $this->color);
                     } else {
-                        $move = $this->move->toArray($this->turn, $piece->getId().$sq, $this->castlingRule, $this->color);
+                        $move = $this->move->toArray($this->turn, $piece->id.$sq, $this->castlingRule, $this->color);
                     }
                 }
                 $escape += (int) !$this->isPinned($piece->setMove($move));

@@ -18,6 +18,13 @@ abstract class AbstractPiece
     use PieceObserverBoardTrait;
 
     /**
+     * The piece's id in PGN format.
+     *
+     * @var string
+     */
+    public string $id;
+
+    /**
      * The piece's color in PGN format.
      *
      * @var string
@@ -37,13 +44,6 @@ abstract class AbstractPiece
      * @var \Chess\Variant\Classical\PGN\AN\Square
      */
     protected Square $square;
-
-    /**
-     * The piece's id in PGN format.
-     *
-     * @var string
-     */
-    protected string $id;
 
     /**
      * The piece's mobility.
@@ -157,22 +157,12 @@ abstract class AbstractPiece
     public function isAttackingKing(): bool
     {
         foreach ($this->attackedPieces() as $piece) {
-            if ($piece->getId() === Piece::K) {
+            if ($piece->id === Piece::K) {
                 return true;
             }
         }
 
         return false;
-    }
-
-    /**
-     * Gets the piece's id.
-     *
-     * @return string
-     */
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     /**

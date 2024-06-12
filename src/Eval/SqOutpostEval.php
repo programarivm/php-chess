@@ -45,7 +45,7 @@ class SqOutpostEval extends AbstractEval implements
         ];
 
         foreach ($this->board->getPieces() as $piece) {
-            if ($piece->getId() === Piece::P) {
+            if ($piece->id === Piece::P) {
                 $captureSqs = $piece->getCaptureSqs();
                 if ($piece->getRanks()['end'] !== (int) substr($captureSqs[0], 1)) {
                     $left = chr(ord($captureSqs[0]) - 1);
@@ -87,7 +87,7 @@ class SqOutpostEval extends AbstractEval implements
         for ($i = 2; $i < 8; $i++) {
             if ($piece = $this->board->getPieceBySq($file.$i)) {
                 if (
-                    $piece->getId() === Piece::P &&
+                    $piece->id === Piece::P &&
                     $piece->color === $this->board->color->opp($color)
                 ) {
                     if ($color === Color::W) {

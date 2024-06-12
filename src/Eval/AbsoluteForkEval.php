@@ -19,10 +19,10 @@ class AbsoluteForkEval extends AbstractEval implements ElaborateEvalInterface
 
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->isAttackingKing()) {
-                $pieceValue = self::$value[$piece->getId()];
+                $pieceValue = self::$value[$piece->id];
                 foreach ($piece->attackedPieces() as $attackedPiece) {
-                    if ($attackedPiece->getId() !== Piece::K) {
-                        $attackedPieceValue = self::$value[$attackedPiece->getId()];
+                    if ($attackedPiece->id !== Piece::K) {
+                        $attackedPieceValue = self::$value[$attackedPiece->id];
                         if ($pieceValue < $attackedPieceValue) {
                             $this->result[$piece->color] += $attackedPieceValue;
                             $this->elaborate($attackedPiece);

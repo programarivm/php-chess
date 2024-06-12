@@ -36,14 +36,14 @@ class MaterialEval extends AbstractEval implements ExplainEvalInterface
         ];
 
         foreach ($this->board->getPieces(Color::W) as $piece) {
-            if ($piece->getId() !== Piece::K) {
-                $this->result[Color::W] += self::$value[$piece->getId()];
+            if ($piece->id !== Piece::K) {
+                $this->result[Color::W] += self::$value[$piece->id];
             }
         }
 
         foreach ($this->board->getPieces(Color::B) as $piece) {
-            if ($piece->getId() !== Piece::K) {
-                $this->result[Color::B] += self::$value[$piece->getId()];
+            if ($piece->id !== Piece::K) {
+                $this->result[Color::B] += self::$value[$piece->id];
             }
         }
 

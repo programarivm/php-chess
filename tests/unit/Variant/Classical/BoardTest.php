@@ -1896,7 +1896,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $board->playLan('w', 'h7h8n');
 
-        $this->assertEquals('N', $board->getPieceBySq('h8')->getId());
+        $this->assertEquals('N', $board->getPieceBySq('h8')->id);
     }
 
     /**
@@ -1946,7 +1946,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $board->playLan('w', 'h7h8r');
 
-        $this->assertEquals('R', $board->getPieceBySq('h8')->getId());
+        $this->assertEquals('R', $board->getPieceBySq('h8')->id);
     }
 
     /**
@@ -1996,7 +1996,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $board->playLan('w', 'h7h8b');
 
-        $this->assertEquals('B', $board->getPieceBySq('h8')->getId());
+        $this->assertEquals('B', $board->getPieceBySq('h8')->id);
     }
 
     /**

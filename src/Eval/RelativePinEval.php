@@ -53,8 +53,8 @@ class RelativePinEval extends AbstractEval implements
 
         foreach ($this->board->getPieces() as $piece) {
             if (
-                $piece->getId() !== Piece::K &&
-                $piece->getId() !== Piece::Q &&
+                $piece->id !== Piece::K &&
+                $piece->id !== Piece::Q &&
                 !$piece->isPinned()
             ) {
                 $attackingPieces = $piece->attackingPieces();
@@ -70,8 +70,8 @@ class RelativePinEval extends AbstractEval implements
                     foreach ($clone->getPieceBySq($sq)->attackingPieces() as $newAttackingPiece) {
                         foreach ($attackingPieces as $attackingPiece) {
                             if ($newAttackingPiece->sq === $attackingPiece->sq) {
-                                $valDiff = self::$value[$attackingPiece->getId()] -
-                                    self::$value[$clone->getPieceBySq($sq)->getId()];
+                                $valDiff = self::$value[$attackingPiece->id] -
+                                    self::$value[$clone->getPieceBySq($sq)->id];
                                 if ($valDiff < 0) {
                                     $this->result[$piece->oppColor()] += abs(round($valDiff, 2));
                                     $this->elaborate($piece);

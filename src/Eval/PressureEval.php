@@ -58,7 +58,7 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
         ];
 
         foreach ($pieces = $this->board->getPieces() as $piece) {
-            if ($piece->getId() === Piece::K) {
+            if ($piece->id === Piece::K) {
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
                     ...array_intersect(
@@ -66,7 +66,7 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
                         $this->sqCount->used->{$piece->oppColor()}
                     )
                 ];
-            } elseif ($piece->getId() === Piece::P) {
+            } elseif ($piece->id === Piece::P) {
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
                     ...array_intersect(
