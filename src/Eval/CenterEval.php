@@ -13,7 +13,6 @@ use Chess\Variant\Classical\PGN\AN\Color;
  * @license MIT
  */
 class CenterEval extends AbstractEval implements
-    LinearComplexityEvalInterface,
     ExplainEvalInterface
 {
     use ExplainEvalTrait;

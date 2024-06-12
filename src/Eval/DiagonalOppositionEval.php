@@ -7,7 +7,6 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 class DiagonalOppositionEval extends AbstractEval implements
-    LinearComplexityEvalInterface,
     ExplainEvalInterface
 {
     use ExplainEvalTrait;

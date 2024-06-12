@@ -14,7 +14,6 @@ use Chess\Variant\Classical\Board;
  * @license MIT
  */
 class SpaceEval extends AbstractEval implements
-    LinearComplexityEvalInterface,
     ExplainEvalInterface
 {
     use ExplainEvalTrait;

@@ -17,7 +17,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @license MIT
  */
 class PassedPawnEval extends AbstractEval implements
-    LinearComplexityEvalInterface,
     ElaborateEvalInterface,
     ExplainEvalInterface
 {

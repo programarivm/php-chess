@@ -9,7 +9,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Board;
 
 class BishopOutpostEval extends AbstractEval implements
-    LinearComplexityEvalInterface,
     ElaborateEvalInterface
 {
     use ElaborateEvalTrait;

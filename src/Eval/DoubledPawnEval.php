@@ -9,7 +9,6 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 class DoubledPawnEval extends AbstractEval implements
-    LinearComplexityEvalInterface,
     ElaborateEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface
