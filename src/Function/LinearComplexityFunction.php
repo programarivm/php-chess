@@ -6,7 +6,6 @@ use Chess\Eval\AbsoluteForkEval;
 use Chess\Eval\AbsolutePinEval;
 use Chess\Eval\AbsoluteSkewerEval;
 use Chess\Eval\AdvancedPawnEval;
-use Chess\Eval\AttackEval;
 use Chess\Eval\BackwardPawnEval;
 use Chess\Eval\BadBishopEval;
 use Chess\Eval\BishopOutpostEval;
