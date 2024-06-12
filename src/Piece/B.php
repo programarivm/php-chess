@@ -45,7 +45,7 @@ class B extends Slider
     {
         try {
             $file = chr(ord($this->sq[0]) - 1);
-            $rank = $this->getSqRank() + 1;
+            $rank = $this->rank() + 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility['upLeft'][] = $file . $rank;
                 $file = chr(ord($file) - 1);
@@ -56,7 +56,7 @@ class B extends Slider
 
         try {
             $file = chr(ord($this->sq[0]) + 1);
-            $rank = $this->getSqRank() + 1;
+            $rank = $this->rank() + 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility['upRight'][]  = $file . $rank;
                 $file = chr(ord($file) + 1);
@@ -67,7 +67,7 @@ class B extends Slider
 
         try {
             $file = chr(ord($this->sq[0]) - 1);
-            $rank = $this->getSqRank() - 1;
+            $rank = $this->rank() - 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility['downLeft'][] = $file . $rank;
                 $file = chr(ord($file) - 1);
@@ -78,7 +78,7 @@ class B extends Slider
 
         try {
             $file = chr(ord($this->sq[0]) + 1);
-            $rank = $this->getSqRank() - 1;
+            $rank = $this->rank() - 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility['downRight'][] = $file . $rank;
                 $file = chr(ord($file) + 1);

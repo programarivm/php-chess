@@ -75,11 +75,11 @@ class AdvancedPawnEval extends AbstractEval implements
     private function isAdvancedPawn(P $pawn): bool
     {
         if ($pawn->color === Color::W) {
-            if ($pawn->getSqRank() >= 5) {
+            if ($pawn->rank() >= 5) {
                 return true;
             }
         } else {
-            if ($pawn->getSqRank() <= 4) {
+            if ($pawn->rank() <= 4) {
                 return true;
             }
         }

@@ -45,13 +45,13 @@ class P extends AbstractPiece
         if ($this->color === Color::W) {
             $this->ranks = [
                 'start' => 2,
-                'next' => $this->getSqRank() + 1,
+                'next' => $this->rank() + 1,
                 'end' => $this->square::SIZE['ranks'],
             ];
         } elseif ($this->color === Color::B) {
             $this->ranks = [
                 'start' => $this->square::SIZE['ranks'] - 1,
-                'next' => $this->getSqRank() - 1,
+                'next' => $this->rank() - 1,
                 'end' => 1,
             ];
         }
@@ -80,10 +80,10 @@ class P extends AbstractPiece
         }
 
         // two square advance
-        if ($this->getSqRank() === 2 && $this->ranks['start'] == 2) {
+        if ($this->rank() === 2 && $this->ranks['start'] == 2) {
             $this->mobility[] = $this->file() . ($this->ranks['start'] + 2);
         } elseif (
-            $this->getSqRank() === $this->square::SIZE['ranks'] - 1 &&
+            $this->rank() === $this->square::SIZE['ranks'] - 1 &&
             $this->ranks['start'] == $this->square::SIZE['ranks'] - 1
         ) {
             $this->mobility[] = $this->file() . ($this->ranks['start'] - 2);
@@ -142,16 +142,16 @@ class P extends AbstractPiece
         $end = end($history);
         if ($end && $end['move']['id'] === Piece::P && $end['move']['color'] === $this->oppColor()) {
            if ($this->color === Color::W) {
-               if ($this->getSqRank() === $this->square::SIZE['ranks'] - 3) {
-                   $captureSq = $end['move']['sq']['next'][0] . ($this->getSqRank() + 1);
+               if ($this->rank() === $this->square::SIZE['ranks'] - 3) {
+                   $captureSq = $end['move']['sq']['next'][0] . ($this->rank() + 1);
                    if (in_array($captureSq, $this->captureSqs)) {
                         $this->enPassantSq = $captureSq;
                         $sqs[] = $captureSq;
                    }
                }
            } elseif ($this->color === Color::B) {
-               if ($this->getSqRank() === 4) {
-                   $captureSq = $end['move']['sq']['next'][0] . ($this->getSqRank() - 1);
+               if ($this->rank() === 4) {
+                   $captureSq = $end['move']['sq']['next'][0] . ($this->rank() - 1);
                    if (in_array($captureSq, $this->captureSqs)) {
                        $this->enPassantSq = $captureSq;
                        $sqs[] = $captureSq;

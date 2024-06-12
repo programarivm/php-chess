@@ -180,7 +180,7 @@ abstract class AbstractPiece
      *
      * @return int
      */
-    public function getSqRank(): int
+    public function rank(): int
     {
         return (int) substr($this->sq, 1);
     }
