@@ -46,7 +46,11 @@ class CheckmateInOneEval extends AbstractEval implements
             "could checkmate in one move",
         ];
 
-        try {
+        if (
+            !$this->board->isCheck() &&
+            !$this->board->isMate() &&
+            !$this->board->isStalemate()
+        ) {
             $cloneA = $this->board->clone();
             $cloneA->turn = $this->board->color->opp($this->board->turn);
             foreach ($cloneA->getPieces($this->board->color->opp($this->board->turn)) as $piece) {
@@ -62,14 +66,6 @@ class CheckmateInOneEval extends AbstractEval implements
                     }
                 }
             }
-        } catch (\Exception $e) {
-            // prevents the program from stopping if a checkmated position is evaluated
-            $this->result = [
-                Color::W => 0,
-                Color::B => 0,
-            ];
-
-            $this->elaboration = [];
         }
     }
 

@@ -91,16 +91,12 @@ class CheckmateInOneEvalTest extends AbstractUnitTestCase
     {
         $expectedResult = [
             'w' => 0,
-            'b' => 1,
+            'b' => 0,
         ];
 
-        $expectedExplanation = [
-            "Black could checkmate in one move.",
-        ];
+        $expectedExplanation = [];
 
-        $expectedElaboration = [
-            "Black threatens to play Kb7# delivering checkmate in one move.",
-        ];
+        $expectedElaboration = [];
 
         $board = (new StrToBoard('1k6/8/8/8/8/8/5PPP/1r5K w - -'))->create();
         $checkmateInOneEval = new CheckmateInOneEval($board);
