@@ -19,7 +19,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @license MIT
  */
 class RelativePinEval extends AbstractEval implements
-    ConstantComplexityEvalInterface,
+    LinearComplexityEvalInterface,
     ElaborateEvalInterface,
     ExplainEvalInterface
 {

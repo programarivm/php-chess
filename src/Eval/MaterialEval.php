@@ -13,7 +13,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @license MIT
  */
 class MaterialEval extends AbstractEval implements
-    ConstantComplexityEvalInterface,
+    LinearComplexityEvalInterface,
     ExplainEvalInterface
 {
     use ExplainEvalTrait;

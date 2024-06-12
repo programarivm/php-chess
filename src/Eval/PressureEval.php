@@ -16,7 +16,7 @@ use Chess\Variant\Classical\Board;
  * @license MIT
  */
 class PressureEval extends AbstractEval implements
-    ConstantComplexityEvalInterface,
+    LinearComplexityEvalInterface,
     ExplainEvalInterface
 {
     use ExplainEvalTrait;

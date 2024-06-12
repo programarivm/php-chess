@@ -15,7 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @license MIT
  */
 class KingSafetyEval extends AbstractEval implements
-    ConstantComplexityEvalInterface,
+    LinearComplexityEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface
 {

@@ -8,7 +8,7 @@ use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 class RelativeForkEval extends AbstractEval implements
-    ConstantComplexityEvalInterface,
+    LinearComplexityEvalInterface,
     ElaborateEvalInterface,
     ExplainEvalInterface
 {

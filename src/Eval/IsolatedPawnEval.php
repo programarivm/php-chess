@@ -8,7 +8,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 class IsolatedPawnEval extends AbstractEval implements
-    ConstantComplexityEvalInterface,
+    LinearComplexityEvalInterface,
     ElaborateEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface

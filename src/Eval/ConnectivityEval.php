@@ -13,7 +13,7 @@ use Chess\Variant\Classical\Board;
  * @license MIT
  */
 class ConnectivityEval extends AbstractEval implements
-    ConstantComplexityEvalInterface,
+    LinearComplexityEvalInterface,
     ExplainEvalInterface
 {
     use ExplainEvalTrait;
