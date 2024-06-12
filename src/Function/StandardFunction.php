@@ -6,6 +6,7 @@ use Chess\Eval\AbsoluteForkEval;
 use Chess\Eval\AbsolutePinEval;
 use Chess\Eval\AbsoluteSkewerEval;
 use Chess\Eval\AdvancedPawnEval;
+use Chess\Eval\AttackEval;
 use Chess\Eval\BackwardPawnEval;
 use Chess\Eval\BadBishopEval;
 use Chess\Eval\BishopOutpostEval;
@@ -32,17 +33,15 @@ use Chess\Eval\SpaceEval;
 use Chess\Eval\SqOutpostEval;
 
 /**
- * LinearComplexityFunction
+ * StandardFunction
  *
- * Linear evaluation function.
+ * Standard evaluation function.
  *
  * @author Jordi Bassagaña
  * @license MIT
  */
-class LinearComplexityFunction extends AbstractFunction
+class StandardFunction
 {
-    const NAME = 'Linear';
-
     /**
      * The evaluation features.
      *
@@ -76,5 +75,30 @@ class LinearComplexityFunction extends AbstractFunction
         BadBishopEval::class,
         DiagonalOppositionEval::class,
         DirectOppositionEval::class,
+        AttackEval::class,
     ];
+
+    /**
+     * Returns the evaluation features.
+     *
+     * @return array
+     */
+    public function getEval(): array
+    {
+        return $this->eval;
+    }
+
+    /**
+     * Returns the evaluation names.
+     *
+     * @return array
+     */
+    public function names(): array
+    {
+        foreach ($this->eval as $val) {
+            $names[] = (new \ReflectionClass($val))->getConstant('NAME');
+        }
+
+        return $names;
+    }
 }

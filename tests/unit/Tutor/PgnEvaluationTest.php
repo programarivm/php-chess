@@ -20,7 +20,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "White has a slight attack advantage.",
             "The pawn on c5 is unprotected.",
             "The c5-square is under threat of being attacked.",
-            "Overall, 2 heuristic evaluation features are favoring White while 2 are favoring Black.",
+            "Overall, 3 heuristic evaluation features are favoring White while 2 are favoring Black.",
         ];
 
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');

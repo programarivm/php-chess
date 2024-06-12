@@ -2,10 +2,10 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\Function\LinearComplexityFunction;
+use Chess\Function\StandardFunction;
 use Chess\Tests\AbstractUnitTestCase;
 
-class LinearComplexityFunctionTest extends AbstractUnitTestCase
+class StandardFunctionTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -40,8 +40,9 @@ class LinearComplexityFunctionTest extends AbstractUnitTestCase
             'Bad bishop',
             'Diagonal opposition',
             'Direct opposition',
+            'Attack',
         ];
 
-        $this->assertSame($expected, (new LinearComplexityFunction())->names());
+        $this->assertSame($expected, (new StandardFunction())->names());
     }
 }
