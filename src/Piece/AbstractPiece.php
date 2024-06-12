@@ -15,15 +15,6 @@ use Chess\Variant\Classical\Board;
  */
 abstract class AbstractPiece
 {
-    use PieceObserverBoardTrait;
-
-    /**
-     * The piece's id in PGN format.
-     *
-     * @var string
-     */
-    public string $id;
-
     /**
      * The piece's color in PGN format.
      *
@@ -43,7 +34,14 @@ abstract class AbstractPiece
      *
      * @var \Chess\Variant\Classical\PGN\AN\Square
      */
-    protected Square $square;
+    public Square $square;
+
+    /**
+     * The piece's id in PGN format.
+     *
+     * @var string
+     */
+    public string $id;
 
     /**
      * The piece's mobility.
@@ -64,7 +62,7 @@ abstract class AbstractPiece
      *
      * @var \Chess\Variant\Classical\Board
      */
-    protected Board $board;
+    public Board $board;
 
     /**
      * Constructor.
@@ -95,6 +93,36 @@ abstract class AbstractPiece
      * @return array|null
      */
     abstract public function defendedSqs(): ?array;
+
+    /**
+     * Gets the piece's file.
+     *
+     * @return string
+     */
+    public function file(): string
+    {
+        return $this->sq[0];
+    }
+
+    /**
+     * Gets the piece's rank.
+     *
+     * @return int
+     */
+    public function rank(): int
+    {
+        return (int) substr($this->sq, 1);
+    }
+
+    /**
+     * Gets the piece's opposite color.
+     *
+     * @return string
+     */
+    public function oppColor(): string
+    {
+        return $this->board->color->opp($this->color);
+    }
 
     /**
      * Returns the opponent's pieces that are being attacked by this piece.
@@ -163,36 +191,6 @@ abstract class AbstractPiece
         }
 
         return false;
-    }
-
-    /**
-     * Gets the piece's file.
-     *
-     * @return string
-     */
-    public function file(): string
-    {
-        return $this->sq[0];
-    }
-
-    /**
-     * Gets the piece's rank.
-     *
-     * @return int
-     */
-    public function rank(): int
-    {
-        return (int) substr($this->sq, 1);
-    }
-
-    /**
-     * Gets the piece's opposite color.
-     *
-     * @return string
-     */
-    public function oppColor(): string
-    {
-        return $this->board->color->opp($this->color);
     }
 
     /**

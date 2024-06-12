@@ -10,11 +10,11 @@ trait BoardObserverPieceTrait
      * @var array
      */
     protected array $observers;
-    
+
     public function notifyPieces(): void
     {
         foreach ($this->observers as $piece) {
-            $piece->setBoard($this);
+            $piece->board = $this;
         }
     }
 
