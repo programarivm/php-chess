@@ -461,7 +461,7 @@ class AbstractPgnParser extends \SplObjectStorage
                     }
                 } elseif ($piece->id === Piece::P) {
                     if (in_array($sq, $this->sqCount->used->{$piece->oppColor()})) {
-                        $move = $this->move->toArray($this->turn, $piece->getSqFile()."x$sq", $this->castlingRule, $this->color);
+                        $move = $this->move->toArray($this->turn, $piece->file()."x$sq", $this->castlingRule, $this->color);
                     } else {
                         $move = $this->move->toArray($this->turn, $sq, $this->castlingRule, $this->color);
                     }

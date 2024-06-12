@@ -170,7 +170,7 @@ abstract class AbstractPiece
      *
      * @return string
      */
-    public function getSqFile(): string
+    public function file(): string
     {
         return $this->sq[0];
     }

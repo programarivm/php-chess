@@ -264,7 +264,7 @@ class Board extends AbstractPgnParser
                     strlen($lan) === 5
                         ? $promotion = '='.mb_strtoupper(substr($lan, -1))
                         : $promotion = '';
-                    if ($this->play($color, $piece->getSqFile()."x$sqs[1]" . $promotion)) {
+                    if ($this->play($color, $piece->file()."x$sqs[1]" . $promotion)) {
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, $sqs[1] . $promotion)) {
                         return $this->afterPlayLan();
@@ -272,13 +272,13 @@ class Board extends AbstractPgnParser
                 } else {
                     if ($this->play($color, "{$piece->id}x$sqs[1]")) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$piece->id}{$piece->getSqFile()}x$sqs[1]")) {
+                    } elseif ($this->play($color, "{$piece->id}{$piece->file()}x$sqs[1]")) {
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, "{$piece->id}{$piece->getSqRank()}x$sqs[1]")) {
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, $piece->id . $sqs[1])) {
                         return $this->afterPlayLan();
-                    }  elseif ($this->play($color, $piece->id . $piece->getSqFile() . $sqs[1])) {
+                    }  elseif ($this->play($color, $piece->id . $piece->file() . $sqs[1])) {
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, $piece->id . $piece->getSqRank() . $sqs[1])) {
                         return $this->afterPlayLan();

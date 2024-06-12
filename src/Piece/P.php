@@ -72,8 +72,8 @@ class P extends AbstractPiece
     {
         // next rank
         try {
-            if ($this->square->validate($this->getSqFile() . $this->ranks['next'])) {
-                $this->mobility[] = $this->getSqFile() . $this->ranks['next'];
+            if ($this->square->validate($this->file() . $this->ranks['next'])) {
+                $this->mobility[] = $this->file() . $this->ranks['next'];
             }
         } catch (UnknownNotationException $e) {
 
@@ -81,17 +81,17 @@ class P extends AbstractPiece
 
         // two square advance
         if ($this->getSqRank() === 2 && $this->ranks['start'] == 2) {
-            $this->mobility[] = $this->getSqFile() . ($this->ranks['start'] + 2);
+            $this->mobility[] = $this->file() . ($this->ranks['start'] + 2);
         } elseif (
             $this->getSqRank() === $this->square::SIZE['ranks'] - 1 &&
             $this->ranks['start'] == $this->square::SIZE['ranks'] - 1
         ) {
-            $this->mobility[] = $this->getSqFile() . ($this->ranks['start'] - 2);
+            $this->mobility[] = $this->file() . ($this->ranks['start'] - 2);
         }
 
         // capture square
         try {
-            $file = chr(ord($this->getSqFile()) - 1);
+            $file = chr(ord($this->file()) - 1);
             if ($this->square->validate($file . $this->ranks['next'])) {
                 $this->captureSqs[] = $file . $this->ranks['next'];
             }
@@ -101,7 +101,7 @@ class P extends AbstractPiece
 
         // capture square
         try {
-            $file = chr(ord($this->getSqFile()) + 1);
+            $file = chr(ord($this->file()) + 1);
             if ($this->square->validate($file . $this->ranks['next'])) {
                 $this->captureSqs[] = $file . $this->ranks['next'];
             }

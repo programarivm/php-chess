@@ -74,10 +74,10 @@ class PassedPawnEval extends AbstractEval implements
      */
     private function isPassedPawn(P $pawn): bool
     {
-        $leftFile = chr(ord($pawn->getSqFile()) - 1);
-        $rightFile = chr(ord($pawn->getSqFile()) + 1);
+        $leftFile = chr(ord($pawn->file()) - 1);
+        $rightFile = chr(ord($pawn->file()) + 1);
 
-        foreach ([$leftFile, $pawn->getSqFile(), $rightFile] as $file) {
+        foreach ([$leftFile, $pawn->file(), $rightFile] as $file) {
             if ($pawn->color === Color::W) {
                 for ($i = $pawn->getSqRank() + 1; $i <= $this->board->square::SIZE['ranks'] - 1; $i++) {
                     if ($piece = $this->board->getPieceBySq($file.$i)) {
