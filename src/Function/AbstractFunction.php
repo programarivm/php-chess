@@ -36,20 +36,10 @@ class AbstractFunction
      */
     public function names(): array
     {
-        foreach ($this->eval as $key => $val) {
-            $names[] = (new \ReflectionClass($key))->getConstant('NAME');
+        foreach ($this->eval as $val) {
+            $names[] = (new \ReflectionClass($val))->getConstant('NAME');
         }
 
         return $names;
-    }
-
-    /**
-     * Returns the evaluation weights.
-     *
-     * @return array
-     */
-    public function weights(): array
-    {
-        return array_values($this->eval);
     }
 }

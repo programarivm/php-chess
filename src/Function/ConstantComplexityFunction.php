@@ -4,7 +4,6 @@ namespace Chess\Function;
 
 use Chess\Eval\AbsoluteForkEval;
 use Chess\Eval\AbsolutePinEval;
-use Chess\Eval\AbsoluteSkewerEval;
 use Chess\Eval\AdvancedPawnEval;
 use Chess\Eval\AttackEval;
 use Chess\Eval\BackwardPawnEval;
@@ -50,32 +49,32 @@ class ConstantComplexityFunction extends AbstractFunction
      * @var array
      */
     protected array $eval = [
-        MaterialEval::class => 22,
-        CenterEval::class => 3,
-        ConnectivityEval::class => 3,
-        SpaceEval::class => 3,
-        PressureEval::class => 3,
-        KingSafetyEval::class => 3,
-        ProtectionEval::class => 3,
-        AttackEval::class => 3,
-        DiscoveredCheckEval::class => 3,
-        DoubledPawnEval::class => 3,
-        PassedPawnEval::class => 3,
-        AdvancedPawnEval::class => 3,
-        FarAdvancedPawnEval::class => 3,
-        IsolatedPawnEval::class => 3,
-        BackwardPawnEval::class => 3,
-        DefenseEval::class => 3,
-        AbsolutePinEval::class => 3,
-        RelativePinEval::class => 3,
-        AbsoluteForkEval::class => 3,
-        RelativeForkEval::class => 3,
-        SqOutpostEval::class => 3,
-        KnightOutpostEval::class => 3,
-        BishopOutpostEval::class => 3,
-        BishopPairEval::class => 3,
-        BadBishopEval::class => 3,
-        DiagonalOppositionEval::class => 3,
-        DirectOppositionEval::class => 3,
+        MaterialEval::class,
+        CenterEval::class,
+        ConnectivityEval::class,
+        SpaceEval::class,
+        PressureEval::class,
+        KingSafetyEval::class,
+        ProtectionEval::class,
+        AttackEval::class,
+        DiscoveredCheckEval::class,
+        DoubledPawnEval::class,
+        PassedPawnEval::class,
+        AdvancedPawnEval::class,
+        FarAdvancedPawnEval::class,
+        IsolatedPawnEval::class,
+        BackwardPawnEval::class,
+        DefenseEval::class,
+        AbsolutePinEval::class,
+        RelativePinEval::class,
+        AbsoluteForkEval::class,
+        RelativeForkEval::class,
+        SqOutpostEval::class,
+        KnightOutpostEval::class,
+        BishopOutpostEval::class,
+        BishopPairEval::class,
+        BadBishopEval::class,
+        DiagonalOppositionEval::class,
+        DirectOppositionEval::class,
     ];
 }
