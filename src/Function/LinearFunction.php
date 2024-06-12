@@ -40,7 +40,7 @@ use Chess\Eval\SqOutpostEval;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class LinearFunction
+class LinearFunction extends AbstractFunction
 {
     const NAME = 'Linear';
 
@@ -49,7 +49,7 @@ class LinearFunction
      *
      * @var array
      */
-    protected $eval = [
+    protected array $eval = [
         MaterialEval::class => 19,
         CenterEval::class => 3,
         ConnectivityEval::class => 3,
@@ -79,38 +79,4 @@ class LinearFunction
         DiagonalOppositionEval::class => 3,
         DirectOppositionEval::class => 3,
     ];
-
-    /**
-     * Returns the evaluation features.
-     *
-     * @return array
-     */
-    public function getEval(): array
-    {
-        return $this->eval;
-    }
-
-    /**
-     * Returns the evaluation names.
-     *
-     * @return array
-     */
-    public function names(): array
-    {
-        foreach ($this->eval as $key => $val) {
-            $names[] = (new \ReflectionClass($key))->getConstant('NAME');
-        }
-
-        return $names;
-    }
-
-    /**
-     * Returns the evaluation weights.
-     *
-     * @return array
-     */
-    public function weights(): array
-    {
-        return array_values($this->eval);
-    }
 }
