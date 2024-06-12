@@ -121,7 +121,7 @@ class AbstractPgnParser extends \SplObjectStorage
         $pieces = [];
         foreach ($this->getPieces($move['color']) as $piece) {
             if ($piece->getId() === $move['id']) {
-                if (strstr($piece->getSq(), $move['sq']['current'])) {
+                if (strstr($piece->sq, $move['sq']['current'])) {
                     $pieces[] = $piece->setMove($move);
                 }
             }
@@ -229,7 +229,7 @@ class AbstractPgnParser extends \SplObjectStorage
         if ($piece->getMove()['isCapture']) {
             $this->capture($piece);
         }
-        if ($toDetach = $this->getPieceBySq($piece->getSq())) {
+        if ($toDetach = $this->getPieceBySq($piece->sq)) {
             $this->detach($toDetach);
         }
         $class = "\\Chess\\Piece\\{$piece->getId()}";
@@ -259,7 +259,7 @@ class AbstractPgnParser extends \SplObjectStorage
     protected function castle(K $king, string $rookType): bool
     {
         if ($rook = $king->getCastleRook($rookType)) {
-            $this->detach($this->getPieceBySq($king->getSq()));
+            $this->detach($this->getPieceBySq($king->sq));
             $this->attach(
                 new K(
                     $king->color,
@@ -358,19 +358,19 @@ class AbstractPgnParser extends \SplObjectStorage
             if ($captured = $piece->enPassantPawn()) {
                 $capturedData = (object) [
                     'id' => $captured->getId(),
-                    'sq' => $captured->getSq(),
+                    'sq' => $captured->sq,
                 ];
             }
         } elseif ($captured = $this->getPieceBySq($piece->getMove()['sq']['next'])) {
             $capturedData = (object) [
                 'id' => $captured->getId(),
-                'sq' => $captured->getSq(),
+                'sq' => $captured->sq,
             ];
         }
         if ($captured) {
             $capturingData = (object) [
                 'id' => $piece->getId(),
-                'sq' => $piece->getSq(),
+                'sq' => $piece->sq,
             ];
             $piece->getId() !== Piece::R ?: $capturingData->type = $piece->getType();
             $captured->getId() !== Piece::R ?: $capturedData->type = $captured->getType();
@@ -519,7 +519,7 @@ class AbstractPgnParser extends \SplObjectStorage
     {
         $this->history[] = [
             'castlingAbility' => $this->castlingAbility,
-            'sq' => $piece->getSq(),
+            'sq' => $piece->sq,
             'move' => $piece->getMove(),
         ];
 

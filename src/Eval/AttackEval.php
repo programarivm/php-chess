@@ -64,12 +64,12 @@ class AttackEval extends AbstractEval implements
                     $attackingPieces = $piece->attackingPieces();
                     $defendingPieces = $piece->defendingPieces();
                     foreach ($attackingPieces as $attackingPiece) {
-                        $capturedPiece = $clone->getPieceBySq($piece->getSq());
-                        if ($clone->playLan($clone->turn, $attackingPiece->getSq() . $piece->getSq())) {
+                        $capturedPiece = $clone->getPieceBySq($piece->sq);
+                        if ($clone->playLan($clone->turn, $attackingPiece->sq . $piece->sq)) {
                             $attack[$attackingPiece->color] += self::$value[$capturedPiece->getId()];
                             foreach ($defendingPieces as $defendingPiece) {
-                                $capturedPiece = $clone->getPieceBySq($piece->getSq());
-                                if ($clone->playLan($clone->turn, $defendingPiece->getSq() . $piece->getSq())) {
+                                $capturedPiece = $clone->getPieceBySq($piece->sq);
+                                if ($clone->playLan($clone->turn, $defendingPiece->sq . $piece->sq)) {
                                     $attack[$defendingPiece->color] += self::$value[$capturedPiece->getId()];
                                 }
                             }
@@ -101,6 +101,6 @@ class AttackEval extends AbstractEval implements
      */
     private function elaborate(AbstractPiece $piece): void
     {
-        $this->elaboration[] = "The {$piece->getSq()}-square is under threat of being attacked.";
+        $this->elaboration[] = "The {$piece->sq}-square is under threat of being attacked.";
     }
 }

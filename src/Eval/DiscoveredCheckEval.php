@@ -38,7 +38,7 @@ class DiscoveredCheckEval extends AbstractEval implements
             if ($piece->getId() !== Piece::K) {
                 $king = $this->board->getPiece($piece->oppColor(), Piece::K);
                 $clone = $this->board->clone();
-                $clone->detach($clone->getPieceBySq($piece->getSq()));
+                $clone->detach($clone->getPieceBySq($piece->sq));
                 $clone->refresh();
                 $newKing = $clone->getPiece($piece->oppColor(), Piece::K);
                 $diffPieces = $this->board->diffPieces($king->attackingPieces(), $newKing->attackingPieces());

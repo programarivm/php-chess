@@ -50,7 +50,7 @@ class CheckmateInPlyEval extends AbstractEval implements
             foreach ($this->board->getPieces($this->board->turn) as $piece) {
                 foreach ($piece->sqs() as $sq) {
                     $clone = $this->board->clone();
-                    if ($clone->playLan($clone->turn, $piece->getSq() . $sq)) {
+                    if ($clone->playLan($clone->turn, $piece->sq . $sq)) {
                         if ($clone->isMate()) {
                             $this->result[$piece->color] = 1;
                             $this->explain($this->result);

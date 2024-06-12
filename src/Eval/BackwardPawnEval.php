@@ -46,17 +46,17 @@ class BackwardPawnEval extends AbstractEval implements
 
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P) {
-                $left = chr(ord($piece->getSq()) - 1);
-                $right = chr(ord($piece->getSq()) + 1);
+                $left = chr(ord($piece->sq) - 1);
+                $right = chr(ord($piece->sq) + 1);
                 if (
                     !$this->isDefensible($piece, $left) &&
                     !$this->isDefensible($piece, $right) &&
-                    !in_array($piece->getSq(), [
+                    !in_array($piece->sq, [
                         ...$this->isolatedPawnEval[Color::W],
                         ...$this->isolatedPawnEval[Color::B]
                     ])
                 ) {
-                    $this->result[$piece->color][] = $piece->getSq();
+                    $this->result[$piece->color][] = $piece->sq;
                 }
             }
         }

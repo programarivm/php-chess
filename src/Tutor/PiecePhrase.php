@@ -87,7 +87,7 @@ class PiecePhrase
                 $item['id'] === $piece->getId() &&
                 $item['color'] === $piece->color
             ) {
-                return "{$item['meaning']} on {$piece->getSq()}";
+                return "{$item['meaning']} on {$piece->sq}";
             }
         }
 

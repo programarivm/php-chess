@@ -27,8 +27,8 @@ class DirectOppositionEval extends AbstractEval implements ExplainEvalInterface
             "has the direct opposition preventing the advance of the other king",
         ];
 
-        $wKSq = $this->board->getPiece(Color::W, Piece::K)->getSq();
-        $bKSq = $this->board->getPiece(Color::B, Piece::K)->getSq();
+        $wKSq = $this->board->getPiece(Color::W, Piece::K)->sq;
+        $bKSq = $this->board->getPiece(Color::B, Piece::K)->sq;
 
         if ($wKSq[0] === $bKSq[0]) {
             if (abs($wKSq[1] - $bKSq[1]) === 2) {

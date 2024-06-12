@@ -53,7 +53,7 @@ class FarAdvancedPawnEval extends AbstractEval implements
 
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P && $this->isFarAdvancedPawn($piece)) {
-                $this->result[$piece->color][] = $piece->getSq();
+                $this->result[$piece->color][] = $piece->sq;
             }
         }
 

@@ -26,7 +26,7 @@ class PTest extends AbstractUnitTestCase
         $mobility = ['a3', 'a4'];
         $captureSquares = ['b3'];
 
-        $this->assertSame($position, $pawn->getSq());
+        $this->assertSame($position, $pawn->sq);
         $this->assertEquals($mobility, $pawn->getMobility());
         $this->assertSame($captureSquares, $pawn->getCaptureSqs());
     }
@@ -42,7 +42,7 @@ class PTest extends AbstractUnitTestCase
         $mobility = ['d6'];
         $captureSquares = ['c6', 'e6'];
 
-        $this->assertSame($position, $pawn->getSq());
+        $this->assertSame($position, $pawn->sq);
         $this->assertEquals($mobility, $pawn->getMobility());
         $this->assertSame($captureSquares, $pawn->getCaptureSqs());
     }
@@ -58,7 +58,7 @@ class PTest extends AbstractUnitTestCase
         $mobility = ['f8'];
         $captureSquares = ['e8', 'g8'];
 
-        $this->assertSame($position, $pawn->getSq());
+        $this->assertSame($position, $pawn->sq);
         $this->assertEquals($mobility, $pawn->getMobility());
         $this->assertSame($captureSquares, $pawn->getCaptureSqs());
     }
@@ -74,7 +74,7 @@ class PTest extends AbstractUnitTestCase
         $mobility = [];
         $captureSquares = [];
 
-        $this->assertSame($position, $pawn->getSq());
+        $this->assertSame($position, $pawn->sq);
         $this->assertEquals($mobility, $pawn->getMobility());
         $this->assertSame($captureSquares, $pawn->getCaptureSqs());
     }
@@ -90,7 +90,7 @@ class PTest extends AbstractUnitTestCase
         $mobility = ['a1'];
         $captureSquares = ['b1'];
 
-        $this->assertSame($position, $pawn->getSq());
+        $this->assertSame($position, $pawn->sq);
         $this->assertEquals($mobility, $pawn->getMobility());
         $this->assertSame($captureSquares, $pawn->getCaptureSqs());
     }
@@ -106,7 +106,7 @@ class PTest extends AbstractUnitTestCase
         $mobility = ['d4'];
         $captureSquares = ['c4', 'e4'];
 
-        $this->assertSame($position, $pawn->getSq());
+        $this->assertSame($position, $pawn->sq);
         $this->assertEquals($mobility, $pawn->getMobility());
         $this->assertSame($captureSquares, $pawn->getCaptureSqs());
     }

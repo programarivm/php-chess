@@ -204,7 +204,7 @@ class Board extends AbstractPgnParser
         $this->rewind();
         while ($this->valid()) {
             $piece = $this->current();
-            if ($piece->getSq() === $sq) {
+            if ($piece->sq === $sq) {
                 return $piece;
             }
             $this->next();
@@ -282,9 +282,9 @@ class Board extends AbstractPgnParser
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, $piece->getId() . $piece->getSqRank() . $sqs[1])) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$piece->getId()}{$piece->getSq()}x$sqs[1]")) {
+                    } elseif ($this->play($color, "{$piece->getId()}{$piece->sq}x$sqs[1]")) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, $piece->getId() . $piece->getSq() . $sqs[1])) {
+                    } elseif ($this->play($color, $piece->getId() . $piece->sq . $sqs[1])) {
                         return $this->afterPlayLan();
                     }
                 }
@@ -426,7 +426,7 @@ class Board extends AbstractPgnParser
             $colors = '';
             foreach ($this->getPieces() as $piece) {
                 if ($piece->getId() === Piece::B) {
-                    $colors .= $this->square->color($piece->getSq());
+                    $colors .= $this->square->color($piece->sq);
                 }
             }
             return $colors === Color::W . Color::W || $colors === Color::B . Color::B;
@@ -487,7 +487,7 @@ class Board extends AbstractPgnParser
         }
 
         foreach ($this->getPieces() as $piece) {
-            list($file, $rank) = AsciiArray::fromAlgebraicToIndex($piece->getSq());
+            list($file, $rank) = AsciiArray::fromAlgebraicToIndex($piece->sq);
             if ($flip) {
                 $diff = $this->square::SIZE['files'] - $this->square::SIZE['ranks'];
                 $file = $this->square::SIZE['files'] - 1 - $file - $diff;
@@ -565,7 +565,7 @@ class Board extends AbstractPgnParser
      public function diffPieces(array $array1, array $array2): array
      {
         return array_udiff($array2, $array1, function ($b, $a) {
-            return $a->getSq() <=> $b->getSq();
+            return $a->sq <=> $b->sq;
         });
      }
 

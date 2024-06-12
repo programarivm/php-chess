@@ -29,7 +29,7 @@ abstract class AbstractPiece
      *
      * @var string
      */
-    protected string $sq;
+    public string $sq;
 
     /**
      * The piece's square object.
@@ -176,16 +176,6 @@ abstract class AbstractPiece
     }
 
     /**
-     * Gets the piece's square.
-     *
-     * @return string
-     */
-    public function getSq(): string
-    {
-        return $this->sq;
-    }
-
-    /**
      * Gets the piece's file.
      *
      * @return string
@@ -271,7 +261,7 @@ abstract class AbstractPiece
     {
         $king = $this->board->getPiece($this->color, Piece::K);
         $clone = $this->board->clone();
-        $clone->detach($clone->getPieceBySq($this->getSq()));
+        $clone->detach($clone->getPieceBySq($this->sq));
         $clone->refresh();
         $newKing = $clone->getPiece($this->color, Piece::K);
         $diffPieces = $this->board->diffPieces($king->attackingPieces(), $newKing->attackingPieces());

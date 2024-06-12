@@ -59,7 +59,7 @@ class RelativePinEval extends AbstractEval implements
             ) {
                 $attackingPieces = $piece->attackingPieces();
                 $clone = $this->board->clone();
-                $clone->detach($clone->getPieceBySq($piece->getSq()));
+                $clone->detach($clone->getPieceBySq($piece->sq));
                 $clone->refresh();
                 $newPressureEval = (new PressureEval($clone))->getResult();
                 $arrayDiff = array_diff(
@@ -69,7 +69,7 @@ class RelativePinEval extends AbstractEval implements
                 foreach ($arrayDiff as $sq) {
                     foreach ($clone->getPieceBySq($sq)->attackingPieces() as $newAttackingPiece) {
                         foreach ($attackingPieces as $attackingPiece) {
-                            if ($newAttackingPiece->getSq() === $attackingPiece->getSq()) {
+                            if ($newAttackingPiece->sq === $attackingPiece->sq) {
                                 $valDiff = self::$value[$attackingPiece->getId()] -
                                     self::$value[$clone->getPieceBySq($sq)->getId()];
                                 if ($valDiff < 0) {

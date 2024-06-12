@@ -54,7 +54,7 @@ class PassedPawnEval extends AbstractEval implements
 
         foreach ($this->board->getPieces() as $piece) {
             if ($piece->getId() === Piece::P && $this->isPassedPawn($piece)) {
-                $this->result[$piece->color][] = $piece->getSq();
+                $this->result[$piece->color][] = $piece->sq;
             }
         }
 
