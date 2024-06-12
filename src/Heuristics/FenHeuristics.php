@@ -3,7 +3,7 @@
 namespace Chess\Heuristics;
 
 use Chess\Eval\InverseEvalInterface;
-use Chess\Function\QuadraticFunction;
+use Chess\Function\QuadraticComplexityFunction;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 
@@ -28,9 +28,9 @@ class FenHeuristics
     /**
      * The evaluation function.
      *
-     * @var \Chess\Function\QuadraticFunction
+     * @var \Chess\Function\QuadraticComplexityFunction
      */
-    protected QuadraticFunction $function;
+    protected QuadraticComplexityFunction $function;
 
     /**
      * The result.
@@ -55,7 +55,7 @@ class FenHeuristics
     {
         $this->board = $board;
 
-        $this->function = new QuadraticFunction();
+        $this->function = new QuadraticComplexityFunction();
 
         $this->calc()->balance();
     }

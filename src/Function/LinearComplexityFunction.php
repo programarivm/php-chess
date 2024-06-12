@@ -12,8 +12,6 @@ use Chess\Eval\BadBishopEval;
 use Chess\Eval\BishopOutpostEval;
 use Chess\Eval\BishopPairEval;
 use Chess\Eval\CenterEval;
-use Chess\Eval\CheckmateInOneEval;
-use Chess\Eval\CheckmateInPlyEval;
 use Chess\Eval\ConnectivityEval;
 use Chess\Eval\DefenseEval;
 use Chess\Eval\DiagonalOppositionEval;
@@ -35,16 +33,16 @@ use Chess\Eval\SpaceEval;
 use Chess\Eval\SqOutpostEval;
 
 /**
- * QuadraticFunction
+ * LinearComplexityFunction
  *
- * Quadratic evaluation function.
+ * Linear evaluation function.
  *
  * @author Jordi Bassagaña
  * @license MIT
  */
-class QuadraticFunction extends AbstractFunction
+class LinearComplexityFunction extends AbstractFunction
 {
-    const NAME = 'Quadratic';
+    const NAME = 'Linear';
 
     /**
      * The evaluation features.
@@ -52,7 +50,7 @@ class QuadraticFunction extends AbstractFunction
      * @var array
      */
     protected array $eval = [
-        MaterialEval::class => 13,
+        MaterialEval::class => 19,
         CenterEval::class => 3,
         ConnectivityEval::class => 3,
         SpaceEval::class => 3,
@@ -80,7 +78,5 @@ class QuadraticFunction extends AbstractFunction
         BadBishopEval::class => 3,
         DiagonalOppositionEval::class => 3,
         DirectOppositionEval::class => 3,
-        CheckmateInPlyEval::class => 3,
-        CheckmateInOneEval::class => 3,
     ];
 }

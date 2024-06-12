@@ -3,7 +3,7 @@
 namespace Chess\Tutor;
 
 use Chess\Eval\ElaborateEvalInterface;
-use Chess\Function\QuadraticFunction;
+use Chess\Function\QuadraticComplexityFunction;
 use Chess\Variant\Classical\Board;
 
 /**
@@ -23,7 +23,7 @@ class FenElaboration extends AbstractParagraph
     {
         $this->board = $board;
 
-        foreach ((new QuadraticFunction())->getEval() as $key => $val) {
+        foreach ((new QuadraticComplexityFunction())->getEval() as $key => $val) {
             $eval = new $key($this->board);
             if (is_a($eval, ElaborateEvalInterface::class)) {
                 if ($phrases = $eval->getElaboration()) {

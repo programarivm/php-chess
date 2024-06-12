@@ -2,10 +2,10 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\Function\QuadraticFunction;
+use Chess\Function\QuadraticComplexityFunction;
 use Chess\Tests\AbstractUnitTestCase;
 
-class QuadraticFunctionTest extends AbstractUnitTestCase
+class QuadraticComplexityFunctionTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -45,6 +45,6 @@ class QuadraticFunctionTest extends AbstractUnitTestCase
             'Checkmate in one',
         ];
 
-        $this->assertSame($expected, (new QuadraticFunction())->names());
+        $this->assertSame($expected, (new QuadraticComplexityFunction())->names());
     }
 }
