@@ -2,7 +2,7 @@
 
 namespace Chess\Heuristics;
 
-use Chess\Function\StandardFunction;
+use Chess\Function\QuadraticFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\Move;
@@ -21,9 +21,9 @@ class SanHeuristics extends SanPlay
     /**
      * The evaluation function.
      *
-     * @var \Chess\Function\StandardFunction
+     * @var \Chess\Function\QuadraticFunction
      */
-    protected StandardFunction $function;
+    protected QuadraticFunction $function;
 
     /**
      * The balance.
@@ -42,7 +42,7 @@ class SanHeuristics extends SanPlay
     {
         parent::__construct($movetext, $board);
 
-        $this->function = new StandardFunction();
+        $this->function = new QuadraticFunction();
 
         $this->balance()->normalize(-1, 1);
     }

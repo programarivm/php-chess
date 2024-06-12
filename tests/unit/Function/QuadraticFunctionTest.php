@@ -2,10 +2,10 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\Function\StandardFunction;
+use Chess\Function\QuadraticFunction;
 use Chess\Tests\AbstractUnitTestCase;
 
-class StandardFunctionTest extends AbstractUnitTestCase
+class QuadraticFunctionTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -45,6 +45,6 @@ class StandardFunctionTest extends AbstractUnitTestCase
             'Checkmate in one',
         ];
 
-        $this->assertSame($expected, (new StandardFunction())->names());
+        $this->assertSame($expected, (new QuadraticFunction())->names());
     }
 }

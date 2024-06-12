@@ -35,16 +35,16 @@ use Chess\Eval\SpaceEval;
 use Chess\Eval\SqOutpostEval;
 
 /**
- * StandardFunction
+ * QuadraticFunction
  *
  * Standard evaluation function.
  *
  * @author Jordi Bassagaña
  * @license MIT
  */
-class StandardFunction
+class QuadraticFunction
 {
-    const NAME = 'Standard';
+    const NAME = 'Quadratic';
 
     /**
      * The evaluation features.

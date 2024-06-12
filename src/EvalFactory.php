@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\Function\StandardFunction;
+use Chess\Function\QuadraticFunction;
 use Chess\Variant\Classical\Board;
 
 /**
@@ -21,7 +21,7 @@ class EvalFactory
      */
     public static function create(string $name, Board $board)
     {
-        $function = new StandardFunction();
+        $function = new QuadraticFunction();
         foreach ($function->getEval() as $key => $val) {
             $class = new \ReflectionClass($key);
             if ($name === $class->getConstant('NAME')) {

@@ -3,7 +3,7 @@
 namespace Chess\Tutor;
 
 use Chess\Eval\ExplainEvalInterface;
-use Chess\Function\StandardFunction;
+use Chess\Function\QuadraticFunction;
 use Chess\Variant\Classical\Board;
 
 /**
@@ -23,7 +23,7 @@ class FenExplanation extends AbstractParagraph
     {
         $this->board = $board;
 
-        foreach ((new StandardFunction())->getEval() as $key => $val) {
+        foreach ((new QuadraticFunction())->getEval() as $key => $val) {
             $eval = new $key($this->board);
             if (is_a($eval, ExplainEvalInterface::class)) {
                 if ($phrases = $eval->getExplanation()) {
