@@ -19,7 +19,8 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class AttackEval extends AbstractEval implements
     ElaborateEvalInterface,
-    ExplainEvalInterface
+    ExplainEvalInterface,
+    QuadraticComplexityEvalInterface
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

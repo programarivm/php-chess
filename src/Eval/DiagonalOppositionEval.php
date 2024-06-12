@@ -6,7 +6,10 @@ use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class DiagonalOppositionEval extends AbstractEval implements ExplainEvalInterface {
+class DiagonalOppositionEval extends AbstractEval implements
+    ConstantComplexityEvalInterface,
+    ExplainEvalInterface
+{
     use ExplainEvalTrait;
 
     const NAME = 'Diagonal opposition';

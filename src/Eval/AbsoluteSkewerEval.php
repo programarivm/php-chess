@@ -7,7 +7,9 @@ use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class AbsoluteSkewerEval extends AbstractEval implements ElaborateEvalInterface
+class AbsoluteSkewerEval extends AbstractEval implements
+    ElaborateEvalInterface,
+    LinearComplexityEvalInterface
 {
     use ElaborateEvalTrait;
 

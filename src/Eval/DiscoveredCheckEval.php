@@ -9,6 +9,7 @@ use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 class DiscoveredCheckEval extends AbstractEval implements
+    ConstantComplexityEvalInterface,
     ElaborateEvalInterface,
     ExplainEvalInterface
 {

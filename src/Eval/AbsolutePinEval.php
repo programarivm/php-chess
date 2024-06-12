@@ -7,6 +7,7 @@ use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\Board;
 
 class AbsolutePinEval extends AbstractEval implements
+    ConstantComplexityEvalInterface,
     ElaborateEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface

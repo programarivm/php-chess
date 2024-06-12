@@ -17,6 +17,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @license MIT
  */
 class BadBishopEval extends AbstractEval implements
+    ConstantComplexityEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface
 {

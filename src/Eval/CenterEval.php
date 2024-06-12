@@ -12,7 +12,9 @@ use Chess\Variant\Classical\PGN\AN\Color;
  * @author Jordi Bassagaña
  * @license MIT
  */
-class CenterEval extends AbstractEval implements ExplainEvalInterface
+class CenterEval extends AbstractEval implements
+    ConstantComplexityEvalInterface,
+    ExplainEvalInterface
 {
     use ExplainEvalTrait;
 

@@ -6,7 +6,9 @@ use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class DirectOppositionEval extends AbstractEval implements ExplainEvalInterface
+class DirectOppositionEval extends AbstractEval implements
+    ConstantComplexityEvalInterface,
+    ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
