@@ -232,7 +232,7 @@ class P extends AbstractPiece
      */
     public function isPromoted(): bool
     {
-        $rank = (int) substr($this->getMove()['sq']['next'], 1);
+        $rank = (int) substr($this->move['sq']['next'], 1);
 
         return isset($this->move['newId']) && $rank === $this->ranks['end'];
     }

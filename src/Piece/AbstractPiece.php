@@ -57,7 +57,7 @@ abstract class AbstractPiece
      *
      * @var array
      */
-    protected array $move;
+    public array $move;
 
     /**
      * The chessboard.
@@ -183,28 +183,6 @@ abstract class AbstractPiece
     public function getSqRank(): int
     {
         return (int) substr($this->sq, 1);
-    }
-
-    /**
-     * Gets the piece's move.
-     *
-     * @return array
-     */
-    public function getMove(): array
-    {
-        return $this->move;
-    }
-
-    /**
-     * Sets the piece's next move.
-     *
-     * @param array $move
-     */
-    public function setMove(array $move): AbstractPiece
-    {
-        $this->move = $move;
-
-        return $this;
     }
 
     /**
