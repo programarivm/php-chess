@@ -255,16 +255,16 @@ class Board extends AbstractPgnParser
                         $this->play($color, Castle::LONG)
                     ) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, Piece::K.'x' . $sqs[1])) {
+                    } elseif ($this->play($color, Piece::K . 'x' . $sqs[1])) {
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, Piece::K . $sqs[1])) {
                         return $this->afterPlayLan();
                     }
                 } elseif ($piece->id === Piece::P) {
                     strlen($lan) === 5
-                        ? $promotion = '='.mb_strtoupper(substr($lan, -1))
+                        ? $promotion = '=' . mb_strtoupper(substr($lan, -1))
                         : $promotion = '';
-                    if ($this->play($color, $piece->file()."x$sqs[1]" . $promotion)) {
+                    if ($this->play($color, $piece->file() . "x$sqs[1]" . $promotion)) {
                         return $this->afterPlayLan();
                     } elseif ($this->play($color, $sqs[1] . $promotion)) {
                         return $this->afterPlayLan();
@@ -441,37 +441,37 @@ class Board extends AbstractPgnParser
      * @param string $sq
      * @return array
      */
-     public function legal(string $sq): array
-     {
-         return array_values($this->getPieceBySq($sq)->sqs());
-     }
+    public function legal(string $sq): array
+    {
+        return array_values($this->getPieceBySq($sq)->sqs());
+    }
 
-     /**
-      * Returns the en passant square.
-      *
-      * @return string
-      */
-     public function enPassant(): string
-     {
-         if ($this->history) {
-             $last = array_slice($this->history, -1)[0];
-             if ($last['move']['id'] === Piece::P) {
-                 $prevFile = intval(substr($last['sq'], 1));
-                 $nextFile = intval(substr($last['move']['sq']['next'], 1));
-                 if ($last['move']['color'] === Color::W) {
-                     if ($nextFile - $prevFile === 2) {
-                         $rank = $prevFile + 1;
-                         return $last['move']['sq']['current'] . $rank;
-                     }
-                 } elseif ($prevFile - $nextFile === 2) {
-                     $rank = $prevFile - 1;
-                     return $last['move']['sq']['current'] . $rank;
-                 }
-             }
-         }
+    /**
+     * Returns the en passant square.
+     *
+     * @return string
+     */
+    public function enPassant(): string
+    {
+        if ($this->history) {
+            $last = array_slice($this->history, -1)[0];
+            if ($last['move']['id'] === Piece::P) {
+                $prevFile = intval(substr($last['sq'], 1));
+                $nextFile = intval(substr($last['move']['sq']['next'], 1));
+                if ($last['move']['color'] === Color::W) {
+                    if ($nextFile - $prevFile === 2) {
+                        $rank = $prevFile + 1;
+                        return $last['move']['sq']['current'] . $rank;
+                    }
+                } elseif ($prevFile - $nextFile === 2) {
+                    $rank = $prevFile - 1;
+                    return $last['move']['sq']['current'] . $rank;
+                }
+            }
+        }
 
-         return '-';
-     }
+        return '-';
+    }
 
     /**
      * Returns an ASCII array representing this chessboard object.
@@ -542,7 +542,7 @@ class Board extends AbstractPgnParser
         $n = 1;
         for ($i = 0; $i < count($strSplit); $i++) {
             if ($strSplit[$i] === '.') {
-                if (isset($strSplit[$i+1]) && $strSplit[$i+1] === '.') {
+                if (isset($strSplit[$i + 1]) && $strSplit[$i + 1] === '.') {
                     $n++;
                 } else {
                     $filtered .= $n;
@@ -562,24 +562,24 @@ class Board extends AbstractPgnParser
      *
      * @return array
      */
-     public function diffPieces(array $array1, array $array2): array
-     {
+    public function diffPieces(array $array1, array $array2): array
+    {
         return array_udiff($array2, $array1, function ($b, $a) {
             return $a->sq <=> $b->sq;
         });
-     }
+    }
 
-     /**
-      * Clones the board.
-      *
-      * @return \Chess\Variant\Classical\Board
-      */
-     public function clone(): Board
-     {
-         $board = FenToBoardFactory::create($this->toFen(), $this);
-         $board->captures = $this->captures;
-         $board->history = $this->history;
+    /**
+     * Clones the board.
+     *
+     * @return \Chess\Variant\Classical\Board
+     */
+    public function clone(): Board
+    {
+        $board = FenToBoardFactory::create($this->toFen(), $this);
+        $board->captures = $this->captures;
+        $board->history = $this->history;
 
-         return $board;
-     }
+        return $board;
+    }
 }
