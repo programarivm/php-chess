@@ -119,17 +119,17 @@ echo $board-&gt;toFen();
 </code></pre>
 <p>When a single parameter is passed in the form of a FEN string into the factory create method, it will be assumed that you want to create a classical chess board object. As discussed in the <a href="https://chesslablab.github.io/php-chess/">Home</a> section, you may want to check out the self-explanatory tests for this class to learn more about it. The unit tests are the best documentation. They contain hundreds of real examples on how to use the PHP Chess library.</p>
 <p>In this example the game history contains two moves only.</p>
-<pre><code class="language-php">var_dump($board-&gt;getHistory());
+<pre><code class="language-php">var_dump($board-&gt;history);
 </code></pre>
 <pre><code class="language-text">array(2) {
   [0]=&gt;
-  object(stdClass)#323 (4) {
+  array(4) {
     [&quot;castlingAbility&quot;]=&gt;
     string(4) &quot;KQkq&quot;
     [&quot;sq&quot;]=&gt;
     string(2) &quot;b1&quot;
     [&quot;move&quot;]=&gt;
-    object(stdClass)#2 (7) {
+    array(7) {
       [&quot;pgn&quot;]=&gt;
       string(3) &quot;Nc3&quot;
       [&quot;isCapture&quot;]=&gt;
@@ -143,7 +143,7 @@ echo $board-&gt;toFen();
       [&quot;id&quot;]=&gt;
       string(1) &quot;N&quot;
       [&quot;sq&quot;]=&gt;
-      object(stdClass)#3 (2) {
+      array(2) {
         [&quot;current&quot;]=&gt;
         string(0) &quot;&quot;
         [&quot;next&quot;]=&gt;
@@ -154,13 +154,13 @@ echo $board-&gt;toFen();
     string(59) &quot;rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -&quot;
   }
   [1]=&gt;
-  object(stdClass)#581 (4) {
+  array(4) {
     [&quot;castlingAbility&quot;]=&gt;
     string(4) &quot;KQkq&quot;
     [&quot;sq&quot;]=&gt;
     string(2) &quot;b8&quot;
     [&quot;move&quot;]=&gt;
-    object(stdClass)#82 (7) {
+    array(7) {
       [&quot;pgn&quot;]=&gt;
       string(3) &quot;Nc6&quot;
       [&quot;isCapture&quot;]=&gt;
@@ -174,7 +174,7 @@ echo $board-&gt;toFen();
       [&quot;id&quot;]=&gt;
       string(1) &quot;N&quot;
       [&quot;sq&quot;]=&gt;
-      object(stdClass)#59 (2) {
+      array(2) {
         [&quot;current&quot;]=&gt;
         string(0) &quot;&quot;
         [&quot;next&quot;]=&gt;
@@ -186,8 +186,8 @@ echo $board-&gt;toFen();
   }
 }
 </code></pre>
-<p>The initial FEN string is always accessible through the <code>getStartFen()</code> method.</p>
-<pre><code class="language-php">echo $board-&gt;getStartFen();
+<p>The initial FEN string is always accessible.</p>
+<pre><code class="language-php">echo $board-&gt;startFen;
 </code></pre>
 <pre><code class="language-text">rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -
 </code></pre>
@@ -200,7 +200,7 @@ use Chess\Media\BoardToPng;
 
 $board = FenToBoardFactory::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
 
-$filename = (new BoardToPng($board, $flip = true))-&gt;output();
+$filename = (new BoardToPng($board, $flip = true))-&gt;output(__DIR__);
 </code></pre>
 <p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/data-conversion_01.png" /></p>
 <p>🎉 Try this thing! Share a puzzling chess position with friends for further study.</p>
@@ -214,11 +214,7 @@ $movetext = '1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7';
 
 $board = new Board();
 
-$filename = (new BoardToMp4(
-    $movetext,
-    $board,
-    $flip = false
-))-&gt;output(__DIR__.'/../../storage/tmp');
+$filename = (new BoardToMp4($movetext, $board, $flip = false))-&gt;output(__DIR__);
 </code></pre>
 <p>🎉 That's it!</p>
               
