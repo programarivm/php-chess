@@ -111,7 +111,7 @@ use Chess\Tutor\FenEvaluation;
 
 $board = FenToBoardFactory::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');
 
-$paragraph = (new FenEvaluation($board))-&gt;getParagraph();
+$paragraph = (new FenEvaluation($board))-&gt;paragraph;
 
 $text = implode(' ', $paragraph);
 
@@ -127,11 +127,13 @@ echo $text;
 <pre><code class="language-php">use Chess\Play\SanPlay;
 use Chess\Tutor\PgnEvaluation;
 
+$pgn = 'd4';
+
 $movetext = '1.Nf3 d5 2.g3 c5';
 
-$board = (new SanPlay($movetext))-&gt;validate()-&gt;getBoard();
+$board = (new SanPlay($movetext))-&gt;validate()-&gt;board;
 
-$paragraph = (new PgnEvaluation('d4', $board))-&gt;getParagraph();
+$paragraph = (new PgnEvaluation($pgn, $board))-&gt;paragraph;
 
 $text = implode(' ', $paragraph);
 
@@ -150,14 +152,15 @@ use Chess\UciEngine\Details\Limit;
 
 $movetext = '1.d4 d5 2.c4 Nc6 3.cxd5 Qxd5 4.e3 e5 5.Nc3 Bb4 6.Bd2 Bxc3 7.Bxc3 exd4 8.Ne2';
 
-$limit = (new Limit())-&gt;setDepth(12);
+$limit = new Limit();
+$limit-&gt;depth = 12;
 $stockfish = new UciEngine('/usr/games/stockfish');
-$board = (new SanPlay($movetext))-&gt;validate()-&gt;getBoard();
+$board = (new SanPlay($movetext))-&gt;validate()-&gt;board;
 
 $goodPgnEvaluation = new GoodPgnEvaluation($limit, $stockfish, $board);
 
-$pgn = $goodPgnEvaluation-&gt;getPgn();
-$paragraph = implode(' ', $goodPgnEvaluation-&gt;getParagraph());
+$pgn = $goodPgnEvaluation-&gt;pgn;
+$paragraph = implode(' ', $goodPgnEvaluation-&gt;paragraph);
 
 echo $pgn . PHP_EOL;
 echo $paragraph . PHP_EOL;

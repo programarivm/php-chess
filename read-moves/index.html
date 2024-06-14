@@ -161,9 +161,7 @@ echo $board-&gt;movetext();
 
 $movetext = '1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6';
 
-$board = (new SanPlay($movetext))
-    -&gt;validate()
-    -&gt;getBoard();
+$board = (new SanPlay($movetext))-&gt;validate()-&gt;board;
 
 echo $board-&gt;toAsciiString();
 </code></pre>
@@ -217,12 +215,12 @@ $movetext = '1.e4 c5 2.Nf3 $1 d6 3.d4 cxd4 4.Nxd4 $48 Nf6 $113';
 
 $sanPlay = (new SanPlay($movetext))-&gt;validate();
 
-echo $sanPlay-&gt;getSanMovetext()-&gt;filtered();
+echo $sanPlay-&gt;sanMovetext-&gt;filtered();
 </code></pre>
 <pre><code class="language-text">1.e4 c5 2.Nf3 $1 d6 3.d4 cxd4 4.Nxd4 $48 Nf6 $113
 </code></pre>
 <p>Comments and NAGs can be removed by passing the <code>false</code> value to the first and second arguments of the <code>filtered()</code> method.</p>
-<pre><code class="language-php">echo $sanPlay-&gt;getSanMovetext()-&gt;filtered($comments = true, $nags = false);
+<pre><code class="language-php">echo $sanPlay-&gt;sanMovetext-&gt;filtered($comments = true, $nags = false);
 </code></pre>
 <pre><code class="language-text">1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6
 </code></pre>
@@ -250,9 +248,7 @@ echo $board-&gt;movetext();
 
 $movetext = '1.e2e4 c7c5 2.g1f3 d7d6 3.d2d4 c5d4 4.f3d4 g8f6';
 
-$board = (new LanPlay($movetext))
-    -&gt;validate()
-    -&gt;getBoard();
+$board = (new LanPlay($movetext))-&gt;validate()-&gt;board;
 
 echo $board-&gt;toAsciiString();
 </code></pre>
@@ -292,9 +288,7 @@ $movetext = &quot;1.e4 c5
 
 $ravPlay = (new RavPlay($movetext))-&gt;validate();
 
-$fen = $ravPlay-&gt;getFen();
-
-print_r($fen);
+print_r($ravPlay-&gt;fen);
 </code></pre>
 <pre><code class="language-text">Array
 (
@@ -316,7 +310,8 @@ print_r($fen);
     [15] =&gt; rnbqkb1r/pp3ppp/3ppn2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
 )
 </code></pre>
-<p>The <code>getFen()</code> method retrieves the FEN history as an unidimensional array that can be easily consumed by a frontend UI as shown in Figure 1. The movetext will also pass the validation if adding comments and NAGs.</p>
+<p>The FEN history is retrieved as an unidimensional array so it can be easily consumed by a frontend UI as shown in Figure 1.</p>
+<p>The movetext will also pass the validation if adding comments and NAGs.</p>
 <pre><code class="language-php">use Chess\Play\RavPlay;
 
 $movetext = &quot;1.e4 c5 {enters the Sicilian Defense.}
@@ -331,9 +326,7 @@ $movetext = &quot;1.e4 c5 {enters the Sicilian Defense.}
 
 $ravPlay = (new RavPlay($movetext))-&gt;validate();
 
-$fen = $ravPlay-&gt;getFen();
-
-print_r($fen);
+print_r($ravPlay-&gt;fen);
 </code></pre>
 <pre><code class="language-text">Array
 (
@@ -356,17 +349,17 @@ print_r($fen);
 )
 </code></pre>
 <p>This is how to obtain the validated movetext.</p>
-<pre><code class="language-php">$movetext = $ravPlay-&gt;getRavMovetext()-&gt;getMovetext();
+<pre><code class="language-php">$movetext = $ravPlay-&gt;ravMovetext-&gt;movetext;
 </code></pre>
 <p>The <code>filtered()</code> method is to remove tabs and spaces.</p>
-<pre><code class="language-php">$movetext = $ravPlay-&gt;getRavMovetext()-&gt;filtered();
+<pre><code class="language-php">$movetext = $ravPlay-&gt;ravMovetext-&gt;filtered();
 
 echo $movetext;
 </code></pre>
 <pre><code class="language-text">1.e4 c5 {enters the Sicilian Defense, the most popular and best-scoring response to White's first move.} (2.Nf3 {is played in about 80% of Master-level games after which there are three main options for Black.} (2...Nc6) (2...e6) (2...d6 {is Black's most common move.} 3.d4 {lines are collectively known as the Open Sicilian.} cxd4 4.Nxd4 Nf6 5.Nc3 {allows Black choose between four major variations: the Najdorf, Dragon, Classical and Scheveningen.} (5...a6 {is played in the Najdorf variation.}) (5...g6 {is played in the Dragon variation.}) (5...Nc6 {is played in the Classical variation.}) (5...e6 {is played in the Scheveningen variation.})))
 </code></pre>
 <p>Comments and NAGs can be removed by passing the <code>false</code> value to the first and second arguments of the <code>filtered()</code> method.</p>
-<pre><code class="language-php">$movetext = $ravPlay-&gt;getRavMovetext()-&gt;filtered($comments = false);
+<pre><code class="language-php">$movetext = $ravPlay-&gt;ravMovetext-&gt;filtered($comments = false);
 
 echo $movetext;
 </code></pre>
@@ -386,9 +379,7 @@ $board = FenToBoardFactory::create('7k/8/8/8/8/8/8/R6K w - -');
 
 $ravPlay = (new RavPlay($movetext, $board))-&gt;validate();
 
-$fen = $ravPlay-&gt;getFen();
-
-print_r($fen);
+print_r($ravPlay-&gt;fen);
 </code></pre>
 <pre><code class="language-text">Array
 (

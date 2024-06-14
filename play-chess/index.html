@@ -113,7 +113,7 @@ $board = new Board();
 
 for ($i = 0; $i &lt; 50; $i++) {
     if ($move = (new RandomMove($board))-&gt;move()) {
-        $board-&gt;play($board-&gt;turn, $move-&gt;pgn);
+        $board-&gt;play($board-&gt;turn, $move['pgn']);
     }
 }
 
@@ -135,7 +135,7 @@ $gmMove = (new GrandmasterMove(__DIR__.'/../data/json/players.json'))-&gt;move($
 
 print_r($gmMove);
 </code></pre>
-<pre><code class="language-text">stdClass Object
+<pre><code class="language-text">Array
 (
     [pgn] =&gt; c5
     [game] =&gt; Array
@@ -166,7 +166,9 @@ use Chess\Variant\Classical\Board;
 $board = new Board();
 $board-&gt;play('w', 'e4');
 
-$limit = (new Limit())-&gt;setDepth(3);
+$limit = new Limit();
+$limit-&gt;depth = 3;
+
 $stockfish = (new UciEngine('/usr/games/stockfish'))-&gt;setOption('Skill Level', 9);
 $analysis = $stockfish-&gt;analysis($board, $limit);
 
@@ -183,7 +185,9 @@ use Chess\UciEngine\Details\Limit;
 
 $board = FenToBoardFactory::create('4k2r/pp1b1pp1/8/3pPp1p/P2P1P2/1P3N2/1qr3PP/R3QR1K w k -');
 
-$limit = (new Limit())-&gt;setDepth(12);
+$limit = new Limit();
+$limit-&gt;depth = 12;
+
 $stockfish = (new UciEngine('/usr/games/stockfish'))-&gt;setOption('Skill Level', 20);
 $analysis = $stockfish-&gt;analysis($board, $limit);
 
@@ -201,11 +205,11 @@ use Chess\UciEngine\Details\Limit;
 
 $movetext = '1.d4 Nf6 2.c4 c5 3.d5 e6 4.Nc3 exd5 5.cxd5 d6 6.e4 g6 7.Nf3 Bg7';
 
-$board = (new SanPlay($movetext))
-    -&gt;validate()
-    -&gt;getBoard();
+$board = (new SanPlay($movetext))-&gt;validate()-&gt;board;
 
-$limit = (new Limit())-&gt;setDepth(12);
+$limit = new Limit();
+$limit-&gt;depth = 12;
+
 $stockfish = (new UciEngine('/usr/games/stockfish'))-&gt;setOption('Skill Level', 20);
 $analysis = $stockfish-&gt;analysis($board, $limit);
 
