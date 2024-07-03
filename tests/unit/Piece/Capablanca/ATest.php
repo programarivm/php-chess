@@ -1,8 +1,8 @@
 <?php
 
-namespace Chess\Tests\Unit\Piece;
+namespace Chess\Tests\Unit\Piece\Capablanca;
 
-use Chess\Piece\A;
+use Chess\Piece\Capablanca\A;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\PGN\AN\Square;
 

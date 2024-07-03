@@ -2,8 +2,6 @@
 
 namespace Chess\Variant\Capablanca;
 
-use Chess\Piece\A;
-use Chess\Piece\C;
 use Chess\Piece\B;
 use Chess\Piece\K;
 use Chess\Piece\N;
@@ -11,6 +9,8 @@ use Chess\Piece\P;
 use Chess\Piece\Q;
 use Chess\Piece\R;
 use Chess\Piece\RType;
+use Chess\Piece\Capablanca\A;
+use Chess\Piece\Capablanca\C;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Capablanca\Rule\CastlingRule;
 use Chess\Variant\Capablanca\PGN\Move;
