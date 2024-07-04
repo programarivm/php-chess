@@ -2,6 +2,8 @@
 
 namespace Chess\Piece\Classical;
 
+use Chess\Piece\AbstractSlider;
+use Chess\Piece\RType;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 

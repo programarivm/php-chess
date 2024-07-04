@@ -2,14 +2,14 @@
 
 namespace Chess\Variant\Classical;
 
-use Chess\Piece\B;
-use Chess\Piece\K;
-use Chess\Piece\N;
-use Chess\Piece\P;
-use Chess\Piece\Q;
-use Chess\Piece\R;
 use Chess\Piece\RType;
 use Chess\Piece\VariantType;
+use Chess\Piece\Classical\B;
+use Chess\Piece\Classical\K;
+use Chess\Piece\Classical\N;
+use Chess\Piece\Classical\P;
+use Chess\Piece\Classical\Q;
+use Chess\Piece\Classical\R;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
