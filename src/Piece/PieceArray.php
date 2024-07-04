@@ -2,6 +2,7 @@
 
 namespace Chess\Piece;
 
+use Chess\Piece\VariantType;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -74,18 +75,8 @@ class PieceArray
                 $this->array[] = new R($color, $sq, $this->square, RType::PROMOTED);
             }
         } else {
-            $className = $this->className($id);
-            $this->array[] = new $className($color, $sq, $this->square);
+            $class = VariantType::getClass($this->variant, $id);
+            $this->array[] = new $class($color, $sq, $this->square);
         }
-    }
-
-    private function className(string $name)
-    {
-        $className = "\\Chess\\Piece\\{$this->variant}\\{$name}";
-        if (class_exists($className)) {
-            return $className;
-        }
-
-        return "\\Chess\\Piece\\{$name}";
     }
 }

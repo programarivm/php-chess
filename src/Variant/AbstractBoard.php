@@ -15,6 +15,7 @@ use Chess\Piece\P;
 use Chess\Piece\Q;
 use Chess\Piece\R;
 use Chess\Piece\RType;
+use Chess\Piece\VariantType;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
@@ -236,8 +237,8 @@ abstract class AbstractBoard extends \SplObjectStorage
         if ($toDetach = $this->pieceBySq($piece->sq)) {
             $this->detach($toDetach);
         }
-        $className = $this->className($piece->id);
-        $this->attach(new $className(
+        $class = VariantType::getClass($this->variant, $piece->id);
+        $this->attach(new $class(
             $piece->color,
             $piece->move['sq']['next'],
             $this->square,
@@ -892,15 +893,5 @@ abstract class AbstractBoard extends \SplObjectStorage
         $board->history = $this->history;
 
         return $board;
-    }
-
-    private function className(string $name)
-    {
-        $className = "\\Chess\\Piece\\{$this->variant}\\{$name}";
-        if (class_exists($className)) {
-            return $className;
-        }
-
-        return "\\Chess\\Piece\\{$name}";
     }
 }
