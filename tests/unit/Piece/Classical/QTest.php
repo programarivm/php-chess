@@ -1,8 +1,8 @@
 <?php
 
-namespace Chess\Tests\Unit\Piece;
+namespace Chess\Tests\Unit\Piece\Classical;
 
-use Chess\Piece\Q;
+use Chess\Piece\Classical\Q;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\PGN\AN\Square;
