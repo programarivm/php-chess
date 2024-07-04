@@ -4,6 +4,7 @@ namespace Chess\Randomizer;
 
 use Chess\Piece\K;
 use Chess\Piece\RType;
+use Chess\Piece\VariantType;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -74,7 +75,7 @@ class Randomizer
             foreach ($ids as $id) {
                 $arrayRand = array_rand($freeSqs, 1);
                 $sq = $freeSqs[$arrayRand];
-                $class = "\Chess\\Piece\\$id";
+                $class = VariantType::getClass($this->board->variant, $id);
                 $pieces[] = new $class(
                     $color,
                     $sq,
