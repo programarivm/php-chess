@@ -74,8 +74,8 @@ class Randomizer
             foreach ($ids as $id) {
                 $arrayRand = array_rand($freeSqs, 1);
                 $sq = $freeSqs[$arrayRand];
-                $className = "\Chess\\Piece\\$id";
-                $pieces[] = new $className(
+                $class = "\Chess\\Piece\\$id";
+                $pieces[] = new $class(
                     $color,
                     $sq,
                     $this->board->square,
