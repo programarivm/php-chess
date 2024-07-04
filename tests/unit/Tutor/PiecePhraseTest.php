@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\Tutor;
 
-use Chess\Piece\N;
+use Chess\Piece\Classical\N;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\Classical\PGN\AN\Square;
