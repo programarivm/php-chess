@@ -2,6 +2,7 @@
 
 namespace Chess\Variant\Chess960;
 
+use Chess\Piece\VariantType;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RandomBoardInterface;
 use Chess\Variant\Classical\Board as ClassicalBoard;
@@ -27,6 +28,7 @@ class Board extends AbstractBoard implements RandomBoardInterface
         $this->castlingRule = new CastlingRule($this->startPos);
         $this->square = new Square();
         $this->move = new Move();
+        $this->variant = VariantType::CLASSICAL;
         if (!$pieces) {
             $pieces = (new StartPieces($this->startPos))->create();
             $this->castlingAbility = CastlingRule::START;

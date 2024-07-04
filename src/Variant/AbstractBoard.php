@@ -72,6 +72,13 @@ abstract class AbstractBoard extends \SplObjectStorage
     public string $castlingAbility = '';
 
     /**
+     * Piece variant.
+     *
+     * @var string
+     */
+    public string $variant = '';
+
+    /**
      * Start FEN position.
      *
      * @var string
@@ -229,8 +236,8 @@ abstract class AbstractBoard extends \SplObjectStorage
         if ($toDetach = $this->pieceBySq($piece->sq)) {
             $this->detach($toDetach);
         }
-        $class = "\\Chess\\Piece\\{$piece->id}";
-        $this->attach(new $class(
+        $className = $this->className($piece->id);
+        $this->attach(new $className(
             $piece->color,
             $piece->move['sq']['next'],
             $this->square,
@@ -885,5 +892,15 @@ abstract class AbstractBoard extends \SplObjectStorage
         $board->history = $this->history;
 
         return $board;
+    }
+
+    private function className(string $name)
+    {
+        $className = "\\Chess\\Piece\\{$this->variant}\\{$name}";
+        if (class_exists($className)) {
+            return $className;
+        }
+
+        return "\\Chess\\Piece\\{$name}";
     }
 }

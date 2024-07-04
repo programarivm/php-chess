@@ -9,6 +9,7 @@ use Chess\Piece\P;
 use Chess\Piece\Q;
 use Chess\Piece\R;
 use Chess\Piece\RType;
+use Chess\Piece\VariantType;
 use Chess\Piece\Capablanca\A;
 use Chess\Piece\Capablanca\C;
 use Chess\Variant\AbstractBoard;
@@ -27,6 +28,7 @@ class Board extends AbstractBoard
         $this->square = new Square();
         $this->move = new Move();
         $this->castlingAbility = CastlingRule::START;
+        $this->variant = VariantType::CAPABLANCA;
         if (!$pieces) {
             $this->attach(new R(Color::W, 'a1', $this->square, RType::CASTLE_LONG));
             $this->attach(new N(Color::W, 'b1', $this->square));

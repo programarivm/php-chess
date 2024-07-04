@@ -4,6 +4,7 @@ namespace Chess\Variant\Chess960\FEN;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Piece\PieceArray;
+use Chess\Piece\VariantType;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Chess960\Board;
 use Chess\Variant\Chess960\Rule\CastlingRule;
@@ -24,6 +25,7 @@ class StrToBoard extends ClassicalFenStrToBoard
         $this->castlingAbility = $this->fields[2];
         $this->startPos = $startPos;
         $this->castlingRule = new CastlingRule($this->startPos);
+        $this->variant = VariantType::CLASSICAL;
     }
 
     public function create(): AbstractBoard
@@ -32,7 +34,8 @@ class StrToBoard extends ClassicalFenStrToBoard
             $pieces = (new PieceArray(
                 $this->fenStr->toAsciiArray($this->fields[0]),
                 $this->square,
-                $this->castlingRule
+                $this->castlingRule,
+                $this->variant
             ))->getArray();
             $board = new Board($this->startPos, $pieces, $this->castlingAbility);
             $board->turn = $this->fields[1];

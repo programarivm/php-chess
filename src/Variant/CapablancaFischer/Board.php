@@ -2,6 +2,7 @@
 
 namespace Chess\Variant\CapablancaFischer;
 
+use Chess\Piece\VariantType;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RandomBoardInterface;
 use Chess\Variant\Capablanca\PGN\Move;
@@ -26,6 +27,7 @@ class Board extends AbstractBoard implements RandomBoardInterface
         $this->castlingRule = new CastlingRule($this->startPos);
         $this->square = new Square();
         $this->move = new Move();
+        $this->variant = VariantType::CAPABLANCA;
         if (!$pieces) {
             $pieces = (new StartPieces($this->startPos))->create();
             $this->castlingAbility = CastlingRule::START;
