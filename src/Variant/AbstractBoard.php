@@ -8,14 +8,14 @@ use Chess\Eval\SqCount;
 use Chess\Exception\BoardException;
 use Chess\Piece\AbstractPiece;
 use Chess\Piece\AsciiArray;
-use Chess\Piece\B;
-use Chess\Piece\K;
-use Chess\Piece\N;
-use Chess\Piece\P;
-use Chess\Piece\Q;
-use Chess\Piece\R;
 use Chess\Piece\RType;
 use Chess\Piece\VariantType;
+use Chess\Piece\Classical\B;
+use Chess\Piece\Classical\K;
+use Chess\Piece\Classical\N;
+use Chess\Piece\Classical\P;
+use Chess\Piece\Classical\Q;
+use Chess\Piece\Classical\R;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
@@ -257,7 +257,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     /**
      * Castles the king.
      *
-     * @param \Chess\Piece\K $king
+     * @param \Chess\Piece\Classical\K $king
      * @param string $rookType
      * @return bool
      */
@@ -392,7 +392,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     /**
      * Promotes a pawn.
      *
-     * @param \Chess\Piece\P $pawn
+     * @param \Chess\Piece\Classical\P $pawn
      * @return \Chess\Variant\Classical\AbstractBoard
      */
     protected function promote(P $pawn): AbstractBoard

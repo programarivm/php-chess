@@ -3,6 +3,7 @@
 namespace Chess\Piece;
 
 use Chess\Piece\VariantType;
+use Chess\Piece\Classical\R;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
