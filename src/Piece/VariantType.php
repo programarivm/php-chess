@@ -14,6 +14,6 @@ class VariantType
             return $class;
         }
 
-        return "\\Chess\\Piece\\{$name}";
+        return "\\Chess\\Piece\\Classical\\{$name}";
     }
 }
