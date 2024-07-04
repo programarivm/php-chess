@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Piece;
+namespace Chess\Piece\Classical;
 
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;

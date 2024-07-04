@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Piece;
+namespace Chess\Piece\Classical;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Piece\AbstractPiece;
