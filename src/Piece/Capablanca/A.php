@@ -3,8 +3,8 @@
 namespace Chess\Piece\Capablanca;
 
 use Chess\Piece\AbstractPiece;
-use Chess\Piece\B;
-use Chess\Piece\N;
+use Chess\Piece\Classical\B;
+use Chess\Piece\Classical\N;
 use Chess\Variant\Capablanca\PGN\AN\Piece;
 use Chess\Variant\Capablanca\PGN\AN\Square;
 

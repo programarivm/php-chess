@@ -2,9 +2,9 @@
 
 namespace Chess\Randomizer;
 
-use Chess\Piece\K;
 use Chess\Piece\RType;
 use Chess\Piece\VariantType;
+use Chess\Piece\Classical\K;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\AN\Piece;

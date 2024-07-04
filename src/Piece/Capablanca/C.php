@@ -3,9 +3,9 @@
 namespace Chess\Piece\Capablanca;
 
 use Chess\Piece\AbstractPiece;
-use Chess\Piece\N;
-use Chess\Piece\R;
 use Chess\Piece\RType;
+use Chess\Piece\Classical\N;
+use Chess\Piece\Classical\R;
 use Chess\Variant\Capablanca\PGN\AN\Piece;
 use Chess\Variant\Capablanca\PGN\AN\Square;
 
