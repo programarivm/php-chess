@@ -36,5 +36,6 @@ class BoardTest extends AbstractUnitTestCase
         ];
 
         $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame('b', $board->turn);
     }
 }

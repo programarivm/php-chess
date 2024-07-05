@@ -85,6 +85,8 @@ class Board extends AbstractBoard
 
         $this->refresh();
 
+        $this->turn = Color::B;
+
         $this->startFen = $this->toFen();
     }
 }
