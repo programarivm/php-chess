@@ -25,7 +25,7 @@ class Board extends AbstractBoard
         $this->castlingRule = new CastlingRule();
         $this->square = new Square();
         $this->move = new Move();
-        $this->castlingAbility = CastlingRule::START;
+        $this->castlingAbility = substr(CastlingRule::START, -2);
         $this->pieceVariant = VariantType::CLASSICAL;
         if (!$pieces) {
             $this->attach(new P(Color::W, 'a1', $this->square));
