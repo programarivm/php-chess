@@ -13,7 +13,7 @@ class PiecePlacement extends ClassicalFenPiecePlacement
 
         if (
             $this->eightFields($fields) &&
-            $this->twoKings($fields) &&
+            $this->kings($fields) &&
             $this->validChars($fields)
         ) {
             return $value;

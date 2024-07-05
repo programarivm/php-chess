@@ -13,7 +13,7 @@ class PiecePlacement
 
         if (
             $this->eightFields($fields) &&
-            $this->twoKings($fields) &&
+            $this->kings($fields) &&
             $this->validChars($fields)
         ) {
             return $value;
@@ -27,7 +27,7 @@ class PiecePlacement
         return count($fields) === 8;
     }
 
-    protected function twoKings(array $fields)
+    protected function kings(array $fields)
     {
         $result = [
             Color::W => 0,
