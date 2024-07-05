@@ -90,13 +90,4 @@ class Board extends AbstractBoard
 
         $this->startFen = $this->toFen();
     }
-
-    protected function isPinned(AbstractPiece $piece): bool
-    {
-        if ($this->turn === Color::B) {
-            parent::isPinned($piece);
-        }
-
-        return false;
-    }
 }

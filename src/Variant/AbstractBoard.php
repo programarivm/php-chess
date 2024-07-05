@@ -493,7 +493,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             return !empty($king->attacking());
         }
 
-        throw new BoardException();
+        return false;
     }
 
     /**
