@@ -3,6 +3,7 @@
 namespace Chess\Variant\Dunsany;
 
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\AbstractPiece;
 use Chess\Variant\RType;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\PGN\Move;
@@ -88,5 +89,14 @@ class Board extends AbstractBoard
         $this->turn = Color::B;
 
         $this->startFen = $this->toFen();
+    }
+
+    protected function isPinned(AbstractPiece $piece): bool
+    {
+        if ($this->turn === Color::B) {
+            parent::isPinned($piece);
+        }
+
+        return false;
     }
 }

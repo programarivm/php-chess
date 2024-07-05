@@ -45,7 +45,6 @@ class BoardTest extends AbstractUnitTestCase
     public function play_e6()
     {
         $board = new Board();
-
         $board->play('b', 'e5');
 
         $expected = [
@@ -60,5 +59,19 @@ class BoardTest extends AbstractUnitTestCase
         ];
 
         $this->assertSame($expected, $board->toAsciiArray());
+    }
+
+    /**
+     * @test
+     */
+    public function play_Nc6_d5()
+    {
+        $board = new Board();
+        $board->play('b', 'Nc6');
+        $board->play('w', 'd5');
+
+        $expected = '1...Nc6 2.d5';
+
+        $this->assertEquals($expected, $board->movetext());
     }
 }
