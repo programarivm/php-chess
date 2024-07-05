@@ -3,7 +3,6 @@
 namespace Chess\Variant\Dunsany;
 
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\RType;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\PGN\Move;
