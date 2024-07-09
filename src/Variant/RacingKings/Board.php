@@ -3,7 +3,6 @@
 namespace Chess\Variant\RacingKings;
 
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\RType;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\PGN\Move;
@@ -12,7 +11,6 @@ use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Piece\B;
 use Chess\Variant\Classical\Piece\K;
 use Chess\Variant\Classical\Piece\N;
-use Chess\Variant\Classical\Piece\P;
 use Chess\Variant\Classical\Piece\Q;
 use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\Rule\CastlingRule;
