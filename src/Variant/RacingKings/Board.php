@@ -54,4 +54,16 @@ class Board extends AbstractBoard
 
         $this->startFen = $this->toFen();
     }
+
+    public function play(string $color, string $pgn): bool
+    {
+        $clone = $this->clone();
+        if ($clone->play($color, $pgn)) {
+            if (!$clone->isCheck()) {
+                return parent::play($color, $pgn);
+            }
+        }
+
+        return false;
+    }
 }
