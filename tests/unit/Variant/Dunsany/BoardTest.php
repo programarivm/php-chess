@@ -126,6 +126,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'Rxc4'));
         $this->assertSame('w', $board->turn);
         $this->assertFalse($board->isStalemate());
+        $this->assertFalse($board->isMate());
         $this->assertTrue($board->isWon());
         $this->assertSame($expected, $board->toAsciiArray());
     }
@@ -136,7 +137,7 @@ class BoardTest extends AbstractUnitTestCase
     public function w_wins()
     {
         $board = FenToBoardFactory::create(
-            '7k/3R4/8/8/8/8/8/R7 w - - 0 1',
+            '7k/3R4/8/8/8/8/8/R7 w - -',
             new Board()
         );
 
@@ -156,6 +157,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('w', 'Ra8'));
         $this->assertSame('b', $board->turn);
         $this->assertFalse($board->isStalemate());
+        $this->assertTrue($board->isMate());
         $this->assertTrue($board->isWon());
         $this->assertSame($expected, $board->toAsciiArray());
     }
@@ -186,6 +188,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'Rh8'));
         $this->assertSame('w', $board->turn);
         $this->assertTrue($board->isStalemate());
+        $this->assertFalse($board->isMate());
         $this->assertFalse($board->isWon());
         $this->assertSame($expected, $board->toAsciiArray());
     }
