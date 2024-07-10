@@ -110,10 +110,23 @@ class BoardTest extends AbstractUnitTestCase
             new Board()
         );
 
+        $expected = [
+            7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ', ' . ' ],
+            6 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' r ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+        ];
+
         $this->assertSame('b', $board->turn);
         $this->assertFalse($board->isStalemate());
         $this->assertTrue($board->play('b', 'Rxc4'));
         $this->assertSame('w', $board->turn);
         $this->assertFalse($board->isStalemate());
+        $this->assertTrue($board->isWon());
+        $this->assertSame($expected, $board->toAsciiArray());
     }
 }
