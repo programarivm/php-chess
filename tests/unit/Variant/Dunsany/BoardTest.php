@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Variant\Dunsany;
 
+use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Dunsany\Board;
 
@@ -97,5 +98,22 @@ class BoardTest extends AbstractUnitTestCase
         ];
 
         $this->assertSame($expected, $board->toAsciiArray());
+    }
+
+    /**
+     * @test
+     */
+    public function b_wins()
+    {
+        $board = FenToBoardFactory::create(
+            '5k2/2r5/8/8/2P5/8/8/8 b - -',
+            new Board()
+        );
+
+        $this->assertSame('b', $board->turn);
+        $this->assertFalse($board->isStalemate());
+        $this->assertTrue($board->play('b', 'Rxc4'));
+        $this->assertSame('w', $board->turn);
+        $this->assertFalse($board->isStalemate());
     }
 }
