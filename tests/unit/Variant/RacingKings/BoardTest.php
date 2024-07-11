@@ -120,8 +120,8 @@ class BoardTest extends AbstractUnitTestCase
         );
 
         $expected = [
-            7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            6 => [ ' . ', ' K ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
+            7 => [ ' . ', ' K ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            6 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' k ' ],
             5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
             4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
             3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
@@ -133,5 +133,8 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertSame('w', $board->turn);
         $this->assertTrue($board->play('w', 'Kb8'));
         $this->assertFalse($board->isWon());
+        $this->assertTrue($board->play('b', 'Kh7'));
+        $this->assertTrue($board->isWon());
+        $this->assertSame($expected, $board->toAsciiArray());
     }
 }
