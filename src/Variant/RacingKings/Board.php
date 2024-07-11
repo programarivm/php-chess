@@ -2,12 +2,15 @@
 
 namespace Chess\Variant\RacingKings;
 
+use Chess\FenToBoardFactory;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
 use Chess\Variant\VariantType;
+use Chess\Variant\Classical\Board as ClassicalBoard;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Piece\B;
 use Chess\Variant\Classical\Piece\K;
 use Chess\Variant\Classical\Piece\N;
@@ -57,9 +60,9 @@ class Board extends AbstractBoard
 
     public function play(string $color, string $pgn): bool
     {
-        $clone = $this->clone();
-        if ($clone->play($color, $pgn)) {
-            if (!$clone->isCheck()) {
+        $board = FenToBoardFactory::create($this->toFen(), new ClassicalBoard());
+        if ($board->play($color, $pgn)) {
+            if (!$board->isCheck()) {
                 return parent::play($color, $pgn);
             }
         }

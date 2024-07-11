@@ -132,5 +132,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame('w', $board->turn);
         $this->assertTrue($board->play('w', 'Kb8'));
+        $this->assertFalse($board->isWon());
     }
 }
