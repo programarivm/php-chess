@@ -66,4 +66,16 @@ class Board extends AbstractBoard
 
         return false;
     }
+
+    public function isWon(): bool
+    {
+        $wKing = $this->piece(Color::W, Piece::K);
+        $bKing = $this->piece(Color::B, Piece::K);
+        if ($this->turn === Color::W) {
+            return $wKing->rank() === $this->square::SIZE['ranks'] &&
+                $bKing->rank() !== $this->square::SIZE['ranks'];
+        }
+
+        return $bKing->rank() === $this->square::SIZE['ranks'];
+    }
 }

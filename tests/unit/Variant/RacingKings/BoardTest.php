@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Variant\RacingKings;
 
+use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\RacingKings\Board;
 
@@ -106,5 +107,30 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'Nxf2'));
         $this->assertFalse($board->play('w', 'Qd5'));
         $this->assertSame($expected, $board->toAsciiArray());
+    }
+
+    /**
+     * @test
+     */
+    public function w_wins()
+    {
+        $board = FenToBoardFactory::create(
+            '8/1K4k1/8/8/8/8/8/8 w - - 0 1',
+            new Board()
+        );
+
+        $expected = [
+            7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            6 => [ ' . ', ' K ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
+            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            1 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+        ];
+
+        $this->assertSame('w', $board->turn);
+        $this->assertTrue($board->play('w', 'Kb8'));
     }
 }
