@@ -22,7 +22,7 @@ class StrToBoard extends ClassicalFenStrToBoard
         $this->fields = array_filter(explode(' ', $this->string));
         $this->castlingAbility = $this->fields[2];
         $this->castlingRule = new CastlingRule();
-        $this->pieceVariant = VariantType::CLASSICAL;
+        $this->pieceVariant = VariantType::DUNSANY;
     }
 
     public function create(): AbstractBoard
