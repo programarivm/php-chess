@@ -8,6 +8,8 @@ class VariantType
 
     const CLASSICAL = 'classical';
 
+    const LOSING = 'losing';
+
     public static function getClass(string $pieceVariant, string $name)
     {
         $namespace = ucfirst($pieceVariant);
