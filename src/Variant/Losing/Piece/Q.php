@@ -6,4 +6,5 @@ use Chess\Variant\Classical\Piece\Q as classicalQ;
 
 class Q extends classicalQ
 {
+    use LosingTrait;
 }
