@@ -123,7 +123,7 @@ $board-&gt;play('w', 'd4');
 $board-&gt;play('b', 'cxd4');
 $board-&gt;play('w', 'Nxd4');
 
-echo $board-&gt;toAsciiString();
+echo $board-&gt;toString();
 </code></pre>
 <pre><code class="language-text">r  n  b  q  k  b  n  r
 p  p  .  .  p  p  p  p
@@ -137,7 +137,7 @@ R  N  B  Q  K  B  .  R
 <p>The <code>play()</code> method in the <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/BoardTest.php">Chess\Variant\Classical\Board</a> class allows to make moves in PGN format. So far so good, but if you're new to chess you may well play a wrong move in the Sicilian Defense: 4...Na6.</p>
 <pre><code class="language-php">$board-&gt;play('b', 'Na6');
 
-echo $board-&gt;toAsciiString();
+echo $board-&gt;toString();
 </code></pre>
 <pre><code class="language-text">r  .  b  q  k  b  n  r
 p  p  .  .  p  p  p  p
@@ -163,7 +163,7 @@ $movetext = '1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6';
 
 $board = (new SanPlay($movetext))-&gt;validate()-&gt;board;
 
-echo $board-&gt;toAsciiString();
+echo $board-&gt;toString();
 </code></pre>
 <pre><code class="language-text">r  n  b  q  k  b  .  r
 p  p  .  .  p  p  p  p
@@ -177,7 +177,7 @@ R  N  B  Q  K  B  .  R
 <p>Please note that the <code>validate()</code> method will throw an exception if the movetext is not valid. Once the <code>$board</code> object is successfully created, the game can be continued from that particular position.</p>
 <pre><code class="language-php">$board-&gt;play('w', 'Bb5+');
 
-echo $board-&gt;toAsciiString();
+echo $board-&gt;toString();
 </code></pre>
 <pre><code class="language-text">r  n  b  q  k  b  .  r
 p  p  .  .  p  p  p  p
@@ -250,7 +250,7 @@ $movetext = '1.e2e4 c7c5 2.g1f3 d7d6 3.d2d4 c5d4 4.f3d4 g8f6';
 
 $board = (new LanPlay($movetext))-&gt;validate()-&gt;board;
 
-echo $board-&gt;toAsciiString();
+echo $board-&gt;toString();
 </code></pre>
 <pre><code class="language-text">r  n  b  q  k  b  .  r
 p  p  .  .  p  p  p  p
