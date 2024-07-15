@@ -8,13 +8,13 @@ use Chess\Variant\VariantType;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Piece\B;
-use Chess\Variant\Classical\Piece\N;
-use Chess\Variant\Classical\Piece\P;
-use Chess\Variant\Classical\Piece\Q;
-use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\Rule\CastlingRule;
+use Chess\Variant\Losing\Piece\B;
 use Chess\Variant\Losing\Piece\M;
+use Chess\Variant\Losing\Piece\N;
+use Chess\Variant\Losing\Piece\P;
+use Chess\Variant\Losing\Piece\Q;
+use Chess\Variant\Losing\Piece\R;
 
 class Board extends AbstractBoard
 {
