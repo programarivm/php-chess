@@ -42,7 +42,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_e3_d6_Bb5()
+    public function play_e3_d6_Bb5_h6()
     {
         $board = new Board();
 
@@ -62,6 +62,35 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('w', 'Bb5'));
         $this->assertFalse($board->isCheck());
         $this->assertTrue($board->play('b', 'h6'));
+        $this->assertFalse($board->isCheck());
+        $this->assertSame($expected, $board->toAsciiArray());
+    }
+
+    /**
+     * @test
+     */
+    public function play_e3_d6_Bb5_h6_Bxe8()
+    {
+        $board = new Board();
+
+        $expected = [
+            7 => [ ' r ', ' n ', ' b ', ' q ', ' B ', ' b ', ' n ', ' r ' ],
+            6 => [ ' p ', ' p ', ' p ', ' . ', ' p ', ' p ', ' p ', ' . ' ],
+            5 => [ ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' p ' ],
+            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
+            2 => [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
+            1 => [ ' P ', ' P ', ' P ', ' P ', ' . ', ' P ', ' P ', ' P ' ],
+            0 => [ ' R ', ' N ', ' B ', ' Q ', ' M ', ' . ', ' N ', ' R ' ],
+        ];
+
+        $this->assertTrue($board->play('w', 'e3'));
+        $this->assertTrue($board->play('b', 'd6'));
+        $this->assertTrue($board->play('w', 'Bb5'));
+        $this->assertFalse($board->isCheck());
+        $this->assertTrue($board->play('b', 'h6'));
+        $this->assertFalse($board->isCheck());
+        $this->assertTrue($board->play('w', 'Bxe8'));
         $this->assertFalse($board->isCheck());
         $this->assertSame($expected, $board->toAsciiArray());
     }
