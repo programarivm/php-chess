@@ -169,4 +169,19 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'Rxe7'));
         $this->assertTrue($board->doesWin());
     }
+
+    /**
+     * @test
+     */
+    public function b_stalemates()
+    {
+        $board = FenToBoardFactory::create(
+            'r7/4P3/8/8/8/8/8/8 b - -',
+            new Board()
+        );
+
+        $this->assertFalse($board->doesWin());
+        $this->assertTrue($board->play('b', 'Re8'));
+        $this->assertTrue($board->doesWin());
+    }
 }
