@@ -5,23 +5,9 @@ namespace Chess\Tests\Unit\Eval;
 use Chess\FenToBoardFactory;
 use Chess\Eval\PassedPawnEval;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\AsciiArray;
-use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class PassedPawnEvalTest extends AbstractUnitTestCase
 {
-    static private $square;
-
-    static private $castlingRule;
-
-    public static function setUpBeforeClass(): void
-    {
-        self::$square = new Square();
-
-        self::$castlingRule = (new CastlingRule())->rule;
-    }
-
     /**
      * @test
      */
@@ -36,20 +22,8 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             "Black has a slight passed pawn advantage.",
         ];
 
-        $position = [
-            7 => [ ' . ', ' r ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
-            6 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' p ' ],
-            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' n ', ' p ', ' . ' ],
-            4 => [ ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' n ' ],
-            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' . ', ' N ', ' B ', ' . ', ' . ', ' . ', ' . ' ],
-            1 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' P ' ],
-            0 => [ ' . ', ' . ', ' . ', ' N ', ' . ', ' R ', ' K ', ' . ' ],
-        ];
-
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
-
+        $board = FenToBoardFactory::create('1r4k1/7p/5np1/3p3n/8/2NB4/7P/3N1RK1 w - -');
+        
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
@@ -70,19 +44,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             "White has a slight passed pawn advantage.",
         ];
 
-        $position = [
-            7 => [ ' . ', ' r ', ' . ', ' . ', ' r ', ' . ', ' k ', ' . ' ],
-            6 => [ ' p ', ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' p ' ],
-            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' p ', ' B ' ],
-            4 => [ ' q ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' . ', ' . ', ' Q ', ' . ', ' . ', ' P ', ' . ' ],
-            1 => [ ' P ', ' b ', ' P ', ' . ', ' . ', ' P ', ' K ', ' P ' ],
-            0 => [ ' . ', ' R ', ' . ', ' . ', ' . ', ' R ', ' . ', ' . ' ],
-        ];
-
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
+        $board = FenToBoardFactory::create('1r2r1k1/p4p1p/6pB/q7/8/3Q2P1/PbP2PKP/1R3R2 w - -');
 
         $passedPawnEval = new PassedPawnEval($board);
 

@@ -32,7 +32,7 @@ class StrToBoard extends ClassicalFenStrToBoard
     {
         try {
             $pieces = (new PieceArray(
-                $this->fenStr->toAsciiArray($this->fields[0]),
+                $this->fenStr->toArray($this->fields[0]),
                 $this->square,
                 $this->castlingRule,
                 $this->pieceVariant

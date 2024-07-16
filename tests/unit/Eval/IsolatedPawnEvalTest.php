@@ -5,24 +5,10 @@ namespace Chess\Tests\Unit\Eval;
 use Chess\FenToBoardFactory;
 use Chess\Eval\IsolatedPawnEval;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\AsciiArray;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
-use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class IsolatedPawnEvalTest extends AbstractUnitTestCase
 {
-    static private $square;
-
-    static private $castlingRule;
-
-    public static function setUpBeforeClass(): void
-    {
-        self::$square = new Square();
-
-        self::$castlingRule = (new CastlingRule())->rule;
-    }
-
     /**
      * @test
      */
@@ -41,19 +27,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             "a7 and d5 are isolated pawns.",
         ];
 
-        $position = [
-            7 => [ ' r ', ' . ', ' . ', ' . ', ' k ', ' . ', ' . ', ' r ' ],
-            6 => [ ' p ', ' b ', ' n ', ' . ', ' . ', ' p ', ' p ', ' p ' ],
-            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            4 => [ ' . ', ' P ', ' . ', ' p ', ' P ', ' . ', ' . ', ' . ' ],
-            3 => [ ' P ', ' . ', ' q ', ' P ', ' . ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' B ', ' . ', ' . ' ],
-            1 => [ ' . ', ' . ', ' . ', ' Q ', ' . ', ' P ', ' P ', ' P ' ],
-            0 => [ ' R ', ' . ', ' . ', ' . ', ' K ', ' . ', ' . ', ' R ' ],
-        ];
-
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
+        $board = FenToBoardFactory::create('r3k2r/pbn2ppp/8/1P1pP3/P1qP4/5B2/3Q1PPP/R3K2R w KQkq -');
 
         $isolatedPawnEval = new IsolatedPawnEval($board);
 
@@ -78,19 +52,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             "h2 and d5 are isolated pawns.",
         ];
 
-        $position = [
-            7 => [ ' . ', ' r ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
-            6 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' p ' ],
-            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' n ', ' p ', ' . ' ],
-            4 => [ ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' n ' ],
-            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' . ', ' N ', ' B ', ' . ', ' . ', ' . ', ' . ' ],
-            1 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' P ' ],
-            0 => [ ' . ', ' . ', ' . ', ' N ', ' . ', ' R ', ' K ', ' . ' ],
-        ];
-
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
+        $board = FenToBoardFactory::create('1r4k1/7p/5np1/3p3n/8/2NB4/7P/3N1RK1 w - -');
 
         $isolatedPawnEval = new IsolatedPawnEval($board);
 
@@ -117,20 +79,8 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             "a2, c2 and a7 are isolated pawns.",
         ];
 
-        $position = [
-            7 => [ ' . ', ' r ', ' . ', ' . ', ' r ', ' . ', ' k ', ' . ' ],
-            6 => [ ' p ', ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' p ' ],
-            5 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' p ', ' B ' ],
-            4 => [ ' q ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            3 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' . ', ' . ', ' . ', ' Q ', ' . ', ' P ', ' . ' ],
-            1 => [ ' P ', ' b ', ' P ', ' . ', ' . ', ' P ', ' K ', ' P ' ],
-            0 => [ ' . ', ' R ', ' . ', ' . ', ' . ', ' R ', ' . ', ' . ' ],
-        ];
-
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
-
+        $board = FenToBoardFactory::create('1r2r1k1/p4p1p/6pB/q7/8/3Q2P1/PbP2PKP/1R3R2 w - -');
+        
         $isolatedPawnEval = new IsolatedPawnEval($board);
 
         $this->assertSame($expectedResult, $isolatedPawnEval->getResult());

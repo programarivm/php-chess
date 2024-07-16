@@ -3,6 +3,7 @@
 namespace Chess\Variant\Classical\PGN;
 
 use Chess\Exception\UnknownNotationException;
+use Chess\Variant\AbstractNotation;
 
 class Tag extends AbstractNotation
 {

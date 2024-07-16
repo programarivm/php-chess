@@ -18,17 +18,17 @@ class R extends AbstractSlider
         $this->type = $type;
 
         $this->mobility = [
-            'up' => [],
-            'down' => [],
-            'left' => [],
-            'right' => []
+            0 => [],
+            1 => [],
+            2 => [],
+            3 => [],
         ];
 
         try {
             $file = $this->sq[0];
             $rank = $this->rank() + 1;
             while ($this->square->validate($file . $rank)) {
-                $this->mobility['up'][] = $file . $rank;
+                $this->mobility[0][] = $file . $rank;
                 $rank = (int)$rank + 1;
             }
         } catch (UnknownNotationException $e) {
@@ -38,7 +38,7 @@ class R extends AbstractSlider
             $file = $this->sq[0];
             $rank = $this->rank() - 1;
             while ($this->square->validate($file . $rank)) {
-                $this->mobility['down'][] = $file . $rank;
+                $this->mobility[1][] = $file . $rank;
                 $rank = (int)$rank - 1;
             }
         } catch (UnknownNotationException $e) {
@@ -48,7 +48,7 @@ class R extends AbstractSlider
             $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->rank();
             while ($this->square->validate($file . $rank)) {
-                $this->mobility['left'][] = $file . $rank;
+                $this->mobility[2][] = $file . $rank;
                 $file = chr(ord($file) - 1);
             }
         } catch (UnknownNotationException $e) {
@@ -58,7 +58,7 @@ class R extends AbstractSlider
             $file = chr(ord($this->sq[0]) + 1);
             $rank = $this->rank();
             while ($this->square->validate($file . $rank)) {
-                $this->mobility['right'][] = $file . $rank;
+                $this->mobility[3][] = $file . $rank;
                 $file = chr(ord($file) + 1);
             }
         } catch (UnknownNotationException $e) {

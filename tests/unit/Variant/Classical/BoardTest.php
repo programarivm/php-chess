@@ -2108,7 +2108,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -2131,7 +2131,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' . ', ' K ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -2154,7 +2154,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' . ', ' R ', ' K ', ' . ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -2177,7 +2177,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -2315,7 +2315,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -2527,7 +2527,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -2556,7 +2556,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**

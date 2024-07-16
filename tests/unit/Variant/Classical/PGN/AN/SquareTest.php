@@ -94,4 +94,28 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->assertSame(self::$square->color('b2'), 'b');
     }
+
+    /**
+     * @test
+     */
+    public function from_index_to_algebraic_0_0()
+    {
+        $this->assertSame('a1', self::$square->toAlgebraic(0, 0));
+    }
+
+    /**
+     * @test
+     */
+    public function from_index_to_algebraic_0_7()
+    {
+        $this->assertSame('a8', self::$square->toAlgebraic(0, 7));
+    }
+
+    /**
+     * @test
+     */
+    public function from_index_to_algebraic_0_8()
+    {
+        $this->assertSame('a9', self::$square->toAlgebraic(0, 8));
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace Chess\Variant\Classical\PGN\AN;
 
-use Chess\Variant\Classical\PGN\AbstractNotation;
+use Chess\Variant\AbstractNotation;
 
 class Castle extends AbstractNotation
 {

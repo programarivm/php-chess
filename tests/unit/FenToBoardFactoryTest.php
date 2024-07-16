@@ -34,7 +34,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             '1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+',
         );
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' . ', ' r ', ' b ', ' q ', ' . ', ' r ', ' k ', ' . ' ],
@@ -63,7 +63,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
         $board->play('w', 'Qg4');
         $board->play('b', 'a5');
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' . ', ' r ', ' b ', ' q ', ' . ', ' r ', ' k ', ' . ' ],
@@ -89,7 +89,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             new Chess960Board(['Q', 'N', 'B', 'R', 'K', 'B', 'R', 'N' ])
         );
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' q ', ' . ', ' b ', ' r ', ' k ', ' b ', ' r ', ' n ' ],
@@ -115,7 +115,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             new CapablancaBoard()
         );
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' r ', ' n ', ' a ', ' b ', ' q ', ' k ', ' b ', ' c ', ' n ', ' r ' ],
@@ -154,7 +154,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -180,7 +180,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -204,6 +204,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ ' q ', ' r ', ' b ', ' . ', ' N ', ' B ', ' R ', ' Q ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 }

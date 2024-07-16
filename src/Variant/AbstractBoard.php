@@ -8,7 +8,6 @@ use Chess\Eval\SqCount;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Piece\B;
 use Chess\Variant\Classical\Piece\K;
 use Chess\Variant\Classical\Piece\N;
@@ -16,7 +15,6 @@ use Chess\Variant\Classical\Piece\P;
 use Chess\Variant\Classical\Piece\Q;
 use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 abstract class AbstractBoard extends \SplObjectStorage
 {
@@ -49,23 +47,37 @@ abstract class AbstractBoard extends \SplObjectStorage
     /**
      * Color.
      *
-     * @var \Chess\Variant\Classical\PGN\AN\Color
+     * @var \Chess\Variant\AbstractNotation
      */
-    public Color $color;
+    public AbstractNotation $color;
 
     /**
      * Castling rule.
      *
-     * @var \Chess\Variant\Classical\Rule\CastlingRule
+     * @var \Chess\Variant\AbstractNotation
      */
-    public ?CastlingRule $castlingRule = null;
+    public ?AbstractNotation $castlingRule = null;
+
+    /**
+     * Square.
+     *
+     * @var \Chess\Variant\AbstractNotation
+     */
+    public AbstractNotation $square;
+
+    /**
+     * Move.
+     *
+     * @var \Chess\Variant\AbstractNotation
+     */
+    public AbstractNotation $move;
 
     /**
      * Castling ability.
      *
      * @var string
      */
-    public string $castlingAbility = '';
+    public string $castlingAbility = '-';
 
     /**
      * Piece variant.
@@ -80,20 +92,6 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @var string
      */
     public string $startFen = '';
-
-    /**
-     * Square.
-     *
-     * @var \Chess\Variant\Classical\PGN\AN\Square
-     */
-    public Square $square;
-
-    /**
-     * Move.
-     *
-     * @var \Chess\Variant\Classical\PGN\Move
-     */
-    public Move $move;
 
     /**
      * Space evaluation.
@@ -834,14 +832,14 @@ abstract class AbstractBoard extends \SplObjectStorage
         return '-';
     }
 
-    public function toAsciiArray(bool $flip = false): array
+    public function toArray(bool $flip = false): array
     {
         $array = [];
         for ($i = $this->square::SIZE['ranks'] - 1; $i >= 0; $i--) {
             $array[$i] = array_fill(0, $this->square::SIZE['files'], ' . ');
         }
         foreach ($this->pieces() as $piece) {
-            list($file, $rank) = AsciiArray::toIndex($piece->sq);
+            list($file, $rank) = $this->square->toIndex($piece->sq);
             if ($flip) {
                 $diff = $this->square::SIZE['files'] - $this->square::SIZE['ranks'];
                 $file = $this->square::SIZE['files'] - 1 - $file - $diff;
@@ -855,10 +853,10 @@ abstract class AbstractBoard extends \SplObjectStorage
         return $array;
     }
 
-    public function toAsciiString(bool $flip = false): string
+    public function toString(bool $flip = false): string
     {
         $ascii = '';
-        $array = $this->toAsciiArray($flip);
+        $array = $this->toArray($flip);
         foreach ($array as $i => $rank) {
             foreach ($rank as $j => $file) {
                 $ascii .= $array[$i][$j];
@@ -872,7 +870,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     public function toFen(): string
     {
         $string = '';
-        $array = $this->toAsciiArray();
+        $array = $this->toArray();
         for ($i = $this->square::SIZE['ranks'] - 1; $i >= 0; $i--) {
             $string .= str_replace(' ', '', implode('', $array[$i]));
             if ($i != 0) {

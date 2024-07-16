@@ -36,7 +36,7 @@ class Str
         return $string;
     }
 
-    public function toAsciiArray(string $string): array
+    public function toArray(string $string): array
     {
         $array = [];
         $ranks = array_reverse(explode('/', $string));

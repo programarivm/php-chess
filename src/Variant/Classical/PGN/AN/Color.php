@@ -3,7 +3,7 @@
 namespace Chess\Variant\Classical\PGN\AN;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Variant\Classical\PGN\AbstractNotation;
+use Chess\Variant\AbstractNotation;
 
 class Color extends AbstractNotation
 {

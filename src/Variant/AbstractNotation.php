@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Variant\Classical\PGN;
+namespace Chess\Variant;
 
 abstract class AbstractNotation
 {

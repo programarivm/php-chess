@@ -26,7 +26,7 @@ $board->play('w', 'd4');
 $board->play('b', 'cxd4');
 $board->play('w', 'Nxd4');
 
-echo $board->toAsciiString();
+echo $board->toString();
 ```
 
 ```text
@@ -45,7 +45,7 @@ The `play()` method in the [Chess\Variant\Classical\Board](https://github.com/ch
 ```php
 $board->play('b', 'Na6');
 
-echo $board->toAsciiString();
+echo $board->toString();
 ```
 
 ```text
@@ -81,7 +81,7 @@ $movetext = '1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6';
 
 $board = (new SanPlay($movetext))->validate()->board;
 
-echo $board->toAsciiString();
+echo $board->toString();
 ```
 
 ```text
@@ -100,7 +100,7 @@ Please note that the `validate()` method will throw an exception if the movetext
 ```php
 $board->play('w', 'Bb5+');
 
-echo $board->toAsciiString();
+echo $board->toString();
 ```
 
 ```text
@@ -215,7 +215,7 @@ $movetext = '1.e2e4 c7c5 2.g1f3 d7d6 3.d2d4 c5d4 4.f3d4 g8f6';
 
 $board = (new LanPlay($movetext))->validate()->board;
 
-echo $board->toAsciiString();
+echo $board->toString();
 ```
 
 ```text

@@ -73,6 +73,6 @@ class StrTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' K ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, self::$fenStr->toAsciiArray($piecePlacement));
+        $this->assertSame($expected, self::$fenStr->toArray($piecePlacement));
     }
 }

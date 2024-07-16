@@ -23,11 +23,11 @@ class ATest extends AbstractUnitTestCase
         $archbishop = new A('w', 'a1', self::$square);
 
         $mobility = [
-            'upLeft' => [],
-            'upRight' => ['b2', 'c3', 'd4', 'e5', 'f6', 'g7', 'h8'],
-            'downLeft' => [],
-            'downRight' => [],
-            'N' => ['c2', 'b3']
+            0 => [],
+            1 => ['b2', 'c3', 'd4', 'e5', 'f6', 'g7', 'h8'],
+            2 => [],
+            3 => [],
+            4 => ['c2', 'b3'],
         ];
 
         $this->assertEquals($mobility, $archbishop->mobility);
@@ -41,11 +41,11 @@ class ATest extends AbstractUnitTestCase
         $archbishop = new A('w', 'e4', self::$square);
 
         $mobility = [
-            'upLeft' => ['d5', 'c6', 'b7', 'a8'],
-            'upRight' => ['f5', 'g6', 'h7', 'i8'],
-            'downLeft' => ['d3', 'c2', 'b1'],
-            'downRight' => ['f3', 'g2', 'h1'],
-            'N' => ['d6', 'c5', 'c3', 'd2', 'f2', 'g3', 'g5', 'f6']
+            0 => ['d5', 'c6', 'b7', 'a8'],
+            1 => ['f5', 'g6', 'h7', 'i8'],
+            2 => ['d3', 'c2', 'b1'],
+            3 => ['f3', 'g2', 'h1'],
+            4 => ['d6', 'c5', 'c3', 'd2', 'f2', 'g3', 'g5', 'f6'],
         ];
 
         $this->assertEquals($mobility, $archbishop->mobility);
@@ -60,11 +60,11 @@ class ATest extends AbstractUnitTestCase
         $archbishop = new A('w', 'd4', self::$square);
 
         $mobility = [
-            'upLeft' => ['c5', 'b6', 'a7'],
-            'upRight' => ['e5', 'f6', 'g7', 'h8'],
-            'downLeft' => ['c3', 'b2', 'a1'],
-            'downRight' => ['e3', 'f2', 'g1'],
-            'N' => ['c6', 'b5', 'b3', 'c2', 'e2', 'f3', 'f5', 'e6']
+            0 => ['c5', 'b6', 'a7'],
+            1 => ['e5', 'f6', 'g7', 'h8'],
+            2 => ['c3', 'b2', 'a1'],
+            3 => ['e3', 'f2', 'g1'],
+            4 => ['c6', 'b5', 'b3', 'c2', 'e2', 'f3', 'f5', 'e6'],
         ];
 
         $this->assertEquals($mobility, $archbishop->mobility);

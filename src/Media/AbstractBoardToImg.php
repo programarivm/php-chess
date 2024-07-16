@@ -47,7 +47,7 @@ class AbstractBoardToImg
         $sqSize = $this->size / $this->board->square::SIZE['files'];
         $chessboard = $this->imagine->open(self::FILEPATH.'/chessboard/'."{$this->size}_{$nSqs}".'.png');
         $x = $y = 0;
-        foreach ($this->board->toAsciiArray($this->flip) as $i => $rank) {
+        foreach ($this->board->toArray($this->flip) as $i => $rank) {
             foreach ($rank as $j => $piece) {
                 if ($piece !== ' . ') {
                     $filename = trim($piece);

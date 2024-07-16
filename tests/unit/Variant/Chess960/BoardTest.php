@@ -295,7 +295,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' Q ', ' R ', ' B ', ' K ', ' R ', ' B ', ' N ', ' N ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -321,7 +321,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' B ', ' B ', ' N ', ' R ', ' K ', ' R ', ' Q ', ' N ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -355,7 +355,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' N ', ' R ', ' N ', ' Q ', ' K ', ' . ', ' . ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -390,7 +390,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' N ', ' R ', ' N ', ' Q ', ' K ', ' . ', ' . ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -417,7 +417,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' B ', ' B ', ' R ', ' Q ', ' N ', ' R ', ' K ', ' . ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -445,7 +445,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' B ', ' Q ', ' N ', ' R ', ' K ', ' . ', ' R ', ' N ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -474,7 +474,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' B ', ' Q ', ' N ', ' R ', ' K ', ' . ', ' R ', ' N ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -499,7 +499,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' N ', ' R ', ' Q ', ' B ', ' B ', ' R ', ' K ', ' N ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -526,7 +526,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' B ', ' N ', ' Q ', ' R ', ' . ', ' R ', ' K ', ' B ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -553,7 +553,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' Q ', ' B ', ' B ', ' N ', ' R ', ' K ', ' . ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -580,7 +580,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' Q ', ' B ', ' B ', ' N ', ' R ', ' R ', ' K ', ' . ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -607,7 +607,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' K ', ' R ', ' . ', ' B ', ' Q ', ' N ', ' B ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -634,7 +634,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' . ', ' K ', ' B ', ' B ', ' Q ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -661,7 +661,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' K ', ' . ', ' B ', ' B ', ' Q ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -688,7 +688,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' K ', ' . ', ' B ', ' B ', ' Q ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -717,7 +717,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' N ', ' B ', ' Q ', ' N ', ' R ', ' . ', ' K ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -748,7 +748,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' N ', ' B ', ' Q ', ' N ', ' R ', ' K ', ' . ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -775,6 +775,6 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' N ', ' Q ', ' B ', ' K ', ' R ', ' B ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 }

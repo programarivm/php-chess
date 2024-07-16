@@ -18,7 +18,7 @@ class A extends AbstractPiece
 
         $this->mobility = [
             ...(new B($color, $sq, $square))->mobility,
-            Piece::N => (new N($color, $sq, $square))->mobility,
+            (new N($color, $sq, $square))->mobility,
         ];
     }
 }

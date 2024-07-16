@@ -3,11 +3,12 @@
 namespace Chess\Variant\Classical\Rule;
 
 use Chess\Exception\UnknownNotationException;
+use Chess\Variant\AbstractNotation;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class CastlingRule
+class CastlingRule extends AbstractNotation
 {
     const START = 'KQkq';
 

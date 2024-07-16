@@ -19,7 +19,7 @@ class StrToBoardTest extends AbstractUnitTestCase
             $startPos
         ))->create();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' a ', ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ', ' c ' ],

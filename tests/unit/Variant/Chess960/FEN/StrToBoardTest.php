@@ -19,7 +19,7 @@ class StrToBoardTest extends AbstractUnitTestCase
             $startPos
         ))->create();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -47,7 +47,7 @@ class StrToBoardTest extends AbstractUnitTestCase
             $startPos
         ))->create();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' r ', ' n ', ' b ', ' q ', ' k ', ' b ', ' n ', ' r ' ],
@@ -75,7 +75,7 @@ class StrToBoardTest extends AbstractUnitTestCase
             $startPos
         ))->create();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' q ', ' . ', ' b ', ' r ', ' k ', ' b ', ' r ', ' n ' ],
@@ -105,7 +105,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board->play('w', 'O-O');
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' q ', ' . ', ' b ', ' r ', ' k ', ' b ', ' r ', ' n ' ],
@@ -133,7 +133,7 @@ class StrToBoardTest extends AbstractUnitTestCase
             $startPos
         ))->create();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' b ', ' . ', ' . ', ' . ', ' . ', ' r ', ' k ', ' r ' ],
@@ -167,7 +167,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board->play('b', 'O-O-O');
         $board->play('w', 'O-O');
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' q ', ' . ', ' k ', ' r ', ' r ', ' n ', ' b ', ' b ' ],
@@ -199,7 +199,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = $board->undo();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' q ', ' n ', ' r ', ' n ', ' b ', ' k ', ' r ', ' b ' ],
@@ -233,7 +233,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = $board->undo();
         $board = $board->undo();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' q ', ' n ', ' r ', ' n ', ' b ', ' k ', ' r ', ' b ' ],

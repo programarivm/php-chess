@@ -129,6 +129,6 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' A ', ' Q ', ' R ', ' B ', ' K ', ' R ', ' B ', ' N ', ' N ', ' C ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 }

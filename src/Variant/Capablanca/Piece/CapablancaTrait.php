@@ -10,7 +10,7 @@ trait CapablancaTrait
     {
         $sqs = [];
         foreach ($this->mobility as $key => $val) {
-            if ($key !== Piece::N) {
+            if ($key !== 4) {
                 foreach ($val as $sq) {
                     if (
                         !in_array($sq, $this->board->sqCount['used'][$this->color]) &&
@@ -42,7 +42,7 @@ trait CapablancaTrait
     {
         $sqs = [];
         foreach ($this->mobility as $key => $val) {
-            if ($key !== Piece::N) {
+            if ($key !== 4) {
                 foreach ($val as $sq) {
                     if (in_array($sq, $this->board->sqCount['used'][$this->color])) {
                         $sqs[] = $sq;

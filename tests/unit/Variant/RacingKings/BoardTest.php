@@ -36,7 +36,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' q ', ' r ', ' b ', ' n ', ' N ', ' B ', ' R ', ' Q ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -59,7 +59,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertTrue($board->play('w', 'Rg8'));
         $this->assertFalse($board->play('b', 'Nf3'));
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -82,7 +82,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertTrue($board->play('w', 'Rg8'));
         $this->assertTrue($board->play('b', 'Nxf2'));
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -106,7 +106,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('w', 'Rg8'));
         $this->assertTrue($board->play('b', 'Nxf2'));
         $this->assertFalse($board->play('w', 'Qd5'));
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -135,7 +135,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertFalse($board->doesWin());
         $this->assertTrue($board->play('b', 'Kh7'));
         $this->assertTrue($board->doesWin());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -165,7 +165,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'Kh8'));
         $this->assertTrue($board->doesWin());
         $this->assertFalse($board->doesDraw());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -195,6 +195,6 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'Kg8'));
         $this->assertFalse($board->doesWin());
         $this->assertTrue($board->doesDraw());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 }

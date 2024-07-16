@@ -2,26 +2,12 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\BackwardPawnEval;
-use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\AsciiArray;
-use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class BackwardPawnEvalTest extends AbstractUnitTestCase
 {
-    static private $square;
-
-    static private $castlingRule;
-
-    public static function setUpBeforeClass(): void
-    {
-        self::$square = new Square();
-
-        self::$castlingRule = (new CastlingRule())->rule;
-    }
-
     /**
      * @test
      */
@@ -40,19 +26,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
             "e4 and b3 are backward pawns.",
         ];
 
-        $position = [
-            7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            6 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
-            5 => [ ' p ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ' ],
-            4 => [ ' . ', ' . ', ' p ', ' P ', ' . ', ' . ', ' . ', ' . ' ],
-            3 => [ ' . ', ' . ', ' P ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' P ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
-            1 => [ ' . ', ' P ', ' . ', ' K ', ' . ', ' . ', ' . ', ' . ' ],
-            0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-        ];
-
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
+        $board = FenToBoardFactory::create('8/4p3/p2p4/2pP4/2P1P3/1P4k1/1P1K4/8 w - -');
 
         $backwardPawnEval = new BackwardPawnEval($board);
 
@@ -79,20 +53,8 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
             "d4 and e4 are backward pawns.",
         ];
 
-        $position = [
-            7 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-            6 => [ ' . ', ' . ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ' ],
-            5 => [ ' p ', ' . ', ' . ', ' p ', ' . ', ' . ', ' . ', ' . ' ],
-            4 => [ ' . ', ' . ', ' p ', ' P ', ' . ', ' . ', ' . ', ' . ' ],
-            3 => [ ' . ', ' . ', ' P ', ' P ', ' P ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' k ', ' . ' ],
-            1 => [ ' . ', ' P ', ' . ', ' K ', ' . ', ' . ', ' . ', ' . ' ],
-            0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
-        ];
-
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
-
+        $board = FenToBoardFactory::create('8/4p3/p2p4/2pP4/2PPP3/6k1/1P1K/8 w - -');
+        
         $backwardPawnEval = new BackwardPawnEval($board);
 
         $this->assertSame($expectedResult, $backwardPawnEval->getResult());

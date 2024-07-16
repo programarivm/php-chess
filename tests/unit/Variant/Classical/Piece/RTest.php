@@ -23,10 +23,10 @@ class RTest extends AbstractUnitTestCase
     {
         $rook = new R('w', 'a2', self::$square, RType::R);
         $mobility = [
-            'up' => ['a3', 'a4', 'a5', 'a6', 'a7', 'a8'],
-            'down' => ['a1'],
-            'left' => [],
-            'right' => ['b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2']
+            0 => ['a3', 'a4', 'a5', 'a6', 'a7', 'a8'],
+            1 => ['a1'],
+            2 => [],
+            3 => ['b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'],
         ];
 
         $this->assertEquals($mobility, $rook->mobility);
@@ -39,10 +39,10 @@ class RTest extends AbstractUnitTestCase
     {
         $rook = new R('w', 'd5', self::$square, RType::R);
         $mobility = [
-            'up' => ['d6', 'd7', 'd8'],
-            'down' => ['d4', 'd3', 'd2', 'd1'],
-            'left' => ['c5', 'b5', 'a5'],
-            'right' => ['e5', 'f5', 'g5', 'h5']
+            0 => ['d6', 'd7', 'd8'],
+            1 => ['d4', 'd3', 'd2', 'd1'],
+            2 => ['c5', 'b5', 'a5'],
+            3 => ['e5', 'f5', 'g5', 'h5'],
         ];
 
         $this->assertEquals($mobility, $rook->mobility);

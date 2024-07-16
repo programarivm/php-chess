@@ -3,8 +3,7 @@
 namespace Chess\Variant\Classical\PGN\AN;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Variant\AsciiArray;
-use Chess\Variant\Classical\PGN\AbstractNotation;
+use Chess\Variant\AbstractNotation;
 
 class Square extends AbstractNotation
 {
@@ -49,10 +48,29 @@ class Square extends AbstractNotation
          $all = [];
          for ($i = 0; $i < static::SIZE['files']; $i++) {
              for ($j = 0; $j < static::SIZE['ranks']; $j++) {
-                 $all[] = AsciiArray::toAlgebraic($i, $j);
+                 $all[] = $this->toAlgebraic($i, $j);
              }
          }
 
          return $all;
+     }
+
+     public function toIndex(string $sq): array
+     {
+         $j = ord($sq[0]) - 97;
+         $i = intval(ltrim($sq, $sq[0])) - 1;
+
+         return [
+             $i,
+             $j,
+         ];
+     }
+
+     public function toAlgebraic(int $i, int $j): string
+     {
+         $file = chr(97 + $i);
+         $rank = $j + 1;
+
+         return $file . $rank;
      }
 }

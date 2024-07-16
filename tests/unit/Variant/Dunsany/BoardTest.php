@@ -36,7 +36,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
         $this->assertSame('b', $board->turn);
     }
 
@@ -59,7 +59,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -97,7 +97,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ', ' P ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -128,7 +128,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertFalse($board->isStalemate());
         $this->assertFalse($board->isMate());
         $this->assertTrue($board->doesWin());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -159,7 +159,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertFalse($board->isStalemate());
         $this->assertTrue($board->isMate());
         $this->assertTrue($board->doesWin());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -190,7 +190,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->isStalemate());
         $this->assertFalse($board->isMate());
         $this->assertFalse($board->doesWin());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -221,6 +221,6 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->isStalemate());
         $this->assertFalse($board->isMate());
         $this->assertFalse($board->doesWin());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 }

@@ -16,7 +16,6 @@ use Chess\Variant\Classical\Piece\K;
 use Chess\Variant\Classical\Piece\N;
 use Chess\Variant\Classical\Piece\Q;
 use Chess\Variant\Classical\Piece\R;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class Board extends AbstractBoard
 {
@@ -26,7 +25,6 @@ class Board extends AbstractBoard
         $this->color = new Color();
         $this->square = new Square();
         $this->move = new Move();
-        $this->castlingAbility = CastlingRule::NEITHER;
         $this->pieceVariant = VariantType::CLASSICAL;
         if (!$pieces) {
             $this->attach(new Q(Color::B, 'a1', $this->square));

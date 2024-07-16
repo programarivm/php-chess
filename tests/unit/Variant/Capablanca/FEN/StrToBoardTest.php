@@ -15,7 +15,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3'))
             ->create();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' r ', ' n ', ' a ', ' b ', ' q ', ' k ', ' b ', ' c ', ' n ', ' r ' ],
@@ -39,7 +39,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board = (new StrToBoard('rnabqkbcnr/pppp1ppppp/10/4p5/4P5/10/PPPP1PPPPP/RNABQKBCNR w KQkq e6'))
             ->create();
 
-        $array = $board->toAsciiArray();
+        $array = $board->toArray();
 
         $expected = [
             7 => [ ' r ', ' n ', ' a ', ' b ', ' q ', ' k ', ' b ', ' c ', ' n ', ' r ' ],

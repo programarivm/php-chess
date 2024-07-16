@@ -2,25 +2,12 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\DoubledPawnEval;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\AsciiArray;
-use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class DoubledPawnEvalTest extends AbstractUnitTestCase
 {
-    static private $square;
-
-    static private $castlingRule;
-
-    public static function setUpBeforeClass(): void
-    {
-        self::$square = new Square();
-
-        self::$castlingRule = (new CastlingRule())->rule;
-    }
-
     /**
      * @test
      */
@@ -50,8 +37,7 @@ class DoubledPawnEvalTest extends AbstractUnitTestCase
             0 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' . ' ],
         ];
 
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
+        $board = FenToBoardFactory::create('8/4p3/p2p4/2pP4/2P1P3/1P4k1/1P1K4/8 w - -');
 
         $doubledPawnEval = new DoubledPawnEval($board);
 
@@ -78,20 +64,8 @@ class DoubledPawnEvalTest extends AbstractUnitTestCase
             "The pawn on c6 is doubled.",
         ];
 
-        $position = [
-            7 => [ ' . ', ' r ', ' . ', ' q ', ' . ', ' r ', ' k ', ' . ' ],
-            6 => [ ' p ', ' . ', ' p ', ' . ', ' . ', ' p ', ' b ', ' p ' ],
-            5 => [ ' . ', ' . ', ' p ', ' p ', ' . ', ' k ', ' p ', ' . ' ],
-            4 => [ ' . ', ' . ', ' . ', ' . ', ' . ', ' . ', ' B ', ' . ' ],
-            3 => [ ' . ', ' . ', ' . ', ' . ', ' P ', ' . ', ' . ', ' . ' ],
-            2 => [ ' . ', ' . ', ' N ', ' Q ', ' . ', ' . ', ' . ', ' . ' ],
-            1 => [ ' P ', ' P ', ' P ', ' . ', ' . ', ' P ', ' P ', ' P ' ],
-            0 => [ ' . ', ' . ', ' . ', ' R ', ' . ', ' R ', ' K ', ' . ' ],
-        ];
-
-        $board = (new AsciiArray($position, self::$square, self::$castlingRule))
-            ->toClassicalBoard('\Chess\Variant\Classical\Board', 'w');
-
+        $board = FenToBoardFactory::create('1r1q1rk1/p1p2pbp/2pp1np1/6B1/4P3/2NQ4/PPP2PPP/3R1RK1 w - -');
+        
         $doubledPawnEval = new DoubledPawnEval($board);
 
         $this->assertSame($expectedResult, $doubledPawnEval->getResult());

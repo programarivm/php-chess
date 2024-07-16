@@ -15,11 +15,11 @@ class PieceArray
 
     private Square $square;
 
-    private CastlingRule $castlingRule;
+    private ?CastlingRule $castlingRule;
 
     private string $pieceVariant;
 
-    public function __construct(array $array, Square $square, CastlingRule $castlingRule, string $pieceVariant)
+    public function __construct(array $array, Square $square, CastlingRule $castlingRule = null, string $pieceVariant)
     {
         $this->square = $square;
 
@@ -53,22 +53,22 @@ class PieceArray
         if ($id === Piece::R) {
             if (
                 $color === Color::B &&
-                $sq === $this->castlingRule->rule[Color::B][Piece::R][Castle::LONG]['sq']['current']
+                $sq === $this->castlingRule?->rule[Color::B][Piece::R][Castle::LONG]['sq']['current']
             ) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
             } elseif (
                 $color === Color::B &&
-                $sq === $this->castlingRule->rule[Color::B][Piece::R][Castle::SHORT]['sq']['current']
+                $sq === $this->castlingRule?->rule[Color::B][Piece::R][Castle::SHORT]['sq']['current']
             ) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
             } elseif (
                 $color === Color::W &&
-                $sq === $this->castlingRule->rule[Color::B][Piece::R][Castle::LONG]['sq']['current']
+                $sq === $this->castlingRule?->rule[Color::B][Piece::R][Castle::LONG]['sq']['current']
             ) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
             } elseif (
                 $color === Color::W &&
-                $sq === $this->castlingRule->rule[Color::W][Piece::R][Castle::SHORT]['sq']['current']
+                $sq === $this->castlingRule?->rule[Color::W][Piece::R][Castle::SHORT]['sq']['current']
             ) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
             } else { // it doesn't matter which RType is assigned

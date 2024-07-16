@@ -14,17 +14,17 @@ class B extends AbstractSlider
         parent::__construct($color, $sq, $square, Piece::B);
 
         $this->mobility = [
-            'upLeft' => [],
-            'upRight' => [],
-            'downLeft' => [],
-            'downRight' => []
+            0 => [],
+            1 => [],
+            2 => [],
+            3 => [],
         ];
 
         try {
             $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->rank() + 1;
             while ($this->square->validate($file . $rank)) {
-                $this->mobility['upLeft'][] = $file . $rank;
+                $this->mobility[0][] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank + 1;
             }
@@ -35,7 +35,7 @@ class B extends AbstractSlider
             $file = chr(ord($this->sq[0]) + 1);
             $rank = $this->rank() + 1;
             while ($this->square->validate($file . $rank)) {
-                $this->mobility['upRight'][]  = $file . $rank;
+                $this->mobility[1][]  = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank + 1;
             }
@@ -46,7 +46,7 @@ class B extends AbstractSlider
             $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->rank() - 1;
             while ($this->square->validate($file . $rank)) {
-                $this->mobility['downLeft'][] = $file . $rank;
+                $this->mobility[2][] = $file . $rank;
                 $file = chr(ord($file) - 1);
                 $rank = (int)$rank - 1;
             }
@@ -57,7 +57,7 @@ class B extends AbstractSlider
             $file = chr(ord($this->sq[0]) + 1);
             $rank = $this->rank() - 1;
             while ($this->square->validate($file . $rank)) {
-                $this->mobility['downRight'][] = $file . $rank;
+                $this->mobility[3][] = $file . $rank;
                 $file = chr(ord($file) + 1);
                 $rank = (int)$rank - 1;
             }

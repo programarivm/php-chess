@@ -4,6 +4,7 @@ namespace Chess\Variant\Classical\PGN;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Piece\K;
+use Chess\Variant\AbstractNotation;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Check;
 use Chess\Variant\Classical\PGN\AN\Color;
