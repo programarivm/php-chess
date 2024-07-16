@@ -5,7 +5,6 @@ namespace Chess\Variant\Losing;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
 use Chess\Variant\VariantType;
-use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Piece\B;
@@ -13,7 +12,7 @@ use Chess\Variant\Classical\Piece\N;
 use Chess\Variant\Classical\Piece\P;
 use Chess\Variant\Classical\Piece\Q;
 use Chess\Variant\Classical\Piece\R;
-use Chess\Variant\Classical\Rule\CastlingRule;
+use Chess\Variant\Losing\PGN\Move;
 use Chess\Variant\Losing\Piece\M;
 
 class Board extends AbstractBoard
@@ -24,7 +23,6 @@ class Board extends AbstractBoard
         $this->color = new Color();
         $this->square = new Square();
         $this->move = new Move();
-        $this->castlingAbility = CastlingRule::NEITHER;
         $this->pieceVariant = VariantType::LOSING;
         if (!$pieces) {
             $this->attach(new R(Color::W, 'a1', $this->square, RType::R));
@@ -68,5 +66,17 @@ class Board extends AbstractBoard
         $this->refresh();
 
         $this->startFen = $this->toFen();
+    }
+
+    public function captureSqs()
+    {
+        $captureSqs = [];
+        foreach ($board->pieces($this->turn) as $piece) {
+            foreach ($piece->attacking() as $attacking) {
+                $captureSqs[] = $attacking->sq;
+            }
+        }
+
+        return $captureSqs;
     }
 }
