@@ -106,4 +106,9 @@ class Board extends AbstractBoard
 
         return false;
     }
+
+    public function doesWin(): bool
+    {
+        return count($this->pieces($this->turn)) === 0;
+    }
 }
