@@ -92,4 +92,18 @@ class Board extends AbstractBoard
 
         return [];
     }
+
+    public function play(string $color, string $pgn): bool
+    {
+        if ($captureSqs = $this->captureSqs()) {
+            $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
+            if (in_array($move['sq']['next'], $captureSqs)) {
+                return parent::play($color, $pgn);
+            }
+        } else {
+            return parent::play($color, $pgn);
+        }
+
+        return false;
+    }
 }
