@@ -36,7 +36,7 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ ' R ', ' N ', ' B ', ' Q ', ' M ', ' B ', ' N ', ' R ' ],
         ];
 
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -63,7 +63,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertFalse($board->isCheck());
         $this->assertTrue($board->play('b', 'h6'));
         $this->assertFalse($board->isCheck());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -92,6 +92,6 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertFalse($board->isCheck());
         $this->assertTrue($board->play('w', 'Bxe8'));
         $this->assertFalse($board->isCheck());
-        $this->assertSame($expected, $board->toAsciiArray());
+        $this->assertSame($expected, $board->toArray());
     }
 }
