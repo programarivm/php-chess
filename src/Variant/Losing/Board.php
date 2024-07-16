@@ -68,7 +68,7 @@ class Board extends AbstractBoard
         $this->startFen = $this->toFen();
     }
 
-    public function captureSqs(): array
+    protected function captureSqs(): array
     {
         $captureSqs = [];
         foreach ($this->pieces($this->turn) as $piece) {
