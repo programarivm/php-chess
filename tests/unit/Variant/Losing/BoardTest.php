@@ -94,4 +94,18 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertFalse($board->isCheck());
         $this->assertSame($expected, $board->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function play_e4_d5()
+    {
+        $board = new Board();
+
+        $expected = ['d5'];
+
+        $this->assertTrue($board->play('w', 'e4'));
+        $this->assertTrue($board->play('b', 'd5'));
+        $this->assertEquals($expected, $board->legal('e4'));
+    }
 }

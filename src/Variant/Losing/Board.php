@@ -71,12 +71,25 @@ class Board extends AbstractBoard
     public function captureSqs()
     {
         $captureSqs = [];
-        foreach ($board->pieces($this->turn) as $piece) {
+        foreach ($this->pieces($this->turn) as $piece) {
             foreach ($piece->attacking() as $attacking) {
                 $captureSqs[] = $attacking->sq;
             }
         }
 
         return $captureSqs;
+    }
+
+    public function legal(string $sq): array
+    {
+        $legal = parent::legal($sq);
+        $captureSqs = $this->captureSqs();
+        if ($intersect = array_intersect($legal, $captureSqs)) {
+            return array_values($intersect);
+        } elseif (!$captureSqs) {
+            return $legal;
+        }
+
+        return [];
     }
 }
