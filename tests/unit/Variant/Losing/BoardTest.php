@@ -98,6 +98,20 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function play_e3_d6_Bb5_h6_Be2()
+    {
+        $board = new Board();
+
+        $this->assertTrue($board->play('w', 'e3'));
+        $this->assertTrue($board->play('b', 'd6'));
+        $this->assertTrue($board->play('w', 'Bb5'));
+        $this->assertTrue($board->play('b', 'h6'));
+        $this->assertFalse($board->play('w', 'Be2'));
+    }
+
+    /**
+     * @test
+     */
     public function play_e4_d5()
     {
         $board = new Board();

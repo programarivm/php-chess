@@ -72,8 +72,8 @@ class Board extends AbstractBoard
     {
         $captureSqs = [];
         foreach ($this->pieces($this->turn) as $piece) {
-            foreach ($piece->attacking() as $attacking) {
-                $captureSqs[] = $attacking->sq;
+            foreach ($piece->attacked() as $attacked) {
+                $captureSqs[] = $attacked->sq;
             }
         }
 
