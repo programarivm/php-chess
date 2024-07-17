@@ -143,6 +143,18 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function play_e4_d5_exd5()
+    {
+        $board = new Board();
+
+        $this->assertTrue($board->play('w', 'e4'));
+        $this->assertTrue($board->play('b', 'd5'));
+        $this->assertTrue($board->play('w', 'exd5'));
+    }
+
+    /**
+     * @test
+     */
     public function w_wins()
     {
         $board = FenToBoardFactory::create(
