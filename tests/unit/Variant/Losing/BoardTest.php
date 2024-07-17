@@ -194,4 +194,20 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'Re8'));
         $this->assertTrue($board->doesWin());
     }
+
+    /**
+     * @test
+     */
+    public function play_e4_d5_exd5_Qxd5()
+    {
+        $board = new Board();
+
+        $expected = ['e2'];
+
+        $this->assertTrue($board->play('w', 'e4'));
+        $this->assertTrue($board->play('b', 'd5'));
+        $this->assertTrue($board->play('w', 'exd5'));
+        $this->assertTrue($board->play('b', 'Qxd5'));
+        $this->assertEquals($expected, $board->legal('e1'));
+    }
 }

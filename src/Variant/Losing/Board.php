@@ -82,12 +82,12 @@ class Board extends AbstractBoard
 
     public function legal(string $sq): array
     {
-        $legal = parent::legal($sq);
+        $moveSqs = $this->pieceBySq($sq)->moveSqs();
         $captureSqs = $this->captureSqs();
-        if ($intersect = array_intersect($legal, $captureSqs)) {
+        if ($intersect = array_intersect($moveSqs, $captureSqs)) {
             return array_values($intersect);
         } elseif (!$captureSqs) {
-            return $legal;
+            return $moveSqs;
         }
 
         return [];

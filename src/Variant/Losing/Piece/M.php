@@ -90,7 +90,16 @@ class M extends AbstractPiece
 
     public function moveSqs(): array
     {
-        return $this->mobility;
+        $sqs = [];
+        foreach ($this->mobility as $sq) {
+            if (in_array($sq, $this->board->sqCount['free'])) {
+                $sqs[] = $sq;
+            } elseif (in_array($sq, $this->board->sqCount['used'][$this->oppColor()])) {
+                $sqs[] = $sq;
+            }
+        }
+
+        return $sqs;
     }
 
     public function defendedSqs(): ?array
