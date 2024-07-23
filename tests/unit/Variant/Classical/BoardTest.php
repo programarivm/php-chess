@@ -2865,4 +2865,16 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->legal('c6'));
     }
+
+    /**
+     * @test
+     */
+    public function c3_defends_b4_and_d4()
+    {
+        $board = FenToBoardFactory::create('8/5k1r/5pp1/8/1N1B4/1KP5/8/8 w - -');
+
+        $expected = ["b4", "d4"];
+
+        $this->assertEquals($expected, $board->pieceBySq("c3")->defendedSqs());
+    }
 }
