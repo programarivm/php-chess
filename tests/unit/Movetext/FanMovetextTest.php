@@ -51,7 +51,7 @@ class FanMovetextTest extends AbstractUnitTestCase
     {
         $movetext = '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5';
 
-        $expected = [ 'd4', '♞f6', '♘f3', 'e6', 'c4', '♝b4+', '♘bd2', 'O-O', 'a3', '♝e7', 'e4', 'd6', '♗d3', 'c5' ];
+        $expected = [ 'd4', '♘f6', '♘f3', 'e6', 'c4', '♗b4+', '♘bd2', 'O-O', 'a3', '♗e7', 'e4', 'd6', '♗d3', 'c5' ];
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->moves);
     }
@@ -66,7 +66,7 @@ class FanMovetextTest extends AbstractUnitTestCase
         $expected = [
             'turn' => 'b',
             'firstMove' => '1.e4',
-            'lastMove' => '11.Nd5',
+            'lastMove' => '11.♘d5',
         ];
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->metadata);
@@ -91,7 +91,7 @@ class FanMovetextTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.Nc3 Be7 5.d3 d6 6.Be3 Bd7 7.Qd2 a6 8.Ba4 b5 9.Bb3 O-O 10.O-O-O b4 11.Nd5';
 
-        $expected = '11.Nd5';
+        $expected = '11.♘d5';
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->metadata['lastMove']);
     }
@@ -103,7 +103,7 @@ class FanMovetextTest extends AbstractUnitTestCase
     {
         $movetext = '1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6';
 
-        $expected = '3.Bb5 Nf6';
+        $expected = '3.♗b5 ♘f6';
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->metadata['lastMove']);
     }
