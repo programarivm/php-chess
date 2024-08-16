@@ -20,10 +20,10 @@ class FanMovetextTest extends AbstractUnitTestCase
         '1.e4 ♘f6 2.e5 ♘d5 3.d4 d6 4.♘f3 dxe5 5.♘xe5 c6 6.♗e2 ♗f5 7.c3 ♘d7',
         '1.e4 c5 2.♘f3 ♘c6 3.d4 cxd4 4.♘xd4 ♘f6 5.♘c3 e5 6.♘db5 d6 7.♗g5 a6 8.♘a3',
         '1.d4 ♘f6 2.c4 e6 3.♘c3 ♗b4 4.e3 O-O 5.a3 ♗xc3+ 6.bxc3 b6 7.♗d3 ♗b7 8.f3 c5',
-        '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.Qxd4 d6',
+        '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.♕xd4 d6',
         '1...♗g7 2.e4',
-        '1...♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.Qxd4 d6',
-        '2...c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.Qxd4 d6',
+        '1...♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.♕xd4 d6',
+        '2...c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.♕xd4 d6',
     ];
 
     public static $filteredData = [
@@ -31,7 +31,7 @@ class FanMovetextTest extends AbstractUnitTestCase
         '1.e4 ♘f6 {This is foo} 2.e5 ♘d5 3.d4 d6 4.♘f3 dxe5 5.♘xe5 c6 6.♗e2 ♗f5 7.c3 ♘d7',
         '1.e4 c5 2.♘f3 {This is foo} ♘c6 3.d4 cxd4 4.♘xd4 ♘f6 5.♘c3 e5 6.♘db5 d6 7.♗g5 a6 8.♘a3',
         '1.d4 ♘f6 2.c4 e6 3.♘c3 ♗b4 4.e3 O-O 5.a3 ♗xc3+ 6.bxc3 b6 7.♗d3 ♗b7 8.f3 c5 {This is foo}',
-        '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.Qxd4 {This is foo} d6',
+        '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.♕xd4 {This is foo} d6',
     ];
 
     /**
@@ -61,7 +61,7 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function get_metadata_e4_e5__Nd5()
     {
-        $movetext = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.Qd2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
+        $movetext = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.♕d2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
 
         $expected = [
             'turn' => 'b',
@@ -77,7 +77,7 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function get_first_move_e4_e5__Nd5()
     {
-        $movetext = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.Qd2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
+        $movetext = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.♕d2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
 
         $expected = '1.e4';
 
@@ -89,7 +89,7 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function get_last_move_e4_e5__Nd5()
     {
-        $movetext = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.Qd2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
+        $movetext = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.♕d2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
 
         $expected = '11.♘d5';
 
@@ -113,9 +113,9 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function get_first_move_Kb4_Kd3()
     {
-        $movetext = '3...Kb4 4.Kd3';
+        $movetext = '3...♔b4 4.♔d3';
 
-        $expected = '3...Kb4';
+        $expected = '3...♔b4';
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->metadata['firstMove']);
     }
@@ -141,12 +141,12 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function get_metadata_Kb8()
     {
-        $movetext = '6...Kb8';
+        $movetext = '6...♔b8';
 
         $expected = [
             'turn' => 'w',
-            'firstMove' => '6...Kb8',
-            'lastMove' => '6...Kb8',
+            'firstMove' => '6...♔b8',
+            'lastMove' => '6...♔b8',
         ];
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->metadata);
@@ -173,9 +173,9 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function filtered_Ra7_Kg8__Kf3()
     {
-        $movetext = "1  . ♖a7 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $movetext = "1  . ♖a7 ♔g8 2 .♔g2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
-        $expected = "1.♖a7 Kg8 2.Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $expected = "1.♖a7 ♔g8 2.♔g2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->filtered());
     }
@@ -185,9 +185,9 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function validate_with_nag_2_Ra7_Kg8__Kf3()
     {
-        $movetext = "1  . ♖a7 $2 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $movetext = "1  . ♖a7 $2 ♔g8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
-        $expected = "1.♖a7 $2 Kg8 2.Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $expected = "1.♖a7 $2 ♔g8 2.♔g2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
         $fanMovetext = new FanMovetext(self::$move, $movetext);
 
@@ -203,7 +203,7 @@ class FanMovetextTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        $movetext = "1  . ♖a7 $1000 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $movetext = "1  . ♖a7 $1000 ♔g8 2 .♔g2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
         (new FanMovetext(self::$move, $movetext))->validate();
     }
@@ -213,9 +213,9 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function filtered_with_nag_2_Ra7_Kg8__Kf3()
     {
-        $movetext = "1  . ♖a7 $2 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $movetext = "1  . ♖a7 $2 ♔g8 2 .♔g2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
-        $expected = "1.♖a7 $2 Kg8 2.Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $expected = "1.♖a7 $2 ♔g8 2.♔g2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->filtered());
     }
@@ -225,9 +225,9 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function filtered_without_nag_2_Ra7_Kg8__Kf3()
     {
-        $movetext = "1  . ♖a7 $2 Kg8 2 .Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $movetext = "1  . ♖a7 $2 ♔g8 2 .♔g2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
-        $expected = "1.♖a7 Kg8 2.Kg2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} Kf8 3.Kf3";
+        $expected = "1.♖a7 ♔g8 2.♔g2 {activates the White king. The combined action of King and Rook is needed to arrive at a position in which mate can be forced.} ♔f8 3.♔f3";
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->filtered($comments = true, $nags = false));
     }
@@ -237,9 +237,9 @@ class FanMovetextTest extends AbstractUnitTestCase
      */
     public function filtered_without_nags_e4_e5__Nd5()
     {
-        $movetext = '1.e4 $1 e5 $2 2.♘f3 ♘c6 3.♗b5 $3 ♘f6 4.♘c3 ♗e7 5.d3 $4 d6 6.♗e3 ♗d7 $5 7.Qd2 a6 8.♗a4 b5 $10 9.♗b3 O-O 10.O-O-O $21 b4 11.♘d5';
+        $movetext = '1.e4 $1 e5 $2 2.♘f3 ♘c6 3.♗b5 $3 ♘f6 4.♘c3 ♗e7 5.d3 $4 d6 6.♗e3 ♗d7 $5 7.♕d2 a6 8.♗a4 b5 $10 9.♗b3 O-O 10.O-O-O $21 b4 11.♘d5';
 
-        $expected = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.Qd2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
+        $expected = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.♕d2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
 
         $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->filtered($comments = true, $nags = false));
     }
@@ -359,7 +359,7 @@ class FanMovetextTest extends AbstractUnitTestCase
             [ '1.e4 ♘f6 2.e5 ♘d5 3.d4 d6 4.♘f3 dxe5 5.♗AR c6 6.♗e2 ♗f5 7.c3 ♘d7' ],
             [ '1.e4 c5 2.♘f3 ♘c6 3.FOO cxd4 4.♘xd4 ♘f6 5.♘c3 e5 6.♘db5 d6 7.♗g5 a6 8.♘a3' ],
             [ '1.d4 ♘f6 2.c4 e6 3.♘c3 ♗b4 4.e3 O-O 5.a3 ♗xc3+ 6.bxc3 b6 7.♗d3 ♗b7 8.f3 BAR' ],
-            [ '1.♘f3 ♘f6 2.c4 c5 3.g3 BAR 4.♗g2 FOO 5.O-O e6 6.FOOBAR 7.d4 cxd4 8.Qxd4 d6' ],
+            [ '1.♘f3 ♘f6 2.c4 c5 3.g3 BAR 4.♗g2 FOO 5.O-O e6 6.FOOBAR 7.d4 cxd4 8.♕xd4 d6' ],
         ];
     }
 
@@ -370,7 +370,7 @@ class FanMovetextTest extends AbstractUnitTestCase
             [ self::$validData[1], '1.e4 ♘f6 {This is foo} 2.e5 ♘d5 3.d4 d6 4.♘f3 dxe5 5.♘xe5 c6 6.♗e2 ♗f5 7.c3 ♘d7' ],
             [ self::$validData[2], '1.e4 c5 2.♘f3 {This is foo} ♘c6 3.d4 cxd4 4.♘xd4 ♘f6 5.♘c3 e5 6.♘db5 d6 7.♗g5 a6 8.♘a3' ],
             [ self::$validData[3], '1.d4 ♘f6 2.c4 e6 3.♘c3 ♗b4 4.e3 O-O 5.a3 ♗xc3+ 6.bxc3 b6 7.♗d3 ♗b7 8.f3 c5 {This is foo}' ],
-            [ self::$validData[4], '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.Qxd4 {This is foo} d6' ],
+            [ self::$validData[4], '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.♕xd4 {This is foo} d6' ],
         ];
     }
 
@@ -381,7 +381,7 @@ class FanMovetextTest extends AbstractUnitTestCase
             [ self::$validData[1], '1.e4 ♘f6 (This is foo) 2.e5 ♘d5 3.d4 d6 4.♘f3 dxe5 5.♘xe5 c6 6.♗e2 ♗f5 7.c3 ♘d7' ],
             [ self::$validData[2], '1.e4 c5 2.♘f3 (This is foo) ♘c6 3.d4 cxd4 4.♘xd4 ♘f6 5.♘c3 e5 6.♘db5 d6 7.♗g5 a6 8.♘a3' ],
             [ self::$validData[3], '1.d4 ♘f6 2.c4 e6 3.♘c3 ♗b4 4.e3 O-O 5.a3 ♗xc3+ 6.bxc3 b6 7.♗d3 ♗b7 8.f3 c5 (This is foo)' ],
-            [ self::$validData[4], '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.Qxd4 (This is foo) d6' ],
+            [ self::$validData[4], '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.♕xd4 (This is foo) d6' ],
         ];
     }
 
@@ -392,7 +392,7 @@ class FanMovetextTest extends AbstractUnitTestCase
             [ self::$validData[1], '1.e4 ♘f6 2.   e5 ♘d5 3.d4 d6 4.♘f3 dxe5 5.♘xe5 c6 6.   ♗e2 ♗f5 7.c3 ♘d7' ],
             [ self::$validData[2], '1.e4  c5   2.♘f3   ♘c6 3.d4     cxd4 4   .  ♘xd4 ♘f6 5.♘c3 e5 6.♘db5 d6 7.♗g5 a6 8.♘a3' ],
             [ self::$validData[3], '1.d4 ♘f6 2.c4 e6 3.♘c3 ♗b4 4.e3 O-O 5.a3 ♗xc3+    6.bxc3 b6   7.♗d3   ♗b7   8.f3   c5' ],
-            [ self::$validData[4], '1.♘f3   ♘f6 2.c4   c5  3.g3  b6  4.♗g2  ♗b7  5.O-O e6 6.♘c3 a6 7.d4  cxd4  8.Qxd4  d6' ],
+            [ self::$validData[4], '1.♘f3   ♘f6 2.c4   c5  3.g3  b6  4.♗g2  ♗b7  5.O-O e6 6.♘c3 a6 7.d4  cxd4  8.♕xd4  d6' ],
         ];
     }
 
@@ -403,7 +403,7 @@ class FanMovetextTest extends AbstractUnitTestCase
             [ self::$validData[1], '1.e4 ♘f6 2.e5 ♘d5 3.d4 d6 4.♘f3 dxe5 5.♘xe5 c6 6.♗e2 ♗f5 7.c3 ♘d7' ],
             [ self::$validData[2], '1.e4 c5 2.♘f3 ♘c6 3.d4 cxd4 4.♘xd4 ♘f6 5.♘c3 e5 6.♘db5 d6 7.♗g5 a6 8.♘a3' ],
             [ self::$validData[3], '1.d4 ♘f6 2.c4 e6 3.♘c3 ♗b4 4.e3 0-0 5.a3 ♗xc3+ 6.bxc3 b6 7.♗d3 ♗b7 8.f3 c5' ],
-            [ self::$validData[4], '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.0-0 e6 6.♘c3 a6 7.d4 cxd4 8.Qxd4 d6' ],
+            [ self::$validData[4], '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.0-0 e6 6.♘c3 a6 7.d4 cxd4 8.♕xd4 d6' ],
         ];
     }
 
@@ -414,7 +414,7 @@ class FanMovetextTest extends AbstractUnitTestCase
             [ self::$filteredData[1], '1.e4 ♘f6 {This is foo}     2.e5 ♘d5 3.d4 d6 4.♘f3 dxe5 5.♘xe5 c6 6.♗e2 ♗f5 7.c3 ♘d7' ],
             [ self::$filteredData[2], '1.e4    c5 2  .  ♘f3 {This is foo} ♘c6 3.d4 cxd4 4.♘xd4 ♘f6 5.♘c3 e5 6.♘db5 d6 7.♗g5 a6 8.♘a3' ],
             [ self::$filteredData[3], '1.d4 ♘f6 2.c4 e6 3.♘c3 ♗b4 4.e3 O-O 5.a3 ♗xc3+ 6.bxc3 b6 7.♗d3 ♗b7 8.f3 c5 {This is foo}' ],
-            [ self::$filteredData[4], '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.Qxd4 {This is foo} d6' ],
+            [ self::$filteredData[4], '1.♘f3 ♘f6 2.c4 c5 3.g3 b6 4.♗g2 ♗b7 5.O-O e6 6.♘c3 a6 7.d4 cxd4 8.♕xd4 {This is foo} d6' ],
         ];
     }
 
