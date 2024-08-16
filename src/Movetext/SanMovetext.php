@@ -34,14 +34,26 @@ class SanMovetext extends AbstractMovetext
     {
         foreach (explode(' ', $this->validated) as $key => $val) {
             if (!NagMovetext::glyph($val)) {
-                if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
-                    $exploded = explode(Move::ELLIPSIS, $val);
-                    $this->moves[] = Move::ELLIPSIS;
-                    $this->moves[] = $exploded[1];
-                } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
-                    $this->moves[] = explode('.', $val)[1];
+                if ($key === 0) {
+                    if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
+                        $exploded = explode(Move::ELLIPSIS, $val);
+                        $this->moves[] = Move::ELLIPSIS;
+                        $this->moves[] = $exploded[1];
+                    } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
+                        $this->moves[] = explode('.', $val)[1];
+                    } else {
+                        $this->moves[] = $val;
+                    }
                 } else {
-                    $this->moves[] = $val;
+                    if (preg_match('/^[1-9][0-9]*\.\.\.(.*)$/', $val)) {
+                        $exploded = explode(Move::ELLIPSIS, $val);
+                        $this->moves[] = Move::ELLIPSIS;
+                        $this->moves[] = $exploded[1];
+                    } elseif (preg_match('/^[1-9][0-9]*\.(.*)$/', $val)) {
+                        $this->moves[] = explode('.', $val)[1];
+                    } else {
+                        $this->moves[] = $val;
+                    }
                 }
             }
         }
