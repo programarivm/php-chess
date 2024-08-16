@@ -59,6 +59,30 @@ class FanMovetextTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function get_san_movetext()
+    {
+        $movetext = '1.d4 Nf6 2.Nf3 e6 3.c4 Bb4+ 4.Nbd2 O-O 5.a3 Be7 6.e4 d6 7.Bd3 c5';
+
+        $expected = [ 'd4', '♘f6', '♘f3', 'e6', 'c4', '♗b4+', '♘bd2', 'O-O', 'a3', '♗e7', 'e4', 'd6', '♗d3', 'c5' ];
+
+        $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->moves);
+    }
+
+    /**
+     * @test
+     */
+    public function get_san_moves()
+    {
+        $movetext = '1.d4 ♘f6 2.♘f3 e6 3.c4 ♗b4+ 4.♘bd2 O-O 5.a3 ♗e7 6.e4 d6 7.♗d3 c5';
+
+        $expected = [ 'd4', 'Nf6', 'Nf3', 'e6', 'c4', 'Bb4+', 'Nbd2', 'O-O', 'a3', 'Be7', 'e4', 'd6', 'Bd3', 'c5' ];
+
+        $this->assertEquals($expected, (new FanMovetext(self::$move, $movetext))->sanMoves);
+    }
+
+    /**
+     * @test
+     */
     public function get_metadata_e4_e5__Nd5()
     {
         $movetext = '1.e4 e5 2.♘f3 ♘c6 3.♗b5 ♘f6 4.♘c3 ♗e7 5.d3 d6 6.♗e3 ♗d7 7.♕d2 a6 8.♗a4 b5 9.♗b3 O-O 10.O-O-O b4 11.♘d5';
