@@ -6,19 +6,6 @@ use Chess\Variant\Classical\PGN\Move;
 
 class FanMovetext extends SanMovetext
 {
-    public array $sanMoves;
-
-    /**
-     * Constructor.
-     *
-     * @param \Chess\Variant\Classical\PGN\Move $move
-     * @param string $movetext
-     */
-    public function __construct(Move $move, string $movetext)
-    {
-        parent::__construct($move, $movetext);
-    }
-
     /**
      * Converts a chess move notation to figurine notation
      *
@@ -70,7 +57,7 @@ class FanMovetext extends SanMovetext
 
                 $val = str_replace($move, $fanMove, $val);
                 $this->movetext = str_replace($move, $fanMove, $this->movetext);
-                
+
                 $this->moves[] = $fanMove;
                 $this->sanMoves[] = $this->toSan($fanMove);
             }
@@ -89,9 +76,4 @@ class FanMovetext extends SanMovetext
 
         return $this->validated;
     }
-
-    public function getSanMoves(): array {
-        return $this->sanMoves;
-    }
-
 }
