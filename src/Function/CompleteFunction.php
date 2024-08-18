@@ -14,6 +14,7 @@ use Chess\Eval\BishopPairEval;
 use Chess\Eval\CenterEval;
 use Chess\Eval\ConnectivityEval;
 use Chess\Eval\DefenseEval;
+use Chess\Eval\DeflectionEval;
 use Chess\Eval\DiagonalOppositionEval;
 use Chess\Eval\DirectOppositionEval;
 use Chess\Eval\DiscoveredCheckEval;
@@ -24,6 +25,7 @@ use Chess\Eval\IsolatedPawnEval;
 use Chess\Eval\KingSafetyEval;
 use Chess\Eval\KnightOutpostEval;
 use Chess\Eval\MaterialEval;
+use Chess\Eval\OverloadingEval;
 use Chess\Eval\OverloadingEval;
 use Chess\Eval\PassedPawnEval;
 use Chess\Eval\PressureEval;
@@ -65,5 +67,20 @@ class CompleteFunction extends AbstractFunction
         DirectOppositionEval::class,
         AttackEval::class,
         OverloadingEval::class,
+        DeflectionEval::class,
     ];
+
+    public function getEval(): array
+    {
+        return $this->eval;
+    }
+
+    public function names(): array
+    {
+        foreach ($this->eval as $val) {
+            $names[] = (new \ReflectionClass($val))->getConstant('NAME');
+        }
+
+        return $names;
+    }
 }
