@@ -6,12 +6,9 @@ use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\AbstractPiece;
 
-class DeflectionEval extends AbstractEval implements
-    ElaborateEvalInterface,
-    ExplainEvalInterface
+class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
 
     const NAME = 'Deflection';
 
@@ -20,19 +17,6 @@ class DeflectionEval extends AbstractEval implements
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
-        
-        $this->range = [1, 6];
-
-        $this->subject = [
-            'White',
-            'Black',
-        ];
-
-        $this->observation = [
-            "has a slight deflection advantage",
-            "has a moderate deflection advantage",
-            "has a total deflection advantage",
-        ];
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->color === $this->board->turn) {
@@ -45,11 +29,15 @@ class DeflectionEval extends AbstractEval implements
                         $clone->playLan($clone->turn, $piece->sq . $square);
                         $clone->refresh();
 
-                        $primaryDeflectionPhrase = $this->primaryPhrase($piece, $attackingPieces);
+                        $legalMovesCount = count($legalMoveSquares);
+                        $primaryDeflectionPhrase = $this->primaryPhrase($piece, $attackingPieces, $legalMovesCount);
 
                         $this->checkExposedPieceAdvantage($clone, $piece, $primaryDeflectionPhrase);
 
                         if ($this->deflectionExists) {
+                            if($legalMovesCount == 1) {
+                                $this->elaboration[0] = str_replace("may well", "will", $this->elaboration[0]);
+                            }
                             break;
                         }
                     }
@@ -59,16 +47,13 @@ class DeflectionEval extends AbstractEval implements
                 break;
             }
         }
-
-        $this->explain($this->result);
     }
 
-    private function primaryPhrase(AbstractPiece $piece, array $attackingPieces): string {
+    private function primaryPhrase(AbstractPiece $piece, array $attackingPieces, int $legalMovesCount): string {
         $piecePhrase = PiecePhrase::create($piece);
-
         $attackedByPhrase = $this->attackedByPhrase($attackingPieces);
 
-        return "$piecePhrase is deflected due to $attackedByPhrase, ";
+        return ($legalMovesCount > 1 ? "If " : "") . "$piecePhrase is deflected due to $attackedByPhrase, ";
     }
 
     private function attackedByPhrase(array $attackingPieces): string {
@@ -93,7 +78,6 @@ class DeflectionEval extends AbstractEval implements
                     $diffPhrases[] = $val;
                 }
             }
-            $this->result[$piece->oppColor()] += round($diffResult, 2);
             $this->elaborateExposedPieceAdvantage($primaryDeflectionPhrase, $diffPhrases);
             $this->deflectionExists = true;
         }
