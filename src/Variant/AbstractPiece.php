@@ -101,6 +101,21 @@ abstract class AbstractPiece
         return $defending;
     }
 
+    /**
+     * Returns array of pieces, the piece is defended by
+     */
+    public function defended(): ?array
+    {
+        $defendedBy = [];
+        foreach ($this->board->pieces($this->color) as $piece) {
+            if (in_array($this->sq, $piece->defendedSqs())) {
+                $defendedBy[] = $piece;
+            }
+        }
+
+        return $defendedBy;
+    }
+
     public function isAttackingKing(): bool
     {
         foreach ($this->attacked() as $piece) {

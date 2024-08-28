@@ -65,7 +65,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
     public function back_rank_deflection()
     {
         $expectedElaboration = [
-          "White's king on g1 is deflected due to the rook on h1, white's queen on f1 will be exposed to attack.",
+          "White's king on g1 is deflected due to the rook on h1, these pieces will be exposed to attack: White's queen on f1, the pawn on f2; threatning a check.",
         ];
 
         $board = (new StrToBoard('2r5/5pk1/6p1/8/8/4RR2/5PP1/2q2QKr w - - 0 1'))
@@ -82,7 +82,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
     public function rook_deflection_for_pawn_promotion()
     {
         $expectedElaboration = [
-          "If the rook on d5 is deflected due to the rook on g5, the pawn on d7 is not threatened and may well be advanced for promotion.",
+          "If the rook on d5 is deflected due to the rook on g5, the pawn on d7 is not attacked by it and may well be advanced for promotion.",
         ];
 
         $board = (new StrToBoard('8/3P4/2P5/k2r2R1/8/8/5K2/8 b - - 1 1'))
@@ -96,15 +96,50 @@ class DeflectionEvalTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function queen_deflection_for_protecting_multiple_advanced_pawns()
+    {
+        $expectedElaboration = [
+          "If Black's queen on d5 is deflected due to the rook on h5, these pawns are not attacked by it and may well be advanced for promotion: the pawn on d7, the pawn on c6.",
+        ];
+
+        $board = (new StrToBoard('8/3P4/2P5/k2q3R/8/8/5K2/8 b - - 1 1'))
+          ->create();
+
+        $deflectionEval = new DeflectionEval($board);
+
+        $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
+    }
+
+    /**
+     * @test
+     */
+    public function deflection_for_exposing_king_with_checkmate()
+    {
+        $expectedElaboration = [
+          "Black's queen on e7 is deflected due to the rook on f8, the pawn on h7 will be exposed to attack; threatning checkmate.",
+        ];
+
+        $board = (new StrToBoard('2b2Rk1/4q2p/3r2pQ/8/8/3r3R/6PP/6K1 b - - 1 1'))
+          ->create();
+
+        $deflectionEval = new DeflectionEval($board);
+
+        $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
+    }
+
+    /**
+     * @test
+     */
     public function dev_test()
     {
-        $board = (new StrToBoard('2b2Rk1/4q2p/3r2pQ/8/8/3r3R/6PP/6K1 b - - 1 1'))
+        $board = (new StrToBoard('8/3P4/2P5/k2q3R/8/8/5K2/8 b - - 1 1'))
           ->create();
 
         $deflectionEval = new DeflectionEval($board);
 
         print_r("*****DEV_TEST*****");
         print_r($deflectionEval->getElaboration());
+
         print_r("*****DEV_TEST*****");
         $this->assertSame(true, true);
     }
