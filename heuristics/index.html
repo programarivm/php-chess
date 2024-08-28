@@ -228,15 +228,17 @@
 <p>The evaluation features are used in two heuristics classes: <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenHeuristicsTest.php">Chess\FenHeuristics</a> and <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicTest.php">Chess\SanHeuristic</a>. The former allows to transform a FEN position to numbers while the latter transforms an entire chess game in SAN format to numbers.</p>
 <pre><code class="language-php">use Chess\FenHeuristics;
 use Chess\FenToBoardFactory;
-use Chess\StandardFunction;
+use Chess\Function\CompleteFunction;
+
+$function = new CompleteFunction();
 
 $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
 $board = FenToBoardFactory::create($fen);
 
 $result = [
-    'names' =&gt; (new StandardFunction())-&gt;names(),
-    'balance' =&gt; (new FenHeuristics($board))-&gt;getBalance(),
+    'names' =&gt; $function-&gt;names(),
+    'balance' =&gt; (new FenHeuristics($function, $board))-&gt;getBalance(),
 ];
 
 print_r($result);
@@ -273,6 +275,7 @@ print_r($result);
             [25] =&gt; Diagonal opposition
             [26] =&gt; Direct opposition
             [27] =&gt; Attack
+            [28] =&gt; Overloading
         )
 
     [balance] =&gt; Array
@@ -305,18 +308,22 @@ print_r($result);
             [25] =&gt; 0
             [26] =&gt; 0
             [27] =&gt; 0
+            [28] =&gt; 0
         )
 
 )
 </code></pre>
 <p>A chess game can be plotted in terms of balance. +1 is the best possible evaluation for White and -1 the best possible evaluation for Black. Both forces being set to 0 means they're balanced.</p>
 <pre><code class="language-php">use Chess\SanHeuristic;
+use Chess\Function\CompleteFunction;
+
+$function = new CompleteFunction();
 
 $name = 'Space';
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$balance = (new SanHeuristic($name, $movetext))-&gt;getBalance();
+$balance = (new SanHeuristic($function, $name, $movetext))-&gt;getBalance();
 
 print_r($balance);
 </code></pre>
