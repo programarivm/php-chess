@@ -130,18 +130,49 @@ class DeflectionEvalTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function dev_test()
+    public function knight_deflection_with_check()
     {
-        $board = (new StrToBoard('8/3P4/2P5/k2q3R/8/8/5K2/8 b - - 1 1'))
+        $expectedElaboration = [
+          "White's queen on e3 is deflected due to the knight on f3, the rook on e1 will be exposed to attack; threatning a check.",
+        ];
+
+        $board = (new StrToBoard('4r1k1/5p2/3q2pp/8/6P1/4QnNP/5P2/4R1K1 w - - 1 2'))
           ->create();
 
         $deflectionEval = new DeflectionEval($board);
 
-        print_r("*****DEV_TEST*****");
-        print_r($deflectionEval->getElaboration());
-
-        print_r("*****DEV_TEST*****");
-        $this->assertSame(true, true);
+        $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
+    /**
+     * @test
+     */
+    public function no_deflection()
+    {
+        $expectedElaboration = [];
+
+        $board = (new StrToBoard('r1bqkb1r/2pp1ppp/p1n2n2/1p2p3/4P3/1B3N2/PPPP1PPP/RNBQ1RK1 w Qkq - 0 1'))
+          ->create();
+
+        $deflectionEval = new DeflectionEval($board);
+
+        $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
+    }
+
+    // /**
+    //  * @test
+    //  */
+    // public function extension_with_checking_unguarded_squares()
+    // {
+    //     $board = (new StrToBoard('2R3k1/1q5p/4P1pQ/5p2/8/8/1B2r1PP/1K6 b - - 1 1'))
+    //       ->create();
+
+    //     $deflectionEval = new DeflectionEval($board);
+
+    //     print_r("*****DEV_TEST*****");
+    //     print_r($deflectionEval->getElaboration());
+
+    //     print_r("*****DEV_TEST*****");
+    //     $this->assertSame(true, true);
+    // }
 }
