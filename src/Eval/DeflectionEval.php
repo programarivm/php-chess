@@ -24,9 +24,11 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
 
         foreach ($this->board->pieces($this->board->turn) as $piece) {
             $legalMoveSquares = $this->board->legal($piece->sq);
-            $attackingPieces = $checkingPieces + $piece->attacking();
             $defendedSquares = $this->board->pieceBySq($piece->sq)->defendedSqs();
+            // considering deflection due to pieces checking the king or attacking the piece
+            $attackingPieces = $checkingPieces + $piece->attacking();
 
+            // for optimisation, sorting legal moves to check cases of capturing attacking pieces first, as they would majorly lead to deflection cases
             $this->sortLegalMoves($legalMoveSquares, $attackingPieces);
 
             if (!empty($legalMoveSquares) && !empty($attackingPieces)) {
@@ -36,11 +38,12 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
                 foreach ($legalMoveSquares as $square) {
                     $clone = $this->board->clone();
                     $clone->playLan($clone->turn, $piece->sq . $square);
-                    
+
+                    // checks for exposed pieces and protected pawns to ensure deflection
                     $exposedPieceList = $this->checkExposedPieceAdvantage($clone, $defendedSquares, $square);
                     $protectedPawnsList = $this->checkAdvancedPawnAdvantage($clone, $piece);
-                    
-                    if(!empty($exposedPieceList) || !empty($protectedPawnsList)) {
+
+                    if (!empty($exposedPieceList) || !empty($protectedPawnsList)) {
                         $this->deflectionExists = true;
                         $this->elaborateAdvantage($primaryDeflectionPhrase, $exposedPieceList, $protectedPawnsList, $legalMovesCount);
                         break;
@@ -53,11 +56,15 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
         }
     }
 
-    private function sortLegalMoves(&$legalMoveSquares, $attackingPieces) {
-        usort($legalMoveSquares, function($a, $b) use ($attackingPieces) {
+    /**
+     * sorts the legal moves array, so that it arranges the moves for capturing the attacking pieces on top
+     */
+    private function sortLegalMoves(&$legalMoveSquares, $attackingPieces)
+    {
+        usort($legalMoveSquares, function ($a, $b) use ($attackingPieces) {
             $aInAttacking = array_key_exists($a, $attackingPieces);
             $bInAttacking = array_key_exists($b, $attackingPieces);
-    
+
             if ($aInAttacking && !$bInAttacking) {
                 return -1;
             } elseif (!$aInAttacking && $bInAttacking) {
@@ -68,7 +75,8 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
         });
     }
 
-    private function primaryPhrase(AbstractPiece $piece, array $attackingPieces, int $legalMovesCount): string {
+    private function primaryPhrase(AbstractPiece $piece, array $attackingPieces, int $legalMovesCount): string
+    {
         $piecePhrase = PiecePhrase::create($piece);
         $basePhrase = $piecePhrase . " is deflected";
         $attackedByPhrase = $this->attackedByPhrase($attackingPieces);
@@ -76,7 +84,8 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
         return ($legalMovesCount > 1 ? "If " : "") . $basePhrase . $attackedByPhrase . ", ";
     }
 
-    private function attackedByPhrase(array $attackingPieces): string {
+    private function attackedByPhrase(array $attackingPieces): string
+    {
         $basePhrase = " due to ";
         if (count($attackingPieces) === 1) {
             return $basePhrase . PiecePhrase::create($attackingPieces[0]);
@@ -85,28 +94,31 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
             $lastSquare = array_pop($squares);
             return $basePhrase . implode(', ', $squares) . ' and ' . $lastSquare;
         }
-        
+
         return "";
     }
 
-    private function checkExposedPieceAdvantage(AbstractBoard $clone, array $defendedSquares, string $square): array {
+    /**
+     * checks for exposed pieces due to deflection, also checks for possibility of check or mate to the king
+     */
+    private function checkExposedPieceAdvantage(AbstractBoard $clone, array $defendedSquares, string $square): array
+    {
         $piecePhrase = [];
-        
+
         $updatedDefendedSquares = $clone->pieceBySq($square)->defendedSqs();
         $undefendedSquares = array_diff($defendedSquares, $updatedDefendedSquares);
 
-        if(!empty($undefendedSquares)) {
+        if (!empty($undefendedSquares)) {
             foreach ($undefendedSquares as $undefendedSquare) {
                 $attackers = $clone->pieceBySq($undefendedSquare)->attacking();
-                if(!empty($attackers)) {
+                if (!empty($attackers)) {
                     $piecePhrase[] = PiecePhrase::create($clone->pieceBySq($undefendedSquare));
-                
+
                     foreach ($attackers as $attacker) {
                         $clone->playLan($clone->turn, $attacker->sq . $undefendedSquare);
                         if ($clone->isMate()) {
                             $this->mateExists = true;
-                        }
-                        else if ($clone->isCheck()) {
+                        } else if ($clone->isCheck()) {
                             $this->checkExists = true;
                         }
                         $clone->undo();
@@ -114,13 +126,17 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
                 }
             }
         }
-        
+
         return $piecePhrase;
     }
 
-    private function checkAdvancedPawnAdvantage(AbstractBoard $clone, AbstractPiece $piece): array {
+    /**
+     * checks for the advanced pawns that become protected due to deflection
+     */
+    private function checkAdvancedPawnAdvantage(AbstractBoard $clone, AbstractPiece $piece): array
+    {
         $pawnsList = [];
-    
+
         $advancedPawnEval = new FarAdvancedPawnEval($clone);
         $advancedPawns = $advancedPawnEval->getResult()[$clone->turn];
 
@@ -133,7 +149,7 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
                         return strcmp($obj1->sq, $obj2->sq);
                     }
                 );
-                
+
                 foreach ($attackersDiff as $attacker) {
                     if ($attacker->sq === $piece->sq) {
                         $pawnsList[] = PiecePhrase::create($this->board->pieceBySq($pawn));
@@ -145,7 +161,8 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
         return $pawnsList;
     }
 
-    private function elaborateAdvantage(String $primaryDeflectionPhrase, array $exposedPieceList, array $protectedPawnsList, int $legalMovesCount) {
+    private function elaborateAdvantage(String $primaryDeflectionPhrase, array $exposedPieceList, array $protectedPawnsList, int $legalMovesCount)
+    {
         if (!$this->deflectionExists) {
             return;
         }
@@ -154,16 +171,17 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
         $protectedPawnPhrase = $this->elaborateProtectedPawnAdvantage($protectedPawnsList);
         $elaborationPhrase = $primaryDeflectionPhrase . $exposedPiecePhrase . $protectedPawnPhrase;
 
-        if($legalMovesCount == 1) {
+        // in case of only moves, also presenting more details
+        if ($legalMovesCount == 1) {
             $elaborationPhrase = str_replace("may well", "will", $elaborationPhrase);
-            if($this->mateExists) {
+            if ($this->mateExists) {
                 $elaborationPhrase .= "; threatning checkmate";
             }
-            if($this->checkExists) {
+            if ($this->checkExists) {
                 $elaborationPhrase .= "; threatning a check";
             }
         }
-        
+
         $elaborationPhrase .= ".";
 
         $this->elaboration[] = $elaborationPhrase;
