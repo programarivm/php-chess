@@ -13,6 +13,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function basic_deflection_test()
     {
+        $expectedResult = [
+            'w' => [],
+            'b' => ['e8'],
+        ];
+
         $expectedElaboration = [
             "Black's king on e8 is deflected due to the bishop on f7, black's queen on d8 will be exposed to attack.",
         ];
@@ -22,6 +27,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
@@ -30,6 +36,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function deflection_with_multiple_pieces()
     {
+        $expectedResult = [
+            'w' => [],
+            'b' => ['e8'],
+        ];
+
         $expectedElaboration = [
             "Black's king on e8 is deflected due to the bishop on f7 and the rook on e1, black's queen on d8 will be exposed to attack.",
         ];
@@ -39,6 +50,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
@@ -47,6 +59,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function optional_deflection()
     {
+        $expectedResult = [
+            'w' => [],
+            'b' => ['d8'],
+        ];
+
         $expectedElaboration = [
             "If Black's king on d8 is deflected due to White's queen on d2, black's queen on e7 may well be exposed to attack.",
         ];
@@ -56,6 +73,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
@@ -64,6 +82,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function back_rank_deflection()
     {
+        $expectedResult = [
+            'w' => ['g1'],
+            'b' => [],
+        ];
+
         $expectedElaboration = [
             "White's king on g1 is deflected due to the rook on h1, these pieces will be exposed to attack: White's queen on f1, the pawn on f2; threatning a check.",
         ];
@@ -73,6 +96,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
@@ -81,6 +105,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function rook_deflection_for_pawn_promotion()
     {
+        $expectedResult = [
+            'w' => [],
+            'b' => ['d5'],
+        ];
+
         $expectedElaboration = [
             "If the rook on d5 is deflected due to the rook on g5, the pawn on d7 is not attacked by it and may well be advanced for promotion.",
         ];
@@ -90,6 +119,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
@@ -98,6 +128,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function queen_deflection_for_protecting_multiple_advanced_pawns()
     {
+        $expectedResult = [
+            'w' => [],
+            'b' => ['d5'],
+        ];
+
         $expectedElaboration = [
             "If Black's queen on d5 is deflected due to the rook on h5, these pawns are not attacked by it and may well be advanced for promotion: the pawn on d7, the pawn on c6.",
         ];
@@ -107,6 +142,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
@@ -115,6 +151,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function deflection_for_exposing_king_with_checkmate()
     {
+        $expectedResult = [
+            'w' => [],
+            'b' => ['e7'],
+        ];
+
         $expectedElaboration = [
             "Black's queen on e7 is deflected due to the rook on f8, the pawn on h7 will be exposed to attack; threatning checkmate.",
         ];
@@ -124,6 +165,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
@@ -132,6 +174,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function knight_deflection_with_check()
     {
+        $expectedResult = [
+            'w' => ['e3'],
+            'b' => [],
+        ];
+
         $expectedElaboration = [
             "White's queen on e3 is deflected due to the knight on f3, the rook on e1 will be exposed to attack; threatning a check.",
         ];
@@ -141,6 +188,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 
@@ -149,6 +197,11 @@ class DeflectionEvalTest extends AbstractUnitTestCase
      */
     public function no_deflection()
     {
+        $expectedResult = [
+            'w' => [],
+            'b' => [],
+        ];
+
         $expectedElaboration = [];
 
         $board = (new StrToBoard('r1bqkb1r/2pp1ppp/p1n2n2/1p2p3/4P3/1B3N2/PPPP1PPP/RNBQ1RK1 w Qkq - 0 1'))
@@ -156,6 +209,7 @@ class DeflectionEvalTest extends AbstractUnitTestCase
 
         $deflectionEval = new DeflectionEval($board);
 
+        $this->assertSame($expectedResult, $deflectionEval->getResult());
         $this->assertSame($expectedElaboration, $deflectionEval->getElaboration());
     }
 

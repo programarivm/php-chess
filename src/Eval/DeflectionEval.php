@@ -5,9 +5,12 @@ namespace Chess\Eval;
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\AbstractPiece;
+use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
-class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
+class DeflectionEval extends AbstractEval implements
+    ElaborateEvalInterface,
+    InverseEvalInterface
 {
     use ElaborateEvalTrait;
 
@@ -20,6 +23,12 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
+
+        $this->result = [
+            Color::W => [],
+            Color::B => [],
+        ];
+
         $checkingPieces = $this->board->piece($this->board->turn, Piece::K)->attacking();
 
         foreach ($this->board->pieces($this->board->turn) as $piece) {
@@ -45,6 +54,7 @@ class DeflectionEval extends AbstractEval implements ElaborateEvalInterface
 
                     if (!empty($exposedPieceList) || !empty($protectedPawnsList)) {
                         $this->deflectionExists = true;
+                        $this->result[$piece->color][] = $piece->sq;
                         $this->elaborateAdvantage($primaryDeflectionPhrase, $exposedPieceList, $protectedPawnsList, $legalMovesCount);
                         break;
                     }

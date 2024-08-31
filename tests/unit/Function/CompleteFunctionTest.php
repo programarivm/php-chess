@@ -42,6 +42,7 @@ class CompleteFunctionTest extends AbstractUnitTestCase
             'Direct opposition',
             'Attack',
             'Overloading',
+            'Deflection'
         ];
 
         $this->assertSame($expected, (new CompleteFunction())->names());
