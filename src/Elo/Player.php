@@ -4,21 +4,21 @@ namespace Chess\Elo;
 
 class Player
 {
-    private float $rating;
+    private int $rating;
 
-    public function __construct(float $rating)
+    public function __construct(int $rating)
     {
         $this->rating = $rating;
     }
 
-    public function setRating($rating): Player
+    public function setRating(int $rating): Player
     {
         $this->rating = $rating;
 
         return $this;
     }
 
-    public function getRating(): float
+    public function getRating(): int
     {
         return $this->rating;
     }
