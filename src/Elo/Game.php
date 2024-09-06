@@ -49,10 +49,10 @@ class Game
 
     public function count(): void
     {
-        $rating1 = $this->w->getRating() + $this->k * $this->getGoalIndex() * ($this->getMatchScore() - $this->getExpectedScore());
-        $rating2 = $this->w->getRating() + $this->b->getRating() - $rating1;
-        $this->w->setRating($rating1);
-        $this->b->setRating($rating2);
+        $wRating = $this->w->getRating() + $this->k * $this->getGoalIndex() * ($this->getMatchScore() - $this->getExpectedScore());
+        $bRating = $this->w->getRating() + $this->b->getRating() - $wRating;
+        $this->w->setRating($wRating);
+        $this->b->setRating($bRating);
     }
 
     public function getW(): Player
