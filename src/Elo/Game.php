@@ -6,21 +6,21 @@ use Closure;
 
 class Game
 {
-    private $player1;
+    private Player $player1;
 
-    private $player2;
+    private Player $player2;
 
-    private $score1;
+    private float $score1;
 
-    private $score2;
+    private float $score2;
 
-    private $k;
+    private float $k;
 
     private $goalIndexHandler;
 
     private $homeCorrectionHandler;
 
-    private $home;
+    private int $home;
 
     const WIN = 1;
     const DRAW = 0.5;
@@ -32,7 +32,7 @@ class Game
         $this->player2 = $player2;
     }
 
-    public function setScore($score1, $score2)
+    public function setScore(float $score1, float $score2): Game
     {
         $this->score1 = $score1;
         $this->score2 = $score2;
@@ -40,14 +40,14 @@ class Game
         return $this;
     }
 
-    public function setK($k)
+    public function setK(float $k): Game
     {
         $this->k = $k;
 
         return $this;
     }
 
-    public function count()
+    public function count(): void
     {
         $rating1 = $this->player1->getRating() + $this->k * $this->getGoalIndex() * ($this->getMatchScore() - $this->getExpectedScore());
         $rating2 = $this->player1->getRating() + $this->player2->getRating() - $rating1;
@@ -55,17 +55,17 @@ class Game
         $this->player2->setRating($rating2);
     }
 
-    public function getPlayer1()
+    public function getPlayer1(): Player
     {
         return $this->player1;
     }
 
-    public function getPlayer2()
+    public function getPlayer2(): Player
     {
         return $this->player2;
     }
 
-    private function getMatchScore()
+    private function getMatchScore(): float
     {
         $diff = $this->score1 - $this->score2;
         if ($diff < 0) {
@@ -77,7 +77,7 @@ class Game
         return static::DRAW;
     }
 
-    private function getExpectedScore()
+    private function getExpectedScore(): float
     {
         $diff = $this->player2->getRating() - $this->player1->getRating();
         $diff = $this->getHomeCorrection($diff);
@@ -85,7 +85,7 @@ class Game
         return 1 / (1 + pow(10, ($diff / 400)));
     }
 
-    public function setGoalIndexHandler(Closure $handler)
+    public function setGoalIndexHandler(Closure $handler): Game
     {
         $this->goalIndexHandler = $handler;
 
@@ -101,7 +101,7 @@ class Game
         return 1;
     }
 
-    public function setHomeCorrectionHandler(Closure $handler)
+    public function setHomeCorrectionHandler(Closure $handler): Game
     {
         $this->homeCorrectionHandler = $handler;
 
@@ -117,7 +117,7 @@ class Game
         return $diff;
     }
 
-    public function setHome($player)
+    public function setHome(Player $player): Game
     {
         $this->home = $player;
 
