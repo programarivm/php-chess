@@ -6,6 +6,12 @@ use Closure;
 
 class Game
 {
+    const WIN = 1;
+
+    const DRAW = 0.5;
+
+    const LOSS = 0;
+
     private Player $w;
 
     private Player $b;
@@ -21,10 +27,6 @@ class Game
     private $homeCorrectionHandler;
 
     private int $home;
-
-    const WIN = 1;
-    const DRAW = 0.5;
-    const LOSS = 0;
 
     public function __construct(Player $w, Player $b)
     {
