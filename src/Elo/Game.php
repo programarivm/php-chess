@@ -6,9 +6,9 @@ use Closure;
 
 class Game
 {
-    private Player $player1;
+    private Player $w;
 
-    private Player $player2;
+    private Player $b;
 
     private float $score1;
 
@@ -26,10 +26,10 @@ class Game
     const DRAW = 0.5;
     const LOSS = 0;
 
-    public function __construct(Player $player1, Player $player2)
+    public function __construct(Player $w, Player $b)
     {
-        $this->player1 = $player1;
-        $this->player2 = $player2;
+        $this->w = $w;
+        $this->b = $b;
     }
 
     public function setScore(float $score1, float $score2): Game
@@ -49,20 +49,20 @@ class Game
 
     public function count(): void
     {
-        $rating1 = $this->player1->getRating() + $this->k * $this->getGoalIndex() * ($this->getMatchScore() - $this->getExpectedScore());
-        $rating2 = $this->player1->getRating() + $this->player2->getRating() - $rating1;
-        $this->player1->setRating($rating1);
-        $this->player2->setRating($rating2);
+        $rating1 = $this->w->getRating() + $this->k * $this->getGoalIndex() * ($this->getMatchScore() - $this->getExpectedScore());
+        $rating2 = $this->w->getRating() + $this->b->getRating() - $rating1;
+        $this->w->setRating($rating1);
+        $this->b->setRating($rating2);
     }
 
-    public function getPlayer1(): Player
+    public function getW(): Player
     {
-        return $this->player1;
+        return $this->w;
     }
 
-    public function getPlayer2(): Player
+    public function getB(): Player
     {
-        return $this->player2;
+        return $this->b;
     }
 
     private function getMatchScore(): float
@@ -79,7 +79,7 @@ class Game
 
     private function getExpectedScore(): float
     {
-        $diff = $this->player2->getRating() - $this->player1->getRating();
+        $diff = $this->b->getRating() - $this->w->getRating();
         $diff = $this->getHomeCorrection($diff);
 
         return 1 / (1 + pow(10, ($diff / 400)));
