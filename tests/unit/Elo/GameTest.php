@@ -62,6 +62,23 @@ class GameTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function get_rating_1500_2000_0_0()
+    {
+        $w = new Player(1500);
+        $b = new Player(2000);
+
+        $game =  new Game($w, $b);
+        $game->setK(32)
+            ->setScore(0, 0)
+            ->count();
+
+        $this->assertEquals(1514, $w->getRating());
+        $this->assertEquals(1985, $b->getRating());
+    }
+
+    /**
+     * @test
+     */
     public function get_rating_1500_2000_1_1()
     {
         $w = new Player(1500);
