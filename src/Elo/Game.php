@@ -10,9 +10,9 @@ class Game
 
     private Player $b;
 
-    private float $score1;
+    private float $wScore;
 
-    private float $score2;
+    private float $bScore;
 
     private float $k;
 
@@ -32,10 +32,10 @@ class Game
         $this->b = $b;
     }
 
-    public function setScore(float $score1, float $score2): Game
+    public function setScore(float $wScore, float $bScore): Game
     {
-        $this->score1 = $score1;
-        $this->score2 = $score2;
+        $this->wScore = $wScore;
+        $this->bScore = $bScore;
 
         return $this;
     }
@@ -67,7 +67,7 @@ class Game
 
     private function getMatchScore(): float
     {
-        $diff = $this->score1 - $this->score2;
+        $diff = $this->wScore - $this->bScore;
         if ($diff < 0) {
             return static::LOSS;
         } elseif ($diff > 0) {
@@ -95,7 +95,7 @@ class Game
     private function getGoalIndex()
     {
         if (is_callable($this->goalIndexHandler)) {
-            return call_user_func($this->goalIndexHandler, $this->score1, $this->score2);
+            return call_user_func($this->goalIndexHandler, $this->wScore, $this->bScore);
         }
 
         return 1;
