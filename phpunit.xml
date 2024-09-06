@@ -10,6 +10,7 @@
     <testsuites>
         <testsuite name="unit">
             <directory>tests/unit/Computer</directory>
+            <directory>tests/unit/Elo</directory>
             <directory>tests/unit/Eval</directory>
             <directory>tests/unit/Function</directory>
             <directory>tests/unit/Media</directory>
