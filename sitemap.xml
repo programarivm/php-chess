@@ -31,12 +31,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://chesslablab.github.io/php-chess/play-your-first-move/</loc>
+         <loc>https://chesslablab.github.io/php-chess/read-moves/</loc>
          <lastmod>2024-09-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://chesslablab.github.io/php-chess/read-moves/</loc>
+         <loc>https://chesslablab.github.io/php-chess/your-first-move/</loc>
          <lastmod>2024-09-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
