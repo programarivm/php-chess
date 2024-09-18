@@ -16,11 +16,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://chesslablab.github.io/php-chess/getting-started/</loc>
-         <lastmod>2024-09-18</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://chesslablab.github.io/php-chess/heuristics/</loc>
          <lastmod>2024-09-18</lastmod>
          <changefreq>daily</changefreq>
@@ -32,6 +27,11 @@
     </url>
     <url>
          <loc>https://chesslablab.github.io/php-chess/play-chess/</loc>
+         <lastmod>2024-09-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://chesslablab.github.io/php-chess/play-your-first-move/</loc>
          <lastmod>2024-09-18</lastmod>
          <changefreq>daily</changefreq>
     </url>

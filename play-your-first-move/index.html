@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://chesslablab.github.io/php-chess/getting-started/">
+        <link rel="canonical" href="https://chesslablab.github.io/php-chess/play-your-first-move/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Getting Started - PHP Chess</title>
+        <title>Play Your First Move - PHP Chess</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -33,11 +33,18 @@
                             <li class="navitem">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../installation/" class="nav-link">Installation</a>
-                            </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Getting Started</a>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../installation/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Play Your First Move</a>
+</li>
+                                </ul>
                             </li>
                             <li class="navitem">
                                 <a href="../read-moves/" class="nav-link">Read Moves</a>
@@ -90,7 +97,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#getting-started" class="nav-link">Getting Started</a>
+            <li class="nav-item" data-level="1"><a href="#play-your-first-move" class="nav-link">Play Your First Move</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -99,7 +106,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="getting-started">Getting Started</h1>
+<h1 id="play-your-first-move">Play Your First Move</h1>
 <p>✨ Some familiarity with chess terms and concepts is required but if you're new to chess this tutorial will guide you through how to easily create amazing apps with PHP Chess. Happy coding and learning!</p>
 <p>The <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/BoardTest.php">Chess\Variant\Classical\Board</a> class is the easiest way to get started with PHP Chess.</p>
 <pre><code class="language-php">use Chess\Variant\Classical\Board;
