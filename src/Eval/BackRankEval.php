@@ -48,7 +48,7 @@ class BackRankEval extends AbstractEval implements
         ];
 
         $kingPieces = array_filter($this->board->pieces(), function (AbstractPiece $piece) {
-            return $piece->isKing();
+            return $piece->id === Piece::K;
         });
 
         foreach ($kingPieces as $piece) {
