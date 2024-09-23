@@ -137,4 +137,9 @@ abstract class AbstractPiece
 
         return false;
     }
+
+    public function isKing() : bool
+    {
+        return $this->id == Piece::K;
+    }
 }
