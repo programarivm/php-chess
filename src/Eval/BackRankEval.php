@@ -34,7 +34,7 @@ class BackRankEval extends AbstractEval implements
             Color::B => [],
         ];
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
             'Black',
@@ -42,9 +42,7 @@ class BackRankEval extends AbstractEval implements
         ];
 
         $this->observation = [
-            "has a slight back-rank vulnerability",
-            "has a moderate back-rank vulnerability",
-            "has a severe back-rank vulnerability",
+            "has a back-rank advantage",
         ];
 
         $kingPieces = array_filter($this->board->pieces(), function (AbstractPiece $piece) {
