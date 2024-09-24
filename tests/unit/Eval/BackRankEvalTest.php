@@ -55,7 +55,7 @@ class BackRankEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "The black player has a back-rank advantage.",
+            "The black player has a back-rank checkmate advantage.",
         ];
 
         $board = FenToBoardFactory::create('3r4/k7/8/8/8/8/5PPP/6K1 w - -');
@@ -76,7 +76,7 @@ class BackRankEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "The white player has a back-rank advantage.",
+            "The white player has a back-rank checkmate advantage.",
         ];
 
         $board = FenToBoardFactory::create('4k3/3ppp2/8/8/8/8/6K1/7R b - -');

@@ -32,7 +32,7 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
         ];
 
         $this->observation = [
-            "has a back-rank advantage",
+            "has a back-rank checkmate advantage",
         ];
 
         $wKing = $this->board->piece(Color::W, Piece::K);
