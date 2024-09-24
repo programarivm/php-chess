@@ -60,25 +60,6 @@ class BackRankEval extends AbstractEval implements
         ]);
     }
 
-    /**
-     * Determines if the specified king is vulnerable on the back rank.
-     * @param AbstractPiece $king
-     * @param array $backRankSquares
-     * @return bool
-     */
-    private function isBackRankVulnerable(AbstractPiece $king, array $backRankSquares): bool
-    {
-        //king should be on the back rank
-        if (!in_array($king->sq, $backRankSquares)) {
-            return false;
-        }
-
-        if (!empty($king->attacking()) && count($king->moveSqs()) < 2) {
-            return true;
-        }
-        return false;
-    }
-
     private function elaborate(AbstractPiece $king): void
     {
         $phrase = PiecePhrase::create($king);
