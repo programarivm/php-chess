@@ -9,11 +9,11 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
- * Class BackRankEval
+ * Back-Rank Evaluation
  *
- * Evaluates back-rank vulnerabilities for kings on a chessboard.
- * This class assesses whether a king is in a vulnerable position on the back rank
- * and can be checkmated based on its current state and surrounding pieces.
+ * A back-rank checkmate is a checkmate delivered by a rook or queen along the
+ * opponent's back rank. The mated king is unable to move up the board because
+ * it is blocked by friendly pawns on the second rank.
  */
 class BackRankEval extends AbstractEval implements
     ElaborateEvalInterface,
