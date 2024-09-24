@@ -29,11 +29,6 @@ class BackRankEval extends AbstractEval implements
     {
         $this->board = $board;
 
-        $this->result = [
-            Color::W => [],
-            Color::B => [],
-        ];
-
         $this->range = [1];
 
         $this->subject = [
