@@ -50,16 +50,19 @@ class BackRankEvalTest extends AbstractUnitTestCase
     public function d1_checkmate()
     {
         $expectedResult = [
-            'w' => [],
-            'b' => [],
+            'w' => 0,
+            'b' => 1,
         ];
-        $expectedElaboration = [];
+
+        $expectedExplanation = [
+            "The black player has a back-rank advantage.",
+        ];
 
         $board = FenToBoardFactory::create('3r4/k7/8/8/8/8/5PPP/6K1 w - -');
         $backRankEval = new BackRankEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
     }
 
     /**
@@ -68,15 +71,18 @@ class BackRankEvalTest extends AbstractUnitTestCase
     public function h8_checkmate()
     {
         $expectedResult = [
-            'w' => [],
-            'b' => [],
+            'w' => 1,
+            'b' => 0,
         ];
-        $expectedElaboration = [];
+
+        $expectedExplanation = [
+            "The white player has a back-rank advantage.",
+        ];
 
         $board = FenToBoardFactory::create('4k3/3ppp2/8/8/8/8/6K1/7R b - -');
         $backRankEval = new BackRankEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
     }
 }

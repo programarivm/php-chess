@@ -2,7 +2,6 @@
 
 namespace Chess\Eval;
 
-use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
@@ -15,11 +14,8 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * opponent's back rank. The mated king is unable to move up the board because
  * it is blocked by friendly pawns on the second rank.
  */
-class BackRankEval extends AbstractEval implements
-    ElaborateEvalInterface,
-    ExplainEvalInterface
+class BackRankEval extends AbstractEval implements ExplainEvalInterface
 {
-    use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
     const NAME = 'BackRank';
@@ -52,29 +48,56 @@ class BackRankEval extends AbstractEval implements
 
     private function isOnBackRank(AbstractPiece $king): bool
     {
-        if ($king->color === Color::W && $king->rank() === 1) {
-            return true;
-        } elseif ($king->color === Color::B && $king->rank() === $this->board->square::SIZE['ranks']) {
-            return true;
+        if ($king->color === Color::W) {
+            return $king->rank() === 1;
         }
 
-        return false;
+        return $king->rank() === $this->board->square::SIZE['ranks'];
     }
 
     private function isBlocked(AbstractPiece $king): bool
     {
-        if ($king->color === Color::W) {
-            // TODO
-        } elseif ($king->color === Color::B) {
-            // TODO
+        if ($this->isOnCorner($king)) {
+            return $this->countBlockingPawns($king) === 2;
         }
 
-        return false;
+        return $this->countBlockingPawns($king) === 3;
     }
 
-    private function elaborate(AbstractPiece $king): void
+    private function isOnCorner(AbstractPiece $king): bool
     {
-        $phrase = PiecePhrase::create($king);
-        $this->elaboration[] = ucfirst("$phrase is vulnerable to back-rank checkmate.");
+        if ($king->color === Color::W) {
+            return
+                $king->sq === $this->board->square->toAlgebraic(
+                    0,
+                    0
+                ) ||
+                $king->sq === $this->board->square->toAlgebraic(
+                    $this->board->square::SIZE['files'] - 1,
+                    0
+                );
+        }
+
+        return
+            $king->sq === $this->board->square->toAlgebraic(
+                0,
+                $this->board->square::SIZE['ranks'] - 1
+            ) ||
+            $king->sq === $this->board->square->toAlgebraic(
+                $this->board->square::SIZE['files'] - 1,
+                $this->board->square::SIZE['ranks'] - 1
+            );
+    }
+
+    private function countBlockingPawns(AbstractPiece $king): int
+    {
+        $count = 0;
+        foreach ($king->defended() as $defended) {
+            if ($defended->id === Piece::P) {
+                $count += 1;
+            }
+        }
+
+        return $count;
     }
 }
