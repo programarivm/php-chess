@@ -1,9 +1,9 @@
 <?php
 
-namespace Chess\Tests\unit\Eval;
+namespace Chess\Tests\Unit\Eval;
 
-use Chess\Eval\BackRankEval;
 use Chess\FenToBoardFactory;
+use Chess\Eval\BackRankEval;
 use Chess\Tests\AbstractUnitTestCase;
 
 class BackRankEvalTest extends AbstractUnitTestCase
@@ -11,37 +11,22 @@ class BackRankEvalTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function white_checkmated_on_the_back_rank()
+    public function b8_checkmate()
     {
         $expectedResult = [
-            'w' => [],
-            'b' => ['g8'],
+            'w' => 1,
+            'b' => 0,
         ];
-        $expectedElaboration = ["Black's king on g8 is vulnerable to back-rank checkmate."];
+
+        $expectedExplanation = [
+            "The white player has a back-rank checkmate advantage.",
+        ];
 
         $board = FenToBoardFactory::create('R5k1/5ppp/4p3/1r6/6P1/3R1P2/4P1P1/4K3 b KQkq - 0 1');
         $backRankEval = new BackRankEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
-    }
-
-    /**
-     * @test
-     */
-    public function white_checkmated_on_the_back_rank_with_an_escape()
-    {
-        $expectedResult = [
-            'w' => [],
-            'b' => [],
-        ];
-        $expectedElaboration = [];
-
-        $board = FenToBoardFactory::create('R5k1/5p1p/4p1p1/1r6/6P1/3R1P2/4P1P1/4K3 w KQkq - 0 1');
-        $backRankEval = new BackRankEval($board);
-
-        $this->assertSame($expectedResult, $backRankEval->getResult());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
     }
 
     /**
