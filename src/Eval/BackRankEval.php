@@ -17,8 +17,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class BackRankEval extends AbstractEval implements
     ElaborateEvalInterface,
-    ExplainEvalInterface,
-    InverseEvalInterface
+    ExplainEvalInterface
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
@@ -32,18 +31,45 @@ class BackRankEval extends AbstractEval implements
         $this->range = [1];
 
         $this->subject = [
-            'Black',
-            'White',
+            'The white player',
+            'The black player',
         ];
 
         $this->observation = [
             "has a back-rank advantage",
         ];
 
+        $wKing = $this->board->piece(Color::W, Piece::K);
+        $bKing = $this->board->piece(Color::B, Piece::K);
 
-        // TODO ...
+        $this->result = [
+            Color::W => (int) ($this->isOnBackRank($bKing) && $this->isBlocked($bKing)),
+            Color::B => (int) ($this->isOnBackRank($wKing) && $this->isBlocked($wKing)),
+        ];
 
         $this->explain($this->result);
+    }
+
+    private function isOnBackRank(AbstractPiece $king): bool
+    {
+        if ($king->color === Color::W && $king->rank() === 1) {
+            return true;
+        } elseif ($king->color === Color::B && $king->rank() === $this->board->square::SIZE['ranks']) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function isBlocked(AbstractPiece $king): bool
+    {
+        if ($king->color === Color::W) {
+            // TODO
+        } elseif ($king->color === Color::B) {
+            // TODO
+        }
+
+        return false;
     }
 
     private function elaborate(AbstractPiece $king): void
