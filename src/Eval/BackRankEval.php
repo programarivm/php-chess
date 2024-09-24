@@ -46,10 +46,19 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
         $wKing = $this->board->piece(Color::W, Piece::K);
         $bKing = $this->board->piece(Color::B, Piece::K);
 
-        $this->result = [
-            Color::W => (int) ($this->isOnBackRank($bKing) && $this->isBlocked($bKing)),
-            Color::B => (int) ($this->isOnBackRank($wKing) && $this->isBlocked($wKing)),
-        ];
+        if ($this->isOnBackRank($bKing) &&
+            $this->isBlocked($bKing) &&
+            $this->isDeliverable($bKing)
+        ) {
+            $this->result[Color::W] = 1;
+        }
+
+        if ($this->isOnBackRank($wKing) &&
+            $this->isBlocked($wKing) &&
+            $this->isDeliverable($wKing)
+        ) {
+            $this->result[Color::B] = 1;
+        }
 
         $this->explain($this->result);
     }
@@ -131,5 +140,22 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
         }
 
         return $count;
+    }
+
+    /**
+     * Returns true if there is a rook or queen on the board.
+     *
+     * @param \Chess\Variant\AbstractPiece $king
+     * @return bool
+     */
+    private function isDeliverable(AbstractPiece $king): bool
+    {
+        foreach ($this->board->pieces($king->oppColor()) as $piece) {
+            if ($piece->id === Piece::R || $piece->id === Piece::Q) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
