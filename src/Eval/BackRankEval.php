@@ -18,8 +18,16 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Back-rank checkmate';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -46,6 +54,12 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
         $this->explain($this->result);
     }
 
+    /**
+     * Returns true if the king is on a back-rank.
+     *
+     * @param \Chess\Variant\AbstractPiece $king
+     * @return bool
+     */
     private function isOnBackRank(AbstractPiece $king): bool
     {
         if ($king->color === Color::W) {
@@ -55,6 +69,12 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
         return $king->rank() === $this->board->square::SIZE['ranks'];
     }
 
+    /**
+     * Returns true if the king is blocked by friendly pawns.
+     *
+     * @param \Chess\Variant\AbstractPiece $king
+     * @return bool
+     */
     private function isBlocked(AbstractPiece $king): bool
     {
         if ($this->isOnCorner($king)) {
@@ -64,6 +84,12 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
         return $this->countBlockingPawns($king) === 3;
     }
 
+    /**
+     * Returns true if the king is on a corner square.
+     *
+     * @param \Chess\Variant\AbstractPiece $king
+     * @return bool
+     */
     private function isOnCorner(AbstractPiece $king): bool
     {
         if ($king->color === Color::W) {
@@ -89,6 +115,12 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
             );
     }
 
+    /**
+     * Returns the number of blocking pawns.
+     *
+     * @param \Chess\Variant\AbstractPiece $king
+     * @return int
+     */
     private function countBlockingPawns(AbstractPiece $king): int
     {
         $count = 0;
