@@ -8,7 +8,10 @@ use Chess\Tests\AbstractUnitTestCase;
 
 class BackRankEvalTest extends AbstractUnitTestCase
 {
-    public function test_white_checkmated_on_the_back_rank()
+    /**
+     * @test
+     */
+    public function white_checkmated_on_the_back_rank()
     {
         $expectedResult = [
             'w' => [],
@@ -23,7 +26,10 @@ class BackRankEvalTest extends AbstractUnitTestCase
         $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
     }
 
-    public function test_white_checkmated_on_the_back_rank_with_an_escape()
+    /**
+     * @test
+     */
+    public function white_checkmated_on_the_back_rank_with_an_escape()
     {
         $expectedResult = [
             'w' => [],
@@ -38,7 +44,10 @@ class BackRankEvalTest extends AbstractUnitTestCase
         $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
     }
 
-    public function test_d1_checkmate()
+    /**
+     * @test
+     */
+    public function d1_checkmate()
     {
         $expectedResult = [
             'w' => [],
