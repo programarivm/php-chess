@@ -61,17 +61,6 @@ class BackRankEval extends AbstractEval implements
     }
 
     /**
-     *  Gets the back rank squares for the specified color.
-     * @param string $color
-     * @return array
-     */
-    private function getBackRankSquares(string $color): array
-    {
-        return $color === Color::W
-            ? array_map(fn($file) => $file . '1', range('a', 'h'))
-            : array_map(fn($file) => $file . '8', range('a', 'h'));    }
-
-    /**
      * Determines if the specified king is vulnerable on the back rank.
      * @param AbstractPiece $king
      * @param array $backRankSquares
