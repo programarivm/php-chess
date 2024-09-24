@@ -61,4 +61,22 @@ class BackRankEvalTest extends AbstractUnitTestCase
         $this->assertSame($expectedResult, $backRankEval->getResult());
         $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
     }
+
+    /**
+     * @test
+     */
+    public function h8_checkmate()
+    {
+        $expectedResult = [
+            'w' => [],
+            'b' => [],
+        ];
+        $expectedElaboration = [];
+
+        $board = FenToBoardFactory::create('4k3/3ppp2/8/8/8/8/6K1/7R b - -');
+        $backRankEval = new BackRankEval($board);
+
+        $this->assertSame($expectedResult, $backRankEval->getResult());
+        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+    }
 }
