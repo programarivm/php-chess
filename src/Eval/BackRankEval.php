@@ -40,24 +40,10 @@ class BackRankEval extends AbstractEval implements
             "has a back-rank advantage",
         ];
 
-        $kingPieces = array_filter($this->board->pieces(), function (AbstractPiece $piece) {
-            return $piece->id === Piece::K;
-        });
 
-        foreach ($kingPieces as $piece) {
-            $color = $piece->color;
-            $backRankSquares = $this->getBackRankSquares($color);
-            $isVulnerable = $this->isBackRankVulnerable($piece, $backRankSquares);
+        // TODO ...
 
-            if ($isVulnerable) {
-                $this->result[$color][] = $piece->sq;
-                $this->elaborate($piece);
-            }
-        }
-        $this->explain([
-            Color::W => count($this->result[Color::W]),
-            Color::B => count($this->result[Color::B]),
-        ]);
+        $this->explain($this->result);
     }
 
     private function elaborate(AbstractPiece $king): void
