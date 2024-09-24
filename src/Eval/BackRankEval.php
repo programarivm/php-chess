@@ -18,7 +18,7 @@ class BackRankEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
-    const NAME = 'BackRank';
+    const NAME = 'Back-rank checkmate';
 
     public function __construct(AbstractBoard $board)
     {
