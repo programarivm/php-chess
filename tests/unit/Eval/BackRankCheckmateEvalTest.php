@@ -3,10 +3,10 @@
 namespace Chess\Tests\Unit\Eval;
 
 use Chess\FenToBoardFactory;
-use Chess\Eval\BackRankEval;
+use Chess\Eval\BackRankCheckmateEval;
 use Chess\Tests\AbstractUnitTestCase;
 
-class BackRankEvalTest extends AbstractUnitTestCase
+class BackRankCheckmateEvalTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -23,7 +23,7 @@ class BackRankEvalTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('R5k1/5ppp/4p3/1r6/6P1/3R1P2/4P1P1/4K3 b KQkq - 0 1');
-        $backRankEval = new BackRankEval($board);
+        $backRankEval = new BackRankCheckmateEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
         $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
@@ -44,7 +44,7 @@ class BackRankEvalTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('3r4/k7/8/8/8/8/5PPP/6K1 w - -');
-        $backRankEval = new BackRankEval($board);
+        $backRankEval = new BackRankCheckmateEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
         $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
@@ -65,7 +65,7 @@ class BackRankEvalTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('4k3/3ppp2/8/8/8/8/6K1/7R b - -');
-        $backRankEval = new BackRankEval($board);
+        $backRankEval = new BackRankCheckmateEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
         $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
@@ -85,7 +85,7 @@ class BackRankEvalTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('4k3/3ppp2/8/8/6q1/8/PPP4R/1K6 w - -');
-        $backRankEval = new BackRankEval($board);
+        $backRankEval = new BackRankCheckmateEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
         $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
@@ -105,7 +105,7 @@ class BackRankEvalTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('4k3/3ppp2/8/8/8/8/6K1/7N b - -');
-        $backRankEval = new BackRankEval($board);
+        $backRankEval = new BackRankCheckmateEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
         $this->assertSame($expectedExplanation, $backRankEval->getExplanation());

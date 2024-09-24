@@ -8,13 +8,13 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
- * Back-Rank Evaluation
+ * Back-Rank Checkmate Evaluation
  *
  * A back-rank checkmate is a checkmate delivered by a rook or queen along the
  * opponent's back rank. The mated king is unable to move up the board because
  * it is blocked by friendly pawns on the second rank.
  */
-class BackRankEval extends AbstractEval implements ExplainEvalInterface
+class BackRankCheckmateEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
