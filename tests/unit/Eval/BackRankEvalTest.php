@@ -22,6 +22,7 @@ class BackRankEvalTest extends AbstractUnitTestCase
         $this->assertSame($expectedResult, $backRankEval->getResult());
         $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
     }
+
     public function test_white_checkmated_on_the_back_rank_with_an_escape()
     {
         $expectedResult = [
@@ -31,6 +32,21 @@ class BackRankEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [];
 
         $board = FenToBoardFactory::create('R5k1/5p1p/4p1p1/1r6/6P1/3R1P2/4P1P1/4K3 w KQkq - 0 1');
+        $backRankEval = new BackRankEval($board);
+
+        $this->assertSame($expectedResult, $backRankEval->getResult());
+        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+    }
+
+    public function test_d1_checkmate()
+    {
+        $expectedResult = [
+            'w' => [],
+            'b' => [],
+        ];
+        $expectedElaboration = [];
+
+        $board = FenToBoardFactory::create('3r4/k7/8/8/8/8/5PPP/6K1 w - -');
         $backRankEval = new BackRankEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->getResult());
