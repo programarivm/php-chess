@@ -23,7 +23,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "White's king on a1 can be checked.",
+            "White's king on a1 can be checked so it is vulnerable to forcing moves.",
         ];
 
         $board = FenToBoardFactory::create('1b5k/6pp/8/8/8/8/8/K7 w - -');
@@ -49,7 +49,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "White's king on a1 can be checked.",
+            "White's king on a1 can be checked so it is vulnerable to forcing moves.",
         ];
 
         $board = FenToBoardFactory::create('1b5k/6pp/8/8/8/8/8/K7 b - -');
@@ -74,8 +74,8 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "Black's king on h8 can be checked.",
-            "White's king on a1 can be checked.",
+            "Black's king on h8 can be checked so it is vulnerable to forcing moves.",
+            "White's king on a1 can be checked so it is vulnerable to forcing moves.",
         ];
 
         $board = FenToBoardFactory::create('1b5k/7p/8/8/8/8/8/K4R2 w - -');
@@ -100,8 +100,8 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "Black's king on h8 can be checked.",
-            "White's king on a1 can be checked.",
+            "Black's king on h8 can be checked so it is vulnerable to forcing moves.",
+            "White's king on a1 can be checked so it is vulnerable to forcing moves.",
         ];
 
         $board = FenToBoardFactory::create('1b5k/7p/8/8/8/8/8/K4R2 b - -');

@@ -95,6 +95,6 @@ class CheckabilityEval extends AbstractEval implements
     {
         $phrase = PiecePhrase::create($king);
 
-        $this->elaboration[] = "{$phrase} can be checked.";
+        $this->elaboration[] = "{$phrase} can be checked so it is vulnerable to forcing moves.";
     }
 }

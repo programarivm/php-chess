@@ -40,7 +40,7 @@ class FenElaborationTest extends AbstractUnitTestCase
     {
         $expected = [
             "The knight on e6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.",
-            "Black's king on f7 can be checked.",
+            "Black's king on f7 can be checked so it is vulnerable to forcing moves.",
         ];
 
         $board = FenToBoardFactory::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');

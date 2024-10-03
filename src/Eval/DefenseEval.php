@@ -29,9 +29,11 @@ class DefenseEval extends AbstractEval implements
      */
     const NAME = 'Defense';
 
+
     /*
      * Constructor for the DefenseEval class.
      *
+
      * @param \Chess\Variant\AbstractBoard $board
      */
     public function __construct(AbstractBoard $board)
@@ -95,7 +97,11 @@ class DefenseEval extends AbstractEval implements
     }
 
     /*
+
      * Elaborate on the defensive impact of a piece.
+
+     * Elaborate on the evaluation.
+
      *
      * @param \Chess\Variant\AbstractPiece $piece
      * @param array $diffPhrases
