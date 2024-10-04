@@ -14,7 +14,8 @@ class GrandmasterMove
 
         $this->games = new \RecursiveIteratorIterator(
             new \RecursiveArrayIterator(json_decode($contents, true)),
-            \RecursiveIteratorIterator::SELF_FIRST);
+            \RecursiveIteratorIterator::SELF_FIRST
+        );
     }
 
     public function move(Board $board): ?array
