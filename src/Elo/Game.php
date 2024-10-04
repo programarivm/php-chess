@@ -6,11 +6,11 @@ use Closure;
 
 class Game
 {
-    const WIN = 1;
+    private const WIN = 1;
 
-    const DRAW = 0.5;
+    private const DRAW = 0.5;
 
-    const LOSS = 0;
+    private const LOSS = 0;
 
     private Player $w;
 
@@ -51,7 +51,8 @@ class Game
 
     public function count(): void
     {
-        $wRating = $this->w->getRating() + $this->k * $this->getGoalIndex() * ($this->getMatchScore() - $this->getExpectedScore());
+        $wRating = $this->w->getRating() + $this->k * $this->getGoalIndex()
+            * ($this->getMatchScore() - $this->getExpectedScore());
         $bRating = $this->w->getRating() + $this->b->getRating() - $wRating;
         $this->w->setRating($wRating);
         $this->b->setRating($bRating);
