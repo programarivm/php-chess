@@ -6,11 +6,11 @@ use Closure;
 
 class Game
 {
-    private const WIN = 1;
+    const WIN = 1;
 
-    private const DRAW = 0.5;
+    const DRAW = 0.5;
 
-    private const LOSS = 0;
+    const LOSS = 0;
 
     private Player $w;
 
