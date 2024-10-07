@@ -7,11 +7,15 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 
 /**
- * CenterEval class
- * 
- * This class implements a heuristic to evaluate the control of the center of the chessboard.
- * The heuristic assigns values to squares based on their proximity to the center and
- * considers both piece placement and space control.
+ * Center Evaluation
+ *
+ * Integer values are assigned to squares based on their proximity to the
+ * center. The closer a square is to the center, the higher its value. If a
+ * piece occupies such a square, its value is considered in the total sum of the
+ * result. It is advantageous to have a piece placed in the center. The more
+ * valuable the piece, the better. To this sum are also added the squares
+ * controlled by each player. The controlled squares are those that are in each
+ * player's space.
  */
 class CenterEval extends AbstractEval implements ExplainEvalInterface
 {
@@ -19,10 +23,6 @@ class CenterEval extends AbstractEval implements ExplainEvalInterface
 
     const NAME = 'Center';
 
-    /**
-     * Center control values for each square on the board.
-     * Central squares have higher values, while edge squares have zero value.
-     */
     private array $center = [
         'a8' => 0, 'b8' => 0, 'c8' => 0, 'd8' => 0, 'e8' => 0, 'f8' => 0, 'g8' => 0, 'h8' => 0,
         'a7' => 0, 'b7' => 1, 'c7' => 1, 'd7' => 1, 'e7' => 1, 'f7' => 1, 'g7' => 1, 'h7' => 0,
@@ -35,43 +35,31 @@ class CenterEval extends AbstractEval implements ExplainEvalInterface
     ];
 
     /**
-     * Constructor for CenterEval
-     * 
-     * Initializes the evaluation by setting up the board, range, subjects, and observations.
-     * Calculates the center control score for both players based on piece placement and space control.
-     *
-     * @param AbstractBoard $board The chess board to evaluate
+     * @param \Chess\Variant\AbstractBoard $board
      */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
 
-        // Set the range for evaluation scores
         $this->range = [1, 9];
 
-        // Define the subjects (players) for evaluation
         $this->subject = [
             'White',
             'Black',
         ];
 
-        // Define observations for different levels of center control
         $this->observation = [
             "has a slightly better control of the center",
             "has a moderate control of the center",
             "is totally controlling the center",
         ];
 
-        // Get space evaluation results
         $spEval = (new SpaceEval($this->board))->getResult();
 
-        // Calculate center control scores for both players
         foreach ($this->center as $sq => $val) {
-            // Add score for pieces on central squares
             if ($piece = $this->board->pieceBySq($sq)) {
                 $this->result[$piece->color] += self::$value[$piece->id] * $val;
             }
-            // Add score for space control in central squares
             if (in_array($sq, $spEval[Color::W])) {
                 $this->result[Color::W] += $val;
             }
@@ -80,11 +68,9 @@ class CenterEval extends AbstractEval implements ExplainEvalInterface
             }
         }
 
-        // Round the results to two decimal places
         $this->result[Color::W] = round($this->result[Color::W], 2);
         $this->result[Color::B] = round($this->result[Color::B], 2);
 
-        // Generate explanation for the evaluation
         $this->explain($this->result);
     }
 }
