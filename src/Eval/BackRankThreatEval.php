@@ -50,7 +50,8 @@ class BackRankThreatEval extends AbstractEval implements
         $wKing = $this->board->piece(Color::W, Piece::K);
         $bKing = $this->board->piece(Color::B, Piece::K);
 
-        if ($this->isOnBackRank($bKing) &&
+        if (
+            $this->isOnBackRank($bKing) &&
             $this->isBlocked($bKing) &&
             $this->isDeliverable($bKing) &&
             $this->isThreatened($bKing)
@@ -59,7 +60,8 @@ class BackRankThreatEval extends AbstractEval implements
             $this->elaborate($bKing);
         }
 
-        if ($this->isOnBackRank($wKing) &&
+        if (
+            $this->isOnBackRank($wKing) &&
             $this->isBlocked($wKing) &&
             $this->isDeliverable($wKing) &&
             $this->isThreatened($wKing)
