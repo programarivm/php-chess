@@ -51,7 +51,8 @@ class Game
 
     public function count(): void
     {
-        $wRating = $this->w->getRating() + $this->k * $this->getGoalIndex() * ($this->getMatchScore() - $this->getExpectedScore());
+        $wRating = $this->w->getRating() + $this->k * $this->getGoalIndex()
+            * ($this->getMatchScore() - $this->getExpectedScore());
         $bRating = $this->w->getRating() + $this->b->getRating() - $wRating;
         $this->w->setRating($wRating);
         $this->b->setRating($bRating);
