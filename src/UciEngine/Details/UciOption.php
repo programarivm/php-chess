@@ -15,7 +15,7 @@ class UciOption
 
     public mixed $value;
 
-    public function __construct(string $name, string $type,  string $default, string $min, string $max)
+    public function __construct(string $name, string $type, string $default, string $min, string $max)
     {
         $this->name = $name;
         $this->type = $type;
@@ -56,7 +56,7 @@ class UciOption
                 }
                 $currentKey = $part;
                 $collectingValue = true;
-            } else if ($collectingValue) {
+            } elseif ($collectingValue) {
                 $value .= ' ' . $part;
             }
         }
