@@ -80,7 +80,7 @@ class SqOutpostEval extends AbstractEval implements
     {
         $rank = substr($sq, 1);
         for ($i = 2; $i < 8; $i++) {
-            if ($piece = $this->board->pieceBySq($file.$i)) {
+            if ($piece = $this->board->pieceBySq($file . $i)) {
                 if (
                     $piece->id === Piece::P &&
                     $piece->color === $this->board->color->opp($color)
@@ -104,7 +104,7 @@ class SqOutpostEval extends AbstractEval implements
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('an ' . self::NAME);
-        $plural = mb_strtolower(self::NAME.'s');
+        $plural = mb_strtolower(self::NAME . 's');
 
         $this->shorten($result, $singular, $plural);
     }
