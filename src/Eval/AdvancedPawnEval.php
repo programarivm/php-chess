@@ -70,7 +70,7 @@ class AdvancedPawnEval extends AbstractEval implements
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('an ' . self::NAME);
-        $plural = mb_strtolower(self::NAME.'s');
+        $plural = mb_strtolower(self::NAME . 's');
 
         $this->shorten($result, $singular, $plural);
     }
