@@ -10,7 +10,7 @@ class PiecePlacement extends ClassicalPiecePlacement
     {
         return true;
     }
-    
+
     protected function validChars(array $fields)
     {
         foreach ($fields as $field) {
