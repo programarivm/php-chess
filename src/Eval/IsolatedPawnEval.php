@@ -60,12 +60,12 @@ class IsolatedPawnEval extends AbstractEval implements
         $left = chr(ord($pawn->sq) - 1);
         $right = chr(ord($pawn->sq) + 1);
         for ($i = 2; $i < $this->board->square::SIZE['ranks']; $i++) {
-            if ($piece = $this->board->pieceBySq($left.$i)) {
+            if ($piece = $this->board->pieceBySq($left . $i)) {
                 if ($piece->id === Piece::P && $piece->color === $pawn->color) {
                     return false;
                 }
             }
-            if ($piece = $this->board->pieceBySq($right.$i)) {
+            if ($piece = $this->board->pieceBySq($right . $i)) {
                 if ($piece->id === Piece::P && $piece->color === $pawn->color) {
                     return false;
                 }
@@ -78,7 +78,7 @@ class IsolatedPawnEval extends AbstractEval implements
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('an ' . self::NAME);
-        $plural = mb_strtolower(self::NAME.'s');
+        $plural = mb_strtolower(self::NAME . 's');
 
         $this->shorten($result, $singular, $plural);
     }
