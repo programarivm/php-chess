@@ -60,7 +60,7 @@ class PassedPawnEval extends AbstractEval implements
         foreach ([$leftFile, $pawn->file(), $rightFile] as $file) {
             if ($pawn->color === Color::W) {
                 for ($i = $pawn->rank() + 1; $i <= $this->board->square::SIZE['ranks'] - 1; $i++) {
-                    if ($piece = $this->board->pieceBySq($file.$i)) {
+                    if ($piece = $this->board->pieceBySq($file . $i)) {
                         if ($piece->id === Piece::P && $piece->color !== $pawn->color) {
                             return false;
                         }
@@ -68,7 +68,7 @@ class PassedPawnEval extends AbstractEval implements
                 }
             } else {
                 for ($i = $pawn->rank() - 1; $i >= 2; $i--) {
-                    if ($piece = $this->board->pieceBySq($file.$i)) {
+                    if ($piece = $this->board->pieceBySq($file . $i)) {
                         if ($piece->id === Piece::P && $piece->color !== $pawn->color) {
                             return false;
                         }
@@ -83,7 +83,7 @@ class PassedPawnEval extends AbstractEval implements
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('a ' . self::NAME);
-        $plural = mb_strtolower(self::NAME.'s');
+        $plural = mb_strtolower(self::NAME . 's');
 
         $this->shorten($result, $singular, $plural);
     }
