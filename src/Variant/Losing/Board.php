@@ -19,7 +19,8 @@ class Board extends AbstractBoard
 {
     const VARIANT = VariantType::LOSING;
 
-    public function __construct(array $pieces = null) {
+    public function __construct(array $pieces = null)
+    {
         $this->color = new Color();
         $this->square = new Square();
         $this->move = new Move();
