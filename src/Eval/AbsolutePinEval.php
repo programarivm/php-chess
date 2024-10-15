@@ -6,6 +6,13 @@ use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\AbstractPiece;
 
+/**
+ * Absolute Pin Evaluation
+ *
+ * An absolute pin is a tactic that occurs when a piece is shielding the king,
+ * so it cannot move out of the line of attack because the king would be put
+ * in check.
+ */
 class AbsolutePinEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface,
@@ -14,8 +21,16 @@ class AbsolutePinEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Absolute pin';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -43,6 +58,11 @@ class AbsolutePinEval extends AbstractEval implements
         $this->explain($this->result);
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
     private function elaborate(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);
