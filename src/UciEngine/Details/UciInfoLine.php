@@ -16,77 +16,77 @@ class UciInfoLine implements JsonSerializable
      *
      * @var int|null
      */
-    public ? int $depth = null;
+    public ?int $depth = null;
 
     /**
      * Selective depth of the search.
      *
      * @var int|null
      */
-    public ? int $seldepth = null;
+    public ?int $seldepth = null;
 
     /**
      * MultiPV value.
      *
      * @var int|null
      */
-    public ? int $multipv = null;
+    public ?int $multipv = null;
 
     /**
      * Score of the search.
      *
      * @var Score|null
      */
-    public ? Score $score = null;
+    public ?Score $score = null;
 
     /**
      * Nodes searched.
      *
      * @var int|null
      */
-    public ? int $nodes = null;
+    public ?int $nodes = null;
 
     /**
      * Nodes per second.
      *
      * @var int|null
      */
-    public ? int $nps = null;
+    public ?int $nps = null;
 
     /**
      * Hashfull value.
      *
      * @var int|null
      */
-    public ? int $hashfull = null;
+    public ?int $hashfull = null;
 
     /**
      * TBHits value.
      *
      * @var int|null
      */
-    public ? int $tbhits = null;
+    public ?int $tbhits = null;
 
     /**
      * Time searched in milliseconds.
      *
      * @var int|null
      */
-    public ? int $time = null;
+    public ?int $time = null;
 
     /**
      * Principal variation.
      *
      * @var array|null
      */
-    public ? array $pv = null;
+    public ?array $pv = null;
 
     public function __construct(string $line)
     {
         $this->parseLine($line);
     }
 
-    public function jsonSerialize() : mixed
+    public function jsonSerialize(): mixed
     {
         return get_object_vars($this);
     }
@@ -98,7 +98,7 @@ class UciInfoLine implements JsonSerializable
      * @param array $infoLines
      * @return UciInfoLine
      */
-    public static function aggregateInfo(array $infoLines) : UciInfoLine
+    public static function aggregateInfo(array $infoLines): UciInfoLine
     {
         $combined = new UciInfoLine('');
 
@@ -121,37 +121,37 @@ class UciInfoLine implements JsonSerializable
      * @param string $line
      * @return void
      */
-    private function parseLine(string $line) : void
+    private function parseLine(string $line): void
     {
         $parts = explode(' ', trim($line));
 
         for ($i = 0; $i < count($parts); $i++) {
             $nextPart = $parts[$i + 1] ?? null;
             switch ($parts[$i]) {
-                case 'depth' :
+                case 'depth':
                     $this->depth = (int)$nextPart;
                     break;
-                case 'seldepth' :
+                case 'seldepth':
                     $this->seldepth = (int)$nextPart;
                     break;
-                case 'multipv' :
+                case 'multipv':
                     $this->multipv = (int)$nextPart;
                     break;
-                case 'score' :
+                case 'score':
                     // Check if next is 'cp' or 'mate', then assign appropriately
-                if (isset($parts[$i + 2])) {
+                    if (isset($parts[$i + 2])) {
                         $type = $nextPart === 'cp' ?  Type :: CP : Type :: MATE;
                         $this->score = new Score((int)$parts[$i + 2], $type);
-                }
+                    }
                     $i++; // Skip next part since it's part of the score
                     break;
-                case 'nodes' :
+                case 'nodes':
                     $this->nodes = (int)$nextPart;
                     break;
-                case 'nps' :
+                case 'nps':
                     $this->nps = (int)$nextPart;
                     break;
-                case 'hashfull' :
+                case 'hashfull':
                     $this->hashfull = (int)$nextPart;
                     break;
                 case 'tbhits':
@@ -187,7 +187,7 @@ class UciInfoLine implements JsonSerializable
      * @param string $move
      * @return bool
      */
-    private function isUciMove(string $move) : bool
+    private function isUciMove(string $move): bool
     {
         if (strlen($move) < 4) {
             return false;
