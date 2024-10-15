@@ -10,9 +10,8 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 /**
  * Absolute Fork Evaluation
  *
- * A fork is a tactic in which a piece attacks multiple enemy pieces
- * simultaneously. A fork is a type of double attack. If the king is one of the
- * attacked pieces, the term absolute fork is then used.
+ * A fork is a tactic in which a piece attacks multiple pieces at the same time.
+ * It is a double attack. A fork involving the enemy king is an absolute fork.
  */
 class AbsoluteForkEval extends AbstractEval implements ElaborateEvalInterface
 {
