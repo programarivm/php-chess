@@ -19,7 +19,7 @@ class JpgToPiece
         $this->image = $image;
 
         $this->estimator = PersistentModel::load(
-            new Filesystem(self::ML_PATH.'/piece.rbx')
+            new Filesystem(self::ML_PATH . '/piece.rbx')
         );
     }
 

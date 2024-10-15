@@ -7,6 +7,11 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Piece\P;
 
+/**
+ * Advanced Pawn Evaluation
+ *
+ * An advanced pawn is a pawn that is on the fifth rank or higher.
+ */
 class AdvancedPawnEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface
@@ -14,8 +19,16 @@ class AdvancedPawnEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Advanced pawn';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -52,6 +65,12 @@ class AdvancedPawnEval extends AbstractEval implements
         $this->elaborate($this->result);
     }
 
+    /**
+     * Returns true if the pawn is advanced.
+     *
+     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @return bool
+     */
     private function isAdvanced(P $pawn): bool
     {
         if ($pawn->color === Color::W) {
@@ -67,6 +86,11 @@ class AdvancedPawnEval extends AbstractEval implements
         return false;
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param array $result
+     */
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('an ' . self::NAME);

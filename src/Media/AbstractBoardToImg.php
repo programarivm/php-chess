@@ -45,7 +45,7 @@ class AbstractBoardToImg
     {
         $nSqs = $this->board->square::SIZE['files'] * $this->board->square::SIZE['ranks'];
         $sqSize = $this->size / $this->board->square::SIZE['files'];
-        $chessboard = $this->imagine->open(self::FILEPATH.'/chessboard/'."{$this->size}_{$nSqs}".'.png');
+        $chessboard = $this->imagine->open(self::FILEPATH . '/chessboard/' . "{$this->size}_{$nSqs}" . '.png');
         $x = $y = 0;
         foreach ($this->board->toArray($this->flip) as $i => $rank) {
             foreach ($rank as $j => $piece) {
