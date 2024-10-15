@@ -7,12 +7,26 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Absolute Fork Evaluation
+ *
+ * A fork is a tactic in which a piece attacks multiple pieces at the same time.
+ * It is a double attack. A fork involving the enemy king is an absolute fork.
+ */
 class AbsoluteForkEval extends AbstractEval implements ElaborateEvalInterface
 {
     use ElaborateEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Absolute fork';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -31,6 +45,11 @@ class AbsoluteForkEval extends AbstractEval implements ElaborateEvalInterface
         }
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
     private function elaborate(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);
