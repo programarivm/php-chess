@@ -38,8 +38,8 @@ class BoardToMp4
         }
 
         $filename
-            ? $filename = $filename.$this->ext
-            : $filename = uniqid().$this->ext;
+            ? $filename = $filename . $this->ext
+            : $filename = uniqid() . $this->ext;
 
         $this->frames($filepath, $filename)
             ->animate(escapeshellarg($filepath), $filename)
