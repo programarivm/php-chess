@@ -7,7 +7,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 
 class PiecePlacement extends ClassicalPiecePlacement
 {
-    protected function kings(array $fields)
+    protected function kings(array $fields): bool
     {
         $result = [
             Color::W => 0,
