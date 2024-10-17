@@ -18,7 +18,7 @@ use Chess\Variant\Classical\Rule\CastlingRule;
 
 class Board extends AbstractBoard
 {
-    public const VARIANT = 'dunsany';
+    const VARIANT = 'dunsany';
 
     public function __construct(array $pieces = null, string $castlingAbility = '-')
     {
