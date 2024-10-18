@@ -8,14 +8,27 @@ use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Bad Bishop Evaluation
+ *
+ * A bad bishop is a bishop that is on the same color as most of own pawns.
+ */
 class BadBishopEval extends AbstractEval implements
     ExplainEvalInterface,
     InverseEvalInterface
 {
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Bad bishop';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -48,6 +61,12 @@ class BadBishopEval extends AbstractEval implements
         $this->explain($this->result);
     }
 
+    /**
+     * Counts the number of blocking pawns.
+     *
+     * @param \Chess\Variant\AbstractPiece $bishop
+     * @param string $sqColor
+     */
     private function countBlockingPawns(AbstractPiece $bishop, string $sqColor): int
     {
         $count = 0;
