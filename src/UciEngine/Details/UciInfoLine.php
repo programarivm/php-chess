@@ -140,7 +140,7 @@ class UciInfoLine implements JsonSerializable
                 case 'score':
                     // Check if next is 'cp' or 'mate', then assign appropriately
                     if (isset($parts[$i + 2])) {
-                        $type = $nextPart === 'cp' ?  Type :: CP : Type :: MATE;
+                        $type = $nextPart === 'cp' ? Type::CP : Type::MATE;
                         $this->score = new Score((int)$parts[$i + 2], $type);
                     }
                     $i++; // Skip next part since it's part of the score
