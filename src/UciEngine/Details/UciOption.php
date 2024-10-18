@@ -15,7 +15,7 @@ class UciOption
 
     public mixed $value;
 
-    public function __construct(string $name, string $type,  string $default, string $min, string $max)
+    public function __construct(string $name, string $type, string $default, string $min, string $max)
     {
         $this->name = $name;
         $this->type = $type;
@@ -33,9 +33,11 @@ class UciOption
     public static function createFromLine(string $line): UciOption
     {
         // uci options are structured like this:
-        // option name {name} type {check|spin|combo|button|string} default {default} [min {min} max {max}] [var {var1} var {var2} ...]
-        // uci options can include arbitrary spaces in the name, so we need to account for that, and parse the line accordingly
-        // to the format and skip whitespaces
+        // option name {name} type {check|spin|combo|button|string}
+        // default {default} [min {min} max {max}] [var {var1} var {var2} ...]
+        // uci options can include arbitrary spaces in the name, so we need to
+        // account for that, and parse the line accordingly to the format and
+        // skip whitespaces
         // todo: add support for the 'var' field
 
         $parts = explode(' ', $line);
@@ -56,7 +58,7 @@ class UciOption
                 }
                 $currentKey = $part;
                 $collectingValue = true;
-            } else if ($collectingValue) {
+            } elseif ($collectingValue) {
                 $value .= ' ' . $part;
             }
         }

@@ -193,9 +193,9 @@ class UciInfoLine implements JsonSerializable
             return false;
         }
 
-        $isFile = fn ($c) => $c >= 'a' && $c <= 'h';
-        $isDigit = fn ($c) => $c >= '1' && $c <= '8';
-        $isPromotion = fn ($c) => in_array($c, ['n', 'b', 'r', 'q']);
+        $isFile = fn($c) => $c >= 'a' && $c <= 'h';
+        $isDigit = fn($c) => $c >= '1' && $c <= '8';
+        $isPromotion = fn($c) => in_array($c, ['n', 'b', 'r', 'q']);
 
         $isUci = $isFile($move[0]) && $isDigit($move[1]) && $isFile($move[2]) && $isDigit($move[3]);
 
