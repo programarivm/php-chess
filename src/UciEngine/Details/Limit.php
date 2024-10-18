@@ -12,7 +12,7 @@ class Limit
      *
      * @var int|null
      */
-    public ? int $movetime;
+    public ?int $movetime;
 
     /**
      * Depth to search.
@@ -20,56 +20,56 @@ class Limit
      * @var int|null
      */
 
-    public ? int $depth;
+    public ?int $depth;
 
     /**
      * Nodes to search.
      *
      * @var int|null
      */
-    public ? int $nodes;
+    public ?int $nodes;
 
     /**
      * Search for Mate in x moves. Not supported by all engines.
      *
      * @var int|null
      */
-    public ? int $mate;
+    public ?int $mate;
 
     /**
      * White has x msec left on the clock.
      *
      * @var int|null
      */
-    public ? int $wtime;
+    public ?int $wtime;
 
     /**
      * Black has x msec left on the clock.
      *
      * @var int|null
      */
-    public ? int $btime;
+    public ?int $btime;
 
     /**
      * White increment per move in mseconds.
      *
      * @var int|null
      */
-    public ? int $winc;
+    public ?int $winc;
 
     /**
      * Black increment per move in mseconds.
      *
      * @var int|null
      */
-    public ? int $binc;
+    public ?int $binc;
 
     /**
      * Remaining moves to the next time control.
      *
      * @var int|null
      */
-    public ? int $movestogo;
+    public ?int $movestogo;
 
     /**
      * Constructor.
