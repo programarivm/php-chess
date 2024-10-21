@@ -66,6 +66,7 @@ class BadBishopEval extends AbstractEval implements
      *
      * @param \Chess\Variant\AbstractPiece $bishop
      * @param string $sqColor
+     * @return bool
      */
     private function countBlockingPawns(AbstractPiece $bishop, string $sqColor): int
     {
