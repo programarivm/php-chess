@@ -12,8 +12,7 @@ trait CapablancaTrait
         foreach ($this->mobility as $key => $val) {
             if ($key !== 4) {
                 foreach ($val as $sq) {
-                    if (
-                        !in_array($sq, $this->board->sqCount['used'][$this->color]) &&
+                    if (!in_array($sq, $this->board->sqCount['used'][$this->color]) &&
                         !in_array($sq, $this->board->sqCount['used'][$this->oppColor()])
                     ) {
                         $sqs[] = $sq;

@@ -27,7 +27,7 @@ class Move extends ClassicalMove
 
     public function explodeSqs(string $string): array
     {
-        preg_match_all('/'.Square::REGEX.'/', $string, $matches);
+        preg_match_all('/' . Square::REGEX . '/', $string, $matches);
 
         return $matches[0];
     }
