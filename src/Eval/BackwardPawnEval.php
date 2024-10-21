@@ -8,6 +8,12 @@ use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Backward Pawn Evaluation
+ *
+ * A backward pawn is the last pawn protecting other pawns in its chain. It is
+ * considered a weakness because it cannot advance safely.
+ */
 class BackwardPawnEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface,
@@ -16,10 +22,23 @@ class BackwardPawnEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Backward pawn';
 
+    /**
+     * Isolated pawn evaluation.
+     *
+     * @var array
+     */
     private array $isolatedPawnEval;
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -69,6 +88,13 @@ class BackwardPawnEval extends AbstractEval implements
         $this->elaborate($this->result);
     }
 
+    /**
+     * Returns true if the given pawn can be defended by other pawns in its chain.
+     *
+     * @param \Chess\Variant\AbstractPiece $pawn
+     * @param string $file
+     * @return bool
+     */
     private function isDefensible(AbstractPiece $pawn, string $file): bool
     {
         if ($pawn->rank() == 2 || $pawn->rank() == $this->board->square::SIZE['ranks'] - 1) {
@@ -98,6 +124,11 @@ class BackwardPawnEval extends AbstractEval implements
         return false;
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param array $result
+     */
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('a ' . self::NAME);
