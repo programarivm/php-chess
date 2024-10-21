@@ -11,8 +11,7 @@ class PiecePlacement extends ClassicalFenPiecePlacement
     {
         $fields = explode('/', $value);
 
-        if (
-            $this->eightFields($fields) &&
+        if ($this->eightFields($fields) &&
             $this->kings($fields) &&
             $this->validChars($fields)
         ) {
