@@ -126,23 +126,21 @@ class RavMovetext extends AbstractMovetext
     /**
      * Finds out if an element is immediately preceding another one.
      *
-     * @param SanMovetext $previous
-     * @param SanMovetext $current
+     * @param SanMovetext $prev
+     * @param SanMovetext $curr
      * @return bool
      */
-    public function isPrevious(SanMovetext $previous, SanMovetext $current): bool
+    public function isPrevious(SanMovetext $prev, SanMovetext $curr): bool
     {
         foreach ($this->lines() as $line) {
             foreach ($line as $key => $val) {
-                if (
-                    str_ends_with(current($val), $previous->metadata['lastMove']) &&
-                    str_starts_with(key($val), $current->metadata['firstMove'])
+                if (str_ends_with(current($val), $prev->metadata['lastMove']) &&
+                    str_starts_with(key($val), $curr->metadata['firstMove'])
                 ) {
                     return true;
-                } elseif (str_contains(key($val), "{$previous->metadata['lastMove']} {$current->metadata['firstMove']}")) {
+                } elseif (str_contains(key($val), "{$prev->metadata['lastMove']} {$curr->metadata['firstMove']}")) {
                     return true;
                 }
-
             }
         }
 
@@ -184,60 +182,60 @@ class RavMovetext extends AbstractMovetext
     *
     * @return int
     */
-   public function maxDepth(): int
-   {
-       $str = $this->filtered(false, false);
-       $count = 0;
-       $stack = [];
-       for ($i = 0; $i < strlen($str); $i++) {
-           if ($str[$i] == '(') {
-               array_push($stack, $i);
-           } elseif ($str[$i] == ')') {
-               if ($count < count($stack)) {
-                   $count = count($stack);
-               }
-               array_pop($stack);
-           }
-       }
+    public function maxDepth(): int
+    {
+        $str = $this->filtered(false, false);
+        $count = 0;
+        $stack = [];
+        for ($i = 0; $i < strlen($str); $i++) {
+            if ($str[$i] == '(') {
+                array_push($stack, $i);
+            } elseif ($str[$i] == ')') {
+                if ($count < count($stack)) {
+                    $count = count($stack);
+                }
+                array_pop($stack);
+            }
+        }
 
-       return $count;
-   }
+        return $count;
+    }
 
    /**
     * Returns all occurrences enclosed in the innermost parentheses.
     *
     * @return array
     */
-   public function maxDepthStrings(): array
-   {
-       $matches = [];
-       $str = $this->filtered(false, false);
-       $maxDepth = $this->maxDepth();
-       if ($maxDepth === 0) {
-           return [
-               $str,
-           ];
-       } else {
-           $count = 0;
-           for ($i = 0; $i < strlen($str); $i++) {
-               if ($str[$i] == ')') {
-                   $count -= 1;
-               } elseif ($str[$i] == '(') {
-                   $count += 1;
-               } elseif ($count === $maxDepth) {
-                   $substr = substr($str, $i);
-                   $match = str_replace('(', '', explode(')', $substr)[0]);
-                   $matches[] = [
-                       $match => $this->previous($substr),
-                   ];
-                   $count -= 1;
-                   $i += strlen($match);
-               }
-           }
-       }
+    public function maxDepthStrings(): array
+    {
+        $matches = [];
+        $str = $this->filtered(false, false);
+        $maxDepth = $this->maxDepth();
+        if ($maxDepth === 0) {
+            return [
+                $str,
+            ];
+        } else {
+            $count = 0;
+            for ($i = 0; $i < strlen($str); $i++) {
+                if ($str[$i] == ')') {
+                    $count -= 1;
+                } elseif ($str[$i] == '(') {
+                    $count += 1;
+                } elseif ($count === $maxDepth) {
+                    $substr = substr($str, $i);
+                    $match = str_replace('(', '', explode(')', $substr)[0]);
+                    $matches[] = [
+                        $match => $this->previous($substr),
+                    ];
+                    $count -= 1;
+                    $i += strlen($match);
+                }
+            }
+        }
 
-       return $matches;
-   }
+        return $matches;
+    }
 
     /**
      * Returns all lines sorted by depth level.
@@ -287,13 +285,13 @@ class RavMovetext extends AbstractMovetext
     * @param string $substr
     * @return string
     */
-   protected function previous(string $substr): string
-   {
-       $str = trim(explode("($substr", $this->filtered(false, false))[0]);
-       $str = preg_replace('/\(([^()]|(?R))*\)/', '', $str);
-       $str = preg_replace('/\s+/', ' ', $str);
-       $exploded = explode('(', $str);
+    protected function previous(string $substr): string
+    {
+        $str = trim(explode("($substr", $this->filtered(false, false))[0]);
+        $str = preg_replace('/\(([^()]|(?R))*\)/', '', $str);
+        $str = preg_replace('/\s+/', ' ', $str);
+        $exploded = explode('(', $str);
 
-       return trim($exploded[count($exploded) - 1]);
-   }
+        return trim($exploded[count($exploded) - 1]);
+    }
 }
