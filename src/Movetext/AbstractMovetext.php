@@ -35,7 +35,7 @@ abstract class AbstractMovetext
         if (!$nags) {
             // remove nags
             preg_match_all('/\$[1-9][0-9]*/', $str, $matches);
-            usort($matches[0], function($a, $b) {
+            usort($matches[0], function ($a, $b) {
                 return strlen($a) < strlen($b);
             });
             foreach (array_filter($matches[0]) as $match) {
