@@ -7,6 +7,12 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Piece\P;
 
+/**
+ * Isolated Pawn Evaluation
+ *
+ * An isolated pawn has no friendly pawns on the adjacent files. Since it cannot
+ * be defended by other pawns it is considered a weakness.
+ */
 class IsolatedPawnEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface,
@@ -15,8 +21,16 @@ class IsolatedPawnEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Isolated pawn';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -55,6 +69,12 @@ class IsolatedPawnEval extends AbstractEval implements
         $this->elaborate($this->result);
     }
 
+    /**
+     * Returns true if the given pawn is isolated.
+     *
+     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @return bool
+     */
     private function isIsolated(P $pawn): bool
     {
         $left = chr(ord($pawn->sq) - 1);
@@ -75,6 +95,11 @@ class IsolatedPawnEval extends AbstractEval implements
         return true;
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param array $result
+     */
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('an ' . self::NAME);
