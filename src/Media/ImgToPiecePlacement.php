@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Media\FEN;
+namespace Chess\Media;
 
 use Rubix\ML\PersistentModel;
 use Rubix\ML\Datasets\Unlabeled;
@@ -8,7 +8,7 @@ use Rubix\ML\Persisters\Filesystem;
 
 class ImgToPiecePlacement
 {
-    const ML_PATH = __DIR__ . '/../../../ml';
+    const ML_PATH = __DIR__ . '/../../ml';
 
     private \GdImage $image;
 

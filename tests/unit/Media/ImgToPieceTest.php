@@ -1,8 +1,8 @@
 <?php
 
-namespace Chess\Tests\Unit\Media\PGN\AN;
+namespace Chess\Tests\Unit\Media;
 
-use Chess\Media\PGN\AN\ImgToPiece;
+use Chess\Media\ImgToPiece;
 use Chess\Tests\AbstractUnitTestCase;
 
 class ImgToPieceTest extends AbstractUnitTestCase
