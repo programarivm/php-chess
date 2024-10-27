@@ -10,7 +10,7 @@ class ImgToPieceTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function predict_a1_52()
+    public function predict_a1_52_jpg()
     {
         $expected = '1';
 
@@ -22,11 +22,35 @@ class ImgToPieceTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function predict_w_B_52()
+    public function predict_a1_52_png()
+    {
+        $expected = '1';
+
+        $image = imagecreatefrompng(self::DATA_FOLDER.'/img/a1_52.png');
+
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
+    }
+
+    /**
+     * @test
+     */
+    public function predict_w_B_52_jpg()
     {
         $expected = 'B';
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/B_52.jpg');
+
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
+    }
+
+    /**
+     * @test
+     */
+    public function predict_w_B_52_png()
+    {
+        $expected = 'B';
+
+        $image = imagecreatefrompng(self::DATA_FOLDER.'/img/B_52.png');
 
         $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
