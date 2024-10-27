@@ -2,10 +2,10 @@
 
 namespace Chess\Tests\Unit\Media\FEN;
 
-use Chess\Media\FEN\JpgToPiecePlacement;
+use Chess\Media\FEN\ImgToPiecePlacement;
 use Chess\Tests\AbstractUnitTestCase;
 
-class JpgToPiecePlacementTest extends AbstractUnitTestCase
+class ImgToPiecePlacementTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -16,7 +16,7 @@ class JpgToPiecePlacementTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/01_kaufman.jpg');
 
-        $this->assertSame($expected, (new JpgToPiecePlacement($image))->predict());
+        $this->assertSame($expected, (new ImgToPiecePlacement($image))->predict());
     }
 
     /**
@@ -28,6 +28,6 @@ class JpgToPiecePlacementTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/02_kaufman.jpg');
 
-        $this->assertSame($expected, (new JpgToPiecePlacement($image))->predict());
+        $this->assertSame($expected, (new ImgToPiecePlacement($image))->predict());
     }
 }

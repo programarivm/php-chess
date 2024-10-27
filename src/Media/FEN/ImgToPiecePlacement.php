@@ -6,7 +6,7 @@ use Rubix\ML\PersistentModel;
 use Rubix\ML\Datasets\Unlabeled;
 use Rubix\ML\Persisters\Filesystem;
 
-class JpgToPiecePlacement
+class ImgToPiecePlacement
 {
     const ML_PATH = __DIR__ . '/../../../ml';
 

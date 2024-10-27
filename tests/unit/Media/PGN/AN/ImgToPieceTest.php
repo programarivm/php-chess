@@ -2,10 +2,10 @@
 
 namespace Chess\Tests\Unit\Media\PGN\AN;
 
-use Chess\Media\PGN\AN\JpgToPiece;
+use Chess\Media\PGN\AN\ImgToPiece;
 use Chess\Tests\AbstractUnitTestCase;
 
-class JpgToPieceTest extends AbstractUnitTestCase
+class ImgToPieceTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -16,7 +16,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/a1_52.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -28,7 +28,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/B_52.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -40,7 +40,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/b_52.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -52,7 +52,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/n_60.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -64,7 +64,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/P_48.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -76,7 +76,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/p_60.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -88,7 +88,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/Q_48.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -100,7 +100,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/Q_52.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -112,7 +112,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/q_52.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -124,7 +124,7 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/R_52.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 
     /**
@@ -136,6 +136,6 @@ class JpgToPieceTest extends AbstractUnitTestCase
 
         $image = imagecreatefromjpeg(self::DATA_FOLDER.'/img/r_52.jpg');
 
-        $this->assertSame($expected, (new JpgToPiece($image))->predict());
+        $this->assertSame($expected, (new ImgToPiece($image))->predict());
     }
 }
