@@ -112,6 +112,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#image-to-fen" class="nav-link">Image to FEN</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -123,6 +127,7 @@
 <h2 id="fen-to-board">FEN to Board</h2>
 <p>✨ FEN stands for Forsyth-Edwards Notation and is the standard way for describing chess positions using text strings.</p>
 <p>At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenToBoardFactoryTest.php">Chess\FenToBoardFactory</a> class according to the variants supported.</p>
+<p>When a single parameter is passed into the factory's create method, it is assumed that you want to create a classical chess board object.</p>
 <pre><code class="language-php">use Chess\FenToBoardFactory;
 
 $board = FenToBoardFactory::create('rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -');
@@ -134,7 +139,6 @@ echo $board-&gt;toFen();
 </code></pre>
 <pre><code class="language-text">r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -
 </code></pre>
-<p>When a single parameter is passed in the form of a FEN string into the factory create method, it will be assumed that you want to create a classical chess board object. As discussed in the <a href="https://chesslablab.github.io/php-chess/">Home</a> section, you may want to check out the self-explanatory tests for this class to learn more about it. The unit tests are the best documentation. They contain hundreds of real examples on how to use the PHP Chess library.</p>
 <p>In this example the game history contains two moves only.</p>
 <pre><code class="language-php">var_dump($board-&gt;history);
 </code></pre>
@@ -203,12 +207,11 @@ echo $board-&gt;toFen();
   }
 }
 </code></pre>
-<p>The initial FEN string is always accessible.</p>
+<p>The initial FEN string can be accessed as shown below.</p>
 <pre><code class="language-php">echo $board-&gt;startFen;
 </code></pre>
 <pre><code class="language-text">rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -
 </code></pre>
-<p>🎉 Well done! You just learned a well-known and frequently played chess opening.</p>
 <h2 id="board-to-png-image">Board to PNG Image</h2>
 <p>✨ PNG stands for Portable Network Graphics and is a widely used format for image files. Not to be confused with PGN, the text-based file format to annotate chess games.</p>
 <p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Media/BoardToPngTest.php">Chess\Media\BoardToPng</a> converts a chess board object to a PNG image.</p>
@@ -220,7 +223,7 @@ $board = FenToBoardFactory::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP
 $filename = (new BoardToPng($board, $flip = true))-&gt;output(__DIR__);
 </code></pre>
 <p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/data-conversion_01.png" /></p>
-<p>🎉 Try this thing! Share a puzzling chess position with friends for further study.</p>
+<p>Try this thing! Share a puzzling chess position with friends for further study.</p>
 <h2 id="board-to-mp4">Board to MP4</h2>
 <p>✨ Text-based PGN movetexts can be easily converted to MP4, a widely-used video format which comes in handy for pausing the games.</p>
 <p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Media/BoardToMp4Test.php">Chess\Media\BoardToMp4</a> allows to convert a chess board object to an MP4 video.</p>
@@ -233,7 +236,22 @@ $board = new Board();
 
 $filename = (new BoardToMp4($movetext, $board, $flip = false))-&gt;output(__DIR__);
 </code></pre>
-<p>🎉 That's it!</p></div>
+<p>MP4 videos are especially useful to pause the game at a specific position.</p>
+<h2 id="image-to-fen">Image to FEN</h2>
+<p>✨ A chess piece image recognizer has been created in the <a href="https://github.com/chesslablab/perception">chesslablab/perception</a> repository with the help of a multilayer neural network.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Media/ImgToPiecePlacementTest.php">Chess\Media\ImgToPiecePlacement</a> relies on this recognizer to convert a GD image into a piece placement in FEN format.</p>
+<pre><code class="language-php">use Chess\Media\ImgToPiecePlacement;
+
+$image = imagecreatefrompng(__DIR__ . '/01_kaufman.png');
+
+$prediction = (new ImgToPiecePlacement($image))-&gt;predict();
+
+echo $prediction;
+</code></pre>
+<pre><code class="language-text">1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K
+</code></pre>
+<p>For optimal use, it is recommended to make predictions on chessboard images using classical chess pieces like the Kaufman test attached below.</p>
+<p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/data-conversion_02.png" /></p></div>
             </div>
         </div>
 
