@@ -8,6 +8,11 @@ use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Doubled Pawn Evaluation
+ *
+ * A pawn is doubled if there are two pawns of the same color on the same file.
+ */
 class DoubledPawnEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface,
@@ -16,8 +21,16 @@ class DoubledPawnEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Doubled pawn';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -49,6 +62,11 @@ class DoubledPawnEval extends AbstractEval implements
         $this->explain($this->result);
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
     private function elaborate(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);
