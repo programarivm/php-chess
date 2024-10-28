@@ -15,7 +15,8 @@ class Str extends ClassicalStr
     {
         $fields = explode(' ', $string);
 
-        if (!isset($fields[0]) ||
+        if (
+            !isset($fields[0]) ||
             !isset($fields[1]) ||
             !isset($fields[2]) ||
             !isset($fields[3])
