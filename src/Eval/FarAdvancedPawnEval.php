@@ -7,6 +7,11 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Piece\P;
 
+/**
+ * Far Advanced Pawn Evaluation
+ *
+ * A far-advanced pawn is a pawn that is threatening to be promoted.
+ */
 class FarAdvancedPawnEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface
@@ -14,8 +19,16 @@ class FarAdvancedPawnEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Far-advanced pawn';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -52,6 +65,12 @@ class FarAdvancedPawnEval extends AbstractEval implements
         $this->elaborate($this->result);
     }
 
+    /**
+     * Returns true if the pawn is far advanced.
+     *
+     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @return bool
+     */
     private function isFarAdvanced(P $pawn): bool
     {
         if ($pawn->color === Color::W) {
@@ -67,6 +86,11 @@ class FarAdvancedPawnEval extends AbstractEval implements
         return false;
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param array $result
+     */
     private function elaborate(array $result): void
     {
         $singular = $plural = 'threatening to promote';
