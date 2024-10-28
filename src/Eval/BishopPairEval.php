@@ -6,12 +6,25 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Bishop Pair Evaluation
+ *
+ * The player with both bishops may have an advantage, especially in the endgame.
+ */
 class BishopPairEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Bishop pair';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
