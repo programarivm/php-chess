@@ -144,4 +144,24 @@ $board = new Board();
 $filename = (new BoardToMp4($movetext, $board, $flip = false))->output(__DIR__);
 ```
 
-🎉 That's it!
+🎉 MP4 videos are especially useful to pause the game at a specific position.
+
+## Image to FEN
+
+✨ A chess piece image recognizer has been created in the [chesslablab/perception](https://github.com/chesslablab/perception) repository with the help of a multilayer neural network.
+
+[Chess\Media\ImgToPiecePlacement](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Media/ImgToPiecePlacementTest.php) relies on this recognizer to convert a GD image into a piece placement in FEN format.
+
+```php
+use Chess\Media\ImgToPiecePlacement;
+
+$image = imagecreatefrompng(__DIR__ . '/01_kaufman.png');
+
+$prediction = (new ImgToPiecePlacement($image))->predict();
+
+echo $prediction;
+```
+
+```text
+1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K
+```
