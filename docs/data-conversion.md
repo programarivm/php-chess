@@ -163,3 +163,7 @@ echo $prediction;
 ```text
 1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K
 ```
+
+For optimal use, it is recommended to make predictions on chessboard images using classical chess pieces like the Kaufman test attached below.
+
+![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/data-conversion_02.png)
