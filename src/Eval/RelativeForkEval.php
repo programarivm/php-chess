@@ -10,9 +10,8 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 /**
  * Relative Fork Evaluation
  *
- * A fork is a tactic in which a piece attacks multiple pieces at the same time.
- * It is a double attack. A fork not involving the enemy king is a relative
- * fork.
+ * A tactic in which a piece attacks multiple pieces at the same time. It is a
+ * double attack. A fork not involving the enemy king is a relative fork.
  */
 class RelativeForkEval extends AbstractEval implements
     ElaborateEvalInterface,
