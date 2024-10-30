@@ -10,7 +10,7 @@ use Chess\Variant\Classical\Piece\P;
 /**
  * Far Advanced Pawn Evaluation
  *
- * A far-advanced pawn is a pawn that is threatening to be promoted.
+ * A pawn that is threatening to promote.
  */
 class FarAdvancedPawnEval extends AbstractEval implements
     ElaborateEvalInterface,

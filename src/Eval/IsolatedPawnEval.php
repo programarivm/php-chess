@@ -10,8 +10,8 @@ use Chess\Variant\Classical\Piece\P;
 /**
  * Isolated Pawn Evaluation
  *
- * An isolated pawn has no friendly pawns on the adjacent files. Since it cannot
- * be defended by other pawns it is considered a weakness.
+ * A pawn without friendly pawns on the adjacent files. Since it cannot be
+ * defended by other pawns it is considered a weakness.
  */
 class IsolatedPawnEval extends AbstractEval implements
     ElaborateEvalInterface,

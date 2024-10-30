@@ -23,18 +23,18 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | Bad bishop | A bishop that is on the same color as most of own pawns. | [Chess\Eval\BadBishopEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BadBishopEvalTest.php) |
 | Bishop outpost | A bishop on an outpost square is considered a positional advantage because it cannot be attacked by enemy pawns, and as a result, it is often exchanged for another piece. | [Chess\Eval\BishopOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BishopOutpostEvalTest.php) |
 | Bishop pair | The player with both bishops may definitely have an advantage, especially in the endgame. Furthermore, two bishops can deliver checkmate. | [Chess\Eval\BishopPairEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BishopPairEvalTest.php) |
-| Center | | [Chess\Eval\CenterEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CenterEvalTest.php) |
+| Center | It is advantageous to control the central squares as well as to place a piece in the center. | [Chess\Eval\CenterEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CenterEvalTest.php) |
 | Checkability | Having a king that can be checked is usually considered a disadvantage, and vice versa, it is considered advantageous to have a king that cannot be checked. | [Chess\Eval\CheckabilityEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CheckabilityEvalTest.php) |
 | Connectivity | | [Chess\Eval\ConnectivityEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/ConnectivityEvalTest.php) |
 | Defense | | [Chess\Eval\DefenseEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DefenseEvalTest.php) |
 | Diagonal opposition | | [Chess\Eval\DiagonalOppositionEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DiagonalOppositionEvalTest.php) |
 | Direct opposition | | [Chess\Eval\DirectOppositionEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DirectOppositionEvalTest.php) |
-| Discovered check | | [Chess\Eval\DiscoveredCheckEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DiscoveredCheckEvalTest.php) |
-| Doubled pawn | | [Chess\Eval\DoubledPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DoubledPawnEvalTest.php) |
-| Far-advanced pawn | | [Chess\Eval\FarAdvancedPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FarAdvancedPawnEvalTest.php) |
-| Isolated pawn | | [Chess\Eval\IsolatedPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/IsolatedPawnEvalTest.php) |
+| Discovered check | A discovered check occurs when the opponent's king can be checked by moving a piece out of the way of another. | [Chess\Eval\DiscoveredCheckEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DiscoveredCheckEvalTest.php) |
+| Doubled pawn | A pawn is doubled if there are two pawns of the same color on the same file. | [Chess\Eval\DoubledPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DoubledPawnEvalTest.php) |
+| Far-advanced pawn | A pawn that is threatening to promote. | [Chess\Eval\FarAdvancedPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FarAdvancedPawnEvalTest.php) |
+| Isolated pawn | A pawn without friendly pawns on the adjacent files. Since it cannot be defended by other pawns it is considered a weakness. | [Chess\Eval\IsolatedPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/IsolatedPawnEvalTest.php) |
 | King safety | | [Chess\Eval\KingSafetyEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/KingSafetyEvalTest.php) |
-| Knight outpost | | [Chess\Eval\KnightOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/KnightOutpostEvalTest.php) |
+| Knight outpost | A knight on an outpost square is considered a positional advantage because it cannot be attacked by enemy pawns, and as a result, it is often exchanged for a bishop. | [Chess\Eval\KnightOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/KnightOutpostEvalTest.php) |
 | Material | | [Chess\Eval\MaterialEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/MaterialEvalTest.php) |
 | Passed pawn | | [Chess\Eval\PassedPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/PassedPawnEvalTest.php) |
 | Pressure | | [Chess\Eval\PressureEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/PressureEvalTest.php) |
