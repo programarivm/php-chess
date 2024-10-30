@@ -2,12 +2,15 @@
 
 namespace Chess\Eval;
 
-use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Piece\P;
 
+/**
+ * Square Outpost Evaluation
+ *
+ * A square protected by a pawn that cannot be attacked by an opponent's pawn.
+ */
 class SqOutpostEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface
@@ -15,8 +18,16 @@ class SqOutpostEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Outpost square';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -76,7 +87,15 @@ class SqOutpostEval extends AbstractEval implements
         $this->elaborate($this->result);
     }
 
-    private function isFileAttacked($color, $sq, $file): bool
+    /**
+     * Returns true if the given file can be attacked by an opponent's pawn.
+     *
+     * @param string $color
+     * @param string $sq
+     * @param string $file
+     * @return bool
+     */
+    private function isFileAttacked(string $color, string $sq, string $file): bool
     {
         $rank = substr($sq, 1);
         for ($i = 2; $i < 8; $i++) {
@@ -101,6 +120,11 @@ class SqOutpostEval extends AbstractEval implements
         return false;
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param array $result
+     */
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('an ' . self::NAME);
