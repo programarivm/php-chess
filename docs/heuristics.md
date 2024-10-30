@@ -17,12 +17,12 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | Absolute fork | A tactic in which a piece attacks multiple pieces at the same time. It is a double attack. A fork involving the enemy king is an absolute fork. | [Chess\Eval\AbsoluteForkEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/AbsoluteForkEvalTest.php) |
 | Absolute pin | A tactic that occurs when a piece is shielding the king, so it cannot move out of the line of attack because the king would be put in check. | [Chess\Eval\AbsolutePinEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/AbsolutePinEvalTest.php) |
 | Absolute skewer | A tactic in which the enemy king is involved. The king is in check, and it has to move out of danger exposing a more valuable piece to capture. Only line pieces (bishops, rooks and queens) can skewer. | [Chess\Eval\AbsoluteSkewerEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/AbsoluteSkewerEvalTest.php) |
-| Advanced pawn | | [Chess\Eval\AdvancedPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/AdvancedPawnEvalTest.php) |
+| Advanced pawn | A pawn that is on the fifth rank or higher. | [Chess\Eval\AdvancedPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/AdvancedPawnEvalTest.php) |
 | Attack | | [Chess\Eval\AttackEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/AttackEvalTest.php) |
-| Backward pawn | | [Chess\Eval\BackwardPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BackwardPawnEvalTest.php) |
-| Bad bishop | | [Chess\Eval\BadBishopEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BadBishopEvalTest.php) |
-| Bishop outpost | | [Chess\Eval\BishopOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BishopOutpostEvalTest.php) |
-| Bishop pair | | [Chess\Eval\BishopPairEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BishopPairEvalTest.php) |
+| Backward pawn | The last pawn protecting other pawns in its chain. It is considered a weakness because it cannot advance safely. | [Chess\Eval\BackwardPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BackwardPawnEvalTest.php) |
+| Bad bishop | A bishop that is on the same color as most of own pawns. | [Chess\Eval\BadBishopEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BadBishopEvalTest.php) |
+| Bishop outpost | A bishop on an outpost square is considered a positional advantage because it cannot be attacked by enemy pawns, and as a result, it is often exchanged for another piece. | [Chess\Eval\BishopOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BishopOutpostEvalTest.php) |
+| Bishop pair | The player with both bishops may definitely have an advantage, especially in the endgame. Furthermore, two bishops can deliver checkmate. | [Chess\Eval\BishopPairEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/BishopPairEvalTest.php) |
 | Center | | [Chess\Eval\CenterEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CenterEvalTest.php) |
 | Connectivity | | [Chess\Eval\ConnectivityEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/ConnectivityEvalTest.php) |
 | Defense | | [Chess\Eval\DefenseEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DefenseEvalTest.php) |

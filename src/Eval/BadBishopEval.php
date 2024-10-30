@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 /**
  * Bad Bishop Evaluation
  *
- * A bad bishop is a bishop that is on the same color as most of own pawns.
+ * A bishop that is on the same color as most of own pawns.
  */
 class BadBishopEval extends AbstractEval implements
     ExplainEvalInterface,

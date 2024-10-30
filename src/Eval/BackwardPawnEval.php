@@ -11,8 +11,8 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 /**
  * Backward Pawn Evaluation
  *
- * A backward pawn is the last pawn protecting other pawns in its chain. It is
- * considered a weakness because it cannot advance safely.
+ * The last pawn protecting other pawns in its chain. It is considered a
+ * weakness because it cannot advance safely.
  */
 class BackwardPawnEval extends AbstractEval implements
     ElaborateEvalInterface,

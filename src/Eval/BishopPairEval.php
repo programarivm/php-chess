@@ -9,7 +9,8 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 /**
  * Bishop Pair Evaluation
  *
- * The player with both bishops may have an advantage, especially in the endgame.
+ * The player with both bishops may definitely have an advantage, especially
+ * in the endgame. Furthermore, two bishops can deliver checkmate.
  */
 class BishopPairEval extends AbstractEval implements ExplainEvalInterface
 {

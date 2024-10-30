@@ -10,7 +10,7 @@ use Chess\Variant\Classical\Piece\P;
 /**
  * Advanced Pawn Evaluation
  *
- * An advanced pawn is a pawn that is on the fifth rank or higher.
+ * A pawn that is on the fifth rank or higher.
  */
 class AdvancedPawnEval extends AbstractEval implements
     ElaborateEvalInterface,
