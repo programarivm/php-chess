@@ -8,12 +8,27 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/*
+ * Knight Outpost Evaluation
+ *
+ * A knight on an outpost square is considered a positional advantage because
+ * it cannot be attacked by enemy pawns, and as a result, it is often exchanged
+ * for a bishop.
+ */
 class KnightOutpostEval extends AbstractEval implements ElaborateEvalInterface
 {
     use ElaborateEvalTrait;
 
+    /*
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Knight outpost';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -32,6 +47,11 @@ class KnightOutpostEval extends AbstractEval implements ElaborateEvalInterface
         }
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
     private function elaborate(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);
