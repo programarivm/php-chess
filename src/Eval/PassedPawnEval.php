@@ -7,6 +7,12 @@ use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Piece\P;
 
+/**
+ * Passed Pawn Evaluation
+ *
+ * A pawn with no opposing pawns on either the same file or adjacent files to
+ * prevent it from being promoted.
+ */
 class PassedPawnEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface
@@ -14,8 +20,16 @@ class PassedPawnEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Passed pawn';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -51,7 +65,12 @@ class PassedPawnEval extends AbstractEval implements
 
         $this->elaborate($this->result);
     }
-
+    /**
+     * Returns true if the given pawn is passed.
+     *
+     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @return bool
+     */
     private function isPassed(P $pawn): bool
     {
         $leftFile = chr(ord($pawn->file()) - 1);
@@ -80,6 +99,11 @@ class PassedPawnEval extends AbstractEval implements
         return true;
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param array $result
+     */
     private function elaborate(array $result): void
     {
         $singular = mb_strtolower('a ' . self::NAME);
