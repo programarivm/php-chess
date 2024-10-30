@@ -10,9 +10,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 /**
  * Absolute Skewer Evaluation
  *
- * An absolute skewer is a tactic in which the enemy king is involved. The king
- * is in check, and it has to move out of danger exposing a more valuable piece
- * to capture. Only line pieces (bishops, rooks and queens) can skewer.
+ * A tactic in which the enemy king is involved. The king is in check, and it
+ * has to move out of danger exposing a more valuable piece to capture. Only
+ * line pieces (bishops, rooks and queens) can skewer.
  */
 class AbsoluteSkewerEval extends AbstractEval implements ElaborateEvalInterface
 {

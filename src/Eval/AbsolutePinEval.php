@@ -9,9 +9,8 @@ use Chess\Variant\AbstractPiece;
 /**
  * Absolute Pin Evaluation
  *
- * An absolute pin is a tactic that occurs when a piece is shielding the king,
- * so it cannot move out of the line of attack because the king would be put
- * in check.
+ * A tactic that occurs when a piece is shielding the king, so it cannot move
+ * out of the line of attack because the king would be put in check.
  */
 class AbsolutePinEval extends AbstractEval implements
     ElaborateEvalInterface,
