@@ -6,12 +6,27 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Direct Opposition Evaluation
+ *
+ * A position in which the kings are facing each other being two squares apart
+ * on the same rank or file. In this situation, the player not having to move is
+ * said to have the opposition.
+ */
 class DirectOppositionEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Direct opposition';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
