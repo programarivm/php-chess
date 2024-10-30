@@ -170,8 +170,13 @@
 </tr>
 <tr>
 <td>Center</td>
-<td></td>
+<td>It is advantageous to control the central squares as well as to place a piece in the center.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CenterEvalTest.php">Chess\Eval\CenterEval</a></td>
+</tr>
+<tr>
+<td>Checkability</td>
+<td>Having a king that can be checked is usually considered a disadvantage, and vice versa, it is considered advantageous to have a king that cannot be checked.</td>
+<td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CheckabilityEvalTest.php">Chess\Eval\CheckabilityEval</a></td>
 </tr>
 <tr>
 <td>Connectivity</td>
@@ -195,22 +200,22 @@
 </tr>
 <tr>
 <td>Discovered check</td>
-<td></td>
+<td>A discovered check occurs when the opponent's king can be checked by moving a piece out of the way of another.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DiscoveredCheckEvalTest.php">Chess\Eval\DiscoveredCheckEval</a></td>
 </tr>
 <tr>
 <td>Doubled pawn</td>
-<td></td>
+<td>A pawn is doubled if there are two pawns of the same color on the same file.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DoubledPawnEvalTest.php">Chess\Eval\DoubledPawnEval</a></td>
 </tr>
 <tr>
 <td>Far-advanced pawn</td>
-<td></td>
+<td>A pawn that is threatening to promote.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FarAdvancedPawnEvalTest.php">Chess\Eval\FarAdvancedPawnEval</a></td>
 </tr>
 <tr>
 <td>Isolated pawn</td>
-<td></td>
+<td>A pawn without friendly pawns on the adjacent files. Since it cannot be defended by other pawns it is considered a weakness.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/IsolatedPawnEvalTest.php">Chess\Eval\IsolatedPawnEval</a></td>
 </tr>
 <tr>
@@ -220,7 +225,7 @@
 </tr>
 <tr>
 <td>Knight outpost</td>
-<td></td>
+<td>A knight on an outpost square is considered a positional advantage because it cannot be attacked by enemy pawns, and as a result, it is often exchanged for a bishop.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/KnightOutpostEvalTest.php">Chess\Eval\KnightOutpostEval</a></td>
 </tr>
 <tr>
