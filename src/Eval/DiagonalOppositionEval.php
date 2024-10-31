@@ -9,7 +9,8 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 /**
  * Diagonal Opposition Evaluation
  *
- * The same as direct opposition, but the kings are apart diagonally.
+ * The same as direct opposition, but the two kings are apart from each other
+ * diagonally.
  */
 class DiagonalOppositionEval extends AbstractEval implements ExplainEvalInterface
 {
