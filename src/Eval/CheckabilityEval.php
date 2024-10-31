@@ -13,7 +13,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * Having a king that can be checked is usually considered a disadvantage,
  * and vice versa, it is considered advantageous to have a king that cannot
- * be checked.
+ * be checked. A checkable king is vulnerable to forcing moves.
  */
 class CheckabilityEval extends AbstractEval implements
     ElaborateEvalInterface,
