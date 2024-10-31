@@ -8,6 +8,13 @@ use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Overloading Evaluation
+ *
+ * A piece that is overloaded with defensive tasks is vulnerable because it can
+ * be deflected, meaning it could be forced to leave the square it occupies,
+ * typically resulting in an advantage for the opponent.
+ */
 class OverloadingEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface,
@@ -16,8 +23,16 @@ class OverloadingEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Overloading';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -65,6 +80,11 @@ class OverloadingEval extends AbstractEval implements
         ]);
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
     private function elaborate(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);

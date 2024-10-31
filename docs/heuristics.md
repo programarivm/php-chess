@@ -36,6 +36,7 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | King safety | | [Chess\Eval\KingSafetyEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/KingSafetyEvalTest.php) |
 | Knight outpost | A knight on an outpost square is considered a positional advantage because it cannot be attacked by enemy pawns, and as a result, it is often exchanged for a bishop. | [Chess\Eval\KnightOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/KnightOutpostEvalTest.php) |
 | Material | | [Chess\Eval\MaterialEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/MaterialEvalTest.php) |
+| Overloading | A piece that is overloaded with defensive tasks is vulnerable because it can be deflected, meaning it could be forced to leave the square it occupies, typically resulting in an advantage for the opponent. | [Chess\Eval\OverloadingEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/OverloadingEvalTest.php) |
 | Passed pawn | A pawn with no opposing pawns on either the same file or adjacent files to prevent it from being promoted. | [Chess\Eval\PassedPawnEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/PassedPawnEvalTest.php) |
 | Pressure | | [Chess\Eval\PressureEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/PressureEvalTest.php) |
 | Protection | | [Chess\Eval\ProtectionEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/ProtectionEvalTest.php) |
