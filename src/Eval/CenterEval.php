@@ -9,13 +9,8 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * Center Evaluation
  *
- * Integer values are assigned to squares based on their proximity to the
- * center. The closer a square is to the center, the higher its value. If a
- * piece occupies such a square, its value is considered in the total sum of the
- * result. It is advantageous to have a piece placed in the center. The more
- * valuable the piece, the better. To this sum are also added the squares
- * controlled by each player. The controlled squares are those that are in each
- * player's space.
+ * It is advantageous to control the central squares as well as to place a piece
+ * in the center.
  */
 class CenterEval extends AbstractEval implements ExplainEvalInterface
 {
@@ -30,7 +25,7 @@ class CenterEval extends AbstractEval implements ExplainEvalInterface
 
     /**
      * Integer values are assigned to squares based on their proximity to the
-     * center.
+     * center. The closer a square is to the center, the higher its value.
      *
      * @var array
      */
@@ -47,6 +42,11 @@ class CenterEval extends AbstractEval implements ExplainEvalInterface
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
+     *
+     * If a piece occupies a square, its value is considered in the total sum of
+     * the result. The more valuable the piece, the better. To this sum are also
+     * added the squares controlled by each player. The controlled squares are
+     * those that are in each player's space.
      */
     public function __construct(AbstractBoard $board)
     {
