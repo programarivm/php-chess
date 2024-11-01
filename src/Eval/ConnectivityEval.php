@@ -6,12 +6,25 @@ use Chess\Eval\SqCount;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Connectivity Evaluation
+ *
+ * The connectivity of the pieces measures how loosely the pieces are.
+ */
 class ConnectivityEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Connectivity';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
