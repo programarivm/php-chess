@@ -41,7 +41,7 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | Pressure | | [Chess\Eval\PressureEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/PressureEvalTest.php) |
 | Protection | | [Chess\Eval\ProtectionEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/ProtectionEvalTest.php) |
 | Relative fork | A tactic in which a piece attacks multiple pieces at the same time. It is a double attack. A fork not involving the enemy king is a relative fork. | [Chess\Eval\RelativeForkEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/RelativeForkEvalTest.php) |
-| Relative pin | | [Chess\Eval\RelativePinEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/RelativePinEvalTest.php) |
+| Relative pin | A tactic that occurs when a piece is shielding a more valuable piece, so if it moves out of the line of attack the more valuable piece can be captured resulting in a material gain. | [Chess\Eval\RelativePinEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/RelativePinEvalTest.php) |
 | Space | | [Chess\Eval\SpaceEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/SpaceEvalTest.php) |
 | Square outpost | A square protected by a pawn that cannot be attacked by an opponent's pawn. | [Chess\Eval\SqOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/SqOutpostEvalTest.php) |
 
