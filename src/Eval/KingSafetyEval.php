@@ -5,17 +5,32 @@ namespace Chess\Eval;
 use Chess\Eval\PressureEval;
 use Chess\Eval\SpaceEval;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * King Safety Evaluation
+ *
+ * An unsafe king leads to uncertainty. The probability of unexpected, forced
+ * moves will increase as the opponent's pieces get closer to it.
+ *
+ * @see \Chess\Eval\AbstractEval
+ */
 class KingSafetyEval extends AbstractEval implements
     ExplainEvalInterface,
     InverseEvalInterface
 {
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'King safety';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
