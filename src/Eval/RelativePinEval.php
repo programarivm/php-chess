@@ -8,6 +8,13 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Relative Pin Evaluation
+ *
+ * A tactic that occurs when a piece is shielding a more valuable piece, so if
+ * it moves out of the line of attack the more valuable piece can be captured
+ * resulting in a material gain.
+ */
 class RelativePinEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface
@@ -15,8 +22,16 @@ class RelativePinEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Relative pin';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -65,6 +80,11 @@ class RelativePinEval extends AbstractEval implements
         $this->explain($this->result);
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
     private function elaborate(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);
