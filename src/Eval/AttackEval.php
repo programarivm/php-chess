@@ -7,6 +7,13 @@ use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Attack Evaluation
+ *
+ * A piece is under threat of being attacked if it can be taken by an
+ * opponent's piece. The player with the greater number of material points under
+ * threat of attack has a disadvantage.
+ */
 class AttackEval extends AbstractEval implements
     ElaborateEvalInterface,
     ExplainEvalInterface
@@ -14,8 +21,16 @@ class AttackEval extends AbstractEval implements
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Attack';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
@@ -77,6 +92,11 @@ class AttackEval extends AbstractEval implements
         $this->explain($this->result);
     }
 
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
     private function elaborate(AbstractPiece $piece): void
     {
         $this->elaboration[] = "The {$piece->sq}-square is under threat of being attacked.";
