@@ -13,13 +13,9 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
 
     const NAME = 'Space';
 
-    private array $sqCount;
-
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
-
-        $this->sqCount = (new SqCount($board))->count();
 
         $this->result = [
             Color::W => [],
@@ -39,6 +35,8 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
             "has a total space advantage",
         ];
 
+        $sqCount = (new SqCount($board))->count();
+
         foreach ($pieces = $this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
                 $this->result[$piece->color] = array_unique(
@@ -46,7 +44,7 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
                         ...$this->result[$piece->color],
                         ...array_intersect(
                             $piece->mobility,
-                            $this->sqCount['free']
+                            $sqCount['free']
                         )
                     ]
                 );
@@ -56,7 +54,7 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
                         ...$this->result[$piece->color],
                         ...array_intersect(
                             $piece->captureSqs,
-                            $this->sqCount['free']
+                            $sqCount['free']
                         )
                     ]
                 );
@@ -66,7 +64,7 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
                         ...$this->result[$piece->color],
                         ...array_diff(
                             $piece->moveSqs(),
-                            $this->sqCount['used'][$piece->oppColor()]
+                            $sqCount['used'][$piece->oppColor()]
                         )
                     ]
                 );
