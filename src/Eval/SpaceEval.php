@@ -7,12 +7,25 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Space Evaluation
+ *
+ * This is a measure of the number of squares controlled by each player.
+ */
 class SpaceEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Space';
 
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
