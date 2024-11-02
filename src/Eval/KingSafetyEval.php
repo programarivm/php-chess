@@ -37,27 +37,24 @@ class KingSafetyEval extends AbstractEval implements
         $pressEval = (new PressureEval($this->board))->getResult();
         $spEval = (new SpaceEval($this->board))->getResult();
 
-        $this->color(Color::W, $pressEval, $spEval);
-        $this->color(Color::B, $pressEval, $spEval);
-
-        $this->explain($this->result);
-    }
-
-    private function color(string $color, array $pressEval, array $spEval): void
-    {
-        $king = $this->board->piece($color, Piece::K);
-        foreach ($king->mobility as $sq) {
-            if ($piece = $this->board->pieceBySq($sq)) {
-                if ($piece->color === $king->oppColor()) {
-                    $this->result[$color] += 1;
+        foreach ($this->board->pieces() as $piece) {
+            if ($piece->id === Piece::K) {
+                foreach ($piece->mobility as $sq) {
+                    if ($pieceBySq = $this->board->pieceBySq($sq)) {
+                        if ($pieceBySq->color === $piece->oppColor()) {
+                            $this->result[$piece->color] += 1;
+                        }
+                    }
+                    if (in_array($sq, $pressEval[$piece->oppColor()])) {
+                        $this->result[$piece->color] += 1;
+                    }
+                    if (in_array($sq, $spEval[$piece->oppColor()])) {
+                        $this->result[$piece->color] += 1;
+                    }
                 }
             }
-            if (in_array($sq, $pressEval[$king->oppColor()])) {
-                $this->result[$color] += 1;
-            }
-            if (in_array($sq, $spEval[$king->oppColor()])) {
-                $this->result[$color] += 1;
-            }
         }
+
+        $this->explain($this->result);
     }
 }
