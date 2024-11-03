@@ -7,19 +7,32 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
+/**
+ * Pressure Evaluation
+ *
+ * This is a measure of the number of squares targeted by each player that
+ * require special attention. It often indicates the step prior to an attack.
+ * The player with the greater number of them has an advantage.
+ *
+ * @see \Chess\Eval\AttackEval
+ */
 class PressureEval extends AbstractEval implements ExplainEvalInterface
 {
     use ExplainEvalTrait;
 
+    /**
+     * The name of the heuristic.
+     *
+     * @var string
+     */
     const NAME = 'Pressure';
 
-    private array $sqCount;
-
+    /**
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
-
-        $this->sqCount = (new SqCount($board))->count();
 
         $this->result = [
             Color::W => [],
@@ -39,13 +52,15 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
             "is utterly pressuring more squares than its opponent",
         ];
 
+        $sqCount = (new SqCount($board))->count();
+
         foreach ($pieces = $this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
                     ...array_intersect(
                         $piece->mobility,
-                        $this->sqCount['used'][$piece->oppColor()]
+                        $sqCount['used'][$piece->oppColor()]
                     )
                 ];
             } elseif ($piece->id === Piece::P) {
@@ -53,7 +68,7 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
                     ...$this->result[$piece->color],
                     ...array_intersect(
                         $piece->captureSqs,
-                        $this->sqCount['used'][$piece->oppColor()]
+                        $sqCount['used'][$piece->oppColor()]
                     )
                 ];
             } else {
@@ -61,7 +76,7 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
                     ...$this->result[$piece->color],
                     ...array_intersect(
                         $piece->moveSqs(),
-                        $this->sqCount['used'][$piece->oppColor()]
+                        $sqCount['used'][$piece->oppColor()]
                     )
                 ];
             }
