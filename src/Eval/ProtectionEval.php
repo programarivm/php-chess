@@ -11,9 +11,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * Protection Evaluation
  *
  * If a piece is unprotected, it means that there are no other pieces defending
- * it, and therefore it can be taken for free resulting in a material gain. This
- * indicates a forcing move in that a player is to reply in a certain way. On
- * the next turn, it should be defended by a piece or moved to a safe square.
+ * it, and therefore it could be taken for free resulting in a material gain.
+ * This indicates a forcing move in that a player is to reply in a certain way.
+ * On the next turn, it should be defended by a piece or moved to a safe square.
  * The player with the greater number of material points under protection has an
  * advantage.
  *
