@@ -10,9 +10,13 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 /**
  * Attack Evaluation
  *
- * A piece is under threat of being attacked if it can be taken by an
- * opponent's piece. The player with the greater number of material points under
- * threat of attack has a disadvantage.
+ * If a piece is under threat of being attacked, it means it could be taken
+ * after a sequence of captures resulting in a material gain. This indicates a
+ * forcing move in that a player is to reply in a certain way. On the next turn,
+ * it should be defended by a piece or moved to a safe square. The player with
+ * the greater number of material points under attack has an advantage.
+ *
+ * @see \Chess\Eval\ProtectionEval
  */
 class AttackEval extends AbstractEval implements
     ElaborateEvalInterface,
