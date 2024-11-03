@@ -41,7 +41,7 @@ class AttackEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The c4-square is under threat of being attacked.",
+            "The bishop on c4 is under threat of being attacked.",
         ];
 
         $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1p6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6'))->create();
@@ -123,7 +123,7 @@ class AttackEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The b5-square is under threat of being attacked.",
+            "The knight on b5 is under threat of being attacked.",
         ];
 
         $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1n6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6'))->create();
@@ -149,7 +149,7 @@ class AttackEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The d4-square is under threat of being attacked.",
+            "The pawn on d4 is under threat of being attacked.",
         ];
 
         $board = (new StrToBoard('6k1/6p1/2n2b2/8/3P4/5N2/2K5/8 w - -'))->create();
@@ -196,8 +196,8 @@ class AttackEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The b5-square is under threat of being attacked.",
-            "The e5-square is under threat of being attacked.",
+            "The bishop on b5 is under threat of being attacked.",
+            "The knight on e5 is under threat of being attacked.",
         ];
 
         $board = new Board();
@@ -231,8 +231,8 @@ class AttackEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The e5-square is under threat of being attacked.",
-            "The e4-square is under threat of being attacked.",
+            "The pawn on e5 is under threat of being attacked.",
+            "The knight on e4 is under threat of being attacked.",
         ];
 
         $board = new Board();
@@ -266,7 +266,7 @@ class AttackEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The f6-square is under threat of being attacked.",
+            "The knight on f6 is under threat of being attacked.",
         ];
 
         $board = new Board();
@@ -296,7 +296,7 @@ class AttackEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The e5-square is under threat of being attacked.",
+            "The pawn on e5 is under threat of being attacked.",
         ];
 
         $board = (new StrToBoard('r2qkbnr/ppp2ppp/2np4/1B2p3/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQkq -'))
