@@ -145,7 +145,7 @@
 </tr>
 <tr>
 <td>Attack</td>
-<td>A piece is under threat of being attacked if it can be taken by an opponent's piece. The player with the greater number of material points under threat of attack has a disadvantage.</td>
+<td>If a piece is under threat of being attacked, it means it could be taken after a sequence of captures resulting in a material gain. This indicates a forcing move in that a player is to reply in a certain way. On the next turn, it should be defended by a piece or moved to a safe square. The player with the greater number of material points under attack has an advantage.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/AttackEvalTest.php">Chess\Eval\AttackEval</a></td>
 </tr>
 <tr>
@@ -245,7 +245,7 @@
 </tr>
 <tr>
 <td>Pressure</td>
-<td></td>
+<td>This is a measure of the number of squares targeted by each player that require special attention. It often indicates the step prior to an attack. The player with the greater number of them has an advantage.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/PressureEvalTest.php">Chess\Eval\PressureEval</a></td>
 </tr>
 <tr>
