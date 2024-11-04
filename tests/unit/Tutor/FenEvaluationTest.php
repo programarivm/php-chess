@@ -25,7 +25,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
     {
         $expected = [
             "Black has a slightly better control of the center.",
-            "The white pieces are totally better connected.",
+            "The white pieces are slightly better connected.",
             "Black has a moderate space advantage.",
             "Overall, 1 heuristic evaluation feature is favoring White while 2 are favoring Black.",
         ];
@@ -45,7 +45,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
     {
         $expected = [
             "White is totally controlling the center.",
-            "The black pieces are totally better connected.",
+            "The black pieces are slightly better connected.",
             "White has a total space advantage.",
             "The white player is pressuring a little bit more squares than its opponent.",
             "Overall, 3 heuristic evaluation features are favoring White while 1 is favoring Black.",
