@@ -18,16 +18,16 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             'b' => ['d5'],
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "Black has a slight passed pawn advantage.",
         ];
 
         $board = FenToBoardFactory::create('1r4k1/7p/5np1/3p3n/8/2NB4/7P/3N1RK1 w - -');
-        
+
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
-        $this->assertSame($expectedPhrase, $passedPawnEval->getExplanation());
+        $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
     }
 
     /**
@@ -40,7 +40,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             'b' => [],
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "White has a slight passed pawn advantage.",
         ];
 
@@ -49,7 +49,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
-        $this->assertSame($expectedPhrase, $passedPawnEval->getExplanation());
+        $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
     }
 
     /**
@@ -62,7 +62,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             'b' => ['e6', 'f5'],
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "Black has a moderate passed pawn advantage.",
         ];
 
@@ -71,7 +71,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
-        $this->assertSame($expectedPhrase, $passedPawnEval->getExplanation());
+        $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
     }
 
     /**
@@ -84,7 +84,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             'b' => [],
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "White has a slight passed pawn advantage.",
         ];
 
@@ -93,6 +93,6 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
-        $this->assertSame($expectedPhrase, $passedPawnEval->getExplanation());
+        $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
     }
 }
