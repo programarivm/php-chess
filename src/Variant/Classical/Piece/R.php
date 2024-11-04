@@ -3,11 +3,11 @@
 namespace Chess\Variant\Classical\Piece;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Variant\AbstractSlider;
+use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 
-class R extends AbstractSlider
+class R extends AbstractLinePiece
 {
     public string $type;
 
