@@ -103,7 +103,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "b4 is an outpost square.",
+            "These are outpost squares: b4.",
         ];
 
         $board = FenToBoardFactory::create('5k2/7K/8/8/8/P7/8/8 w - -');
@@ -134,7 +134,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "b5, b4 and d4 are outpost squares.",
+            "These are outpost squares: b4, d4, b5.",
         ];
 
         $board = FenToBoardFactory::create('5k2/7K/8/2p5/P7/8/8/8 w - -');
@@ -440,7 +440,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         $expectedExplanation = [];
 
         $expectedElaboration = [
-            "d5 and d4 are outpost squares.",
+            "These are outpost squares: d4, d5.",
         ];
 
         $fen = 'r1b2rk1/2q1bppp/p2p1n2/np2p3/3PP3/5N1P/PPBN1PP1/R1BQR1K1 b - - 0 13';

@@ -61,6 +61,7 @@ class SqOutpostEval extends AbstractEval implements
                         !$this->isFileAttacked($piece->color, $captureSqs[0], $right)
                     ) {
                         $this->result[$piece->color][] = $captureSqs[0];
+                        $this->elaborate($captureSqs[0]);
                     }
                     if (isset($captureSqs[1])) {
                         $left = chr(ord($captureSqs[1]) - 1);
@@ -70,11 +71,14 @@ class SqOutpostEval extends AbstractEval implements
                             !$this->isFileAttacked($piece->color, $captureSqs[1], $right)
                         ) {
                             $this->result[$piece->color][] = $captureSqs[1];
+                            $this->elaborate($captureSqs[1]);
                         }
                     }
                 }
             }
         }
+
+        $this->reelaborate('These are outpost squares: ', $ucfirst = false);
 
         $this->result[Color::W] = array_unique($this->result[Color::W]);
         $this->result[Color::B] = array_unique($this->result[Color::B]);
@@ -83,8 +87,6 @@ class SqOutpostEval extends AbstractEval implements
             Color::W => count($this->result[Color::W]),
             Color::B => count($this->result[Color::B]),
         ]);
-
-        $this->elaborate($this->result);
     }
 
     /**
@@ -123,13 +125,10 @@ class SqOutpostEval extends AbstractEval implements
     /**
      * Elaborate on the evaluation.
      *
-     * @param array $result
+     * @param string $sq
      */
-    private function elaborate(array $result): void
+    private function elaborate(string $sq): void
     {
-        $singular = mb_strtolower('an ' . self::NAME);
-        $plural = mb_strtolower(self::NAME . 's');
-
-        $this->shorten($result, $singular, $plural);
+        $this->elaboration[] = $sq;
     }
 }
