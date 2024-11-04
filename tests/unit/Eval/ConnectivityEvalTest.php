@@ -14,14 +14,23 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 2,
             'b' => 2,
         ];
 
-        $result = (new ConnectivityEval(new Board()))->getResult();
+        $expectedExplanation = [
+        ];
 
-        $this->assertSame($expected, $result);
+        $expectedElaboration = [
+            "These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8.",
+        ];
+
+        $connectivityEval = new ConnectivityEval(new Board());
+
+        $this->assertSame($expectedResult, $connectivityEval->getResult());
+        $this->assertSame($expectedExplanation, $connectivityEval->getExplanation());
+        $this->assertSame($expectedElaboration, $connectivityEval->getElaboration());
     }
 
     /**
@@ -34,8 +43,12 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
             'b' => 3,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The black pieces are significantly better connected.",
+        ];
+
+        $expectedElaboration = [
+            "These pieces are hanging: The rook on a1, the rook on h1, the pawn on g2, the rook on a8, the rook on h8, the pawn on g7, the pawn on e4, the bishop on b5.",
         ];
 
         $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
@@ -43,6 +56,7 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
         $connectivityEval = new ConnectivityEval($board);
 
         $this->assertSame($expectedResult, $connectivityEval->getResult());
-        $this->assertSame($expectedPhrase, $connectivityEval->getExplanation());
+        $this->assertSame($expectedExplanation, $connectivityEval->getExplanation());
+        $this->assertSame($expectedElaboration, $connectivityEval->getElaboration());
     }
 }

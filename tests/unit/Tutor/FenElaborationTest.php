@@ -23,7 +23,9 @@ class FenElaborationTest extends AbstractUnitTestCase
      */
     public function A08()
     {
-        $expected = [];
+        $expected = [
+            "These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8, the pawn on c5.",
+        ];
 
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
         $board = (new SanPlay($A08))->validate()->board;

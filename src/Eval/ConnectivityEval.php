@@ -2,7 +2,9 @@
 
 namespace Chess\Eval;
 
+use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -11,9 +13,11 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * The connectivity of the pieces measures how loosely the pieces are.
  */
 class ConnectivityEval extends AbstractEval implements
+    ElaborateEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface
 {
+    use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
     /**
@@ -47,10 +51,23 @@ class ConnectivityEval extends AbstractEval implements
             if ($piece->id !== Piece::K) {
                 if (!$piece->defending()) {
                     $this->result[$piece->color] += 1;
+                    $this->elaborate($piece);
                 }
             }
         }
 
+        $this->reelaborate('These pieces are hanging: ', $ucfirst = true);
+
         $this->explain($this->result);
+    }
+
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
+    private function elaborate(AbstractPiece $piece): void
+    {
+        $this->elaboration[] = PiecePhrase::create($piece);
     }
 }

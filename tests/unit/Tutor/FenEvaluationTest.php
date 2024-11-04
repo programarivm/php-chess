@@ -27,6 +27,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
             "Black has a slightly better control of the center.",
             "The white pieces are slightly better connected.",
             "Black has a moderate space advantage.",
+            "These pieces are hanging: The rook on a8, the rook on h8, the pawn on c5, the rook on a1, the rook on h1.",
             "Overall, 1 heuristic evaluation feature is favoring White while 2 are favoring Black.",
         ];
 
