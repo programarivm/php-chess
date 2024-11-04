@@ -22,12 +22,17 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             "Black has a slight passed pawn advantage.",
         ];
 
+        $expectedElaboration = [
+            "The following are passed pawns: d5.",
+        ];
+
         $board = FenToBoardFactory::create('1r4k1/7p/5np1/3p3n/8/2NB4/7P/3N1RK1 w - -');
 
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
         $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
+        $this->assertSame($expectedElaboration, $passedPawnEval->getElaboration());
     }
 
     /**
@@ -44,12 +49,17 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             "White has a slight passed pawn advantage.",
         ];
 
+        $expectedElaboration = [
+            "The following are passed pawns: c2.",
+        ];
+
         $board = FenToBoardFactory::create('1r2r1k1/p4p1p/6pB/q7/8/3Q2P1/PbP2PKP/1R3R2 w - -');
 
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
         $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
+        $this->assertSame($expectedElaboration, $passedPawnEval->getElaboration());
     }
 
     /**
@@ -66,12 +76,17 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             "Black has a moderate passed pawn advantage.",
         ];
 
+        $expectedElaboration = [
+            "The following are passed pawns: e6, f5.",
+        ];
+
         $board = FenToBoardFactory::create('8/2k5/4p3/1nb2p2/2K5/8/6B1/8 w - -');
 
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
         $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
+        $this->assertSame($expectedElaboration, $passedPawnEval->getElaboration());
     }
 
     /**
@@ -88,11 +103,16 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
             "White has a slight passed pawn advantage.",
         ];
 
+        $expectedElaboration = [
+            "The following are passed pawns: a4.",
+        ];
+
         $board = FenToBoardFactory::create('8/8/8/5k2/P7/4K3/8/8 w - - 0 1');
 
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->getResult());
         $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
+        $this->assertSame($expectedElaboration, $passedPawnEval->getElaboration());
     }
 }
