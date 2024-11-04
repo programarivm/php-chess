@@ -24,7 +24,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "a7 and d5 are isolated pawns.",
+            "The following are isolated pawns: a7, d5.",
         ];
 
         $board = FenToBoardFactory::create('r3k2r/pbn2ppp/8/1P1pP3/P1qP4/5B2/3Q1PPP/R3K2R w KQkq -');
@@ -49,7 +49,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
         $expectedExplanation = [];
 
         $expectedElaboration = [
-            "h2 and d5 are isolated pawns.",
+            "The following are isolated pawns: d5, h2.",
         ];
 
         $board = FenToBoardFactory::create('1r4k1/7p/5np1/3p3n/8/2NB4/7P/3N1RK1 w - -');
@@ -76,11 +76,11 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "a2, c2 and a7 are isolated pawns.",
+            "The following are isolated pawns: a7, a2, c2.",
         ];
 
         $board = FenToBoardFactory::create('1r2r1k1/p4p1p/6pB/q7/8/3Q2P1/PbP2PKP/1R3R2 w - -');
-        
+
         $isolatedPawnEval = new IsolatedPawnEval($board);
 
         $this->assertSame($expectedResult, $isolatedPawnEval->getResult());
