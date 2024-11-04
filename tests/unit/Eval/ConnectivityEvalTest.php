@@ -6,7 +6,6 @@ use Chess\Eval\ConnectivityEval;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
-use Chess\Variant\Classical\FEN\StrToBoard;
 
 class ConnectivityEvalTest extends AbstractUnitTestCase
 {
@@ -16,8 +15,8 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
     public function start()
     {
         $expected = [
-            'w' => 20,
-            'b' => 20,
+            'w' => 2,
+            'b' => 2,
         ];
 
         $result = (new ConnectivityEval(new Board()))->getResult();
@@ -31,12 +30,12 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
     public function C60()
     {
         $expectedResult = [
-            'w' => 19,
-            'b' => 23,
+            'w' => 5,
+            'b' => 3,
         ];
 
         $expectedPhrase = [
-            "The black pieces are totally better connected.",
+            "The black pieces are significantly better connected.",
         ];
 
         $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
