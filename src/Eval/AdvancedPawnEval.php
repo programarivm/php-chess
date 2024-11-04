@@ -58,7 +58,7 @@ class AdvancedPawnEval extends AbstractEval implements
             }
         }
 
-        $this->reelaborate('These are advanced pawns: ', $ucfirst = false);
+        $this->shorten('These are advanced pawns: ', $ucfirst = false);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),

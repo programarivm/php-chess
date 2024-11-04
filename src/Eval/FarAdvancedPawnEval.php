@@ -58,7 +58,7 @@ class FarAdvancedPawnEval extends AbstractEval implements
             }
         }
 
-        $this->reelaborate('These pawns are threatening to promote: ', $ucfirst = false);
+        $this->shorten('These pawns are threatening to promote: ', $ucfirst = false);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),

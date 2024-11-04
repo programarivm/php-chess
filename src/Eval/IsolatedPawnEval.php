@@ -62,7 +62,7 @@ class IsolatedPawnEval extends AbstractEval implements
             }
         }
 
-        $this->reelaborate('The following are isolated pawns: ', $ucfirst = false);
+        $this->shorten('The following are isolated pawns: ', $ucfirst = false);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),

@@ -81,7 +81,7 @@ class BackwardPawnEval extends AbstractEval implements
             }
         }
 
-        $this->reelaborate('These pawns are bakward: ', $ucfirst = false);
+        $this->shorten('These pawns are bakward: ', $ucfirst = false);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),

@@ -13,7 +13,7 @@ trait ElaborateEvalTrait
         return $this->elaboration;
     }
 
-    protected function reelaborate(string $intro, bool $ucfirst): array
+    protected function shorten(string $intro, bool $ucfirst): array
     {
         if ($this->elaboration) {
             $rephrase = '';

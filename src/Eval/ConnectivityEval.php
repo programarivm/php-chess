@@ -56,7 +56,7 @@ class ConnectivityEval extends AbstractEval implements
             }
         }
 
-        $this->reelaborate('These pieces are hanging: ', $ucfirst = true);
+        $this->shorten('These pieces are hanging: ', $ucfirst = true);
 
         $this->explain($this->result);
     }

@@ -59,7 +59,7 @@ class PassedPawnEval extends AbstractEval implements
             }
         }
 
-        $this->reelaborate('The following are passed pawns: ', $ucfirst = false);
+        $this->shorten('The following are passed pawns: ', $ucfirst = false);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),
