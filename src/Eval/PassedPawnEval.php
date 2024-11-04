@@ -3,6 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Piece\P;
@@ -55,15 +56,16 @@ class PassedPawnEval extends AbstractEval implements
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::P && $this->isPassed($piece)) {
                 $this->result[$piece->color][] = $piece->sq;
+                $this->elaborate($piece);
             }
         }
+
+        $this->reelaborate('The following are passed pawns: ', $ucfirst = false);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),
             Color::B => count($this->result[Color::B]),
         ]);
-
-        $this->elaborate($this->result);
     }
     /**
      * Returns true if the given pawn is passed.
@@ -102,13 +104,10 @@ class PassedPawnEval extends AbstractEval implements
     /**
      * Elaborate on the evaluation.
      *
-     * @param array $result
+     * @param \Chess\Variant\AbstractPiece $piece
      */
-    private function elaborate(array $result): void
+    private function elaborate(AbstractPiece $piece): void
     {
-        $singular = mb_strtolower('a ' . self::NAME);
-        $plural = mb_strtolower(self::NAME . 's');
-
-        $this->shorten($result, $singular, $plural);
+        $this->elaboration[] = $piece->sq;
     }
 }
