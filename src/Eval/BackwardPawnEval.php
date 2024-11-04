@@ -124,14 +124,4 @@ class BackwardPawnEval extends AbstractEval implements
 
         return false;
     }
-
-    /**
-     * Elaborate on the evaluation.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     */
-    private function elaborate(AbstractPiece $piece): void
-    {
-        $this->elaboration[] = $piece->sq;
-    }
 }
