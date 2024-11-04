@@ -23,7 +23,9 @@ class FenElaborationTest extends AbstractUnitTestCase
      */
     public function A08()
     {
-        $expected = [];
+        $expected = [
+            "These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8, the pawn on c5.",
+        ];
 
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
         $board = (new SanPlay($A08))->validate()->board;
@@ -55,7 +57,9 @@ class FenElaborationTest extends AbstractUnitTestCase
      */
     public function capablanca_f4()
     {
-        $expected = [];
+        $expected = [
+            "These pieces are hanging: The rook on a8, Black's archbishop on c8, Black's chancellor on h8, the rook on j8, the pawn on i7, the pawn on f4, the pawn on i2, the rook on a1, White's archbishop on c1, White's chancellor on h1, the rook on j1.",
+        ];
 
         $board = FenToBoardFactory::create(
             'rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3',

@@ -68,6 +68,26 @@ class PiecePhrase
             'color' => "b",
             'meaning' => "the rook",
         ],
+        [
+            'id' => "A",
+            'color' => "w",
+            'meaning' => "White's archbishop",
+        ],
+        [
+            'id' => "A",
+            'color' => "b",
+            'meaning' => "Black's archbishop",
+        ],
+        [
+            'id' => "C",
+            'color' => "w",
+            'meaning' => "White's chancellor",
+        ],
+        [
+            'id' => "C",
+            'color' => "b",
+            'meaning' => "Black's chancellor",
+        ],
     ];
 
     public static function create(AbstractPiece $piece): ?string
