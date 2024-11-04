@@ -4,13 +4,29 @@ namespace Chess\Variant;
 
 use Chess\Variant\Classical\PGN\AN\Square;
 
-abstract class AbstractSlider extends AbstractPiece
+/**
+ * Abstract Line Piece
+ *
+ * A piece that can move along straight lines of squares.
+ */
+abstract class AbstractLinePiece extends AbstractPiece
 {
+    /**
+     * @param string $color
+     * @param string $sq
+     * @param \Chess\Variant\Classical\PGN\AN\Square $square
+     * @param string $id
+     */
     public function __construct(string $color, string $sq, Square $square, string $id)
     {
         parent::__construct($color, $sq, $square, $id);
     }
 
+    /**
+     * Returns an array representing the squares this piece can move to.
+     *
+     * @return array
+     */
     public function moveSqs(): array
     {
         $sqs = [];
@@ -30,7 +46,12 @@ abstract class AbstractSlider extends AbstractPiece
         return $sqs;
     }
 
-    public function defendedSqs(): ?array
+    /**
+     * Returns an array representing the defended squares by this piece.
+     *
+     * @return array
+     */
+    public function defendedSqs(): array
     {
         $sqs = [];
         foreach ($this->mobility as $key => $val) {

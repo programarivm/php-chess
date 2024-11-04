@@ -3,11 +3,11 @@
 namespace Chess\Variant\Classical\Piece;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Variant\AbstractSlider;
+use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 
-class B extends AbstractSlider
+class B extends AbstractLinePiece
 {
     public function __construct(string $color, string $sq, Square $square)
     {

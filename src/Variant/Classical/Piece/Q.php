@@ -2,12 +2,12 @@
 
 namespace Chess\Variant\Classical\Piece;
 
-use Chess\Variant\AbstractSlider;
+use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\RType;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 
-class Q extends AbstractSlider
+class Q extends AbstractLinePiece
 {
     public function __construct(string $color, string $sq, Square $square)
     {
