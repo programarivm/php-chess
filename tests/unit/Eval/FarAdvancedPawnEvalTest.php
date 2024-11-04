@@ -23,7 +23,7 @@ class FarAdvancedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "b6 is threatening to promote.",
+            "These pawns are threatening to promote: b6.",
         ];
 
         $board = FenToBoardFactory::create('8/1p6/1P1K4/pk6/8/8/5B2/8 b - - 3 56');
@@ -50,7 +50,7 @@ class FarAdvancedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "e6, c3 and e2 are threatening to promote.",
+            "These pawns are threatening to promote: e6, c3, e2.",
         ];
 
         $board = FenToBoardFactory::create('8/8/4P3/4K3/8/2p2k2/4p3/8 w - - 0 1');

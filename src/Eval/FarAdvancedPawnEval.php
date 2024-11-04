@@ -3,6 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Piece\P;
@@ -54,15 +55,16 @@ class FarAdvancedPawnEval extends AbstractEval implements
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::P && $this->isFarAdvanced($piece)) {
                 $this->result[$piece->color][] = $piece->sq;
+                $this->elaborate($piece);
             }
         }
+
+        $this->reelaborate('These pawns are threatening to promote: ', $ucfirst = false);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),
             Color::B => count($this->result[Color::B]),
         ]);
-
-        $this->elaborate($this->result);
     }
 
     /**
@@ -89,12 +91,10 @@ class FarAdvancedPawnEval extends AbstractEval implements
     /**
      * Elaborate on the evaluation.
      *
-     * @param array $result
+     * @param \Chess\Variant\AbstractPiece $piece
      */
-    private function elaborate(array $result): void
+    private function elaborate(AbstractPiece $piece): void
     {
-        $singular = $plural = 'threatening to promote';
-
-        $this->shorten($result, $singular, $plural);
+        $this->elaboration[] = $piece->sq;
     }
 }
