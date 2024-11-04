@@ -3,7 +3,6 @@
 namespace Chess\Eval;
 
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\Piece\P;
@@ -86,15 +85,5 @@ class FarAdvancedPawnEval extends AbstractEval implements
         }
 
         return false;
-    }
-
-    /**
-     * Elaborate on the evaluation.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     */
-    private function elaborate(AbstractPiece $piece): void
-    {
-        $this->elaboration[] = $piece->sq;
     }
 }
