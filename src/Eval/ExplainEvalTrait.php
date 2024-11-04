@@ -2,6 +2,7 @@
 
 namespace Chess\Eval;
 
+use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 
 trait ExplainEvalTrait
@@ -78,5 +79,15 @@ trait ExplainEvalTrait
         if ($meaning = $this->meaning($result)) {
             $this->explanation[] = $meaning;
         }
+    }
+
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\AbstractPiece $piece
+     */
+    protected function elaborate(AbstractPiece $piece): void
+    {
+        $this->elaboration[] = $piece->sq;
     }
 }
