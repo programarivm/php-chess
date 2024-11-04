@@ -76,16 +76,17 @@ class BackwardPawnEval extends AbstractEval implements
                     ])
                 ) {
                     $this->result[$piece->color][] = $piece->sq;
+                    $this->elaborate($piece);
                 }
             }
         }
+
+        $this->reelaborate('These pawns are bakward: ', $ucfirst = false);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),
             Color::B => count($this->result[Color::B]),
         ]);
-
-        $this->elaborate($this->result);
     }
 
     /**
@@ -127,13 +128,10 @@ class BackwardPawnEval extends AbstractEval implements
     /**
      * Elaborate on the evaluation.
      *
-     * @param array $result
+     * @param \Chess\Variant\AbstractPiece $piece
      */
-    private function elaborate(array $result): void
+    private function elaborate(AbstractPiece $piece): void
     {
-        $singular = mb_strtolower('a ' . self::NAME);
-        $plural = mb_strtolower(self::NAME . 's');
-
-        $this->shorten($result, $singular, $plural);
+        $this->elaboration[] = $piece->sq;
     }
 }
