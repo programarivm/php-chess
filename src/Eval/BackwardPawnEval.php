@@ -4,9 +4,9 @@ namespace Chess\Eval;
 
 use Chess\Eval\IsolatedPawnEval;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\Piece\P;
 
 /**
  * Backward Pawn Evaluation
@@ -92,11 +92,11 @@ class BackwardPawnEval extends AbstractEval implements
     /**
      * Returns true if the given pawn can be defended by other pawns in its chain.
      *
-     * @param \Chess\Variant\AbstractPiece $pawn
+     * @param \Chess\Variant\Classical\Piece\P $pawn
      * @param string $file
      * @return bool
      */
-    private function isDefensible(AbstractPiece $pawn, string $file): bool
+    private function isDefensible(P $pawn, string $file): bool
     {
         if ($pawn->rank() == 2 || $pawn->rank() == $this->board->square::SIZE['ranks'] - 1) {
             return true;
@@ -123,5 +123,15 @@ class BackwardPawnEval extends AbstractEval implements
         }
 
         return false;
+    }
+
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\Classical\Piece\P $pawn
+     */
+    protected function elaborate(P $pawn): void
+    {
+        $this->elaboration[] = $pawn->sq;
     }
 }

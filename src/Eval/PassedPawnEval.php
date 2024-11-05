@@ -99,4 +99,14 @@ class PassedPawnEval extends AbstractEval implements
 
         return true;
     }
+
+    /**
+     * Elaborate on the evaluation.
+     *
+     * @param \Chess\Variant\Classical\Piece\P $pawn
+     */
+    protected function elaborate(P $pawn): void
+    {
+        $this->elaboration[] = $pawn->sq;
+    }
 }

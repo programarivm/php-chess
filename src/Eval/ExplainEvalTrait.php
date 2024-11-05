@@ -80,14 +80,4 @@ trait ExplainEvalTrait
             $this->explanation[] = $meaning;
         }
     }
-
-    /**
-     * Elaborate on the evaluation.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     */
-    protected function elaborate(AbstractPiece $piece): void
-    {
-        $this->elaboration[] = $piece->sq;
-    }
 }
