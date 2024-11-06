@@ -19,6 +19,7 @@ use Chess\Eval\DirectOppositionEval;
 use Chess\Eval\DiscoveredCheckEval;
 use Chess\Eval\DoubledPawnEval;
 use Chess\Eval\FarAdvancedPawnEval;
+use Chess\Eval\FlightSquareEval;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Eval\IsolatedPawnEval;
 use Chess\Eval\KingSafetyEval;
@@ -65,5 +66,6 @@ class FastFunction extends AbstractFunction
         DirectOppositionEval::class,
         OverloadingEval::class,
         BackRankThreatEval::class,
+        FlightSquareEval::class,
     ];
 }
