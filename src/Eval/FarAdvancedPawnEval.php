@@ -38,7 +38,7 @@ class FarAdvancedPawnEval extends AbstractEval implements
             Color::B => [],
         ];
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
             'White',
@@ -46,9 +46,7 @@ class FarAdvancedPawnEval extends AbstractEval implements
         ];
 
         $this->observation = [
-            "has a slight far advanced pawn advantage",
-            "has a moderate far advanced pawn advantage",
-            "has a decisive far advanced pawn advantage",
+            "has a far advanced pawn advantage",
         ];
 
         foreach ($this->board->pieces() as $piece) {

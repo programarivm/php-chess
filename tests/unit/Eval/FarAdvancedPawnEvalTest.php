@@ -19,7 +19,7 @@ class FarAdvancedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has a slight far advanced pawn advantage.",
+            "White has a far advanced pawn advantage.",
         ];
 
         $expectedElaboration = [
@@ -46,7 +46,7 @@ class FarAdvancedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a slight far advanced pawn advantage.",
+            "Black has a far advanced pawn advantage.",
         ];
 
         $expectedElaboration = [
