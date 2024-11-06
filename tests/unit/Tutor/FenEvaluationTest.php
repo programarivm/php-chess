@@ -27,7 +27,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
             "Black has a slightly better control of the center.",
             "The white pieces are slightly better connected.",
             "Black has a moderate space advantage.",
-            "Black's king has more safe squares to move to than its counterpart, if threatened.",
+            "Black's king has more safe squares to move to than its counterpart.",
             "These pieces are hanging: The rook on a8, the rook on h8, the pawn on c5, the rook on a1, the rook on h1.",
             "Overall, 1 heuristic evaluation feature is favoring White while 3 are favoring Black.",
         ];
@@ -50,7 +50,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
             "The black pieces are slightly better connected.",
             "White has a total space advantage.",
             "The white player is pressuring a little bit more squares than its opponent.",
-            "White's king has more safe squares to move to than its counterpart, if threatened.",
+            "White's king has more safe squares to move to than its counterpart.",
             "These pieces are hanging: The pawn on f4, the pawn on i2, the rook on a1, White's archbishop on c1, White's chancellor on h1, the rook on j1, the rook on a8, Black's archbishop on c8, Black's chancellor on h8, the rook on j8, the pawn on i7.",
             "Overall, 4 heuristic evaluation features are favoring White while 1 is favoring Black.",
         ];

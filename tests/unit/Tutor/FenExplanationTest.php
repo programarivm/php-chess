@@ -27,7 +27,7 @@ class FenExplanationTest extends AbstractUnitTestCase
             "Black has a slightly better control of the center.",
             "The white pieces are slightly better connected.",
             "Black has a moderate space advantage.",
-            "Black's king has more safe squares to move to than its counterpart, if threatened.",
+            "Black's king has more safe squares to move to than its counterpart.",
         ];
 
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
@@ -48,7 +48,7 @@ class FenExplanationTest extends AbstractUnitTestCase
             "The black pieces are slightly better connected.",
             "White has a total space advantage.",
             "The white player is pressuring a little bit more squares than its opponent.",
-            "White's king has more safe squares to move to than its counterpart, if threatened.",
+            "White's king has more safe squares to move to than its counterpart.",
         ];
 
         $board = FenToBoardFactory::create(
@@ -77,7 +77,7 @@ class FenExplanationTest extends AbstractUnitTestCase
             "White has a slight absolute pin advantage.",
             "White has a slight outpost advantage.",
             "White's king can be checked so it is vulnerable to forced moves.",
-            "White's king has more safe squares to move to than its counterpart, if threatened.",
+            "White's king has more safe squares to move to than its counterpart.",
         ];
 
         $board = FenToBoardFactory::create('8/p4pk1/6b1/3P1PQ1/8/P1q3K1/2p3B1/8 w - -');

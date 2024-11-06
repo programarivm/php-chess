@@ -39,7 +39,7 @@ class FlightSquareEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black's king has more safe squares to move to than its counterpart, if threatened.",
+            "Black's king has more safe squares to move to than its counterpart.",
         ];
 
         $board = FenToBoardFactory::create('8/p3kp1p/1p2p1p1/2p5/2P3PP/1P3n2/P4r2/1B1R3K b - -');
@@ -61,7 +61,7 @@ class FlightSquareEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black's king has more safe squares to move to than its counterpart, if threatened.",
+            "Black's king has more safe squares to move to than its counterpart.",
         ];
 
         $board = FenToBoardFactory::create('8/5R2/1p2pNpk/1P5p/1K6/1P1b4/8/q7 b - -');

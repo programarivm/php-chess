@@ -39,7 +39,7 @@ class FlightSquareEval extends AbstractEval implements
         ];
 
         $this->observation = [
-            "has more safe squares to move to than its counterpart, if threatened",
+            "has more safe squares to move to than its counterpart",
         ];
 
         $spEval = (new SpaceEval($this->board))->getResult();
