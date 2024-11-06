@@ -185,7 +185,7 @@
 </tr>
 <tr>
 <td>Defense</td>
-<td></td>
+<td>This heuristic evaluates the defensive strength of each side by analyzing how the removal of attacking pieces would affect the opponent's protection. A higher score indicates a stronger defensive position.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/DefenseEvalTest.php">Chess\Eval\DefenseEval</a></td>
 </tr>
 <tr>
@@ -212,6 +212,11 @@
 <td>Far-advanced pawn</td>
 <td>A pawn that is threatening to promote.</td>
 <td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FarAdvancedPawnEvalTest.php">Chess\Eval\FarAdvancedPawnEval</a></td>
+</tr>
+<tr>
+<td>Flight square</td>
+<td>The safe squares to which the king can move if it is threatened.</td>
+<td><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FlightSquareEvalTest.php">Chess\Eval\FlightSquareEval</a></td>
 </tr>
 <tr>
 <td>Isolated pawn</td>
