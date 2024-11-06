@@ -34,7 +34,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The black king has the direct opposition preventing the advance of the other king.",
         ];
 
@@ -42,7 +42,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
     /**
@@ -55,7 +55,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The white king has the direct opposition preventing the advance of the other king.",
         ];
 
@@ -63,7 +63,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
     /**
@@ -92,7 +92,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The white king has the direct opposition preventing the advance of the other king.",
         ];
 
@@ -100,7 +100,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
     /**
@@ -113,7 +113,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The white king has the direct opposition preventing the advance of the other king.",
         ];
 
@@ -121,7 +121,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
     /**
@@ -134,7 +134,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The black king has the direct opposition preventing the advance of the other king.",
         ];
 
@@ -142,7 +142,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
     /**
@@ -155,7 +155,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The white king has the direct opposition preventing the advance of the other king.",
         ];
 
@@ -163,7 +163,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
     /**
@@ -176,7 +176,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The black king has the direct opposition preventing the advance of the other king.",
         ];
 
@@ -184,6 +184,6 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 }

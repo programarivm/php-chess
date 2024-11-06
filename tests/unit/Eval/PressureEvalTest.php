@@ -34,7 +34,7 @@ class PressureEvalTest extends AbstractUnitTestCase
             'b' => ['c3'],
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The black player is pressuring more squares than its opponent.",
         ];
 
@@ -43,7 +43,7 @@ class PressureEvalTest extends AbstractUnitTestCase
         $pressureEval = new PressureEval($board);
 
         $this->assertEqualsCanonicalizing($expectedResult, $pressureEval->getResult());
-        $this->assertEqualsCanonicalizing($expectedPhrase, $pressureEval->getExplanation());
+        $this->assertEqualsCanonicalizing($expectedExplanation, $pressureEval->getExplanation());
     }
 
     /**
@@ -56,7 +56,7 @@ class PressureEvalTest extends AbstractUnitTestCase
             'b' => ['d4', 'e4'],
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The black player is pressuring more squares than its opponent.",
         ];
 
@@ -65,7 +65,7 @@ class PressureEvalTest extends AbstractUnitTestCase
         $pressureEval = new PressureEval($board);
 
         $this->assertEqualsCanonicalizing($expectedResult, $pressureEval->getResult());
-        $this->assertEqualsCanonicalizing($expectedPhrase, $pressureEval->getExplanation());
+        $this->assertEqualsCanonicalizing($expectedExplanation, $pressureEval->getExplanation());
     }
 
     /**

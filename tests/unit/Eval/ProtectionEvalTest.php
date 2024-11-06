@@ -35,7 +35,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "Black has a slight protection advantage.",
         ];
 
@@ -50,7 +50,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
-        $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
         $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 
@@ -98,7 +98,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             'b' => 6.53,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "Black has a decisive protection advantage.",
         ];
 
@@ -119,7 +119,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
-        $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
         $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 
@@ -133,7 +133,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "White has a decisive protection advantage.",
         ];
 
@@ -154,7 +154,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
-        $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
         $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 
@@ -185,7 +185,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [];
+        $expectedExplanation = [];
 
         $expectedElaboration = [];
 
@@ -194,7 +194,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
-        $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
         $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 
@@ -208,7 +208,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "White has a slight protection advantage.",
         ];
 
@@ -222,7 +222,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->getResult());
-        $this->assertSame($expectedPhrase, $protectionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
         $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
     }
 }

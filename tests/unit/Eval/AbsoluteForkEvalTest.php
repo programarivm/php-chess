@@ -57,14 +57,14 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedElaboration = [
             "Absolute fork attack on the knight on h6.",
         ];
 
         $absForkEval = new AbsoluteForkEval($board);
 
         $this->assertSame($expectedResult, $absForkEval->getResult());
-        $this->assertSame($expectedPhrase, $absForkEval->getElaboration());
+        $this->assertSame($expectedElaboration, $absForkEval->getElaboration());
     }
 
     /**
@@ -80,14 +80,14 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedElaboration = [
             "Absolute fork attack on the rook on h6.",
         ];
 
         $absForkEval = new AbsoluteForkEval($board);
 
         $this->assertSame($expectedResult, $absForkEval->getResult());
-        $this->assertSame($expectedPhrase, $absForkEval->getElaboration());
+        $this->assertSame($expectedElaboration, $absForkEval->getElaboration());
     }
 
     /**
@@ -103,14 +103,14 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedElaboration = [
             "Absolute fork attack on Black's queen on h6.",
         ];
 
         $absForkEval = new AbsoluteForkEval($board);
 
         $this->assertSame($expectedResult, $absForkEval->getResult());
-        $this->assertSame($expectedPhrase, $absForkEval->getElaboration());
+        $this->assertSame($expectedElaboration, $absForkEval->getElaboration());
     }
 
     /**

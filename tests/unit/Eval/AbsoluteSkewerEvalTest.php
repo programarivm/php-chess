@@ -18,7 +18,7 @@ class AbsoluteSkewerEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedElaboration = [
             "When White's king on e4 will be moved, a piece that is more valuable than the bishop on d5 may well be exposed to attack.",
         ];
 
@@ -28,7 +28,7 @@ class AbsoluteSkewerEvalTest extends AbstractUnitTestCase
         $absoluteSkewerEval = new AbsoluteSkewerEval($board);
 
         $this->assertSame($expectedResult, $absoluteSkewerEval->getResult());
-        $this->assertSame($expectedPhrase, $absoluteSkewerEval->getElaboration());
+        $this->assertSame($expectedElaboration, $absoluteSkewerEval->getElaboration());
     }
 
     /**
@@ -41,7 +41,7 @@ class AbsoluteSkewerEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedElaboration = [
             "When Black's king on f6 will be moved, a piece that is more valuable than the bishop on e5 may well be exposed to attack.",
         ];
 
@@ -51,6 +51,6 @@ class AbsoluteSkewerEvalTest extends AbstractUnitTestCase
         $absoluteSkewerEval = new AbsoluteSkewerEval($board);
 
         $this->assertSame($expectedResult, $absoluteSkewerEval->getResult());
-        $this->assertSame($expectedPhrase, $absoluteSkewerEval->getElaboration());
+        $this->assertSame($expectedElaboration, $absoluteSkewerEval->getElaboration());
     }
 }

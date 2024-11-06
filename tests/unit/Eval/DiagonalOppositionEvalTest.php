@@ -18,7 +18,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The white king has the diagonal opposition preventing the advance of the other king.",
         ];
 
@@ -26,7 +26,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DiagonalOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
     /**
@@ -39,7 +39,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The white king has the diagonal opposition preventing the advance of the other king.",
         ];
 
@@ -47,7 +47,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DiagonalOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
     /**
@@ -60,7 +60,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The black king has the diagonal opposition preventing the advance of the other king.",
         ];
 
@@ -68,6 +68,6 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DiagonalOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->getResult());
-        $this->assertSame($expectedPhrase, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 }

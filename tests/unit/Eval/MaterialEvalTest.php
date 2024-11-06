@@ -35,7 +35,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
             'b' => 34.73,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "White has a slight material advantage.",
         ];
 
@@ -44,7 +44,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
         $materialEval = new MaterialEval($board);
 
         $this->assertEqualsCanonicalizing($expectedResult, $materialEval->getResult());
-        $this->assertEqualsCanonicalizing($expectedPhrase, $materialEval->getExplanation());
+        $this->assertEqualsCanonicalizing($expectedExplanation, $materialEval->getExplanation());
     }
 
     /**
@@ -74,7 +74,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
             'b' => 40.06,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "Black has a slight material advantage.",
         ];
 
@@ -83,6 +83,6 @@ class MaterialEvalTest extends AbstractUnitTestCase
         $materialEval = new MaterialEval($board);
 
         $this->assertEqualsCanonicalizing($expectedResult, $materialEval->getResult());
-        $this->assertEqualsCanonicalizing($expectedPhrase, $materialEval->getExplanation());
+        $this->assertEqualsCanonicalizing($expectedExplanation, $materialEval->getExplanation());
     }
 }

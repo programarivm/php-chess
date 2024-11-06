@@ -210,7 +210,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedElaboration = [
             "Relative fork attack on the rook on b2.",
             "Relative fork attack on the rook on d6.",
         ];
@@ -221,7 +221,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->getResult());
-        $this->assertSame($expectedPhrase, $relativeForkEval->getElaboration());
+        $this->assertSame($expectedElaboration, $relativeForkEval->getElaboration());
     }
 
     /**

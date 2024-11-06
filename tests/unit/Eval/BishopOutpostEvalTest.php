@@ -357,7 +357,7 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedElaboration = [
             "The bishop on g4 is nicely placed on an outpost.",
         ];
 
@@ -366,6 +366,6 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
         $bishopOutpostEval = new BishopOutpostEval($board);
 
         $this->assertSame($expectedResult, $bishopOutpostEval->getResult());
-        $this->assertSame($expectedPhrase, $bishopOutpostEval->getElaboration());
+        $this->assertSame($expectedElaboration, $bishopOutpostEval->getElaboration());
     }
 }

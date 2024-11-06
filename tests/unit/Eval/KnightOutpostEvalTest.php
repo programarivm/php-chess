@@ -357,7 +357,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedElaboration = [
             "The knight on b5 is nicely placed on an outpost.",
         ];
 
@@ -366,6 +366,6 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
         $knightOutpostEval = new KnightOutpostEval($board);
 
         $this->assertSame($expectedResult, $knightOutpostEval->getResult());
-        $this->assertSame($expectedPhrase, $knightOutpostEval->getElaboration());
+        $this->assertSame($expectedElaboration, $knightOutpostEval->getElaboration());
     }
 }

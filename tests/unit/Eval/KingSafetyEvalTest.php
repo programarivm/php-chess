@@ -34,7 +34,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "The black pieces are timidly approaching the other side's king.",
         ];
 
@@ -43,7 +43,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
         $kingSafetyEval = new KingSafetyEval($board);
 
         $this->assertSame($expectedResult, $kingSafetyEval->getResult());
-        $this->assertSame($expectedPhrase, $kingSafetyEval->getExplanation());
+        $this->assertSame($expectedExplanation, $kingSafetyEval->getExplanation());
     }
 
     /**

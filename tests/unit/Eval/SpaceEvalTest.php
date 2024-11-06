@@ -46,7 +46,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
             ],
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "White has a slight space advantage.",
         ];
 
@@ -55,7 +55,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
         $spEval = new SpaceEval($board);
 
         $this->assertEqualsCanonicalizing($expectedResult, $spEval->getResult());
-        $this->assertEqualsCanonicalizing($expectedPhrase, $spEval->getExplanation());
+        $this->assertEqualsCanonicalizing($expectedExplanation, $spEval->getExplanation());
     }
 
     /**
@@ -76,7 +76,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
             ],
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "White has a moderate space advantage.",
         ];
 
@@ -85,6 +85,6 @@ class SpaceEvalTest extends AbstractUnitTestCase
         $spEval = new SpaceEval($board);
 
         $this->assertEqualsCanonicalizing($expectedResult, $spEval->getResult());
-        $this->assertEqualsCanonicalizing($expectedPhrase, $spEval->getExplanation());
+        $this->assertEqualsCanonicalizing($expectedExplanation, $spEval->getExplanation());
     }
 }

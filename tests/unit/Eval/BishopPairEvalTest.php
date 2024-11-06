@@ -36,7 +36,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "Black has the bishop pair.",
         ];
 
@@ -45,7 +45,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $bishopPairEval = new BishopPairEval($board);
 
         $this->assertSame($expectedResult, $bishopPairEval->getResult());
-        $this->assertSame($expectedPhrase, $bishopPairEval->getExplanation());
+        $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
     }
 
     /**
@@ -74,7 +74,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "White has the bishop pair.",
         ];
 
@@ -82,7 +82,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $bishopPairEval = new BishopPairEval($board);
 
         $this->assertSame($expectedResult, $bishopPairEval->getResult());
-        $this->assertSame($expectedPhrase, $bishopPairEval->getExplanation());
+        $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
     }
 
     /**
@@ -95,7 +95,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             'b' => 1,
         ];
 
-        $expectedPhrase = [
+        $expectedExplanation = [
             "Black has the bishop pair.",
         ];
 
@@ -103,7 +103,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $bishopPairEval = new BishopPairEval($board);
 
         $this->assertSame($expectedResult, $bishopPairEval->getResult());
-        $this->assertSame($expectedPhrase, $bishopPairEval->getExplanation());
+        $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
     }
 
     /**
