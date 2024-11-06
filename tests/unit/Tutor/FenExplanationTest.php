@@ -72,7 +72,7 @@ class FenExplanationTest extends AbstractUnitTestCase
             "The black player is pressuring a little bit more squares than its opponent.",
             "The white pieces are approaching the other side's king.",
             "Black has a slight protection advantage.",
-            "White has a slight advanced pawn advantage.",
+            "White has more advanced pawns.",
             "Black has a slight far advanced pawn advantage.",
             "White has a slight absolute pin advantage.",
             "White has a slight outpost advantage.",
