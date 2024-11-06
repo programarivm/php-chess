@@ -34,7 +34,7 @@ class AbsolutePinEval extends AbstractEval implements
     {
         $this->board = $board;
 
-        $this->range = [1, 9];
+        $this->range = [1];
 
         $this->subject = [
             'Black',
@@ -42,9 +42,7 @@ class AbsolutePinEval extends AbstractEval implements
         ];
 
         $this->observation = [
-            "has a slight absolute pin advantage",
-            "has a moderate absolute pin advantage",
-            "has a total absolute pin advantage",
+            "has an absolute pin advantage",
         ];
 
         foreach ($this->board->pieces() as $piece) {

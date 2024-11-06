@@ -74,7 +74,7 @@ class FenExplanationTest extends AbstractUnitTestCase
             "Black has a slight protection advantage.",
             "White has more advanced pawns.",
             "Black has a far advanced pawn advantage.",
-            "White has a slight absolute pin advantage.",
+            "White has an absolute pin advantage.",
             "White has a slight outpost advantage.",
             "White's king can be checked so it is vulnerable to forced moves.",
             "White's king has more safe squares to move to than its counterpart.",
