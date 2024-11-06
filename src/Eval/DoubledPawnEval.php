@@ -35,17 +35,15 @@ class DoubledPawnEval extends AbstractEval implements
     {
         $this->board = $board;
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
-            'Black',
             'White',
+            'Black',
         ];
 
         $this->observation = [
-            "has a slight doubled pawn advantage",
-            "has a moderate doubled pawn advantage",
-            "has a decisive doubled pawn advantage",
+            "has more doubled pawns than its opponent",
         ];
 
         foreach ($this->board->pieces() as $piece) {

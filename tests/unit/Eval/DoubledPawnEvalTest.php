@@ -19,7 +19,7 @@ class DoubledPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a slight doubled pawn advantage.",
+            "White has more doubled pawns than its opponent.",
         ];
 
         $expectedElaboration = [
@@ -57,7 +57,7 @@ class DoubledPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has a slight doubled pawn advantage.",
+            "Black has more doubled pawns than its opponent.",
         ];
 
         $expectedElaboration = [
@@ -65,7 +65,7 @@ class DoubledPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('1r1q1rk1/p1p2pbp/2pp1np1/6B1/4P3/2NQ4/PPP2PPP/3R1RK1 w - -');
-        
+
         $doubledPawnEval = new DoubledPawnEval($board);
 
         $this->assertSame($expectedResult, $doubledPawnEval->getResult());
