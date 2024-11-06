@@ -48,17 +48,15 @@ class BackwardPawnEval extends AbstractEval implements
             Color::B => [],
         ];
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
-            'Black',
             'White',
+            'Black',
         ];
 
         $this->observation = [
-            "has a slight backward pawn advantage",
-            "has a moderate backward pawn advantage",
-            "has a decisive backward pawn advantage",
+            "has more backward pawns",
         ];
 
         $this->isolatedPawnEval = (new IsolatedPawnEval($board))->getResult();
