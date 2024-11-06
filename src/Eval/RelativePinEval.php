@@ -36,7 +36,7 @@ class RelativePinEval extends AbstractEval implements
     {
         $this->board = $board;
 
-        $this->range = [1, 6.8];
+        $this->range = [1];
 
         $this->subject = [
             'White',
@@ -44,9 +44,7 @@ class RelativePinEval extends AbstractEval implements
         ];
 
         $this->observation = [
-            "has a slight relative pin advantage",
-            "has a moderate relative pin advantage",
-            "has a total relative pin advantage",
+            "has a relative pin advantage",
         ];
 
         $pressureEval = (new PressureEval($this->board))->getResult();

@@ -28,7 +28,7 @@ class GoodPgnEvaluationTest extends AbstractUnitTestCase
         $expectedParagraph = [
             "The black player is pressuring more squares than its opponent.",
             "The black pieces are timidly approaching the other side's king.",
-            "Black has a total relative pin advantage.",
+            "Black has a relative pin advantage.",
             "These pieces are hanging: Black's queen on d5, the rook on a8, the rook on h8, the pawn on b7, the pawn on c7, the pawn on g7, the bishop on g4, the rook on h1.",
             "The knight on e2 is pinned shielding a piece that is more valuable than the attacking piece.",
             "Overall, 3 heuristic evaluation features are favoring White while 10 are favoring Black.",
