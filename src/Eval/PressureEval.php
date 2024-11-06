@@ -39,7 +39,7 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
             Color::B => [],
         ];
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
             'The white player',
@@ -47,9 +47,7 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
         ];
 
         $this->observation = [
-            "is pressuring a little bit more squares than its opponent",
-            "is significantly pressuring more squares than its opponent",
-            "is utterly pressuring more squares than its opponent",
+            "is pressuring more squares than its opponent",
         ];
 
         $sqCount = (new SqCount($board))->count();

@@ -49,7 +49,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
             "White is totally controlling the center.",
             "The black pieces are slightly better connected.",
             "White has a total space advantage.",
-            "The white player is pressuring a little bit more squares than its opponent.",
+            "The white player is pressuring more squares than its opponent.",
             "White's king has more safe squares to move to than its counterpart.",
             "These pieces are hanging: The pawn on f4, the pawn on i2, the rook on a1, White's archbishop on c1, White's chancellor on h1, the rook on j1, the rook on a8, Black's archbishop on c8, Black's chancellor on h8, the rook on j8, the pawn on i7.",
             "Overall, 4 heuristic evaluation features are favoring White while 1 is favoring Black.",

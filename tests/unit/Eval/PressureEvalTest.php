@@ -35,7 +35,7 @@ class PressureEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The black player is pressuring a little bit more squares than its opponent.",
+            "The black player is pressuring more squares than its opponent.",
         ];
 
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
@@ -57,7 +57,7 @@ class PressureEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedPhrase = [
-            "The black player is pressuring a little bit more squares than its opponent.",
+            "The black player is pressuring more squares than its opponent.",
         ];
 
         $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');

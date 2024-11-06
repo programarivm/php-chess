@@ -47,7 +47,7 @@ class FenExplanationTest extends AbstractUnitTestCase
             "White is totally controlling the center.",
             "The black pieces are slightly better connected.",
             "White has a total space advantage.",
-            "The white player is pressuring a little bit more squares than its opponent.",
+            "The white player is pressuring more squares than its opponent.",
             "White's king has more safe squares to move to than its counterpart.",
         ];
 
@@ -69,7 +69,7 @@ class FenExplanationTest extends AbstractUnitTestCase
         $expected = [
             "Black is totally controlling the center.",
             "Black has a moderate space advantage.",
-            "The black player is pressuring a little bit more squares than its opponent.",
+            "The black player is pressuring more squares than its opponent.",
             "The white pieces are approaching the other side's king.",
             "Black has a slight protection advantage.",
             "White has more advanced pawns.",

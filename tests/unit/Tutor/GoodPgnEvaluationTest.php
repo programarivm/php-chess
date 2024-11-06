@@ -26,7 +26,7 @@ class GoodPgnEvaluationTest extends AbstractUnitTestCase
         $expectedPgn = 'Bg4';
 
         $expectedParagraph = [
-            "The black player is pressuring a little bit more squares than its opponent.",
+            "The black player is pressuring more squares than its opponent.",
             "The black pieces are timidly approaching the other side's king.",
             "Black has a total relative pin advantage.",
             "These pieces are hanging: Black's queen on d5, the rook on a8, the rook on h8, the pawn on b7, the pawn on c7, the pawn on g7, the bishop on g4, the rook on h1.",
