@@ -19,11 +19,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a checkability advantage.",
-        ];
-
-        $expectedElaboration = [
-            "White's king on a1 can be checked so it is vulnerable to forcing moves.",
+            "White's king can be checked so it is vulnerable to forced moves.",
         ];
 
         $board = FenToBoardFactory::create('1b5k/6pp/8/8/8/8/8/K7 w - -');
@@ -31,7 +27,6 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
 
         $this->assertSame($expectedResult, $checkabilityEval->getResult());
         $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
-        $this->assertSame($expectedElaboration, $checkabilityEval->getElaboration());
     }
 
     /**
@@ -45,11 +40,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a checkability advantage.",
-        ];
-
-        $expectedElaboration = [
-            "White's king on a1 can be checked so it is vulnerable to forcing moves.",
+            "White's king can be checked so it is vulnerable to forced moves.",
         ];
 
         $board = FenToBoardFactory::create('1b5k/6pp/8/8/8/8/8/K7 b - -');
@@ -57,7 +48,6 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
 
         $this->assertSame($expectedResult, $checkabilityEval->getResult());
         $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
-        $this->assertSame($expectedElaboration, $checkabilityEval->getElaboration());
     }
 
     /**
@@ -73,17 +63,11 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $expectedExplanation = [
         ];
 
-        $expectedElaboration = [
-            "Black's king on h8 can be checked so it is vulnerable to forcing moves.",
-            "White's king on a1 can be checked so it is vulnerable to forcing moves.",
-        ];
-
         $board = FenToBoardFactory::create('1b5k/7p/8/8/8/8/8/K4R2 w - -');
         $checkabilityEval = new CheckabilityEval($board);
 
         $this->assertSame($expectedResult, $checkabilityEval->getResult());
         $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
-        $this->assertSame($expectedElaboration, $checkabilityEval->getElaboration());
     }
 
     /**
@@ -99,16 +83,10 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $expectedExplanation = [
         ];
 
-        $expectedElaboration = [
-            "Black's king on h8 can be checked so it is vulnerable to forcing moves.",
-            "White's king on a1 can be checked so it is vulnerable to forcing moves.",
-        ];
-
         $board = FenToBoardFactory::create('1b5k/7p/8/8/8/8/8/K4R2 b - -');
         $checkabilityEval = new CheckabilityEval($board);
 
         $this->assertSame($expectedResult, $checkabilityEval->getResult());
         $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
-        $this->assertSame($expectedElaboration, $checkabilityEval->getElaboration());
     }
 }

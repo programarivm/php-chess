@@ -74,7 +74,7 @@ class FenExplanationTest extends AbstractUnitTestCase
             "Black has a slight far advanced pawn advantage.",
             "White has a slight absolute pin advantage.",
             "White has a slight outpost advantage.",
-            "Black has a checkability advantage.",
+            "White's king can be checked so it is vulnerable to forced moves.",
         ];
 
         $board = FenToBoardFactory::create('8/p4pk1/6b1/3P1PQ1/8/P1q3K1/2p3B1/8 w - -');

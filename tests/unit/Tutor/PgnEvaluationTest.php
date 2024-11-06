@@ -26,11 +26,10 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "Black has a slight space advantage.",
             "White has a slight protection advantage.",
             "White has a slight attack advantage.",
-            "Black has a checkability advantage.",
+            "White's king can be checked so it is vulnerable to forced moves.",
             "These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8, the pawn on c5.",
             "The pawn on c5 is unprotected.",
             "The pawn on c5 is under threat of being attacked.",
-            "White's king on e1 can be checked so it is vulnerable to forcing moves.",
             "Overall, 3 heuristic evaluation features are favoring White while 3 are favoring Black.",
         ];
 

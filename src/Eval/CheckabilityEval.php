@@ -2,7 +2,6 @@
 
 namespace Chess\Eval;
 
-use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
@@ -16,10 +15,8 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * be checked. A checkable king is vulnerable to forcing moves.
  */
 class CheckabilityEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
-    use ElaborateEvalTrait;
     use ExplainEvalTrait;
 
     /**
@@ -39,12 +36,12 @@ class CheckabilityEval extends AbstractEval implements
         $this->range = [1];
 
         $this->subject = [
-            'White',
-            'Black',
+            "Black's king",
+            "White's king",
         ];
 
         $this->observation = [
-            "has a checkability advantage",
+            "can be checked so it is vulnerable to forced moves",
         ];
 
         $wKing = $this->board->piece(Color::W, Piece::K);
@@ -52,12 +49,10 @@ class CheckabilityEval extends AbstractEval implements
 
         if ($this->isCheckable($bKing)) {
             $this->result[Color::W] = 1;
-            $this->elaborate($bKing);
         }
 
         if ($this->isCheckable($wKing)) {
             $this->result[Color::B] = 1;
-            $this->elaborate($wKing);
         }
 
         $this->explain($this->result);
@@ -84,17 +79,5 @@ class CheckabilityEval extends AbstractEval implements
         }
 
         return false;
-    }
-
-    /**
-     * Elaborate on the evaluation.
-     *
-     * @param \Chess\Variant\AbstractPiece $king
-     */
-    private function elaborate(AbstractPiece $king): void
-    {
-        $phrase = PiecePhrase::create($king);
-
-        $this->elaboration[] = "{$phrase} can be checked so it is vulnerable to forcing moves.";
     }
 }
