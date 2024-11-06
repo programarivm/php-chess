@@ -40,17 +40,15 @@ class IsolatedPawnEval extends AbstractEval implements
             Color::B => [],
         ];
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
-            'Black',
             'White',
+            'Black',
         ];
 
         $this->observation = [
-            "has a slight isolated pawn advantage",
-            "has a moderate isolated pawn advantage",
-            "has a decisive isolated pawn advantage",
+            "has more isolated pawns",
         ];
 
         foreach ($this->board->pieces() as $piece) {

@@ -20,7 +20,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has a moderate isolated pawn advantage.",
+            "Black has more isolated pawns.",
         ];
 
         $expectedElaboration = [
@@ -72,7 +72,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a slight isolated pawn advantage.",
+            "White has more isolated pawns.",
         ];
 
         $expectedElaboration = [
