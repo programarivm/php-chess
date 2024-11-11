@@ -167,4 +167,4 @@ Array
 )
 ```
 
-🎉 Chess positions and games can now be plotted on charts and processed with machine learning techniques.
+🎉 Chess positions and games can now be plotted on charts, queried for [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) purposes and processed with machine learning techniques.
