@@ -3,7 +3,6 @@ site_url: https://chesslablab.github.io/php-chess/
 theme:
   name: mkdocs
 nav:
-  - Home: index.md
   - Getting Started:
     - Installation: installation.md
     - Your First Move: your-first-move.md
