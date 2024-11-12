@@ -14,7 +14,9 @@ Almost every class in the [src](https://github.com/chesslablab/php-chess/tree/ma
 
 The PHP Chess docs are more of a tutorial rather than an API description.
 
-## Common Formats Supported
+## Features
+
+### Formats Supported
 
 - Chess moves in LAN and PGN formats.
 - Movetext processing in LAN, SAN and RAV formats.
@@ -34,7 +36,7 @@ The PHP Chess docs are more of a tutorial rather than an API description.
 | UCI     | Universal Chess Interface      |
 | FEN     | Forsyth-Edwards Notation       |
 
-## Chess Variants
+### Chess Variants
 
 Multiple variants are supported with the default one being classical chess.
 
@@ -48,21 +50,21 @@ Multiple variants are supported with the default one being classical chess.
 | Losing Chess | [Chess\Variant\Losing\Board](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Losing/BoardTest.php) |
 | RacingKings | [Chess\Variant\RacingKings\Board](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/RacingKings/BoardTest.php) |
 
-## UCI Engines
+### UCI Engines
 
 Listed below are the UCI engines available at the moment.
 
 - Stockfish
 
-## Object-Oriented
+### Object-Oriented
 
 The chess board representation is an object of type [SplObjectStorage](https://www.php.net/manual/en/class.splobjectstorage.php) as opposed to a bitboard.
 
-## Thoroughly Tested
+### Thoroughly Tested
 
 PHP Chess has been developed with a test-driven development (TDD) approach. The [tests/unit](https://github.com/chesslablab/php-chess/tree/main/tests/unit) folder contains plenty of real examples.
 
-## Lightweight
+### Lightweight
 
 PHP dependencies required:
 
