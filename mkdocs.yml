@@ -4,7 +4,6 @@ theme:
   name: mkdocs
 nav:
   - Getting Started:
-    - Installation: installation.md
     - Your First Move: your-first-move.md
     - Read Moves: read-moves.md
   - Data Conversion: data-conversion.md

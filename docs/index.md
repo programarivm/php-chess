@@ -68,3 +68,16 @@ PHP dependencies required:
 
 - Rubix ML for machine learning.
 - Imagine for image processing.
+
+## Installation
+
+### Requirements
+
+- PHP >= 8.1
+- Stockfish >= 15.1
+
+### Composer installation
+
+```text
+composer require chesslablab/php-chess
+```
