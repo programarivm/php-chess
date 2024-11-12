@@ -1,7 +1,5 @@
 # Getting Started
 
-## Your First Move
-
 ✨ Some familiarity with chess terms and concepts is required but if you're new to chess this tutorial will guide you through how to easily create amazing apps with PHP Chess. Happy coding and learning!
 
 The [Chess\Variant\Classical\Board](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/BoardTest.php) class is the easiest way to get started with PHP Chess.
@@ -42,9 +40,7 @@ This is the chess position in Forsyth–Edwards Notation (FEN) format after 1.e4
 
 🎉 Congrats! 1.e4 is one of the best moves to start with.
 
-## Read Moves
-
-### Portable Game Notation (PGN)
+## Portable Game Notation (PGN)
 
 ✨ Portable Game Notation is a human-readable text format that allows chess players to read and write chess games.
 
@@ -226,7 +222,7 @@ echo $sanPlay->sanMovetext->filtered($comments = true, $nags = false);
 
 🎉 Next, let's learn how to process chess moves from a graphical user interface.
 
-### Long Algebraic Notation (LAN)
+## Long Algebraic Notation (LAN)
 
 ✨ The UCI protocol enables chess engines to communicate with user interfaces (UI) using Long Algebraic Notation (LAN) for moves.
 
@@ -275,7 +271,7 @@ R  N  B  Q  K  B  .  R
 
 🎉 And, it's easy!
 
-### Recursive Annotation Variation (RAV)
+## Recursive Annotation Variation (RAV)
 
 ✨ RAV stands for Recursive Annotation Variation. It is an extension of the Standard Algebaric Notation (SAN) format that allows to annotate chess variations. This format is especially useful for tutorials, notable games, chess studies and so on.
 
