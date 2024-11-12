@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://chesslablab.github.io/php-chess/read-moves/">
+        <link rel="canonical" href="https://chesslablab.github.io/php-chess/getting-started/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Read Moves - PHP Chess</title>
+        <title>Getting Started - PHP Chess</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -30,8 +30,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../getting-started/" class="nav-link">Getting Started</a>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Getting Started</a>
                             </li>
                             <li class="navitem">
                                 <a href="../data-conversion/" class="nav-link">Data Conversion</a>
@@ -53,6 +53,16 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../data-conversion/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -71,17 +81,13 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#read-moves" class="nav-link">Read Moves</a>
+            <li class="nav-item" data-level="1"><a href="#getting-started" class="nav-link">Getting Started</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#portable-game-notation-pgn" class="nav-link">Portable Game Notation (PGN)</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#long-algebraic-notation-lan" class="nav-link">Long Algebraic Notation (LAN)</a>
+            <li class="nav-item" data-level="2"><a href="#your-first-move" class="nav-link">Your First Move</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#recursive-annotation-variation-rav" class="nav-link">Recursive Annotation Variation (RAV)</a>
+            <li class="nav-item" data-level="2"><a href="#read-moves" class="nav-link">Read Moves</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -92,8 +98,31 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="read-moves">Read Moves</h1>
-<h2 id="portable-game-notation-pgn">Portable Game Notation (PGN)</h2>
+<h1 id="getting-started">Getting Started</h1>
+<h2 id="your-first-move">Your First Move</h2>
+<p>✨ Some familiarity with chess terms and concepts is required but if you're new to chess this tutorial will guide you through how to easily create amazing apps with PHP Chess. Happy coding and learning!</p>
+<p>The <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/BoardTest.php">Chess\Variant\Classical\Board</a> class is the easiest way to get started with PHP Chess.</p>
+<pre><code class="language-php">use Chess\Variant\Classical\Board;
+
+$board = new Board();
+</code></pre>
+<p>If you have ever attended a chess tournament, you've probably noticed that each player writes down their move in PGN format on a piece of paper. PGN stands for Portable Game Notation and is a human-readable format that allows chess players to read and write chess games. When it comes to computer chess, though, a more appropriate machine-readable format called Long Algebraic Notation (LAN) is often used instead.</p>
+<p>Be that as it may, you're already set up to play classical chess either in PGN or LAN format.</p>
+<p>In PGN format:</p>
+<pre><code class="language-php">$board-&gt;play('w', 'e4');
+</code></pre>
+<p>In LAN format:</p>
+<pre><code class="language-php">$board-&gt;playLan('w', 'e2e4');
+</code></pre>
+<p>Every time a move is made, the state of the board changes.</p>
+<pre><code class="language-php">var_dump($board-&gt;toFen());
+</code></pre>
+<pre><code class="language-text">string(55) &quot;rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3&quot;
+</code></pre>
+<p>This is the chess position in Forsyth–Edwards Notation (FEN) format after 1.e4.</p>
+<p>🎉 Congrats! 1.e4 is one of the best moves to start with.</p>
+<h2 id="read-moves">Read Moves</h2>
+<h3 id="portable-game-notation-pgn">Portable Game Notation (PGN)</h3>
 <p>✨ Portable Game Notation is a human-readable text format that allows chess players to read and write chess games.</p>
 <p>PGN is convenient for when reading chess games annotated by humans, for example, those ones available in online databases or published in chess websites.</p>
 <blockquote>
@@ -215,7 +244,7 @@ echo $sanPlay-&gt;sanMovetext-&gt;filtered();
 <pre><code class="language-text">1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6
 </code></pre>
 <p>🎉 Next, let's learn how to process chess moves from a graphical user interface.</p>
-<h2 id="long-algebraic-notation-lan">Long Algebraic Notation (LAN)</h2>
+<h3 id="long-algebraic-notation-lan">Long Algebraic Notation (LAN)</h3>
 <p>✨ The UCI protocol enables chess engines to communicate with user interfaces (UI) using Long Algebraic Notation (LAN) for moves.</p>
 <pre><code class="language-php">use Chess\Variant\Classical\Board;
 
@@ -252,7 +281,7 @@ P  P  P  .  .  P  P  P
 R  N  B  Q  K  B  .  R
 </code></pre>
 <p>🎉 And, it's easy!</p>
-<h2 id="recursive-annotation-variation-rav">Recursive Annotation Variation (RAV)</h2>
+<h3 id="recursive-annotation-variation-rav">Recursive Annotation Variation (RAV)</h3>
 <p>✨ RAV stands for Recursive Annotation Variation. It is an extension of the Standard Algebaric Notation (SAN) format that allows to annotate chess variations. This format is especially useful for tutorials, notable games, chess studies and so on.</p>
 <p>Comments are enclosed in curly brackets. Variations are enclosed in parentheses which can be nested recursively as many times as required with the trait that the previous move may need to be undone in order to play a variation.</p>
 <p>The example below describes how to play the Open Sicilian.</p>

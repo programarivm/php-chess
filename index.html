@@ -30,22 +30,8 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="installation/" class="dropdown-item">Installation</a>
-</li>
-                                    
-<li>
-    <a href="your-first-move/" class="dropdown-item">Your First Move</a>
-</li>
-                                    
-<li>
-    <a href="read-moves/" class="dropdown-item">Read Moves</a>
-</li>
-                                </ul>
+                            <li class="navitem">
+                                <a href="getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="navitem">
                                 <a href="data-conversion/" class="nav-link">Data Conversion</a>
@@ -108,6 +94,10 @@
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#lightweight" class="nav-link">Lightweight</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -230,7 +220,16 @@
 <ul>
 <li>Rubix ML for machine learning.</li>
 <li>Imagine for image processing.</li>
-</ul></div>
+</ul>
+<h2 id="installation">Installation</h2>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>PHP &gt;= 8.1</li>
+<li>Stockfish &gt;= 15.1</li>
+</ul>
+<h3 id="composer-installation">Composer installation</h3>
+<pre><code class="language-text">composer require chesslablab/php-chess
+</code></pre></div>
             </div>
         </div>
 
@@ -313,5 +312,5 @@
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-11-12 16:49:32.681169+00:00
+Build Date UTC : 2024-11-12 18:18:48.730001+00:00
 -->
