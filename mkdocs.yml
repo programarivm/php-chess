@@ -3,9 +3,7 @@ site_url: https://chesslablab.github.io/php-chess/
 theme:
   name: mkdocs
 nav:
-  - Getting Started:
-    - Your First Move: your-first-move.md
-    - Read Moves: read-moves.md
+  - Getting Started: getting-started.md
   - Data Conversion: data-conversion.md
   - Heuristics: heuristics.md
   - Chess Tutor: chess-tutor.md
