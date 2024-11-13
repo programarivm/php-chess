@@ -2,6 +2,19 @@
 
 A chess library for PHP offering move validation, common formats, multiple variants, UCI engine support, explanation of chess positions, and image recognition.
 
+## Installation
+
+### Requirements
+
+- PHP >= 8.1
+- Stockfish >= 15.1
+
+### Composer installation
+
+```text
+composer require chesslablab/php-chess
+```
+
 ## Features
 
 ### Formats Supported
@@ -62,16 +75,3 @@ PHP dependencies required:
 
 - Rubix ML for machine learning.
 - Imagine for image processing.
-
-## Installation
-
-### Requirements
-
-- PHP >= 8.1
-- Stockfish >= 15.1
-
-### Composer installation
-
-```text
-composer require chesslablab/php-chess
-```
