@@ -77,14 +77,18 @@ class SanHeuristics extends SanPlay
     {
         $this->result = [];
 
-        foreach ($this->function->names() as $i => $name) {
-            if ($this->name === $name) {
-                $this->result[$i][] = $this->item(EvalFactory::create(
-                    $this->function,
-                    $name,
-                    $this->board
-                ));
-            } else {
+        if ($this->name) {
+            foreach ($this->function->names() as $i => $name) {
+                if ($this->name === $name) {
+                    $this->result[$i][] = $this->item(EvalFactory::create(
+                        $this->function,
+                        $name,
+                        $this->board
+                    ));
+                }
+            }
+        } else {
+            foreach ($this->function->names() as $i => $name) {
                 $this->result[$i][] = $this->item(EvalFactory::create(
                     $this->function,
                     $name,
@@ -97,12 +101,14 @@ class SanHeuristics extends SanPlay
             if ($move !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $move)) {
                     foreach ($this->function->names() as $i => $name) {
-                        if ($this->name === $name) {
-                            $this->result[$i][] = $this->item(EvalFactory::create(
-                                $this->function,
-                                $name,
-                                $this->board
-                            ));
+                        if ($this->name) {
+                            if ($this->name === $name) {
+                                $this->result[$i][] = $this->item(EvalFactory::create(
+                                    $this->function,
+                                    $name,
+                                    $this->board
+                                ));
+                            }
                         } else {
                             $this->result[$i][] = $this->item(EvalFactory::create(
                                 $this->function,
@@ -120,14 +126,16 @@ class SanHeuristics extends SanPlay
 
     protected function balance(): SanHeuristics
     {
-        foreach ($this->function->names() as $i => $name) {
-            if ($this->name) {
+        if ($this->name) {
+            foreach ($this->function->names() as $i => $name) {
                 if ($this->name === $name) {
                     foreach ($this->result[$i] as $j => $result) {
                         $this->balance[$i][$j] = round($result[Color::W] - $result[Color::B], 2);
                     }
                 }
-            } else {
+            }
+        } else {
+            foreach ($this->function->names() as $i => $name) {
                 foreach ($this->result[$i] as $j => $result) {
                     $this->balance[$i][$j] = round($result[Color::W] - $result[Color::B], 2);
                 }
