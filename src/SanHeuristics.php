@@ -32,10 +32,6 @@ class SanHeuristics extends SanPlay
         $this->name = $name;
 
         $this->calc()->balance()->normalize(-1, 1);
-
-        if ($this->name) {
-            $this->balance =  current($this->balance);
-        }
     }
 
     public function getBalance(): array
@@ -140,6 +136,7 @@ class SanHeuristics extends SanPlay
     protected function normalize(int $newMin, int $newMax): SanHeuristics
     {
         $normd = [];
+        
         foreach ($this->balance as $i => $balance) {
             $min = min($balance);
             $max = max($balance);
@@ -155,6 +152,10 @@ class SanHeuristics extends SanPlay
         }
 
         $this->balance = $normd;
+
+        if ($this->name) {
+            $this->balance =  current($this->balance);
+        }
 
         return $this;
     }
