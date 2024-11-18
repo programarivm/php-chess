@@ -2,8 +2,6 @@
 
 namespace Chess;
 
-use Chess\Eval\AbstractEval;
-use Chess\Eval\InverseEvalInterface;
 use Chess\Function\AbstractFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\Classical\Board;
@@ -12,13 +10,9 @@ use Chess\Variant\Classical\PGN\AN\Color;
 
 class SanHeuristic extends SanPlay
 {
-    protected AbstractFunction $function;
+    use SanHeuristicTrait;
 
     protected string $name;
-
-    protected array $result;
-
-    protected array $balance = [];
 
     public function __construct(AbstractFunction $function, string $name, string $movetext = '', Board $board = null)
     {
@@ -49,41 +43,10 @@ class SanHeuristic extends SanPlay
         return $this;
     }
 
-    protected function item(AbstractEval $eval): array
-    {
-        $result = $eval->getResult();
-
-        if (is_array($result[Color::W])) {
-            if ($eval instanceof InverseEvalInterface) {
-                $item = [
-                    Color::W => count($result[Color::B]),
-                    Color::B => count($result[Color::W]),
-                ];
-            } else {
-                $item = [
-                    Color::W => count($result[Color::W]),
-                    Color::B => count($result[Color::B]),
-                ];
-            }
-        } else {
-            if ($eval instanceof InverseEvalInterface) {
-                $item = [
-                    Color::W => $result[Color::B],
-                    Color::B => $result[Color::W],
-                ];
-            } else {
-                $item = $result;
-            }
-        }
-
-        return $item;
-    }
-
     protected function balance(): SanHeuristic
     {
         foreach ($this->result as $key => $val) {
-            $this->balance[$key] =
-                round($val[Color::W] - $val[Color::B], 2);
+            $this->balance[$key] = round($val[Color::W] - $val[Color::B], 2);
         }
 
         return $this;
