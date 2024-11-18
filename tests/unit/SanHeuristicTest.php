@@ -3,18 +3,17 @@
 namespace Chess\Tests\Unit;
 
 use Chess\SanHeuristic;
-use Chess\Function\CompleteFunction;
+use Chess\Function\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\FEN\StrToBoard;
 
 class SanHeuristicTest extends AbstractUnitTestCase
 {
-    static private CompleteFunction $function;
+    static private FastFunction $function;
 
     public static function setUpBeforeClass(): void
     {
-        self::$function = new CompleteFunction();
+        self::$function = new FastFunction();
     }
 
     /**
