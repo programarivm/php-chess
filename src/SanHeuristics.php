@@ -12,8 +12,11 @@ class SanHeuristics extends SanPlay
 {
     use SanHeuristicTrait;
 
-    public function __construct(AbstractFunction $function, string $movetext = '', Board $board = null)
-    {
+    public function __construct(
+        AbstractFunction $function,
+        string $movetext = '',
+        Board $board = null
+    ) {
         parent::__construct($movetext, $board);
 
         $this->function = $function;
@@ -31,14 +34,22 @@ class SanHeuristics extends SanPlay
         $this->result = [];
 
         foreach ($this->function->names() as $i => $name) {
-            $this->result[$i][] = $this->item(EvalFactory::create($this->function, $name, $this->board));
+            $this->result[$i][] = $this->item(EvalFactory::create(
+                $this->function,
+                $name,
+                $this->board
+            ));
         }
 
         foreach ($this->sanMovetext->moves as $move) {
             if ($move !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $move)) {
                     foreach ($this->function->names() as $i => $name) {
-                        $this->result[$i][] = $this->item(EvalFactory::create($this->function, $name, $this->board));
+                        $this->result[$i][] = $this->item(EvalFactory::create(
+                            $this->function,
+                            $name,
+                            $this->board
+                        ));
                     }
                 }
             }

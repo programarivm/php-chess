@@ -14,8 +14,12 @@ class SanHeuristic extends SanPlay
 
     protected string $name;
 
-    public function __construct(AbstractFunction $function, string $name, string $movetext = '', Board $board = null)
-    {
+    public function __construct(
+        AbstractFunction $function,
+        string $name,
+        string $movetext = '',
+        Board $board = null
+    ) {
         parent::__construct($movetext, $board);
 
         $this->function = $function;
@@ -31,11 +35,19 @@ class SanHeuristic extends SanPlay
 
     protected function calc(): SanHeuristic
     {
-        $this->result[] = $this->item(EvalFactory::create($this->function, $this->name, $this->board));
+        $this->result[] = $this->item(EvalFactory::create(
+            $this->function,
+            $this->name, $this->board
+        ));
+
         foreach ($this->sanMovetext->moves as $key => $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $val)) {
-                    $this->result[] = $this->item(EvalFactory::create($this->function, $this->name, $this->board));
+                    $this->result[] = $this->item(EvalFactory::create(
+                        $this->function,
+                        $this->name,
+                        $this->board
+                    ));
                 }
             }
         }
@@ -57,6 +69,7 @@ class SanHeuristic extends SanPlay
         $normd = [];
         $min = min($this->balance);
         $max = max($this->balance);
+        
         foreach ($this->balance as $key => $val) {
             if ($val > 0) {
                 $normd[$key] = round($this->balance[$key] * $newMax / $max, 2);
