@@ -2,6 +2,8 @@
 
 namespace Chess;
 
+use Chess\Eval\AbstractEval;
+use Chess\Eval\InverseEvalInterface;
 use Chess\Function\AbstractFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\Classical\Board;
@@ -10,18 +12,30 @@ use Chess\Variant\Classical\PGN\AN\Color;
 
 class SanHeuristics extends SanPlay
 {
-    use SanHeuristicTrait;
+    protected AbstractFunction $function;
+
+    protected string $name;
+
+    protected array $result;
+
+    protected array $balance = [];
 
     public function __construct(
         AbstractFunction $function,
         string $movetext = '',
+        string $name = '',
         Board $board = null
     ) {
         parent::__construct($movetext, $board);
 
         $this->function = $function;
+        $this->name = $name;
 
         $this->calc()->balance()->normalize(-1, 1);
+
+        if ($this->name) {
+            $this->balance =  current($this->balance);
+        }
     }
 
     public function getBalance(): array
@@ -29,27 +43,73 @@ class SanHeuristics extends SanPlay
         return $this->balance;
     }
 
+    protected function item(AbstractEval $eval): array
+    {
+        $result = $eval->getResult();
+
+        if (is_array($result[Color::W])) {
+            if ($eval instanceof InverseEvalInterface) {
+                $item = [
+                    Color::W => count($result[Color::B]),
+                    Color::B => count($result[Color::W]),
+                ];
+            } else {
+                $item = [
+                    Color::W => count($result[Color::W]),
+                    Color::B => count($result[Color::B]),
+                ];
+            }
+        } else {
+            if ($eval instanceof InverseEvalInterface) {
+                $item = [
+                    Color::W => $result[Color::B],
+                    Color::B => $result[Color::W],
+                ];
+            } else {
+                $item = $result;
+            }
+        }
+
+        return $item;
+    }
+
     protected function calc(): SanHeuristics
     {
         $this->result = [];
 
         foreach ($this->function->names() as $i => $name) {
-            $this->result[$i][] = $this->item(EvalFactory::create(
-                $this->function,
-                $name,
-                $this->board
-            ));
+            if ($this->name === $name) {
+                $this->result[$i][] = $this->item(EvalFactory::create(
+                    $this->function,
+                    $name,
+                    $this->board
+                ));
+            } else {
+                $this->result[$i][] = $this->item(EvalFactory::create(
+                    $this->function,
+                    $name,
+                    $this->board
+                ));
+            }
         }
 
         foreach ($this->sanMovetext->moves as $move) {
             if ($move !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $move)) {
                     foreach ($this->function->names() as $i => $name) {
-                        $this->result[$i][] = $this->item(EvalFactory::create(
-                            $this->function,
-                            $name,
-                            $this->board
-                        ));
+                        if ($this->name === $name) {
+                            $this->result[$i][] = $this->item(EvalFactory::create(
+                                $this->function,
+                                $name,
+                                $this->board
+                            ));
+                        } else {
+                            $this->result[$i][] = $this->item(EvalFactory::create(
+                                $this->function,
+                                $name,
+                                $this->board
+                            ));
+                        }
                     }
                 }
             }
@@ -61,8 +121,16 @@ class SanHeuristics extends SanPlay
     protected function balance(): SanHeuristics
     {
         foreach ($this->function->names() as $i => $name) {
-            foreach ($this->result[$i] as $j => $result) {
-                $this->balance[$i][$j] = round($result[Color::W] - $result[Color::B], 2);
+            if ($this->name) {
+                if ($this->name === $name) {
+                    foreach ($this->result[$i] as $j => $result) {
+                        $this->balance[$i][$j] = round($result[Color::W] - $result[Color::B], 2);
+                    }
+                }
+            } else {
+                foreach ($this->result[$i] as $j => $result) {
+                    $this->balance[$i][$j] = round($result[Color::W] - $result[Color::B], 2);
+                }
             }
         }
 

@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\ML\Supervised\Regression;
 
-use Chess\SanHeuristic;
+use Chess\SanHeuristics;
 use Chess\Function\CompleteFunction;
 use Chess\ML\Supervised\Regression\GeometricSumLabeller;
 use Chess\Play\SanPlay;
@@ -29,7 +29,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A00))->validate()->board;
 
-        $balance = (new SanHeuristic(self::$function, $name, $board->movetext()))->getBalance();
+        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->getBalance();
 
         $label = (new GeometricSumLabeller())->label($balance);
 
@@ -49,7 +49,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($movetext))->validate()->board;
 
-        $balance = (new SanHeuristic(self::$function, $name, $board->movetext()))->getBalance();
+        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->getBalance();
 
         $label = (new GeometricSumLabeller())->label($balance);
 
@@ -69,7 +69,7 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A59))->validate()->board;
 
-        $balance = (new SanHeuristic(self::$function, $name, $board->movetext()))->getBalance();
+        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->getBalance();
 
         $label = (new GeometricSumLabeller())->label($balance);
 
