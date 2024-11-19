@@ -16,7 +16,7 @@ class SanHeuristics extends SanPlay
 
     protected string $name;
 
-    protected array $result;
+    protected array $result = [];
 
     protected array $balance = [];
 
@@ -71,64 +71,14 @@ class SanHeuristics extends SanPlay
 
     protected function calc(): SanHeuristics
     {
-        $this->result = [];
-
-        if ($this->name) {
-            $this->result[0][] = $this->item(EvalFactory::create(
-                $this->function,
-                $this->name,
-                $this->board
-            ));
-            foreach ($this->sanMovetext->moves as $move) {
-                if ($move !== Move::ELLIPSIS) {
-                    if ($this->board->play($this->board->turn, $move)) {
-                        $this->result[0][] = $this->item(EvalFactory::create(
-                            $this->function,
-                            $this->name,
-                            $this->board
-                        ));
-                    }
-                }
-            }
-        } else {
-            foreach ($this->function->names() as $i => $name) {
-                $this->result[$i][] = $this->item(EvalFactory::create(
-                    $this->function,
-                    $name,
-                    $this->board
-                ));
-            }
-            foreach ($this->sanMovetext->moves as $move) {
-                if ($move !== Move::ELLIPSIS) {
-                    if ($this->board->play($this->board->turn, $move)) {
-                        foreach ($this->function->names() as $i => $name) {
-                            $this->result[$i][] = $this->item(EvalFactory::create(
-                                $this->function,
-                                $name,
-                                $this->board
-                            ));
-                        }
-                    }
-                }
-            }
-        }
+        $this->name ? $this->calcOne() : $this->calcMany();
 
         return $this;
     }
 
     protected function balance(): SanHeuristics
     {
-        if ($this->name) {
-            foreach ($this->result[0] as $result) {
-                $this->balance[0][] = round($result[Color::W] - $result[Color::B], 2);
-            }
-        } else {
-            foreach ($this->function->names() as $i => $name) {
-                foreach ($this->result[$i] as $j => $result) {
-                    $this->balance[$i][$j] = round($result[Color::W] - $result[Color::B], 2);
-                }
-            }
-        }
+        $this->name ? $this->balanceOne() : $this->balanceMany();
 
         return $this;
     }
@@ -136,7 +86,7 @@ class SanHeuristics extends SanPlay
     protected function normalize(int $newMin, int $newMax): SanHeuristics
     {
         $normd = [];
-        
+
         foreach ($this->balance as $i => $balance) {
             $min = min($balance);
             $max = max($balance);
@@ -158,5 +108,67 @@ class SanHeuristics extends SanPlay
         }
 
         return $this;
+    }
+
+    protected function calcOne(): void
+    {
+        $this->result[0][] = $this->item(EvalFactory::create(
+            $this->function,
+            $this->name,
+            $this->board
+        ));
+
+        foreach ($this->sanMovetext->moves as $move) {
+            if ($move !== Move::ELLIPSIS) {
+                if ($this->board->play($this->board->turn, $move)) {
+                    $this->result[0][] = $this->item(EvalFactory::create(
+                        $this->function,
+                        $this->name,
+                        $this->board
+                    ));
+                }
+            }
+        }
+    }
+
+    protected function calcMany(): void
+    {
+        foreach ($this->function->names() as $i => $name) {
+            $this->result[$i][] = $this->item(EvalFactory::create(
+                $this->function,
+                $name,
+                $this->board
+            ));
+        }
+
+        foreach ($this->sanMovetext->moves as $move) {
+            if ($move !== Move::ELLIPSIS) {
+                if ($this->board->play($this->board->turn, $move)) {
+                    foreach ($this->function->names() as $i => $name) {
+                        $this->result[$i][] = $this->item(EvalFactory::create(
+                            $this->function,
+                            $name,
+                            $this->board
+                        ));
+                    }
+                }
+            }
+        }
+    }
+
+    protected function balanceOne(): void
+    {
+        foreach ($this->result[0] as $result) {
+            $this->balance[0][] = round($result[Color::W] - $result[Color::B], 2);
+        }
+    }
+
+    protected function balanceMany(): void
+    {
+        foreach ($this->function->names() as $i => $name) {
+            foreach ($this->result[$i] as $j => $result) {
+                $this->balance[$i][$j] = round($result[Color::W] - $result[Color::B], 2);
+            }
+        }
     }
 }
