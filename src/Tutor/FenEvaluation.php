@@ -3,6 +3,8 @@
 namespace Chess\Tutor;
 
 use Chess\FenHeuristics;
+use Chess\Eval\ElaborateEvalInterface;
+use Chess\Eval\ExplainEvalInterface;
 use Chess\Function\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 
@@ -13,10 +15,42 @@ class FenEvaluation extends AbstractParagraph
         $this->function = $function;
         $this->board = $board;
         $this->paragraph = [
-            ...(new FenExplanation($this->function, $this->board))->paragraph,
-            ...(new FenElaboration($this->function, $this->board))->paragraph,
+            ...$this->fenExplanation(),
+            ...$this->fenElaboration(),
             ...$this->evaluate(),
         ];
+    }
+
+    private function fenExplanation(): array
+    {
+        $paragraph = [];
+
+        foreach ($this->function->getEval() as $val) {
+            $eval = new $val($this->board);
+            if (is_a($eval, ExplainEvalInterface::class)) {
+                if ($phrases = $eval->getExplanation()) {
+                    $paragraph = [...$paragraph, ...$phrases];
+                }
+            }
+        }
+
+        return $paragraph;
+    }
+
+    private function fenElaboration(): array
+    {
+        $paragraph = [];
+
+        foreach ($this->function->getEval() as $val) {
+            $eval = new $val($this->board);
+            if (is_a($eval, ElaborateEvalInterface::class)) {
+                if ($phrases = $eval->getElaboration()) {
+                    $paragraph = [...$paragraph, ...$phrases];
+                }
+            }
+        }
+
+        return $paragraph;
     }
 
     private function evaluate(): array
