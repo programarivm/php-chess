@@ -60,6 +60,26 @@ class SumLabellerTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function A08()
+    {
+        $name = 'Center';
+
+        $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
+
+        $board = (new SanPlay($A08))->validate()->board;
+
+        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->getBalance();
+
+        $label = (new SumLabeller())->label($balance);
+
+        $expected = 0.25;
+
+        $this->assertSame($expected, $label);
+    }
+
+    /**
+     * @test
+     */
     public function A59()
     {
         $name = 'Connectivity';
