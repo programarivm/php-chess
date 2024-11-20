@@ -71,14 +71,14 @@ class SanHeuristics extends SanPlay
 
     protected function calc(): SanHeuristics
     {
-        $this->name ? $this->calcOne() : $this->calcMany();
+        $this->name ? $this->calcOne() : $this->calcAll();
 
         return $this;
     }
 
     protected function balance(): SanHeuristics
     {
-        $this->name ? $this->balanceOne() : $this->balanceMany();
+        $this->name ? $this->balanceOne() : $this->balanceAll();
 
         return $this;
     }
@@ -131,7 +131,7 @@ class SanHeuristics extends SanPlay
         }
     }
 
-    protected function calcMany(): void
+    protected function calcAll(): void
     {
         foreach ($this->function->names() as $i => $name) {
             $this->result[$i][] = $this->item(EvalFactory::create(
@@ -163,7 +163,7 @@ class SanHeuristics extends SanPlay
         }
     }
 
-    protected function balanceMany(): void
+    protected function balanceAll(): void
     {
         foreach ($this->function->names() as $i => $name) {
             foreach ($this->result[$i] as $j => $result) {
