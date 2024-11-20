@@ -7,7 +7,6 @@ use Chess\Function\CompleteFunction;
 use Chess\ML\Supervised\Regression\GeometricSumLabeller;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\Board;
 
 class GeometricSumLabellerTest extends AbstractUnitTestCase
 {
