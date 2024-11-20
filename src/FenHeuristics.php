@@ -13,7 +13,7 @@ class FenHeuristics
 
     protected AbstractBoard $board;
 
-    protected array $result;
+    protected array $result = [];
 
     protected array $balance = [];
 
@@ -37,38 +37,35 @@ class FenHeuristics
             $result = $eval->getResult();
             if (is_array($result[Color::W])) {
                 if ($eval instanceof InverseEvalInterface) {
-                    $item[] = [
+                    $this->result[] = [
                         Color::W => count($result[Color::B]),
                         Color::B => count($result[Color::W]),
                     ];
                 } else {
-                    $item[] = [
+                    $this->result[] = [
                         Color::W => count($result[Color::W]),
                         Color::B => count($result[Color::B]),
                     ];
                 }
             } else {
                 if ($eval instanceof InverseEvalInterface) {
-                    $item[] = [
+                    $this->result[] = [
                         Color::W => $result[Color::B],
                         Color::B => $result[Color::W],
                     ];
                 } else {
-                    $item[] = $result;
+                    $this->result[] = $result;
                 }
             }
         }
-
-        $this->result[Color::W] = array_column($item, Color::W);
-        $this->result[Color::B] = array_column($item, Color::B);
 
         return $this;
     }
 
     protected function ternarize(): void
     {
-        foreach ($this->result[Color::W] as $key => $val) {
-            $diff = $this->result[Color::W][$key] - $this->result[Color::B][$key];
+        foreach ($this->result as $key => $val) {
+            $diff = $val[Color::W] - $val[Color::B];
             $this->balance[$key] = $diff > 0 ? 1 : ($diff < 0 ? -1 : 0);
         }
     }
