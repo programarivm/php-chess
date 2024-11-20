@@ -22,7 +22,7 @@ class FenHeuristics
         $this->function = $function;
         $this->board = $board;
 
-        $this->calc()->balance();
+        $this->calc()->balance()->normalize(-1, 1);
     }
 
     public function getBalance(): array
@@ -71,6 +71,25 @@ class FenHeuristics
             $this->balance[$key] =
                 round($this->result[Color::W][$key] - $this->result[Color::B][$key], 2);
         }
+
+        return $this;
+    }
+
+    protected function normalize(int $newMin, int $newMax): FenHeuristics
+    {
+        $normd = [];
+
+        foreach ($this->balance as $val) {
+            if ($val > 0) {
+                $normd[] = $newMax;
+            } elseif ($val < 0) {
+                $normd[] = $newMin;
+            } else {
+                $normd[] = 0;
+            }
+        }
+
+        $this->balance = $normd;
 
         return $this;
     }
