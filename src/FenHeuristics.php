@@ -22,7 +22,7 @@ class FenHeuristics
         $this->function = $function;
         $this->board = $board;
 
-        $this->calc()->balance()->ternarize(-1, 1);
+        $this->calc()->balance()->ternarize();
     }
 
     public function getBalance(): array
@@ -68,29 +68,16 @@ class FenHeuristics
     protected function balance(): FenHeuristics
     {
         foreach ($this->result[Color::W] as $key => $val) {
-            $this->balance[$key] =
-                round($this->result[Color::W][$key] - $this->result[Color::B][$key], 2);
+            $this->balance[$key] = $this->result[Color::W][$key] - $this->result[Color::B][$key];
         }
 
         return $this;
     }
 
-    protected function ternarize(int $newMin, int $newMax): FenHeuristics
+    protected function ternarize(): void
     {
-        $normd = [];
-
-        foreach ($this->balance as $val) {
-            if ($val > 0) {
-                $normd[] = $newMax;
-            } elseif ($val < 0) {
-                $normd[] = $newMin;
-            } else {
-                $normd[] = 0;
-            }
+        for ($i = 0; $i < count($this->balance); $i++) {
+            $this->balance[$i] = $this->balance[$i] > 0 ? 1 : ($this->balance[$i] < 0 ? -1 : 0);
         }
-
-        $this->balance = $normd;
-
-        return $this;
     }
 }
