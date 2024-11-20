@@ -22,7 +22,7 @@ class FenHeuristics
         $this->function = $function;
         $this->board = $board;
 
-        $this->calc()->balance()->normalize(-1, 1);
+        $this->calc()->balance()->ternarize(-1, 1);
     }
 
     public function getBalance(): array
@@ -75,7 +75,7 @@ class FenHeuristics
         return $this;
     }
 
-    protected function normalize(int $newMin, int $newMax): FenHeuristics
+    protected function ternarize(int $newMin, int $newMax): FenHeuristics
     {
         $normd = [];
 
