@@ -30,7 +30,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8, the pawn on c5.",
             "The pawn on c5 is unprotected.",
             "The pawn on c5 is under threat of being attacked.",
-            "Overall, 3 heuristic evaluation features are favoring White while 3 are favoring Black.",
+            "Overall, 0 evaluation features are favoring either player.",
         ];
 
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
@@ -54,7 +54,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "Black has a decisive protection advantage.",
             "These pieces are hanging: The bishop on e6.",
             "The bishop on e6 is unprotected.",
-            "Overall, 6 heuristic evaluation features are favoring White while 2 are favoring Black.",
+            "Overall, 4 evaluation features are favoring White.",
         ];
 
         $board = FenToBoardFactory::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');
