@@ -21,6 +21,8 @@ class SanHeuristicsTest extends AbstractUnitTestCase
      */
     public function e4_d5_exd5_Qxd5()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
         $balance = (new SanHeuristics(self::$function, $movetext))->getBalance();
