@@ -65,7 +65,7 @@ class SanHeuristics extends SanPlay
     protected function balance(): SanHeuristics
     {
         foreach ($this->result as $result) {
-            $this->balance[] = round($result[Color::W] - $result[Color::B], 2);
+            $this->balance[] = $result[Color::W] - $result[Color::B];
         }
 
         return $this;
@@ -76,7 +76,7 @@ class SanHeuristics extends SanPlay
         $normd = [];
         $min = min($this->balance);
         $max = max($this->balance);
-        
+
         foreach ($this->balance as $key => $val) {
             if ($val > 0) {
                 $normd[$key] = round($this->balance[$key] * $newMax / $max, 2);
