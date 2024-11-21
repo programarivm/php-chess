@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\ML\Supervised;
+namespace Chess\ML;
 
 abstract class AbstractLabeller
 {

@@ -1,8 +1,6 @@
 <?php
 
-namespace Chess\ML\Supervised\Regression;
-
-use Chess\ML\Supervised\AbstractLabeller;
+namespace Chess\ML;
 
 class SumLabeller extends AbstractLabeller
 {
