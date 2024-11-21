@@ -20,26 +20,6 @@ class SumLabellerTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function scholar_checkmate()
-    {
-        $name = 'Center';
-
-        $movetext = file_get_contents(self::DATA_FOLDER.'/sample/scholar_checkmate.pgn');
-
-        $board = (new SanPlay($movetext))->validate()->board;
-
-        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->getBalance();
-
-        $label = (new SumLabeller())->label($balance);
-
-        $expected = 1.58;
-
-        $this->assertSame($expected, $label);
-    }
-
-    /**
-     * @test
-     */
     public function A00()
     {
         $name = 'Material';

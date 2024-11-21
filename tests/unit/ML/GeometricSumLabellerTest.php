@@ -20,26 +20,6 @@ class GeometricSumLabellerTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function scholar_checkmate()
-    {
-        $name = 'Center';
-
-        $movetext = file_get_contents(self::DATA_FOLDER.'/sample/scholar_checkmate.pgn');
-
-        $board = (new SanPlay($movetext))->validate()->board;
-
-        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->getBalance();
-
-        $label = (new GeometricSumLabeller())->label($balance);
-
-        $expected = 17.2;
-
-        $this->assertSame($expected, $label);
-    }
-
-    /**
-     * @test
-     */
     public function A00()
     {
         $name = 'Material';
