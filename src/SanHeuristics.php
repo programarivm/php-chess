@@ -73,21 +73,18 @@ class SanHeuristics extends SanPlay
 
     protected function normalize(int $newMin, int $newMax): void
     {
-        $normd = [];
         $min = min($this->balance);
         $max = max($this->balance);
 
         foreach ($this->balance as $key => $val) {
             if ($val > 0) {
-                $normd[$key] = round($this->balance[$key] * $newMax / $max, 2);
+                $this->balance[$key] = round($this->balance[$key] * $newMax / $max, 2);
             } elseif ($val < 0) {
-                $normd[$key] = round($this->balance[$key] * $newMin / $min, 2);
+                $this->balance[$key] = round($this->balance[$key] * $newMin / $min, 2);
             } else {
-                $normd[$key] = 0;
+                $this->balance[$key] = 0;
             }
         }
-
-        $this->balance = $normd;
     }
 
     protected function item(AbstractEval $eval): array
