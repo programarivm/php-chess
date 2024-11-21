@@ -6,6 +6,7 @@ use Chess\FenHeuristics;
 use Chess\Eval\ElaborateEvalInterface;
 use Chess\Eval\ExplainEvalInterface;
 use Chess\Function\AbstractFunction;
+use Chess\ML\SumLabeller;
 use Chess\Variant\AbstractBoard;
 
 class FenEvaluation extends AbstractParagraph
@@ -56,7 +57,7 @@ class FenEvaluation extends AbstractParagraph
     private function evaluate(): array
     {
         $balance = (new FenHeuristics($this->function, $this->board))->getBalance();
-        $sum = array_sum($balance);
+        $sum = (new SumLabeller())->label($balance);
         $abs = abs($sum);
 
         if ($sum > 0) {
