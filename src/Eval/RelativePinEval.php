@@ -50,22 +50,20 @@ class RelativePinEval extends AbstractEval implements
         $pressureEval = (new PressureEval($this->board))->getResult();
 
         foreach ($this->board->pieces() as $piece) {
-            if (
-                $piece->id !== Piece::K &&
-                $piece->id !== Piece::Q &&
-                !$piece->isPinned()
-            ) {
+            if ($piece->id !== Piece::K && $piece->id !== Piece::Q) {
                 $this->board->detach($piece);
                 $this->board->refresh();
-                $newPressureEval = (new PressureEval($this->board))->getResult();
-                foreach (array_diff($newPressureEval[$piece->oppColor()], $pressureEval[$piece->oppColor()]) as $sq) {
-                    foreach ($this->board->pieceBySq($sq)->attacking() as $newAttacking) {
-                        foreach ($piece->attacking() as $attacking) {
-                            if ($newAttacking->sq === $attacking->sq) {
-                                $valDiff = self::$value[$attacking->id] - self::$value[$this->board->pieceBySq($sq)->id];
-                                if ($valDiff < 0) {
-                                    $this->result[$piece->oppColor()] += abs(round($valDiff, 2));
-                                    $this->elaborate($piece);
+                if (!$this->board->isCheck()) {
+                    $newPressureEval = (new PressureEval($this->board))->getResult();
+                    foreach (array_diff($newPressureEval[$piece->oppColor()], $pressureEval[$piece->oppColor()]) as $sq) {
+                        foreach ($this->board->pieceBySq($sq)->attacking() as $newAttacking) {
+                            foreach ($piece->attacking() as $attacking) {
+                                if ($newAttacking->sq === $attacking->sq) {
+                                    $valDiff = self::$value[$attacking->id] - self::$value[$this->board->pieceBySq($sq)->id];
+                                    if ($valDiff < 0) {
+                                        $this->result[$piece->oppColor()] += abs(round($valDiff, 2));
+                                        $this->elaborate($piece);
+                                    }
                                 }
                             }
                         }
