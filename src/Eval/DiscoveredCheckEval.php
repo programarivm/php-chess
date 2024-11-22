@@ -51,17 +51,18 @@ class DiscoveredCheckEval extends AbstractEval implements
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id !== Piece::K) {
-                $king = $this->board->piece($piece->oppColor(), Piece::K);
-                $clone = $this->board->clone();
-                $clone->detach($clone->pieceBySq($piece->sq));
-                $clone->refresh();
-                $newKing = $clone->piece($piece->oppColor(), Piece::K);
-                foreach ($this->board->diffPieces($king->attacking(), $newKing->attacking()) as $diffPiece) {
+                $before = $this->board->piece($piece->oppColor(), Piece::K)->attacking();
+                $this->board->detach($piece);
+                $this->board->refresh();
+                $after = $this->board->piece($piece->oppColor(), Piece::K)->attacking();
+                foreach ($this->board->diffPieces($before, $after) as $diffPiece) {
                     if ($diffPiece->color === $piece->color) {
                         $this->result[$piece->color] += self::$value[$piece->id];
                         $this->elaborate($piece);
                     }
                 }
+                $this->board->attach($piece);
+                $this->board->refresh();
             }
         }
 
@@ -75,9 +76,9 @@ class DiscoveredCheckEval extends AbstractEval implements
      */
     private function elaborate(AbstractPiece $piece): void
     {
-        $phrase = PiecePhrase::create($piece);
-        $sentence = ColorPhrase::sentence($piece->oppColor());
+        $pPhrase = PiecePhrase::create($piece);
+        $cPhrase = ColorPhrase::sentence($piece->oppColor());
 
-        $this->elaboration[] = ucfirst("The $sentence king can be put in check as long as $phrase moves out of the way.");
+        $this->elaboration[] = "The $cPhrase king can be put in check as long as $pPhrase moves out of the way.";
     }
 }
