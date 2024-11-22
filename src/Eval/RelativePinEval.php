@@ -55,15 +55,14 @@ class RelativePinEval extends AbstractEval implements
                 $piece->id !== Piece::Q &&
                 !$piece->isPinned()
             ) {
-                $clone = $this->board->clone();
-                $clone->detach($clone->pieceBySq($piece->sq));
-                $clone->refresh();
-                $newPressureEval = (new PressureEval($clone))->getResult();
+                $this->board->detach($piece);
+                $this->board->refresh();
+                $newPressureEval = (new PressureEval($this->board))->getResult();
                 foreach (array_diff($newPressureEval[$piece->oppColor()], $pressureEval[$piece->oppColor()]) as $sq) {
-                    foreach ($clone->pieceBySq($sq)->attacking() as $newAttacking) {
+                    foreach ($this->board->pieceBySq($sq)->attacking() as $newAttacking) {
                         foreach ($piece->attacking() as $attacking) {
                             if ($newAttacking->sq === $attacking->sq) {
-                                $valDiff = self::$value[$attacking->id] - self::$value[$clone->pieceBySq($sq)->id];
+                                $valDiff = self::$value[$attacking->id] - self::$value[$this->board->pieceBySq($sq)->id];
                                 if ($valDiff < 0) {
                                     $this->result[$piece->oppColor()] += abs(round($valDiff, 2));
                                     $this->elaborate($piece);
@@ -72,6 +71,8 @@ class RelativePinEval extends AbstractEval implements
                         }
                     }
                 }
+                $this->board->attach($piece);
+                $this->board->refresh();
             }
         }
 
