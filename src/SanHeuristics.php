@@ -6,7 +6,7 @@ use Chess\Eval\AbstractEval;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Function\AbstractFunction;
 use Chess\Play\SanPlay;
-use Chess\Variant\Classical\Board;
+use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 
@@ -24,7 +24,7 @@ class SanHeuristics extends SanPlay
         AbstractFunction $function,
         string $movetext = '',
         string $name = '',
-        Board $board = null
+        AbstractBoard $board = null
     ) {
         parent::__construct($movetext, $board);
 

@@ -3,11 +3,11 @@
 namespace Chess;
 
 use Chess\Function\AbstractFunction;
-use Chess\Variant\Classical\Board;
+use Chess\Variant\AbstractBoard;
 
 class EvalFactory
 {
-    public static function create(AbstractFunction $function, string $name, Board $board)
+    public static function create(AbstractFunction $function, string $name, AbstractBoard $board)
     {
         foreach ($function->getEval() as $val) {
             $class = new \ReflectionClass($val);

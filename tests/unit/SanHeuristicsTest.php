@@ -5,6 +5,7 @@ namespace Chess\Tests\Unit;
 use Chess\SanHeuristics;
 use Chess\Function\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\FEN\StrToBoard;
 
 class SanHeuristicsTest extends AbstractUnitTestCase
@@ -64,6 +65,25 @@ class SanHeuristicsTest extends AbstractUnitTestCase
         $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->getBalance();
 
         $expected = [ 0, 1.0 ];
+
+        $this->assertSame($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
+    public function capablanca_e4_a5()
+    {
+        $name = 'Center';
+
+        $board = new CapablancaBoard();
+
+        $board->play('w', 'e4');
+        $board->play('b', 'a5');
+
+        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->getBalance();
+
+        $expected = [ 0, 1.0, 0.92 ];
 
         $this->assertSame($expected, $balance);
     }
