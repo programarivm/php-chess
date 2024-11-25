@@ -195,6 +195,11 @@ echo $board-&gt;toFen();
 </code></pre>
 <pre><code class="language-text">rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -
 </code></pre>
+<p>This is how to get LAN formatted moves out of the history array.</p>
+<pre><code class="language-php">$last = end($board-&gt;history);
+
+$lan = $last['sq'] . $last['move']['sq']['next'];
+</code></pre>
 <h2 id="board-to-png-image">Board to PNG Image</h2>
 <p>✨ PNG stands for Portable Network Graphics and is a widely used format for image files. Not to be confused with PGN, the text-based file format to annotate chess games.</p>
 <p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Media/BoardToPngTest.php">Chess\Media\BoardToPng</a> converts a chess board object to a PNG image.</p>
