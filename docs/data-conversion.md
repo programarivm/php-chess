@@ -106,6 +106,14 @@ echo $board->startFen;
 rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -
 ```
 
+This is how to get LAN formatted moves out of the history array.
+
+```php
+$last = end($board->history);
+
+$lan = $last['sq'] . $last['move']['sq']['next'];
+```
+
 ## Board to PNG Image
 
 ✨ PNG stands for Portable Network Graphics and is a widely used format for image files. Not to be confused with PGN, the text-based file format to annotate chess games.
