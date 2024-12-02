@@ -2,7 +2,6 @@
 
 namespace Chess\Eval;
 
-use Chess\Eval\SqCount;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -50,15 +49,13 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
             "is pressuring more squares than its opponent",
         ];
 
-        $sqCount = (new SqCount($board))->count();
-
         foreach ($pieces = $this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
                     ...array_intersect(
                         $piece->mobility,
-                        $sqCount['used'][$piece->oppColor()]
+                        $this->board->sqCount['used'][$piece->oppColor()]
                     )
                 ];
             } elseif ($piece->id === Piece::P) {
@@ -66,7 +63,7 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
                     ...$this->result[$piece->color],
                     ...array_intersect(
                         $piece->captureSqs,
-                        $sqCount['used'][$piece->oppColor()]
+                        $this->board->sqCount['used'][$piece->oppColor()]
                     )
                 ];
             } else {
@@ -74,7 +71,7 @@ class PressureEval extends AbstractEval implements ExplainEvalInterface
                     ...$this->result[$piece->color],
                     ...array_intersect(
                         $piece->moveSqs(),
-                        $sqCount['used'][$piece->oppColor()]
+                        $this->board->sqCount['used'][$piece->oppColor()]
                     )
                 ];
             }
