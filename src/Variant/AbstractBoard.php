@@ -610,8 +610,11 @@ abstract class AbstractBoard extends \SplObjectStorage
                 }
             }
         }
+        if (!$this->isAmbiguous($move, $pieces)) {
+            return $this->isLegal($move, $pieces);
+        }
 
-        return !$this->isAmbiguous($move, $pieces) && $this->isLegal($move, $pieces);
+        return false;
     }
 
     public function playLan(string $color, string $lan): bool
