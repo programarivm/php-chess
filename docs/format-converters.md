@@ -1,4 +1,4 @@
-# Data Conversion
+# Format Converters
 
 ## FEN to Board
 
@@ -129,7 +129,7 @@ $board = FenToBoardFactory::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP
 $filename = (new BoardToPng($board, $flip = true))->output(__DIR__);
 ```
 
-![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/data-conversion_01.png)
+![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/format-converters_01.png)
 
 Try this thing! Share a puzzling chess position with friends for further study.
 
@@ -174,4 +174,4 @@ echo $prediction;
 
 For optimal use, it is recommended to make predictions on chessboard images using classical chess pieces like the Kaufman test attached below.
 
-![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/data-conversion_02.png)
+![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/format-converters_02.png)

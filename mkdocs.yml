@@ -4,7 +4,7 @@ theme:
   name: mkdocs
 nav:
   - Getting Started: getting-started.md
-  - Data Conversion: data-conversion.md
+  - Format Converters: format-converters.md
   - Heuristics: heuristics.md
   - Chess Tutor: chess-tutor.md
   - Play Chess: play-chess.md
