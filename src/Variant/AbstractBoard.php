@@ -132,9 +132,10 @@ abstract class AbstractBoard extends \SplObjectStorage
      * Returns true if the move is ambiguous.
      *
      * @param array $move
+     * @param array $pieces
      * @return bool
      */
-    protected function isAmbiguous(array $move): bool
+    protected function isAmbiguous(array $move, array $pieces): bool
     {
         if ($move['isCapture']) {
             if ($move['id'] === Piece::P) {
@@ -151,11 +152,9 @@ abstract class AbstractBoard extends \SplObjectStorage
             }
         }
         $ambiguous = [];
-        foreach ($this->pickPiece($move) as $piece) {
+        foreach ($pieces as $piece) {
             if (in_array($move['sq']['next'], $piece->moveSqs())) {
-                if (!$this->isPinned($piece)) {
-                    $ambiguous[] = $move['sq']['next'];
-                }
+                $ambiguous[] = $move['sq']['next'];
             }
         }
 
@@ -166,20 +165,19 @@ abstract class AbstractBoard extends \SplObjectStorage
      * Returns true if the move is legal.
      *
      * @param array $move
+     * @param array $pieces
      * @return bool
      */
-    protected function isLegal(array $move): bool
+    protected function isLegal(array $move, array $pieces): bool
     {
-        foreach ($pieces = $this->pickPiece($move) as $piece) {
+        foreach ($pieces as $piece) {
             if ($piece->isMovable()) {
-                if (!$this->isPinned($piece)) {
-                    if ($piece->move['type'] === $this->move->case(Move::CASTLE_SHORT)) {
-                        return $this->castle($piece, RType::CASTLE_SHORT);
-                    } elseif ($piece->move['type'] === $this->move->case(Move::CASTLE_LONG)) {
-                        return $this->castle($piece, RType::CASTLE_LONG);
-                    } else {
-                        return $this->move($piece);
-                    }
+                if ($piece->move['type'] === $this->move->case(Move::CASTLE_SHORT)) {
+                    return $this->castle($piece, RType::CASTLE_SHORT);
+                } elseif ($piece->move['type'] === $this->move->case(Move::CASTLE_LONG)) {
+                    return $this->castle($piece, RType::CASTLE_LONG);
+                } else {
+                    return $this->move($piece);
                 }
             }
         }
@@ -605,12 +603,15 @@ abstract class AbstractBoard extends \SplObjectStorage
 
     public function play(string $color, string $pgn): bool
     {
+        $pieces = [];
         $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
-        if (!$this->isAmbiguous($move)) {
-            return $this->isLegal($move);
+        foreach ($this->pickPiece($move) as $piece) {
+            if (!$this->isPinned($piece)) {
+                $pieces[] = $piece;
+            }
         }
 
-        return false;
+        return !$this->isAmbiguous($move, $pieces) && $this->isLegal($move, $pieces);
     }
 
     public function playLan(string $color, string $lan): bool
