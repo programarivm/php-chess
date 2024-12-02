@@ -3,7 +3,6 @@
 namespace Chess\Eval;
 
 use Chess\Eval\PressureEval;
-use Chess\Eval\SpaceEval;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
@@ -50,7 +49,6 @@ class KingSafetyEval extends AbstractEval implements
         ];
 
         $pressEval = (new PressureEval($this->board))->getResult();
-        $spEval = (new SpaceEval($this->board))->getResult();
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
@@ -63,7 +61,7 @@ class KingSafetyEval extends AbstractEval implements
                     if (in_array($sq, $pressEval[$piece->oppColor()])) {
                         $this->result[$piece->color] += 1;
                     }
-                    if (in_array($sq, $spEval[$piece->oppColor()])) {
+                    if (in_array($sq, $this->board->spaceEval[$piece->oppColor()])) {
                         $this->result[$piece->color] += 1;
                     }
                 }
