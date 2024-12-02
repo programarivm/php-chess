@@ -1,6 +1,6 @@
 # PHP Chess
 
-A chess library for PHP offering move validation, common formats, multiple variants, UCI engine support, explanation of chess positions, and image recognition.
+A chess library for PHP offering move validation, common formats, multiple variants, UCI engine support, explanation of chess positions, image recognition and knowledge extraction from games.
 
 ## Installation
 
