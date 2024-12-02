@@ -46,7 +46,7 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | Space | This is a measure of the number of squares controlled by each player. | [Chess\Eval\SpaceEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/SpaceEvalTest.php) |
 | Square outpost | A square protected by a pawn that cannot be attacked by an opponent's pawn. | [Chess\Eval\SqOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/SqOutpostEvalTest.php) |
 
-The evaluation features are used in two heuristics classes: [Chess\FenHeuristics](https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenHeuristicsTest.php) and [Chess\SanHeuristic](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicTest.php). The former allows to transform a FEN position to numbers while the latter transforms an entire chess game in SAN format to numbers.
+The evaluation features are used in two heuristics classes: [Chess\FenHeuristics](https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenHeuristicsTest.php) and [Chess\SanHeuristic](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicTest.php). The former allows to transform a FEN position to ternary digits while the latter transforms an entire chess game in SAN format to decimal numbers between -1 and 1.
 
 ```php
 use Chess\FenHeuristics;
@@ -101,14 +101,17 @@ Array
             [26] => Direct opposition
             [27] => Attack
             [28] => Overloading
+            [29] => Back-rank threat
+            [30] => Checkability
+            [31] => Flight square
         )
 
     [balance] => Array
         (
             [0] => 0
-            [1] => 12.4
-            [2] => 0
-            [3] => 3
+            [1] => 1
+            [2] => -1
+            [3] => 1
             [4] => 0
             [5] => 0
             [6] => 0
@@ -134,6 +137,9 @@ Array
             [26] => 0
             [27] => 0
             [28] => 0
+            [29] => 0
+            [30] => 0
+            [31] => 0
         )
 
 )
@@ -142,7 +148,7 @@ Array
 A chess game can be plotted in terms of balance. +1 is the best possible evaluation for White and -1 the best possible evaluation for Black. Both forces being set to 0 means they're balanced.
 
 ```php
-use Chess\SanHeuristic;
+use Chess\SanHeuristics;
 use Chess\Function\CompleteFunction;
 
 $function = new CompleteFunction();
@@ -151,7 +157,7 @@ $name = 'Space';
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$balance = (new SanHeuristic($function, $name, $movetext))->getBalance();
+$balance = (new SanHeuristics($function, $movetext, $name))->getBalance();
 
 print_r($balance);
 ```
