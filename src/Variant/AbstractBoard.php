@@ -129,23 +129,12 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Returns true if the syntax is ambiguous.
+     * Returns true if the move is ambiguous.
      *
      * @param array $move
      * @return bool
      */
     protected function isAmbiguous(array $move): bool
-    {
-        return $this->isAmbiguousCapture($move) || $this->isAmbiguousMove($move);
-    }
-
-    /**
-     * Returns true if the capture move is ambiguous.
-     *
-     * @param array $move
-     * @return bool
-     */
-    protected function isAmbiguousCapture(array $move): bool
     {
         if ($move['isCapture']) {
             if ($move['id'] === Piece::P) {
@@ -161,18 +150,6 @@ abstract class AbstractBoard extends \SplObjectStorage
                 }
             }
         }
-
-        return false;
-    }
-
-    /**
-     * Returns true if the move is ambiguous.
-     *
-     * @param array $move
-     * @return bool
-     */
-    protected function isAmbiguousMove(array $move): bool
-    {
         $ambiguous = [];
         foreach ($this->pickPiece($move) as $piece) {
             if (in_array($move['sq']['next'], $piece->moveSqs())) {
