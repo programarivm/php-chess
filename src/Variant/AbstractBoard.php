@@ -191,7 +191,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @param array $move
      * @return bool
      */
-    protected function isLegalMove(array $move): bool
+    protected function isLegal(array $move): bool
     {
         foreach ($pieces = $this->pickPiece($move) as $piece) {
             if ($piece->isMovable()) {
@@ -630,7 +630,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
         if (!$this->isAmbiguous($move)) {
-            return $this->isLegalMove($move);
+            return $this->isLegal($move);
         }
 
         return false;
