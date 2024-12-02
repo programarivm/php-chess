@@ -129,20 +129,14 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Returns true if the move is syntactically valid.
+     * Returns true if the syntax is ambiguous.
      *
      * @param array $move
      * @return bool
      */
-    protected function isValidMove(array $move): bool
+    protected function isAmbiguous(array $move): bool
     {
-        if ($this->isAmbiguousCapture($move)) {
-            return false;
-        } elseif ($this->isAmbiguousMove($move)) {
-            return false;
-        }
-
-        return true;
+        return $this->isAmbiguousCapture($move) || $this->isAmbiguousMove($move);
     }
 
     /**
@@ -635,7 +629,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     public function play(string $color, string $pgn): bool
     {
         $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
-        if ($this->isValidMove($move)) {
+        if (!$this->isAmbiguous($move)) {
             return $this->isLegalMove($move);
         }
 
