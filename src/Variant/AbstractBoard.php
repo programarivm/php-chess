@@ -171,14 +171,12 @@ abstract class AbstractBoard extends \SplObjectStorage
     protected function isLegal(array $move, array $pieces): bool
     {
         foreach ($pieces as $piece) {
-            if ($piece->isMovable()) {
-                if ($piece->move['type'] === $this->move->case(Move::CASTLE_SHORT)) {
-                    return $this->castle($piece, RType::CASTLE_SHORT);
-                } elseif ($piece->move['type'] === $this->move->case(Move::CASTLE_LONG)) {
-                    return $this->castle($piece, RType::CASTLE_LONG);
-                } else {
-                    return $this->move($piece);
-                }
+            if ($piece->move['type'] === $this->move->case(Move::CASTLE_SHORT)) {
+                return $this->castle($piece, RType::CASTLE_SHORT);
+            } elseif ($piece->move['type'] === $this->move->case(Move::CASTLE_LONG)) {
+                return $this->castle($piece, RType::CASTLE_LONG);
+            } else {
+                return $this->move($piece);
             }
         }
 
@@ -606,8 +604,10 @@ abstract class AbstractBoard extends \SplObjectStorage
         $pieces = [];
         $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
         foreach ($this->pickPiece($move) as $piece) {
-            if (!$this->isPinned($piece)) {
-                $pieces[] = $piece;
+            if ($piece->isMovable()) {
+                if (!$this->isPinned($piece)) {
+                    $pieces[] = $piece;
+                }
             }
         }
 
