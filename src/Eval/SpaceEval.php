@@ -2,7 +2,6 @@
 
 namespace Chess\Eval;
 
-use Chess\Eval\SqCount;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -48,8 +47,6 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
             "has a total space advantage",
         ];
 
-        $sqCount = (new SqCount($board))->count();
-
         foreach ($pieces = $this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
                 $this->result[$piece->color] = array_unique(
@@ -57,7 +54,7 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
                         ...$this->result[$piece->color],
                         ...array_intersect(
                             $piece->mobility,
-                            $sqCount['free']
+                            $this->board->sqCount['free']
                         )
                     ]
                 );
@@ -67,7 +64,7 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
                         ...$this->result[$piece->color],
                         ...array_intersect(
                             $piece->captureSqs,
-                            $sqCount['free']
+                            $this->board->sqCount['free']
                         )
                     ]
                 );
@@ -77,7 +74,7 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
                         ...$this->result[$piece->color],
                         ...array_diff(
                             $piece->moveSqs(),
-                            $sqCount['used'][$piece->oppColor()]
+                            $this->board->sqCount['used'][$piece->oppColor()]
                         )
                     ]
                 );
