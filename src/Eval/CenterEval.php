@@ -2,7 +2,6 @@
 
 namespace Chess\Eval;
 
-use Chess\Eval\SpaceEval;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 
@@ -65,16 +64,14 @@ class CenterEval extends AbstractEval implements ExplainEvalInterface
             "is totally controlling the center",
         ];
 
-        $spEval = (new SpaceEval($this->board))->getResult();
-
         foreach ($this->center as $sq => $val) {
             if ($piece = $this->board->pieceBySq($sq)) {
                 $this->result[$piece->color] += self::$value[$piece->id] * $val;
             }
-            if (in_array($sq, $spEval[Color::W])) {
+            if (in_array($sq, $this->board->spaceEval[Color::W])) {
                 $this->result[Color::W] += $val;
             }
-            if (in_array($sq, $spEval[Color::B])) {
+            if (in_array($sq, $this->board->spaceEval[Color::B])) {
                 $this->result[Color::B] += $val;
             }
         }
