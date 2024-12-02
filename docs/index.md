@@ -23,9 +23,10 @@ composer require chesslablab/php-chess
 - Movetext processing in LAN, SAN and RAV formats.
 - NAG support for SAN and RAV movetexts.
 - UCI protocol.
-- FEN conversion to chess board.
-- Chess board conversion to PNG and JPG image.
-- Chess board conversion to MP4 video.
+- Chess board to PNG and JPG image.
+- PNG and JPG image to FEN.
+- FEN to chess board.
+- Chess board to MP4 video.
 
 | Acronym | Description                    |
 | :------ | :----------------------------- |
