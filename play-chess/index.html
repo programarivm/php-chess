@@ -34,7 +34,7 @@
                                 <a href="../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="navitem">
-                                <a href="../data-conversion/" class="nav-link">Data Conversion</a>
+                                <a href="../format-converters/" class="nav-link">Format Converters</a>
                             </li>
                             <li class="navitem">
                                 <a href="../heuristics/" class="nav-link">Heuristics</a>
@@ -197,7 +197,7 @@ echo $board-&gt;movetext();
 </code></pre>
 <pre><code class="language-text">1.Rb1
 </code></pre>
-<p>The FEN is converted to a chess board object as described in the <a href="https://chesslablab.github.io/php-chess/data-conversion/#fen-to-board">Data Conversion</a> section. Then Stockfish's depth limit is set to <code>12</code> and the skill level to <code>20</code>.</p>
+<p>The FEN is converted to a chess board object as described in the <a href="https://chesslablab.github.io/php-chess/format-converters/#fen-to-board">Format Converters</a> section. Then Stockfish's depth limit is set to <code>12</code> and the skill level to <code>20</code>.</p>
 <p>The same thing goes to starting a game from a particular SAN movetext. As you can see in the example below, <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Play/SanPlayTest.php">Chess\Play\SanPlay</a> is used for this purpose.</p>
 <pre><code class="language-php">use Chess\Play\SanPlay;
 use Chess\UciEngine\UciEngine;

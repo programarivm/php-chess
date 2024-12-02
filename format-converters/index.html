@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://chesslablab.github.io/php-chess/data-conversion/">
+        <link rel="canonical" href="https://chesslablab.github.io/php-chess/format-converters/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Data Conversion - PHP Chess</title>
+        <title>Format Converters - PHP Chess</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
@@ -34,7 +34,7 @@
                                 <a href="../getting-started/" class="nav-link">Getting Started</a>
                             </li>
                             <li class="navitem active">
-                                <a href="./" class="nav-link">Data Conversion</a>
+                                <a href="./" class="nav-link">Format Converters</a>
                             </li>
                             <li class="navitem">
                                 <a href="../heuristics/" class="nav-link">Heuristics</a>
@@ -81,7 +81,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#data-conversion" class="nav-link">Data Conversion</a>
+            <li class="nav-item" data-level="1"><a href="#format-converters" class="nav-link">Format Converters</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#fen-to-board" class="nav-link">FEN to Board</a>
               <ul class="nav flex-column">
@@ -106,7 +106,7 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="data-conversion">Data Conversion</h1>
+<h1 id="format-converters">Format Converters</h1>
 <h2 id="fen-to-board">FEN to Board</h2>
 <p>✨ FEN stands for Forsyth-Edwards Notation and is the standard way for describing chess positions using text strings.</p>
 <p>At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenToBoardFactoryTest.php">Chess\FenToBoardFactory</a> class according to the variants supported.</p>
@@ -210,7 +210,7 @@ $board = FenToBoardFactory::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP
 
 $filename = (new BoardToPng($board, $flip = true))-&gt;output(__DIR__);
 </code></pre>
-<p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/data-conversion_01.png" /></p>
+<p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/format-converters_01.png" /></p>
 <p>Try this thing! Share a puzzling chess position with friends for further study.</p>
 <h2 id="board-to-mp4">Board to MP4</h2>
 <p>✨ Text-based PGN movetexts can be easily converted to MP4, a widely-used video format which comes in handy for pausing the games.</p>
@@ -239,7 +239,7 @@ echo $prediction;
 <pre><code class="language-text">1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K
 </code></pre>
 <p>For optimal use, it is recommended to make predictions on chessboard images using classical chess pieces like the Kaufman test attached below.</p>
-<p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/data-conversion_02.png" /></p></div>
+<p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/format-converters_02.png" /></p></div>
             </div>
         </div>
 
