@@ -263,7 +263,7 @@
 </tr>
 </tbody>
 </table>
-<p>The evaluation features are used in two heuristics classes: <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenHeuristicsTest.php">Chess\FenHeuristics</a> and <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicTest.php">Chess\SanHeuristic</a>. The former allows to transform a FEN position to numbers while the latter transforms an entire chess game in SAN format to numbers.</p>
+<p>The evaluation features are used in two heuristics classes: <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenHeuristicsTest.php">Chess\FenHeuristics</a> and <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicTest.php">Chess\SanHeuristic</a>. The former allows to transform a FEN position to ternary digits while the latter transforms an entire chess game in SAN format to decimal numbers between -1 and 1.</p>
 <pre><code class="language-php">use Chess\FenHeuristics;
 use Chess\FenToBoardFactory;
 use Chess\Function\CompleteFunction;
@@ -314,14 +314,17 @@ print_r($result);
             [26] =&gt; Direct opposition
             [27] =&gt; Attack
             [28] =&gt; Overloading
+            [29] =&gt; Back-rank threat
+            [30] =&gt; Checkability
+            [31] =&gt; Flight square
         )
 
     [balance] =&gt; Array
         (
             [0] =&gt; 0
-            [1] =&gt; 12.4
-            [2] =&gt; 0
-            [3] =&gt; 3
+            [1] =&gt; 1
+            [2] =&gt; -1
+            [3] =&gt; 1
             [4] =&gt; 0
             [5] =&gt; 0
             [6] =&gt; 0
@@ -347,12 +350,15 @@ print_r($result);
             [26] =&gt; 0
             [27] =&gt; 0
             [28] =&gt; 0
+            [29] =&gt; 0
+            [30] =&gt; 0
+            [31] =&gt; 0
         )
 
 )
 </code></pre>
 <p>A chess game can be plotted in terms of balance. +1 is the best possible evaluation for White and -1 the best possible evaluation for Black. Both forces being set to 0 means they're balanced.</p>
-<pre><code class="language-php">use Chess\SanHeuristic;
+<pre><code class="language-php">use Chess\SanHeuristics;
 use Chess\Function\CompleteFunction;
 
 $function = new CompleteFunction();
@@ -361,7 +367,7 @@ $name = 'Space';
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$balance = (new SanHeuristic($function, $name, $movetext))-&gt;getBalance();
+$balance = (new SanHeuristics($function, $movetext, $name))-&gt;getBalance();
 
 print_r($balance);
 </code></pre>
@@ -374,7 +380,7 @@ print_r($balance);
     [4] =&gt; -1
 )
 </code></pre>
-<p>🎉 Chess positions and games can now be plotted on charts, queried for <a href="https://chesslablab.github.io/chess-data/data-mining/">Data Mining</a> purposes and processed with machine learning techniques.</p></div>
+<p>🎉 Chess positions and games can now be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with <a href="https://chesslablab.github.io/chess-data/data-mining/">Data Mining</a>.</p></div>
             </div>
         </div>
 
