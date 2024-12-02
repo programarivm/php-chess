@@ -173,4 +173,4 @@ Array
 )
 ```
 
-🎉 Chess positions and games can now be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with [Data Mining](https://chesslablab.github.io/chess-data/data-mining/).
+🎉 Chess positions and games can now be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
