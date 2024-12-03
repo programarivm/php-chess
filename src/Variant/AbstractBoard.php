@@ -844,30 +844,13 @@ abstract class AbstractBoard extends \SplObjectStorage
 
     public function toFen(): string
     {
-        $string = '';
-        $array = $this->toArray();
-        for ($i = $this->square::SIZE['ranks'] - 1; $i >= 0; $i--) {
-            $string .= str_replace(' ', '', implode('', $array[$i]));
-            if ($i != 0) {
-                $string .= '/';
-            }
-        }
-
         $filtered = '';
-        $strSplit = str_split($string);
-        $n = 1;
-        for ($i = 0; $i < count($strSplit); $i++) {
-            if ($strSplit[$i] === '.') {
-                if (isset($strSplit[$i + 1]) && $strSplit[$i + 1] === '.') {
-                    $n++;
-                } else {
-                    $filtered .= $n;
-                    $n = 1;
-                }
-            } else {
-                $filtered .= $strSplit[$i];
-                $n = 1;
-            }
+        foreach ($this->toArray() as $rank) {
+            $filtered .= implode($rank) . '/';
+        }
+        $filtered = str_replace(' ', '', substr($filtered, 0, -1));
+        for ($i = $this->square::SIZE['files']; $i >= 1; $i--) {
+            $filtered = str_replace(str_repeat('.', $i), $i, $filtered);
         }
 
         return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()}";
