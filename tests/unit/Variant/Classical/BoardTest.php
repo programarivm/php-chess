@@ -526,8 +526,8 @@ class BoardTest extends AbstractUnitTestCase
                         'current' => '',
                         'next' => 'a3',
                     ],
+                    'type' => RType::CASTLE_LONG,
                 ],
-                'type' => RType::CASTLE_LONG,
                 'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/R7/1PPPPPPP/1NBQKBNR b Kkq -',
             ],
             [
@@ -544,8 +544,8 @@ class BoardTest extends AbstractUnitTestCase
                         'current' => '',
                         'next' => 'h6',
                     ],
+                    'type' => RType::CASTLE_SHORT,
                 ],
-                'type' => RType::CASTLE_SHORT,
                 'fen' => 'rnbqkbn1/ppppppp1/7r/7p/P7/R7/1PPPPPPP/1NBQKBNR w Kq -',
             ],
         ];

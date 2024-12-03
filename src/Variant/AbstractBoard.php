@@ -413,11 +413,13 @@ abstract class AbstractBoard extends \SplObjectStorage
         $this->history[] = [
             'castlingAbility' => $this->castlingAbility,
             'sq' => $piece->sq,
-            'move' => $piece->move,
-            ...($piece->id === Piece::R
-                ? ['type' => $piece->type]
-                : []
-            ),
+            'move' => [
+                ...$piece->move,
+                ...($piece->id === Piece::R
+                    ? ['type' => $piece->type]
+                    : []
+                ),
+            ],
         ];
 
         return $this;
