@@ -31,7 +31,7 @@ class RandomMove
         if ($this->board->playLan($this->board->turn, $lan)) {
             $last = array_slice($this->board->history, -1)[0];
             return [
-                'pgn' => $last['move']['pgn'],
+                'pgn' => $last['pgn'],
                 'lan' => $lan,
             ];
         }

@@ -27,7 +27,7 @@ class GoodPgnEvaluation extends AbstractParagraph
         $clone->playLan($clone->turn, $analysis['bestmove']);
         $last = array_slice($clone->history, -1)[0];
 
-        $this->pgn = $last['move']['pgn'];
+        $this->pgn = $last['pgn'];
         $this->paragraph = (new PgnEvaluation($this->pgn, $this->function, $this->board))->paragraph;
     }
 }

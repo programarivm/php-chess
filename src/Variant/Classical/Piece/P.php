@@ -101,10 +101,10 @@ class P extends AbstractPiece
         // en passant square
         $history = $this->board->history;
         $end = end($history);
-        if ($end && $end['move']['id'] === Piece::P && $end['move']['color'] === $this->oppColor()) {
+        if ($end && $end['id'] === Piece::P && $end['color'] === $this->oppColor()) {
            if ($this->color === Color::W) {
                if ($this->rank() === $this->square::SIZE['ranks'] - 3) {
-                   $captureSq = $end['move']['sq']['next'][0] . ($this->rank() + 1);
+                   $captureSq = $end['sq']['next'][0] . ($this->rank() + 1);
                    if (in_array($captureSq, $this->captureSqs)) {
                         $this->enPassantSq = $captureSq;
                         $sqs[] = $captureSq;
@@ -112,7 +112,7 @@ class P extends AbstractPiece
                }
            } elseif ($this->color === Color::B) {
                if ($this->rank() === 4) {
-                   $captureSq = $end['move']['sq']['next'][0] . ($this->rank() - 1);
+                   $captureSq = $end['sq']['next'][0] . ($this->rank() - 1);
                    if (in_array($captureSq, $this->captureSqs)) {
                        $this->enPassantSq = $captureSq;
                        $sqs[] = $captureSq;

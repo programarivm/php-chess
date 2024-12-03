@@ -359,9 +359,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     protected function pushHistory(AbstractPiece $piece): AbstractBoard
     {
         $piece->move['sq']['current'] = $piece->sq;
-        $this->history[] = [
-            'move' => $piece->move,
-        ];
+        $this->history[] = $piece->move;
 
         return $this;
     }
@@ -448,9 +446,9 @@ abstract class AbstractBoard extends \SplObjectStorage
     protected function afterPlayLan(): bool
     {
         if ($this->isMate()) {
-            $this->history[count($this->history) - 1]['move']['pgn'] .= '#';
+            $this->history[count($this->history) - 1]['pgn'] .= '#';
         } elseif ($this->isCheck()) {
-            $this->history[count($this->history) - 1]['move']['pgn'] .= '+';
+            $this->history[count($this->history) - 1]['pgn'] .= '+';
         }
 
         return true;
@@ -480,18 +478,18 @@ abstract class AbstractBoard extends \SplObjectStorage
         $movetext = '';
         foreach ($this->history as $key => $val) {
             if ($key === 0) {
-                $movetext .= $val['move']['color'] === Color::W
-                    ? "1.{$val['move']['pgn']}"
-                    : '1' . Move::ELLIPSIS . "{$val['move']['pgn']} ";
+                $movetext .= $val['color'] === Color::W
+                    ? "1.{$val['pgn']}"
+                    : '1' . Move::ELLIPSIS . "{$val['pgn']} ";
             } else {
-                if ($this->history[0]['move']['color'] === Color::W) {
+                if ($this->history[0]['color'] === Color::W) {
                     $movetext .= $key % 2 === 0
-                        ? ($key / 2 + 1) . ".{$val['move']['pgn']}"
-                        : " {$val['move']['pgn']} ";
+                        ? ($key / 2 + 1) . ".{$val['pgn']}"
+                        : " {$val['pgn']} ";
                 } else {
                     $movetext .= $key % 2 === 0
-                        ? " {$val['move']['pgn']} "
-                        : (ceil($key / 2) + 1) . ".{$val['move']['pgn']}";
+                        ? " {$val['pgn']} "
+                        : (ceil($key / 2) + 1) . ".{$val['pgn']}";
                 }
             }
         }
@@ -581,7 +579,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $board = FenToBoardFactory::create($this->startFen, $this);
         foreach ($this->popHistory()->history as $key => $val) {
-            $board->play($val['move']['color'], $val['move']['pgn']);
+            $board->play($val['color'], $val['pgn']);
         }
 
         return $board;
@@ -730,15 +728,15 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         if ($this->history) {
             $last = array_slice($this->history, -1)[0];
-            if ($last['move']['id'] === Piece::P) {
-                $prevFile = substr($last['move']['sq']['current'], 1);
-                $nextFile = substr($last['move']['sq']['next'], 1);
-                if ($last['move']['color'] === Color::W) {
+            if ($last['id'] === Piece::P) {
+                $prevFile = substr($last['sq']['current'], 1);
+                $nextFile = substr($last['sq']['next'], 1);
+                if ($last['color'] === Color::W) {
                     if ($nextFile - $prevFile === 2) {
-                        return $last['move']['sq']['current'][0] . $prevFile + 1;
+                        return $last['sq']['current'][0] . $prevFile + 1;
                     }
                 } elseif ($prevFile - $nextFile === 2) {
-                    return $last['move']['sq']['current'][0] . $prevFile - 1;
+                    return $last['sq']['current'][0] . $prevFile - 1;
                 }
             }
         }
