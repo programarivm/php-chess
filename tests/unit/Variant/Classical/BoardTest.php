@@ -468,6 +468,94 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function history_in_a4_h5_Ra3_Rh6()
+    {
+        $board = new Board();
+
+        $board->play('w', 'a4');
+        $board->play('b', 'h5');
+        $board->play('w', 'Ra3');
+        $board->play('b', 'Rh6');
+
+        $expected = [
+            [
+                'castlingAbility' => 'KQkq',
+                'sq' => 'a2',
+                'move' => [
+                    'pgn' => 'a4',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'case' => Move::PAWN,
+                    'color' => Color::W,
+                    'id' => Piece::P,
+                    'sq' => [
+                        'current' => 'a',
+                        'next' => 'a4',
+                    ],
+                ],
+                'fen' => 'rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR b KQkq a3',
+            ],
+            [
+                'castlingAbility' => 'KQkq',
+                'sq' => 'h7',
+                'move' => [
+                    'pgn' => 'h5',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'case' => Move::PAWN,
+                    'color' => Color::B,
+                    'id' => Piece::P,
+                    'sq' => [
+                        'current' => 'h',
+                        'next' => 'h5',
+                    ],
+                ],
+                'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/8/1PPPPPPP/RNBQKBNR w KQkq h6',
+            ],
+            [
+                'castlingAbility' => 'Kkq',
+                'sq' => 'a1',
+                'move' => [
+                    'pgn' => 'Ra3',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'case' => Move::PIECE,
+                    'color' => Color::W,
+                    'id' => Piece::R,
+                    'sq' => [
+                        'current' => '',
+                        'next' => 'a3',
+                    ],
+                ],
+                'type' => RType::CASTLE_LONG,
+                'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/R7/1PPPPPPP/1NBQKBNR b Kkq -',
+            ],
+            [
+                'castlingAbility' => 'Kq',
+                'sq' => 'h8',
+                'move' => [
+                    'pgn' => 'Rh6',
+                    'isCapture' => false,
+                    'isCheck' => false,
+                    'case' => Move::PIECE,
+                    'color' => Color::B,
+                    'id' => Piece::R,
+                    'sq' => [
+                        'current' => '',
+                        'next' => 'h6',
+                    ],
+                ],
+                'type' => RType::CASTLE_SHORT,
+                'fen' => 'rnbqkbn1/ppppppp1/7r/7p/P7/R7/1PPPPPPP/1NBQKBNR w Kq -',
+            ],
+        ];
+
+        $this->assertEquals($expected, $board->history);
+    }
+
+    /**
+     * @test
+     */
     public function pieces_in_A59()
     {
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
