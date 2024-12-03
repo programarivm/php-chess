@@ -79,7 +79,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'd2',
                 'move' => [
                     'pgn' => 'd4',
                     'isCapture' => false,
@@ -88,7 +87,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'd',
+                        'current' => 'd2',
                         'next' => 'd4',
                     ],
                 ],
@@ -96,7 +95,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'd7',
                 'move' => [
                     'pgn' => 'd5',
                     'isCapture' => false,
@@ -105,7 +103,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'd',
+                        'current' => 'd7',
                         'next' => 'd5',
                     ],
                 ],
@@ -113,7 +111,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'c2',
                 'move' => [
                     'pgn' => 'c4',
                     'isCapture' => false,
@@ -122,7 +119,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'c',
+                        'current' => 'c2',
                         'next' => 'c4',
                     ],
                 ],
@@ -130,7 +127,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'c7',
                 'move' => [
                     'pgn' => 'c5',
                     'isCapture' => false,
@@ -139,7 +135,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'c',
+                        'current' => 'c7',
                         'next' => 'c5',
                     ],
                 ],
@@ -163,7 +159,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'e2',
                 'move' => [
                     'pgn' => 'e4',
                     'isCapture' => false,
@@ -172,7 +167,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'e',
+                        'current' => 'e2',
                         'next' => 'e4',
                     ],
                 ],
@@ -180,7 +175,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'e7',
                 'move' => [
                     'pgn' => 'e5',
                     'isCapture' => false,
@@ -189,7 +183,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'e',
+                        'current' => 'e7',
                         'next' => 'e5',
                     ],
                 ],
@@ -197,7 +191,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'g1',
                 'move' => [
                     'pgn' => 'Nf3',
                     'isCapture' => false,
@@ -206,7 +199,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::N,
                     'sq' => [
-                        'current' => null,
+                        'current' => 'g1',
                         'next' => 'f3',
                     ],
                 ],
@@ -214,7 +207,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'b8',
                 'move' => [
                     'pgn' => 'Nc6',
                     'isCapture' => false,
@@ -223,7 +215,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::N,
                     'sq' => [
-                        'current' => null,
+                        'current' => 'b8',
                         'next' => 'c6',
                     ],
                 ],
@@ -231,7 +223,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'f1',
                 'move' => [
                     'pgn' => 'Bb5',
                     'isCapture' => false,
@@ -240,7 +231,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::B,
                     'sq' => [
-                        'current' => null,
+                        'current' => 'f1',
                         'next' => 'b5',
                     ],
                 ],
@@ -248,7 +239,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'f8',
                 'move' => [
                     'pgn' => 'Be7',
                     'isCapture' => false,
@@ -257,7 +247,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::B,
                     'sq' => [
-                        'current' => null,
+                        'current' => 'f8',
                         'next' => 'e7',
                     ],
                 ],
@@ -281,7 +271,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'e2',
                 'move' => [
                     'pgn' => 'e4',
                     'isCapture' => false,
@@ -290,7 +279,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'e',
+                        'current' => 'e2',
                         'next' => 'e4',
                     ],
                 ],
@@ -298,7 +287,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'e7',
                 'move' => [
                     'pgn' => 'e6',
                     'isCapture' => false,
@@ -307,7 +295,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'e',
+                        'current' => 'e7',
                         'next' => 'e6',
                     ],
                 ],
@@ -315,7 +303,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'd2',
                 'move' => [
                     'pgn' => 'd4',
                     'isCapture' => false,
@@ -324,7 +311,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'd',
+                        'current' => 'd2',
                         'next' => 'd4',
                     ],
                 ],
@@ -332,7 +319,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'd7',
                 'move' => [
                     'pgn' => 'd5',
                     'isCapture' => false,
@@ -341,7 +327,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'd',
+                        'current' => 'd7',
                         'next' => 'd5',
                     ],
                 ],
@@ -349,7 +335,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'b1',
                 'move' => [
                     'pgn' => 'Nc3',
                     'isCapture' => false,
@@ -358,7 +343,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::N,
                     'sq' => [
-                        'current' => null,
+                        'current' => 'b1',
                         'next' => 'c3',
                     ],
                 ],
@@ -366,7 +351,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'g8',
                 'move' => [
                     'pgn' => 'Nf6',
                     'isCapture' => false,
@@ -375,7 +359,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::N,
                     'sq' => [
-                        'current' => null,
+                        'current' => 'g8',
                         'next' => 'f6',
                     ],
                 ],
@@ -401,7 +385,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'a2',
                 'move' => [
                     'pgn' => 'a4',
                     'isCapture' => false,
@@ -410,7 +393,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'a',
+                        'current' => 'a2',
                         'next' => 'a4',
                     ],
                 ],
@@ -418,7 +401,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'KQkq',
-                'sq' => 'h7',
                 'move' => [
                     'pgn' => 'h5',
                     'isCapture' => false,
@@ -427,7 +409,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
-                        'current' => 'h',
+                        'current' => 'h7',
                         'next' => 'h5',
                     ],
                 ],
@@ -435,7 +417,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'Kkq',
-                'sq' => 'a1',
                 'move' => [
                     'pgn' => 'Ra3',
                     'isCapture' => false,
@@ -444,7 +425,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::W,
                     'id' => Piece::R,
                     'sq' => [
-                        'current' => '',
+                        'current' => 'a1',
                         'next' => 'a3',
                     ],
                 ],
@@ -452,7 +433,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'castlingAbility' => 'Kq',
-                'sq' => 'h8',
                 'move' => [
                     'pgn' => 'Rh6',
                     'isCapture' => false,
@@ -461,7 +441,7 @@ class BoardTest extends AbstractUnitTestCase
                     'color' => Color::B,
                     'id' => Piece::R,
                     'sq' => [
-                        'current' => '',
+                        'current' => 'h8',
                         'next' => 'h6',
                     ],
                 ],

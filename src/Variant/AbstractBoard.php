@@ -358,12 +358,10 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function pushHistory(AbstractPiece $piece): AbstractBoard
     {
+        $piece->move['sq']['current'] = $piece->sq;
         $this->history[] = [
             'castlingAbility' => $this->castlingAbility,
-            'sq' => $piece->sq,
-            'move' => [
-                ...$piece->move,
-            ],
+            'move' => $piece->move,
         ];
 
         return $this;
@@ -734,16 +732,14 @@ abstract class AbstractBoard extends \SplObjectStorage
         if ($this->history) {
             $last = array_slice($this->history, -1)[0];
             if ($last['move']['id'] === Piece::P) {
-                $prevFile = intval(substr($last['sq'], 1));
-                $nextFile = intval(substr($last['move']['sq']['next'], 1));
+                $prevFile = substr($last['move']['sq']['current'], 1);
+                $nextFile = substr($last['move']['sq']['next'], 1);
                 if ($last['move']['color'] === Color::W) {
                     if ($nextFile - $prevFile === 2) {
-                        $rank = $prevFile + 1;
-                        return $last['move']['sq']['current'] . $rank;
+                        return $last['move']['sq']['current'][0] . $prevFile + 1;
                     }
                 } elseif ($prevFile - $nextFile === 2) {
-                    $rank = $prevFile - 1;
-                    return $last['move']['sq']['current'] . $rank;
+                    return $last['move']['sq']['current'][0] . $prevFile - 1;
                 }
             }
         }
