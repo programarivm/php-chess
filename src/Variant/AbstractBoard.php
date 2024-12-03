@@ -823,10 +823,6 @@ abstract class AbstractBoard extends \SplObjectStorage
 
     public function clone(): AbstractBoard
     {
-        $board = FenToBoardFactory::create($this->toFen(), $this);
-        $board->history = $this->history;
-        $board->startFen = $this->startFen;
-
-        return $board;
+        return unserialize(serialize($this));
     }
 }
