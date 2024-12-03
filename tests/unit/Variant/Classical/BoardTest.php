@@ -78,7 +78,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $expected = [
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'd4',
                     'isCapture' => false,
@@ -94,7 +93,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'd5',
                     'isCapture' => false,
@@ -110,7 +108,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq d6',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'c4',
                     'isCapture' => false,
@@ -126,7 +123,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq c3',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'c5',
                     'isCapture' => false,
@@ -158,7 +154,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $expected = [
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'e4',
                     'isCapture' => false,
@@ -174,7 +169,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'e5',
                     'isCapture' => false,
@@ -190,7 +184,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'Nf3',
                     'isCapture' => false,
@@ -206,7 +199,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'Nc6',
                     'isCapture' => false,
@@ -222,7 +214,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'Bb5',
                     'isCapture' => false,
@@ -238,7 +229,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'Be7',
                     'isCapture' => false,
@@ -270,7 +260,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $expected = [
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'e4',
                     'isCapture' => false,
@@ -286,7 +275,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'e6',
                     'isCapture' => false,
@@ -302,7 +290,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'd4',
                     'isCapture' => false,
@@ -318,7 +305,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'd5',
                     'isCapture' => false,
@@ -334,7 +320,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq d6',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'Nc3',
                     'isCapture' => false,
@@ -350,7 +335,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'Nf6',
                     'isCapture' => false,
@@ -384,7 +368,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $expected = [
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'a4',
                     'isCapture' => false,
@@ -400,7 +383,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR b KQkq a3',
             ],
             [
-                'castlingAbility' => 'KQkq',
                 'move' => [
                     'pgn' => 'h5',
                     'isCapture' => false,
@@ -416,7 +398,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/8/1PPPPPPP/RNBQKBNR w KQkq h6',
             ],
             [
-                'castlingAbility' => 'Kkq',
                 'move' => [
                     'pgn' => 'Ra3',
                     'isCapture' => false,
@@ -432,7 +413,6 @@ class BoardTest extends AbstractUnitTestCase
                 'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/R7/1PPPPPPP/1NBQKBNR b Kkq -',
             ],
             [
-                'castlingAbility' => 'Kq',
                 'move' => [
                     'pgn' => 'Rh6',
                     'isCapture' => false,

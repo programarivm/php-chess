@@ -360,7 +360,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $piece->move['sq']['current'] = $piece->sq;
         $this->history[] = [
-            'castlingAbility' => $this->castlingAbility,
             'move' => $piece->move,
         ];
 
