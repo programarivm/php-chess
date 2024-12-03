@@ -363,10 +363,6 @@ abstract class AbstractBoard extends \SplObjectStorage
             'sq' => $piece->sq,
             'move' => [
                 ...$piece->move,
-                ...($piece->id === Piece::R
-                    ? ['type' => $piece->type]
-                    : []
-                ),
             ],
         ];
 
