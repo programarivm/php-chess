@@ -28,16 +28,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     public string $turn = '';
 
     /**
-     * Captured pieces.
-     *
-     * @var array
-     */
-    public array $captures = [
-        Color::W => [],
-        Color::B => [],
-    ];
-
-    /**
      * History.
      *
      * @var array
@@ -313,34 +303,15 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function capture(AbstractPiece $piece): AbstractBoard
     {
-        if (
-            $piece->id === Piece::P &&
+        if ($piece->id === Piece::P &&
             $piece->enPassantSq &&
             !$this->pieceBySq($piece->move['sq']['next'])
         ) {
-            if ($captured = $piece->enPassantPawn()) {
-                $capturedData = [
-                    'id' => $captured->id,
-                    'sq' => $captured->sq,
-                ];
-            }
-        } elseif ($captured = $this->pieceBySq($piece->move['sq']['next'])) {
-            $capturedData = [
-                'id' => $captured->id,
-                'sq' => $captured->sq,
-            ];
+            $captured = $piece->enPassantPawn();
+        } else {
+            $captured = $this->pieceBySq($piece->move['sq']['next']);
         }
         if ($captured) {
-            $capturingData = [
-                'id' => $piece->id,
-                'sq' => $piece->sq,
-            ];
-            $piece->id !== Piece::R ?: $capturingData['type'] = $piece->type;
-            $captured->id !== Piece::R ?: $capturedData['type'] = $captured->type;
-            $this->captures[$piece->color][] = [
-                'capturing' => $capturingData,
-                'captured' => $capturedData,
-            ];
             $this->detach($captured);
         }
 
@@ -876,7 +847,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     public function clone(): AbstractBoard
     {
         $board = FenToBoardFactory::create($this->toFen(), $this);
-        $board->captures = $this->captures;
         $board->history = $this->history;
         $board->startFen = $this->startFen;
 
