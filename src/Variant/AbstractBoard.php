@@ -268,29 +268,6 @@ abstract class AbstractBoard extends \SplObjectStorage
                 }
             }
         }
-        $oppColor = $this->color->opp($this->turn);
-        if ($this->castlingRule?->can($this->castlingAbility, $oppColor)) {
-            if ($piece->move['isCapture']) {
-                if ($piece->move['sq']['next'] ===
-                    $this->castlingRule->rule[$oppColor][Piece::R][Castle::SHORT]['sq']['current']
-                ) {
-                    $this->castlingAbility = $this->castlingRule->update(
-                        $this->castlingAbility,
-                        $oppColor,
-                        [Piece::K]
-                    );
-                } elseif (
-                    $piece->move['sq']['next'] ===
-                    $this->castlingRule->rule[$oppColor][Piece::R][Castle::LONG]['sq']['current']
-                ) {
-                    $this->castlingAbility = $this->castlingRule->update(
-                        $this->castlingAbility,
-                        $oppColor,
-                        [Piece::Q]
-                    );
-                }
-            }
-        }
 
         return $this;
     }
