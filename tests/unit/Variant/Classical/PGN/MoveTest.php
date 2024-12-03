@@ -123,7 +123,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'Bg5',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::PIECE),
+            'case' => self::$move->case(MOVE::PIECE),
             'color' => 'w',
             'id' => Piece::B,
             'sq' => [
@@ -145,7 +145,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'Ra5',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::PIECE),
+            'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::R,
             'sq' => [
@@ -167,7 +167,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'Qbb7',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::PIECE),
+            'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::Q,
             'sq' => [
@@ -189,7 +189,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'Ndb4',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::KNIGHT),
+            'case' => self::$move->case(MOVE::KNIGHT),
             'color' => 'b',
             'id' => Piece::N,
             'sq' => [
@@ -211,7 +211,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'Kg7',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::KING),
+            'case' => self::$move->case(MOVE::KING),
             'color' => 'w',
             'id' => Piece::K,
             'sq' => [
@@ -233,7 +233,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'Qh8g7',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::PIECE),
+            'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::Q,
             'sq' => [
@@ -255,7 +255,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'c3',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::PAWN),
+            'case' => self::$move->case(MOVE::PAWN),
             'color' => 'w',
             'id' => Piece::P,
             'sq' => [
@@ -277,7 +277,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'h3',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::PAWN),
+            'case' => self::$move->case(MOVE::PAWN),
             'color' => 'w',
             'id' => Piece::P,
             'sq' => [
@@ -299,7 +299,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'O-O',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::CASTLE_SHORT),
+            'case' => self::$move->case(MOVE::CASTLE_SHORT),
             'color' => 'w',
             'id' => 'K',
             'sq' => self::$castlingRule->rule['w'][Piece::K][Castle::SHORT]['sq']
@@ -318,7 +318,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'O-O-O',
             'isCapture' => false,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::CASTLE_LONG),
+            'case' => self::$move->case(MOVE::CASTLE_LONG),
             'color' => 'w',
             'id' => 'K',
             'sq' => self::$castlingRule->rule['w'][Piece::K][Castle::LONG]['sq']
@@ -337,7 +337,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'fxg5',
             'isCapture' => true,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::PAWN_CAPTURES),
+            'case' => self::$move->case(MOVE::PAWN_CAPTURES),
             'color' => 'b',
             'id' => Piece::P,
             'sq' => [
@@ -359,7 +359,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'Nxe4',
             'isCapture' => true,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::KNIGHT_CAPTURES),
+            'case' => self::$move->case(MOVE::KNIGHT_CAPTURES),
             'color' => 'b',
             'id' => Piece::N,
             'sq' => [
@@ -381,7 +381,7 @@ class MoveTest extends AbstractUnitTestCase
             'pgn' => 'Q7xg7',
             'isCapture' => true,
             'isCheck' => false,
-            'type' => self::$move->case(MOVE::PIECE_CAPTURES),
+            'case' => self::$move->case(MOVE::PIECE_CAPTURES),
             'color' => 'b',
             'id' => Piece::Q,
             'sq' => [

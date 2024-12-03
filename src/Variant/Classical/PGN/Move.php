@@ -92,7 +92,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => false,
                 'isCheck' => $isCheck,
-                'type' => static::KING,
+                'case' => static::KING,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
                 'sq' => [
@@ -105,7 +105,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => false,
                 'isCheck' => $isCheck,
-                'type' => static::CASTLE_SHORT,
+                'case' => static::CASTLE_SHORT,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
                 'sq' => $castlingRule?->rule[$str][Piece::K][Castle::SHORT]['sq'],
@@ -115,7 +115,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => false,
                 'isCheck' => $isCheck,
-                'type' => static::CASTLE_LONG,
+                'case' => static::CASTLE_LONG,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
                 'sq' => $castlingRule?->rule[$str][Piece::K][Castle::LONG]['sq'],
@@ -125,7 +125,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => true,
                 'isCheck' => $isCheck,
-                'type' => static::KING_CAPTURES,
+                'case' => static::KING_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
                 'sq' => [
@@ -141,7 +141,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => false,
                 'isCheck' => $isCheck,
-                'type' => static::PIECE,
+                'case' => static::PIECE,
                 'color' => $color->validate($str),
                 'id' => mb_substr($pgn, 0, 1),
                 'sq' => [
@@ -155,7 +155,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => true,
                 'isCheck' => $isCheck,
-                'type' => static::PIECE_CAPTURES,
+                'case' => static::PIECE_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => mb_substr($pgn, 0, 1),
                 'sq' => [
@@ -171,7 +171,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => false,
                 'isCheck' => $isCheck,
-                'type' => static::KNIGHT,
+                'case' => static::KNIGHT,
                 'color' => $color->validate($str),
                 'id' => Piece::N,
                 'sq' => [
@@ -185,7 +185,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => true,
                 'isCheck' => $isCheck,
-                'type' => static::KNIGHT_CAPTURES,
+                'case' => static::KNIGHT_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::N,
                 'sq' => [
@@ -198,7 +198,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => false,
                 'isCheck' => $isCheck,
-                'type' => static::PAWN_PROMOTES,
+                'case' => static::PAWN_PROMOTES,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
                 'newId' => $isCheck
@@ -215,7 +215,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => true,
                 'isCheck' => $isCheck,
-                'type' => static::PAWN_CAPTURES_AND_PROMOTES,
+                'case' => static::PAWN_CAPTURES_AND_PROMOTES,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
                 'newId' => $isCheck
@@ -231,7 +231,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => false,
                 'isCheck' => $isCheck,
-                'type' => static::PAWN,
+                'case' => static::PAWN,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
                 'sq' => [
@@ -245,7 +245,7 @@ class Move extends AbstractNotation
                 'pgn' => $pgn,
                 'isCapture' => true,
                 'isCheck' => $isCheck,
-                'type' => static::PAWN_CAPTURES,
+                'case' => static::PAWN_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
                 'sq' => [

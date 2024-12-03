@@ -171,9 +171,9 @@ abstract class AbstractBoard extends \SplObjectStorage
     protected function isLegal(array $move, array $pieces): bool
     {
         foreach ($pieces as $piece) {
-            if ($piece->move['type'] === $this->move->case(Move::CASTLE_SHORT)) {
+            if ($piece->move['case'] === $this->move->case(Move::CASTLE_SHORT)) {
                 return $this->castle($piece, RType::CASTLE_SHORT);
-            } elseif ($piece->move['type'] === $this->move->case(Move::CASTLE_LONG)) {
+            } elseif ($piece->move['case'] === $this->move->case(Move::CASTLE_LONG)) {
                 return $this->castle($piece, RType::CASTLE_LONG);
             } else {
                 return $this->move($piece);
@@ -719,8 +719,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                 if ($value->move->isCapture) {
                     return  false;
                 } elseif (
-                    $value->move->type === $this->move->case(Move::PAWN) ||
-                    $value->move->type === $this->move->case(Move::PAWN_PROMOTES)
+                    $value->move->case === $this->move->case(Move::PAWN) ||
+                    $value->move->case === $this->move->case(Move::PAWN_PROMOTES)
                 ) {
                     return  false;
                 }

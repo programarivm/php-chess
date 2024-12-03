@@ -163,7 +163,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'd4',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
@@ -180,7 +180,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'd5',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
@@ -197,7 +197,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'c4',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
@@ -214,7 +214,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'c5',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
@@ -247,7 +247,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'e4',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
@@ -264,7 +264,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'e5',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
@@ -281,7 +281,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'Nf3',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::KNIGHT,
+                    'case' => Move::KNIGHT,
                     'color' => Color::W,
                     'id' => Piece::N,
                     'sq' => [
@@ -298,7 +298,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'Nc6',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::KNIGHT,
+                    'case' => Move::KNIGHT,
                     'color' => Color::B,
                     'id' => Piece::N,
                     'sq' => [
@@ -315,7 +315,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'Bb5',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PIECE,
+                    'case' => Move::PIECE,
                     'color' => Color::W,
                     'id' => Piece::B,
                     'sq' => [
@@ -332,7 +332,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'Be7',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PIECE,
+                    'case' => Move::PIECE,
                     'color' => Color::B,
                     'id' => Piece::B,
                     'sq' => [
@@ -365,7 +365,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'e4',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
@@ -382,7 +382,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'e6',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
@@ -399,7 +399,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'd4',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::W,
                     'id' => Piece::P,
                     'sq' => [
@@ -416,7 +416,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'd5',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::PAWN,
+                    'case' => Move::PAWN,
                     'color' => Color::B,
                     'id' => Piece::P,
                     'sq' => [
@@ -433,7 +433,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'Nc3',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::KNIGHT,
+                    'case' => Move::KNIGHT,
                     'color' => Color::W,
                     'id' => Piece::N,
                     'sq' => [
@@ -450,7 +450,7 @@ class BoardTest extends AbstractUnitTestCase
                     'pgn' => 'Nf6',
                     'isCapture' => false,
                     'isCheck' => false,
-                    'type' => Move::KNIGHT,
+                    'case' => Move::KNIGHT,
                     'color' => Color::B,
                     'id' => Piece::N,
                     'sq' => [
