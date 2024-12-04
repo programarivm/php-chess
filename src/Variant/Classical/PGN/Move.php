@@ -90,7 +90,6 @@ class Move extends AbstractNotation
         if (preg_match('/^' . static::KING . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCapture' => false,
                 'isCheck' => $isCheck,
                 'case' => static::KING,
                 'color' => $color->validate($str),
@@ -103,7 +102,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::CASTLE_SHORT . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCapture' => false,
                 'isCheck' => $isCheck,
                 'case' => static::CASTLE_SHORT,
                 'color' => $color->validate($str),
@@ -113,7 +111,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::CASTLE_LONG . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCapture' => false,
                 'isCheck' => $isCheck,
                 'case' => static::CASTLE_LONG,
                 'color' => $color->validate($str),
@@ -123,7 +120,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::KING_CAPTURES . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCapture' => true,
                 'isCheck' => $isCheck,
                 'case' => static::KING_CAPTURES,
                 'color' => $color->validate($str),
@@ -139,7 +135,6 @@ class Move extends AbstractNotation
             $current = str_replace($next, '', $sqs);
             return [
                 'pgn' => $pgn,
-                'isCapture' => false,
                 'isCheck' => $isCheck,
                 'case' => static::PIECE,
                 'color' => $color->validate($str),
@@ -153,7 +148,6 @@ class Move extends AbstractNotation
             $arr = explode('x', $pgn);
             return [
                 'pgn' => $pgn,
-                'isCapture' => true,
                 'isCheck' => $isCheck,
                 'case' => static::PIECE_CAPTURES,
                 'color' => $color->validate($str),
@@ -169,7 +163,6 @@ class Move extends AbstractNotation
             $current = str_replace($next, '', $sqs);
             return [
                 'pgn' => $pgn,
-                'isCapture' => false,
                 'isCheck' => $isCheck,
                 'case' => static::KNIGHT,
                 'color' => $color->validate($str),
@@ -183,7 +176,6 @@ class Move extends AbstractNotation
             $arr = explode('x', $pgn);
             return [
                 'pgn' => $pgn,
-                'isCapture' => true,
                 'isCheck' => $isCheck,
                 'case' => static::KNIGHT_CAPTURES,
                 'color' => $color->validate($str),
@@ -196,7 +188,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::PAWN_PROMOTES . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCapture' => false,
                 'isCheck' => $isCheck,
                 'case' => static::PAWN_PROMOTES,
                 'color' => $color->validate($str),
@@ -213,7 +204,6 @@ class Move extends AbstractNotation
             $arr = explode('x', $pgn);
             return [
                 'pgn' => $pgn,
-                'isCapture' => true,
                 'isCheck' => $isCheck,
                 'case' => static::PAWN_CAPTURES_AND_PROMOTES,
                 'color' => $color->validate($str),
@@ -229,7 +219,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::PAWN . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCapture' => false,
                 'isCheck' => $isCheck,
                 'case' => static::PAWN,
                 'color' => $color->validate($str),
@@ -243,7 +232,6 @@ class Move extends AbstractNotation
             $arr = explode('x', $pgn);
             return [
                 'pgn' => $pgn,
-                'isCapture' => true,
                 'isCheck' => $isCheck,
                 'case' => static::PAWN_CAPTURES,
                 'color' => $color->validate($str),

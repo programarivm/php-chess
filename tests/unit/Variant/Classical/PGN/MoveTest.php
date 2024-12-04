@@ -121,7 +121,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Bg5';
         $expected = [
             'pgn' => 'Bg5',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::PIECE),
             'color' => 'w',
@@ -143,7 +142,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Ra5';
         $expected = [
             'pgn' => 'Ra5',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
@@ -165,7 +163,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Qbb7';
         $expected = [
             'pgn' => 'Qbb7',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
@@ -187,7 +184,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Ndb4';
         $expected = [
             'pgn' => 'Ndb4',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::KNIGHT),
             'color' => 'b',
@@ -209,7 +205,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Kg7';
         $expected = [
             'pgn' => 'Kg7',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::KING),
             'color' => 'w',
@@ -231,7 +226,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Qh8g7';
         $expected = [
             'pgn' => 'Qh8g7',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
@@ -253,7 +247,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'c3';
         $expected = [
             'pgn' => 'c3',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::PAWN),
             'color' => 'w',
@@ -275,7 +268,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'h3';
         $expected = [
             'pgn' => 'h3',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::PAWN),
             'color' => 'w',
@@ -297,7 +289,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'O-O';
         $expected = [
             'pgn' => 'O-O',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::CASTLE_SHORT),
             'color' => 'w',
@@ -316,7 +307,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'O-O-O';
         $expected = [
             'pgn' => 'O-O-O',
-            'isCapture' => false,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::CASTLE_LONG),
             'color' => 'w',
@@ -335,7 +325,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'fxg5';
         $expected = [
             'pgn' => 'fxg5',
-            'isCapture' => true,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::PAWN_CAPTURES),
             'color' => 'b',
@@ -357,7 +346,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Nxe4';
         $expected = [
             'pgn' => 'Nxe4',
-            'isCapture' => true,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::KNIGHT_CAPTURES),
             'color' => 'b',
@@ -379,7 +367,6 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Q7xg7';
         $expected = [
             'pgn' => 'Q7xg7',
-            'isCapture' => true,
             'isCheck' => false,
             'case' => self::$move->case(MOVE::PIECE_CAPTURES),
             'color' => 'b',

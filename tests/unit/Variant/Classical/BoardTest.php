@@ -79,7 +79,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'pgn' => 'd4',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::W,
@@ -92,7 +91,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'd5',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::B,
@@ -105,7 +103,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'c4',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::W,
@@ -118,7 +115,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'c5',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::B,
@@ -147,7 +143,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'pgn' => 'e4',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::W,
@@ -160,7 +155,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'e5',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::B,
@@ -173,7 +167,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'Nf3',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::KNIGHT,
                 'color' => Color::W,
@@ -186,7 +179,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'Nc6',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::KNIGHT,
                 'color' => Color::B,
@@ -199,7 +191,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'Bb5',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PIECE,
                 'color' => Color::W,
@@ -212,7 +203,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'Be7',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PIECE,
                 'color' => Color::B,
@@ -241,7 +231,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'pgn' => 'e4',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::W,
@@ -254,7 +243,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'e6',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::B,
@@ -267,7 +255,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'd4',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::W,
@@ -280,7 +267,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'd5',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::B,
@@ -293,7 +279,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'Nc3',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::KNIGHT,
                 'color' => Color::W,
@@ -306,7 +291,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'Nf6',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::KNIGHT,
                 'color' => Color::B,
@@ -337,7 +321,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'pgn' => 'a4',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::W,
@@ -350,7 +333,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'h5',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PAWN,
                 'color' => Color::B,
@@ -363,7 +345,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'Ra3',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PIECE,
                 'color' => Color::W,
@@ -376,7 +357,6 @@ class BoardTest extends AbstractUnitTestCase
             ],
             [
                 'pgn' => 'Rh6',
-                'isCapture' => false,
                 'isCheck' => false,
                 'case' => Move::PIECE,
                 'color' => Color::B,

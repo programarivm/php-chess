@@ -127,18 +127,14 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function isAmbiguous(array $move, array $pieces): bool
     {
-        if ($move['isCapture']) {
-            if ($move['id'] === Piece::P) {
-                $enPassant = $this->history
-                    ? $this->enPassant()
-                    : explode(' ', $this->startFen)[3];
-                if (!$this->pieceBySq($move['sq']['next']) && $enPassant !== $move['sq']['next']) {
-                    return true;
-                }
-            } else {
-                if (!$this->pieceBySq($move['sq']['next'])) {
-                    return true;
-                }
+        if (str_contains($move['case'], Move::PAWN_CAPTURES)) {
+            $enPassant = $this->history ? $this->enPassant() : explode(' ', $this->startFen)[3];
+            if (!$this->pieceBySq($move['sq']['next']) && $enPassant !== $move['sq']['next']) {
+                return true;
+            }
+        } elseif (str_contains($move['case'], 'x')) {
+            if (!$this->pieceBySq($move['sq']['next'])) {
+                return true;
             }
         }
         $ambiguous = [];
@@ -181,7 +177,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function move(AbstractPiece $piece): bool
     {
-        if ($piece->move['isCapture']) {
+        if (str_contains($piece->move['case'], 'x')) {
             $this->capture($piece);
         }
         $this->detach($this->pieceBySq($piece->sq));
@@ -673,7 +669,7 @@ abstract class AbstractBoard extends \SplObjectStorage
 
         foreach (array_reverse($this->history) as $key => $value) {
             if ($key < 100) {
-                if ($value->move->isCapture) {
+                if (str_contains($value->move->case, 'x')) {
                     return  false;
                 } elseif (
                     $value->move->case === $this->move->case(Move::PAWN) ||
