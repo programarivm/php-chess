@@ -462,6 +462,9 @@ abstract class AbstractBoard extends \SplObjectStorage
         return true;
     }
 
+    /**
+     * Refreshes the board.
+     */
     public function refresh(): void
     {
         $this->turn = $this->color->opp($this->turn);
@@ -481,6 +484,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         }
     }
 
+    /**
+     * Returns the movetext.
+     *
+     * @return string
+     */
     public function movetext(): string
     {
         $movetext = '';
@@ -505,6 +513,13 @@ abstract class AbstractBoard extends \SplObjectStorage
         return trim($movetext);
     }
 
+    /**
+     * Returns a piece by color and id.
+     *
+     * @param string $color
+     * @param string $id
+     * @return \Chess\Variant\AbstractPiece|null
+     */
     public function piece(string $color, string $id): ?AbstractPiece
     {
         $this->rewind();
@@ -519,6 +534,32 @@ abstract class AbstractBoard extends \SplObjectStorage
         return null;
     }
 
+    /**
+     * Returns a piece by its position on the board.
+     *
+     * @param string $sq
+     * @return \Chess\Variant\AbstractPiece|null
+     */
+    public function pieceBySq(string $sq): ?AbstractPiece
+    {
+        $this->rewind();
+        while ($this->valid()) {
+            $piece = $this->current();
+            if ($piece->sq === $sq) {
+                return $piece;
+            }
+            $this->next();
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns all pieces by color.
+     *
+     * @param string $color
+     * @return array
+     */
     public function pieces(string $color = ''): array
     {
         $pieces = [];
@@ -538,20 +579,13 @@ abstract class AbstractBoard extends \SplObjectStorage
         return $pieces;
     }
 
-    public function pieceBySq(string $sq): ?AbstractPiece
-    {
-        $this->rewind();
-        while ($this->valid()) {
-            $piece = $this->current();
-            if ($piece->sq === $sq) {
-                return $piece;
-            }
-            $this->next();
-        }
-
-        return null;
-    }
-
+    /**
+     * Makes a move in PGN format.
+     *
+     * @param string $color
+     * @param string $pgn
+     * @return bool
+     */
     public function play(string $color, string $pgn): bool
     {
         $pieces = [];
@@ -570,6 +604,13 @@ abstract class AbstractBoard extends \SplObjectStorage
         return false;
     }
 
+    /**
+     * Makes a move in LAN format.
+     *
+     * @param string $color
+     * @param string $lan
+     * @return bool
+     */
     public function playLan(string $color, string $lan): bool
     {
         if ($color === $this->turn) {
@@ -583,6 +624,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return false;
     }
 
+    /**
+     * Undo the last move.
+     *
+     * @return \Chess\Variant\AbstractBoard
+     */
     public function undo(): AbstractBoard
     {
         $board = FenToBoardFactory::create($this->startFen, $this);
@@ -593,6 +639,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return $board;
     }
 
+    /**
+     * Returns true if the king is in check.
+     *
+     * @return bool
+     */
     public function isCheck(): bool
     {
         if ($king = $this->piece($this->turn, Piece::K)) {
@@ -602,6 +653,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return false;
     }
 
+    /**
+     * Returns true if the king is checkmated.
+     *
+     * @return bool
+     */
     public function isMate(): bool
     {
         if ($king = $this->piece($this->turn, Piece::K)) {
@@ -633,6 +689,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return false;
     }
 
+    /**
+     * Returns true if the king is stalemate.
+     *
+     * @return bool
+     */
     public function isStalemate(): bool
     {
         if (!$this->piece($this->turn, Piece::K)->attacking()) {
@@ -651,6 +712,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return false;
     }
 
+    /**
+     * Returns true if the game results in a draw by fivefold repetition.
+     *
+     * @return bool
+     */
     public function isFivefoldRepetition(): bool
     {
         $count = array_count_values(array_column($this->history, 'fen'));
@@ -663,6 +729,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return false;
     }
 
+    /**
+     * Returns true if the game results in a draw by the fifty-move rule.
+     *
+     * @return bool
+     */
     public function isFiftyMoveDraw(): bool
     {
         return count($this->history) >= 100;
@@ -683,6 +754,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return true;
     }
 
+    /**
+     * Returns true if the game results in a draw because of a dead position.
+     *
+     * @return bool
+     */
     public function isDeadPositionDraw(): bool
     {
         $count = count($this->pieces());
@@ -709,6 +785,12 @@ abstract class AbstractBoard extends \SplObjectStorage
         return false;
     }
 
+    /**
+     * Returns the legal moves of the given piece.
+     *
+     * @param string $sq
+     * @return array
+     */
     public function legal(string $sq): array
     {
         $legal = [];
@@ -732,6 +814,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return $legal;
     }
 
+    /**
+     * Returns the en passant square of the current position.
+     *
+     * @return string
+     */
     public function enPassant(): string
     {
         if ($this->history) {
@@ -752,6 +839,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return '-';
     }
 
+    /**
+     * Returns an array representing the current position.
+     *
+     * @return array
+     */
     public function toArray(bool $flip = false): array
     {
         $array = [];
@@ -773,6 +865,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return $array;
     }
 
+    /**
+     * Returns a string representing the current position.
+     *
+     * @return string
+     */
     public function toString(bool $flip = false): string
     {
         $ascii = '';
@@ -787,6 +884,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         return $ascii;
     }
 
+    /**
+     * Returns a FEN string representing the current position.
+     *
+     * @return string
+     */
     public function toFen(): string
     {
         $filtered = '';
@@ -801,6 +903,13 @@ abstract class AbstractBoard extends \SplObjectStorage
         return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()}";
     }
 
+    /**
+     * Returns the difference of two arrays of pieces.
+     *
+     * @param array $array1
+     * @param array $array2
+     * @return array
+     */
     public function diffPieces(array $array1, array $array2): array
     {
         return array_udiff($array2, $array1, function ($b, $a) {
@@ -808,16 +917,31 @@ abstract class AbstractBoard extends \SplObjectStorage
         });
     }
 
+    /**
+     * Returns true if the game results in a draw.
+     *
+     * @return bool
+     */
     public function doesDraw(): bool
     {
         return false;
     }
 
+    /**
+     * Returns true if the game results in a win for one side.
+     *
+     * @return bool
+     */
     public function doesWin(): bool
     {
         return false;
     }
 
+    /**
+     * Returns a clone of the board.
+     *
+     * @return \Chess\Variant\AbstractBoard
+     */
     public function clone(): AbstractBoard
     {
         return unserialize(serialize($this));
