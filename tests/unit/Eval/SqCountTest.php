@@ -15,7 +15,7 @@ class SqCountTest extends AbstractUnitTestCase
     {
         $board = new Board();
 
-        $sqCount = (new SqCount($board))->count();
+        $sqCount = SqCount::count($board);
 
         $expected = [
             'a3', 'a4', 'a5', 'a6',

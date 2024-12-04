@@ -469,7 +469,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $this->turn = $this->color->opp($this->turn);
 
-        $this->sqCount = (new SqCount($this))->count();
+        $this->sqCount = SqCount::count($this);
 
         $this->detachPieces()
             ->attachPieces()
