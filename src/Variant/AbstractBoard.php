@@ -344,7 +344,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $clone = $this->clone();
         if ($clone->move($piece)) {
-            return !empty($clone->piece($piece->color, Piece::K)?->attacking());
+            return empty($clone->piece($piece->color, Piece::K)?->attacking());
         }
 
         return false;
@@ -550,7 +550,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
         foreach ($this->pickPiece($move) as $piece) {
             if ($piece->isMovable()) {
-                if (!$this->isMovable($piece)) {
+                if ($this->isMovable($piece)) {
                     $pieces[] = $piece;
                 }
             }
