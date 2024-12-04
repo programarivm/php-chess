@@ -86,11 +86,9 @@ class Move extends AbstractNotation
 
     public function toArray(string $str, string $pgn, CastlingRule $castlingRule = null, Color $color): array
     {
-        $isCheck = substr($pgn, -1) === '+' || substr($pgn, -1) === '#';
         if (preg_match('/^' . static::KING . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::KING,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
@@ -102,7 +100,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::CASTLE_SHORT . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::CASTLE_SHORT,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
@@ -111,7 +108,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::CASTLE_LONG . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::CASTLE_LONG,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
@@ -120,7 +116,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::KING_CAPTURES . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::KING_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
@@ -135,7 +130,6 @@ class Move extends AbstractNotation
             $current = str_replace($next, '', $sqs);
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::PIECE,
                 'color' => $color->validate($str),
                 'id' => mb_substr($pgn, 0, 1),
@@ -148,7 +142,6 @@ class Move extends AbstractNotation
             $arr = explode('x', $pgn);
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::PIECE_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => mb_substr($pgn, 0, 1),
@@ -163,7 +156,6 @@ class Move extends AbstractNotation
             $current = str_replace($next, '', $sqs);
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::KNIGHT,
                 'color' => $color->validate($str),
                 'id' => Piece::N,
@@ -176,7 +168,6 @@ class Move extends AbstractNotation
             $arr = explode('x', $pgn);
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::KNIGHT_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::N,
@@ -188,13 +179,10 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::PAWN_PROMOTES . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::PAWN_PROMOTES,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
-                'newId' => $isCheck
-                    ? mb_substr($pgn, -2, -1)
-                    : mb_substr($pgn, -1),
+                'newId' => substr(explode('=', $pgn)[1], 0, 1),
                 'sq' => [
                     'current' => '',
                     'next' => $this->extractSqs($pgn),
@@ -204,13 +192,10 @@ class Move extends AbstractNotation
             $arr = explode('x', $pgn);
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::PAWN_CAPTURES_AND_PROMOTES,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
-                'newId' => $isCheck
-                    ? mb_substr($pgn, -2, -1)
-                    : mb_substr($pgn, -1),
+                'newId' => substr(explode('=', $pgn)[1], 0, 1),
                 'sq' => [
                     'current' => '',
                     'next' => $this->extractSqs($arr[1]),
@@ -219,7 +204,6 @@ class Move extends AbstractNotation
         } elseif (preg_match('/^' . static::PAWN . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::PAWN,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
@@ -232,7 +216,6 @@ class Move extends AbstractNotation
             $arr = explode('x', $pgn);
             return [
                 'pgn' => $pgn,
-                'isCheck' => $isCheck,
                 'case' => static::PAWN_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
