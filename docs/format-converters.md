@@ -32,13 +32,9 @@ var_dump($board->history);
 ```text
 array(2) {
   [0]=>
-  array(8) {
+  array(6) {
     ["pgn"]=>
     string(3) "Nc3"
-    ["isCapture"]=>
-    bool(false)
-    ["isCheck"]=>
-    bool(false)
     ["case"]=>
     string(48) "N[a-h]{0,1}[1-8]{0,1}[a-h]{1}[1-8]{1}[\+\#]{0,1}"
     ["color"]=>
@@ -56,13 +52,9 @@ array(2) {
     string(59) "rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -"
   }
   [1]=>
-  array(8) {
+  array(6) {
     ["pgn"]=>
     string(3) "Nc6"
-    ["isCapture"]=>
-    bool(false)
-    ["isCheck"]=>
-    bool(false)
     ["case"]=>
     string(48) "N[a-h]{0,1}[1-8]{0,1}[a-h]{1}[1-8]{1}[\+\#]{0,1}"
     ["color"]=>
