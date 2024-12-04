@@ -102,7 +102,7 @@ class M extends AbstractPiece
         return $sqs;
     }
 
-    public function defendedSqs(): ?array
+    public function defendedSqs(): array
     {
         $sqs = [];
         foreach ($this->mobility as $sq) {

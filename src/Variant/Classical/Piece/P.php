@@ -126,7 +126,7 @@ class P extends AbstractPiece
         return array_filter(array_unique($sqs));
     }
 
-    public function defendedSqs(): ?array
+    public function defendedSqs(): array
     {
         $sqs = [];
         foreach($this->captureSqs as $sq) {

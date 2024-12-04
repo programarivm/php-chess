@@ -32,7 +32,7 @@ abstract class AbstractPiece
 
     abstract public function moveSqs(): array;
 
-    abstract public function defendedSqs(): ?array;
+    abstract public function defendedSqs(): array;
 
     public function file(): string
     {
@@ -75,7 +75,7 @@ abstract class AbstractPiece
         return $attacking;
     }
 
-    public function defended(): ?array
+    public function defended(): array
     {
         $defended = [];
         foreach ($this->defendedSqs() as $sq) {
@@ -89,7 +89,7 @@ abstract class AbstractPiece
         return $defended;
     }
 
-    public function defending(): ?array
+    public function defending(): array
     {
         $defending = [];
         foreach ($this->board->pieces($this->color) as $piece) {
