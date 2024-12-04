@@ -23,7 +23,7 @@ echo $text;
 ```
 
 ```text
-White has a decisive material advantage. White has a slightly better control of the center. The white pieces are significantly better connected. The white player is pressuring a little bit more squares than its opponent. White has a slight absolute pin advantage. White has the bishop pair. The knight on e6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check. Overall, 6 heuristic evaluation features are favoring White while 0 are favoring Black.
+White has a decisive material advantage. White has a slightly better control of the center. The white player is pressuring more squares than its opponent. White has an absolute pin advantage. White has the bishop pair. Black's king can be checked so it is vulnerable to forced moves. Black's king has more safe squares to move to than its counterpart. The knight on e6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check. Overall, 5 evaluation features are favoring White.
 ```
 
 A heuristic evaluation is a quick numerical estimate of a chess position that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail as long as they are based on probabilities more than anything else.
@@ -56,7 +56,7 @@ echo $text;
 ```
 
 ```text
-Black has a slight space advantage. White has a slight protection advantage. White has a slight attack advantage. The pawn on c5 is unprotected. The c5-square is under threat of being attacked. Overall, 3 heuristic evaluation features are favoring White while 2 are favoring Black.
+Black has a slight space advantage. White has a slight protection advantage. White has a slight attack advantage. White's king can be checked so it is vulnerable to forced moves. These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8, the pawn on c5. The pawn on c5 is unprotected. The pawn on c5 is under threat of being attacked. Overall, 0 evaluation features are favoring either player.
 ```
 
 The resulting text may sound a little robotic but it can be easily rephrased by the AI of your choice to make it sound more human-like.
@@ -95,7 +95,7 @@ echo $paragraph . PHP_EOL;
 
 ```text
 Bg4
-The black player is pressuring a little bit more squares than its opponent. The black pieces are timidly approaching the other side's king. Black has a total relative pin advantage. Black has a slight overloading advantage. The knight on e2 is pinned shielding a piece that is more valuable than the attacking piece. The bishop on f1 is overloaded defending more than one piece at the same time. Overall, 4 heuristic evaluation features are favoring White while 9 are favoring Black.
+The black player is pressuring more squares than its opponent. The black pieces are timidly approaching the other side's king. Black has a relative pin advantage. These pieces are hanging: Black's queen on d5, the rook on a8, the rook on h8, the pawn on b7, the pawn on c7, the pawn on g7, the bishop on g4, the rook on h1. The knight on e2 is pinned shielding a piece that is more valuable than the attacking piece. Overall, 7 evaluation features are favoring Black.
 ```
 
 🎉 Let's do this!
