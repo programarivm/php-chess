@@ -127,63 +127,49 @@ echo $board-&gt;toFen();
 </code></pre>
 <pre><code class="language-text">array(2) {
   [0]=&gt;
-  array(4) {
-    [&quot;castlingAbility&quot;]=&gt;
-    string(4) &quot;KQkq&quot;
+  array(8) {
+    [&quot;pgn&quot;]=&gt;
+    string(3) &quot;Nc3&quot;
+    [&quot;isCapture&quot;]=&gt;
+    bool(false)
+    [&quot;isCheck&quot;]=&gt;
+    bool(false)
+    [&quot;case&quot;]=&gt;
+    string(48) &quot;N[a-h]{0,1}[1-8]{0,1}[a-h]{1}[1-8]{1}[\+\#]{0,1}&quot;
+    [&quot;color&quot;]=&gt;
+    string(1) &quot;w&quot;
+    [&quot;id&quot;]=&gt;
+    string(1) &quot;N&quot;
     [&quot;sq&quot;]=&gt;
-    string(2) &quot;b1&quot;
-    [&quot;move&quot;]=&gt;
-    array(7) {
-      [&quot;pgn&quot;]=&gt;
-      string(3) &quot;Nc3&quot;
-      [&quot;isCapture&quot;]=&gt;
-      bool(false)
-      [&quot;isCheck&quot;]=&gt;
-      bool(false)
-      [&quot;type&quot;]=&gt;
-      string(48) &quot;N[a-h]{0,1}[1-8]{0,1}[a-h]{1}[1-8]{1}[\+\#]{0,1}&quot;
-      [&quot;color&quot;]=&gt;
-      string(1) &quot;w&quot;
-      [&quot;id&quot;]=&gt;
-      string(1) &quot;N&quot;
-      [&quot;sq&quot;]=&gt;
-      array(2) {
-        [&quot;current&quot;]=&gt;
-        string(0) &quot;&quot;
-        [&quot;next&quot;]=&gt;
-        string(2) &quot;c3&quot;
-      }
+    array(2) {
+      [&quot;current&quot;]=&gt;
+      string(2) &quot;b1&quot;
+      [&quot;next&quot;]=&gt;
+      string(2) &quot;c3&quot;
     }
     [&quot;fen&quot;]=&gt;
     string(59) &quot;rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -&quot;
   }
   [1]=&gt;
-  array(4) {
-    [&quot;castlingAbility&quot;]=&gt;
-    string(4) &quot;KQkq&quot;
+  array(8) {
+    [&quot;pgn&quot;]=&gt;
+    string(3) &quot;Nc6&quot;
+    [&quot;isCapture&quot;]=&gt;
+    bool(false)
+    [&quot;isCheck&quot;]=&gt;
+    bool(false)
+    [&quot;case&quot;]=&gt;
+    string(48) &quot;N[a-h]{0,1}[1-8]{0,1}[a-h]{1}[1-8]{1}[\+\#]{0,1}&quot;
+    [&quot;color&quot;]=&gt;
+    string(1) &quot;b&quot;
+    [&quot;id&quot;]=&gt;
+    string(1) &quot;N&quot;
     [&quot;sq&quot;]=&gt;
-    string(2) &quot;b8&quot;
-    [&quot;move&quot;]=&gt;
-    array(7) {
-      [&quot;pgn&quot;]=&gt;
-      string(3) &quot;Nc6&quot;
-      [&quot;isCapture&quot;]=&gt;
-      bool(false)
-      [&quot;isCheck&quot;]=&gt;
-      bool(false)
-      [&quot;type&quot;]=&gt;
-      string(48) &quot;N[a-h]{0,1}[1-8]{0,1}[a-h]{1}[1-8]{1}[\+\#]{0,1}&quot;
-      [&quot;color&quot;]=&gt;
-      string(1) &quot;b&quot;
-      [&quot;id&quot;]=&gt;
-      string(1) &quot;N&quot;
-      [&quot;sq&quot;]=&gt;
-      array(2) {
-        [&quot;current&quot;]=&gt;
-        string(0) &quot;&quot;
-        [&quot;next&quot;]=&gt;
-        string(2) &quot;c6&quot;
-      }
+    array(2) {
+      [&quot;current&quot;]=&gt;
+      string(2) &quot;b8&quot;
+      [&quot;next&quot;]=&gt;
+      string(2) &quot;c6&quot;
     }
     [&quot;fen&quot;]=&gt;
     string(60) &quot;r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -&quot;
@@ -198,7 +184,11 @@ echo $board-&gt;toFen();
 <p>This is how to get LAN formatted moves out of the history array.</p>
 <pre><code class="language-php">$last = end($board-&gt;history);
 
-$lan = $last['sq'] . $last['move']['sq']['next'];
+$lan = $last['sq']['current'] . $last['sq']['next'];
+
+echo $lan;
+</code></pre>
+<pre><code class="language-text">b8c6
 </code></pre>
 <h2 id="board-to-png-image">Board to PNG Image</h2>
 <p>✨ PNG stands for Portable Network Graphics and is a widely used format for image files. Not to be confused with PGN, the text-based file format to annotate chess games.</p>
