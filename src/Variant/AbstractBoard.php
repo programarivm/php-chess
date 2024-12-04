@@ -342,12 +342,24 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function leavesInCheck(AbstractPiece $piece): bool
     {
-        $clone = $this->clone();
-        if ($clone->move($piece)) {
-            return !empty($clone->piece($piece->color, Piece::K)?->attacking());
+        $isCheck = false;
+        $pieces = $this->pieces();
+        $history = $this->history;
+        $castlingAbility = $this->castlingAbility;
+        if ($this->move($piece)) {
+            $isCheck = $this->piece($piece->color, Piece::K)?->attacking() != [];
+            foreach ($this->pieces() as $val) {
+                $this->detach($val);
+            }
+            foreach ($pieces as $val) {
+                $this->attach($val);
+            }
+            $this->history = $history;
+            $this->castlingAbility = $castlingAbility;
+            $this->refresh();
         }
 
-        return false;
+        return $isCheck;
     }
 
     /**
