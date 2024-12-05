@@ -80,8 +80,8 @@ class SqOutpostEval extends AbstractEval implements
 
         $this->shorten('These are outpost squares: ', $ucfirst = false);
 
-        $this->result[Color::W] = array_unique($this->result[Color::W]);
-        $this->result[Color::B] = array_unique($this->result[Color::B]);
+        $this->result[Color::W] = array_flip(array_flip($this->result[Color::W]));
+        $this->result[Color::B] = array_flip(array_flip($this->result[Color::B]));
 
         $this->explain([
             Color::W => count($this->result[Color::W]),
