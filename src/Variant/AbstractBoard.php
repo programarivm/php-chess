@@ -166,9 +166,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function move(AbstractPiece $piece): bool
     {
-        if (str_contains($piece->move['case'], 'x')) {
-            $this->capture($piece);
-        }
+        $this->capture($piece);
         $this->detach($this->pieceBySq($piece->sq));
         $class = VariantType::getClass($this->pieceVariant, $piece->id);
         $this->attach(new $class(
@@ -265,16 +263,18 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function capture(AbstractPiece $piece): AbstractBoard
     {
-        if ($piece->id === Piece::P &&
-            $piece->enPassantSq &&
-            !$this->pieceBySq($piece->move['sq']['next'])
-        ) {
-            $captured = $piece->enPassantPawn();
-        } else {
-            $captured = $this->pieceBySq($piece->move['sq']['next']);
-        }
-        if ($captured) {
-            $this->detach($captured);
+        if (str_contains($piece->move['case'], 'x')) {
+            if ($piece->id === Piece::P &&
+                $piece->enPassantSq &&
+                !$this->pieceBySq($piece->move['sq']['next'])
+            ) {
+                $captured = $piece->enPassantPawn();
+            } else {
+                $captured = $this->pieceBySq($piece->move['sq']['next']);
+            }
+            if ($captured) {
+                $this->detach($captured);
+            }
         }
 
         return $this;
