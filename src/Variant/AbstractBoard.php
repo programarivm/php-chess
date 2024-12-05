@@ -269,9 +269,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             } else {
                 $captured = $this->pieceBySq($piece->move['sq']['next']);
             }
-            if ($captured) {
-                $this->detach($captured);
-            }
+            $captured ? $this->detach($captured) : null;
         }
 
         return $this;
