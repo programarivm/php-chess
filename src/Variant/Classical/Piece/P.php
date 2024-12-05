@@ -104,7 +104,7 @@ class P extends AbstractPiece
         if ($end && $end['id'] === Piece::P && $end['color'] === $this->oppColor()) {
            if ($this->color === Color::W) {
                if ($this->rank() === $this->square::SIZE['ranks'] - 3) {
-                   $captureSq = $end['sq']['next'][0] . ($this->rank() + 1);
+                   $captureSq = $end['to'][0] . ($this->rank() + 1);
                    if (in_array($captureSq, $this->captureSqs)) {
                         $this->enPassantSq = $captureSq;
                         $sqs[] = $captureSq;
@@ -112,7 +112,7 @@ class P extends AbstractPiece
                }
            } elseif ($this->color === Color::B) {
                if ($this->rank() === 4) {
-                   $captureSq = $end['sq']['next'][0] . ($this->rank() - 1);
+                   $captureSq = $end['to'][0] . ($this->rank() - 1);
                    if (in_array($captureSq, $this->captureSqs)) {
                        $this->enPassantSq = $captureSq;
                        $sqs[] = $captureSq;
@@ -140,7 +140,7 @@ class P extends AbstractPiece
 
     public function isPromoted(): bool
     {
-        $rank = (int) substr($this->move['sq']['next'], 1);
+        $rank = (int) substr($this->move['to'], 1);
 
         return isset($this->move['newId']) && $rank === $this->ranks['end'];
     }

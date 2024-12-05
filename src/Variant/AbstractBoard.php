@@ -107,7 +107,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $pieces = [];
         foreach ($this->pieces($move['color']) as $piece) {
             if ($piece->id === $move['id']) {
-                if (strstr($piece->sq, $move['sq']['current'])) {
+                if (strstr($piece->sq, $move['from'])) {
                     $piece->move = $move;
                     $pieces[] = $piece;
                 }
@@ -128,8 +128,8 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $ambiguous = [];
         foreach ($pieces as $piece) {
-            if (in_array($move['sq']['next'], $piece->moveSqs())) {
-                $ambiguous[] = $move['sq']['next'];
+            if (in_array($move['to'], $piece->moveSqs())) {
+                $ambiguous[] = $move['to'];
             }
         }
 
@@ -170,7 +170,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $class = VariantType::getClass($this->variant, $piece->id);
         $this->attach(new $class(
             $piece->color,
-            $piece->move['sq']['next'],
+            $piece->move['to'],
             $this->square,
             $piece->id === Piece::R ? $piece->type : null
         ));
@@ -196,7 +196,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             $this->attach(
                 new K(
                     $king->color,
-                    $this->castlingRule->rule[$king->color][Piece::K][rtrim($king->move['pgn'], '+')]['sq']['next'],
+                    $this->castlingRule->rule[$king->color][Piece::K][rtrim($king->move['pgn'], '+')]['to'],
                     $this->square
                 )
              );
@@ -204,7 +204,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             $this->attach(
                 new R(
                     $rook->color,
-                    $this->castlingRule->rule[$king->color][Piece::R][rtrim($king->move['pgn'], '+')]['sq']['next'],
+                    $this->castlingRule->rule[$king->color][Piece::R][rtrim($king->move['pgn'], '+')]['to'],
                     $this->square,
                     $rook->type
                 )
@@ -263,11 +263,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         if (str_contains($piece->move['case'], 'x')) {
             if ($piece->id === Piece::P &&
                 $piece->enPassantSq &&
-                !$this->pieceBySq($piece->move['sq']['next'])
+                !$this->pieceBySq($piece->move['to'])
             ) {
                 $captured = $piece->enPassantPawn();
             } else {
-                $captured = $this->pieceBySq($piece->move['sq']['next']);
+                $captured = $this->pieceBySq($piece->move['to']);
             }
             $captured ? $this->detach($captured) : null;
         }
@@ -285,30 +285,30 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         if ($piece->id === Piece::P) {
             if ($piece->isPromoted()) {
-                $this->detach($this->pieceBySq($piece->move['sq']['next']));
+                $this->detach($this->pieceBySq($piece->move['to']));
                 if ($piece->move['newId'] === Piece::N) {
                     $this->attach(new N(
                         $piece->color,
-                        $piece->move['sq']['next'],
+                        $piece->move['to'],
                         $this->square
                     ));
                 } elseif ($piece->move['newId'] === Piece::B) {
                     $this->attach(new B(
                         $piece->color,
-                        $piece->move['sq']['next'],
+                        $piece->move['to'],
                         $this->square
                     ));
                 } elseif ($piece->move['newId'] === Piece::R) {
                     $this->attach(new R(
                         $piece->color,
-                        $piece->move['sq']['next'],
+                        $piece->move['to'],
                         $this->square,
                         RType::R
                     ));
                 } else {
                     $this->attach(new Q(
                         $piece->color,
-                        $piece->move['sq']['next'],
+                        $piece->move['to'],
                         $this->square
                     ));
                 }
@@ -354,7 +354,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function pushHistory(AbstractPiece $piece): AbstractBoard
     {
-        $piece->move['sq']['current'] = $piece->sq;
+        $piece->move['from'] = $piece->sq;
         $this->history[] = $piece->move;
 
         return $this;
@@ -389,12 +389,12 @@ abstract class AbstractBoard extends \SplObjectStorage
             if ($a) {
                 if ($a->id === Piece::K) {
                     if (
-                        $this->castlingRule?->rule[$color][Piece::K][Castle::SHORT]['sq']['next'] === $sqs[1] &&
+                        $this->castlingRule?->rule[$color][Piece::K][Castle::SHORT]['to'] === $sqs[1] &&
                         $a->sqCastleShort()
                     ) {
                         $pgn[] = Castle::SHORT;
                     } elseif (
-                        $this->castlingRule?->rule[$color][Piece::K][Castle::LONG]['sq']['next'] === $sqs[1] &&
+                        $this->castlingRule?->rule[$color][Piece::K][Castle::LONG]['to'] === $sqs[1] &&
                         $a->sqCastleLong()
                     ) {
                         $pgn[] = Castle::LONG;
@@ -834,14 +834,14 @@ abstract class AbstractBoard extends \SplObjectStorage
         if ($this->history) {
             $last = array_slice($this->history, -1)[0];
             if ($last['id'] === Piece::P) {
-                $prevFile = substr($last['sq']['current'], 1);
-                $nextFile = substr($last['sq']['next'], 1);
+                $prevFile = substr($last['from'], 1);
+                $nextFile = substr($last['to'], 1);
                 if ($last['color'] === Color::W) {
                     if ($nextFile - $prevFile === 2) {
-                        return $last['sq']['current'][0] . $prevFile + 1;
+                        return $last['from'][0] . $prevFile + 1;
                     }
                 } elseif ($prevFile - $nextFile === 2) {
-                    return $last['sq']['current'][0] . $prevFile - 1;
+                    return $last['from'][0] . $prevFile - 1;
                 }
             }
         }

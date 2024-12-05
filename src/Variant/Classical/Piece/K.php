@@ -124,7 +124,7 @@ class K extends AbstractPiece
                 !array_diff($rule['free'], $this->board->sqCount['free']) &&
                 !array_intersect($rule['attack'], $this->board->spaceEval[$this->oppColor()])
             ) {
-                return $rule['sq']['next'];
+                return $rule['to'];
             }
         }
 
@@ -141,7 +141,7 @@ class K extends AbstractPiece
                 !array_diff($rule['free'], $this->board->sqCount['free']) &&
                 !array_intersect($rule['attack'], $this->board->spaceEval[$this->oppColor()])
             ) {
-                return $rule['sq']['next'];
+                return $rule['to'];
             }
         }
 
@@ -176,13 +176,13 @@ class K extends AbstractPiece
     {
         $rule = $this->board->castlingRule->rule[$this->color][Piece::R][$type];
         if ($type === RType::CASTLE_LONG && $this->sqCastleLong()) {
-            if ($piece = $this->board->pieceBySq($rule['sq']['current'])) {
+            if ($piece = $this->board->pieceBySq($rule['from'])) {
                 if ($piece->id === Piece::R) {
                     return $piece;
                 }
             }
         } elseif ($type === RType::CASTLE_SHORT && $this->sqCastleShort()) {
-            if ($piece = $this->board->pieceBySq($rule['sq']['current'])) {
+            if ($piece = $this->board->pieceBySq($rule['from'])) {
                 if ($piece->id === Piece::R) {
                     return $piece;
                 }

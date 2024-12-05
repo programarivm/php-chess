@@ -124,10 +124,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::PIECE),
             'color' => 'w',
             'id' => Piece::B,
-            'sq' => [
-                'current' => '',
-                'next' =>'g5'
-            ]
+            'from' => '',
+            'to' => 'g5',
         ];
 
         $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
@@ -144,10 +142,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::R,
-            'sq' => [
-                'current' => '',
-                'next' => 'a5'
-            ]
+            'from' => '',
+            'to' => 'a5',
         ];
 
         $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
@@ -164,10 +160,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::Q,
-            'sq' => [
-                'current' => 'b',
-                'next' => 'b7'
-            ]
+            'from' => 'b',
+            'to' => 'b7',
         ];
 
         $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
@@ -184,10 +178,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::KNIGHT),
             'color' => 'b',
             'id' => Piece::N,
-            'sq' => [
-                'current' => 'd',
-                'next' => 'b4'
-            ]
+            'from' => 'd',
+            'to' => 'b4',
         ];
 
         $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
@@ -204,10 +196,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::KING),
             'color' => 'w',
             'id' => Piece::K,
-            'sq' => [
-                'current' => '',
-                'next' => 'g7'
-            ]
+            'from' => '',
+            'to' => 'g7',
         ];
 
         $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
@@ -224,10 +214,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::Q,
-            'sq' => [
-                'current' => 'h8',
-                'next' => 'g7'
-            ]
+            'from' => 'h8',
+            'to' => 'g7',
         ];
 
         $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
@@ -244,10 +232,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::PAWN),
             'color' => 'w',
             'id' => Piece::P,
-            'sq' => [
-                'current' => 'c',
-                'next' => 'c3'
-            ]
+            'from' => 'c',
+            'to' => 'c3',
         ];
 
         $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
@@ -264,10 +250,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::PAWN),
             'color' => 'w',
             'id' => Piece::P,
-            'sq' => [
-                'current' => 'h',
-                'next' => 'h3'
-            ]
+            'from' => 'h',
+            'to' => 'h3',
         ];
 
         $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
@@ -284,7 +268,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::CASTLE_SHORT),
             'color' => 'w',
             'id' => 'K',
-            'sq' => self::$castlingRule->rule['w'][Piece::K][Castle::SHORT]['sq']
+            'from' => self::$castlingRule->rule['w'][Piece::K][Castle::SHORT]['from'],
+            'to' => self::$castlingRule->rule['w'][Piece::K][Castle::SHORT]['to'],
         ];
 
         $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
@@ -301,7 +286,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::CASTLE_LONG),
             'color' => 'w',
             'id' => 'K',
-            'sq' => self::$castlingRule->rule['w'][Piece::K][Castle::LONG]['sq']
+            'from' => self::$castlingRule->rule['w'][Piece::K][Castle::LONG]['from'],
+            'to' => self::$castlingRule->rule['w'][Piece::K][Castle::LONG]['to'],
         ];
 
         $this->assertEquals(self::$move->toArray('w', $move, self::$castlingRule, self::$color), $expected);
@@ -318,10 +304,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::PAWN_CAPTURES),
             'color' => 'b',
             'id' => Piece::P,
-            'sq' => [
-                'current' => 'f',
-                'next' => 'g5'
-            ]
+            'from' => 'f',
+            'to' => 'g5',
         ];
 
         $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
@@ -338,10 +322,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::KNIGHT_CAPTURES),
             'color' => 'b',
             'id' => Piece::N,
-            'sq' => [
-                'current' => '',
-                'next' => 'e4'
-            ]
+            'from' => '',
+            'to' => 'e4',
         ];
 
         $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);
@@ -358,10 +340,8 @@ class MoveTest extends AbstractUnitTestCase
             'case' => self::$move->case(MOVE::PIECE_CAPTURES),
             'color' => 'b',
             'id' => Piece::Q,
-            'sq' => [
-                'current' => '7',
-                'next' => 'g7'
-            ]
+            'from' => '7',
+            'to' => 'g7',
         ];
 
         $this->assertEquals(self::$move->toArray('b', $move, self::$castlingRule, self::$color), $expected);

@@ -115,7 +115,7 @@ abstract class AbstractPiece
     public function isMovable(): bool
     {
         if ($this->move) {
-            return in_array($this->move['sq']['next'], $this->moveSqs());
+            return in_array($this->move['to'], $this->moveSqs());
         }
 
         return false;

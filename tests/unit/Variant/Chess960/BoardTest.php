@@ -38,32 +38,24 @@ class BoardTest extends AbstractUnitTestCase
                     Castle::SHORT => [
                         'free' => [ 'f1', 'g1' ],
                         'attack' => [ 'd1', 'e1', 'f1', 'g1' ],
-                        'sq' => [
-                            'current' => 'd1',
-                            'next' => 'g1',
-                        ],
+                        'from' => 'd1',
+                        'to' => 'g1',
                     ],
                     Castle::LONG => [
                         'free' => [ 'b1', 'c1' ],
                         'attack' => [ 'c1', 'd1' ],
-                        'sq' => [
-                            'current' => 'd1',
-                            'next' => 'c1',
-                        ],
+                        'from' => 'd1',
+                        'to' => 'c1',
                     ],
                 ],
                 Piece::R => [
                     Castle::SHORT => [
-                        'sq' => [
-                            'current' => 'e1',
-                            'next' => 'f1',
-                        ],
+                        'from' => 'e1',
+                        'to' => 'f1',
                     ],
                     Castle::LONG => [
-                        'sq' => [
-                            'current' => 'a1',
-                            'next' => 'd1',
-                        ],
+                        'from' => 'a1',
+                        'to' => 'd1',
                     ],
                 ],
             ],
@@ -72,32 +64,24 @@ class BoardTest extends AbstractUnitTestCase
                     Castle::SHORT => [
                         'free' => [ 'f8', 'g8' ],
                         'attack' => [ 'd8', 'e8', 'f8', 'g8' ],
-                        'sq' => [
-                            'current' => 'd8',
-                            'next' => 'g8',
-                        ],
+                        'from' => 'd8',
+                        'to' => 'g8',
                     ],
                     Castle::LONG => [
                         'free' => [ 'b8', 'c8' ],
                         'attack' => [ 'c8', 'd8' ],
-                        'sq' => [
-                            'current' => 'd8',
-                            'next' => 'c8',
-                        ],
+                        'from' => 'd8',
+                        'to' => 'c8',
                     ],
                 ],
                 Piece::R => [
                     Castle::SHORT => [
-                        'sq' => [
-                            'current' => 'e8',
-                            'next' => 'f8',
-                        ],
+                        'from' => 'e8',
+                        'to' => 'f8',
                     ],
                     Castle::LONG => [
-                        'sq' => [
-                            'current' => 'a8',
-                            'next' => 'd8',
-                        ],
+                        'from' => 'a8',
+                        'to' => 'd8',
                     ],
                 ],
             ],
@@ -121,32 +105,24 @@ class BoardTest extends AbstractUnitTestCase
                     Castle::SHORT => [
                         'free' => [ 'f1', 'g1' ],
                         'attack' => [ 'd1', 'e1', 'f1', 'g1' ],
-                        'sq' => [
-                            'current' => 'd1',
-                            'next' => 'g1',
-                        ],
+                        'from' => 'd1',
+                        'to' => 'g1',
                     ],
                     Castle::LONG => [
                         'free' => [ 'c1' ],
                         'attack' => [ 'c1', 'd1' ],
-                        'sq' => [
-                            'current' => 'd1',
-                            'next' => 'c1',
-                        ],
+                        'from' => 'd1',
+                        'to' => 'c1',
                     ],
                 ],
                 Piece::R => [
                     Castle::SHORT => [
-                        'sq' => [
-                            'current' => 'e1',
-                            'next' => 'f1',
-                        ],
+                        'from' => 'e1',
+                        'to' => 'f1',
                     ],
                     Castle::LONG => [
-                        'sq' => [
-                            'current' => 'b1',
-                            'next' => 'd1',
-                        ],
+                        'from' => 'b1',
+                        'to' => 'd1',
                     ],
                 ],
             ],
@@ -155,32 +131,24 @@ class BoardTest extends AbstractUnitTestCase
                     Castle::SHORT => [
                         'free' => [ 'f8', 'g8' ],
                         'attack' => [ 'd8', 'e8', 'f8', 'g8' ],
-                        'sq' => [
-                            'current' => 'd8',
-                            'next' => 'g8',
-                        ],
+                        'from' => 'd8',
+                        'to' => 'g8',
                     ],
                     Castle::LONG => [
                         'free' => [ 'c8' ],
                         'attack' => [ 'c8', 'd8' ],
-                        'sq' => [
-                            'current' => 'd8',
-                            'next' => 'c8',
-                        ],
+                        'from' => 'd8',
+                        'to' => 'c8',
                     ],
                 ],
                 Piece::R => [
                     Castle::SHORT => [
-                        'sq' => [
-                            'current' => 'e8',
-                            'next' => 'f8',
-                        ],
+                        'from' => 'e8',
+                        'to' => 'f8',
                     ],
                     Castle::LONG => [
-                        'sq' => [
-                            'current' => 'b8',
-                            'next' => 'd8',
-                        ],
+                        'from' => 'b8',
+                        'to' => 'd8',
                     ],
                 ],
             ],
@@ -204,32 +172,24 @@ class BoardTest extends AbstractUnitTestCase
                     Castle::SHORT => [
                         'free' => [ 'f1' ],
                         'attack' => [ 'e1', 'f1', 'g1' ],
-                        'sq' => [
-                            'current' => 'e1',
-                            'next' => 'g1',
-                        ],
+                        'from' => 'e1',
+                        'to' => 'g1',
                     ],
                     Castle::LONG => [
                         'free' => [ 'c1' ],
                         'attack' => [ 'c1', 'd1', 'e1' ],
-                        'sq' => [
-                            'current' => 'e1',
-                            'next' => 'c1',
-                        ],
+                        'from' => 'e1',
+                        'to' => 'c1',
                     ],
                 ],
                 Piece::R => [
                     Castle::SHORT => [
-                        'sq' => [
-                            'current' => 'g1',
-                            'next' => 'f1',
-                        ],
+                        'from' => 'g1',
+                        'to' => 'f1',
                     ],
                     Castle::LONG => [
-                        'sq' => [
-                            'current' => 'd1',
-                            'next' => 'd1',
-                        ],
+                        'from' => 'd1',
+                        'to' => 'd1',
                     ],
                 ],
             ],
@@ -238,32 +198,24 @@ class BoardTest extends AbstractUnitTestCase
                     Castle::SHORT => [
                         'free' => [ 'f8' ],
                         'attack' => [ 'e8', 'f8', 'g8' ],
-                        'sq' => [
-                            'current' => 'e8',
-                            'next' => 'g8',
-                        ],
+                        'from' => 'e8',
+                        'to' => 'g8',
                     ],
                     Castle::LONG => [
                         'free' => [ 'c8' ],
                         'attack' => [ 'c8', 'd8', 'e8' ],
-                        'sq' => [
-                            'current' => 'e8',
-                            'next' => 'c8',
-                        ],
+                        'from' => 'e8',
+                        'to' => 'c8',
                     ],
                 ],
                 Piece::R => [
                     Castle::SHORT => [
-                        'sq' => [
-                            'current' => 'g8',
-                            'next' => 'f8',
-                        ],
+                        'from' => 'g8',
+                        'to' => 'f8',
                     ],
                     Castle::LONG => [
-                        'sq' => [
-                            'current' => 'd8',
-                            'next' => 'd8',
-                        ],
+                        'from' => 'd8',
+                        'to' => 'd8',
                     ],
                 ],
             ],

@@ -82,10 +82,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::W,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'd2',
-                    'next' => 'd4',
-                ],
+                'from' => 'd2',
+                'to' => 'd4',
                 'fen' => 'rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3',
             ],
             [
@@ -93,10 +91,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::B,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'd7',
-                    'next' => 'd5',
-                ],
+                'from' => 'd7',
+                'to' => 'd5',
                 'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq d6',
             ],
             [
@@ -104,10 +100,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::W,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'c2',
-                    'next' => 'c4',
-                ],
+                'from' => 'c2',
+                'to' => 'c4',
                 'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq c3',
             ],
             [
@@ -115,10 +109,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::B,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'c7',
-                    'next' => 'c5',
-                ],
+                'from' => 'c7',
+                'to' => 'c5',
                 'fen' => 'rnbqkbnr/pp2pppp/8/2pp4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq c6',
             ],
         ];
@@ -142,10 +134,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::W,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'e2',
-                    'next' => 'e4',
-                ],
+                'from' => 'e2',
+                'to' => 'e4',
                 'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
             [
@@ -153,10 +143,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::B,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'e7',
-                    'next' => 'e5',
-                ],
+                'from' => 'e7',
+                'to' => 'e5',
                 'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6',
             ],
             [
@@ -164,10 +152,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::KNIGHT,
                 'color' => Color::W,
                 'id' => Piece::N,
-                'sq' => [
-                    'current' => 'g1',
-                    'next' => 'f3',
-                ],
+                'from' => 'g1',
+                'to' => 'f3',
                 'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -',
             ],
             [
@@ -175,10 +161,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::KNIGHT,
                 'color' => Color::B,
                 'id' => Piece::N,
-                'sq' => [
-                    'current' => 'b8',
-                    'next' => 'c6',
-                ],
+                'from' => 'b8',
+                'to' => 'c6',
                 'fen' => 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -',
             ],
             [
@@ -186,10 +170,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PIECE,
                 'color' => Color::W,
                 'id' => Piece::B,
-                'sq' => [
-                    'current' => 'f1',
-                    'next' => 'b5',
-                ],
+                'from' => 'f1',
+                'to' => 'b5',
                 'fen' => 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
             ],
             [
@@ -197,10 +179,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PIECE,
                 'color' => Color::B,
                 'id' => Piece::B,
-                'sq' => [
-                    'current' => 'f8',
-                    'next' => 'e7',
-                ],
+                'from' => 'f8',
+                'to' => 'e7',
                 'fen' => 'r1bqk1nr/ppppbppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
             ],
         ];
@@ -224,10 +204,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::W,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'e2',
-                    'next' => 'e4',
-                ],
+                'from' => 'e2',
+                'to' => 'e4',
                 'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
             [
@@ -235,10 +213,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::B,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'e7',
-                    'next' => 'e6',
-                ],
+                'from' => 'e7',
+                'to' => 'e6',
                 'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -',
             ],
             [
@@ -246,10 +222,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::W,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'd2',
-                    'next' => 'd4',
-                ],
+                'from' => 'd2',
+                'to' => 'd4',
                 'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3',
             ],
             [
@@ -257,10 +231,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::B,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'd7',
-                    'next' => 'd5',
-                ],
+                'from' => 'd7',
+                'to' => 'd5',
                 'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq d6',
             ],
             [
@@ -268,10 +240,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::KNIGHT,
                 'color' => Color::W,
                 'id' => Piece::N,
-                'sq' => [
-                    'current' => 'b1',
-                    'next' => 'c3',
-                ],
+                'from' => 'b1',
+                'to' => 'c3',
                 'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -',
             ],
             [
@@ -279,10 +249,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::KNIGHT,
                 'color' => Color::B,
                 'id' => Piece::N,
-                'sq' => [
-                    'current' => 'g8',
-                    'next' => 'f6',
-                ],
+                'from' => 'g8',
+                'to' => 'f6',
                 'fen' => 'rnbqkb1r/ppp2ppp/4pn2/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq -',
             ],
         ];
@@ -308,10 +276,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::W,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'a2',
-                    'next' => 'a4',
-                ],
+                'from' => 'a2',
+                'to' => 'a4',
                 'fen' => 'rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR b KQkq a3',
             ],
             [
@@ -319,10 +285,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PAWN,
                 'color' => Color::B,
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => 'h7',
-                    'next' => 'h5',
-                ],
+                'from' => 'h7',
+                'to' => 'h5',
                 'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/8/1PPPPPPP/RNBQKBNR w KQkq h6',
             ],
             [
@@ -330,10 +294,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PIECE,
                 'color' => Color::W,
                 'id' => Piece::R,
-                'sq' => [
-                    'current' => 'a1',
-                    'next' => 'a3',
-                ],
+                'from' => 'a1',
+                'to' => 'a3',
                 'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/R7/1PPPPPPP/1NBQKBNR b Kkq -',
             ],
             [
@@ -341,10 +303,8 @@ class BoardTest extends AbstractUnitTestCase
                 'case' => Move::PIECE,
                 'color' => Color::B,
                 'id' => Piece::R,
-                'sq' => [
-                    'current' => 'h8',
-                    'next' => 'h6',
-                ],
+                'from' => 'h8',
+                'to' => 'h6',
                 'fen' => 'rnbqkbn1/ppppppp1/7r/7p/P7/R7/1PPPPPPP/1NBQKBNR w Kq -',
             ],
         ];

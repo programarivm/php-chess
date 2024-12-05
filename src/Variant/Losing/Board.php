@@ -98,7 +98,7 @@ class Board extends AbstractBoard
     {
         if ($captureSqs = $this->captureSqs()) {
             $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
-            if (in_array($move['sq']['next'], $captureSqs)) {
+            if (in_array($move['to'], $captureSqs)) {
                 return parent::play($color, $pgn);
             }
         } else {

@@ -92,10 +92,8 @@ class Move extends AbstractNotation
                 'case' => static::KING,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
-                'sq' => [
-                    'current' => '',
-                    'next' => $this->extractSqs($pgn),
-                ],
+                'from' => '',
+                'to' => $this->extractSqs($pgn),
             ];
         } elseif (preg_match('/^' . static::CASTLE_SHORT . '$/', $pgn)) {
             return [
@@ -103,7 +101,8 @@ class Move extends AbstractNotation
                 'case' => static::CASTLE_SHORT,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
-                'sq' => $castlingRule?->rule[$str][Piece::K][Castle::SHORT]['sq'],
+                'from' => $castlingRule?->rule[$str][Piece::K][Castle::SHORT]['from'],
+                'to' => $castlingRule?->rule[$str][Piece::K][Castle::SHORT]['to'],
             ];
         } elseif (preg_match('/^' . static::CASTLE_LONG . '$/', $pgn)) {
             return [
@@ -111,7 +110,8 @@ class Move extends AbstractNotation
                 'case' => static::CASTLE_LONG,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
-                'sq' => $castlingRule?->rule[$str][Piece::K][Castle::LONG]['sq'],
+                'from' => $castlingRule?->rule[$str][Piece::K][Castle::LONG]['from'],
+                'to' => $castlingRule?->rule[$str][Piece::K][Castle::LONG]['to'],
             ];
         } elseif (preg_match('/^' . static::KING_CAPTURES . '$/', $pgn)) {
             return [
@@ -119,24 +119,20 @@ class Move extends AbstractNotation
                 'case' => static::KING_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::K,
-                'sq' => [
-                    'current' => '',
-                    'next' => $this->extractSqs($pgn),
-                ],
+                'from' => '',
+                'to' => $this->extractSqs($pgn),
             ];
         } elseif (preg_match('/^' . static::PIECE . '$/', $pgn)) {
             $sqs = $this->extractSqs($pgn);
-            $next = substr($sqs, -2);
-            $current = str_replace($next, '', $sqs);
+            $to = substr($sqs, -2);
+            $from = str_replace($to, '', $sqs);
             return [
                 'pgn' => $pgn,
                 'case' => static::PIECE,
                 'color' => $color->validate($str),
                 'id' => mb_substr($pgn, 0, 1),
-                'sq' => [
-                    'current' => $current,
-                    'next' => $next,
-                ],
+                'from' => $from,
+                'to' => $to,
             ];
         } elseif (preg_match('/^' . static::PIECE_CAPTURES . '$/', $pgn)) {
             $arr = explode('x', $pgn);
@@ -145,24 +141,20 @@ class Move extends AbstractNotation
                 'case' => static::PIECE_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => mb_substr($pgn, 0, 1),
-                'sq' => [
-                    'current' => $this->extractSqs($arr[0]),
-                    'next' => $this->extractSqs($arr[1]),
-                ],
+                'from' => $this->extractSqs($arr[0]),
+                'to' => $this->extractSqs($arr[1]),
             ];
         } elseif (preg_match('/^' . static::KNIGHT . '$/', $pgn)) {
             $sqs = $this->extractSqs($pgn);
-            $next = substr($sqs, -2);
-            $current = str_replace($next, '', $sqs);
+            $to = substr($sqs, -2);
+            $from = str_replace($to, '', $sqs);
             return [
                 'pgn' => $pgn,
                 'case' => static::KNIGHT,
                 'color' => $color->validate($str),
                 'id' => Piece::N,
-                'sq' => [
-                    'current' => $current,
-                    'next' => $next,
-                ],
+                'from' => $from,
+                'to' => $to,
             ];
         } elseif (preg_match('/^' . static::KNIGHT_CAPTURES . '$/', $pgn)) {
             $arr = explode('x', $pgn);
@@ -171,10 +163,8 @@ class Move extends AbstractNotation
                 'case' => static::KNIGHT_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::N,
-                'sq' => [
-                    'current' => $this->extractSqs($arr[0]),
-                    'next' => $this->extractSqs($arr[1]),
-                ],
+                'from' => $this->extractSqs($arr[0]),
+                'to' => $this->extractSqs($arr[1]),
             ];
         } elseif (preg_match('/^' . static::PAWN_PROMOTES . '$/', $pgn)) {
             return [
@@ -183,10 +173,8 @@ class Move extends AbstractNotation
                 'color' => $color->validate($str),
                 'id' => Piece::P,
                 'newId' => substr(explode('=', $pgn)[1], 0, 1),
-                'sq' => [
-                    'current' => '',
-                    'next' => $this->extractSqs($pgn),
-                ],
+                'from' => '',
+                'to' => $this->extractSqs($pgn),
             ];
         } elseif (preg_match('/^' . static::PAWN_CAPTURES_AND_PROMOTES . '$/', $pgn)) {
             $arr = explode('x', $pgn);
@@ -196,10 +184,8 @@ class Move extends AbstractNotation
                 'color' => $color->validate($str),
                 'id' => Piece::P,
                 'newId' => substr(explode('=', $pgn)[1], 0, 1),
-                'sq' => [
-                    'current' => '',
-                    'next' => $this->extractSqs($arr[1]),
-                ],
+                'from' => '',
+                'to' => $this->extractSqs($arr[1]),
             ];
         } elseif (preg_match('/^' . static::PAWN . '$/', $pgn)) {
             return [
@@ -207,10 +193,8 @@ class Move extends AbstractNotation
                 'case' => static::PAWN,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => mb_substr($pgn, 0, 1),
-                    'next' => $this->extractSqs($pgn),
-                ],
+                'from' => mb_substr($pgn, 0, 1),
+                'to' => $this->extractSqs($pgn),
             ];
         } elseif (preg_match('/^' . static::PAWN_CAPTURES . '$/', $pgn)) {
             $arr = explode('x', $pgn);
@@ -219,10 +203,8 @@ class Move extends AbstractNotation
                 'case' => static::PAWN_CAPTURES,
                 'color' => $color->validate($str),
                 'id' => Piece::P,
-                'sq' => [
-                    'current' => mb_substr($pgn, 0, 1),
-                    'next' => $this->extractSqs($arr[1]),
-                ],
+                'from' => mb_substr($pgn, 0, 1),
+                'to' => $this->extractSqs($arr[1]),
             ];
         }
 

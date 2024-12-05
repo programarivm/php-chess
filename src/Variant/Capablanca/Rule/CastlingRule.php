@@ -15,32 +15,24 @@ class CastlingRule extends ClassicalCastlingRule
                 Castle::SHORT => [
                     'free' => [ 'g1', 'h1', 'i1' ],
                     'attack' => [ 'f1', 'g1', 'h1', 'i1' ],
-                    'sq' => [
-                        'current' => 'f1',
-                        'next' => 'i1',
-                    ],
+                    'from' => 'f1',
+                    'to' => 'i1',
                 ],
                 Castle::LONG => [
                     'free' => [ 'b1', 'c1', 'd1', 'e1' ],
                     'attack' => [ 'c1', 'd1', 'e1', 'f1' ],
-                    'sq' => [
-                        'current' => 'f1',
-                        'next' => 'c1',
-                    ],
+                    'from' => 'f1',
+                    'to' => 'c1',
                 ],
             ],
             Piece::R => [
                 Castle::SHORT => [
-                    'sq' => [
-                        'current' => 'j1',
-                        'next' => 'h1',
-                    ],
+                    'from' => 'j1',
+                    'to' => 'h1',
                 ],
                 Castle::LONG => [
-                    'sq' => [
-                        'current' => 'a1',
-                        'next' => 'd1',
-                    ],
+                    'from' => 'a1',
+                    'to' => 'd1',
                 ],
             ],
         ],
@@ -49,32 +41,24 @@ class CastlingRule extends ClassicalCastlingRule
                 Castle::SHORT => [
                     'free' => [ 'g8', 'h8', 'i8' ],
                     'attack' => [ 'f8', 'g8', 'h8', 'i8' ],
-                    'sq' => [
-                        'current' => 'f8',
-                        'next' => 'i8',
-                    ],
+                    'from' => 'f8',
+                    'to' => 'i8',
                 ],
                 Castle::LONG => [
                     'free' => [ 'b8', 'c8', 'd8', 'e8' ],
                     'attack' => [ 'c8', 'd8', 'e8', 'f8' ],
-                    'sq' => [
-                        'current' => 'f8',
-                        'next' => 'c8',
-                    ],
+                    'from' => 'f8',
+                    'to' => 'c8',
                 ],
             ],
             Piece::R => [
                 Castle::SHORT => [
-                    'sq' => [
-                        'current' => 'j8',
-                        'next' => 'h8',
-                    ],
+                    'from' => 'j8',
+                    'to' => 'h8',
                 ],
                 Castle::LONG => [
-                    'sq' => [
-                        'current' => 'a8',
-                        'next' => 'd8',
-                    ],
+                    'from' => 'a8',
+                    'to' => 'd8',
                 ],
             ],
         ],
