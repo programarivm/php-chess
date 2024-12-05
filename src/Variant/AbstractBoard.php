@@ -4,7 +4,6 @@ namespace Chess\Variant;
 
 use Chess\FenToBoardFactory;
 use Chess\Eval\SpaceEval;
-use Chess\Eval\SqCount;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -463,13 +462,35 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
+     * Count squares.
+     *
+     * @return array
+     */
+    public function sqCount(): array
+    {
+        $used = [
+            Color::W => [],
+            Color::B => [],
+        ];
+
+        foreach ($this->pieces() as $piece) {
+            $used[$piece->color][] = $piece->sq;
+        }
+
+        return [
+            'free' => array_diff($this->square->all(), [...$used[Color::W], ...$used[Color::B]]),
+            'used' => $used,
+        ];
+    }
+
+    /**
      * Refreshes the board.
      */
     public function refresh(): void
     {
         $this->turn = $this->color->opp($this->turn);
 
-        $this->sqCount = SqCount::count($this);
+        $this->sqCount = $this->sqCount();
 
         $this->detachPieces()
             ->attachPieces()
