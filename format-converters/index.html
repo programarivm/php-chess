@@ -127,7 +127,7 @@ echo $board-&gt;toFen();
 </code></pre>
 <pre><code class="language-text">array(2) {
   [0]=&gt;
-  array(6) {
+  array(7) {
     [&quot;pgn&quot;]=&gt;
     string(3) &quot;Nc3&quot;
     [&quot;case&quot;]=&gt;
@@ -136,18 +136,15 @@ echo $board-&gt;toFen();
     string(1) &quot;w&quot;
     [&quot;id&quot;]=&gt;
     string(1) &quot;N&quot;
-    [&quot;sq&quot;]=&gt;
-    array(2) {
-      [&quot;current&quot;]=&gt;
-      string(2) &quot;b1&quot;
-      [&quot;next&quot;]=&gt;
-      string(2) &quot;c3&quot;
-    }
+    [&quot;from&quot;]=&gt;
+    string(2) &quot;b1&quot;
+    [&quot;to&quot;]=&gt;
+    string(2) &quot;c3&quot;
     [&quot;fen&quot;]=&gt;
     string(59) &quot;rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -&quot;
   }
   [1]=&gt;
-  array(6) {
+  array(7) {
     [&quot;pgn&quot;]=&gt;
     string(3) &quot;Nc6&quot;
     [&quot;case&quot;]=&gt;
@@ -156,13 +153,10 @@ echo $board-&gt;toFen();
     string(1) &quot;b&quot;
     [&quot;id&quot;]=&gt;
     string(1) &quot;N&quot;
-    [&quot;sq&quot;]=&gt;
-    array(2) {
-      [&quot;current&quot;]=&gt;
-      string(2) &quot;b8&quot;
-      [&quot;next&quot;]=&gt;
-      string(2) &quot;c6&quot;
-    }
+    [&quot;from&quot;]=&gt;
+    string(2) &quot;b8&quot;
+    [&quot;to&quot;]=&gt;
+    string(2) &quot;c6&quot;
     [&quot;fen&quot;]=&gt;
     string(60) &quot;r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -&quot;
   }
@@ -176,7 +170,7 @@ echo $board-&gt;toFen();
 <p>This is how to get LAN formatted moves out of the history array.</p>
 <pre><code class="language-php">$last = end($board-&gt;history);
 
-$lan = $last['sq']['current'] . $last['sq']['next'];
+$lan = $last['from'] . $last['to'];
 
 echo $lan;
 </code></pre>
