@@ -69,11 +69,11 @@ abstract class AbstractBoard extends \SplObjectStorage
     public string $castlingAbility = '-';
 
     /**
-     * Piece variant.
+     * Variant.
      *
      * @var string
      */
-    public string $pieceVariant = '';
+    public string $variant = '';
 
     /**
      * Start FEN position.
@@ -167,7 +167,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     protected function move(AbstractPiece $piece): bool
     {
         $this->capture($piece)->detach($this->pieceBySq($piece->sq));
-        $class = VariantType::getClass($this->pieceVariant, $piece->id);
+        $class = VariantType::getClass($this->variant, $piece->id);
         $this->attach(new $class(
             $piece->color,
             $piece->move['sq']['next'],

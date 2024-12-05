@@ -26,7 +26,7 @@ class StrToBoard
 
     protected ?CastlingRule $castlingRule = null;
 
-    protected string $pieceVariant;
+    protected string $variant;
 
     public function __construct(string $string)
     {
@@ -36,7 +36,7 @@ class StrToBoard
         $this->fields = array_filter(explode(' ', $this->string));
         $this->castlingAbility = $this->fields[2];
         $this->castlingRule = new CastlingRule();
-        $this->pieceVariant = VariantType::CLASSICAL;
+        $this->variant = VariantType::CLASSICAL;
     }
 
     public function create(): AbstractBoard
@@ -46,7 +46,7 @@ class StrToBoard
                 $this->fenStr->toArray($this->fields[0]),
                 $this->square,
                 $this->castlingRule,
-                $this->pieceVariant
+                $this->variant
             ))->getArray();
             $board = new Board($pieces, $this->castlingAbility);
             $board->turn = $this->fields[1];

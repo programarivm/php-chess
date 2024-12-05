@@ -10,7 +10,7 @@ use Chess\Variant\Classical\Piece\P;
 
 trait RandomStartPiecesTrait
 {
-    protected string $pieceVariant;
+    protected string $variant;
 
     protected array $startPos;
 
@@ -23,7 +23,7 @@ trait RandomStartPiecesTrait
         foreach ($this->startPos as $key => $val) {
             $wSq = chr(97 + $key) . '1';
             $bSq = chr(97 + $key) . $this->square::SIZE['ranks'];
-            $class = VariantType::getClass($this->pieceVariant, $val);
+            $class = VariantType::getClass($this->variant, $val);
             if ($val !== Piece::R) {
                 $this->startPieces[] =  new $class(Color::W, $wSq, $this->square);
                 $this->startPieces[] =  new $class(Color::B, $bSq, $this->square);

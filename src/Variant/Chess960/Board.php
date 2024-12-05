@@ -28,7 +28,7 @@ class Board extends AbstractBoard implements RandomBoardInterface
         $this->castlingRule = new CastlingRule($this->startPos);
         $this->square = new Square();
         $this->move = new Move();
-        $this->pieceVariant = VariantType::CLASSICAL;
+        $this->variant = VariantType::CLASSICAL;
         if (!$pieces) {
             $pieces = (new StartPieces($this->startPos))->create();
             $this->castlingAbility = CastlingRule::START;

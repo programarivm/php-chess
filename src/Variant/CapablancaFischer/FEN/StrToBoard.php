@@ -25,7 +25,7 @@ class StrToBoard extends ClassicalFenStrToBoard
         $this->castlingAbility = $this->fields[2];
         $this->startPos = $startPos;
         $this->castlingRule = new CastlingRule($this->startPos);
-        $this->pieceVariant = VariantType::CAPABLANCA;
+        $this->variant = VariantType::CAPABLANCA;
     }
 
     public function create(): AbstractBoard
@@ -35,7 +35,7 @@ class StrToBoard extends ClassicalFenStrToBoard
                 $this->fenStr->toArray($this->fields[0]),
                 $this->square,
                 $this->castlingRule,
-                $this->pieceVariant
+                $this->variant
             ))->getArray();
             $board = new Board($this->startPos, $pieces, $this->castlingAbility);
             $board->turn = $this->fields[1];

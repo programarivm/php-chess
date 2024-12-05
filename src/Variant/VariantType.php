@@ -14,9 +14,9 @@ class VariantType
 
     const RACING_KINGS = 'racing-kings';
 
-    public static function getClass(string $pieceVariant, string $name)
+    public static function getClass(string $variant, string $name)
     {
-        $namespace = ucfirst($pieceVariant);
+        $namespace = ucfirst($variant);
         $class = "\\Chess\\Variant\\{$namespace}\\Piece\\{$name}";
         if (class_exists($class)) {
             return $class;

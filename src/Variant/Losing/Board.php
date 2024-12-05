@@ -24,7 +24,7 @@ class Board extends AbstractBoard
         $this->color = new Color();
         $this->square = new Square();
         $this->move = new Move();
-        $this->pieceVariant = VariantType::LOSING;
+        $this->variant = VariantType::LOSING;
         if (!$pieces) {
             $this->attach(new R(Color::W, 'a1', $this->square, RType::R));
             $this->attach(new N(Color::W, 'b1', $this->square));

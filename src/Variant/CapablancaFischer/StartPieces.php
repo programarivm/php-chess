@@ -12,7 +12,7 @@ class StartPieces
 
     public function __construct(array $startPos)
     {
-        $this->pieceVariant = VariantType::CAPABLANCA;
+        $this->variant = VariantType::CAPABLANCA;
 
         $this->startPos = $startPos;
 
