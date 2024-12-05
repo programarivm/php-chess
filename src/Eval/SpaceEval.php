@@ -49,37 +49,34 @@ class SpaceEval extends AbstractEval implements ExplainEvalInterface
 
         foreach ($pieces = $this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
-                $this->result[$piece->color] = array_unique(
-                    [
-                        ...$this->result[$piece->color],
-                        ...array_intersect(
-                            $piece->mobility,
-                            $this->board->sqCount['free']
-                        )
-                    ]
-                );
+                $this->result[$piece->color] = [
+                    ...$this->result[$piece->color],
+                    ...array_intersect(
+                        $piece->mobility,
+                        $this->board->sqCount['free']
+                    )
+                ];
             } elseif ($piece->id === Piece::P) {
-                $this->result[$piece->color] = array_unique(
-                    [
-                        ...$this->result[$piece->color],
-                        ...array_intersect(
-                            $piece->captureSqs,
-                            $this->board->sqCount['free']
-                        )
-                    ]
-                );
+                $this->result[$piece->color] = [
+                    ...$this->result[$piece->color],
+                    ...array_intersect(
+                        $piece->captureSqs,
+                        $this->board->sqCount['free']
+                    )
+                ];
             } else {
-                $this->result[$piece->color] = array_unique(
-                    [
-                        ...$this->result[$piece->color],
-                        ...array_diff(
-                            $piece->moveSqs(),
-                            $this->board->sqCount['used'][$piece->oppColor()]
-                        )
-                    ]
-                );
+                $this->result[$piece->color] = [
+                    ...$this->result[$piece->color],
+                    ...array_diff(
+                        $piece->moveSqs(),
+                        $this->board->sqCount['used'][$piece->oppColor()]
+                    )
+                ];
             }
         }
+
+        $this->result[Color::W] = array_unique($this->result[Color::W]);
+        $this->result[Color::B] = array_unique($this->result[Color::B]);
 
         $this->explain([
             Color::W => count($this->result[Color::W]),
