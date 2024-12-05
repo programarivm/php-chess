@@ -32,7 +32,7 @@ var_dump($board->history);
 ```text
 array(2) {
   [0]=>
-  array(6) {
+  array(7) {
     ["pgn"]=>
     string(3) "Nc3"
     ["case"]=>
@@ -41,18 +41,15 @@ array(2) {
     string(1) "w"
     ["id"]=>
     string(1) "N"
-    ["sq"]=>
-    array(2) {
-      ["current"]=>
-      string(2) "b1"
-      ["next"]=>
-      string(2) "c3"
-    }
+    ["from"]=>
+    string(2) "b1"
+    ["to"]=>
+    string(2) "c3"
     ["fen"]=>
     string(59) "rnbqkb1r/pp2pppp/3p1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R b KQkq -"
   }
   [1]=>
-  array(6) {
+  array(7) {
     ["pgn"]=>
     string(3) "Nc6"
     ["case"]=>
@@ -61,13 +58,10 @@ array(2) {
     string(1) "b"
     ["id"]=>
     string(1) "N"
-    ["sq"]=>
-    array(2) {
-      ["current"]=>
-      string(2) "b8"
-      ["next"]=>
-      string(2) "c6"
-    }
+    ["from"]=>
+    string(2) "b8"
+    ["to"]=>
+    string(2) "c6"
     ["fen"]=>
     string(60) "r1bqkb1r/pp2pppp/2np1n2/8/3NP3/2N5/PPP2PPP/R1BQKB1R w KQkq -"
   }
@@ -89,7 +83,7 @@ This is how to get LAN formatted moves out of the history array.
 ```php
 $last = end($board->history);
 
-$lan = $last['sq']['current'] . $last['sq']['next'];
+$lan = $last['from'] . $last['to'];
 
 echo $lan;
 ```
