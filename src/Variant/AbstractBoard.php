@@ -166,8 +166,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function move(AbstractPiece $piece): bool
     {
-        $this->capture($piece);
-        $this->detach($this->pieceBySq($piece->sq));
+        $this->capture($piece)->detach($this->pieceBySq($piece->sq));
         $class = VariantType::getClass($this->pieceVariant, $piece->id);
         $this->attach(new $class(
             $piece->color,
@@ -175,12 +174,10 @@ abstract class AbstractBoard extends \SplObjectStorage
             $this->square,
             $piece->id === Piece::R ? $piece->type : null
         ));
-        if ($piece->id === Piece::P) {
-            if ($piece->isPromoted()) {
-                $this->promote($piece);
-            }
-        }
-        $this->updateCastle($piece)->pushHistory($piece)->refresh();
+        $this->promote($piece)
+            ->updateCastle($piece)
+            ->pushHistory($piece)
+            ->refresh();
 
         return true;
     }
@@ -283,37 +280,41 @@ abstract class AbstractBoard extends \SplObjectStorage
     /**
      * Promotes a pawn.
      *
-     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @param \Chess\Variant\AbstractPiece $piece
      * @return \Chess\Variant\AbstractBoard
      */
-    protected function promote(P $pawn): AbstractBoard
+    protected function promote(AbstractPiece $piece): AbstractBoard
     {
-        $this->detach($this->pieceBySq($pawn->move['sq']['next']));
-        if ($pawn->move['newId'] === Piece::N) {
-            $this->attach(new N(
-                $pawn->color,
-                $pawn->move['sq']['next'],
-                $this->square
-            ));
-        } elseif ($pawn->move['newId'] === Piece::B) {
-            $this->attach(new B(
-                $pawn->color,
-                $pawn->move['sq']['next'],
-                $this->square
-            ));
-        } elseif ($pawn->move['newId'] === Piece::R) {
-            $this->attach(new R(
-                $pawn->color,
-                $pawn->move['sq']['next'],
-                $this->square,
-                RType::R
-            ));
-        } else {
-            $this->attach(new Q(
-                $pawn->color,
-                $pawn->move['sq']['next'],
-                $this->square
-            ));
+        if ($piece->id === Piece::P) {
+            if ($piece->isPromoted()) {
+                $this->detach($this->pieceBySq($piece->move['sq']['next']));
+                if ($piece->move['newId'] === Piece::N) {
+                    $this->attach(new N(
+                        $piece->color,
+                        $piece->move['sq']['next'],
+                        $this->square
+                    ));
+                } elseif ($piece->move['newId'] === Piece::B) {
+                    $this->attach(new B(
+                        $piece->color,
+                        $piece->move['sq']['next'],
+                        $this->square
+                    ));
+                } elseif ($piece->move['newId'] === Piece::R) {
+                    $this->attach(new R(
+                        $piece->color,
+                        $piece->move['sq']['next'],
+                        $this->square,
+                        RType::R
+                    ));
+                } else {
+                    $this->attach(new Q(
+                        $piece->color,
+                        $piece->move['sq']['next'],
+                        $this->square
+                    ));
+                }
+            }
         }
 
         return $this;
