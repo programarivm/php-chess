@@ -49,7 +49,7 @@ abstract class AbstractPiece
         return $this->board->color->opp($this->color);
     }
 
-    public function attacked(): ?array
+    public function attacked(): array
     {
         $attacked = [];
         foreach ($sqs = $this->moveSqs() as $sq) {
