@@ -651,12 +651,15 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function undo(): AbstractBoard
     {
-        $board = FenToBoardFactory::create($this->startFen, $this);
-        foreach ($this->popHistory()->history as $key => $val) {
-            $board->play($val['color'], $val['pgn']);
+        if (count($this->history) > 1) {
+            $beforeLast = array_slice($this->history, -2)[0];
+            $board = FenToBoardFactory::create($beforeLast['fen'], $this);
+            $board->history = $this->popHistory()->history;
+            $board->startFen = $this->startFen;
+            return $board;
         }
 
-        return $board;
+        return FenToBoardFactory::create($this->startFen, $this);
     }
 
     /**
