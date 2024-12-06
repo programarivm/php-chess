@@ -25,18 +25,14 @@ class PieceArray
         $this->castlingRule = $castlingRule;
         $this->variant = $variant;
 
-        foreach ($array as $i => $row) {
-            $file = 'a';
-            $rank = $i + 1;
-            foreach ($row as $j => $item) {
-                $char = trim($item);
+        for ($i = count($array) - 1; $i >= 0; $i--) {
+            for ($j = 0; $j < count($array[$i]); $j++) {
+                $char = trim($array[$i][$j]);
                 if (ctype_lower($char)) {
-                    $char = strtoupper($char);
-                    $this->push(Color::B, $char, $file . $rank);
+                    $this->push(Color::B, strtoupper($char), $this->square->toAlgebraic($j, $i));
                 } elseif (ctype_upper($char)) {
-                    $this->push(Color::W, $char, $file . $rank);
+                    $this->push(Color::W, $char, $this->square->toAlgebraic($j, $i));
                 }
-                $file = chr(ord($file) + 1);
             }
         }
     }
