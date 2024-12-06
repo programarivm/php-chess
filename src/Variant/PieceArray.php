@@ -22,9 +22,7 @@ class PieceArray
     public function __construct(array $array, Square $square, CastlingRule $castlingRule = null, string $variant)
     {
         $this->square = $square;
-
         $this->castlingRule = $castlingRule;
-
         $this->variant = $variant;
 
         foreach ($array as $i => $row) {
@@ -51,27 +49,12 @@ class PieceArray
     private function push(string $color, string $id, string $sq): void
     {
         if ($id === Piece::R) {
-            if (
-                $color === Color::B &&
-                $sq === $this->castlingRule?->rule[Color::B][Piece::R][Castle::LONG]['from']
-            ) {
+            if ($sq === $this->castlingRule?->rule[$color][Piece::R][Castle::LONG]['from']) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
-            } elseif (
-                $color === Color::B &&
-                $sq === $this->castlingRule?->rule[Color::B][Piece::R][Castle::SHORT]['from']
-            ) {
+            } elseif ($sq === $this->castlingRule?->rule[$color][Piece::R][Castle::SHORT]['from']) {
                 $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
-            } elseif (
-                $color === Color::W &&
-                $sq === $this->castlingRule?->rule[Color::B][Piece::R][Castle::LONG]['from']
-            ) {
-                $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
-            } elseif (
-                $color === Color::W &&
-                $sq === $this->castlingRule?->rule[Color::W][Piece::R][Castle::SHORT]['from']
-            ) {
-                $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
-            } else { // it doesn't matter which RType is assigned
+            } else {
+                // it doesn't matter which RType is assigned
                 $this->array[] = new R($color, $sq, $this->square, RType::R);
             }
         } else {
