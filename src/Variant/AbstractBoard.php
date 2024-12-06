@@ -126,6 +126,16 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function isAmbiguous(array $move, array $pieces): bool
     {
+        if (str_contains($move['case'], 'x')) {
+            if ($move['id'] === Piece::P) {
+                $enPassant = $this->history ? $this->enPassant() : explode(' ', $this->startFen)[3];
+                if (!$this->pieceBySq($move['to']) && $enPassant !== $move['to']) {
+                    return true;
+                }
+            } elseif (!$this->pieceBySq($move['to'])) {
+                return true;
+            }
+        }
         $ambiguous = [];
         foreach ($pieces as $piece) {
             if (in_array($move['to'], $piece->moveSqs())) {
