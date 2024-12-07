@@ -13,8 +13,7 @@ use Chess\Variant\Classical\Piece\P;
  * A pawn with no opposing pawns on either the same file or adjacent files to
  * prevent it from being promoted.
  */
-class PassedPawnEval extends AbstractEval implements
-    ExplainEvalInterface
+class PassedPawnEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

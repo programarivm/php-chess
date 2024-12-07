@@ -15,8 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * how the removal of attacking pieces would affect the opponent's protection.
  * A higher score indicates a stronger defensive position.
  */
-class DefenseEval extends AbstractEval implements
-    ExplainEvalInterface
+class DefenseEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

@@ -13,9 +13,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * A pawn is doubled if there are two pawns of the same color on the same file.
  */
-class DoubledPawnEval extends AbstractEval implements
-    ExplainEvalInterface,
-    InverseEvalInterface
+class DoubledPawnEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

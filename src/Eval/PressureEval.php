@@ -15,7 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * @see \Chess\Eval\AttackEval
  */
-class PressureEval extends AbstractEval implements ExplainEvalInterface
+class PressureEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

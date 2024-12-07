@@ -14,9 +14,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * @see \Chess\Eval\AbstractEval
  */
-class KingSafetyEval extends AbstractEval implements
-    ExplainEvalInterface,
-    InverseEvalInterface
+class KingSafetyEval extends AbstractEval implements InverseEvalInterface
 {
     use ExplainEvalTrait;
 

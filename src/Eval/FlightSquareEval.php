@@ -10,8 +10,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * The safe squares to which the king can move if it is threatened.
  */
-class FlightSquareEval extends AbstractEval implements
-    ExplainEvalInterface
+class FlightSquareEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

@@ -12,7 +12,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * The player with both bishops may definitely have an advantage, especially
  * in the endgame. Furthermore, two bishops can deliver checkmate.
  */
-class BishopPairEval extends AbstractEval implements ExplainEvalInterface
+class BishopPairEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

@@ -13,9 +13,7 @@ use Chess\Variant\Classical\Piece\P;
  * A pawn without friendly pawns on the adjacent files. Since it cannot be
  * defended by other pawns it is considered a weakness.
  */
-class IsolatedPawnEval extends AbstractEval implements
-    ExplainEvalInterface,
-    InverseEvalInterface
+class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

@@ -12,8 +12,7 @@ use Chess\Variant\Classical\Piece\P;
  *
  * A pawn that is on the fifth rank or higher.
  */
-class AdvancedPawnEval extends AbstractEval implements
-    ExplainEvalInterface
+class AdvancedPawnEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

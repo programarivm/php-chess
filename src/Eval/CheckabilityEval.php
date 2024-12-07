@@ -14,8 +14,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * and vice versa, it is considered advantageous to have a king that cannot
  * be checked. A checkable king is vulnerable to forcing moves.
  */
-class CheckabilityEval extends AbstractEval implements
-    ExplainEvalInterface
+class CheckabilityEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

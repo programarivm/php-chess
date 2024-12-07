@@ -15,9 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * be deflected, meaning it could be forced to leave the square it occupies,
  * typically resulting in an advantage for the opponent.
  */
-class OverloadingEval extends AbstractEval implements
-    ExplainEvalInterface,
-    InverseEvalInterface
+class OverloadingEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

@@ -13,9 +13,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * A bishop that is on the same color as most of own pawns.
  */
-class BadBishopEval extends AbstractEval implements
-    ExplainEvalInterface,
-    InverseEvalInterface
+class BadBishopEval extends AbstractEval implements InverseEvalInterface
 {
     use ExplainEvalTrait;
 

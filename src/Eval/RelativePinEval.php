@@ -15,8 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * it moves out of the line of attack the more valuable piece can be captured
  * resulting in a material gain.
  */
-class RelativePinEval extends AbstractEval implements
-    ExplainEvalInterface
+class RelativePinEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

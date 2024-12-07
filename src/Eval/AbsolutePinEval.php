@@ -12,9 +12,7 @@ use Chess\Variant\AbstractPiece;
  * A tactic that occurs when a piece is shielding the king, so it cannot move
  * out of the line of attack because the king would be put in check.
  */
-class AbsolutePinEval extends AbstractEval implements
-    ExplainEvalInterface,
-    InverseEvalInterface
+class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

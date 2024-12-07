@@ -12,9 +12,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * The connectivity of the pieces measures how loosely the pieces are.
  */
-class ConnectivityEval extends AbstractEval implements
-    ExplainEvalInterface,
-    InverseEvalInterface
+class ConnectivityEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

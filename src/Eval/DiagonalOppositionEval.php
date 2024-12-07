@@ -12,7 +12,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * The same as direct opposition, but the two kings are apart from each other
  * diagonally.
  */
-class DiagonalOppositionEval extends AbstractEval implements ExplainEvalInterface
+class DiagonalOppositionEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

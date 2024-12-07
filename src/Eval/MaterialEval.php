@@ -16,7 +16,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * @see \Chess\Eval\AbstractEval
  */
-class MaterialEval extends AbstractEval implements ExplainEvalInterface
+class MaterialEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

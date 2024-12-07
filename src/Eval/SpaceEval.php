@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * This is a measure of the number of squares controlled by each player.
  */
-class SpaceEval extends AbstractEval implements ExplainEvalInterface
+class SpaceEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

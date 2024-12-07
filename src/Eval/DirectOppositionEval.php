@@ -13,7 +13,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * on the same rank or file. In this situation, the player not having to move is
  * said to have the opposition.
  */
-class DirectOppositionEval extends AbstractEval implements ExplainEvalInterface
+class DirectOppositionEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

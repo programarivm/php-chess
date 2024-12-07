@@ -11,8 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  *
  * A square protected by a pawn that cannot be attacked by an opponent's pawn.
  */
-class SqOutpostEval extends AbstractEval implements
-    ExplainEvalInterface
+class SqOutpostEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

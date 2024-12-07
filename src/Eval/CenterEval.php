@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
  * It is advantageous to control the central squares as well as to place a piece
  * in the center.
  */
-class CenterEval extends AbstractEval implements ExplainEvalInterface
+class CenterEval extends AbstractEval
 {
     use ExplainEvalTrait;
 

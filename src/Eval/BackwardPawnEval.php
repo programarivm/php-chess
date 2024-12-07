@@ -14,9 +14,7 @@ use Chess\Variant\Classical\Piece\P;
  * The last pawn protecting other pawns in its chain. It is considered a
  * weakness because it cannot advance safely.
  */
-class BackwardPawnEval extends AbstractEval implements
-    ExplainEvalInterface,
-    InverseEvalInterface
+class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

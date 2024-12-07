@@ -15,8 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * checks. A discovered check occurs when the opponent's king can be checked by
  * moving a piece out of the way of another.
  */
-class DiscoveredCheckEval extends AbstractEval implements
-    ExplainEvalInterface
+class DiscoveredCheckEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;

@@ -15,8 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * opponent's back rank. The mated king is unable to move up the board because
  * it is blocked by friendly pawns on the second rank.
  */
-class BackRankThreatEval extends AbstractEval implements
-    ExplainEvalInterface
+class BackRankThreatEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait;
