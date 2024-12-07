@@ -14,7 +14,6 @@ use Chess\Variant\Classical\Piece\P;
  * defended by other pawns it is considered a weakness.
  */
 class IsolatedPawnEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface
 {

@@ -13,7 +13,6 @@ use Chess\Variant\AbstractPiece;
  * out of the line of attack because the king would be put in check.
  */
 class AbsolutePinEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface
 {

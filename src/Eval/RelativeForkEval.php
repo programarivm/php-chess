@@ -14,7 +14,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * double attack. A fork not involving the enemy king is a relative fork.
  */
 class RelativeForkEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
     use ElaborateEvalTrait;

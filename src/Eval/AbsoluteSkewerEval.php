@@ -14,7 +14,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * has to move out of danger exposing a more valuable piece to capture. Only
  * line pieces (bishops, rooks and queens) can skewer.
  */
-class AbsoluteSkewerEval extends AbstractEval implements ElaborateEvalInterface
+class AbsoluteSkewerEval extends AbstractEval
 {
     use ElaborateEvalTrait;
 

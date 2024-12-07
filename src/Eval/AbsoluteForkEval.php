@@ -13,7 +13,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * A tactic in which a piece attacks multiple pieces at the same time. It is a
  * double attack. A fork involving the enemy king is an absolute fork.
  */
-class AbsoluteForkEval extends AbstractEval implements ElaborateEvalInterface
+class AbsoluteForkEval extends AbstractEval
 {
     use ElaborateEvalTrait;
 

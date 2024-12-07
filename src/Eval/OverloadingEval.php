@@ -16,7 +16,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * typically resulting in an advantage for the opponent.
  */
 class OverloadingEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface
 {

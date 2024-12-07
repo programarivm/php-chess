@@ -16,7 +16,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * A higher score indicates a stronger defensive position.
  */
 class DefenseEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
     use ElaborateEvalTrait;

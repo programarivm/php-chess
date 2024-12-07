@@ -3,8 +3,8 @@
 namespace Chess\Tutor;
 
 use Chess\FenHeuristics;
-use Chess\Eval\ElaborateEvalInterface;
 use Chess\Eval\ExplainEvalInterface;
+use Chess\Eval\ElaborateEvalTrait;
 use Chess\Function\AbstractFunction;
 use Chess\ML\SumLabeller;
 use Chess\Variant\AbstractBoard;
@@ -44,7 +44,7 @@ class FenEvaluation extends AbstractParagraph
 
         foreach ($this->function->getEval() as $val) {
             $eval = new $val($this->board);
-            if (is_a($eval, ElaborateEvalInterface::class)) {
+            if (in_array(ElaborateEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->getElaboration()) {
                     $paragraph = [...$paragraph, ...$phrases];
                 }

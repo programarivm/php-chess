@@ -16,7 +16,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * resulting in a material gain.
  */
 class RelativePinEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
     use ElaborateEvalTrait;

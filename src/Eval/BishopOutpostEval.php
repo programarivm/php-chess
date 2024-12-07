@@ -15,7 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * it cannot be attacked by enemy pawns, and as a result, it is often exchanged
  * for another piece.
  */
-class BishopOutpostEval extends AbstractEval implements ElaborateEvalInterface
+class BishopOutpostEval extends AbstractEval
 {
     use ElaborateEvalTrait;
 

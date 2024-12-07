@@ -14,7 +14,6 @@ use Chess\Variant\Classical\Piece\P;
  * prevent it from being promoted.
  */
 class PassedPawnEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
     use ElaborateEvalTrait;

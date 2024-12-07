@@ -16,7 +16,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * it is blocked by friendly pawns on the second rank.
  */
 class BackRankThreatEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
     use ElaborateEvalTrait;

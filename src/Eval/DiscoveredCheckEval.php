@@ -16,7 +16,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * moving a piece out of the way of another.
  */
 class DiscoveredCheckEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
     use ElaborateEvalTrait;

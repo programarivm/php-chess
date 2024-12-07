@@ -15,7 +15,6 @@ use Chess\Variant\Classical\Piece\P;
  * weakness because it cannot advance safely.
  */
 class BackwardPawnEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface,
     InverseEvalInterface
 {

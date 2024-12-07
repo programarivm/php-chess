@@ -20,7 +20,6 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  * @see \Chess\Eval\ProtectionEval
  */
 class AttackEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
     use ElaborateEvalTrait;

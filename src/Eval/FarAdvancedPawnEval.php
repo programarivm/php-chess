@@ -13,7 +13,6 @@ use Chess\Variant\Classical\Piece\P;
  * A pawn that is threatening to promote.
  */
 class FarAdvancedPawnEval extends AbstractEval implements
-    ElaborateEvalInterface,
     ExplainEvalInterface
 {
     use ElaborateEvalTrait;
