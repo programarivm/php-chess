@@ -28,7 +28,7 @@ class BishopOutpostEval extends AbstractEval
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
-     * @param \Chess\Eval\PressureEval $dependsOn
+     * @param \Chess\Eval\SqOutpostEval $dependsOn
      */
     public function __construct(AbstractBoard $board, SqOutpostEval $dependsOn)
     {
