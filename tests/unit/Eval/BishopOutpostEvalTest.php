@@ -4,6 +4,7 @@ namespace Chess\Tests\Unit\Eval;
 
 use Chess\FenToBoardFactory;
 use Chess\Eval\BishopOutpostEval;
+use Chess\Eval\SqOutpostEval;
 use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -17,9 +18,10 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new BishopOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $bishopOutpostEval = new BishopOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $bishopOutpostEval->getResult());
     }
 
     /**
@@ -30,9 +32,10 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new BishopOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $bishopOutpostEval = new BishopOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $bishopOutpostEval->getResult());
     }
 
     /**
@@ -43,9 +46,10 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new BishopOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $bishopOutpostEval = new BishopOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $bishopOutpostEval->getResult());
     }
 
     /**
@@ -56,9 +60,10 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new BishopOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $bishopOutpostEval = new BishopOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $bishopOutpostEval->getResult());
     }
 
     /**
@@ -69,9 +74,10 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new BishopOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $bishopOutpostEval = new BishopOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $bishopOutpostEval->getResult());
     }
 
     /**
@@ -82,9 +88,10 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new BishopOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $bishopOutpostEval = new BishopOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $bishopOutpostEval->getResult());
     }
 
     public function wAdvancingData()
@@ -363,7 +370,8 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('8/8/8/7p/6b1/8/K7/2k5 w - -');
 
-        $bishopOutpostEval = new BishopOutpostEval($board);
+        $sqOutpostEval = new SqOutpostEval($board);
+        $bishopOutpostEval = new BishopOutpostEval($board, $sqOutpostEval);
 
         $this->assertSame($expectedResult, $bishopOutpostEval->getResult());
         $this->assertSame($expectedElaboration, $bishopOutpostEval->getElaboration());
