@@ -3,6 +3,7 @@
 namespace Chess\Tests\Unit\Eval;
 
 use Chess\Eval\KingSafetyEval;
+use Chess\Eval\PressureEval;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
@@ -14,14 +15,16 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
      */
     public function start()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $result = (new KingSafetyEval(new Board()))->getResult();
+        $board = new Board();
+        $pressureEval = new PressureEval($board);
+        $kingSafetyEval = new KingSafetyEval($board, $pressureEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $kingSafetyEval->getResult());
     }
 
     /**
@@ -40,7 +43,8 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
 
         $A00 = file_get_contents(self::DATA_FOLDER.'/sample/A00.pgn');
         $board = (new SanPlay($A00))->validate()->board;
-        $kingSafetyEval = new KingSafetyEval($board);
+        $pressureEval = new PressureEval($board);
+        $kingSafetyEval = new KingSafetyEval($board, $pressureEval);
 
         $this->assertSame($expectedResult, $kingSafetyEval->getResult());
         $this->assertSame($expectedExplanation, $kingSafetyEval->getExplanation());
@@ -51,15 +55,16 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
      */
     public function B25()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
-        $result = (new KingSafetyEval($board))->getResult();
+        $pressureEval = new PressureEval($board);
+        $kingSafetyEval = new KingSafetyEval($board, $pressureEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $kingSafetyEval->getResult());
     }
 }

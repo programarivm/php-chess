@@ -27,8 +27,9 @@ class KingSafetyEval extends AbstractEval implements InverseEvalInterface
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
+     * @param \Chess\Eval\PressureEval $dependsOn
      */
-    public function __construct(AbstractBoard $board)
+    public function __construct(AbstractBoard $board, PressureEval $dependsOn)
     {
         $this->board = $board;
 
@@ -46,7 +47,7 @@ class KingSafetyEval extends AbstractEval implements InverseEvalInterface
             "are more than desperately close to the adversary's king",
         ];
 
-        $pressEval = (new PressureEval($this->board))->getResult();
+        $pressEval = $dependsOn->getResult();
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
