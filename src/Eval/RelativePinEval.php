@@ -29,8 +29,9 @@ class RelativePinEval extends AbstractEval
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
+     * @param \Chess\Eval\PressureEval $dependsOn
      */
-    public function __construct(AbstractBoard $board)
+    public function __construct(AbstractBoard $board, PressureEval $dependsOn)
     {
         $this->board = $board;
 
@@ -45,7 +46,7 @@ class RelativePinEval extends AbstractEval
             "has a relative pin advantage",
         ];
 
-        $before = (new PressureEval($this->board))->getResult();
+        $before = $dependsOn->getResult();
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id !== Piece::K && $piece->id !== Piece::Q) {
