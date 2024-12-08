@@ -35,6 +35,7 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
+     * @param \Chess\Eval\IsolatedPawnEval $dependsOn
      */
     public function __construct(AbstractBoard $board, IsolatedPawnEval $dependsOn)
     {
