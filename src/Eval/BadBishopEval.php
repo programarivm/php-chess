@@ -26,8 +26,9 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
+     * @param \Chess\Eval\BishopPairEval $dependsOn
      */
-    public function __construct(AbstractBoard $board)
+    public function __construct(AbstractBoard $board, BishopPairEval $dependsOn)
     {
         $this->board = $board;
 
@@ -43,7 +44,7 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
             'has a bad bishop because too many of its pawns are blocking it',
         ];
 
-        $bishopPairEval = (new BishopPairEval($board))->getResult();
+        $bishopPairEval = $dependsOn->getResult();
 
         if (!$bishopPairEval[Color::W] && !$bishopPairEval[Color::B]) {
             foreach ($this->board->pieces() as $piece) {
