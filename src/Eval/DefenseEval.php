@@ -29,8 +29,9 @@ class DefenseEval extends AbstractEval
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
+     * @param \Chess\Eval\ProtectionEval $dependsOn
      */
-    public function __construct(AbstractBoard $board)
+    public function __construct(AbstractBoard $board, ProtectionEval $dependsOn)
     {
         $this->board = $board;
 
@@ -47,8 +48,6 @@ class DefenseEval extends AbstractEval
             "has a total defense advantage",
         ];
 
-        $protectionEval = new ProtectionEval($this->board);
-
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id !== Piece::K) {
                 if ($piece->attacking()) {
@@ -57,10 +56,10 @@ class DefenseEval extends AbstractEval
                     $this->board->refresh();
                     $newProtectionEval = new ProtectionEval($this->board);
                     $diffResult = $newProtectionEval->getResult()[$piece->oppColor()]
-                        - $protectionEval->getResult()[$piece->oppColor()];
+                        - $dependsOn->getResult()[$piece->oppColor()];
                     if ($diffResult > 0) {
                         foreach ($newProtectionEval->getElaboration() as $key => $val) {
-                            if (!in_array($val, $protectionEval->getElaboration())) {
+                            if (!in_array($val, $dependsOn->getElaboration())) {
                                 $diffPhrases[] = $val;
                             }
                         }
@@ -76,7 +75,7 @@ class DefenseEval extends AbstractEval
         $this->explain($this->result);
     }
 
-    /*
+    /**
      * Elaborate on the evaluation.
      *
      * @param \Chess\Variant\AbstractPiece $piece
