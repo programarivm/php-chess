@@ -26,7 +26,7 @@ abstract class AbstractEval
         Color::B => 0,
     ];
 
-    protected ?AbstractEval $dependsOn = null;
+    public ?AbstractEval $dependsOn = null;
 
     public function getResult()
     {
