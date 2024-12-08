@@ -36,7 +36,7 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
     /**
      * @param \Chess\Variant\AbstractBoard $board
      */
-    public function __construct(AbstractBoard $board)
+    public function __construct(AbstractBoard $board, IsolatedPawnEval $dependsOn)
     {
         $this->board = $board;
 
@@ -56,7 +56,7 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
             "has more backward pawns",
         ];
 
-        $this->isolatedPawnEval = (new IsolatedPawnEval($board))->getResult();
+        $this->isolatedPawnEval = $dependsOn->getResult();
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::P) {
