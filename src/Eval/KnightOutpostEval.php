@@ -28,12 +28,13 @@ class KnightOutpostEval extends AbstractEval
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
+     * @param \Chess\Eval\SqOutpostEval $dependsOn
      */
-    public function __construct(AbstractBoard $board)
+    public function __construct(AbstractBoard $board, SqOutpostEval $dependsOn)
     {
         $this->board = $board;
 
-        $sqOutpostEval = (new SqOutpostEval($board))->getResult();
+        $sqOutpostEval = $dependsOn->getResult();
 
         foreach ($sqOutpostEval as $key => $val) {
             foreach ($val as $sq) {

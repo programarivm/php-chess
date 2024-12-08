@@ -4,6 +4,7 @@ namespace Chess\Tests\Unit\Eval;
 
 use Chess\FenToBoardFactory;
 use Chess\Eval\KnightOutpostEval;
+use Chess\Eval\SqOutpostEval;
 use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
@@ -17,9 +18,10 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $knightOutpostEval = new KnightOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $knightOutpostEval->getResult());
     }
 
     /**
@@ -30,9 +32,10 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $knightOutpostEval = new KnightOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $knightOutpostEval->getResult());
     }
 
     /**
@@ -43,9 +46,10 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $knightOutpostEval = new KnightOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $knightOutpostEval->getResult());
     }
 
     /**
@@ -56,9 +60,10 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $knightOutpostEval = new KnightOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $knightOutpostEval->getResult());
     }
 
     /**
@@ -69,9 +74,10 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $knightOutpostEval = new KnightOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $knightOutpostEval->getResult());
     }
 
     /**
@@ -82,9 +88,10 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $sqOutpostEval = new SqOutpostEval($board);
+        $knightOutpostEval = new KnightOutpostEval($board, $sqOutpostEval);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expected, $knightOutpostEval->getResult());
     }
 
     public function wAdvancingData()
@@ -363,7 +370,8 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('5k2/7K/8/1N6/P7/8/8/8 w - -');
 
-        $knightOutpostEval = new KnightOutpostEval($board);
+        $sqOutpostEval = new SqOutpostEval($board);
+        $knightOutpostEval = new KnightOutpostEval($board, $sqOutpostEval);
 
         $this->assertSame($expectedResult, $knightOutpostEval->getResult());
         $this->assertSame($expectedElaboration, $knightOutpostEval->getElaboration());
