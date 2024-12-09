@@ -33,7 +33,7 @@ class FenHeuristics
     protected function calc(): FenHeuristics
     {
         $dependsOn = $this->function->dependencies($this->board);
-        foreach ($this->function->getEval() as $key => $val) {
+        foreach ($this->function->eval as $key => $val) {
             if ($val) {
                 $eval  = new $key($this->board, $dependsOn[$val]);
             } elseif (isset($dependsOn[$val])) {

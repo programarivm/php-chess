@@ -29,7 +29,7 @@ class FenEvaluation extends AbstractParagraph
     {
         $paragraph = [];
 
-        foreach ($this->function->getEval() as $key => $val) {
+        foreach ($this->function->eval as $key => $val) {
             if ($val) {
                 $eval  = new $key($this->board, $this->dependsOn[$val]);
             } elseif (isset($this->dependsOn[$val])) {
@@ -51,7 +51,7 @@ class FenEvaluation extends AbstractParagraph
     {
         $paragraph = [];
         
-        foreach ($this->function->getEval() as $key => $val) {
+        foreach ($this->function->eval as $key => $val) {
             if ($val) {
                 $eval  = new $key($this->board, $this->dependsOn[$val]);
             } elseif (isset($this->dependsOn[$val])) {

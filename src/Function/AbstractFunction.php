@@ -18,11 +18,6 @@ abstract class AbstractFunction
         SqOutpostEval::NAME => SqOutpostEval::class,
     ];
 
-    public function getEval(): array
-    {
-        return $this->eval;
-    }
-
     public function names(): array
     {
         foreach ($this->eval as $key => $val) {
