@@ -44,9 +44,13 @@ class FenHeuristics
     protected function calc(): FenHeuristics
     {
         foreach ($this->function->getEval() as $key => $val) {
-            $eval = $val
-                ? new $key($this->board, $this->dependencies[$val])
-                : new $key($this->board);
+            if ($val) {
+                $eval  = new $key($this->board, $this->dependencies[$val]);
+            } elseif (isset($this->dependencies[$val])) {
+                $eval = $this->function->dependencies[$val];
+            } else {
+                $eval = new $key($this->board);
+            }
             $result = $eval->getResult();
             if (is_array($result[Color::W])) {
                 if ($eval instanceof InverseEvalInterface) {
