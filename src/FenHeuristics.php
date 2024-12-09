@@ -24,7 +24,7 @@ class FenHeuristics
         $this->function = $function;
         $this->board = $board;
 
-        $this->dependencies()->calc()->ternarize();
+        $this->dependencies()->calc();
     }
 
     public function getBalance(): array
@@ -54,36 +54,31 @@ class FenHeuristics
             $result = $eval->getResult();
             if (is_array($result[Color::W])) {
                 if ($eval instanceof InverseEvalInterface) {
-                    $this->result[] = [
+                    $item = [
                         Color::W => count($result[Color::B]),
                         Color::B => count($result[Color::W]),
                     ];
                 } else {
-                    $this->result[] = [
+                    $item = [
                         Color::W => count($result[Color::W]),
                         Color::B => count($result[Color::B]),
                     ];
                 }
             } else {
                 if ($eval instanceof InverseEvalInterface) {
-                    $this->result[] = [
+                    $item = [
                         Color::W => $result[Color::B],
                         Color::B => $result[Color::W],
                     ];
                 } else {
-                    $this->result[] = $result;
+                    $item = $result;
                 }
             }
+            $this->result[] = $item;
+            $diff = $item[Color::W] - $item[Color::B];
+            $this->balance[] = $diff > 0 ? 1 : ($diff < 0 ? -1 : 0);
         }
 
         return $this;
-    }
-
-    protected function ternarize(): void
-    {
-        foreach ($this->result as $key => $val) {
-            $diff = $val[Color::W] - $val[Color::B];
-            $this->balance[$key] = $diff > 0 ? 1 : ($diff < 0 ? -1 : 0);
-        }
     }
 }
