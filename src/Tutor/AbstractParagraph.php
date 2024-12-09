@@ -12,4 +12,6 @@ abstract class AbstractParagraph
     public AbstractBoard $board;
 
     public array $paragraph = [];
+
+    public array $dependsOn = [];
 }

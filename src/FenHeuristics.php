@@ -17,14 +17,12 @@ class FenHeuristics
 
     protected array $balance = [];
 
-    protected array $dependencies = [];
-
     public function __construct(AbstractFunction $function, AbstractBoard $board)
     {
         $this->function = $function;
         $this->board = $board;
 
-        $this->dependencies()->calc();
+        $this->calc();
     }
 
     public function getBalance(): array
@@ -32,22 +30,14 @@ class FenHeuristics
         return $this->balance;
     }
 
-    protected function dependencies(): FenHeuristics
-    {
-        foreach ($this->function->dependencies as $key => $val) {
-            $this->dependencies[$key] = new $val($this->board);
-        }
-
-        return $this;
-    }
-
     protected function calc(): FenHeuristics
     {
+        $dependsOn = $this->function->dependencies($this->board);
         foreach ($this->function->getEval() as $key => $val) {
             if ($val) {
-                $eval  = new $key($this->board, $this->dependencies[$val]);
-            } elseif (isset($this->dependencies[$val])) {
-                $eval = $this->function->dependencies[$val];
+                $eval  = new $key($this->board, $dependsOn[$val]);
+            } elseif (isset($dependsOn[$val])) {
+                $eval = $this->function->dependsOn[$val];
             } else {
                 $eval = new $key($this->board);
             }

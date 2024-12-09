@@ -15,6 +15,9 @@ class FenEvaluation extends AbstractParagraph
     {
         $this->function = $function;
         $this->board = $board;
+
+        $this->dependsOn = $this->function->dependencies($this->board);
+
         $this->paragraph = [
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),
@@ -26,8 +29,14 @@ class FenEvaluation extends AbstractParagraph
     {
         $paragraph = [];
 
-        foreach ($this->function->getEval() as $val) {
-            $eval = new $val($this->board);
+        foreach ($this->function->getEval() as $key => $val) {
+            if ($val) {
+                $eval  = new $key($this->board, $this->dependsOn[$val]);
+            } elseif (isset($this->dependsOn[$val])) {
+                $eval = $this->function->dependsOn[$val];
+            } else {
+                $eval = new $key($this->board);
+            }
             if (in_array(ExplainEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->getExplanation()) {
                     $paragraph = [...$paragraph, ...$phrases];
@@ -41,9 +50,15 @@ class FenEvaluation extends AbstractParagraph
     private function fenElaboration(): array
     {
         $paragraph = [];
-
-        foreach ($this->function->getEval() as $val) {
-            $eval = new $val($this->board);
+        
+        foreach ($this->function->getEval() as $key => $val) {
+            if ($val) {
+                $eval  = new $key($this->board, $this->dependsOn[$val]);
+            } elseif (isset($this->dependsOn[$val])) {
+                $eval = $this->function->dependsOn[$val];
+            } else {
+                $eval = new $key($this->board);
+            }
             if (in_array(ElaborateEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->getElaboration()) {
                     $paragraph = [...$paragraph, ...$phrases];

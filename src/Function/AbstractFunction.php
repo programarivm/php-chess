@@ -10,7 +10,7 @@ use Chess\Eval\SqOutpostEval;
 
 abstract class AbstractFunction
 {
-    public array $dependencies = [
+    public array $dependsOn = [
         BishopPairEval::NAME => BishopPairEval::class,
         IsolatedPawnEval::NAME => IsolatedPawnEval::class,
         PressureEval::NAME => PressureEval::class,
@@ -30,5 +30,14 @@ abstract class AbstractFunction
         }
 
         return $names;
+    }
+
+    public function dependencies($board): array
+    {
+        foreach ($this->dependsOn as $key => $val) {
+            $dependencies[$key] = new $val($board);
+        }
+
+        return $dependencies;
     }
 }
