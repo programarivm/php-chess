@@ -56,7 +56,7 @@ class FenEvaluation extends AbstractParagraph
 
     private function evaluate(): array
     {
-        $balance = (new FenHeuristics($this->function, $this->board))->getBalance();
+        $balance = (new FenHeuristics($this->function, $this->board))->balance;
         $sum = (new SumLabeller())->label($balance);
         $abs = abs($sum);
 

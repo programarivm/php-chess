@@ -15,7 +15,7 @@ class FenHeuristics
 
     protected array $result = [];
 
-    protected array $balance = [];
+    public array $balance = [];
 
     public function __construct(AbstractFunction $function, AbstractBoard $board)
     {
@@ -23,11 +23,6 @@ class FenHeuristics
         $this->board = $board;
 
         $this->calc()->ternarize();
-    }
-
-    public function getBalance(): array
-    {
-        return $this->balance;
     }
 
     protected function calc(): FenHeuristics

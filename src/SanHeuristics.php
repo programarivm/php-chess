@@ -18,7 +18,7 @@ class SanHeuristics extends SanPlay
 
     protected array $result = [];
 
-    protected array $balance = [];
+    public array $balance = [];
 
     public function __construct(
         AbstractFunction $function,
@@ -32,11 +32,6 @@ class SanHeuristics extends SanPlay
         $this->name = $name;
 
         $this->calc()->balance()->normalize(-1, 1);
-    }
-
-    public function getBalance(): array
-    {
-        return $this->balance;
     }
 
     protected function calc(): SanHeuristics
