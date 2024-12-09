@@ -13,6 +13,8 @@ class FenHeuristics
 
     protected AbstractBoard $board;
 
+    public array $dependencies = [];
+
     protected array $result = [];
 
     protected array $balance = [];
@@ -22,6 +24,10 @@ class FenHeuristics
         $this->function = $function;
         $this->board = $board;
 
+        foreach ($this->function->dependencies as $key => $val) {
+            $this->dependencies[$key] = new $val($this->board);
+        }
+
         $this->calc();
     }
 
@@ -30,11 +36,21 @@ class FenHeuristics
         return $this->balance;
     }
 
+    public function resolve($class, $name)
+    {
+        if ($name) {
+            return new $class($this->board, $this->dependencies[$name]);
+        } elseif (isset($this->dependencies[$name])) {
+            return $this->dependencies[$name];
+        }
+
+        return new $class($this->board);
+    }
+
     protected function calc(): FenHeuristics
     {
-        $dependencies = $this->function->dependencies($this->board);
         foreach ($this->function->eval as $key => $val) {
-            $eval = $this->function->resolve($this->board, $dependencies, $key, $val);
+            $eval = $this->resolve($key, $val);
             $result = $eval->getResult();
             if (is_array($result[Color::W])) {
                 if ($eval instanceof InverseEvalInterface) {

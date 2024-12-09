@@ -15,7 +15,7 @@ class FenEvaluation extends AbstractParagraph
     {
         $this->function = $function;
         $this->board = $board;
-        $this->dependencies = $this->function->dependencies($this->board);
+        $this->fenHeuristics = new FenHeuristics($this->function, $this->board);
         $this->paragraph = [
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),
@@ -28,7 +28,7 @@ class FenEvaluation extends AbstractParagraph
         $paragraph = [];
 
         foreach ($this->function->eval as $key => $val) {
-            $eval = $this->function->resolve($this->board, $this->dependencies, $key, $val);
+            $eval = $this->fenHeuristics->resolve($key, $val);
             if (in_array(ExplainEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->getExplanation()) {
                     $paragraph = [...$paragraph, ...$phrases];
@@ -44,7 +44,7 @@ class FenEvaluation extends AbstractParagraph
         $paragraph = [];
 
         foreach ($this->function->eval as $key => $val) {
-            $eval = $this->function->resolve($this->board, $this->dependencies, $key, $val);
+            $eval = $this->fenHeuristics->resolve($key, $val);
             if (in_array(ElaborateEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->getElaboration()) {
                     $paragraph = [...$paragraph, ...$phrases];
