@@ -2,6 +2,7 @@
 
 namespace Chess;
 
+use Chess\Eval\AbstractEval;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Function\AbstractFunction;
 use Chess\Variant\AbstractBoard;
@@ -13,7 +14,7 @@ class FenHeuristics
 
     protected AbstractBoard $board;
 
-    public array $dependencies = [];
+    protected array $dependencies = [];
 
     protected array $result = [];
 
@@ -36,7 +37,7 @@ class FenHeuristics
         return $this->balance;
     }
 
-    public function resolve($class, $name)
+    public function resolve(string $class, ?string $name): AbstractEval
     {
         if ($name) {
             return new $class($this->board, $this->dependencies[$name]);
