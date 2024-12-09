@@ -15,9 +15,7 @@ class FenEvaluation extends AbstractParagraph
     {
         $this->function = $function;
         $this->board = $board;
-
         $this->dependencies = $this->function->dependencies($this->board);
-
         $this->paragraph = [
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),

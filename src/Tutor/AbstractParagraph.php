@@ -13,5 +13,5 @@ abstract class AbstractParagraph
 
     public array $paragraph = [];
 
-    public array $dependsOn = [];
+    public array $dependencies = [];
 }
