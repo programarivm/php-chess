@@ -10,15 +10,15 @@ use Chess\Variant\Classical\PGN\AN\Color;
 
 class FenHeuristics
 {
-    protected AbstractFunction $function;
+    public AbstractFunction $function;
 
-    protected AbstractBoard $board;
+    public AbstractBoard $board;
 
-    protected array $dependencies = [];
+    public array $dependencies = [];
 
-    protected array $result = [];
+    public array $result = [];
 
-    protected array $balance = [];
+    public array $balance = [];
 
     public function __construct(AbstractFunction $function, AbstractBoard $board)
     {
@@ -30,11 +30,6 @@ class FenHeuristics
         }
 
         $this->calc();
-    }
-
-    public function getBalance(): array
-    {
-        return $this->balance;
     }
 
     public function resolve(string $class, ?string $name): AbstractEval
