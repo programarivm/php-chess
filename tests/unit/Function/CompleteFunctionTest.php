@@ -40,11 +40,11 @@ class CompleteFunctionTest extends AbstractUnitTestCase
             'Bad bishop',
             'Diagonal opposition',
             'Direct opposition',
-            'Attack',
             'Overloading',
             'Back-rank threat',
-            'Checkability',
             'Flight square',
+            'Attack',
+            'Checkability',
         ];
 
         $this->assertSame($expected, (new CompleteFunction())->names());

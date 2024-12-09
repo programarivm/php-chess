@@ -36,7 +36,7 @@ use Chess\Eval\RelativePinEval;
 use Chess\Eval\SpaceEval;
 use Chess\Eval\SqOutpostEval;
 
-class CompleteFunction extends AbstractFunction
+class CompleteFunction extends FastFunction
 {
     public array $eval = [
         MaterialEval::class => null,
@@ -66,10 +66,10 @@ class CompleteFunction extends AbstractFunction
         BadBishopEval::class => BishopPairEval::NAME,
         DiagonalOppositionEval::class => null,
         DirectOppositionEval::class => null,
-        AttackEval::class => null,
         OverloadingEval::class => null,
         BackRankThreatEval::class => null,
-        CheckabilityEval::class => null,
         FlightSquareEval::class => null,
+        AttackEval::class => null,
+        CheckabilityEval::class => null,
     ];
 }

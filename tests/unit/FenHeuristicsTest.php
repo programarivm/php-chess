@@ -44,7 +44,7 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $balance = (new FenHeuristics(self::$function, $board))->getBalance();
 
-        $expected = [ 0, 1, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ];
+        $expected = [ 0, 1, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -92,7 +92,7 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $balance = (new FenHeuristics(self::$function, $board))->getBalance();
 
-        $expected = [ 1, 1, 0, 1, -1, 0, 0, 0, 0, 1, 1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 1 ];
+        $expected = [ 1, 1, 0, 1, -1, 0, 0, 0, 0, 1, 1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -108,7 +108,7 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $balance = (new FenHeuristics(self::$function, $board))->getBalance();
 
-        $expected = [ 1, 1, -1, 1, 1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 1, 1 ];
+        $expected = [ 1, 1, -1, 1, 1, 1, -1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1 ];
 
         $this->assertEquals($expected, $balance);
     }
@@ -124,7 +124,7 @@ class FenHeuristicsTest extends AbstractUnitTestCase
 
         $balance = (new FenHeuristics(self::$function, $board))->getBalance();
 
-        $expected = [ 0, 1, -1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ];
+        $expected = [ 0, 1, -1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ];
 
         $this->assertEquals($expected, $balance);
     }
