@@ -25,22 +25,22 @@ class FenHeuristics
         $this->function = $function;
         $this->board = $board;
 
-        foreach ($this->function->dependencies as $key => $val) {
-            $this->dependencies[$key] = new $val($this->board);
+        foreach ($this->function->dependencies as $val) {
+            $this->dependencies[$val] = new $val($this->board);
         }
 
         $this->calc();
     }
 
-    public function resolve(string $class, ?string $name): AbstractEval
+    public function resolve(string $key, ?string $val): AbstractEval
     {
-        if ($name) {
-            return new $class($this->board, $this->dependencies[$name]);
-        } elseif (isset($this->dependencies[$name])) {
-            return $this->dependencies[$name];
+        if ($val) {
+            return new $key($this->board, $this->dependencies[$val]);
+        } elseif (isset($this->dependencies[$key])) {
+            return $this->dependencies[$key];
         }
 
-        return new $class($this->board);
+        return new $key($this->board);
     }
 
     protected function calc(): FenHeuristics

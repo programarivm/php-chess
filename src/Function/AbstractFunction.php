@@ -11,11 +11,11 @@ use Chess\Eval\SqOutpostEval;
 abstract class AbstractFunction
 {
     public array $dependencies = [
-        BishopPairEval::NAME => BishopPairEval::class,
-        IsolatedPawnEval::NAME => IsolatedPawnEval::class,
-        PressureEval::NAME => PressureEval::class,
-        ProtectionEval::NAME => ProtectionEval::class,
-        SqOutpostEval::NAME => SqOutpostEval::class,
+        BishopPairEval::class,
+        IsolatedPawnEval::class,
+        PressureEval::class,
+        ProtectionEval::class,
+        SqOutpostEval::class,
     ];
 
     public function names(): array
