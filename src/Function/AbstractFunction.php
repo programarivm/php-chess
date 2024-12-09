@@ -18,6 +18,8 @@ abstract class AbstractFunction
         SqOutpostEval::NAME => SqOutpostEval::class,
     ];
 
+    public array $dependencies;
+
     public function names(): array
     {
         foreach ($this->eval as $key => $val) {
@@ -27,12 +29,24 @@ abstract class AbstractFunction
         return $names;
     }
 
-    public function dependencies($board): array
+    public function dependencies($board)
     {
+        $dependencies = [];
         foreach ($this->dependsOn as $key => $val) {
             $dependencies[$key] = new $val($board);
         }
 
         return $dependencies;
+    }
+
+    public function resolve($board, $dependencies, $class, $name)
+    {
+        if ($name) {
+            return new $class($board, $dependencies[$name]);
+        } elseif (isset($dependencies[$name])) {
+            return $dependencies[$name];
+        }
+
+        return new $class($board);
     }
 }
