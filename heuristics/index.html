@@ -276,7 +276,7 @@ $board = FenToBoardFactory::create($fen);
 
 $result = [
     'names' =&gt; $function-&gt;names(),
-    'balance' =&gt; (new FenHeuristics($function, $board))-&gt;getBalance(),
+    'balance' =&gt; (new FenHeuristics($function, $board))-&gt;balance,
 ];
 
 print_r($result);
@@ -367,7 +367,7 @@ $name = 'Space';
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$balance = (new SanHeuristics($function, $movetext, $name))-&gt;getBalance();
+$balance = (new SanHeuristics($function, $movetext, $name))-&gt;balance;
 
 print_r($balance);
 </code></pre>
