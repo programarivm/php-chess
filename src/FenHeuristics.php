@@ -29,22 +29,6 @@ class FenHeuristics
             $this->dependencies[$val] = new $val($this->board);
         }
 
-        $this->calc();
-    }
-
-    public function resolve(string $key, ?string $val): AbstractEval
-    {
-        if ($val) {
-            return new $key($this->board, $this->dependencies[$val]);
-        } elseif (isset($this->dependencies[$key])) {
-            return $this->dependencies[$key];
-        }
-
-        return new $key($this->board);
-    }
-
-    protected function calc(): FenHeuristics
-    {
         foreach ($this->function->eval as $key => $val) {
             $eval = $this->resolve($key, $val);
             $result = $eval->getResult();
@@ -74,7 +58,16 @@ class FenHeuristics
             $diff = $item[Color::W] - $item[Color::B];
             $this->balance[] = $diff > 0 ? 1 : ($diff < 0 ? -1 : 0);
         }
+    }
 
-        return $this;
+    public function resolve(string $key, ?string $val): AbstractEval
+    {
+        if ($val) {
+            return new $key($this->board, $this->dependencies[$val]);
+        } elseif (isset($this->dependencies[$key])) {
+            return $this->dependencies[$key];
+        }
+
+        return new $key($this->board);
     }
 }
