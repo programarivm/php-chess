@@ -17,12 +17,14 @@ class FenHeuristics
 
     protected array $balance = [];
 
+    protected array $dependencies = [];
+
     public function __construct(AbstractFunction $function, AbstractBoard $board)
     {
         $this->function = $function;
         $this->board = $board;
 
-        $this->calc()->ternarize();
+        $this->dependencies()->calc()->ternarize();
     }
 
     public function getBalance(): array
@@ -30,10 +32,21 @@ class FenHeuristics
         return $this->balance;
     }
 
+    protected function dependencies(): FenHeuristics
+    {
+        foreach ($this->function->dependencies as $key => $val) {
+            $this->dependencies[$key] = new $val($this->board);
+        }
+
+        return $this;
+    }
+
     protected function calc(): FenHeuristics
     {
-        foreach ($this->function->getEval() as $val) {
-            $eval = new $val($this->board);
+        foreach ($this->function->getEval() as $key => $val) {
+            $eval = $val
+                ? new $key($this->board, $this->dependencies[$val])
+                : new $key($this->board);
             $result = $eval->getResult();
             if (is_array($result[Color::W])) {
                 if ($eval instanceof InverseEvalInterface) {

@@ -36,15 +36,6 @@ use Chess\Eval\SqOutpostEval;
 
 class FastFunction extends AbstractFunction
 {
-    protected array $dependencies = [
-        PressureEval::NAME => null,
-        IsolatedPawnEval::NAME => null,
-        ProtectionEval::NAME => null,
-        PressureEval::NAME => null,
-        SqOutpostEval::NAME => null,
-        BishopPairEval::NAME => null,
-    ];
-
     protected array $eval = [
         MaterialEval::class => null,
         CenterEval::class => null,
