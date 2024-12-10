@@ -138,6 +138,33 @@ abstract class AbstractPiece
         return $this->board->diffPieces($before, $after) !== [];
     }
 
+    /**
+     * Returns true if the king is left in check.
+     *
+     * @return bool
+     */
+    public function leavesInCheck(): bool
+    {
+        $isCheck = false;
+        $pieces = $this->board->pieces();
+        $history = $this->board->history;
+        $castlingAbility = $this->board->castlingAbility;
+        if ($this->move()) {
+            $isCheck = $this->board->piece($this->color, Piece::K)?->attacking() != [];
+            foreach ($this->board->pieces() as $val) {
+                $this->board->detach($val);
+            }
+            foreach ($pieces as $val) {
+                $this->board->attach($val);
+            }
+            $this->board->history = $history;
+            $this->board->castlingAbility = $castlingAbility;
+            $this->board->refresh();
+        }
+
+        return $isCheck;
+    }
+
     public function lineOfAttack()
     {
         $sqs = [];

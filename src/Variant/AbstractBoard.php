@@ -165,34 +165,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Returns true if the king is left in check.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     * @return bool
-     */
-    protected function leavesInCheck(AbstractPiece $piece): bool
-    {
-        $isCheck = false;
-        $pieces = $this->pieces();
-        $history = $this->history;
-        $castlingAbility = $this->castlingAbility;
-        if ($piece->move()) {
-            $isCheck = $this->piece($piece->color, Piece::K)?->attacking() != [];
-            foreach ($this->pieces() as $val) {
-                $this->detach($val);
-            }
-            foreach ($pieces as $val) {
-                $this->attach($val);
-            }
-            $this->history = $history;
-            $this->castlingAbility = $castlingAbility;
-            $this->refresh();
-        }
-
-        return $isCheck;
-    }
-
-    /**
      * Removes an element from the history.
      *
      * @return \Chess\Variant\AbstractBoard
@@ -434,7 +406,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
         foreach ($this->pickPiece($move) as $piece) {
             if ($piece->isMovable()) {
-                if (!$this->leavesInCheck($piece)) {
+                if (!$piece->leavesInCheck()) {
                     $pieces[] = $piece;
                 }
             }
