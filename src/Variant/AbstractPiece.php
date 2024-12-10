@@ -201,8 +201,8 @@ abstract class AbstractPiece
             $this->board->square,
             $this->id === Piece::R ? $this->type : null
         ));
-        $this->promotion()
-            ->updateCastle()
+        $this->promotion();
+        $this->updateCastle()
             ->pushHistory()
             ->refresh();
 
@@ -211,10 +211,8 @@ abstract class AbstractPiece
 
     /**
      * Piece promotion.
-     *
-     * @return \Chess\Variant\AbstractPiece
      */
-    public function promotion(): AbstractPiece
+    public function promotion(): void
     {
         if ($this->id === Piece::P) {
             if ($this->isPromoted()) {
@@ -247,8 +245,6 @@ abstract class AbstractPiece
                 }
             }
         }
-
-        return $this;
     }
 
     /**
