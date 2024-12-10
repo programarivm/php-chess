@@ -164,7 +164,7 @@ abstract class AbstractPiece
     public function lineOfAttack(): array
     {
         $sqs = [];
-        if ($this->id !== Piece::K) {
+        if ($this->id !== Piece::K && $this->id !== Piece::P) {
             $king = $this->board->piece($this->oppColor(), Piece::K);
             if ($this->file() === $king->file()) {
                 if ($this->rank() > $king->rank()) {
