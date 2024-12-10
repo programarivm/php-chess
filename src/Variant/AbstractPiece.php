@@ -240,9 +240,9 @@ abstract class AbstractPiece
      *
      * @return bool
      */
-    public function leavesInCheck(): bool
+    public function isLeftInCheck(): bool
     {
-        $isCheck = false;
+        $isLeftInCheck = false;
         $turn = $this->board->turn;
         $history = $this->board->history;
         $castlingAbility = $this->board->castlingAbility;
@@ -250,7 +250,7 @@ abstract class AbstractPiece
         $spaceEval = $this->board->spaceEval;
         $pieces = $this->board->pieces();
         if ($this->move()) {
-            $isCheck = $this->board->piece($this->color, Piece::K)?->attacking() != [];
+            $isLeftInCheck = $this->board->piece($this->color, Piece::K)?->attacking() != [];
             $this->board->turn = $turn;
             $this->board->history = $history;
             $this->board->castlingAbility = $castlingAbility;
@@ -264,7 +264,7 @@ abstract class AbstractPiece
             }
         }
 
-        return $isCheck;
+        return $isLeftInCheck;
     }
 
     /**

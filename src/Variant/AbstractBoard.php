@@ -400,7 +400,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
         foreach ($this->pickPiece($move) as $piece) {
             if ($piece->isMovable()) {
-                if (!$piece->leavesInCheck()) {
+                if (!$piece->isLeftInCheck()) {
                     $pieces[] = $piece;
                 }
             }
