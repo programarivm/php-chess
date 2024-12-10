@@ -161,35 +161,11 @@ abstract class AbstractBoard extends \SplObjectStorage
             } elseif ($piece->move['case'] === $this->move->case(Move::CASTLE_LONG)) {
                 return $piece->castle(RType::CASTLE_LONG);
             } else {
-                return $this->move($piece);
+                return $piece->move();
             }
         }
 
         return false;
-    }
-
-    /**
-     * Makes a move.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     * @return bool
-     */
-    protected function move(AbstractPiece $piece): bool
-    {
-        $this->capture($piece)->detach($this->pieceBySq($piece->sq));
-        $class = VariantType::getClass($this->variant, $piece->id);
-        $this->attach(new $class(
-            $piece->color,
-            $piece->move['to'],
-            $this->square,
-            $piece->id === Piece::R ? $piece->type : null
-        ));
-        $this->promote($piece)
-            ->updateCastle($piece)
-            ->pushHistory($piece)
-            ->refresh();
-
-        return true;
     }
 
     /**
@@ -198,7 +174,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @param \Chess\Variant\AbstractPiece $piece
      * @return \Chess\Variant\AbstractBoard
      */
-    protected function updateCastle(AbstractPiece $piece): AbstractBoard
+    public function updateCastle(AbstractPiece $piece): AbstractBoard
     {
         if ($this->castlingRule?->can($this->castlingAbility, $this->turn)) {
             if ($piece->id === Piece::K) {
@@ -233,7 +209,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @param \Chess\Variant\AbstractPiece $piece
      * @return \Chess\Variant\AbstractBoard
      */
-    protected function capture(AbstractPiece $piece): AbstractBoard
+    public function capture(AbstractPiece $piece): AbstractBoard
     {
         if (str_contains($piece->move['case'], 'x')) {
             if ($piece->id === Piece::P &&
@@ -256,7 +232,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @param \Chess\Variant\AbstractPiece $piece
      * @return \Chess\Variant\AbstractBoard
      */
-    protected function promote(AbstractPiece $piece): AbstractBoard
+    public function promote(AbstractPiece $piece): AbstractBoard
     {
         if ($piece->id === Piece::P) {
             if ($piece->isPromoted()) {
@@ -305,7 +281,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $pieces = $this->pieces();
         $history = $this->history;
         $castlingAbility = $this->castlingAbility;
-        if ($this->move($piece)) {
+        if ($piece->move()) {
             $isCheck = $this->piece($piece->color, Piece::K)?->attacking() != [];
             foreach ($this->pieces() as $val) {
                 $this->detach($val);

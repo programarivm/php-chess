@@ -179,4 +179,27 @@ abstract class AbstractPiece
 
         return $sqs;
     }
+
+    /**
+     * Makes a move.
+     *
+     * @return bool
+     */
+    public function move(): bool
+    {
+        $this->board->capture($this)->detach($this->board->pieceBySq($this->sq));
+        $class = VariantType::getClass($this->board->variant, $this->id);
+        $this->board->attach(new $class(
+            $this->color,
+            $this->move['to'],
+            $this->board->square,
+            $this->id === Piece::R ? $this->type : null
+        ));
+        $this->board->promote($this)
+            ->updateCastle($this)
+            ->pushHistory($this)
+            ->refresh();
+
+        return true;
+    }
 }
