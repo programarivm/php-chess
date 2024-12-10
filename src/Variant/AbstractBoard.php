@@ -157,9 +157,9 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         foreach ($pieces as $piece) {
             if ($piece->move['case'] === $this->move->case(Move::CASTLE_SHORT)) {
-                return $this->castle($piece, RType::CASTLE_SHORT);
+                return $piece->castle(RType::CASTLE_SHORT);
             } elseif ($piece->move['case'] === $this->move->case(Move::CASTLE_LONG)) {
-                return $this->castle($piece, RType::CASTLE_LONG);
+                return $piece->castle(RType::CASTLE_LONG);
             } else {
                 return $this->move($piece);
             }
@@ -190,41 +190,6 @@ abstract class AbstractBoard extends \SplObjectStorage
             ->refresh();
 
         return true;
-    }
-
-    /**
-     * Castles the king.
-     *
-     * @param \Chess\Variant\Classical\Piece\K $king
-     * @param string $rookType
-     * @return bool
-     */
-    protected function castle(K $king, string $rookType): bool
-    {
-        if ($rook = $king->getCastleRook($rookType)) {
-            $this->detach($this->pieceBySq($king->sq));
-            $this->attach(
-                new K(
-                    $king->color,
-                    $this->castlingRule->rule[$king->color][Piece::K][rtrim($king->move['pgn'], '+')]['to'],
-                    $this->square
-                )
-             );
-            $this->detach($rook);
-            $this->attach(
-                new R(
-                    $rook->color,
-                    $this->castlingRule->rule[$king->color][Piece::R][rtrim($king->move['pgn'], '+')]['to'],
-                    $this->square,
-                    $rook->type
-                )
-            );
-            $this->castlingAbility = $this->castlingRule->castle($this->castlingAbility, $this->turn);
-            $this->pushHistory($king)->refresh();
-            return true;
-        }
-
-        return false;
     }
 
     /**
@@ -362,7 +327,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @param \Chess\Variant\AbstractPiece $piece
      * @return \Chess\Variant\AbstractBoard
      */
-    protected function pushHistory(AbstractPiece $piece): AbstractBoard
+    public function pushHistory(AbstractPiece $piece): AbstractBoard
     {
         $piece->move['from'] = $piece->sq;
         $this->history[] = $piece->move;

@@ -196,4 +196,41 @@ class K extends AbstractPiece
     {
         return false;
     }
+
+    /**
+     * Castles the king.
+     *
+     * @param string $rookType
+     * @return bool
+     */
+    public function castle(string $rookType): bool
+    {
+        if ($rook = $this->getCastleRook($rookType)) {
+            $this->board->detach($this->board->pieceBySq($this->sq));
+            $this->board->attach(
+                new K(
+                    $this->color,
+                    $this->board->castlingRule->rule[$this->color][Piece::K][rtrim($this->move['pgn'], '+')]['to'],
+                    $this->square
+                )
+             );
+            $this->board->detach($rook);
+            $this->board->attach(
+                new R(
+                    $rook->color,
+                    $this->board->castlingRule->rule[$this->color][Piece::R][rtrim($this->move['pgn'], '+')]['to'],
+                    $this->square,
+                    $rook->type
+                )
+            );
+            $this->board->castlingAbility = $this->board->castlingRule->castle(
+                $this->board->castlingAbility,
+                $this->board->turn
+            );
+            $this->board->pushHistory($this)->refresh();
+            return true;
+        }
+
+        return false;
+    }
 }
