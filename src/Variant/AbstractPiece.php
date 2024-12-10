@@ -191,7 +191,7 @@ abstract class AbstractPiece
      */
     public function move(): bool
     {
-        $this->board->capture($this)->detach($this->board->pieceBySq($this->sq));
+        $this->capture()->detach($this->board->pieceBySq($this->sq));
         $class = VariantType::getClass($this->board->variant, $this->id);
         $this->board->attach(new $class(
             $this->color,
@@ -244,6 +244,28 @@ abstract class AbstractPiece
                     ));
                 }
             }
+        }
+
+        return $this->board;
+    }
+
+    /**
+     * Captures a piece.
+     *
+     * @return \Chess\Variant\AbstractBoard
+     */
+    public function capture(): AbstractBoard
+    {
+        if (str_contains($this->move['case'], 'x')) {
+            if ($this->id === Piece::P &&
+                $this->enPassantSq &&
+                !$this->board->pieceBySq($this->move['to'])
+            ) {
+                $captured = $this->enPassantPawn();
+            } else {
+                $captured = $this->board->pieceBySq($this->move['to']);
+            }
+            $captured ? $this->board->detach($captured) : null;
         }
 
         return $this->board;

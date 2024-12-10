@@ -200,29 +200,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Captures a piece.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     * @return \Chess\Variant\AbstractBoard
-     */
-    public function capture(AbstractPiece $piece): AbstractBoard
-    {
-        if (str_contains($piece->move['case'], 'x')) {
-            if ($piece->id === Piece::P &&
-                $piece->enPassantSq &&
-                !$this->pieceBySq($piece->move['to'])
-            ) {
-                $captured = $piece->enPassantPawn();
-            } else {
-                $captured = $this->pieceBySq($piece->move['to']);
-            }
-            $captured ? $this->detach($captured) : null;
-        }
-
-        return $this;
-    }
-
-    /**
      * Returns true if the king is left in check.
      *
      * @param \Chess\Variant\AbstractPiece $piece
