@@ -161,57 +161,6 @@ abstract class AbstractPiece
         return $isCheck;
     }
 
-    public function lineOfAttack(): array
-    {
-        $sqs = [];
-        if ($this->id !== Piece::K && $this->id !== Piece::P) {
-            $king = $this->board->piece($this->oppColor(), Piece::K);
-            if ($this->file() === $king->file()) {
-                if ($this->rank() > $king->rank()) {
-                    for ($i = 1; $i < $this->rank() - $king->rank(); $i++) {
-                        $sqs[] = $this->file() . ($king->rank() + $i);
-                    }
-                } else {
-                    for ($i = 1; $i < $king->rank() - $this->rank(); $i++) {
-                        $sqs[] = $this->file() . ($king->rank() - $i);
-                    }
-                }
-            } elseif ($this->rank() === $king->rank()) {
-                if ($this->file() > $king->file()) {
-                    for ($i = 1; $i < ord($this->file()) - ord($king->file()); $i++) {
-                        $sqs[] = chr(ord($king->file()) + $i) . $this->rank();
-                    }
-                } else {
-                    for ($i = 1; $i < ord($king->file()) - ord($this->file()); $i++) {
-                        $sqs[] = chr(ord($king->file()) - $i) . $this->rank();
-                    }
-                }
-            } elseif (abs(ord($this->file()) - ord($king->file())) ===
-                abs(ord($this->rank()) - ord($king->rank()))
-            ) {
-                if ($this->file() > $king->file() && $this->rank() < $king->rank()) {
-                    for ($i = 1; $i < $king->rank() - $this->rank(); $i++) {
-                        $sqs[] = chr(ord($king->file()) + $i) . ($king->rank() - $i);
-                    }
-                } elseif ($this->file() < $king->file() && $this->rank() < $king->rank()) {
-                    for ($i = 1; $i < $king->rank() - $this->rank(); $i++) {
-                        $sqs[] = chr(ord($king->file()) - $i) . ($king->rank() - $i);
-                    }
-                } elseif ($this->file() < $king->file() && $this->rank() > $king->rank()) {
-                    for ($i = 1; $i < $this->rank() - $king->rank(); $i++) {
-                        $sqs[] = chr(ord($king->file()) - $i) . ($king->rank() + $i);
-                    }
-                } else {
-                    for ($i = 1; $i < $this->rank() - $king->rank(); $i++) {
-                        $sqs[] = chr(ord($king->file()) + $i) . ($king->rank() + $i);
-                    }
-                }
-            }
-        }
-
-        return $sqs;
-    }
-
     /**
      * Makes a move.
      *
@@ -333,5 +282,15 @@ abstract class AbstractPiece
     {
         $this->move['from'] = $this->sq;
         $this->board->history[] = $this->move;
+    }
+
+    /**
+     * Returns an array representing the line of attack of this piece.
+     *
+     * @return array
+     */
+    public function lineOfAttack(): array
+    {
+        return [];
     }
 }
