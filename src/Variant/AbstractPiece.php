@@ -202,9 +202,9 @@ abstract class AbstractPiece
             $this->id === Piece::R ? $this->type : null
         ));
         $this->promotion();
-        $this->updateCastle()
-            ->pushHistory()
-            ->refresh();
+        $this->updateCastle();
+        $this->pushHistory();
+        $this->board->refresh();
 
         return true;
     }
@@ -301,14 +301,10 @@ abstract class AbstractPiece
 
     /**
      * Adds a new element to the history.
-     *
-     * @return \Chess\Variant\AbstractBoard
      */
-    public function pushHistory(): AbstractBoard
+    public function pushHistory(): void
     {
         $this->move['from'] = $this->sq;
         $this->board->history[] = $this->move;
-
-        return $this->board;
     }
 }

@@ -227,7 +227,8 @@ class K extends AbstractPiece
                 $this->board->castlingAbility,
                 $this->board->turn
             );
-            $this->pushHistory($this)->refresh();
+            $this->pushHistory();
+            $this->board->refresh();
             return true;
         }
 
