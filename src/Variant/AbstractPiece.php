@@ -2,6 +2,10 @@
 
 namespace Chess\Variant;
 
+use Chess\Variant\Classical\Piece\B;
+use Chess\Variant\Classical\Piece\N;
+use Chess\Variant\Classical\Piece\Q;
+use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
@@ -195,11 +199,53 @@ abstract class AbstractPiece
             $this->board->square,
             $this->id === Piece::R ? $this->type : null
         ));
-        $this->board->promote($this)
+        $this->promote()
             ->updateCastle($this)
             ->pushHistory($this)
             ->refresh();
 
         return true;
+    }
+
+    /**
+     * Piece promotion.
+     *
+     * @return \Chess\Variant\AbstractBoard
+     */
+    public function promote(): AbstractBoard
+    {
+        if ($this->id === Piece::P) {
+            if ($this->isPromoted()) {
+                $this->board->detach($this->board->pieceBySq($this->move['to']));
+                if ($this->move['newId'] === Piece::N) {
+                    $this->board->attach(new N(
+                        $this->color,
+                        $this->move['to'],
+                        $this->board->square
+                    ));
+                } elseif ($this->move['newId'] === Piece::B) {
+                    $this->board->attach(new B(
+                        $this->color,
+                        $this->move['to'],
+                        $this->board->square
+                    ));
+                } elseif ($this->move['newId'] === Piece::R) {
+                    $this->board->attach(new R(
+                        $this->color,
+                        $this->move['to'],
+                        $this->board->square,
+                        RType::R
+                    ));
+                } else {
+                    $this->board->attach(new Q(
+                        $this->color,
+                        $this->move['to'],
+                        $this->board->square
+                    ));
+                }
+            }
+        }
+
+        return $this->board;
     }
 }

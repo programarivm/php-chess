@@ -7,12 +7,8 @@ use Chess\Eval\SpaceEval;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Piece\B;
 use Chess\Variant\Classical\Piece\K;
-use Chess\Variant\Classical\Piece\N;
 use Chess\Variant\Classical\Piece\P;
-use Chess\Variant\Classical\Piece\Q;
-use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\PGN\Move;
 
 abstract class AbstractBoard extends \SplObjectStorage
@@ -221,49 +217,6 @@ abstract class AbstractBoard extends \SplObjectStorage
                 $captured = $this->pieceBySq($piece->move['to']);
             }
             $captured ? $this->detach($captured) : null;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Promotes a pawn.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     * @return \Chess\Variant\AbstractBoard
-     */
-    public function promote(AbstractPiece $piece): AbstractBoard
-    {
-        if ($piece->id === Piece::P) {
-            if ($piece->isPromoted()) {
-                $this->detach($this->pieceBySq($piece->move['to']));
-                if ($piece->move['newId'] === Piece::N) {
-                    $this->attach(new N(
-                        $piece->color,
-                        $piece->move['to'],
-                        $this->square
-                    ));
-                } elseif ($piece->move['newId'] === Piece::B) {
-                    $this->attach(new B(
-                        $piece->color,
-                        $piece->move['to'],
-                        $this->square
-                    ));
-                } elseif ($piece->move['newId'] === Piece::R) {
-                    $this->attach(new R(
-                        $piece->color,
-                        $piece->move['to'],
-                        $this->square,
-                        RType::R
-                    ));
-                } else {
-                    $this->attach(new Q(
-                        $piece->color,
-                        $piece->move['to'],
-                        $this->square
-                    ));
-                }
-            }
         }
 
         return $this;
