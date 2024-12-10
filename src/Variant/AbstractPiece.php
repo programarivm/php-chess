@@ -119,11 +119,7 @@ abstract class AbstractPiece
 
     public function isMovable(): bool
     {
-        if ($this->move) {
-            return in_array($this->move['to'], $this->moveSqs());
-        }
-
-        return false;
+        return in_array($this->move['to'], $this->moveSqs());
     }
 
     public function isPinned(): bool
