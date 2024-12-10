@@ -243,20 +243,25 @@ abstract class AbstractPiece
     public function leavesInCheck(): bool
     {
         $isCheck = false;
-        $pieces = $this->board->pieces();
+        $turn = $this->board->turn;
         $history = $this->board->history;
         $castlingAbility = $this->board->castlingAbility;
+        $sqCount = $this->board->sqCount;
+        $spaceEval = $this->board->spaceEval;
+        $pieces = $this->board->pieces();
         if ($this->move()) {
             $isCheck = $this->board->piece($this->color, Piece::K)?->attacking() != [];
+            $this->board->turn = $turn;
+            $this->board->history = $history;
+            $this->board->castlingAbility = $castlingAbility;
+            $this->board->sqCount = $sqCount;
+            $this->board->spaceEval = $spaceEval;
             foreach ($this->board->pieces() as $val) {
                 $this->board->detach($val);
             }
             foreach ($pieces as $val) {
                 $this->board->attach($val);
             }
-            $this->board->history = $history;
-            $this->board->castlingAbility = $castlingAbility;
-            $this->board->refresh();
         }
 
         return $isCheck;
