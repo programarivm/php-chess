@@ -2,6 +2,7 @@
 
 namespace Chess\Variant;
 
+use Chess\Variant\RType;
 use Chess\Variant\Classical\Piece\B;
 use Chess\Variant\Classical\Piece\N;
 use Chess\Variant\Classical\Piece\Q;
@@ -200,7 +201,7 @@ abstract class AbstractPiece
             $this->id === Piece::R ? $this->type : null
         ));
         $this->promotion()
-            ->updateCastle($this)
+            ->updateCastle()
             ->pushHistory($this)
             ->refresh();
 
@@ -210,9 +211,9 @@ abstract class AbstractPiece
     /**
      * Piece promotion.
      *
-     * @return \Chess\Variant\AbstractBoard
+     * @return \Chess\Variant\AbstractPiece
      */
-    public function promotion(): AbstractBoard
+    public function promotion(): AbstractPiece
     {
         if ($this->id === Piece::P) {
             if ($this->isPromoted()) {
@@ -246,7 +247,7 @@ abstract class AbstractPiece
             }
         }
 
-        return $this->board;
+        return $this;
     }
 
     /**
@@ -266,6 +267,40 @@ abstract class AbstractPiece
                 $captured = $this->board->pieceBySq($this->move['to']);
             }
             $captured ? $this->board->detach($captured) : null;
+        }
+
+        return $this->board;
+    }
+
+    /**
+     * Updates the castle property.
+     *
+     * @return \Chess\Variant\AbstractBoard
+     */
+    public function updateCastle(): AbstractBoard
+    {
+        if ($this->board->castlingRule?->can($this->board->castlingAbility, $this->board->turn)) {
+            if ($this->id === Piece::K) {
+                $this->board->castlingAbility = $this->board->castlingRule->update(
+                    $this->board->castlingAbility,
+                    $this->board->turn,
+                    [Piece::K, Piece::Q]
+                );
+            } elseif ($this->id === Piece::R) {
+                if ($this->type === RType::CASTLE_SHORT) {
+                    $this->board->castlingAbility = $this->board->castlingRule->update(
+                        $this->board->castlingAbility,
+                        $this->board->turn,
+                        [Piece::K]
+                    );
+                } elseif ($this->type === RType::CASTLE_LONG) {
+                    $this->board->castlingAbility = $this->board->castlingRule->update(
+                        $this->board->castlingAbility,
+                        $this->board->turn,
+                        [Piece::Q]
+                    );
+                }
+            }
         }
 
         return $this->board;

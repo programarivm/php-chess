@@ -165,41 +165,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Updates the castle property.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     * @return \Chess\Variant\AbstractBoard
-     */
-    public function updateCastle(AbstractPiece $piece): AbstractBoard
-    {
-        if ($this->castlingRule?->can($this->castlingAbility, $this->turn)) {
-            if ($piece->id === Piece::K) {
-                $this->castlingAbility = $this->castlingRule->update(
-                    $this->castlingAbility,
-                    $this->turn,
-                    [Piece::K, Piece::Q]
-                );
-            } elseif ($piece->id === Piece::R) {
-                if ($piece->type === RType::CASTLE_SHORT) {
-                    $this->castlingAbility = $this->castlingRule->update(
-                        $this->castlingAbility,
-                        $this->turn,
-                        [Piece::K]
-                    );
-                } elseif ($piece->type === RType::CASTLE_LONG) {
-                    $this->castlingAbility = $this->castlingRule->update(
-                        $this->castlingAbility,
-                        $this->turn,
-                        [Piece::Q]
-                    );
-                }
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * Returns true if the king is left in check.
      *
      * @param \Chess\Variant\AbstractPiece $piece
