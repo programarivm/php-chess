@@ -193,20 +193,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Adds a new element to the history.
-     *
-     * @param \Chess\Variant\AbstractPiece $piece
-     * @return \Chess\Variant\AbstractBoard
-     */
-    public function pushHistory(AbstractPiece $piece): AbstractBoard
-    {
-        $piece->move['from'] = $piece->sq;
-        $this->history[] = $piece->move;
-
-        return $this;
-    }
-
-    /**
      * Removes an element from the history.
      *
      * @return \Chess\Variant\AbstractBoard

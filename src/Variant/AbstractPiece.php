@@ -202,7 +202,7 @@ abstract class AbstractPiece
         ));
         $this->promotion()
             ->updateCastle()
-            ->pushHistory($this)
+            ->pushHistory()
             ->refresh();
 
         return true;
@@ -275,9 +275,9 @@ abstract class AbstractPiece
     /**
      * Updates the castle property.
      *
-     * @return \Chess\Variant\AbstractBoard
+     * @return \Chess\Variant\AbstractPiece
      */
-    public function updateCastle(): AbstractBoard
+    public function updateCastle(): AbstractPiece
     {
         if ($this->board->castlingRule?->can($this->board->castlingAbility, $this->board->turn)) {
             if ($this->id === Piece::K) {
@@ -302,6 +302,19 @@ abstract class AbstractPiece
                 }
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Adds a new element to the history.
+     *
+     * @return \Chess\Variant\AbstractBoard
+     */
+    public function pushHistory(): AbstractBoard
+    {
+        $this->move['from'] = $this->sq;
+        $this->board->history[] = $this->move;
 
         return $this->board;
     }
