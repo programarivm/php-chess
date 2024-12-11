@@ -285,8 +285,6 @@ abstract class AbstractBoard extends \SplObjectStorage
 
         $this->spaceEval = (new SpaceEval($this))->result;
 
-        $this->notifyPieces();
-
         if ($this->history) {
             $this->history[count($this->history) - 1]['fen'] = $this->toFen();
         }
