@@ -22,7 +22,7 @@ class AttackEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait {
-        explain as public explainEvalTrait;
+        explain as public doExplain;
     }
 
     /**
@@ -101,7 +101,7 @@ class AttackEval extends AbstractEval
      */
     public function explain(): array
     {
-        $this->explainEvalTrait($this->result);
+        $this->doExplain($this->result);
 
         return $this->explanation;
     }

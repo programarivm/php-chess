@@ -16,7 +16,7 @@ class AdvancedPawnEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait {
-        explain as public explainEvalTrait;
+        explain as public doExplain;
     }
 
     /**
@@ -85,7 +85,7 @@ class AdvancedPawnEval extends AbstractEval
      */
     public function explain(): array
     {
-        $this->explainEvalTrait([
+        $this->doExplain([
             Color::W => count($this->result[Color::W]),
             Color::B => count($this->result[Color::B]),
         ]);

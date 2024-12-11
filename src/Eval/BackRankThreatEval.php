@@ -19,7 +19,7 @@ class BackRankThreatEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait {
-        explain as public explainEvalTrait;
+        explain as public doExplain;
     }
 
     /**
@@ -196,7 +196,7 @@ class BackRankThreatEval extends AbstractEval
      */
     public function explain(): array
     {
-        $this->explainEvalTrait($this->result);
+        $this->doExplain($this->result);
 
         return $this->explanation;
     }
