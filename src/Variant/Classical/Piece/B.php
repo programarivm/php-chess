@@ -21,7 +21,7 @@ class B extends AbstractLinePiece
         ];
 
         try {
-            $file = chr(ord($this->sq[0]) - 1);
+            $file = chr(ord($this->file()) - 1);
             $rank = $this->rank() + 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[0][] = $file . $rank;
@@ -32,7 +32,7 @@ class B extends AbstractLinePiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) + 1);
+            $file = chr(ord($this->file()) + 1);
             $rank = $this->rank() + 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[1][]  = $file . $rank;
@@ -43,7 +43,7 @@ class B extends AbstractLinePiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) - 1);
+            $file = chr(ord($this->file()) - 1);
             $rank = $this->rank() - 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[2][] = $file . $rank;
@@ -54,7 +54,7 @@ class B extends AbstractLinePiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) + 1);
+            $file = chr(ord($this->file()) + 1);
             $rank = $this->rank() - 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[3][] = $file . $rank;

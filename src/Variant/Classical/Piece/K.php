@@ -18,7 +18,7 @@ class K extends AbstractPiece
         $this->mobility = [];
 
         try {
-            $file = $this->sq[0];
+            $file = $this->file();
             $rank = $this->rank() + 1;
             if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
@@ -27,7 +27,7 @@ class K extends AbstractPiece
         }
 
         try {
-            $file = $this->sq[0];
+            $file = $this->file();
             $rank = $this->rank() - 1;
             if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
@@ -36,7 +36,7 @@ class K extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) - 1);
+            $file = chr(ord($this->file()) - 1);
             $rank = $this->rank();
             if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
@@ -45,7 +45,7 @@ class K extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) + 1);
+            $file = chr(ord($this->file()) + 1);
             $rank = $this->rank();
             if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
@@ -54,7 +54,7 @@ class K extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) - 1);
+            $file = chr(ord($this->file()) - 1);
             $rank = $this->rank() + 1;
             if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
@@ -63,7 +63,7 @@ class K extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) + 1);
+            $file = chr(ord($this->file()) + 1);
             $rank = $this->rank() + 1;
             if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
@@ -72,7 +72,7 @@ class K extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) - 1);
+            $file = chr(ord($this->file()) - 1);
             $rank = $this->rank() - 1;
             if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
@@ -81,7 +81,7 @@ class K extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->sq[0]) + 1);
+            $file = chr(ord($this->file()) + 1);
             $rank = $this->rank() - 1;
             if ($this->square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
