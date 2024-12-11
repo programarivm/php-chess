@@ -78,6 +78,11 @@ class AdvancedPawnEval extends AbstractEval
         return false;
     }
 
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
     public function explain(): array
     {
         $this->explainEvalTrait([
