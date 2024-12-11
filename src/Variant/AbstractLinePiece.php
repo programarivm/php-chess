@@ -3,7 +3,6 @@
 namespace Chess\Variant;
 
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
 
 /**
  * Abstract Line Piece
@@ -12,17 +11,6 @@ use Chess\Variant\Classical\PGN\AN\Square;
  */
 abstract class AbstractLinePiece extends AbstractPiece
 {
-    /**
-     * @param string $color
-     * @param string $sq
-     * @param \Chess\Variant\Classical\PGN\AN\Square $square
-     * @param string $id
-     */
-    public function __construct(string $color, string $sq, Square $square, string $id)
-    {
-        parent::__construct($color, $sq, $square, $id);
-    }
-
     /**
      * Returns an array representing the squares this piece can move to.
      *
