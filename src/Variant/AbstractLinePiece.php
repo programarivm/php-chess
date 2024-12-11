@@ -19,7 +19,7 @@ abstract class AbstractLinePiece extends AbstractPiece
     public function moveSqs(): array
     {
         $sqs = [];
-        foreach ($this->mobility as $key => $val) {
+        foreach ($this->mobility as $val) {
             foreach ($val as $sq) {
                 if (in_array($sq, $this->board->sqCount['free'])) {
                     $sqs[] = $sq;
@@ -43,7 +43,7 @@ abstract class AbstractLinePiece extends AbstractPiece
     public function defendedSqs(): array
     {
         $sqs = [];
-        foreach ($this->mobility as $key => $val) {
+        foreach ($this->mobility as $val) {
             foreach ($val as $sq) {
                 if (in_array($sq, $this->board->sqCount['used'][$this->color])) {
                     $sqs[] = $sq;
