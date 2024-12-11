@@ -14,7 +14,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class SqOutpostEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -59,7 +61,7 @@ class SqOutpostEval extends AbstractEval
                         !$this->isFileAttacked($piece->color, $captureSqs[0], $right)
                     ) {
                         $this->result[$piece->color][] = $captureSqs[0];
-                        $this->elaborate($captureSqs[0]);
+                        $this->toElaborate[] = $captureSqs[0];
                     }
                     if (isset($captureSqs[1])) {
                         $left = chr(ord($captureSqs[1]) - 1);
@@ -69,22 +71,15 @@ class SqOutpostEval extends AbstractEval
                             !$this->isFileAttacked($piece->color, $captureSqs[1], $right)
                         ) {
                             $this->result[$piece->color][] = $captureSqs[1];
-                            $this->elaborate($captureSqs[1]);
+                            $this->toElaborate[] = $captureSqs[1];
                         }
                     }
                 }
             }
         }
 
-        $this->shorten('These are outpost squares: ', $ucfirst = false);
-
         $this->result[Color::W] = array_flip(array_flip($this->result[Color::W]));
         $this->result[Color::B] = array_flip(array_flip($this->result[Color::B]));
-
-        $this->explain([
-            Color::W => count($this->result[Color::W]),
-            Color::B => count($this->result[Color::B]),
-        ]);
     }
 
     /**
@@ -121,12 +116,33 @@ class SqOutpostEval extends AbstractEval
     }
 
     /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain([
+            Color::W => count($this->result[Color::W]),
+            Color::B => count($this->result[Color::B]),
+        ]);
+
+        return $this->explanation;
+    }
+
+    /**
      * Elaborate on the evaluation.
      *
-     * @param string $sq
+     * @return array
      */
-    public function elaborate(string $sq): void
+    public function elaborate(): array
     {
-        $this->elaboration[] = $sq;
+        foreach ($this->toElaborate as $val) {
+            $this->elaboration[] = $val;
+        }
+
+        $this->shorten('These are outpost squares: ', $ucfirst = false);
+
+        return $this->elaboration;
     }
 }

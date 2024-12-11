@@ -111,8 +111,8 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         $sqOutpostEval = new SqOutpostEval($board);
 
         $this->assertSame($expectedResult, $sqOutpostEval->result);
-        $this->assertSame($expectedExplanation, $sqOutpostEval->getExplanation());
-        $this->assertSame($expectedElaboration, $sqOutpostEval->getElaboration());
+        $this->assertSame($expectedExplanation, $sqOutpostEval->explain());
+        $this->assertSame($expectedElaboration, $sqOutpostEval->elaborate());
     }
 
     /**
@@ -142,8 +142,8 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         $sqOutpostEval = new SqOutpostEval($board);
 
         $this->assertSame($expectedResult, $sqOutpostEval->result);
-        $this->assertSame($expectedExplanation, $sqOutpostEval->getExplanation());
-        $this->assertSame($expectedElaboration, $sqOutpostEval->getElaboration());
+        $this->assertSame($expectedExplanation, $sqOutpostEval->explain());
+        $this->assertSame($expectedElaboration, $sqOutpostEval->elaborate());
     }
 
     public function wAdvancingData()
@@ -448,7 +448,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         $sqOutpostEval = new SqOutpostEval($board);
 
         $this->assertSame($expectedResult, $sqOutpostEval->result);
-        $this->assertSame($expectedExplanation, $sqOutpostEval->getExplanation());
-        $this->assertSame($expectedElaboration, $sqOutpostEval->getElaboration());
+        $this->assertSame($expectedExplanation, $sqOutpostEval->explain());
+        $this->assertSame($expectedElaboration, $sqOutpostEval->elaborate());
     }
 }
