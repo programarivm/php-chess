@@ -18,7 +18,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class BackRankThreatEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as public explainEvalTrait;
+    }
 
     /**
      * The name of the heuristic.
@@ -55,7 +57,7 @@ class BackRankThreatEval extends AbstractEval
             $this->isThreatened($bKing)
         ) {
             $this->result[Color::W] = 1;
-            $this->elaborate($bKing);
+            $this->toElaborate[] = $bKing;
         }
 
         if (
@@ -65,10 +67,8 @@ class BackRankThreatEval extends AbstractEval
             $this->isThreatened($wKing)
         ) {
             $this->result[Color::B] = 1;
-            $this->elaborate($wKing);
+            $this->toElaborate[] = $wKing;
         }
-
-        $this->explain($this->result);
     }
 
     /**
@@ -190,14 +190,29 @@ class BackRankThreatEval extends AbstractEval
     }
 
     /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->explainEvalTrait($this->result);
+
+        return $this->explanation;
+    }
+
+    /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $king
+     * @return array
      */
-    public function elaborate(AbstractPiece $king): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($king);
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create($val);
+            $this->elaboration[] = "{$phrase} may soon need to be guarded against back-rank threats.";
+        }
 
-        $this->elaboration[] = "{$phrase} may soon need to be guarded against back-rank threats.";
+        return $this->elaboration;
     }
 }

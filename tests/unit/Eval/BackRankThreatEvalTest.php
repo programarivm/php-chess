@@ -30,8 +30,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -56,8 +56,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -82,8 +82,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -108,8 +108,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -132,8 +132,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -156,8 +156,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -180,8 +180,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -206,8 +206,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -232,8 +232,8 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 
     /**
@@ -256,7 +256,7 @@ class BackRankThreatEvalTest extends AbstractUnitTestCase
         $backRankEval = new BackRankThreatEval($board);
 
         $this->assertSame($expectedResult, $backRankEval->result);
-        $this->assertSame($expectedExplanation, $backRankEval->getExplanation());
-        $this->assertSame($expectedElaboration, $backRankEval->getElaboration());
+        $this->assertSame($expectedExplanation, $backRankEval->explain());
+        $this->assertSame($expectedElaboration, $backRankEval->elaborate());
     }
 }
