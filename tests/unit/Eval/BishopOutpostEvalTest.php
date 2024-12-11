@@ -366,6 +366,6 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
         $bishopOutpostEval = new BishopOutpostEval($board);
 
         $this->assertSame($expectedResult, $bishopOutpostEval->result);
-        $this->assertSame($expectedElaboration, $bishopOutpostEval->getElaboration());
+        $this->assertSame($expectedElaboration, $bishopOutpostEval->elaborate());
     }
 }

@@ -5,7 +5,6 @@ namespace Chess\Eval;
 use Chess\Eval\SqOutpostEval;
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /*
@@ -40,7 +39,7 @@ class BishopOutpostEval extends AbstractEval
                 if ($piece = $this->board->pieceBySq($sq)) {
                     if ($piece->color === $key && $piece->id === Piece::B) {
                         $this->result[$key] += 1;
-                        $this->elaborate($piece);
+                        $this->toElaborate[] = $piece;
                     }
                 }
             }
@@ -50,12 +49,15 @@ class BishopOutpostEval extends AbstractEval
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($piece);
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create($val);
+            $this->elaboration[] = ucfirst("$phrase is nicely placed on an outpost.");
+        }
 
-        $this->elaboration[] = ucfirst("$phrase is nicely placed on an outpost.");
+        return $this->elaboration;
     }
 }
