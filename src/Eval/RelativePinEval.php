@@ -5,7 +5,6 @@ namespace Chess\Eval;
 use Chess\Eval\PressureEval;
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -18,7 +17,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class RelativePinEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -60,7 +61,7 @@ class RelativePinEval extends AbstractEval
                                 self::$value[$this->board->pieceBySq($sq)->id];
                             if ($valDiff < 0) {
                                 $this->result[$piece->oppColor()] += abs(round($valDiff, 2));
-                                $this->elaborate($piece);
+                                $this->toElaborate[] = $piece;
                             }
                         }
                     }
@@ -69,19 +70,32 @@ class RelativePinEval extends AbstractEval
                 $this->board->refresh();
             }
         }
+    }
 
-        $this->explain($this->result);
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($piece);
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create($val);
+            $this->elaboration[] = ucfirst("$phrase is pinned shielding a piece that is more valuable than the attacking piece.");
+        }
 
-        $this->elaboration[] = ucfirst("$phrase is pinned shielding a piece that is more valuable than the attacking piece.");
+        return $this->elaboration;
     }
 }
