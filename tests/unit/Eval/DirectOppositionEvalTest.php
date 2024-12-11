@@ -42,7 +42,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
-        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->explain());
     }
 
     /**
@@ -63,7 +63,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
-        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->explain());
     }
 
     /**
@@ -100,7 +100,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
-        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->explain());
     }
 
     /**
@@ -121,7 +121,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
-        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->explain());
     }
 
     /**
@@ -142,7 +142,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
-        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->explain());
     }
 
     /**
@@ -163,7 +163,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
-        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->explain());
     }
 
     /**
@@ -184,6 +184,6 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
-        $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
+        $this->assertSame($expectedExplanation, $directOppositionEval->explain());
     }
 }
