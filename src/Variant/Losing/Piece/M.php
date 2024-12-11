@@ -113,4 +113,9 @@ class M extends AbstractPiece
 
         return $sqs;
     }
+
+    public function lineOfAttack(): array
+    {
+        return [];
+    }
 }

@@ -22,4 +22,9 @@ class C extends AbstractPiece
             (new N($color, $sq, $square))->mobility,
         ];
     }
+
+    public function lineOfAttack(): array
+    {
+        return [];
+    }
 }

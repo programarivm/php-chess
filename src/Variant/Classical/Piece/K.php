@@ -114,6 +114,11 @@ class K extends AbstractPiece
         return $sqs;
     }
 
+    public function lineOfAttack(): array
+    {
+        return [];
+    }
+
     public function sqCastleLong(): ?string
     {
         $rule = $this->board->castlingRule?->rule[$this->color][Piece::K][Castle::LONG];

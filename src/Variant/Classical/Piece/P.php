@@ -138,6 +138,11 @@ class P extends AbstractPiece
         return $sqs;
     }
 
+    public function lineOfAttack(): array
+    {
+        return [];
+    }
+
     public function isPromoted(): bool
     {
         $rank = (int) substr($this->move['to'], 1);

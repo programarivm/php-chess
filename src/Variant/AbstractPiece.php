@@ -91,6 +91,13 @@ abstract class AbstractPiece
     abstract public function defendedSqs(): array;
 
     /**
+     * Returns an array representing the line of attack of this piece.
+     *
+     * @return array
+     */
+    abstract public function lineOfAttack(): array;
+
+    /**
      * Returns the piece's file.
      *
      * @return array
@@ -388,15 +395,5 @@ abstract class AbstractPiece
     {
         $this->move['from'] = $this->sq;
         $this->board->history[] = $this->move;
-    }
-
-    /**
-     * Returns an array representing the line of attack of this piece.
-     *
-     * @return array
-     */
-    public function lineOfAttack(): array
-    {
-        return [];
     }
 }
