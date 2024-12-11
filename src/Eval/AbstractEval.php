@@ -8,7 +8,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 
 abstract class AbstractEval
 {
-    protected static $value = [
+    public static $value = [
         Piece::A => 6.53,
         Piece::B => 3.33,
         Piece::C => 8.3,
@@ -19,7 +19,7 @@ abstract class AbstractEval
         Piece::R => 5.1,
     ];
 
-    protected AbstractBoard $board;
+    public AbstractBoard $board;
 
     public array $result = [
         Color::W => 0,
