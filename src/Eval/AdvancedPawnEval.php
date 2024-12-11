@@ -16,7 +16,7 @@ class AdvancedPawnEval extends AbstractEval
 {
     use ElaborateEvalTrait;
     use ExplainEvalTrait {
-        explain as public doExplain;
+        explain as private doExplain;
     }
 
     /**
