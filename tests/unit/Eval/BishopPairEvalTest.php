@@ -45,7 +45,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $bishopPairEval = new BishopPairEval($board);
 
         $this->assertSame($expectedResult, $bishopPairEval->result);
-        $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
+        $this->assertSame($expectedExplanation, $bishopPairEval->explain());
     }
 
     /**
@@ -82,7 +82,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $bishopPairEval = new BishopPairEval($board);
 
         $this->assertSame($expectedResult, $bishopPairEval->result);
-        $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
+        $this->assertSame($expectedExplanation, $bishopPairEval->explain());
     }
 
     /**
@@ -103,7 +103,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $bishopPairEval = new BishopPairEval($board);
 
         $this->assertSame($expectedResult, $bishopPairEval->result);
-        $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
+        $this->assertSame($expectedExplanation, $bishopPairEval->explain());
     }
 
     /**
