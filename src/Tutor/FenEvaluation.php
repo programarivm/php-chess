@@ -29,7 +29,7 @@ class FenEvaluation extends AbstractParagraph
         foreach ($this->function->getEval() as $val) {
             $eval = new $val($this->board);
             if (in_array(ExplainEvalTrait::class, class_uses($eval))) {
-                if ($phrases = $eval->getExplanation()) {
+                if ($phrases = $eval->explain()) {
                     $paragraph = [...$paragraph, ...$phrases];
                 }
             }
@@ -45,7 +45,7 @@ class FenEvaluation extends AbstractParagraph
         foreach ($this->function->getEval() as $val) {
             $eval = new $val($this->board);
             if (in_array(ElaborateEvalTrait::class, class_uses($eval))) {
-                if ($phrases = $eval->getElaboration()) {
+                if ($phrases = $eval->elaborate()) {
                     $paragraph = [...$paragraph, ...$phrases];
                 }
             }
