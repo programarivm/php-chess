@@ -12,7 +12,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class FlightSquareEval extends AbstractEval
 {
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -50,7 +52,17 @@ class FlightSquareEval extends AbstractEval
                 }
             }
         }
+    }
 
-        $this->explain($this->result);
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 }
