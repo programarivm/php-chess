@@ -4,7 +4,6 @@ namespace Chess\Eval;
 
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
@@ -16,7 +15,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class DoubledPawnEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -48,24 +49,37 @@ class DoubledPawnEval extends AbstractEval implements InverseEvalInterface
                 if ($nextPiece = $this->board->pieceBySq($piece->file() . $piece->ranks['next'])) {
                     if ($nextPiece->id === Piece::P && $nextPiece->color === $piece->color) {
                         $this->result[$piece->color] += 1;
-                        $this->elaborate($nextPiece);
+                        $this->toElaborate[] = $nextPiece;
                     }
                 }
             }
         }
+    }
 
-        $this->explain($this->result);
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($piece);
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create($val);
+            $this->elaboration[] = ucfirst("$phrase is doubled.");
+        }
 
-        $this->elaboration[] = ucfirst("$phrase is doubled.");
+        return $this->elaboration;
     }
 }
