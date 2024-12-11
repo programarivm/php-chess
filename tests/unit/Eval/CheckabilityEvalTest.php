@@ -26,7 +26,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $checkabilityEval = new CheckabilityEval($board);
 
         $this->assertSame($expectedResult, $checkabilityEval->result);
-        $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
+        $this->assertSame($expectedExplanation, $checkabilityEval->explain());
     }
 
     /**
@@ -47,7 +47,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $checkabilityEval = new CheckabilityEval($board);
 
         $this->assertSame($expectedResult, $checkabilityEval->result);
-        $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
+        $this->assertSame($expectedExplanation, $checkabilityEval->explain());
     }
 
     /**
@@ -67,7 +67,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $checkabilityEval = new CheckabilityEval($board);
 
         $this->assertSame($expectedResult, $checkabilityEval->result);
-        $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
+        $this->assertSame($expectedExplanation, $checkabilityEval->explain());
     }
 
     /**
@@ -87,6 +87,6 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $checkabilityEval = new CheckabilityEval($board);
 
         $this->assertSame($expectedResult, $checkabilityEval->result);
-        $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
+        $this->assertSame($expectedExplanation, $checkabilityEval->explain());
     }
 }

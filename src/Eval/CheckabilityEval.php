@@ -16,7 +16,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class CheckabilityEval extends AbstractEval
 {
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -53,8 +55,6 @@ class CheckabilityEval extends AbstractEval
         if ($this->isCheckable($wKing)) {
             $this->result[Color::B] = 1;
         }
-
-        $this->explain($this->result);
     }
 
     /**
@@ -78,5 +78,17 @@ class CheckabilityEval extends AbstractEval
         }
 
         return false;
+    }
+
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 }
