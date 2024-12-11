@@ -31,8 +31,8 @@ class AdvancedPawnEvalTest extends AbstractUnitTestCase
         $advancedPawnEval = new AdvancedPawnEval($board);
 
         $this->assertSame($expectedResult, $advancedPawnEval->result);
-        $this->assertSame($expectedExplanation, $advancedPawnEval->getExplanation());
-        $this->assertSame($expectedElaboration, $advancedPawnEval->getElaboration());
+        $this->assertSame($expectedExplanation, $advancedPawnEval->explain());
+        $this->assertSame($expectedElaboration, $advancedPawnEval->elaborate());
     }
 
     /**
@@ -58,7 +58,7 @@ class AdvancedPawnEvalTest extends AbstractUnitTestCase
         $advancedPawnEval = new AdvancedPawnEval($board);
 
         $this->assertSame($expectedResult, $advancedPawnEval->result);
-        $this->assertSame($expectedExplanation, $advancedPawnEval->getExplanation());
-        $this->assertSame($expectedElaboration, $advancedPawnEval->getElaboration());
+        $this->assertSame($expectedExplanation, $advancedPawnEval->explain());
+        $this->assertSame($expectedElaboration, $advancedPawnEval->elaborate());
     }
 }
