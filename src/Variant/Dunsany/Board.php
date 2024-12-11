@@ -7,6 +7,7 @@ use Chess\Variant\RType;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Piece\B;
 use Chess\Variant\Classical\Piece\K;
@@ -89,6 +90,11 @@ class Board extends AbstractBoard
         $this->turn = Color::B;
 
         $this->startFen = $this->toFen();
+    }
+
+    public function isCheck(): bool
+    {
+        return $this->piece($this->turn, Piece::K)?->attacking() !== [];
     }
 
     public function isStalemate(): bool

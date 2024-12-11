@@ -69,6 +69,11 @@ class Board extends AbstractBoard
         $this->startFen = $this->toFen();
     }
 
+    public function isCheck(): bool
+    {
+        return false;
+    }
+
     protected function captureSqs(): array
     {
         $captureSqs = [];
