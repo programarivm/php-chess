@@ -26,7 +26,7 @@ class B extends AbstractLinePiece
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[0][] = $file . $rank;
                 $file = chr(ord($file) - 1);
-                $rank = (int)$rank + 1;
+                $rank += 1;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -37,7 +37,7 @@ class B extends AbstractLinePiece
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[1][]  = $file . $rank;
                 $file = chr(ord($file) + 1);
-                $rank = (int)$rank + 1;
+                $rank += 1;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -48,7 +48,7 @@ class B extends AbstractLinePiece
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[2][] = $file . $rank;
                 $file = chr(ord($file) - 1);
-                $rank = (int)$rank - 1;
+                $rank -= 1;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -59,7 +59,7 @@ class B extends AbstractLinePiece
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[3][] = $file . $rank;
                 $file = chr(ord($file) + 1);
-                $rank = (int)$rank - 1;
+                $rank -= 1;
             }
         } catch (UnknownNotationException $e) {
         }

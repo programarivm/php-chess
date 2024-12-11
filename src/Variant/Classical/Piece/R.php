@@ -29,7 +29,7 @@ class R extends AbstractLinePiece
             $rank = $this->rank() + 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[0][] = $file . $rank;
-                $rank = (int)$rank + 1;
+                $rank += 1;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -39,7 +39,7 @@ class R extends AbstractLinePiece
             $rank = $this->rank() - 1;
             while ($this->square->validate($file . $rank)) {
                 $this->mobility[1][] = $file . $rank;
-                $rank = (int)$rank - 1;
+                $rank -= 1;
             }
         } catch (UnknownNotationException $e) {
         }
