@@ -15,7 +15,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class BadBishopEval extends AbstractEval implements InverseEvalInterface
 {
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -55,8 +57,6 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
                 }
             }
         }
-
-        $this->explain($this->result);
     }
 
     /**
@@ -81,5 +81,17 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
         }
 
         return $count;
+    }
+
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 }
