@@ -25,7 +25,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create('1b5k/6pp/8/8/8/8/8/K7 w - -');
         $checkabilityEval = new CheckabilityEval($board);
 
-        $this->assertSame($expectedResult, $checkabilityEval->getResult());
+        $this->assertSame($expectedResult, $checkabilityEval->result);
         $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
     }
 
@@ -46,7 +46,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create('1b5k/6pp/8/8/8/8/8/K7 b - -');
         $checkabilityEval = new CheckabilityEval($board);
 
-        $this->assertSame($expectedResult, $checkabilityEval->getResult());
+        $this->assertSame($expectedResult, $checkabilityEval->result);
         $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
     }
 
@@ -66,7 +66,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create('1b5k/7p/8/8/8/8/8/K4R2 w - -');
         $checkabilityEval = new CheckabilityEval($board);
 
-        $this->assertSame($expectedResult, $checkabilityEval->getResult());
+        $this->assertSame($expectedResult, $checkabilityEval->result);
         $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
     }
 
@@ -86,7 +86,7 @@ class CheckabilityEvalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create('1b5k/7p/8/8/8/8/8/K4R2 b - -');
         $checkabilityEval = new CheckabilityEval($board);
 
-        $this->assertSame($expectedResult, $checkabilityEval->getResult());
+        $this->assertSame($expectedResult, $checkabilityEval->result);
         $this->assertSame($expectedExplanation, $checkabilityEval->getExplanation());
     }
 }

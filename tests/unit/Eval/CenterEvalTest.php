@@ -27,7 +27,7 @@ class CenterEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($A08))->validate()->board;
         $centerEval = new CenterEval($board);
 
-        $this->assertSame($expectedResult, $centerEval->getResult());
+        $this->assertSame($expectedResult, $centerEval->result);
         $this->assertSame($expectedExplanation, $centerEval->getExplanation());
     }
 
@@ -49,7 +49,7 @@ class CenterEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($B25))->validate()->board;
         $centerEval = new CenterEval($board);
 
-        $this->assertSame($expectedResult, $centerEval->getResult());
+        $this->assertSame($expectedResult, $centerEval->result);
         $this->assertSame($expectedExplanation, $centerEval->getExplanation());
     }
 
@@ -71,7 +71,7 @@ class CenterEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($B56))->validate()->board;
         $centerEval = new CenterEval($board);
 
-        $this->assertSame($expectedResult, $centerEval->getResult());
+        $this->assertSame($expectedResult, $centerEval->result);
         $this->assertSame($expectedExplanation, $centerEval->getExplanation());
     }
 
@@ -93,7 +93,7 @@ class CenterEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($C60))->validate()->board;
         $centerEval = new CenterEval($board);
 
-        $this->assertSame($expectedResult, $centerEval->getResult());
+        $this->assertSame($expectedResult, $centerEval->result);
         $this->assertSame($expectedExplanation, $centerEval->getExplanation());
     }
 }

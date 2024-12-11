@@ -283,7 +283,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             ->attachPieces()
             ->notifyPieces();
 
-        $this->spaceEval = (new SpaceEval($this))->getResult();
+        $this->spaceEval = (new SpaceEval($this))->result;
 
         $this->notifyPieces();
 

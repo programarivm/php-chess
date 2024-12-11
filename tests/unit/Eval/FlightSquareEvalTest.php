@@ -24,7 +24,7 @@ class FlightSquareEvalTest extends AbstractUnitTestCase
 
         $flightSquareEval = new FlightSquareEval(new Board());
 
-        $this->assertSame($expectedResult, $flightSquareEval->getResult());
+        $this->assertSame($expectedResult, $flightSquareEval->result);
         $this->assertSame($expectedExplanation, $flightSquareEval->getExplanation());
     }
 
@@ -46,7 +46,7 @@ class FlightSquareEvalTest extends AbstractUnitTestCase
 
         $flightSquareEval = new FlightSquareEval($board);
 
-        $this->assertSame($expectedResult, $flightSquareEval->getResult());
+        $this->assertSame($expectedResult, $flightSquareEval->result);
         $this->assertSame($expectedExplanation, $flightSquareEval->getExplanation());
     }
 
@@ -68,7 +68,7 @@ class FlightSquareEvalTest extends AbstractUnitTestCase
 
         $flightSquareEval = new FlightSquareEval($board);
 
-        $this->assertSame($expectedResult, $flightSquareEval->getResult());
+        $this->assertSame($expectedResult, $flightSquareEval->result);
         $this->assertSame($expectedExplanation, $flightSquareEval->getExplanation());
     }
 }

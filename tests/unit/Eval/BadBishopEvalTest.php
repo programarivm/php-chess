@@ -26,7 +26,7 @@ class BadBishopEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard($fen))->create();
         $badBishopEval = new BadBishopEval($board);
 
-        $this->assertSame($expectedResult, $badBishopEval->getResult());
+        $this->assertSame($expectedResult, $badBishopEval->result);
         $this->assertSame($expectedExplanation, $badBishopEval->getExplanation());
     }
 
@@ -48,7 +48,7 @@ class BadBishopEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard($fen))->create();
         $badBishopEval = new BadBishopEval($board);
 
-        $this->assertSame($expectedResult, $badBishopEval->getResult());
+        $this->assertSame($expectedResult, $badBishopEval->result);
         $this->assertSame($expectedExplanation, $badBishopEval->getExplanation());
     }
 
@@ -70,7 +70,7 @@ class BadBishopEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard($fen))->create();
         $badBishopEval = new BadBishopEval($board);
 
-        $this->assertSame($expectedResult, $badBishopEval->getResult());
+        $this->assertSame($expectedResult, $badBishopEval->result);
         $this->assertSame($expectedExplanation, $badBishopEval->getExplanation());
     }
 
@@ -92,7 +92,7 @@ class BadBishopEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard($fen))->create();
         $badBishopEval = new BadBishopEval($board);
 
-        $this->assertSame($expectedResult, $badBishopEval->getResult());
+        $this->assertSame($expectedResult, $badBishopEval->result);
         $this->assertSame($expectedExplanation, $badBishopEval->getExplanation());
     }
 
@@ -108,7 +108,7 @@ class BadBishopEvalTest extends AbstractUnitTestCase
 
         $fen = '3k4/5RN1/4P3/5P2/7K/8/8/6q1 b - -';
         $board = (new StrToBoard($fen))->create();
-        $result = (new BadBishopEval($board))->getResult();
+        $result = (new BadBishopEval($board))->result;
 
         $this->assertSame($expected, $result);
     }

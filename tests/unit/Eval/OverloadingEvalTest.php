@@ -29,7 +29,7 @@ class OverloadingEvalTest extends AbstractUnitTestCase
 
         $overloadingEval = new OverloadingEval($board);
 
-        $this->assertSame($expectedResult, $overloadingEval->getResult());
+        $this->assertSame($expectedResult, $overloadingEval->result);
         $this->assertSame($expectedExplanation, $overloadingEval->getExplanation());
         $this->assertSame($expectedElaboration, $overloadingEval->getElaboration());
     }
@@ -54,7 +54,7 @@ class OverloadingEvalTest extends AbstractUnitTestCase
 
         $overloadingEval = new OverloadingEval($board);
 
-        $this->assertSame($expectedResult, $overloadingEval->getResult());
+        $this->assertSame($expectedResult, $overloadingEval->result);
         $this->assertSame($expectedExplanation, $overloadingEval->getExplanation());
         $this->assertSame($expectedElaboration, $overloadingEval->getElaboration());
     }
@@ -81,7 +81,7 @@ class OverloadingEvalTest extends AbstractUnitTestCase
 
         $overloadingEval = new OverloadingEval($board);
 
-        $this->assertSame($expectedResult, $overloadingEval->getResult());
+        $this->assertSame($expectedResult, $overloadingEval->result);
         $this->assertSame($expectedExplanation, $overloadingEval->getExplanation());
         $this->assertSame($expectedElaboration, $overloadingEval->getElaboration());
     }
@@ -108,7 +108,7 @@ class OverloadingEvalTest extends AbstractUnitTestCase
 
         $overloadingEval = new OverloadingEval($board);
 
-        $this->assertSame($expectedResult, $overloadingEval->getResult());
+        $this->assertSame($expectedResult, $overloadingEval->result);
         $this->assertSame($expectedExplanation, $overloadingEval->getExplanation());
         $this->assertSame($expectedElaboration, $overloadingEval->getElaboration());
     }
@@ -135,7 +135,7 @@ class OverloadingEvalTest extends AbstractUnitTestCase
 
         $overloadingEval = new OverloadingEval($board);
 
-        $this->assertSame($expectedResult, $overloadingEval->getResult());
+        $this->assertSame($expectedResult, $overloadingEval->result);
         $this->assertSame($expectedExplanation, $overloadingEval->getExplanation());
         $this->assertSame($expectedElaboration, $overloadingEval->getElaboration());
     }
@@ -162,7 +162,7 @@ class OverloadingEvalTest extends AbstractUnitTestCase
 
         $overloadingEval = new OverloadingEval($board);
 
-        $this->assertSame($expectedResult, $overloadingEval->getResult());
+        $this->assertSame($expectedResult, $overloadingEval->result);
         $this->assertSame($expectedExplanation, $overloadingEval->getExplanation());
         $this->assertSame($expectedElaboration, $overloadingEval->getElaboration());
     }

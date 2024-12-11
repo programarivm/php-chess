@@ -20,7 +20,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
         ];
 
         $board = new Board();
-        $result = (new MaterialEval($board))->getResult();
+        $result = (new MaterialEval($board))->result;
 
         $this->assertEquals($expected, $result);
     }
@@ -43,7 +43,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($A59))->validate()->board;
         $materialEval = new MaterialEval($board);
 
-        $this->assertEqualsCanonicalizing($expectedResult, $materialEval->getResult());
+        $this->assertEqualsCanonicalizing($expectedResult, $materialEval->result);
         $this->assertEqualsCanonicalizing($expectedExplanation, $materialEval->getExplanation());
     }
 
@@ -59,7 +59,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
 
         $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
         $board = (new SanPlay($C60))->validate()->board;
-        $result = (new MaterialEval($board))->getResult();
+        $result = (new MaterialEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -82,7 +82,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($C00))->validate()->board;
         $materialEval = new MaterialEval($board);
 
-        $this->assertEqualsCanonicalizing($expectedResult, $materialEval->getResult());
+        $this->assertEqualsCanonicalizing($expectedResult, $materialEval->result);
         $this->assertEqualsCanonicalizing($expectedExplanation, $materialEval->getExplanation());
     }
 }

@@ -46,7 +46,7 @@ class KingSafetyEval extends AbstractEval implements InverseEvalInterface
             "are more than desperately close to the adversary's king",
         ];
 
-        $pressEval = (new PressureEval($this->board))->getResult();
+        $pressEval = (new PressureEval($this->board))->result;
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {

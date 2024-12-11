@@ -28,7 +28,7 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
 
         $connectivityEval = new ConnectivityEval(new Board());
 
-        $this->assertSame($expectedResult, $connectivityEval->getResult());
+        $this->assertSame($expectedResult, $connectivityEval->result);
         $this->assertSame($expectedExplanation, $connectivityEval->getExplanation());
         $this->assertSame($expectedElaboration, $connectivityEval->getElaboration());
     }
@@ -55,7 +55,7 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($C60))->validate()->board;
         $connectivityEval = new ConnectivityEval($board);
 
-        $this->assertSame($expectedResult, $connectivityEval->getResult());
+        $this->assertSame($expectedResult, $connectivityEval->result);
         $this->assertSame($expectedExplanation, $connectivityEval->getExplanation());
         $this->assertSame($expectedElaboration, $connectivityEval->getElaboration());
     }

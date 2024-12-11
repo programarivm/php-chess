@@ -33,7 +33,7 @@ class BishopOutpostEval extends AbstractEval
     {
         $this->board = $board;
 
-        $sqOutpostEval = (new SqOutpostEval($this->board))->getResult();
+        $sqOutpostEval = (new SqOutpostEval($this->board))->result;
 
         foreach ($sqOutpostEval as $key => $val) {
             foreach ($val as $sq) {

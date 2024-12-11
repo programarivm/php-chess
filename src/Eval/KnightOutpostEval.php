@@ -33,7 +33,7 @@ class KnightOutpostEval extends AbstractEval
     {
         $this->board = $board;
 
-        $sqOutpostEval = (new SqOutpostEval($board))->getResult();
+        $sqOutpostEval = (new SqOutpostEval($board))->result;
 
         foreach ($sqOutpostEval as $key => $val) {
             foreach ($val as $sq) {

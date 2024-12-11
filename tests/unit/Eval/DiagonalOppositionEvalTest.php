@@ -25,7 +25,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/8/2K5/8/4k3/8/8/8 b - - 0 1'))->create();
         $directOppositionEval = new DiagonalOppositionEval($board);
 
-        $this->assertSame($expectedResult, $directOppositionEval->getResult());
+        $this->assertSame($expectedResult, $directOppositionEval->result);
         $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
@@ -46,7 +46,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('5k2/6p1/3K2P1/5P2/8/8/8/8 b - - 0 1'))->create();
         $directOppositionEval = new DiagonalOppositionEval($board);
 
-        $this->assertSame($expectedResult, $directOppositionEval->getResult());
+        $this->assertSame($expectedResult, $directOppositionEval->result);
         $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 
@@ -67,7 +67,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/8/8/8/8/2K5/8/k7 w - - 0 1'))->create();
         $directOppositionEval = new DiagonalOppositionEval($board);
 
-        $this->assertSame($expectedResult, $directOppositionEval->getResult());
+        $this->assertSame($expectedResult, $directOppositionEval->result);
         $this->assertSame($expectedExplanation, $directOppositionEval->getExplanation());
     }
 }

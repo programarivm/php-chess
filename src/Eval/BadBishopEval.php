@@ -43,7 +43,7 @@ class BadBishopEval extends AbstractEval implements InverseEvalInterface
             'has a bad bishop because too many of its pawns are blocking it',
         ];
 
-        $bishopPairEval = (new BishopPairEval($board))->getResult();
+        $bishopPairEval = (new BishopPairEval($board))->result;
 
         if (!$bishopPairEval[Color::W] && !$bishopPairEval[Color::B]) {
             foreach ($this->board->pieces() as $piece) {

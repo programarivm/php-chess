@@ -17,7 +17,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $result = (new KnightOutpostEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -30,7 +30,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $result = (new KnightOutpostEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -43,7 +43,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $result = (new KnightOutpostEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -56,7 +56,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $result = (new KnightOutpostEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -69,7 +69,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $result = (new KnightOutpostEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -82,7 +82,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
     {
         $board = (new StrToBoard($fen))->create();
 
-        $result = (new KnightOutpostEval($board))->getResult();
+        $result = (new KnightOutpostEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -365,7 +365,7 @@ class KnightOutpostEvalTest extends AbstractUnitTestCase
 
         $knightOutpostEval = new KnightOutpostEval($board);
 
-        $this->assertSame($expectedResult, $knightOutpostEval->getResult());
+        $this->assertSame($expectedResult, $knightOutpostEval->result);
         $this->assertSame($expectedElaboration, $knightOutpostEval->getElaboration());
     }
 }

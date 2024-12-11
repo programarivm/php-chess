@@ -28,7 +28,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $defenseEval = new DefenseEval($board);
 
-        $this->assertSame($expectedResult, $defenseEval->getResult());
+        $this->assertSame($expectedResult, $defenseEval->result);
         $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
         $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
     }
@@ -52,7 +52,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $defenseEval = new DefenseEval($board);
 
-        $this->assertSame($expectedResult, $defenseEval->getResult());
+        $this->assertSame($expectedResult, $defenseEval->result);
         $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
         $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
     }
@@ -80,7 +80,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $defenseEval = new DefenseEval($board);
 
-        $this->assertSame($expectedResult, $defenseEval->getResult());
+        $this->assertSame($expectedResult, $defenseEval->result);
         $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
         $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
     }
@@ -104,7 +104,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $defenseEval = new DefenseEval($board);
 
-        $this->assertSame($expectedResult, $defenseEval->getResult());
+        $this->assertSame($expectedResult, $defenseEval->result);
         $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
         $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
     }
@@ -132,7 +132,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $defenseEval = new DefenseEval($board);
 
-        $this->assertSame($expectedResult, $defenseEval->getResult());
+        $this->assertSame($expectedResult, $defenseEval->result);
         $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
         $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
     }
@@ -160,7 +160,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $defenseEval = new DefenseEval($board);
 
-        $this->assertSame($expectedResult, $defenseEval->getResult());
+        $this->assertSame($expectedResult, $defenseEval->result);
         $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
         $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
     }
@@ -188,7 +188,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $defenseEval = new DefenseEval($board);
 
-        $this->assertSame($expectedResult, $defenseEval->getResult());
+        $this->assertSame($expectedResult, $defenseEval->result);
         $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
         $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
     }
@@ -217,7 +217,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
 
         $defenseEval = new DefenseEval($board);
 
-        $this->assertSame($expectedResult, $defenseEval->getResult());
+        $this->assertSame($expectedResult, $defenseEval->result);
         $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
         $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
     }

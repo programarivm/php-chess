@@ -27,7 +27,7 @@ class AbsoluteSkewerEvalTest extends AbstractUnitTestCase
 
         $absoluteSkewerEval = new AbsoluteSkewerEval($board);
 
-        $this->assertSame($expectedResult, $absoluteSkewerEval->getResult());
+        $this->assertSame($expectedResult, $absoluteSkewerEval->result);
         $this->assertSame($expectedElaboration, $absoluteSkewerEval->getElaboration());
     }
 
@@ -50,7 +50,7 @@ class AbsoluteSkewerEvalTest extends AbstractUnitTestCase
 
         $absoluteSkewerEval = new AbsoluteSkewerEval($board);
 
-        $this->assertSame($expectedResult, $absoluteSkewerEval->getResult());
+        $this->assertSame($expectedResult, $absoluteSkewerEval->result);
         $this->assertSame($expectedElaboration, $absoluteSkewerEval->getElaboration());
     }
 }

@@ -21,7 +21,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
 
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
-        $result = (new BishopPairEval($board))->getResult();
+        $result = (new BishopPairEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -44,7 +44,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($C68))->validate()->board;
         $bishopPairEval = new BishopPairEval($board);
 
-        $this->assertSame($expectedResult, $bishopPairEval->getResult());
+        $this->assertSame($expectedResult, $bishopPairEval->result);
         $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
     }
 
@@ -59,7 +59,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         ];
 
         $board = (new StrToBoard('8/5b2/4k3/4b3/8/8/1KBB4/8 w - -'))->create();
-        $result = (new BishopPairEval($board))->getResult();
+        $result = (new BishopPairEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -81,7 +81,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/5n2/4k3/4b3/8/8/1KBB4/8 w - -'))->create();
         $bishopPairEval = new BishopPairEval($board);
 
-        $this->assertSame($expectedResult, $bishopPairEval->getResult());
+        $this->assertSame($expectedResult, $bishopPairEval->result);
         $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
     }
 
@@ -102,7 +102,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/3k4/2bb4/8/8/4BN2/4K3/8 w - -'))->create();
         $bishopPairEval = new BishopPairEval($board);
 
-        $this->assertSame($expectedResult, $bishopPairEval->getResult());
+        $this->assertSame($expectedResult, $bishopPairEval->result);
         $this->assertSame($expectedExplanation, $bishopPairEval->getExplanation());
     }
 
@@ -118,7 +118,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
 
         $fen = '3k4/5RN1/4P3/5P2/7K/8/8/6q1 b - -';
         $board = (new StrToBoard($fen))->create();
-        $result = (new BishopPairEval($board))->getResult();
+        $result = (new BishopPairEval($board))->result;
 
         $this->assertSame($expected, $result);
     }

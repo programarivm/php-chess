@@ -48,7 +48,7 @@ class EvalFactoryTest extends AbstractUnitTestCase
 
         $eval = EvalFactory::create(self::$function, 'Absolute fork', $board);
 
-        $this->assertSame($expectedResult, $eval->getResult());
+        $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedPhrase, $eval->getElaboration());
     }
 
@@ -71,7 +71,7 @@ class EvalFactoryTest extends AbstractUnitTestCase
 
         $eval = EvalFactory::create(self::$function, 'Absolute pin', $board);
 
-        $this->assertSame($expectedResult, $eval->getResult());
+        $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedPhrase, $eval->getElaboration());
     }
 
@@ -94,7 +94,7 @@ class EvalFactoryTest extends AbstractUnitTestCase
 
         $eval = EvalFactory::create(self::$function, 'Absolute skewer', $board);
 
-        $this->assertSame($expectedResult, $eval->getResult());
+        $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedPhrase, $eval->getElaboration());
     }
 }

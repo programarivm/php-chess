@@ -45,14 +45,14 @@ class RelativePinEval extends AbstractEval
             "has a relative pin advantage",
         ];
 
-        $before = (new PressureEval($this->board))->getResult();
+        $before = (new PressureEval($this->board))->result;
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id !== Piece::K && $piece->id !== Piece::Q) {
                 $this->board->detach($piece);
                 $this->board->refresh();
                 if (!$this->board->isCheck()) {
-                    $after = (new PressureEval($this->board))->getResult();
+                    $after = (new PressureEval($this->board))->result;
                     $diff = array_diff($after[$piece->oppColor()], $before[$piece->oppColor()]);
                     foreach ($diff as $sq) {
                         foreach ($this->board->pieceBySq($sq)->attacking() as $attacking) {

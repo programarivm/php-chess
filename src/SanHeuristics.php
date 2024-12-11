@@ -84,7 +84,7 @@ class SanHeuristics extends SanPlay
 
     protected function item(AbstractEval $eval): array
     {
-        $result = $eval->getResult();
+        $result = $eval->result;
 
         if (is_array($result[Color::W])) {
             if ($eval instanceof InverseEvalInterface) {

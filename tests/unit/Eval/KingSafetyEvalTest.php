@@ -19,7 +19,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $result = (new KingSafetyEval(new Board()))->getResult();
+        $result = (new KingSafetyEval(new Board()))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -42,7 +42,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
         $board = (new SanPlay($A00))->validate()->board;
         $kingSafetyEval = new KingSafetyEval($board);
 
-        $this->assertSame($expectedResult, $kingSafetyEval->getResult());
+        $this->assertSame($expectedResult, $kingSafetyEval->result);
         $this->assertSame($expectedExplanation, $kingSafetyEval->getExplanation());
     }
 
@@ -58,7 +58,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
 
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
-        $result = (new KingSafetyEval($board))->getResult();
+        $result = (new KingSafetyEval($board))->result;
 
         $this->assertSame($expected, $result);
     }

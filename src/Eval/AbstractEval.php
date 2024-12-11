@@ -21,13 +21,8 @@ abstract class AbstractEval
 
     protected AbstractBoard $board;
 
-    protected array $result = [
+    public array $result = [
         Color::W => 0,
         Color::B => 0,
     ];
-
-    public function getResult()
-    {
-        return $this->result;
-    }
 }

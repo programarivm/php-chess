@@ -30,7 +30,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
 
         $backwardPawnEval = new BackwardPawnEval($board);
 
-        $this->assertSame($expectedResult, $backwardPawnEval->getResult());
+        $this->assertSame($expectedResult, $backwardPawnEval->result);
         $this->assertSame($expectedExplanation, $backwardPawnEval->getExplanation());
         $this->assertSame($expectedElaboration, $backwardPawnEval->getElaboration());
     }
@@ -57,7 +57,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
 
         $backwardPawnEval = new BackwardPawnEval($board);
 
-        $this->assertSame($expectedResult, $backwardPawnEval->getResult());
+        $this->assertSame($expectedResult, $backwardPawnEval->result);
         $this->assertSame($expectedExplanation, $backwardPawnEval->getExplanation());
         $this->assertSame($expectedElaboration, $backwardPawnEval->getElaboration());
     }

@@ -56,7 +56,7 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
             "has more backward pawns",
         ];
 
-        $this->isolatedPawnEval = (new IsolatedPawnEval($board))->getResult();
+        $this->isolatedPawnEval = (new IsolatedPawnEval($board))->result;
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::P) {

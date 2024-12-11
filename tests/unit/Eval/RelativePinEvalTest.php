@@ -22,7 +22,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
         $board = (new StrToBoard('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -'))
             ->create();
 
-        $result = (new RelativePinEval($board))->getResult();
+        $result = (new RelativePinEval($board))->result;
 
         $this->assertSame($expected, $result);
     }
@@ -50,7 +50,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedResult, $relativePinEval->result);
         $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
         $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
     }
@@ -78,7 +78,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedResult, $relativePinEval->result);
         $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
         $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
     }
@@ -106,7 +106,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedResult, $relativePinEval->result);
         $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
         $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
     }
@@ -134,7 +134,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedResult, $relativePinEval->result);
         $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
         $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
     }
@@ -162,7 +162,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedResult, $relativePinEval->result);
         $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
         $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
     }
@@ -186,7 +186,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedResult, $relativePinEval->result);
         $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
         $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
     }
@@ -210,7 +210,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedResult, $relativePinEval->result);
         $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
         $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
     }
@@ -234,7 +234,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $relativePinEval = new RelativePinEval($board);
 
-        $this->assertSame($expectedResult, $relativePinEval->getResult());
+        $this->assertSame($expectedResult, $relativePinEval->result);
         $this->assertSame($expectedExplanation, $relativePinEval->getExplanation());
         $this->assertSame($expectedElaboration, $relativePinEval->getElaboration());
     }

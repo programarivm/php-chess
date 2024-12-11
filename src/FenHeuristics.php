@@ -24,7 +24,7 @@ class FenHeuristics
 
         foreach ($this->function->getEval() as $val) {
             $eval = new $val($this->board);
-            $item = $eval->getResult();
+            $item = $eval->result;
             if (is_array($item[Color::W])) {
                 if ($eval instanceof InverseEvalInterface) {
                     $item = [

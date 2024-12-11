@@ -56,8 +56,8 @@ class DefenseEval extends AbstractEval
                     $this->board->detach($piece);
                     $this->board->refresh();
                     $newProtectionEval = new ProtectionEval($this->board);
-                    $diffResult = $newProtectionEval->getResult()[$piece->oppColor()]
-                        - $protectionEval->getResult()[$piece->oppColor()];
+                    $diffResult = $newProtectionEval->result[$piece->oppColor()]
+                        - $protectionEval->result[$piece->oppColor()];
                     if ($diffResult > 0) {
                         foreach ($newProtectionEval->getElaboration() as $key => $val) {
                             if (!in_array($val, $protectionEval->getElaboration())) {
