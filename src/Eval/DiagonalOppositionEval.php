@@ -14,7 +14,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class DiagonalOppositionEval extends AbstractEval
 {
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -52,7 +54,17 @@ class DiagonalOppositionEval extends AbstractEval
                 Color::B => (int) ($this->board->turn !== Color::B),
             ];
         }
+    }
 
-        $this->explain($this->result);
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 }
