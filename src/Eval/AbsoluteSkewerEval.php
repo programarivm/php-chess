@@ -4,7 +4,6 @@ namespace Chess\Eval;
 
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -42,7 +41,10 @@ class AbsoluteSkewerEval extends AbstractEval
                 if ($diffPieces = $this->board->diffPieces($attacked, $newAttacked)) {
                     if (self::$value[$piece->id] < self::$value[current($diffPieces)->id]) {
                         $this->result[$piece->color] = 1;
-                        $this->elaborate($piece, $king);
+                        $this->toElaborate[] = [
+                            $piece,
+                            $king,
+                        ];
                     }
                 }
             }
@@ -52,14 +54,17 @@ class AbsoluteSkewerEval extends AbstractEval
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $attacking
-     * @param \Chess\Variant\AbstractPiece $attacked
+     * @return array
      */
-    public function elaborate(AbstractPiece $attacking, AbstractPiece $attacked): void
+    public function elaborate(): array
     {
-        $attacking = PiecePhrase::create($attacking);
-        $attacked = PiecePhrase::create($attacked);
+        $elaboration = [];
+        foreach ($this->toElaborate as $val) {
+            $attacking = PiecePhrase::create($val[0]);
+            $attacked = PiecePhrase::create($val[1]);
+            $elaboration[] = "When $attacked will be moved, a piece that is more valuable than $attacking may well be exposed to attack.";
+        }
 
-        $this->elaboration[] = ucfirst("when $attacked will be moved, a piece that is more valuable than $attacking may well be exposed to attack.");
+        return $elaboration;
     }
 }
