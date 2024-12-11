@@ -2,16 +2,9 @@
 
 namespace Chess\Eval;
 
-use Chess\Variant\Classical\PGN\AN\Color;
-
 trait ElaborateEvalTrait
 {
-    protected array $elaboration = [];
-
-    public function getElaboration(): array
-    {
-        return $this->elaboration;
-    }
+    public array $elaboration = [];
 
     protected function shorten(string $intro, bool $ucfirst): array
     {

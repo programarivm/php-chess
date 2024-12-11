@@ -25,4 +25,6 @@ abstract class AbstractEval
         Color::W => 0,
         Color::B => 0,
     ];
+
+    public array $toElaborate = [];
 }

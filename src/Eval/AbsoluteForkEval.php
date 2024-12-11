@@ -4,7 +4,6 @@ namespace Chess\Eval;
 
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -37,7 +36,7 @@ class AbsoluteForkEval extends AbstractEval
                     if ($attacked->id !== Piece::K) {
                         if (self::$value[$piece->id] < self::$value[$attacked->id]) {
                             $this->result[$piece->color] += self::$value[$attacked->id];
-                            $this->elaborate($attacked);
+                            $this->toElaborate[] = [$attacked];
                         }
                     }
                 }
@@ -48,12 +47,16 @@ class AbsoluteForkEval extends AbstractEval
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($piece);
+        $elaboration = [];
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create(current($val));
+            $elaboration[] = "Absolute fork attack on {$phrase}.";
+        }
 
-        $this->elaboration[] = "Absolute fork attack on {$phrase}.";
+        return $elaboration;
     }
 }
