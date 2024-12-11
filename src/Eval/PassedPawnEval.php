@@ -16,7 +16,9 @@ use Chess\Variant\Classical\Piece\P;
 class PassedPawnEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -53,16 +55,9 @@ class PassedPawnEval extends AbstractEval
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::P && $this->isPassed($piece)) {
                 $this->result[$piece->color][] = $piece->sq;
-                $this->elaborate($piece);
+                $this->toElaborate[] = $piece;
             }
         }
-
-        $this->shorten('The following are passed pawns: ', $ucfirst = false);
-
-        $this->explain([
-            Color::W => count($this->result[Color::W]),
-            Color::B => count($this->result[Color::B]),
-        ]);
     }
     /**
      * Returns true if the given pawn is passed.
@@ -99,12 +94,33 @@ class PassedPawnEval extends AbstractEval
     }
 
     /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain([
+            Color::W => count($this->result[Color::W]),
+            Color::B => count($this->result[Color::B]),
+        ]);
+
+        return $this->explanation;
+    }
+
+    /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @return array
      */
-    protected function elaborate(P $pawn): void
+    public function elaborate(): array
     {
-        $this->elaboration[] = $pawn->sq;
+        foreach ($this->toElaborate as $val) {
+            $this->elaboration[] = $val->sq;
+        }
+
+        $this->shorten('The following are passed pawns: ', $ucfirst = false);
+
+        return $this->elaboration;
     }
 }

@@ -31,8 +31,8 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->result);
-        $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
-        $this->assertSame($expectedElaboration, $passedPawnEval->getElaboration());
+        $this->assertSame($expectedExplanation, $passedPawnEval->explain());
+        $this->assertSame($expectedElaboration, $passedPawnEval->elaborate());
     }
 
     /**
@@ -58,8 +58,8 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->result);
-        $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
-        $this->assertSame($expectedElaboration, $passedPawnEval->getElaboration());
+        $this->assertSame($expectedExplanation, $passedPawnEval->explain());
+        $this->assertSame($expectedElaboration, $passedPawnEval->elaborate());
     }
 
     /**
@@ -85,8 +85,8 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->result);
-        $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
-        $this->assertSame($expectedElaboration, $passedPawnEval->getElaboration());
+        $this->assertSame($expectedExplanation, $passedPawnEval->explain());
+        $this->assertSame($expectedElaboration, $passedPawnEval->elaborate());
     }
 
     /**
@@ -112,7 +112,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         $passedPawnEval = new PassedPawnEval($board);
 
         $this->assertSame($expectedResult, $passedPawnEval->result);
-        $this->assertSame($expectedExplanation, $passedPawnEval->getExplanation());
-        $this->assertSame($expectedElaboration, $passedPawnEval->getElaboration());
+        $this->assertSame($expectedExplanation, $passedPawnEval->explain());
+        $this->assertSame($expectedElaboration, $passedPawnEval->elaborate());
     }
 }
