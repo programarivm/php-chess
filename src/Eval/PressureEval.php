@@ -17,7 +17,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class PressureEval extends AbstractEval
 {
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -76,10 +78,20 @@ class PressureEval extends AbstractEval
                 ];
             }
         }
+    }
 
-        $this->explain([
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain([
             Color::W => count($this->result[Color::W]),
             Color::B => count($this->result[Color::B]),
         ]);
+
+        return $this->explanation;
     }
 }
