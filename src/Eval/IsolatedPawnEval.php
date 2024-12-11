@@ -16,7 +16,9 @@ use Chess\Variant\Classical\Piece\P;
 class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -52,17 +54,10 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
             if ($piece->id === Piece::P) {
                 if ($this->isIsolated($piece)) {
                     $this->result[$piece->color][] = $piece->sq;
-                    $this->elaborate($piece);
+                    $this->toElaborate[] = $piece;
                 }
             }
         }
-
-        $this->shorten('The following are isolated pawns: ', $ucfirst = false);
-
-        $this->explain([
-            Color::W => count($this->result[Color::W]),
-            Color::B => count($this->result[Color::B]),
-        ]);
     }
 
     /**
@@ -92,12 +87,33 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
     }
 
     /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain([
+            Color::W => count($this->result[Color::W]),
+            Color::B => count($this->result[Color::B]),
+        ]);
+
+        return $this->explanation;
+    }
+
+    /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @return array
      */
-    protected function elaborate(P $pawn): void
+    public function elaborate(): array
     {
-        $this->elaboration[] = $pawn->sq;
+        foreach ($this->toElaborate as $val) {
+            $this->elaboration[] = $val->sq;
+        }
+
+        $this->shorten('The following are isolated pawns: ', $ucfirst = false);
+
+        return $this->elaboration;
     }
 }
