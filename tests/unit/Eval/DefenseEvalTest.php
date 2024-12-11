@@ -29,8 +29,8 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $defenseEval = new DefenseEval($board);
 
         $this->assertSame($expectedResult, $defenseEval->result);
-        $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
-        $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
+        $this->assertSame($expectedExplanation, $defenseEval->explain());
+        $this->assertSame($expectedElaboration, $defenseEval->elaborate());
     }
 
     /**
@@ -53,8 +53,8 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $defenseEval = new DefenseEval($board);
 
         $this->assertSame($expectedResult, $defenseEval->result);
-        $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
-        $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
+        $this->assertSame($expectedExplanation, $defenseEval->explain());
+        $this->assertSame($expectedElaboration, $defenseEval->elaborate());
     }
 
     /**
@@ -81,8 +81,8 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $defenseEval = new DefenseEval($board);
 
         $this->assertSame($expectedResult, $defenseEval->result);
-        $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
-        $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
+        $this->assertSame($expectedExplanation, $defenseEval->explain());
+        $this->assertSame($expectedElaboration, $defenseEval->elaborate());
     }
 
     /**
@@ -105,8 +105,8 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $defenseEval = new DefenseEval($board);
 
         $this->assertSame($expectedResult, $defenseEval->result);
-        $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
-        $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
+        $this->assertSame($expectedExplanation, $defenseEval->explain());
+        $this->assertSame($expectedElaboration, $defenseEval->elaborate());
     }
 
     /**
@@ -133,8 +133,8 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $defenseEval = new DefenseEval($board);
 
         $this->assertSame($expectedResult, $defenseEval->result);
-        $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
-        $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
+        $this->assertSame($expectedExplanation, $defenseEval->explain());
+        $this->assertSame($expectedElaboration, $defenseEval->elaborate());
     }
 
     /**
@@ -161,8 +161,8 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $defenseEval = new DefenseEval($board);
 
         $this->assertSame($expectedResult, $defenseEval->result);
-        $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
-        $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
+        $this->assertSame($expectedExplanation, $defenseEval->explain());
+        $this->assertSame($expectedElaboration, $defenseEval->elaborate());
     }
 
     /**
@@ -189,8 +189,8 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $defenseEval = new DefenseEval($board);
 
         $this->assertSame($expectedResult, $defenseEval->result);
-        $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
-        $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
+        $this->assertSame($expectedExplanation, $defenseEval->explain());
+        $this->assertSame($expectedElaboration, $defenseEval->elaborate());
     }
 
     /**
@@ -218,7 +218,7 @@ class DefenseEvalTest extends AbstractUnitTestCase
         $defenseEval = new DefenseEval($board);
 
         $this->assertSame($expectedResult, $defenseEval->result);
-        $this->assertSame($expectedExplanation, $defenseEval->getExplanation());
-        $this->assertSame($expectedElaboration, $defenseEval->getElaboration());
+        $this->assertSame($expectedExplanation, $defenseEval->explain());
+        $this->assertSame($expectedElaboration, $defenseEval->elaborate());
     }
 }

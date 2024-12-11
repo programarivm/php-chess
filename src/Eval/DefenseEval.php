@@ -5,7 +5,6 @@ namespace Chess\Eval;
 use Chess\Eval\ProtectionEval;
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /*
@@ -18,7 +17,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class DefenseEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /*
      * The name of the heuristic.
@@ -59,49 +60,64 @@ class DefenseEval extends AbstractEval
                     $diffResult = $newProtectionEval->result[$piece->oppColor()]
                         - $protectionEval->result[$piece->oppColor()];
                     if ($diffResult > 0) {
-                        foreach ($newProtectionEval->getElaboration() as $key => $val) {
-                            if (!in_array($val, $protectionEval->getElaboration())) {
+                        foreach ($newProtectionEval->elaborate() as $key => $val) {
+                            if (!in_array($val, $protectionEval->elaborate())) {
                                 $diffPhrases[] = $val;
                             }
                         }
                         $this->result[$piece->oppColor()] += round($diffResult, 2);
-                        $this->elaborate($piece, $diffPhrases);
+                        $this->toElaborate[] = [
+                            $piece,
+                            $diffPhrases,
+                        ];
                     }
                     $this->board->attach($piece);
                     $this->board->refresh();
                 }
             }
         }
-
-        $this->explain($this->result);
     }
 
-    /*
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
+    }
+
+    /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
-     * @param array $diffPhrases
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece, array $diffPhrases): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($piece);
-        $phrase = "If $phrase moved, ";
-        $count = count($diffPhrases);
-        if ($count === 1) {
-            $diffPhrase = mb_strtolower($diffPhrases[0]);
-            $rephrase = str_replace('is unprotected', 'may well be exposed to attack', $diffPhrase);
-            $phrase .= $rephrase;
-        } elseif ($count > 1) {
-            $phrase .= 'these pieces may well be exposed to attack: ';
-            $rephrase = '';
-            foreach ($diffPhrases as $diffPhrase) {
-                $rephrase .= str_replace(' is unprotected.', ', ', $diffPhrase);
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create($val[0]);
+            $phrase = "If $phrase moved, ";
+            $count = count($val[1]);
+            if ($count === 1) {
+                $diffPhrase = mb_strtolower($val[1][0]);
+                $rephrase = str_replace('is unprotected', 'may well be exposed to attack', $diffPhrase);
+                $phrase .= $rephrase;
+            } elseif ($count > 1) {
+                $phrase .= 'these pieces may well be exposed to attack: ';
+                $rephrase = '';
+                foreach ($val[1] as $diffPhrase) {
+                    $rephrase .= str_replace(' is unprotected.', ', ', $diffPhrase);
+                }
+                $phrase .= $rephrase;
+                $phrase = str_replace(', The', ', the', $phrase);
+                $phrase = substr_replace(trim($phrase), '.', -1);
             }
-            $phrase .= $rephrase;
-            $phrase = str_replace(', The', ', the', $phrase);
-            $phrase = substr_replace(trim($phrase), '.', -1);
+            $this->elaboration[] = $phrase;
         }
 
-        $this->elaboration[] = $phrase;
+        return $this->elaboration;
     }
 }
