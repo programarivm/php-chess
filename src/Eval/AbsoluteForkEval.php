@@ -36,7 +36,7 @@ class AbsoluteForkEval extends AbstractEval
                     if ($attacked->id !== Piece::K) {
                         if (self::$value[$piece->id] < self::$value[$attacked->id]) {
                             $this->result[$piece->color] += self::$value[$attacked->id];
-                            $this->toElaborate[] = [$attacked];
+                            $this->toElaborate[] = $attacked;
                         }
                     }
                 }
@@ -53,7 +53,7 @@ class AbsoluteForkEval extends AbstractEval
     {
         $elaboration = [];
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create(current($val));
+            $phrase = PiecePhrase::create($val);
             $elaboration[] = "Absolute fork attack on {$phrase}.";
         }
 
