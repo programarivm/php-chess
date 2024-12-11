@@ -44,7 +44,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
         $materialEval = new MaterialEval($board);
 
         $this->assertEqualsCanonicalizing($expectedResult, $materialEval->result);
-        $this->assertEqualsCanonicalizing($expectedExplanation, $materialEval->getExplanation());
+        $this->assertEqualsCanonicalizing($expectedExplanation, $materialEval->explain());
     }
 
     /**
@@ -83,6 +83,6 @@ class MaterialEvalTest extends AbstractUnitTestCase
         $materialEval = new MaterialEval($board);
 
         $this->assertEqualsCanonicalizing($expectedResult, $materialEval->result);
-        $this->assertEqualsCanonicalizing($expectedExplanation, $materialEval->getExplanation());
+        $this->assertEqualsCanonicalizing($expectedExplanation, $materialEval->explain());
     }
 }
