@@ -5,7 +5,6 @@ namespace Chess\Eval;
 use Chess\Tutor\ColorPhrase;
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -18,7 +17,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class DiscoveredCheckEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -56,27 +57,40 @@ class DiscoveredCheckEval extends AbstractEval
                 foreach ($this->board->diffPieces($before, $after) as $diffPiece) {
                     if ($diffPiece->color === $piece->color) {
                         $this->result[$piece->color] += self::$value[$piece->id];
-                        $this->elaborate($piece);
+                        $this->toElaborate[] = $piece;
                     }
                 }
                 $this->board->attach($piece);
                 $this->board->refresh();
             }
         }
+    }
 
-        $this->explain($this->result);
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $pPhrase = PiecePhrase::create($piece);
-        $cPhrase = ColorPhrase::sentence($piece->oppColor());
+        foreach ($this->toElaborate as $val) {
+            $pPhrase = PiecePhrase::create($val);
+            $cPhrase = ColorPhrase::sentence($val->oppColor());
+            $this->elaboration[] = "The $cPhrase king can be put in check as long as $pPhrase moves out of the way.";
+        }
 
-        $this->elaboration[] = "The $cPhrase king can be put in check as long as $pPhrase moves out of the way.";
+        return $this->elaboration;
     }
 }

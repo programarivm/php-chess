@@ -32,8 +32,8 @@ class DiscoveredCheckEvalTest extends AbstractUnitTestCase
         $discoveredCheckEval = new DiscoveredCheckEval($board);
 
         $this->assertSame($expectedResult, $discoveredCheckEval->result);
-        $this->assertSame($expectedExplanation, $discoveredCheckEval->getExplanation());
-        $this->assertSame($expectedElaboration, $discoveredCheckEval->getElaboration());
+        $this->assertSame($expectedExplanation, $discoveredCheckEval->explain());
+        $this->assertSame($expectedElaboration, $discoveredCheckEval->elaborate());
     }
 
     /**
@@ -60,8 +60,8 @@ class DiscoveredCheckEvalTest extends AbstractUnitTestCase
         $discoveredCheckEval = new DiscoveredCheckEval($board);
 
         $this->assertSame($expectedResult, $discoveredCheckEval->result);
-        $this->assertSame($expectedExplanation, $discoveredCheckEval->getExplanation());
-        $this->assertSame($expectedElaboration, $discoveredCheckEval->getElaboration());
+        $this->assertSame($expectedExplanation, $discoveredCheckEval->explain());
+        $this->assertSame($expectedElaboration, $discoveredCheckEval->elaborate());
     }
 
     /**
@@ -89,7 +89,7 @@ class DiscoveredCheckEvalTest extends AbstractUnitTestCase
         $discoveredCheckEval = new DiscoveredCheckEval($board);
 
         $this->assertSame($expectedResult, $discoveredCheckEval->result);
-        $this->assertSame($expectedExplanation, $discoveredCheckEval->getExplanation());
-        $this->assertSame($expectedElaboration, $discoveredCheckEval->getElaboration());
+        $this->assertSame($expectedExplanation, $discoveredCheckEval->explain());
+        $this->assertSame($expectedElaboration, $discoveredCheckEval->elaborate());
     }
 }
