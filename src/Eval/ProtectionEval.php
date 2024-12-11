@@ -4,7 +4,6 @@ namespace Chess\Eval;
 
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -22,7 +21,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class ProtectionEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -56,26 +57,40 @@ class ProtectionEval extends AbstractEval
                 if ($attacked->id !== Piece::K) {
                     if (!$attacked->defending()) {
                         $this->result[$attacked->oppColor()] += self::$value[$attacked->id];
-                        $this->elaborate($attacked);
+                        $this->toElaborate[] = $attacked;
                     }
                 }
             }
         }
+    }
 
-        $this->explain($this->result);
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($piece);
-        $phrase = ucfirst("$phrase is unprotected.");
-        if (!in_array($phrase, $this->elaboration)) {
-            $this->elaboration[] = $phrase;
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create($val);
+            $phrase = ucfirst("$phrase is unprotected.");
+            if (!in_array($phrase, $this->elaboration)) {
+                $this->elaboration[] = $phrase;
+            }
         }
+
+        return $this->elaboration;
     }
 }

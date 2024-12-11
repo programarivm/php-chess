@@ -50,8 +50,8 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->result);
-        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
-        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
+        $this->assertSame($expectedExplanation, $protectionEval->explain());
+        $this->assertSame($expectedElaboration, $protectionEval->elaborate());
     }
 
     /**
@@ -119,8 +119,8 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->result);
-        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
-        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
+        $this->assertSame($expectedExplanation, $protectionEval->explain());
+        $this->assertSame($expectedElaboration, $protectionEval->elaborate());
     }
 
     /**
@@ -154,8 +154,8 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->result);
-        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
-        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
+        $this->assertSame($expectedExplanation, $protectionEval->explain());
+        $this->assertSame($expectedElaboration, $protectionEval->elaborate());
     }
 
     /**
@@ -194,8 +194,8 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->result);
-        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
-        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
+        $this->assertSame($expectedExplanation, $protectionEval->explain());
+        $this->assertSame($expectedElaboration, $protectionEval->elaborate());
     }
 
     /**
@@ -222,7 +222,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         $protectionEval = new ProtectionEval($board);
 
         $this->assertSame($expectedResult, $protectionEval->result);
-        $this->assertSame($expectedExplanation, $protectionEval->getExplanation());
-        $this->assertSame($expectedElaboration, $protectionEval->getElaboration());
+        $this->assertSame($expectedExplanation, $protectionEval->explain());
+        $this->assertSame($expectedElaboration, $protectionEval->elaborate());
     }
 }
