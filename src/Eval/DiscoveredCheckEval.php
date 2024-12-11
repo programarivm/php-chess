@@ -72,7 +72,7 @@ class DiscoveredCheckEval extends AbstractEval
      *
      * @param \Chess\Variant\AbstractPiece $piece
      */
-    private function elaborate(AbstractPiece $piece): void
+    public function elaborate(AbstractPiece $piece): void
     {
         $pPhrase = PiecePhrase::create($piece);
         $cPhrase = ColorPhrase::sentence($piece->oppColor());

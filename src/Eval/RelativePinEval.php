@@ -78,7 +78,7 @@ class RelativePinEval extends AbstractEval
      *
      * @param \Chess\Variant\AbstractPiece $piece
      */
-    private function elaborate(AbstractPiece $piece): void
+    public function elaborate(AbstractPiece $piece): void
     {
         $phrase = PiecePhrase::create($piece);
 

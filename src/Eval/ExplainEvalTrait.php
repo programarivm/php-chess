@@ -74,7 +74,7 @@ trait ExplainEvalTrait
         ];
     }
 
-    protected function explain(array $result): void
+    public function explain(array $result): void
     {
         if ($meaning = $this->meaning($result)) {
             $this->explanation[] = $meaning;

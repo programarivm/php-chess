@@ -63,7 +63,7 @@ class ConnectivityEval extends AbstractEval implements InverseEvalInterface
      *
      * @param \Chess\Variant\AbstractPiece $piece
      */
-    private function elaborate(AbstractPiece $piece): void
+    public function elaborate(AbstractPiece $piece): void
     {
         $this->elaboration[] = PiecePhrase::create($piece);
     }

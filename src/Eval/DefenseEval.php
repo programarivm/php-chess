@@ -82,7 +82,7 @@ class DefenseEval extends AbstractEval
      * @param \Chess\Variant\AbstractPiece $piece
      * @param array $diffPhrases
      */
-    private function elaborate(AbstractPiece $piece, array $diffPhrases): void
+    public function elaborate(AbstractPiece $piece, array $diffPhrases): void
     {
         $phrase = PiecePhrase::create($piece);
         $phrase = "If $phrase moved, ";

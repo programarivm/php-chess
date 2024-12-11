@@ -125,7 +125,7 @@ class SqOutpostEval extends AbstractEval
      *
      * @param string $sq
      */
-    private function elaborate(string $sq): void
+    public function elaborate(string $sq): void
     {
         $this->elaboration[] = $sq;
     }

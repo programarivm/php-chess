@@ -194,7 +194,7 @@ class BackRankThreatEval extends AbstractEval
      *
      * @param \Chess\Variant\AbstractPiece $king
      */
-    private function elaborate(AbstractPiece $king): void
+    public function elaborate(AbstractPiece $king): void
     {
         $phrase = PiecePhrase::create($king);
 

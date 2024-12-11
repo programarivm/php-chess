@@ -55,7 +55,7 @@ class AbsoluteSkewerEval extends AbstractEval
      * @param \Chess\Variant\AbstractPiece $attacking
      * @param \Chess\Variant\AbstractPiece $attacked
      */
-    private function elaborate(AbstractPiece $attacking, AbstractPiece $attacked): void
+    public function elaborate(AbstractPiece $attacking, AbstractPiece $attacked): void
     {
         $attacking = PiecePhrase::create($attacking);
         $attacked = PiecePhrase::create($attacked);
