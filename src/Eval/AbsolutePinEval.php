@@ -56,12 +56,11 @@ class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
      */
     public function elaborate(): array
     {
-        $elaboration = [];
         foreach ($this->toElaborate as $val) {
             $phrase = PiecePhrase::create($val);
-            $elaboration[] = ucfirst("$phrase is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.");
+            $this->elaboration[] = ucfirst("$phrase is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.");
         }
 
-        return $elaboration;
+        return $this->elaboration;
     }
 }

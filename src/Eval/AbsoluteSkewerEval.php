@@ -58,13 +58,12 @@ class AbsoluteSkewerEval extends AbstractEval
      */
     public function elaborate(): array
     {
-        $elaboration = [];
         foreach ($this->toElaborate as $val) {
             $attacking = PiecePhrase::create($val[0]);
             $attacked = PiecePhrase::create($val[1]);
-            $elaboration[] = "When $attacked will be moved, a piece that is more valuable than $attacking may well be exposed to attack.";
+            $this->elaboration[] = "When $attacked will be moved, a piece that is more valuable than $attacking may well be exposed to attack.";
         }
 
-        return $elaboration;
+        return $this->elaboration;
     }
 }

@@ -51,12 +51,11 @@ class AbsoluteForkEval extends AbstractEval
      */
     public function elaborate(): array
     {
-        $elaboration = [];
         foreach ($this->toElaborate as $val) {
             $phrase = PiecePhrase::create($val);
-            $elaboration[] = "Absolute fork attack on {$phrase}.";
+            $this->elaboration[] = "Absolute fork attack on {$phrase}.";
         }
 
-        return $elaboration;
+        return $this->elaboration;
     }
 }
