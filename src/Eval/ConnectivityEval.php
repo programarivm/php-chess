@@ -4,7 +4,6 @@ namespace Chess\Eval;
 
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -15,7 +14,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class ConnectivityEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -48,23 +49,37 @@ class ConnectivityEval extends AbstractEval implements InverseEvalInterface
             if ($piece->id !== Piece::K) {
                 if (!$piece->defending()) {
                     $this->result[$piece->color] += 1;
-                    $this->elaborate($piece);
+                    $this->toElaborate[] = $piece;
                 }
             }
         }
+    }
 
-        $this->shorten('These pieces are hanging: ', $ucfirst = true);
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
 
-        $this->explain($this->result);
+        return $this->explanation;
     }
 
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $this->elaboration[] = PiecePhrase::create($piece);
+        foreach ($this->toElaborate as $val) {
+            $this->elaboration[] = PiecePhrase::create($val);
+        }
+
+        $this->shorten('These pieces are hanging: ', $ucfirst = true);
+
+        return $this->elaboration;
     }
 }

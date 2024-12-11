@@ -29,8 +29,8 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
         $connectivityEval = new ConnectivityEval(new Board());
 
         $this->assertSame($expectedResult, $connectivityEval->result);
-        $this->assertSame($expectedExplanation, $connectivityEval->getExplanation());
-        $this->assertSame($expectedElaboration, $connectivityEval->getElaboration());
+        $this->assertSame($expectedExplanation, $connectivityEval->explain());
+        $this->assertSame($expectedElaboration, $connectivityEval->elaborate());
     }
 
     /**
@@ -56,7 +56,7 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
         $connectivityEval = new ConnectivityEval($board);
 
         $this->assertSame($expectedResult, $connectivityEval->result);
-        $this->assertSame($expectedExplanation, $connectivityEval->getExplanation());
-        $this->assertSame($expectedElaboration, $connectivityEval->getElaboration());
+        $this->assertSame($expectedExplanation, $connectivityEval->explain());
+        $this->assertSame($expectedElaboration, $connectivityEval->elaborate());
     }
 }
