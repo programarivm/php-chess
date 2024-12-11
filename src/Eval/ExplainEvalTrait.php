@@ -13,12 +13,7 @@ trait ExplainEvalTrait
 
     protected array $observation;
 
-    protected array $explanation = [];
-
-    public function getExplanation(): array
-    {
-        return $this->explanation;
-    }
+    public array $explanation = [];
 
     protected function meaning(array $result): ?string
     {

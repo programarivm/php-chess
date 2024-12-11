@@ -4,7 +4,6 @@ namespace Chess\Eval;
 
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 
 /**
  * Absolute Pin Evaluation
@@ -45,22 +44,24 @@ class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
         foreach ($this->board->pieces() as $piece) {
             if ($piece->isPinned()) {
                 $this->result[$piece->color] += self::$value[$piece->id];
-                $this->elaborate($piece);
+                $this->toElaborate[] = [$piece];
             }
         }
-
-        $this->explain($this->result);
     }
 
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($piece);
+        $elaboration = [];
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create(current($val));
+            $elaboration[] = ucfirst("$phrase is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.");
+        }
 
-        $this->elaboration[] = ucfirst("$phrase is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.");
+        return $elaboration;
     }
 }

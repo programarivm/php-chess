@@ -28,7 +28,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
         $absPinEval = new AbsolutePinEval($board);
 
         $this->assertSame($expectedResult, $absPinEval->result);
-        $this->assertSame($expectedElaboration, $absPinEval->getElaboration());
+        $this->assertSame($expectedElaboration, $absPinEval->elaborate());
     }
 
     /**
@@ -51,7 +51,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
         $absPinEval = new AbsolutePinEval($board);
 
         $this->assertSame($expectedResult, $absPinEval->result);
-        $this->assertSame($expectedElaboration, $absPinEval->getElaboration());
+        $this->assertSame($expectedElaboration, $absPinEval->elaborate());
     }
 
     /**
@@ -75,7 +75,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
         $absPinEval = new AbsolutePinEval($board);
 
         $this->assertSame($expectedResult, $absPinEval->result);
-        $this->assertSame($expectedElaboration, $absPinEval->getElaboration());
+        $this->assertSame($expectedElaboration, $absPinEval->elaborate());
     }
 
     /**
