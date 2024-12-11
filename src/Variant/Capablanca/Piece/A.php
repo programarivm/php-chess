@@ -2,13 +2,13 @@
 
 namespace Chess\Variant\Capablanca\Piece;
 
-use Chess\Variant\AbstractPiece;
+use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\Capablanca\PGN\AN\Piece;
 use Chess\Variant\Capablanca\PGN\AN\Square;
 use Chess\Variant\Classical\Piece\B;
 use Chess\Variant\Classical\Piece\N;
 
-class A extends AbstractPiece
+class A extends AbstractLinePiece
 {
     use CapablancaTrait;
 
