@@ -31,8 +31,8 @@ class FarAdvancedPawnEvalTest extends AbstractUnitTestCase
         $farAdvancedPawnEval = new FarAdvancedPawnEval($board);
 
         $this->assertSame($expectedResult, $farAdvancedPawnEval->result);
-        $this->assertSame($expectedExplanation, $farAdvancedPawnEval->getExplanation());
-        $this->assertSame($expectedElaboration, $farAdvancedPawnEval->getElaboration());
+        $this->assertSame($expectedExplanation, $farAdvancedPawnEval->explain());
+        $this->assertSame($expectedElaboration, $farAdvancedPawnEval->elaborate());
     }
 
     /**
@@ -58,7 +58,7 @@ class FarAdvancedPawnEvalTest extends AbstractUnitTestCase
         $farAdvancedPawnEval = new FarAdvancedPawnEval($board);
 
         $this->assertSame($expectedResult, $farAdvancedPawnEval->result);
-        $this->assertSame($expectedExplanation, $farAdvancedPawnEval->getExplanation());
-        $this->assertSame($expectedElaboration, $farAdvancedPawnEval->getElaboration());
+        $this->assertSame($expectedExplanation, $farAdvancedPawnEval->explain());
+        $this->assertSame($expectedElaboration, $farAdvancedPawnEval->elaborate());
     }
 }
