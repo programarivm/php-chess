@@ -53,32 +53,26 @@ class SpaceEval extends AbstractEval
             if ($piece->id === Piece::K) {
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
-                    ...array_intersect(
-                        $piece->mobility,
-                        $this->board->sqCount['free']
-                    )
+                    ...$piece->mobility,
                 ];
             } elseif ($piece->id === Piece::P) {
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
-                    ...array_intersect(
-                        $piece->captureSqs,
-                        $this->board->sqCount['free']
-                    )
+                    ...$piece->captureSqs,
                 ];
             } else {
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
-                    ...array_diff(
-                        $piece->moveSqs(),
-                        $this->board->sqCount['used'][$piece->oppColor()]
-                    )
+                    ...$piece->moveSqs(),
                 ];
             }
         }
 
-        $this->result[Color::W] = array_flip(array_flip($this->result[Color::W]));
-        $this->result[Color::B] = array_flip(array_flip($this->result[Color::B]));
+        $this->result[Color::W] = array_keys(array_flip($this->result[Color::W]));
+        $this->result[Color::B] = array_keys(array_flip($this->result[Color::B]));
+
+        $this->result[Color::W] = array_intersect($this->result[Color::W], $this->board->sqCount['free']);
+        $this->result[Color::B] = array_intersect($this->result[Color::B], $this->board->sqCount['free']);
     }
 
     /**
