@@ -4,7 +4,6 @@ namespace Chess\Eval;
 
 use Chess\Tutor\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 /**
@@ -16,7 +15,9 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class RelativeForkEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait;
+    use ExplainEvalTrait {
+        explain as private doExplain;
+    }
 
     /**
      * The name of the heuristic.
@@ -50,29 +51,42 @@ class RelativeForkEval extends AbstractEval
                 $attacked = $piece->attacked();
                 if (count($attacked) >= 2) {
                     $pieceValue = self::$value[$piece->id];
-                    foreach ($attacked as $attacked) {
-                        $attackedValue = self::$value[$attacked->id];
+                    foreach ($attacked as $val) {
+                        $attackedValue = self::$value[$val->id];
                         if ($pieceValue < $attackedValue) {
                             $this->result[$piece->color] += $attackedValue;
-                            $this->elaborate($attacked);
+                            $this->toElaborate[] = $val;
                         }
                     }
                 }
             }
         }
+    }
 
-        $this->explain($this->result);
+    /**
+     * Explain the evaluation.
+     *
+     * @return array
+     */
+    public function explain(): array
+    {
+        $this->doExplain($this->result);
+
+        return $this->explanation;
     }
 
     /**
      * Elaborate on the evaluation.
      *
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @return array
      */
-    public function elaborate(AbstractPiece $piece): void
+    public function elaborate(): array
     {
-        $phrase = PiecePhrase::create($piece);
+        foreach ($this->toElaborate as $val) {
+            $phrase = PiecePhrase::create($val);
+            $this->elaboration[] = "Relative fork attack on {$phrase}.";
+        }
 
-        $this->elaboration[] = "Relative fork attack on {$phrase}.";
+        return $this->elaboration;
     }
 }
