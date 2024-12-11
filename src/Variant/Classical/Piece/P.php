@@ -145,7 +145,7 @@ class P extends AbstractPiece
         return isset($this->move['newId']) && $rank === $this->ranks['end'];
     }
 
-    public function enPassantPawn(): ?P
+    public function enPassantPawn(): ?AbstractPiece
     {
         if ($this->enPassantSq) {
             $rank = (int) substr($this->enPassantSq, 1);
