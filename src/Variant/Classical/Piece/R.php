@@ -35,7 +35,7 @@ class R extends AbstractLinePiece
             $this->mobility[2][] = chr($i) . $this->rank();
         }
 
-        for ($i = ord($this->file()) + 1; $i <= ord('a') + $this->square::SIZE['ranks'] - 1; $i++) {
+        for ($i = ord($this->file()) + 1; $i <= ord('a') + $this->square::SIZE['files'] - 1; $i++) {
             $this->mobility[3][] = chr($i) . $this->rank();
         }
     }
