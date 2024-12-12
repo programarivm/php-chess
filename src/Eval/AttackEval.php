@@ -21,9 +21,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
 class AttackEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait {
-        explain as private doExplain;
-    }
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -92,18 +90,6 @@ class AttackEval extends AbstractEval
                 }
             }
         }
-    }
-
-    /**
-     * Explain the evaluation.
-     *
-     * @return array
-     */
-    public function explain(): array
-    {
-        $this->doExplain($this->result);
-
-        return $this->explanation;
     }
 
     /**

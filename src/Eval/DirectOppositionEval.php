@@ -15,9 +15,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class DirectOppositionEval extends AbstractEval
 {
-    use ExplainEvalTrait {
-        explain as private doExplain;
-    }
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -62,17 +60,5 @@ class DirectOppositionEval extends AbstractEval
                 ];
             }
         }
-    }
-
-    /**
-     * Explain the evaluation.
-     *
-     * @return array
-     */
-    public function explain(): array
-    {
-        $this->doExplain($this->result);
-
-        return $this->explanation;
     }
 }

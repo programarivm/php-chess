@@ -16,9 +16,7 @@ use Chess\Variant\Classical\Piece\P;
 class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait {
-        explain as private doExplain;
-    }
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -84,21 +82,6 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
         }
 
         return true;
-    }
-
-    /**
-     * Explain the evaluation.
-     *
-     * @return array
-     */
-    public function explain(): array
-    {
-        $this->doExplain([
-            Color::W => count($this->result[Color::W]),
-            Color::B => count($this->result[Color::B]),
-        ]);
-
-        return $this->explanation;
     }
 
     /**

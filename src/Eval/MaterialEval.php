@@ -18,9 +18,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class MaterialEval extends AbstractEval
 {
-    use ExplainEvalTrait {
-        explain as private doExplain;
-    }
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -63,17 +61,5 @@ class MaterialEval extends AbstractEval
 
         $this->result[Color::W] = round($this->result[Color::W], 2);
         $this->result[Color::B] = round($this->result[Color::B], 2);
-    }
-
-    /**
-     * Explain the evaluation.
-     *
-     * @return array
-     */
-    public function explain(): array
-    {
-        $this->doExplain($this->result);
-
-        return $this->explanation;
     }
 }

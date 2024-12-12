@@ -13,9 +13,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class SpaceEval extends AbstractEval
 {
-    use ExplainEvalTrait {
-        explain as private doExplain;
-    }
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -73,20 +71,5 @@ class SpaceEval extends AbstractEval
 
         $this->result[Color::W] = array_intersect($this->result[Color::W], $this->board->sqCount['free']);
         $this->result[Color::B] = array_intersect($this->result[Color::B], $this->board->sqCount['free']);
-    }
-
-    /**
-     * Explain the evaluation.
-     *
-     * @return array
-     */
-    public function explain(): array
-    {
-        $this->doExplain([
-            Color::W => count($this->result[Color::W]),
-            Color::B => count($this->result[Color::B]),
-        ]);
-
-        return $this->explanation;
     }
 }

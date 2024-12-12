@@ -14,9 +14,7 @@ use Chess\Variant\AbstractBoard;
 class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait {
-        explain as private doExplain;
-    }
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -49,18 +47,6 @@ class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
                 $this->toElaborate[] = $piece;
             }
         }
-    }
-
-    /**
-     * Explain the evaluation.
-     *
-     * @return array
-     */
-    public function explain(): array
-    {
-        $this->doExplain($this->result);
-
-        return $this->explanation;
     }
 
     /**

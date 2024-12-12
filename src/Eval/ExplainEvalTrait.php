@@ -69,10 +69,17 @@ trait ExplainEvalTrait
         ];
     }
 
-    public function explain(array $result): void
+    public function explain(): array
     {
-        if ($meaning = $this->meaning($result)) {
+        if (!is_numeric($this->result[Color::W])) {
+            $this->result[Color::W] = count($this->result[Color::W]);
+            $this->result[Color::B] = count($this->result[Color::B]);
+        }
+
+        if ($meaning = $this->meaning($this->result)) {
             $this->explanation[] = $meaning;
         }
+
+        return $this->explanation;
     }
 }

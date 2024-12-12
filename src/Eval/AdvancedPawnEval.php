@@ -15,9 +15,7 @@ use Chess\Variant\Classical\Piece\P;
 class AdvancedPawnEval extends AbstractEval
 {
     use ElaborateEvalTrait;
-    use ExplainEvalTrait {
-        explain as private doExplain;
-    }
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -76,21 +74,6 @@ class AdvancedPawnEval extends AbstractEval
         }
 
         return false;
-    }
-
-    /**
-     * Explain the evaluation.
-     *
-     * @return array
-     */
-    public function explain(): array
-    {
-        $this->doExplain([
-            Color::W => count($this->result[Color::W]),
-            Color::B => count($this->result[Color::B]),
-        ]);
-
-        return $this->explanation;
     }
 
     /**

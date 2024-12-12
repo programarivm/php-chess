@@ -14,9 +14,7 @@ use Chess\Variant\Classical\PGN\AN\Piece;
  */
 class BishopPairEval extends AbstractEval
 {
-    use ExplainEvalTrait {
-        explain as private doExplain;
-    }
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -59,17 +57,5 @@ class BishopPairEval extends AbstractEval
         } elseif ($count[Color::B] === 2 && $count[Color::B] > $count[Color::W]) {
             $this->result[Color::B] = 1;
         }
-    }
-
-    /**
-     * Explain the evaluation.
-     *
-     * @return array
-     */
-    public function explain(): array
-    {
-        $this->doExplain($this->result);
-
-        return $this->explanation;
     }
 }
