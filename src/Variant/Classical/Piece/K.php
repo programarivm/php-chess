@@ -2,7 +2,6 @@
 
 namespace Chess\Variant\Classical\Piece;
 
-use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\RType;
 use Chess\Variant\Classical\PGN\AN\Castle;
@@ -17,76 +16,48 @@ class K extends AbstractPiece
 
         $this->mobility = [];
 
-        try {
-            $file = $this->file();
-            $rank = $this->rank() + 1;
-            if ($this->square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
+        $rank = $this->rank() + 1;
+        if ($rank >= 1 && $rank <= $this->square::SIZE['ranks']) {
+            $this->mobility[] = $this->file() . $rank;
         }
 
-        try {
-            $file = $this->file();
-            $rank = $this->rank() - 1;
-            if ($this->square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
+        $rank = $this->rank() - 1;
+        if ($rank >= 1 && $rank <= $this->square::SIZE['ranks']) {
+            $this->mobility[] = $this->file() . $rank;
         }
 
-        try {
-            $file = chr(ord($this->file()) - 1);
-            $rank = $this->rank();
-            if ($this->square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
+        $file = ord($this->file()) - 1;
+        if ($file >= ord('a')) {
+            $this->mobility[] = chr($file) . $this->rank();
         }
 
-        try {
-            $file = chr(ord($this->file()) + 1);
-            $rank = $this->rank();
-            if ($this->square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
+        $file = ord($this->file()) + 1;
+        if ($file <= ord('a') + $this->square::SIZE['files'] - 1) {
+            $this->mobility[] = chr($file) . $this->rank();
         }
 
-        try {
-            $file = chr(ord($this->file()) - 1);
-            $rank = $this->rank() + 1;
-            if ($this->square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
+        $file = ord($this->file()) - 1;
+        $rank = $this->rank() + 1;
+        if ($file >= ord('a') && $rank <= $this->square::SIZE['ranks']) {
+            $this->mobility[] = chr($file) . $rank;
         }
 
-        try {
-            $file = chr(ord($this->file()) + 1);
-            $rank = $this->rank() + 1;
-            if ($this->square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
+        $file = ord($this->file()) + 1;
+        $rank = $this->rank() + 1;
+        if ($file <= ord('a') + $this->square::SIZE['files'] - 1 && $rank <= $this->square::SIZE['ranks']) {
+            $this->mobility[] = chr($file) . $rank;
         }
 
-        try {
-            $file = chr(ord($this->file()) - 1);
-            $rank = $this->rank() - 1;
-            if ($this->square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
+        $file = ord($this->file()) - 1;
+        $rank = $this->rank() - 1;
+        if ($file >= ord('a') && $rank >= 1) {
+            $this->mobility[] = chr($file) . $rank;
         }
 
-        try {
-            $file = chr(ord($this->file()) + 1);
-            $rank = $this->rank() - 1;
-            if ($this->square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
+        $file = ord($this->file()) + 1;
+        $rank = $this->rank() - 1;
+        if ($file <= ord('a') + $this->square::SIZE['files'] - 1 && $rank >= 1) {
+            $this->mobility[] = chr($file) . $rank;
         }
     }
 
