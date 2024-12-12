@@ -2,7 +2,6 @@
 
 namespace Chess\Variant\Classical\Piece;
 
-use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
@@ -24,44 +23,20 @@ class R extends AbstractLinePiece
             3 => [],
         ];
 
-        try {
-            $file = $this->file();
-            $rank = $this->rank() + 1;
-            while ($this->square->validate($file . $rank)) {
-                $this->mobility[0][] = $file . $rank;
-                $rank += 1;
-            }
-        } catch (UnknownNotationException $e) {
+        for ($i = $this->rank() + 1; $i <= $this->square::SIZE['ranks']; $i++) {
+            $this->mobility[0][] = $this->file() . $i;
         }
 
-        try {
-            $file = $this->file();
-            $rank = $this->rank() - 1;
-            while ($this->square->validate($file . $rank)) {
-                $this->mobility[1][] = $file . $rank;
-                $rank -= 1;
-            }
-        } catch (UnknownNotationException $e) {
+        for ($i = $this->rank() - 1; $i >= 1; $i--) {
+            $this->mobility[1][] = $this->file() . $i;
         }
 
-        try {
-            $file = chr(ord($this->file()) - 1);
-            $rank = $this->rank();
-            while ($this->square->validate($file . $rank)) {
-                $this->mobility[2][] = $file . $rank;
-                $file = chr(ord($file) - 1);
-            }
-        } catch (UnknownNotationException $e) {
+        for ($i = ord($this->file()) - 1; $i >= ord('a'); $i--) {
+            $this->mobility[2][] = chr($i) . $this->rank();
         }
 
-        try {
-            $file = chr(ord($this->file()) + 1);
-            $rank = $this->rank();
-            while ($this->square->validate($file . $rank)) {
-                $this->mobility[3][] = $file . $rank;
-                $file = chr(ord($file) + 1);
-            }
-        } catch (UnknownNotationException $e) {
+        for ($i = ord($this->file()) + 1; $i <= ord('a') + $this->square::SIZE['ranks'] - 1; $i++) {
+            $this->mobility[3][] = chr($i) . $this->rank();
         }
     }
 }
