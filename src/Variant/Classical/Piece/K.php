@@ -17,12 +17,12 @@ class K extends AbstractPiece
         $this->mobility = [];
 
         $rank = $this->rank() + 1;
-        if ($rank >= 1 && $rank <= $this->square::SIZE['ranks']) {
+        if ($rank <= $this->square::SIZE['ranks']) {
             $this->mobility[] = $this->file() . $rank;
         }
 
         $rank = $this->rank() - 1;
-        if ($rank >= 1 && $rank <= $this->square::SIZE['ranks']) {
+        if ($rank >= 1) {
             $this->mobility[] = $this->file() . $rank;
         }
 
