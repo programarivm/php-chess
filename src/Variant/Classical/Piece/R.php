@@ -31,11 +31,11 @@ class R extends AbstractLinePiece
             $this->mobility[1][] = $this->file() . $i;
         }
 
-        for ($i = ord($this->file()) - 1; $i >= ord('a'); $i--) {
+        for ($i = ord($this->file()) - 1; $i >= 97; $i--) {
             $this->mobility[2][] = chr($i) . $this->rank();
         }
 
-        for ($i = ord($this->file()) + 1; $i <= ord('a') + $this->square::SIZE['files'] - 1; $i++) {
+        for ($i = ord($this->file()) + 1; $i <= 97 + $this->square::SIZE['files'] - 1; $i++) {
             $this->mobility[3][] = chr($i) . $this->rank();
         }
     }

@@ -21,7 +21,7 @@ class B extends AbstractLinePiece
 
         $file = ord($this->file()) - 1;
         $rank = $this->rank() + 1;
-        while ($file >= ord('a') && $rank <= $this->square::SIZE['ranks']) {
+        while ($file >= 97 && $rank <= $this->square::SIZE['ranks']) {
             $this->mobility[0][] = chr($file) . $rank;
             $file -= 1;
             $rank += 1;
@@ -29,7 +29,7 @@ class B extends AbstractLinePiece
 
         $file = ord($this->file()) + 1;
         $rank = $this->rank() + 1;
-        while ($file <= ord('a') + $this->square::SIZE['files'] - 1 && $rank <= $this->square::SIZE['ranks']) {
+        while ($file <= 97 + $this->square::SIZE['files'] - 1 && $rank <= $this->square::SIZE['ranks']) {
             $this->mobility[1][]  = chr($file) . $rank;
             $file += 1;
             $rank += 1;
@@ -37,7 +37,7 @@ class B extends AbstractLinePiece
 
         $file = ord($this->file()) - 1;
         $rank = $this->rank() - 1;
-        while ($file >= ord('a') && $rank >= 1) {
+        while ($file >= 97 && $rank >= 1) {
             $this->mobility[2][] = chr($file) . $rank;
             $file -= 1;
             $rank -= 1;
@@ -45,7 +45,7 @@ class B extends AbstractLinePiece
 
         $file = ord($this->file()) + 1;
         $rank = $this->rank() - 1;
-        while ($file <= ord('a') + $this->square::SIZE['files'] - 1 && $rank >= 1) {
+        while ($file <= 97 + $this->square::SIZE['files'] - 1 && $rank >= 1) {
             $this->mobility[3][] = chr($file) . $rank;
             $file += 1;
             $rank -= 1;

@@ -27,36 +27,36 @@ class K extends AbstractPiece
         }
 
         $file = ord($this->file()) - 1;
-        if ($file >= ord('a')) {
+        if ($file >= 97) {
             $this->mobility[] = chr($file) . $this->rank();
         }
 
         $file = ord($this->file()) + 1;
-        if ($file <= ord('a') + $this->square::SIZE['files'] - 1) {
+        if ($file <= 97 + $this->square::SIZE['files'] - 1) {
             $this->mobility[] = chr($file) . $this->rank();
         }
 
         $file = ord($this->file()) - 1;
         $rank = $this->rank() + 1;
-        if ($file >= ord('a') && $rank <= $this->square::SIZE['ranks']) {
+        if ($file >= 97 && $rank <= $this->square::SIZE['ranks']) {
             $this->mobility[] = chr($file) . $rank;
         }
 
         $file = ord($this->file()) + 1;
         $rank = $this->rank() + 1;
-        if ($file <= ord('a') + $this->square::SIZE['files'] - 1 && $rank <= $this->square::SIZE['ranks']) {
+        if ($file <= 97 + $this->square::SIZE['files'] - 1 && $rank <= $this->square::SIZE['ranks']) {
             $this->mobility[] = chr($file) . $rank;
         }
 
         $file = ord($this->file()) - 1;
         $rank = $this->rank() - 1;
-        if ($file >= ord('a') && $rank >= 1) {
+        if ($file >= 97 && $rank >= 1) {
             $this->mobility[] = chr($file) . $rank;
         }
 
         $file = ord($this->file()) + 1;
         $rank = $this->rank() - 1;
-        if ($file <= ord('a') + $this->square::SIZE['files'] - 1 && $rank >= 1) {
+        if ($file <= 97 + $this->square::SIZE['files'] - 1 && $rank >= 1) {
             $this->mobility[] = chr($file) . $rank;
         }
     }
