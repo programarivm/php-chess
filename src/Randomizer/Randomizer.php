@@ -28,7 +28,7 @@ class Randomizer
 
     protected function sq(): string
     {
-        $sqs = $this->board->square->all();
+        $sqs = $this->board->square->all;
         shuffle($sqs);
 
         return $sqs[0];

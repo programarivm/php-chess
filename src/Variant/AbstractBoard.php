@@ -265,7 +265,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         }
 
         return [
-            'free' => array_diff($this->square->all(), [...$used[Color::W], ...$used[Color::B]]),
+            'free' => array_diff($this->square->all, [...$used[Color::W], ...$used[Color::B]]),
             'used' => $used,
         ];
     }

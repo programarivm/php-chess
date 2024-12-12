@@ -16,6 +16,17 @@ class Square extends AbstractNotation
 
     const EXTRACT = '/[^a-h0-9 "\']/';
 
+    public array $all = [];
+
+    public function __construct()
+    {
+        for ($i = 0; $i < static::SIZE['files']; $i++) {
+            for ($j = 0; $j < static::SIZE['ranks']; $j++) {
+                $this->all[] = $this->toAlgebraic($i, $j);
+            }
+        }
+    }
+
     public function validate(string $value): string
     {
         if (!preg_match('/^' . static::REGEX . '$/', $value)) {
@@ -41,18 +52,6 @@ class Square extends AbstractNotation
         }
 
         return Color::W;
-     }
-
-     public function all(): array
-     {
-         $all = [];
-         for ($i = 0; $i < static::SIZE['files']; $i++) {
-             for ($j = 0; $j < static::SIZE['ranks']; $j++) {
-                 $all[] = $this->toAlgebraic($i, $j);
-             }
-         }
-
-         return $all;
      }
 
      public function corner(): array
