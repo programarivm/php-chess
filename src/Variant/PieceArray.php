@@ -27,25 +27,29 @@ class PieceArray
 
         for ($i = count($array) - 1; $i >= 0; $i--) {
             for ($j = 0; $j < count($array[$i]); $j++) {
-                $char = trim($array[$i][$j]);
-                if (ctype_lower($char)) {
-                    $this->push(Color::B, strtoupper($char), $this->square->toAlgebraic($j, $i));
-                } elseif (ctype_upper($char)) {
-                    $this->push(Color::W, $char, $this->square->toAlgebraic($j, $i));
-                }
+                $this->push(trim($array[$i][$j]), $this->square->toAlgebraic($j, $i));
             }
         }
     }
 
-    private function push(string $color, string $id, string $sq): void
+    private function push(string $id, string $sq): void
     {
+        if (ctype_lower($id)) {
+            $color = Color::B;
+        } elseif (ctype_upper($id)) {
+            $color = Color::W;
+        } else {
+            return;
+        }
+
+        $id = strtoupper($id);
+
         if ($id === Piece::R) {
             if ($sq === $this->castlingRule?->rule[$color][Piece::R][Castle::LONG]['from']) {
                 $this->pieces[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
             } elseif ($sq === $this->castlingRule?->rule[$color][Piece::R][Castle::SHORT]['from']) {
                 $this->pieces[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
             } else {
-                // it doesn't matter which RType is assigned
                 $this->pieces[] = new R($color, $sq, $this->square, RType::R);
             }
         } else {
