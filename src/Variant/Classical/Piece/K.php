@@ -92,8 +92,8 @@ class K extends AbstractPiece
 
     public function sqCastle(string $type): ?string
     {
-        $rule = $this->board->castlingRule?->rule[$this->color][Piece::K][$type];
-        if ($this->extract($this->color, $type)) {
+        if ($this->canCastle($type)) {
+            $rule = $this->board->castlingRule?->rule[$this->color][Piece::K][$type];
             if (
                 $this->board->turn === $this->color &&
                 !$this->board->isCheck() &&

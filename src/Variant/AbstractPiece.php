@@ -7,6 +7,7 @@ use Chess\Variant\Classical\Piece\B;
 use Chess\Variant\Classical\Piece\N;
 use Chess\Variant\Classical\Piece\Q;
 use Chess\Variant\Classical\Piece\R;
+use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
@@ -355,21 +356,15 @@ abstract class AbstractPiece
         }
     }
 
-    public function extract(string $color, string $type): string
+    public function canCastle(string $type): string
     {
-        if ($type === RType::CASTLE_LONG) {
-            $id = $color === Color::W ? Piece::Q : mb_strtolower(Piece::Q);
-        } elseif ($type === RType::CASTLE_SHORT) {
-            $id = $color === Color::W ? Piece::K : mb_strtolower(Piece::K);
+        if ($type === Castle::SHORT) {
+            $id = $this->board->turn === Color::W ? Piece::K : mb_strtolower(Piece::K);
+        } elseif ($type === Castle::LONG) {
+            $id = $this->board->turn === Color::W ? Piece::Q : mb_strtolower(Piece::Q);
         }
 
         return strpbrk($this->board->castlingAbility, $id);
-    }
-
-    public function canCastle(string $color)
-    {
-        return $this->extract($color, RType::CASTLE_SHORT) ||
-            $this->extract($color, RType::CASTLE_LONG);
     }
 
     /**
@@ -379,7 +374,7 @@ abstract class AbstractPiece
      */
     public function updateCastle(): AbstractPiece
     {
-        if ($this->canCastle($this->board->turn)) {
+        if ($this->canCastle(Castle::SHORT) || $this->canCastle(Castle::LONG)) {
             if ($this->id === Piece::K) {
                 $search = $this->board->turn === Color::W ? 'KQ' : 'kq';
                 $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility)
