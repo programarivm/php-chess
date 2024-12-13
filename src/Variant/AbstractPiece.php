@@ -356,7 +356,7 @@ abstract class AbstractPiece
         }
     }
 
-    public function canCastle(string $type): string
+    public function castlingAbility(string $type): string
     {
         if ($type === Castle::SHORT) {
             $id = $this->board->turn === Color::W ? Piece::K : mb_strtolower(Piece::K);
@@ -374,7 +374,7 @@ abstract class AbstractPiece
      */
     public function updateCastle(): AbstractPiece
     {
-        if ($this->canCastle(Castle::SHORT) || $this->canCastle(Castle::LONG)) {
+        if ($this->castlingAbility(Castle::SHORT) || $this->castlingAbility(Castle::LONG)) {
             if ($this->id === Piece::K) {
                 $search = $this->board->turn === Color::W ? 'KQ' : 'kq';
                 $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility)
