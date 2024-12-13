@@ -165,6 +165,23 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
+     * Returns true if the king can castle according to the castling ability.
+     *
+     * @param string $type
+     * @return bool
+     */
+    public function castlingAbility(string $type): bool
+    {
+        if ($type === Castle::SHORT) {
+            $id = $this->turn === Color::W ? Piece::K : mb_strtolower(Piece::K);
+        } elseif ($type === Castle::LONG) {
+            $id = $this->turn === Color::W ? Piece::Q : mb_strtolower(Piece::Q);
+        }
+
+        return str_contains($this->castlingAbility, $id);
+    }
+
+    /**
      * Removes an element from the history.
      *
      * @return \Chess\Variant\AbstractBoard
