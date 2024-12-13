@@ -66,8 +66,8 @@ class K extends AbstractPiece
         $sqs = [
             ...$this->sqsKing(),
             ...$this->sqsCaptures(),
-            ...[$this->sqCastleLong()],
-            ...[$this->sqCastleShort()]
+            ...[$this->sqCastle(Castle::LONG)],
+            ...[$this->sqCastle(Castle::SHORT)]
         ];
 
         return array_filter(array_unique($sqs));
@@ -90,34 +90,30 @@ class K extends AbstractPiece
         return [];
     }
 
-    public function sqCastleLong(): ?string
+    public function sqCastle(string $type): ?string
     {
-        $rule = $this->board->castlingRule?->rule[$this->color][Piece::K][Castle::LONG];
+        $rule = $this->board->castlingRule?->rule[$this->color][Piece::K][$type];
 
-        if ($this->board->castlingRule?->long($this->board->castlingAbility, $this->color)) {
-            if (
-                ($this->board->turn === $this->color && !$this->board->isCheck()) &&
-                !array_diff($rule['free'], $this->board->sqCount['free']) &&
-                !array_intersect($rule['attack'], $this->board->spaceEval[$this->oppColor()])
-            ) {
-                return $rule['to'];
+        if ($type === Castle::LONG) {
+            if ($this->board->castlingRule?->long($this->board->castlingAbility, $this->color)) {
+                if (
+                    ($this->board->turn === $this->color && !$this->board->isCheck()) &&
+                    !array_diff($rule['free'], $this->board->sqCount['free']) &&
+                    !array_intersect($rule['attack'], $this->board->spaceEval[$this->oppColor()])
+                ) {
+                    return $rule['to'];
+                }
             }
-        }
 
-        return null;
-    }
-
-    public function sqCastleShort(): ?string
-    {
-        $rule = $this->board->castlingRule?->rule[$this->color][Piece::K][Castle::SHORT];
-
-        if ($this->board->castlingRule?->short($this->board->castlingAbility, $this->color)) {
-            if (
-                ($this->board->turn === $this->color && !$this->board->isCheck()) &&
-                !array_diff($rule['free'], $this->board->sqCount['free']) &&
-                !array_intersect($rule['attack'], $this->board->spaceEval[$this->oppColor()])
-            ) {
-                return $rule['to'];
+        } elseif ($type === Castle::SHORT) {
+            if ($this->board->castlingRule?->short($this->board->castlingAbility, $this->color)) {
+                if (
+                    ($this->board->turn === $this->color && !$this->board->isCheck()) &&
+                    !array_diff($rule['free'], $this->board->sqCount['free']) &&
+                    !array_intersect($rule['attack'], $this->board->spaceEval[$this->oppColor()])
+                ) {
+                    return $rule['to'];
+                }
             }
         }
 
@@ -151,17 +147,9 @@ class K extends AbstractPiece
     public function getCastleRook(string $type): ?R
     {
         $rule = $this->board->castlingRule->rule[$this->color][Piece::R][$type];
-        if ($type === RType::CASTLE_LONG && $this->sqCastleLong()) {
-            if ($piece = $this->board->pieceBySq($rule['from'])) {
-                if ($piece->id === Piece::R) {
-                    return $piece;
-                }
-            }
-        } elseif ($type === RType::CASTLE_SHORT && $this->sqCastleShort()) {
-            if ($piece = $this->board->pieceBySq($rule['from'])) {
-                if ($piece->id === Piece::R) {
-                    return $piece;
-                }
+        if ($piece = $this->board->pieceBySq($rule['from'])) {
+            if ($this->sqCastle($type)) {
+                return $piece;
             }
         }
 
