@@ -14,6 +14,8 @@ class K extends AbstractPiece
     {
         parent::__construct($color, $sq, $square, Piece::K);
 
+        $this->mobility = [];
+
         $rank = $this->rank() + 1;
         if ($rank <= $this->square::SIZE['ranks']) {
             $this->mobility[] = $this->file() . $rank;
