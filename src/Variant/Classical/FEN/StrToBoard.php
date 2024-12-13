@@ -61,7 +61,7 @@ class StrToBoard
     protected function enPassant(AbstractBoard $board): AbstractBoard
     {
         if ($this->fields[3] !== '-') {
-            foreach ($pieces = $board->pieces($this->fields[1]) as $piece) {
+            foreach ($board->pieces($this->fields[1]) as $piece) {
                 if ($piece->id === Piece::P) {
                     if (in_array($this->fields[3], $piece->captureSqs)) {
                         $piece->enPassantSq = $this->fields[3];
