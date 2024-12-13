@@ -197,11 +197,7 @@ class K extends AbstractPiece
                     $rook->type
                 )
             );
-            $this->board->castlingAbility = $this->board->castlingRule->update(
-                $this->board->castlingAbility,
-                $this->board->turn,
-                [ Piece::K, Piece::Q ],
-            );
+            $this->updateCastle();
             $this->pushHistory();
             $this->board->refresh();
             return true;
