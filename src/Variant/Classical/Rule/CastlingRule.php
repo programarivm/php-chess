@@ -77,25 +77,23 @@ class CastlingRule extends AbstractNotation
             return $value;
         }
 
-        throw new UnknownNotationException();
+        throw new UnknownNotationExceptilongon();
     }
 
-    public function long(string $castlingAbility, string $color): string
+    public function extract(string $castlingAbility, string $color, string $type): string
     {
-        $id = $color === Color::W ? Piece::Q : mb_strtolower(Piece::Q);
-
-        return strpbrk($castlingAbility, $id);
-    }
-
-    public function short(string $castlingAbility, string $color)
-    {
-        $id = $color === Color::W ? Piece::K : mb_strtolower(Piece::K);
+        if ($type === Castle::LONG) {
+            $id = $color === Color::W ? Piece::Q : mb_strtolower(Piece::Q);
+        } elseif ($type === Castle::SHORT) {
+            $id = $color === Color::W ? Piece::K : mb_strtolower(Piece::K);
+        }
 
         return strpbrk($castlingAbility, $id);
     }
 
     public function can(string $castlingAbility, string $color)
     {
-        return $this->long($castlingAbility, $color) || $this->short($castlingAbility, $color);
+        return $this->extract($castlingAbility, $color, Castle::LONG) ||
+            $this->extract($castlingAbility, $color, Castle::LONG);
     }
 }
