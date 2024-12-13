@@ -36,7 +36,7 @@ class StrToBoard extends ClassicalFenStrToBoard
                 $this->square,
                 $this->castlingRule,
                 $this->variant
-            ))->getArray();
+            ))->pieces;
             $board = new Board($this->startPos, $pieces, $this->castlingAbility);
             $board->turn = $this->fields[1];
             $board->startFen = $this->string;

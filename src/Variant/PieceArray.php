@@ -11,13 +11,13 @@ use Chess\Variant\Classical\Rule\CastlingRule;
 
 class PieceArray
 {
-    private array $array;
+    public Square $square;
 
-    private Square $square;
+    public ?CastlingRule $castlingRule;
 
-    private ?CastlingRule $castlingRule;
+    public string $variant;
 
-    private string $variant;
+    public array $pieces;
 
     public function __construct(array $array, Square $square, CastlingRule $castlingRule = null, string $variant)
     {
@@ -37,25 +37,20 @@ class PieceArray
         }
     }
 
-    public function getArray(): array
-    {
-        return $this->array;
-    }
-
     private function push(string $color, string $id, string $sq): void
     {
         if ($id === Piece::R) {
             if ($sq === $this->castlingRule?->rule[$color][Piece::R][Castle::LONG]['from']) {
-                $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
+                $this->pieces[] = new R($color, $sq, $this->square, RType::CASTLE_LONG);
             } elseif ($sq === $this->castlingRule?->rule[$color][Piece::R][Castle::SHORT]['from']) {
-                $this->array[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
+                $this->pieces[] = new R($color, $sq, $this->square, RType::CASTLE_SHORT);
             } else {
                 // it doesn't matter which RType is assigned
-                $this->array[] = new R($color, $sq, $this->square, RType::R);
+                $this->pieces[] = new R($color, $sq, $this->square, RType::R);
             }
         } else {
             $class = VariantType::getClass($this->variant, $id);
-            $this->array[] = new $class($color, $sq, $this->square);
+            $this->pieces[] = new $class($color, $sq, $this->square);
         }
     }
 }
