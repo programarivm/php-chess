@@ -39,12 +39,8 @@ class P extends AbstractPiece
         $this->mobility = [];
 
         // next rank
-        try {
-            if ($this->square->validate($this->file() . $this->ranks['next'])) {
-                $this->mobility[] = $this->file() . $this->ranks['next'];
-            }
-        } catch (UnknownNotationException $e) {
-
+        if ($this->ranks['next'] <= $this->square::SIZE['ranks']) {
+            $this->mobility[] = $this->file() . $this->ranks['next'];
         }
 
         // two square advance
