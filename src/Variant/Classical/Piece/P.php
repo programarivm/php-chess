@@ -2,7 +2,6 @@
 
 namespace Chess\Variant\Classical\Piece;
 
-use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
@@ -54,23 +53,17 @@ class P extends AbstractPiece
         }
 
         // capture square
-        try {
-            $file = chr(ord($this->file()) - 1);
-            if ($this->square->validate($file . $this->ranks['next'])) {
-                $this->captureSqs[] = $file . $this->ranks['next'];
-            }
-        } catch (UnknownNotationException $e) {
-
+        $file = ord($this->file()) - 1;
+        if ($file >= 97 && $this->ranks['next'] <= $this->square::SIZE['ranks']) {
+            $this->captureSqs[] = chr($file) . $this->ranks['next'];
         }
 
         // capture square
-        try {
-            $file = chr(ord($this->file()) + 1);
-            if ($this->square->validate($file . $this->ranks['next'])) {
-                $this->captureSqs[] = $file . $this->ranks['next'];
-            }
-        } catch (UnknownNotationException $e) {
-
+        $file = ord($this->file()) + 1;
+        if ($file <= 97 + $this->square::SIZE['files'] - 1 &&
+            $this->ranks['next'] <= $this->square::SIZE['ranks']
+        ) {
+            $this->captureSqs[] = chr($file) . $this->ranks['next'];
         }
     }
 
