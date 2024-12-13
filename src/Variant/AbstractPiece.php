@@ -355,6 +355,23 @@ abstract class AbstractPiece
         }
     }
 
+    public function extract(string $color, string $type): string
+    {
+        if ($type === RType::CASTLE_LONG) {
+            $id = $color === Color::W ? Piece::Q : mb_strtolower(Piece::Q);
+        } elseif ($type === RType::CASTLE_SHORT) {
+            $id = $color === Color::W ? Piece::K : mb_strtolower(Piece::K);
+        }
+
+        return strpbrk($this->board->castlingAbility, $id);
+    }
+
+    public function canCastle(string $color)
+    {
+        return $this->extract($color, RType::CASTLE_SHORT) ||
+            $this->extract($color, RType::CASTLE_LONG);
+    }
+
     /**
      * Updates the castle property.
      *
@@ -362,7 +379,7 @@ abstract class AbstractPiece
      */
     public function updateCastle(): AbstractPiece
     {
-        if ($this->board->castlingRule?->can($this->board->castlingAbility, $this->board->turn)) {
+        if ($this->canCastle($this->board->turn)) {
             if ($this->id === Piece::K) {
                 $search = $this->board->turn === Color::W ? 'KQ' : 'kq';
                 $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility)
