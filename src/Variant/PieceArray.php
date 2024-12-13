@@ -27,7 +27,10 @@ class PieceArray
 
         for ($i = count($array) - 1; $i >= 0; $i--) {
             for ($j = 0; $j < count($array[$i]); $j++) {
-                $this->push(trim($array[$i][$j]), $this->square->toAlgebraic($j, $i));
+                $char = trim($array[$i][$j]);
+                if ($char !== '.') {
+                    $this->push($char, $this->square->toAlgebraic($j, $i));
+                }
             }
         }
     }
@@ -36,13 +39,10 @@ class PieceArray
     {
         if (ctype_lower($id)) {
             $color = Color::B;
-        } elseif (ctype_upper($id)) {
-            $color = Color::W;
+            $id = strtoupper($id);
         } else {
-            return;
+            $color = Color::W;
         }
-
-        $id = strtoupper($id);
 
         if ($id === Piece::R) {
             if ($sq === $this->castlingRule?->rule[$color][Piece::R][Castle::LONG]['from']) {
