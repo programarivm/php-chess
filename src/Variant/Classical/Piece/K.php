@@ -5,6 +5,7 @@ namespace Chess\Variant\Classical\Piece;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\RType;
 use Chess\Variant\Classical\PGN\AN\Castle;
+use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 
@@ -92,7 +93,13 @@ class K extends AbstractPiece
 
     public function sqCastle(string $type): ?string
     {
-        if ($this->board->castlingAbility($type)) {
+        if ($type === Castle::SHORT) {
+            $id = $this->board->turn === Color::W ? Piece::K : mb_strtolower(Piece::K);
+        } else {
+            $id = $this->board->turn === Color::W ? Piece::Q : mb_strtolower(Piece::Q);
+        }
+
+        if (str_contains($this->board->castlingAbility, $id)) {
             $rule = $this->board->castlingRule?->rule[$this->color][Piece::K][$type];
             if (
                 $this->board->turn === $this->color &&
