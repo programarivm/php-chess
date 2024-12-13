@@ -165,7 +165,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Returns true if the king can castle according to the castling ability.
+     * Returns true if the king can castle as per the castling ability.
      *
      * @param string $type
      * @return bool
