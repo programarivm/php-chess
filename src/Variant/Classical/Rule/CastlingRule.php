@@ -80,19 +80,6 @@ class CastlingRule extends AbstractNotation
         throw new UnknownNotationException();
     }
 
-    public function update(string $castlingAbility, string $color, array $ids): string
-    {
-        if ($color === Color::B) {
-            $ids = array_map('mb_strtolower', $ids);
-        }
-        $castlingAbility = str_replace($ids, '', $castlingAbility);
-        if (!$castlingAbility) {
-            $castlingAbility = self::NEITHER;
-        }
-
-        return $castlingAbility;
-    }
-
     public function long(string $castlingAbility, string $color): string
     {
         $id = $color === Color::W ? Piece::Q : mb_strtolower(Piece::Q);

@@ -10,6 +10,7 @@ use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\Rule\CastlingRule;
 
 abstract class AbstractPiece
 {
@@ -363,25 +364,17 @@ abstract class AbstractPiece
     {
         if ($this->board->castlingRule?->can($this->board->castlingAbility, $this->board->turn)) {
             if ($this->id === Piece::K) {
-                $this->board->castlingAbility = $this->board->castlingRule->update(
-                    $this->board->castlingAbility,
-                    $this->board->turn,
-                    [Piece::K, Piece::Q]
-                );
+                $search = $this->board->turn === Color::W ? 'KQ' : 'kq';
+                $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility);
+                $this->board->castlingAbility = $this->board->castlingAbility ?: CastlingRule::NEITHER;
             } elseif ($this->id === Piece::R) {
                 if ($this->type === RType::CASTLE_SHORT) {
-                    $this->board->castlingAbility = $this->board->castlingRule->update(
-                        $this->board->castlingAbility,
-                        $this->board->turn,
-                        [Piece::K]
-                    );
+                    $search = $this->board->turn === Color::W ? 'K' : 'k';
                 } elseif ($this->type === RType::CASTLE_LONG) {
-                    $this->board->castlingAbility = $this->board->castlingRule->update(
-                        $this->board->castlingAbility,
-                        $this->board->turn,
-                        [Piece::Q]
-                    );
+                    $search = $this->board->turn === Color::W ? 'Q' : 'q';
                 }
+                $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility);
+                $this->board->castlingAbility = $this->board->castlingAbility ?: CastlingRule::NEITHER;
             }
         }
 
