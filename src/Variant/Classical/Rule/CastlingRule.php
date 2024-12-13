@@ -93,17 +93,6 @@ class CastlingRule extends AbstractNotation
         return $castlingAbility;
     }
 
-    public function castle(string $castlingAbility, string $color): string
-    {
-        $castlingAbility = $this->update(
-            $castlingAbility,
-            $color,
-            [ Piece::K, Piece::Q ],
-        );
-
-        return $castlingAbility;
-    }
-
     public function long(string $castlingAbility, string $color): string
     {
         $id = $color === Color::W ? Piece::Q : mb_strtolower(Piece::Q);
