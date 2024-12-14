@@ -27,17 +27,25 @@ class Square extends AbstractNotation
         }
     }
 
-    public function validate(string $value): string
+    public function validate(string $sq): string
     {
-        if (!preg_match('/^' . static::REGEX . '$/', $value)) {
-            throw new UnknownNotationException();
+        $file = ord($sq[0]);
+        $rank = intval(ltrim($sq, $sq[0]));
+
+        if ($file >= 97 &&
+            $file <= 97 + static::SIZE['files'] - 1 &&
+            $rank >= 1 &&
+            $rank <= static::SIZE['ranks']
+        ) {
+            return $sq;
         }
 
-        return $value;
+
+        throw new UnknownNotationException();
     }
 
-     public function color(string $sq): string
-     {
+    public function color(string $sq): string
+    {
         $file = $sq[0];
         $rank = substr($sq, 1);
 
@@ -52,34 +60,34 @@ class Square extends AbstractNotation
         }
 
         return Color::W;
-     }
+    }
 
-     public function corner(): array
-     {
+    public function corner(): array
+    {
         return [
             $this->toAlgebraic(0, 0),
             $this->toAlgebraic(static::SIZE['files'] - 1, 0),
             $this->toAlgebraic(0, static::SIZE['ranks'] - 1),
             $this->toAlgebraic(static::SIZE['files'] - 1, static::SIZE['ranks'] - 1),
         ];
-     }
+    }
 
-     public function toIndex(string $sq): array
-     {
-         $j = ord($sq[0]) - 97;
-         $i = intval(ltrim($sq, $sq[0])) - 1;
+    public function toIndex(string $sq): array
+    {
+        $j = ord($sq[0]) - 97;
+        $i = intval(ltrim($sq, $sq[0])) - 1;
 
-         return [
-             $i,
-             $j,
-         ];
-     }
+        return [
+            $i,
+            $j,
+        ];
+    }
 
-     public function toAlgebraic(int $i, int $j): string
-     {
-         $file = chr(97 + $i);
-         $rank = $j + 1;
+    public function toAlgebraic(int $i, int $j): string
+    {
+        $file = chr(97 + $i);
+        $rank = $j + 1;
 
-         return $file . $rank;
-     }
+        return $file . $rank;
+    }
 }
