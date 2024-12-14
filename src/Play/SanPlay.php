@@ -23,7 +23,6 @@ class SanPlay extends AbstractPlay
         }
         $this->fen = [$this->board->toFen()];
         $this->sanMovetext = new SanMovetext($this->board->move, $movetext);
-        $this->sanMovetext->validate();
     }
 
     public function validate(): SanPlay

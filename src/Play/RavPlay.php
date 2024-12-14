@@ -42,8 +42,6 @@ class RavPlay extends AbstractPlay
         }
         $this->fen = [$this->board->toFen()];
         $this->ravMovetext = new RavMovetext($this->board->move, $movetext);
-
-        $this->ravMovetext->validate();
     }
 
     /**
