@@ -40,7 +40,6 @@ class Square extends AbstractNotation
             return $sq;
         }
 
-
         throw new UnknownNotationException();
     }
 
