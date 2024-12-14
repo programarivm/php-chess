@@ -10,13 +10,13 @@ class Color extends AbstractNotation
     const W = 'w';
     const B = 'b';
 
-    public function validate(string $value): string
+    public function validate(string $color): string
     {
-        if (!in_array($value, self::values())) {
-            throw new UnknownNotationException();
+        if ($color === self::W xor $color === self::B) {
+            return $color;
         }
 
-        return $value;
+        throw new UnknownNotationException();
     }
 
     public function opp(string $color): string
