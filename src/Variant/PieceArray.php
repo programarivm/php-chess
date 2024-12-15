@@ -25,9 +25,8 @@ class PieceArray
         $this->castlingRule = $castlingRule;
         $this->variant = $variant;
 
-        for ($i = count($array) - 1; $i >= 0; $i--) {
-            for ($j = 0; $j < count($array[$i]); $j++) {
-                $char = trim($array[$i][$j]);
+        foreach ($array as $i => $rank) {
+            foreach ($rank as $j => $char) {
                 if ($char !== '.') {
                     $this->push($char, $this->square->toAlgebraic($j, $i));
                 }
