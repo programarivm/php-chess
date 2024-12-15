@@ -681,7 +681,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $array = $this->toArray($flip);
         foreach ($array as $i => $rank) {
             foreach ($rank as $j => $file) {
-                $ascii .= $array[$i][$j];
+                $ascii .= " {$array[$i][$j]} ";
             }
             $ascii .= PHP_EOL;
         }
