@@ -653,7 +653,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $array = [];
         for ($i = $this->square::SIZE['ranks'] - 1; $i >= 0; $i--) {
-            $array[$i] = array_fill(0, $this->square::SIZE['files'], ' . ');
+            $array[$i] = array_fill(0, $this->square::SIZE['files'], '.');
         }
         foreach ($this->pieces() as $piece) {
             list($file, $rank) = $this->square->toIndex($piece->sq);
@@ -663,8 +663,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                 $rank = $this->square::SIZE['ranks'] - 1 - $rank + $diff;
             }
             $piece->color === Color::W
-                ? $array[$file][$rank] = ' ' . $piece->id . ' '
-                : $array[$file][$rank] = ' ' . strtolower($piece->id) . ' ';
+                ? $array[$file][$rank] = $piece->id
+                : $array[$file][$rank] = strtolower($piece->id);
         }
 
         return $array;

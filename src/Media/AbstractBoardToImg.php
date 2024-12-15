@@ -49,7 +49,7 @@ class AbstractBoardToImg
         $x = $y = 0;
         foreach ($this->board->toArray($this->flip) as $i => $rank) {
             foreach ($rank as $j => $piece) {
-                if ($piece !== ' . ') {
+                if ($piece !== '.') {
                     $filename = trim($piece);
                     $isWhite = strtoupper($filename) === $filename;
                     $image = $this->imagine->open(
