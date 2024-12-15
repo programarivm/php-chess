@@ -39,22 +39,18 @@ class Str
     public function toArray(string $string): array
     {
         $array = [];
-        $ranks = array_reverse(explode('/', $string));
-        for ($i = count($ranks) - 1; $i >= 0; $i--) {
-            $row = [];
-            preg_match_all('!\d+!', $ranks[$i], $digits, PREG_OFFSET_CAPTURE);
-            preg_match_all('/[a-zA-Z]{1}/', $ranks[$i], $letters, PREG_OFFSET_CAPTURE);
-            $all = [...$digits[0], ...$letters[0]];
-            usort($all, function ($a, $b) {
-                return $a[1] <=> $b[1];
-            });
-            foreach ($all as $item) {
-                !is_numeric($item[0])
-                    ? $elem = [" {$item[0]} "]
-                    : $elem = array_fill(0, $item[0], ' . ');
-                $row = [...$row, ...$elem];
+        $filtered = $string;
+        for ($i = Square::SIZE['files']; $i >= 1; $i--) {
+            $filtered = str_replace($i, str_repeat('.', $i), $filtered);
+        }
+        $ranks = explode('/', $filtered);
+        foreach ($ranks as $key => $val) {
+            $array[Square::SIZE['files'] - $key - 1] = str_split($val);
+        }
+        for ($i = 0; $i < Square::SIZE['files']; $i++) {
+            for ($j = 0; $j < Square::SIZE['ranks']; $j++) {
+                $array[$i][$j] = str_pad($array[$i][$j], 3, ' ', STR_PAD_BOTH);
             }
-            $array[$i] = $row;
         }
 
         return $array;

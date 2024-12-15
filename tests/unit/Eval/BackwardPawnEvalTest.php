@@ -53,7 +53,7 @@ class BackwardPawnEvalTest extends AbstractUnitTestCase
             "These pawns are bakward: d4, e4.",
         ];
 
-        $board = FenToBoardFactory::create('8/4p3/p2p4/2pP4/2PPP3/6k1/1P1K/8 w - -');
+        $board = FenToBoardFactory::create('8/4p3/p2p4/2pP4/2PPP3/6k1/1P1K4/8 w - -');
 
         $backwardPawnEval = new BackwardPawnEval($board);
 
