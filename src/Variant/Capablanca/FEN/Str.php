@@ -26,4 +26,18 @@ class Str extends ClassicalFenStr
 
         return $string;
     }
+
+    public function toArray(string $string): array
+    {
+        $array = [];
+        $filtered = $string;
+        for ($i = Square::SIZE['files']; $i >= 1; $i--) {
+            $filtered = str_replace($i, str_repeat('.', $i), $filtered);
+        }
+        foreach (explode('/', $filtered) as $key => $val) {
+            $array[Square::SIZE['files'] - $key - 3] = str_split($val);
+        }
+
+        return $array;
+    }
 }

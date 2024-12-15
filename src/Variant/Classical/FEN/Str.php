@@ -39,17 +39,14 @@ class Str
     public function toArray(string $string): array
     {
         $array = [];
-        preg_match_all('/\d+/', $string, $matches);
-        $numbers = array_unique($matches[0]);
-        rsort($numbers);
         $filtered = $string;
-        foreach ($numbers as $val) {
-            $filtered = str_replace($val, str_repeat('.', $val), $filtered);
+        for ($i = Square::SIZE['files']; $i >= 1; $i--) {
+            $filtered = str_replace($i, str_repeat('.', $i), $filtered);
         }
         foreach (explode('/', $filtered) as $key => $val) {
             $array[Square::SIZE['files'] - $key - 1] = str_split($val);
         }
-        
+
         return $array;
     }
 }
