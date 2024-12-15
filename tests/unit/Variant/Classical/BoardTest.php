@@ -2656,7 +2656,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function is_dead_position_draw_K_B_vs_k_b()
     {
-        $board = FenToBoardFactory::create('k2B/b1K5/8/8/8/8/8/8 w - - 0 1');
+        $board = FenToBoardFactory::create('k2B4/b1K5/8/8/8/8/8/8 w - - 0 1');
 
         $this->assertTrue($board->isDeadPositionDraw());
     }
