@@ -49,12 +49,7 @@ class Str
         foreach (explode('/', $filtered) as $key => $val) {
             $array[Square::SIZE['files'] - $key - 1] = str_split($val);
         }
-        for ($i = 0; $i < Square::SIZE['files']; $i++) {
-            for ($j = 0; $j < Square::SIZE['ranks']; $j++) {
-                $array[$i][$j] = str_pad($array[$i][$j], 3, ' ', STR_PAD_BOTH);
-            }
-        }
-
+        
         return $array;
     }
 }
