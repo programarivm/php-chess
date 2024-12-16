@@ -4,6 +4,8 @@ namespace Chess\Eval;
 
 trait ElaborateEvalTrait
 {
+    public array $toElaborate = [];
+    
     public array $elaboration = [];
 
     protected function shorten(string $intro, bool $ucfirst): array
