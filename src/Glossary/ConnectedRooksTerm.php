@@ -4,6 +4,7 @@ namespace Chess\Glossary;
 
 use Chess\Tutor\ColorPhrase;
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 
 class ConnectedRooksTerm extends AbstractTerm
@@ -16,12 +17,23 @@ class ConnectedRooksTerm extends AbstractTerm
     {
         $this->board = $board;
 
-        foreach ($this->board->pieces() as $piece) {
+        foreach ($this->board->pieces(Color::W) as $piece) {
             if ($piece->id === Piece::R) {
                 foreach ($piece->defended() as $val) {
                     if ($val->id === Piece::R) {
-                        $this->toElaborate[] = $this->elaborate($piece);
-                        break;
+                        $this->toElaborate[] = $piece;
+                        break 2;
+                    }
+                }
+            }
+        }
+
+        foreach ($this->board->pieces(Color::B) as $piece) {
+            if ($piece->id === Piece::R) {
+                foreach ($piece->defended() as $val) {
+                    if ($val->id === Piece::R) {
+                        $this->toElaborate[] = $piece;
+                        break 2;
                     }
                 }
             }
@@ -31,7 +43,7 @@ class ConnectedRooksTerm extends AbstractTerm
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = ColorPhrase::sentence($val->oppColor());
+            $phrase = ColorPhrase::sentence($val->color);
             $this->elaboration[] = ucfirst("$phrase has connected rooks.");
         }
 
