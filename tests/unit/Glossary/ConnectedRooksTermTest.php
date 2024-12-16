@@ -39,4 +39,20 @@ class ConnectedRooksTermTest extends AbstractUnitTestCase
 
         $this->assertSame($expectedElaboration, $connectedRooksTerm->elaborate());
     }
+
+    /**
+     * @test
+     */
+    public function kaufman_15()
+    {
+        $expectedElaboration = [
+            "White has connected rooks.",
+        ];
+
+        $board = FenToBoardFactory::create('r2q1r1k/pb3p1p/2n1p2Q/5p2/8/3B2N1/PP3PPP/R3R1K1 w - -');
+
+        $connectedRooksTerm = new ConnectedRooksTerm($board);
+
+        $this->assertSame($expectedElaboration, $connectedRooksTerm->elaborate());
+    }
 }
