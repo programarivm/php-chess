@@ -54,4 +54,20 @@ class OpenFileTermTest extends AbstractUnitTestCase
 
         $this->assertSame($expectedElaboration, $openFileTerm->elaborate());
     }
+
+    /**
+     * @test
+     */
+    public function kaufman_14()
+    {
+        $expectedElaboration = [
+            "These are open files: b, d, e.",
+        ];
+
+        $board = FenToBoardFactory::create('1r2r1k1/p4p1p/6pB/q7/8/3Q2P1/PbP2PKP/1R3R2 w - -');
+
+        $openFileTerm = new OpenFileTerm($board);
+
+        $this->assertSame($expectedElaboration, $openFileTerm->elaborate());
+    }
 }
