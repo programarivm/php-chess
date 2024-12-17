@@ -3,7 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Eval\SqOutpostEval;
-use Chess\Tutor\PiecePhrase;
+use Chess\Phrase\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Piece;
 

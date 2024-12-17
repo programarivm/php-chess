@@ -2,8 +2,8 @@
 
 namespace Chess\Eval;
 
-use Chess\Tutor\ColorPhrase;
-use Chess\Tutor\PiecePhrase;
+use Chess\Phrase\ColorPhrase;
+use Chess\Phrase\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Piece;
 

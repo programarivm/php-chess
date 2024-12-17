@@ -1,8 +1,6 @@
 <?php
 
-namespace Chess\Tutor;
-
-use Chess\Variant\Classical\PGN\AN\Color;
+namespace Chess\Phrase;
 
 class ColorPhrase
 {

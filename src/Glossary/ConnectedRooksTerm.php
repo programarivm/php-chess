@@ -2,7 +2,7 @@
 
 namespace Chess\Glossary;
 
-use Chess\Tutor\ColorPhrase;
+use Chess\Phrase\ColorPhrase;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;

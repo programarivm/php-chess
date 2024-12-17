@@ -1,9 +1,8 @@
 <?php
 
-namespace Chess\Tutor;
+namespace Chess\Phrase;
 
 use Chess\Variant\AbstractPiece;
-use Chess\Variant\Classical\PGN\AN\Color;
 
 class PiecePhrase
 {

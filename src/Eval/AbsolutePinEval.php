@@ -2,7 +2,7 @@
 
 namespace Chess\Eval;
 
-use Chess\Tutor\PiecePhrase;
+use Chess\Phrase\PiecePhrase;
 use Chess\Variant\AbstractBoard;
 
 /**
