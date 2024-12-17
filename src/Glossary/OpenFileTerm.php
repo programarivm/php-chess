@@ -32,7 +32,7 @@ class OpenFileTerm extends AbstractTerm
     {
         if ($this->toElaborate) {
             $imploded = implode(', ', $this->toElaborate);
-            $this->elaboration[] = "These are open files: $imploded.";
+            $this->elaboration[] = "These are open files with no pawns of either color on it: $imploded.";
         }
 
         return $this->elaboration;
