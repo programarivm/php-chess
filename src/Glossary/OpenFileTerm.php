@@ -30,7 +30,8 @@ class OpenFileTerm extends AbstractTerm
 
     public function elaborate(): array
     {
-        if ($this->toElaborate) {
+        $count = count($this->toElaborate);
+        if ($count > 0 && $count < 4) {
             $imploded = implode(', ', $this->toElaborate);
             $this->elaboration[] = "These are open files with no pawns of either color on it: $imploded.";
         }
