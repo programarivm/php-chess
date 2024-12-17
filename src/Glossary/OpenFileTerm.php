@@ -30,10 +30,11 @@ class OpenFileTerm extends AbstractTerm
 
     public function elaborate(): array
     {
-        $imploded = implode(', ', $this->toElaborate);
+        if ($this->toElaborate) {
+            $imploded = implode(', ', $this->toElaborate);
+            $this->elaboration[] = "These are open files: $imploded.";
+        }
 
-        return [
-            "These are open files: $imploded.",
-        ];
+        return $this->elaboration;
     }
 }
