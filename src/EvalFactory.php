@@ -9,7 +9,7 @@ class EvalFactory
 {
     public static function create(AbstractFunction $function, string $name, AbstractBoard $board)
     {
-        foreach ($function->getEval() as $val) {
+        foreach ($function->eval as $val) {
             $class = new \ReflectionClass($val);
             if ($name === $class->getConstant('NAME')) {
                 return $class->newInstanceArgs([$board]);

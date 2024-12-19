@@ -34,7 +34,7 @@ class FenHeuristics
      */
     public function __construct(AbstractFunction $function, AbstractBoard $board)
     {
-        foreach ($function->getEval() as $val) {
+        foreach ($function->eval as $val) {
             $eval = new $val($board);
             $item = $eval->result;
             if (is_array($item[Color::W])) {

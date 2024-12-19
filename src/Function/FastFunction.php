@@ -36,7 +36,7 @@ use Chess\Eval\SqOutpostEval;
 
 class FastFunction extends AbstractFunction
 {
-    protected array $eval = [
+    public array $eval = [
         MaterialEval::class,
         CenterEval::class,
         ConnectivityEval::class,
