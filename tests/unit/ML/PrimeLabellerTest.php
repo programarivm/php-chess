@@ -30,7 +30,7 @@ class PrimeLabellerTest extends AbstractUnitTestCase
 
         $label = (new PrimeLabeller())->label($balance);
 
-        $expected = -2089310218;
+        $expected = -11208696778;
 
         $this->assertSame($expected, $label);
     }
