@@ -52,7 +52,13 @@ class GoldbachLabeller extends AbstractLabeller
         38 => 173,
     ];
 
-    public function label(array $end)
+    /**
+     * Every even natural number greater than 2 is the sum of two prime numbers.
+     *
+     * @param array $end
+     * @return int
+     */
+    public function label(array $end): int
     {
         $x = 1;
         $y = 1;
