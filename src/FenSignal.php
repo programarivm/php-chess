@@ -12,8 +12,7 @@ use Chess\Variant\Classical\PGN\Move;
 /**
  * FEN Signal
  *
- * Discrete ternary oscillations of a game are encoded in a one-dimensional
- * array of integer values.
+ * A signal encoding multiple discrete ternary oscillations.
  */
 class FenSignal
 {
