@@ -9,21 +9,14 @@ use Chess\Variant\Classical\PGN\AN\Color;
 
 class FenHeuristics
 {
-    protected AbstractFunction $function;
-
-    protected AbstractBoard $board;
-
-    protected array $result = [];
+    public array $result = [];
 
     public array $balance = [];
 
     public function __construct(AbstractFunction $function, AbstractBoard $board)
     {
-        $this->function = $function;
-        $this->board = $board;
-
-        foreach ($this->function->getEval() as $val) {
-            $eval = new $val($this->board);
+        foreach ($function->getEval() as $val) {
+            $eval = new $val($board);
             $item = $eval->result;
             if (is_array($item[Color::W])) {
                 if ($eval instanceof InverseEvalInterface) {
