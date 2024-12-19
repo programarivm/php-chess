@@ -10,12 +10,32 @@ use Chess\Movetext\SanMovetext;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 
+/**
+ * FEN Signal
+ *
+ * Discrete oscillations of a game are encoded in a one-dimensional array of
+ * integer values.
+ */
 class BoardToFenSignal
 {
+    /**
+     * Maximum number of moves.
+     *
+     * @var int
+     */
     const MAX_MOVES = 300;
 
+    /**
+     * Signal.
+     *
+     * @var string
+     */
     public array $signal;
 
+    /**
+     * @param string $movetext
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(string $movetext, AbstractBoard $board)
     {
         $sanMovetext = new SanMovetext($board->move, $movetext);
