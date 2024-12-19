@@ -1,9 +1,8 @@
 <?php
 
-namespace Chess\Media;
+namespace Chess;
 
 use Chess\FenHeuristics;
-use Chess\Exception\MediaException;
 use Chess\Function\FastFunction;
 use Chess\Labeller\GoldbachLabeller;
 use Chess\Movetext\SanMovetext;
@@ -16,7 +15,7 @@ use Chess\Variant\Classical\PGN\Move;
  * Discrete ternary oscillations of a game are encoded in a one-dimensional
  * array of integer values.
  */
-class BoardToFenSignal
+class FenSignal
 {
     /**
      * Maximum number of moves.
@@ -41,11 +40,11 @@ class BoardToFenSignal
         $sanMovetext = new SanMovetext($board->move, $movetext);
 
         if (!$sanMovetext->validate()) {
-            throw new MediaException();
+            throw new \InvalidArgumentException();
         }
 
         if (self::MAX_MOVES < count($sanMovetext->moves)) {
-            throw new MediaException();
+            throw new \InvalidArgumentException();
         }
 
         foreach ($sanMovetext->moves as $val) {

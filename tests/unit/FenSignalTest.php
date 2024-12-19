@@ -1,12 +1,12 @@
 <?php
 
-namespace Chess\Tests\Unit\Media;
+namespace Chess\Tests\Unit;
 
-use Chess\Media\BoardToFenSignal;
+use Chess\FenSignal;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 
-class BoardToFenSignalTest extends AbstractUnitTestCase
+class FenSignalTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -39,7 +39,7 @@ class BoardToFenSignalTest extends AbstractUnitTestCase
 
         $board = new Board();
 
-        $signal = (new BoardToFenSignal($A74, $board))->signal;
+        $signal = (new FenSignal($A74, $board))->signal;
 
         $this->assertSame($expected, $signal);
     }
