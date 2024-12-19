@@ -10,7 +10,7 @@ use Chess\Movetext\SanMovetext;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 
-class BoardToSignal
+class BoardToFenSignal
 {
     const MAX_MOVES = 300;
 
