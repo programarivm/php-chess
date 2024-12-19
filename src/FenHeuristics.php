@@ -10,13 +10,12 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * FEN Heuristics
  *
- * Discrete ternary oscillations of a game in terms of heuristic evaluation
- * features.
+ * Discrete ternary oscillations in terms of heuristic evaluation features.
  */
 class FenHeuristics
 {
     /**
-     * Discrete oscillations of a game.
+     * Discrete oscillations.
      *
      * @var array
      */
