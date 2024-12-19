@@ -13,8 +13,8 @@ use Chess\Variant\Classical\PGN\Move;
 /**
  * FEN Signal
  *
- * Discrete ternary oscillations of a game in terms of heuristic evaluation
- * features are encoded in a one-dimensional array of integer values.
+ * Discrete ternary oscillations of a game are encoded in a one-dimensional
+ * array of integer values.
  */
 class BoardToFenSignal
 {
@@ -28,7 +28,7 @@ class BoardToFenSignal
     /**
      * One-dimensional array of integer values.
      *
-     * @var string
+     * @var array
      */
     public array $signal;
 

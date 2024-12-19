@@ -7,12 +7,32 @@ use Chess\Function\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 
+/**
+ * FEN Heuristics
+ *
+ * Discrete ternary oscillations of a game in terms of heuristic evaluation
+ * features.
+ */
 class FenHeuristics
 {
+    /**
+     * Discrete oscillations of a game.
+     *
+     * @var array
+     */
     public array $result = [];
 
+    /**
+     * The ternarized result.
+     *
+     * @var array
+     */
     public array $balance = [];
 
+    /**
+     * @param \Chess\Function\AbstractFunction $function
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(AbstractFunction $function, AbstractBoard $board)
     {
         foreach ($function->getEval() as $val) {
