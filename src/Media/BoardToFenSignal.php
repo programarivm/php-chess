@@ -5,7 +5,7 @@ namespace Chess\Media;
 use Chess\FenHeuristics;
 use Chess\Exception\MediaException;
 use Chess\Function\FastFunction;
-use Chess\ML\GoldbachLabeller;
+use Chess\Labeller\GoldbachLabeller;
 use Chess\Movetext\SanMovetext;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;

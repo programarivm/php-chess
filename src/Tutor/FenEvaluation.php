@@ -6,7 +6,7 @@ use Chess\FenHeuristics;
 use Chess\Eval\ExplainEvalTrait;
 use Chess\Eval\ElaborateEvalTrait;
 use Chess\Function\AbstractFunction;
-use Chess\ML\SumLabeller;
+use Chess\Labeller\SumLabeller;
 use Chess\Variant\AbstractBoard;
 
 class FenEvaluation extends AbstractParagraph

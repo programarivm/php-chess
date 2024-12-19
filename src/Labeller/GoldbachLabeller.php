@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\ML;
+namespace Chess\Labeller;
 
 class GoldbachLabeller extends AbstractLabeller
 {

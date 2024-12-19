@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Tests\Unit\ML;
+namespace Chess\Tests\Unit\Labeller;
 
 use Chess\SanHeuristics;
 use Chess\Function\CompleteFunction;
-use Chess\ML\SumLabeller;
+use Chess\Labeller\SumLabeller;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Tests\Unit\ML;
+namespace Chess\Tests\Unit\Labeller;
 
 use Chess\FenHeuristics;
 use Chess\Function\CompleteFunction;
-use Chess\ML\GoldbachLabeller;
+use Chess\Labeller\GoldbachLabeller;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 
