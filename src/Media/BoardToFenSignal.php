@@ -26,7 +26,7 @@ class BoardToFenSignal
     const MAX_MOVES = 300;
 
     /**
-     * Signal.
+     * One-dimensional array of integer values.
      *
      * @var string
      */
