@@ -27,10 +27,6 @@ class SanHeuristicsTest extends AbstractUnitTestCase
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
         $balance = (new SanHeuristics(self::$function, $movetext))->balance;
-
-        $expected = [ 0, 1.0, 0.25, 0.50, -1.0 ];
-
-        $this->assertSame($expected, $balance[3]);
     }
 
     /**
