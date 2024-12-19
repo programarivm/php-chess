@@ -2,7 +2,7 @@
 
 namespace Chess\ML;
 
-class PrimeLabeller extends AbstractLabeller
+class GoldbachLabeller extends AbstractLabeller
 {
     /**
      * The first forty prime numbers except the number two.

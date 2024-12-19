@@ -4,11 +4,11 @@ namespace Chess\Tests\Unit\ML;
 
 use Chess\FenHeuristics;
 use Chess\Function\CompleteFunction;
-use Chess\ML\PrimeLabeller;
+use Chess\ML\GoldbachLabeller;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 
-class PrimeLabellerTest extends AbstractUnitTestCase
+class GoldbachLabellerTest extends AbstractUnitTestCase
 {
     static private CompleteFunction $function;
 
@@ -28,7 +28,7 @@ class PrimeLabellerTest extends AbstractUnitTestCase
 
         $balance = (new FenHeuristics(self::$function, $board))->balance;
 
-        $label = (new PrimeLabeller())->label($balance);
+        $label = (new GoldbachLabeller())->label($balance);
 
         $expected = -11208696778;
 
