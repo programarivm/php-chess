@@ -12,11 +12,11 @@ use Chess\Variant\Classical\PGN\AN\Color;
 
 class SanHeuristics extends SanPlay
 {
-    protected AbstractFunction $function;
+    public AbstractFunction $function;
 
-    protected string $name;
+    public string $name;
 
-    protected array $result = [];
+    public array $result = [];
 
     public array $balance = [];
 
