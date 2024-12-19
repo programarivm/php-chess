@@ -10,16 +10,47 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 
+/**
+ * SAN Heuristics
+ *
+ * Continuous oscillations in terms of heuristic evaluation features.
+ */
 class SanHeuristics extends SanPlay
 {
+    /**
+     * Function.
+     *
+     * @var \Chess\Function\AbstractFunction
+     */
     public AbstractFunction $function;
 
+    /**
+     * The name of the evaluation feature.
+     *
+     * @var string
+     */
     public string $name;
 
+    /**
+     * Continuous oscillations.
+     *
+     * @var array
+     */
     public array $result = [];
 
+    /**
+     * The balanced normalized result.
+     *
+     * @var array
+     */
     public array $balance = [];
 
+    /**
+     * @param \Chess\Function\AbstractFunction $function
+     * @param string $movetext
+     * @param string $name
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(
         AbstractFunction $function,
         string $movetext = '',
@@ -34,6 +65,11 @@ class SanHeuristics extends SanPlay
         $this->calc()->balance()->normalize(-1, 1);
     }
 
+    /**
+     * Calculates the result.
+     *
+     * @return \Chess\SanHeuristics
+     */
     protected function calc(): SanHeuristics
     {
         $this->result[] = $this->item(EvalFactory::create(
@@ -57,6 +93,11 @@ class SanHeuristics extends SanPlay
         return $this;
     }
 
+    /**
+     * Balances the result.
+     *
+     * @return \Chess\SanHeuristics
+     */
     protected function balance(): SanHeuristics
     {
         foreach ($this->result as $result) {
@@ -66,6 +107,12 @@ class SanHeuristics extends SanPlay
         return $this;
     }
 
+    /**
+     * Normalizes the balance.
+     *
+     * @param int $newMin
+     * @param int $newMax
+     */
     protected function normalize(int $newMin, int $newMax): void
     {
         $min = min($this->balance);
@@ -82,6 +129,12 @@ class SanHeuristics extends SanPlay
         }
     }
 
+    /**
+     * Calculates an item.
+     *
+     * @param \Chess\Eval\AbstractEval $eval
+     * @return array
+     */
     protected function item(AbstractEval $eval): array
     {
         $result = $eval->result;
