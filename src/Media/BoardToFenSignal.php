@@ -13,8 +13,8 @@ use Chess\Variant\Classical\PGN\Move;
 /**
  * FEN Signal
  *
- * Discrete oscillations of a game are encoded in a one-dimensional array of
- * integer values.
+ * Discrete oscillations of a game in terms of heuristic evaluation features are
+ * encoded in a one-dimensional array of integer values.
  */
 class BoardToFenSignal
 {
