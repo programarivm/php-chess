@@ -25,10 +25,12 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $board = new Board();
 
-        $balance = (new SanSignal(self::$function, $movetext, $board))->balance;
+        $sanSignal = new SanSignal(self::$function, $movetext, $board);
 
-        $expected = [ 0, 1.0, 0.25, 0.50, -1.0 ];
+        $expectedBalance = [ 0, 1.0, 0.25, 0.50, -1.0 ];
+        $expectedSignal = [ 0.0, 2.0, -1.67, -0.16, -5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 
-        $this->assertSame($expected, $balance[3]);
+        $this->assertSame($expectedBalance, $sanSignal->balance[3]);
+        $this->assertSame($expectedSignal, $sanSignal->signal);
     }
 }

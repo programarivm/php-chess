@@ -18,6 +18,13 @@ class SanSignal extends SanPlay
     use SanTrait;
 
     /**
+     * The signal.
+     *
+     * @var array
+     */
+    public array $signal = [];
+
+    /**
      * @param \Chess\Function\AbstractFunction $function
      * @param string $movetext
      * @param \Chess\Variant\AbstractBoard $board
@@ -51,6 +58,10 @@ class SanSignal extends SanPlay
 
         for ($i = 0; $i < count($this->result[0]); $i++) {
             $this->balance[$i] = $this->normalize(-1, 1, array_column($this->result, $i));
+        }
+
+        for ($i = 0; $i < count($this->result[0]); $i++) {
+            $this->signal[$i] = round(array_sum(array_column($this->balance, $i)), 2);
         }
     }
 }
