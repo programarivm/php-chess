@@ -37,9 +37,9 @@ class SanHeuristics extends SanPlay
             $this->board
         ));
 
-        foreach ($this->sanMovetext->moves as $move) {
-            if ($move !== Move::ELLIPSIS) {
-                if ($this->board->play($this->board->turn, $move)) {
+        foreach ($this->sanMovetext->moves as $val) {
+            if ($val !== Move::ELLIPSIS) {
+                if ($this->board->play($this->board->turn, $val)) {
                     $this->result[] = $this->item(EvalFactory::create(
                         $function,
                         $name,
