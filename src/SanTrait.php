@@ -21,7 +21,7 @@ trait SanTrait
      * @var array
      */
     public array $balance = [];
-    
+
     /**
      * Calculates an item.
      *
@@ -59,7 +59,7 @@ trait SanTrait
     }
 
     /**
-     * Normalizes the given array of values.
+     * Normalizes an array of values.
      *
      * @param int $newMin
      * @param int $newMax
