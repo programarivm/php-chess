@@ -34,20 +34,18 @@ class SanSignal extends SanPlay
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
-                if (!$board->play($board->turn, $val)) {
-                    throw new MediaException();
+                if ($this->board->play($this->board->turn, $val)) {
+                    foreach ($function->names() as $val) {
+                        $item = $this->item(EvalFactory::create(
+                            $function,
+                            $val,
+                            $this->board
+                        ));
+                        $component[] =  $item[Color::W] - $item[Color::B];
+                    }
+                    $this->result[] = $component;
+                    $component = [];
                 }
-                foreach ($function->names() as $val) {
-                    $item = $this->item(EvalFactory::create(
-                        $function,
-                        $val,
-                        $board
-                    ));
-                    $diff = $item[Color::W] - $item[Color::B];
-                    $component[] =  $diff;
-                }
-                $this->result[] = $component;
-                $component = [];
             }
         }
 
