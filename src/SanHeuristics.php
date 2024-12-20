@@ -62,18 +62,6 @@ class SanHeuristics extends SanPlay
         $this->function = $function;
         $this->name = $name;
 
-        $this->calc()->balance();
-
-        $this->balance = $this->normalize(-1, 1, $this->balance);
-    }
-
-    /**
-     * Calculates the result.
-     *
-     * @return \Chess\SanHeuristics
-     */
-    protected function calc(): SanHeuristics
-    {
         $this->result[] = $this->item(EvalFactory::create(
             $this->function,
             $this->name,
@@ -92,16 +80,10 @@ class SanHeuristics extends SanPlay
             }
         }
 
-        return $this;
-    }
-
-    /**
-     * Balances the result.
-     */
-    protected function balance(): void
-    {
         foreach ($this->result as $result) {
             $this->balance[] = $result[Color::W] - $result[Color::B];
         }
+
+        $this->balance = $this->normalize(-1, 1, $this->balance);
     }
 }
