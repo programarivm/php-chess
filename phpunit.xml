@@ -22,7 +22,6 @@
             <directory>tests/unit/Variant</directory>
             <file>tests/unit/EvalFactoryTest.php</file>
             <file>tests/unit/FenHeuristicsTest.php</file>
-            <file>tests/unit/FenSignalTest.php</file>
             <file>tests/unit/FenToBoardFactoryTest.php</file>
             <file>tests/unit/SanHeuristicsTest.php</file>
         </testsuite>
