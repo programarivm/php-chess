@@ -9,6 +9,20 @@ use Chess\Variant\Classical\PGN\AN\Color;
 trait SanTrait
 {
     /**
+     * Continuous oscillations.
+     *
+     * @var array
+     */
+    public array $result = [];
+
+    /**
+     * The balanced normalized result.
+     *
+     * @var array
+     */
+    public array $balance = [];
+    
+    /**
      * Calculates an item.
      *
      * @param \Chess\Eval\AbstractEval $eval

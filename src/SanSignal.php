@@ -17,10 +17,6 @@ class SanSignal extends SanPlay
 {
     use SanTrait;
 
-    public array $result = [];
-
-    public array $balance = [];
-
     /**
      * @param \Chess\Function\AbstractFunction $function
      * @param string $movetext

@@ -18,20 +18,6 @@ class SanHeuristics extends SanPlay
     use SanTrait;
 
     /**
-     * Continuous oscillations.
-     *
-     * @var array
-     */
-    public array $result = [];
-
-    /**
-     * The balanced normalized result.
-     *
-     * @var array
-     */
-    public array $balance = [];
-
-    /**
      * @param \Chess\Function\AbstractFunction $function
      * @param string $movetext
      * @param string $name
