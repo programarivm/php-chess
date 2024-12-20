@@ -18,20 +18,6 @@ class SanHeuristics extends SanPlay
     use SanTrait;
 
     /**
-     * Function.
-     *
-     * @var \Chess\Function\AbstractFunction
-     */
-    public AbstractFunction $function;
-
-    /**
-     * The name of the evaluation feature.
-     *
-     * @var string
-     */
-    public string $name;
-
-    /**
      * Continuous oscillations.
      *
      * @var array
@@ -59,12 +45,9 @@ class SanHeuristics extends SanPlay
     ) {
         parent::__construct($movetext, $board);
 
-        $this->function = $function;
-        $this->name = $name;
-
         $this->result[] = $this->item(EvalFactory::create(
-            $this->function,
-            $this->name,
+            $function,
+            $name,
             $this->board
         ));
 
@@ -72,8 +55,8 @@ class SanHeuristics extends SanPlay
             if ($move !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $move)) {
                     $this->result[] = $this->item(EvalFactory::create(
-                        $this->function,
-                        $this->name,
+                        $function,
+                        $name,
                         $this->board
                     ));
                 }
