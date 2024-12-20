@@ -3,9 +3,9 @@
 namespace Chess;
 
 use Chess\EvalFactory;
-use Chess\Eval\InverseEvalInterface;
 use Chess\Function\FastFunction;
 use Chess\Movetext\SanMovetext;
+use Chess\Play\SanPlay;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
@@ -15,8 +15,10 @@ use Chess\Variant\Classical\PGN\AN\Color;
  *
  * A signal encoding the continuous oscillations of a chessboard.
  */
-class SanSignal
+class SanSignal extends SanPlay
 {
+    use SanTrait;
+
     /**
      * Maximum number of moves.
      *
@@ -54,28 +56,11 @@ class SanSignal
                     throw new MediaException();
                 }
                 foreach ($function->names() as $val) {
-                    $eval = EvalFactory::create($function, $val, $board);
-                    $item = $eval->result;
-                    if (is_array($item[Color::W])) {
-                        if ($eval instanceof InverseEvalInterface) {
-                            $item = [
-                                Color::W => count($item[Color::B]),
-                                Color::B => count($item[Color::W]),
-                            ];
-                        } else {
-                            $item = [
-                                Color::W => count($item[Color::W]),
-                                Color::B => count($item[Color::B]),
-                            ];
-                        }
-                    } else {
-                        if ($eval instanceof InverseEvalInterface) {
-                            $item = [
-                                Color::W => $item[Color::B],
-                                Color::B => $item[Color::W],
-                            ];
-                        }
-                    }
+                    $item = $this->item(EvalFactory::create(
+                        $function,
+                        $val,
+                        $board
+                    ));
                     $diff = $item[Color::W] - $item[Color::B];
                     $component[] =  $diff;
                 }
@@ -87,31 +72,5 @@ class SanSignal
         for ($i = 0; $i < count($this->result[0]); $i++) {
             $this->balance[$i] = $this->normalize(-1, 1, array_column($this->result, $i));
         }
-    }
-
-    /**
-     * Normalizes the balance.
-     *
-     * @param int $newMin
-     * @param int $newMax
-     * @param array $values
-     * @return array
-     */
-    protected function normalize(int $newMin, int $newMax, array $values): array
-    {
-        $min = min($values);
-        $max = max($values);
-
-        foreach ($values as $key => $val) {
-            if ($val > 0) {
-                $values[$key] = round($values[$key] * $newMax / $max, 2);
-            } elseif ($val < 0) {
-                $values[$key] = round($values[$key] * $newMin / $min, 2);
-            } else {
-                $values[$key] = 0;
-            }
-        }
-
-        return $values;
     }
 }
