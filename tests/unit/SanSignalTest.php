@@ -3,11 +3,19 @@
 namespace Chess\Tests\Unit;
 
 use Chess\SanSignal;
+use Chess\Function\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 
 class SanSignalTest extends AbstractUnitTestCase
 {
+    static private FastFunction $function;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$function = new FastFunction();
+    }
+
     /**
      * @test
      */
@@ -17,7 +25,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $board = new Board();
 
-        $balance = (new SanSignal($movetext, $board))->balance;
+        $balance = (new SanSignal(self::$function, $movetext, $board))->balance;
 
         $expected = [ 0, 1.0, 0.25, 0.50, -1.0 ];
 

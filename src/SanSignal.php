@@ -2,9 +2,7 @@
 
 namespace Chess;
 
-use Chess\EvalFactory;
-use Chess\Function\FastFunction;
-use Chess\Movetext\SanMovetext;
+use Chess\Function\AbstractFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
@@ -19,38 +17,26 @@ class SanSignal extends SanPlay
 {
     use SanTrait;
 
-    /**
-     * Maximum number of moves.
-     *
-     * @var int
-     */
-    const MAX_MOVES = 300;
-
     public array $result = [];
 
     public array $balance = [];
 
     /**
+     * @param \Chess\Function\AbstractFunction $function
      * @param string $movetext
      * @param \Chess\Variant\AbstractBoard $board
      */
-    public function __construct(string $movetext, AbstractBoard $board)
-    {
-        $sanMovetext = new SanMovetext($board->move, $movetext);
+    public function __construct(
+        AbstractFunction $function,
+        string $movetext,
+        AbstractBoard $board
+    ) {
+        parent::__construct($movetext, $board);
 
-        if (!$sanMovetext->validate()) {
-            throw new \InvalidArgumentException();
-        }
-
-        if (self::MAX_MOVES < count($sanMovetext->moves)) {
-            throw new \InvalidArgumentException();
-        }
-
-        $function = new FastFunction();
         $this->result[] = array_fill(0, count($function->names()), 0);
         $component = [];
 
-        foreach ($sanMovetext->moves as $val) {
+        foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if (!$board->play($board->turn, $val)) {
                     throw new MediaException();
