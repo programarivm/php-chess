@@ -46,4 +46,172 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $this->assertEquals($expectedSignal, $sanSignal->signal);
     }
+
+    /**
+     * @test
+     */
+    public function a4()
+    {
+        $expectedSignal = [ 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.a4';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function b4()
+    {
+        $expectedSignal = [ 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.b4';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function c4()
+    {
+        $expectedSignal = [ 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.c4';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function d4()
+    {
+        $expectedSignal = [ 0.0, 3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.d4';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function e4()
+    {
+        $expectedSignal = [ 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.e4';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function f4()
+    {
+        $expectedSignal = [ 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.f4';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function g4()
+    {
+        $expectedSignal = [ 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.g4';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function h4()
+    {
+        $expectedSignal = [ 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.h4';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function a4_h5()
+    {
+        $expectedSignal = [ 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.a4 h5';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function a4_a5()
+    {
+        $expectedSignal = [ 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.a4 a5';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function a4_e5()
+    {
+        $expectedSignal = [ 0.0, 2.0, -2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.a4 e5';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
+    public function h4_e5()
+    {
+        $expectedSignal = [ 0.0, 2.0, -3.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.h4 e5';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
 }
