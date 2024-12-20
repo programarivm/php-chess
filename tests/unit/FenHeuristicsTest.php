@@ -36,6 +36,38 @@ class FenHeuristicsTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function get_balance_c4()
+    {
+        $fen = 'rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq c3';
+
+        $board = FenToBoardFactory::create($fen);
+
+        $balance = (new FenHeuristics(self::$function, $board))->balance;
+
+        $expected = [ 0, 1, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+
+        $this->assertEquals($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
+    public function get_balance_d4()
+    {
+        $fen = 'rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3';
+
+        $board = FenToBoardFactory::create($fen);
+
+        $balance = (new FenHeuristics(self::$function, $board))->balance;
+
+        $expected = [ 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ];
+
+        $this->assertEquals($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
     public function get_balance_e4()
     {
         $fen = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1';
@@ -45,6 +77,38 @@ class FenHeuristicsTest extends AbstractUnitTestCase
         $balance = (new FenHeuristics(self::$function, $board))->balance;
 
         $expected = [ 0, 1, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ];
+
+        $this->assertEquals($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
+    public function get_balance_f4()
+    {
+        $fen = 'rnbqkbnr/pppppppp/8/8/5P2/8/PPPPP1PP/RNBQKBNR b KQkq f3';
+
+        $board = FenToBoardFactory::create($fen);
+
+        $balance = (new FenHeuristics(self::$function, $board))->balance;
+
+        $expected = [ 0, 1, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ];
+
+        $this->assertEquals($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
+    public function get_balance_g4()
+    {
+        $fen = 'rnbqkbnr/pppppppp/8/8/6P1/8/PPPPPP1P/RNBQKBNR b KQkq g3';
+
+        $board = FenToBoardFactory::create($fen);
+
+        $balance = (new FenHeuristics(self::$function, $board))->balance;
+
+        $expected = [ 0, 1, -1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 
         $this->assertEquals($expected, $balance);
     }
