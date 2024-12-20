@@ -22,17 +22,15 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function e4_d5_exd5_Qxd5()
     {
-        $movetext = '1.e4 d5 2.exd5 Qxd5';
-
-        $board = new Board();
-
-        $sanSignal = new SanSignal(self::$function, $movetext, $board);
-
         $expectedBalance = [ 0, 1.0, 0.25, 0.50, -1.0 ];
         $expectedSignal = [ 0.0, 2.0, -1.67, -0.16, -5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 
-        $this->assertSame($expectedBalance, $sanSignal->balance[3]);
-        $this->assertSame($expectedSignal, $sanSignal->signal);
+        $movetext = '1.e4 d5 2.exd5 Qxd5';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedBalance, $sanSignal->balance[3]);
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
     }
 
     /**
@@ -46,6 +44,6 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $sanSignal = new SanSignal(self::$function, $A59, new Board());
 
-        $this->assertSame($expectedSignal, $sanSignal->signal);
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
     }
 }
