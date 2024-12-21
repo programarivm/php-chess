@@ -48,6 +48,22 @@ class SanHeuristicsTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function e4_d5_exd5_Qxd5_center()
+    {
+        $name = 'Center';
+
+        $movetext = '1.e4 d5 2.exd5 Qxd5';
+
+        $balance = (new SanHeuristics(self::$function, $movetext, $name))->balance;
+
+        $expected = [ 0, 1.0, 0.08, 0.67, -1.0 ];
+
+        $this->assertSame($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
     public function resume_E61_space()
     {
         $name = 'Space';
