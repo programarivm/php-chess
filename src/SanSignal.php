@@ -18,7 +18,7 @@ class SanSignal extends SanPlay
     use SanTrait;
 
     /**
-     * Unormalized signal.
+     * Unnormalized signal.
      *
      * @var array
      */
