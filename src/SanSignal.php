@@ -18,11 +18,25 @@ class SanSignal extends SanPlay
     use SanTrait;
 
     /**
-     * The signal.
+     * Unormalized signal.
      *
      * @var array
      */
-    public array $signal = [];
+    public array $unnormalized = [];
+
+    /**
+     * Normalized signal.
+     *
+     * @var array
+     */
+    public array $normalized = [];
+
+    /**
+     * Signal components.
+     *
+     * @var array
+     */
+    public array $component = [];
 
     /**
      * @param \Chess\Function\AbstractFunction $function
@@ -37,7 +51,7 @@ class SanSignal extends SanPlay
         parent::__construct($movetext, $board);
 
         $this->result[] = array_fill(0, count($function->names()), 0);
-        $component = [];
+        $items = [];
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
@@ -48,20 +62,22 @@ class SanSignal extends SanPlay
                             $val,
                             $this->board
                         ));
-                        $component[] =  $item[Color::W] - $item[Color::B];
+                        $items[] =  $item[Color::W] - $item[Color::B];
                     }
-                    $this->result[] = $component;
-                    $component = [];
+                    $this->result[] = $items;
+                    $items = [];
                 }
             }
         }
 
         for ($i = 0; $i < count($this->result[0]); $i++) {
-            $this->balance[$i] = $this->normalize(-1, 1, array_column($this->result, $i));
+            $this->component[$i] = array_column($this->result, $i);
+            $this->balance[$i] = $this->normalize(-1, 1, $this->component[$i]);
         }
 
-        for ($i = 0; $i < count($this->balance[0]); $i++) {
-            $this->signal[$i] = round(array_sum(array_column($this->balance, $i)), 2);
+        for ($i = 0; $i < count($this->component[0]); $i++) {
+            $this->unnormalized[$i] = round(array_sum(array_column($this->component, $i)), 2);
+            $this->normalized[$i] = round(array_sum(array_column($this->balance, $i)), 2);
         }
     }
 }

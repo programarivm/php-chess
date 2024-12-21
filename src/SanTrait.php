@@ -16,7 +16,7 @@ trait SanTrait
     public array $result = [];
 
     /**
-     * The balanced normalized result.
+     * The balanced result.
      *
      * @var array
      */
