@@ -60,7 +60,7 @@ class SanSignal extends SanPlay
             $this->balance[$i] = $this->normalize(-1, 1, array_column($this->result, $i));
         }
 
-        for ($i = 0; $i < count($this->result[0]); $i++) {
+        for ($i = 0; $i < count($this->balance[0]); $i++) {
             $this->signal[$i] = round(array_sum(array_column($this->balance, $i)), 2);
         }
     }
