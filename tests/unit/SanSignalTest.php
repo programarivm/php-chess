@@ -23,6 +23,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function e4_d5_exd5_Qxd5()
     {
         $expectedCenter = [ 0, 1.0, 0.08, 0.67, -1.0 ];
+        $expectedConnectivity = [ 0, -1.0, -1.0, -1.0, 1.0 ];
         $expectedSpace = [ 0, 1.0, 0.25, 0.50, -1.0 ];
         $expectedSignal = [ 0.0, 2.0, -1.67, -0.16, -5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 
@@ -31,6 +32,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedCenter, $sanSignal->balance[1]);
+        $this->assertEquals($expectedConnectivity, $sanSignal->balance[2]);
         $this->assertEquals($expectedSpace, $sanSignal->balance[3]);
         $this->assertEquals($expectedSignal, $sanSignal->signal);
     }
