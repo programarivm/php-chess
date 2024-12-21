@@ -50,6 +50,20 @@ class SanSignalTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function a3()
+    {
+        $expectedSignal = [ 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
+
+        $movetext = '1.a3';
+
+        $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedSignal, $sanSignal->signal);
+    }
+
+    /**
+     * @test
+     */
     public function a4()
     {
         $expectedSignal = [ 0.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
