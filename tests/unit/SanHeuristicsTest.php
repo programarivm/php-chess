@@ -32,22 +32,6 @@ class SanHeuristicsTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function e4_d5_exd5_Qxd5_space()
-    {
-        $name = 'Space';
-
-        $movetext = '1.e4 d5 2.exd5 Qxd5';
-
-        $balance = (new SanHeuristics(self::$function, $movetext, $name))->balance;
-
-        $expected = [ 0, 1.0, 0.25, 0.50, -1.0 ];
-
-        $this->assertSame($expected, $balance);
-    }
-
-    /**
-     * @test
-     */
     public function e4_d5_exd5_Qxd5_center()
     {
         $name = 'Center';
@@ -57,6 +41,38 @@ class SanHeuristicsTest extends AbstractUnitTestCase
         $balance = (new SanHeuristics(self::$function, $movetext, $name))->balance;
 
         $expected = [ 0, 1.0, 0.08, 0.67, -1.0 ];
+
+        $this->assertSame($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
+    public function e4_d5_exd5_Qxd5_connectivity()
+    {
+        $name = 'Connectivity';
+
+        $movetext = '1.e4 d5 2.exd5 Qxd5';
+
+        $balance = (new SanHeuristics(self::$function, $movetext, $name))->balance;
+
+        $expected = [ 0, -1.0, -1.0, -1.0, 1.0 ];
+
+        $this->assertSame($expected, $balance);
+    }
+
+    /**
+     * @test
+     */
+    public function e4_d5_exd5_Qxd5_space()
+    {
+        $name = 'Space';
+
+        $movetext = '1.e4 d5 2.exd5 Qxd5';
+
+        $balance = (new SanHeuristics(self::$function, $movetext, $name))->balance;
+
+        $expected = [ 0, 1.0, 0.25, 0.50, -1.0 ];
 
         $this->assertSame($expected, $balance);
     }
