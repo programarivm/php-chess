@@ -30,7 +30,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0, -1.67, -0.16, -5.0 ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedCenter, $sanSignal->balance[1]);
@@ -49,7 +48,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.5, 0.77, 1.01, 1.31, 1.4, 1.69, 3.52, 3.03, 2.77, 0.0, 1.85, 0.17, 0.88, -2.13, 3.42, 2.07, 2.24 ];
 
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
-
         $sanSignal = new SanSignal(self::$function, $A59, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -65,7 +63,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0 ];
 
         $movetext = '1.a3';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -81,7 +78,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0 ];
 
         $movetext = '1.a4';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -97,7 +93,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 1.0 ];
 
         $movetext = '1.b4';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -113,7 +108,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 1.0 ];
 
         $movetext = '1.c4';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -129,7 +123,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 3.0 ];
 
         $movetext = '1.d4';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -145,7 +138,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0 ];
 
         $movetext = '1.e4';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -161,7 +153,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0 ];
 
         $movetext = '1.f4';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -177,7 +168,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 1.0 ];
 
         $movetext = '1.g4';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -193,7 +183,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0 ];
 
         $movetext = '1.h4';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -209,7 +198,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0, 0.0 ];
 
         $movetext = '1.a4 h5';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -225,7 +213,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0, 0.0 ];
 
         $movetext = '1.a4 a5';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -241,7 +228,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0, -2.0 ];
 
         $movetext = '1.a4 e5';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -257,7 +243,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedNormalized = [ 0.0, 2.0, -3.0 ];
 
         $movetext = '1.h4 e5';
-
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -274,9 +259,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $fen = '7k/8/8/P7/8/8/8/7K w - -';
         $movetext = '1.a6';
-
         $board = FenToBoardFactory::create($fen);
-
         $sanSignal = new SanSignal(self::$function, $movetext, $board);
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
@@ -293,9 +276,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $fen = '7k/8/P7/8/8/8/8/7K w - -';
         $movetext = '1.a7';
-
         $board = FenToBoardFactory::create($fen);
-
         $sanSignal = new SanSignal(self::$function, $movetext, $board);
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
