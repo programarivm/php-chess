@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\CenterEval;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
@@ -15,8 +16,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function A08()
     {
         $expectedResult = [
-            'w' => 29.4,
-            'b' => 33.0,
+            'w' => 30.52,
+            'b' => 33.9,
         ];
 
         $expectedExplanation = [
@@ -37,8 +38,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B25()
     {
         $expectedResult = [
-            'w' => 37.73,
-            'b' => 34.73,
+            'w' => 39.06,
+            'b' => 35.86,
         ];
 
         $expectedExplanation = [
@@ -59,8 +60,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B56()
     {
         $expectedResult = [
-            'w' => 47.0,
-            'b' => 36.8,
+            'w' => 48.2,
+            'b' => 37.92,
         ];
 
         $expectedExplanation = [
@@ -81,8 +82,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function C60()
     {
         $expectedResult = [
-            'w' => 37.73,
-            'b' => 34.73,
+            'w' => 38.85,
+            'b' => 35.86,
         ];
 
         $expectedExplanation = [
@@ -91,6 +92,94 @@ class CenterEvalTest extends AbstractUnitTestCase
 
         $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
         $board = (new SanPlay($C60))->validate()->board;
+        $centerEval = new CenterEval($board);
+
+        $this->assertSame($expectedResult, $centerEval->result);
+        $this->assertSame($expectedExplanation, $centerEval->explain());
+    }
+
+    /**
+     * @test
+     */
+    public function a6()
+    {
+        $expectedResult = [
+            'w' => 2.1,
+            'b' => 1.1,
+        ];
+
+        $expectedExplanation = [
+            'White has a slightly better control of the center.',
+        ];
+
+        $fen = '7k/8/P7/8/8/8/8/7K w - -';
+        $board = FenToBoardFactory::create($fen);
+        $centerEval = new CenterEval($board);
+
+        $this->assertSame($expectedResult, $centerEval->result);
+        $this->assertSame($expectedExplanation, $centerEval->explain());
+    }
+
+    /**
+     * @test
+     */
+    public function a7()
+    {
+        $expectedResult = [
+            'w' => 1.1,
+            'b' => 1.1,
+        ];
+
+        $expectedExplanation = [
+        ];
+
+        $fen = '7k/8/P7/8/8/8/8/7K w - -';
+        $board = FenToBoardFactory::create($fen);
+        $board->play('w', 'a7');
+        $centerEval = new CenterEval($board);
+
+        $this->assertSame($expectedResult, $centerEval->result);
+        $this->assertSame($expectedExplanation, $centerEval->explain());
+    }
+
+    /**
+     * @test
+     */
+    public function h6()
+    {
+        $expectedResult = [
+            'w' => 2.1,
+            'b' => 1.0,
+        ];
+
+        $expectedExplanation = [
+            'White has a slightly better control of the center.',
+        ];
+
+        $fen = 'k7/8/7P/8/8/8/8/K7 w - -';
+        $board = FenToBoardFactory::create($fen);
+        $centerEval = new CenterEval($board);
+
+        $this->assertSame($expectedResult, $centerEval->result);
+        $this->assertSame($expectedExplanation, $centerEval->explain());
+    }
+
+    /**
+     * @test
+     */
+    public function h7()
+    {
+        $expectedResult = [
+            'w' => 1.0,
+            'b' => 1.0,
+        ];
+
+        $expectedExplanation = [
+        ];
+
+        $fen = 'k7/8/7P/8/8/8/8/K7 w - -';
+        $board = FenToBoardFactory::create($fen);
+        $board->play('w', 'h7');
         $centerEval = new CenterEval($board);
 
         $this->assertSame($expectedResult, $centerEval->result);
