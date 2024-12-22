@@ -29,7 +29,7 @@ class CenterEval extends AbstractEval
      * differentiate between moves made on the queen side and those made on the
      * king side.
      *
-     * @var int
+     * @var float
      */
     const PHI = 0.1;
 
