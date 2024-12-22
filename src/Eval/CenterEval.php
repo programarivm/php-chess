@@ -8,8 +8,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * Center Evaluation
  *
- * It is advantageous to control the central squares as well as to place a piece
- * in the center.
+ * Measures how close the pieces are to the center of the board.
  */
 class CenterEval extends AbstractEval
 {
