@@ -25,8 +25,9 @@ class CenterEval extends AbstractEval
     /**
      * The equilibrium factor φ.
      *
-     * The king's side is slightly tilted to differentiate between moves made on
-     * the queen side and those made on the king side.
+     * The king side is slightly tilted to break the vertical symmetry and
+     * differentiate between moves made on the queen side and those made on the
+     * king side.
      *
      * @var string
      */
