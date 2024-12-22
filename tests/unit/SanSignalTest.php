@@ -291,7 +291,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedUnnormalized = [ 0.0, 3.0 ];
         $expectedNormalized = [ 0.0, 3.0 ];
 
-        $fen = '7k/8/P7/8/8/8/8/7K w - -';
+        $fen = '4k3/8/P7/8/8/8/8/4K3 w - -';
         $movetext = '1.a7';
         $board = FenToBoardFactory::create($fen);
         $sanSignal = new SanSignal(self::$function, $movetext, $board);
@@ -325,7 +325,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedUnnormalized = [ 0.0, 3.0 ];
         $expectedNormalized = [ 0.0, 3.0 ];
 
-        $fen = 'k7/8/7P/8/8/8/8/K7 w - -';
+        $fen = '4k3/8/7P/8/8/8/8/4K3 w - -';
         $movetext = '1.h7';
         $board = FenToBoardFactory::create($fen);
         $sanSignal = new SanSignal(self::$function, $movetext, $board);
