@@ -2,6 +2,7 @@
 
 namespace Chess\Tests\Unit;
 
+use Chess\FenToBoardFactory;
 use Chess\SanSignal;
 use Chess\Function\FastFunction;
 use Chess\Play\SanPlay;
@@ -258,6 +259,44 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.h4 e5';
 
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
+
+        $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
+        $this->assertEquals($expectedNormalized, $sanSignal->normalized);
+    }
+
+    /**
+     * @test
+     */
+    public function a6()
+    {
+        $expectedUnnormalized = [ 0.0, 5.0 ];
+        $expectedNormalized = [ 0.0, 5.0 ];
+
+        $fen = '7k/8/8/P7/8/8/8/7K w - -';
+        $movetext = '1.a6';
+
+        $board = FenToBoardFactory::create($fen);
+
+        $sanSignal = new SanSignal(self::$function, $movetext, $board);
+
+        $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
+        $this->assertEquals($expectedNormalized, $sanSignal->normalized);
+    }
+
+    /**
+     * @test
+     */
+    public function a7()
+    {
+        $expectedUnnormalized = [ 0.0, 3.0 ];
+        $expectedNormalized = [ 0.0, 3.0 ];
+
+        $fen = '7k/8/P7/8/8/8/8/7K w - -';
+        $movetext = '1.a7';
+
+        $board = FenToBoardFactory::create($fen);
+
+        $sanSignal = new SanSignal(self::$function, $movetext, $board);
 
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
         $this->assertEquals($expectedNormalized, $sanSignal->normalized);
