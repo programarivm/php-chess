@@ -252,6 +252,23 @@ class SanSignalTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function a5()
+    {
+        $expectedUnnormalized = [ 0.0, 4.0 ];
+        $expectedNormalized = [ 0.0, 4.0 ];
+
+        $fen = '7k/8/8/8/P7/8/8/7K w - -';
+        $movetext = '1.a5';
+        $board = FenToBoardFactory::create($fen);
+        $sanSignal = new SanSignal(self::$function, $movetext, $board);
+
+        $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
+        $this->assertEquals($expectedNormalized, $sanSignal->normalized);
+    }
+
+    /**
+     * @test
+     */
     public function a6()
     {
         $expectedUnnormalized = [ 0.0, 5.0 ];
@@ -276,6 +293,23 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $fen = '7k/8/P7/8/8/8/8/7K w - -';
         $movetext = '1.a7';
+        $board = FenToBoardFactory::create($fen);
+        $sanSignal = new SanSignal(self::$function, $movetext, $board);
+
+        $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
+        $this->assertEquals($expectedNormalized, $sanSignal->normalized);
+    }
+
+    /**
+     * @test
+     */
+    public function b5()
+    {
+        $expectedUnnormalized = [ 0.0, 8.0 ];
+        $expectedNormalized = [ 0.0, 4.0 ];
+
+        $fen = '7k/8/8/8/1P6/8/8/7K w - -';
+        $movetext = '1.b5';
         $board = FenToBoardFactory::create($fen);
         $sanSignal = new SanSignal(self::$function, $movetext, $board);
 
