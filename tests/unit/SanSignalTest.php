@@ -316,4 +316,21 @@ class SanSignalTest extends AbstractUnitTestCase
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
         $this->assertEquals($expectedNormalized, $sanSignal->normalized);
     }
+
+    /**
+     * @test
+     */
+    public function h7()
+    {
+        $expectedUnnormalized = [ 0.0, 3.0 ];
+        $expectedNormalized = [ 0.0, 3.0 ];
+
+        $fen = 'k7/8/7P/8/8/8/8/K7 w - -';
+        $movetext = '1.h7';
+        $board = FenToBoardFactory::create($fen);
+        $sanSignal = new SanSignal(self::$function, $movetext, $board);
+
+        $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
+        $this->assertEquals($expectedNormalized, $sanSignal->normalized);
+    }
 }
