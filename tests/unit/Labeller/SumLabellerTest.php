@@ -52,7 +52,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $label = (new SumLabeller())->label($balance);
 
-        $expected = 0.26;
+        $expected = 0.24;
 
         $this->assertSame($expected, $label);
     }

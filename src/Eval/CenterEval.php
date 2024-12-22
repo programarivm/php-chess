@@ -40,14 +40,14 @@ class CenterEval extends AbstractEval
      * @var array
      */
     private array $center = [
-        'a8' => 0, 'b8' => 0, 'c8' => 0, 'd8' => 0, 'e8' => 0, 'f8' => 0, 'g8' => 0, 'h8' => 0,
-        'a7' => 0, 'b7' => 1, 'c7' => 1, 'd7' => 1, 'e7' => 1 + self::PHI, 'f7' => 1 + self::PHI, 'g7' => 1 + self::PHI, 'h7' => 0,
-        'a6' => 0, 'b6' => 1, 'c6' => 2, 'd6' => 2, 'e6' => 2 + self::PHI, 'f6' => 2 + self::PHI, 'g6' => 1 + self::PHI, 'h6' => 0,
-        'a5' => 0, 'b5' => 1, 'c5' => 2, 'd5' => 3, 'e5' => 3 + self::PHI, 'f5' => 2 + self::PHI, 'g5' => 1 + self::PHI, 'h5' => 0,
-        'a4' => 0, 'b4' => 1, 'c4' => 2, 'd4' => 3, 'e4' => 3 + self::PHI, 'f4' => 2 + self::PHI, 'g4' => 1 + self::PHI, 'h4' => 0,
-        'a3' => 0, 'b3' => 1, 'c3' => 2, 'd3' => 2, 'e3' => 2 + self::PHI, 'f3' => 2 + self::PHI, 'g3' => 1 + self::PHI, 'h3' => 0,
-        'a2' => 0, 'b2' => 1, 'c2' => 1, 'd2' => 1, 'e2' => 1 + self::PHI, 'f2' => 1 + self::PHI, 'g2' => 1 + self::PHI, 'h2' => 0,
-        'a1' => 0, 'b1' => 0, 'c1' => 0, 'd1' => 0, 'e1' => 0, 'f1' => 0, 'g1' => 0, 'h1' => 0,
+        'a8' => 0, 'b8' => 0, 'c8' => 0, 'd8' => 0, 'e8' => 0 + self::PHI, 'f8' => 0 + self::PHI, 'g8' => 0 + self::PHI, 'h8' => 0 + self::PHI,
+        'a7' => 0, 'b7' => 1, 'c7' => 1, 'd7' => 1, 'e7' => 1 + self::PHI, 'f7' => 1 + self::PHI, 'g7' => 1 + self::PHI, 'h7' => 0 + self::PHI,
+        'a6' => 0, 'b6' => 1, 'c6' => 2, 'd6' => 2, 'e6' => 2 + self::PHI, 'f6' => 2 + self::PHI, 'g6' => 1 + self::PHI, 'h6' => 0 + self::PHI,
+        'a5' => 0, 'b5' => 1, 'c5' => 2, 'd5' => 3, 'e5' => 3 + self::PHI, 'f5' => 2 + self::PHI, 'g5' => 1 + self::PHI, 'h5' => 0 + self::PHI,
+        'a4' => 0, 'b4' => 1, 'c4' => 2, 'd4' => 3, 'e4' => 3 + self::PHI, 'f4' => 2 + self::PHI, 'g4' => 1 + self::PHI, 'h4' => 0 + self::PHI,
+        'a3' => 0, 'b3' => 1, 'c3' => 2, 'd3' => 2, 'e3' => 2 + self::PHI, 'f3' => 2 + self::PHI, 'g3' => 1 + self::PHI, 'h3' => 0 + self::PHI,
+        'a2' => 0, 'b2' => 1, 'c2' => 1, 'd2' => 1, 'e2' => 1 + self::PHI, 'f2' => 1 + self::PHI, 'g2' => 1 + self::PHI, 'h2' => 0 + self::PHI,
+        'a1' => 0, 'b1' => 0, 'c1' => 0, 'd1' => 0, 'e1' => 0 + self::PHI, 'f1' => 0 + self::PHI, 'g1' => 0 + self::PHI, 'h1' => 0 + self::PHI,
     ];
 
     /**

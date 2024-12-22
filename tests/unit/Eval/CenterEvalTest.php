@@ -16,8 +16,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function A08()
     {
         $expectedResult = [
-            'w' => 30.52,
-            'b' => 33.9,
+            'w' => 32.16,
+            'b' => 35.76,
         ];
 
         $expectedExplanation = [
@@ -38,8 +38,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B25()
     {
         $expectedResult = [
-            'w' => 39.06,
-            'b' => 35.86,
+            'w' => 40.89,
+            'b' => 37.59,
         ];
 
         $expectedExplanation = [
@@ -60,8 +60,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B56()
     {
         $expectedResult = [
-            'w' => 48.2,
-            'b' => 37.92,
+            'w' => 49.94,
+            'b' => 39.66,
         ];
 
         $expectedExplanation = [
@@ -82,8 +82,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function C60()
     {
         $expectedResult = [
-            'w' => 38.85,
-            'b' => 35.86,
+            'w' => 40.26,
+            'b' => 37.49,
         ];
 
         $expectedExplanation = [
@@ -104,8 +104,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function a6()
     {
         $expectedResult = [
-            'w' => 2.1,
-            'b' => 1.1,
+            'w' => 2.7,
+            'b' => 1.7,
         ];
 
         $expectedExplanation = [
@@ -126,8 +126,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function a7()
     {
         $expectedResult = [
-            'w' => 1.1,
-            'b' => 1.1,
+            'w' => 1.7,
+            'b' => 1.7,
         ];
 
         $expectedExplanation = [
@@ -148,7 +148,7 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function h6()
     {
         $expectedResult = [
-            'w' => 2.1,
+            'w' => 2.2,
             'b' => 1.0,
         ];
 
@@ -170,7 +170,7 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function h7()
     {
         $expectedResult = [
-            'w' => 1.0,
+            'w' => 1.2,
             'b' => 1.0,
         ];
 

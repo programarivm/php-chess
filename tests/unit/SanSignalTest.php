@@ -26,7 +26,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedCenter = [ 0, 1.0, 0.09, 0.65, -1.0 ];
         $expectedConnectivity = [ 0.0, -1.0, -1.0, -1.0, 1.0 ];
         $expectedSpace = [ 0.0, 1.0, 0.25, 0.50, -1.0 ];
-        $expectedUnnormalized = [ 0.0, 20.3, 1.1, 10.0, -64.0 ];
+        $expectedUnnormalized = [ 0.0, 20.4, 1.1, 10.0, -64.1 ];
         $expectedNormalized = [ 0.0, 2.0, -1.66, -0.18, -5.0 ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
@@ -44,8 +44,8 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function A59()
     {
-        $expectedUnnormalized = [ 0.0, 18.3, 2.48, 11.48, 4.48, 5.48, 1.48, 6.48, 4.48, 2.48, -7.52, 2.98, -2.12, 7.08, -4.02, 13.08, 8.98, 9.98 ];
-        $expectedNormalized = [ 0.0, 2.5, 0.75, 0.98, 1.3, 1.38, 1.67, 3.5, 3.01, 2.75, 0.0, 1.85, 0.16, 0.87, -2.13, 3.41, 2.05, 2.22 ];
+        $expectedUnnormalized = [ 0.0, 18.4, 2.7, 11.7, 4.7, 5.7, 1.7, 6.7, 4.7, 2.7, -7.3, 3.2, -1.9, 7.4, -4.37, 13.17, 9.07, 10.17 ];
+        $expectedNormalized = [ 0.0, 2.5, 0.78, 1.0, 1.32, 1.4, 1.7, 3.53, 3.04, 2.78, 0.0, 1.86, 0.19, 0.89, -2.17, 3.41, 2.05, 2.23 ];
 
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
         $sanSignal = new SanSignal(self::$function, $A59, new Board());
@@ -119,7 +119,7 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function d4()
     {
-        $expectedUnnormalized = [ 0.0, 18.3 ];
+        $expectedUnnormalized = [ 0.0, 18.4 ];
         $expectedNormalized = [ 0.0, 3.0 ];
 
         $movetext = '1.d4';
@@ -134,7 +134,7 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function e4()
     {
-        $expectedUnnormalized = [ 0.0, 20.3 ];
+        $expectedUnnormalized = [ 0.0, 20.4 ];
         $expectedNormalized = [ 0.0, 2.0 ];
 
         $movetext = '1.e4';
@@ -164,7 +164,7 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function g4()
     {
-        $expectedUnnormalized = [ 0.0, 5.2 ];
+        $expectedUnnormalized = [ 0.0, 5.3 ];
         $expectedNormalized = [ 0.0, 1.0 ];
 
         $movetext = '1.g4';
@@ -179,7 +179,7 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function h4()
     {
-        $expectedUnnormalized = [ 0.0, 3.1 ];
+        $expectedUnnormalized = [ 0.0, 3.2 ];
         $expectedNormalized = [ 0.0, 2.0 ];
 
         $movetext = '1.h4';
@@ -194,7 +194,7 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function a4_h5()
     {
-        $expectedUnnormalized = [ 0.0, 3.0, -0.1 ];
+        $expectedUnnormalized = [ 0.0, 3.0, -0.2 ];
         $expectedNormalized = [ 0.0, 2.0, -1.0 ];
 
         $movetext = '1.a4 h5';
@@ -224,7 +224,7 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function a4_e5()
     {
-        $expectedUnnormalized = [ 0.0, 3.0, -17.3 ];
+        $expectedUnnormalized = [ 0.0, 3.0, -17.4 ];
         $expectedNormalized = [ 0.0, 2.0, -2.0 ];
 
         $movetext = '1.a4 e5';
@@ -239,7 +239,7 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function h4_e5()
     {
-        $expectedUnnormalized = [ 0.0, 3.1, -17.2 ];
+        $expectedUnnormalized = [ 0.0, 3.2, -17.1 ];
         $expectedNormalized = [ 0.0, 2.0, -3.0 ];
 
         $movetext = '1.h4 e5';
@@ -322,8 +322,8 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function h7()
     {
-        $expectedUnnormalized = [ 0.0, 3.0 ];
-        $expectedNormalized = [ 0.0, 3.0 ];
+        $expectedUnnormalized = [ 0.0, 3.2 ];
+        $expectedNormalized = [ 0.0, 4.0 ];
 
         $fen = '4k3/8/7P/8/8/8/8/4K3 w - -';
         $movetext = '1.h7';
