@@ -32,13 +32,6 @@ class SanSignal extends SanPlay
     public array $spectrum = [];
 
     /**
-     * The heuristic spectrum.
-     *
-     * @var array
-     */
-    public array $heuristicSpectrum = [];
-
-    /**
      * @param \Chess\Function\AbstractFunction $function
      * @param string $movetext
      * @param \Chess\Variant\AbstractBoard $board
@@ -52,7 +45,6 @@ class SanSignal extends SanPlay
 
         $this->result[] = array_fill(0, count($function->names()), 0);
         $this->spectrum[] = 0;
-        $this->heuristicSpectrum[] = 0;
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
@@ -69,11 +61,6 @@ class SanSignal extends SanPlay
                     $this->result[] = $resultItems;
                     $spectrumItem = $this->normalize(-1, 1, $resultItems);
                     $this->spectrum[] = round(array_sum($spectrumItem), 2);
-                    $heuristicSpectrumItem = [];
-                    for ($i = 0; $i < count($function->names()); $i++) {
-                        $heuristicSpectrumItem[$i] = ($i + 1) * $spectrumItem[$i];
-                    }
-                    $this->heuristicSpectrum[] = round(array_sum($heuristicSpectrumItem), 2);
                 }
             }
         }
