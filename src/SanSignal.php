@@ -25,11 +25,11 @@ class SanSignal extends SanPlay
     public array $time = [];
 
     /**
-     * The normalized signal in the frequency domain.
+     * The normalized signal in the spectrum domain.
      *
      * @var array
      */
-    public array $freq = [];
+    public array $spectrum = [];
 
     /**
      * Time components of the signal.
@@ -39,11 +39,11 @@ class SanSignal extends SanPlay
     public array $timeComponent = [];
 
     /**
-     * Frequency components of the signal.
+     * Spectrum components of the signal.
      *
      * @var array
      */
-    public array $freqComponent = [];
+    public array $spectrumComponent = [];
 
     /**
      * @param \Chess\Function\AbstractFunction $function
@@ -58,8 +58,8 @@ class SanSignal extends SanPlay
         parent::__construct($movetext, $board);
 
         $this->result[] = array_fill(0, count($function->names()), 0);
-        $this->freqComponent[] = array_fill(0, count($function->names()), 0);
-        $this->freq[] = 0;
+        $this->spectrumComponent[] = array_fill(0, count($function->names()), 0);
+        $this->spectrum[] = 0;
         $items = [];
 
         foreach ($this->sanMovetext->moves as $val) {
@@ -74,9 +74,9 @@ class SanSignal extends SanPlay
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
                     $this->result[] = $items;
-                    $freqComponent = $this->normalize(-1, 1, $items);
-                    $this->freqComponent[] = $freqComponent;
-                    $this->freq[] = round(array_sum($freqComponent), 2);
+                    $spectrumComponent = $this->normalize(-1, 1, $items);
+                    $this->spectrumComponent[] = $spectrumComponent;
+                    $this->spectrum[] = round(array_sum($spectrumComponent), 2);
                     $items = [];
                 }
             }
