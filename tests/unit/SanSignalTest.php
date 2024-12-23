@@ -28,6 +28,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedSpace = [ 0.0, 1.0, 0.25, 0.50, -1.0 ];
         $expectedTime = [ 0.0, 2.0, -1.66, -0.18, -5.0 ];
         $expectedSpectrum = [ 0.0, 0.73, -0.45, -2.24, -0.46 ];
+        $expectedHeuristicSpectrum = [ 0.0, 4.0, -4.9, -34.44, -2.68 ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
@@ -37,6 +38,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $this->assertEquals($expectedSpace, $sanSignal->balance[3]);
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -46,12 +48,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.5, 0.78, 1.0, 1.32, 1.4, 1.7, 3.53, 3.04, 2.78, 0.0, 1.86, 0.19, 0.89, -2.17, 3.41, 2.05, 2.23 ];
         $expectedSpectrum = [ 0.0, 1.62, 0.5, 1.12, 2.35, 1.23, 1.7, 2.2, 0.7, 3.67, 3.88, 1.2, -0.95, -0.55, -0.72, 0.3, 0.29, 0.3 ];
+        $expectedHeuristicSpectrum = [ 0.0, 6.82, 17, 8, 23.2, 13.67, 38.4, 27.4, 18.4, 45.09, 65.52, 13.7, 6.6, -13.38, -12.1, -5.73, -6.6, -7.9 ];
 
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
         $sanSignal = new SanSignal(self::$function, $A59, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -61,12 +65,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0 ];
         $expectedSpectrum = [ 0.0, 2.0 ];
+        $expectedHeuristicSpectrum = [ 0.0, 6.0 ];
 
         $movetext = '1.a3';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -76,12 +82,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0 ];
         $expectedSpectrum = [ 0.0, 1.5 ];
+        $expectedHeuristicSpectrum = [ 0.0, 5.0 ];
 
         $movetext = '1.a4';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -91,12 +99,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 1.0 ];
         $expectedSpectrum = [ 0.0, 1.0 ];
+        $expectedHeuristicSpectrum = [ 0.0, 3.0 ];
 
         $movetext = '1.b4';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -106,12 +116,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 1.0 ];
         $expectedSpectrum = [ 0.0, 0.67 ];
+        $expectedHeuristicSpectrum = [ 0.0, 1.68 ];
 
         $movetext = '1.c4';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -121,12 +133,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 3.0 ];
         $expectedSpectrum = [ 0.0, 1.62 ];
+        $expectedHeuristicSpectrum = [ 0.0, 6.82 ];
 
         $movetext = '1.d4';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -136,12 +150,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0 ];
         $expectedSpectrum = [ 0.0, 0.73 ];
+        $expectedHeuristicSpectrum = [ 0.0, 4.0 ];
 
         $movetext = '1.e4';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -151,12 +167,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0 ];
         $expectedSpectrum = [ 0.0, 0.64 ];
+        $expectedHeuristicSpectrum = [ 0.0, 5.72 ];
 
         $movetext = '1.f4';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -166,12 +184,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 1.0 ];
         $expectedSpectrum = [ 0.0, 0.91 ];
+        $expectedHeuristicSpectrum = [ 0.0, 2.64 ];
 
         $movetext = '1.g4';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -181,12 +201,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0 ];
         $expectedSpectrum = [ 0.0, 1.6 ];
+        $expectedHeuristicSpectrum = [ 0.0, 5.2 ];
 
         $movetext = '1.h4';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -196,12 +218,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0, -1.0 ];
         $expectedSpectrum = [ 0.0, 1.5, -1.0 ];
+        $expectedHeuristicSpectrum = [ 0.0, 5.0, -2.0 ];
 
         $movetext = '1.a4 h5';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -211,12 +235,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0, 0.0 ];
         $expectedSpectrum = [ 0.0, 1.5, 0.0 ];
+        $expectedHeuristicSpectrum = [ 0.0, 5.0, 0.0 ];
 
         $movetext = '1.a4 a5';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -226,12 +252,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0, -2.0 ];
         $expectedSpectrum = [ 0.0, 1.5, -0.62 ];
+        $expectedHeuristicSpectrum = [ 0.0, 5.0, -3.82 ];
 
         $movetext = '1.a4 e5';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -241,12 +269,14 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 2.0, -3.0 ];
         $expectedSpectrum = [ 0.0, 1.6, -0.63 ];
+        $expectedHeuristicSpectrum = [ 0.0, 5.2, -3.95 ];
 
         $movetext = '1.h4 e5';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -256,6 +286,7 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 4.0 ];
         $expectedSpectrum = [ 0.0, 4.0 ];
+        $expectedHeuristicSpectrum = [ 0.0, 33.0 ];
 
         $fen = '7k/8/8/8/P7/8/8/7K w - -';
         $movetext = '1.a5';
@@ -264,6 +295,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -273,6 +305,7 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 5.0 ];
         $expectedSpectrum = [ 0.0, 5.0 ];
+        $expectedHeuristicSpectrum = [ 0.0, 45.0 ];
 
         $fen = '7k/8/8/P7/8/8/8/7K w - -';
         $movetext = '1.a6';
@@ -281,6 +314,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -290,6 +324,7 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 3.0 ];
         $expectedSpectrum = [ 0.0, 3.0 ];
+        $expectedHeuristicSpectrum = [ 0.0, 22.0 ];
 
         $fen = '4k3/8/P7/8/8/8/8/4K3 w - -';
         $movetext = '1.a7';
@@ -298,6 +333,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -307,6 +343,7 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 4.0 ];
         $expectedSpectrum = [ 0.0, 1.33 ];
+        $expectedHeuristicSpectrum = [ 0.0, 10.01 ];
 
         $fen = '7k/8/8/8/1P6/8/8/7K w - -';
         $movetext = '1.b5';
@@ -315,6 +352,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 
     /**
@@ -324,6 +362,7 @@ class SanSignalTest extends AbstractUnitTestCase
     {
         $expectedTime = [ 0.0, 4.0 ];
         $expectedSpectrum = [ 0.0, 3.2 ];
+        $expectedHeuristicSpectrum = [ 0.0, 22.4 ];
 
         $fen = '4k3/8/7P/8/8/8/8/4K3 w - -';
         $movetext = '1.h7';
@@ -332,5 +371,6 @@ class SanSignalTest extends AbstractUnitTestCase
 
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedHeuristicSpectrum, $sanSignal->heuristicSpectrum);
     }
 }

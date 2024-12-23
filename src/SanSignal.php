@@ -18,32 +18,39 @@ class SanSignal extends SanPlay
     use SanTrait;
 
     /**
-     * The normalized signal in the time domain.
+     * Normalized signal in the time domain.
      *
      * @var array
      */
     public array $time = [];
 
     /**
-     * The normalized signal in the spectrum domain.
-     *
-     * @var array
-     */
-    public array $spectrum = [];
-
-    /**
-     * Time components of the signal.
+     * Components of the signal in the time domain.
      *
      * @var array
      */
     public array $timeComponent = [];
 
     /**
-     * Spectrum components of the signal.
+     * Normalized signal in the spectrum domain.
+     *
+     * @var array
+     */
+    public array $spectrum = [];
+
+    /**
+     * Components of the signal in the spectrum domain.
      *
      * @var array
      */
     public array $spectrumComponent = [];
+
+    /**
+     * The heuristic spectrum.
+     *
+     * @var array
+     */
+    public array $heuristicSpectrum = [];
 
     /**
      * @param \Chess\Function\AbstractFunction $function
@@ -89,6 +96,13 @@ class SanSignal extends SanPlay
 
         for ($i = 0; $i < count($this->timeComponent[0]); $i++) {
             $this->time[$i] = round(array_sum(array_column($this->balance, $i)), 2);
+        }
+
+        for ($i = 0; $i < count($this->spectrumComponent); $i++) {
+            for ($j = 0; $j < count($this->spectrumComponent[0]); $j++) {
+                $item[$i][$j] = ($j + 1) * $this->spectrumComponent[$i][$j];
+            }
+            $this->heuristicSpectrum[$i] = round(array_sum($item[$i]), 2);
         }
     }
 }
