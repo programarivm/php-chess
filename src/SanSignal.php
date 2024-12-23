@@ -59,7 +59,6 @@ class SanSignal extends SanPlay
 
         $this->result[] = array_fill(0, count($function->names()), 0);
         $this->spectrumComponent[] = array_fill(0, count($function->names()), 0);
-        $this->spectrum[] = 0;
         $items = [];
 
         foreach ($this->sanMovetext->moves as $val) {
@@ -76,7 +75,6 @@ class SanSignal extends SanPlay
                     $this->result[] = $items;
                     $spectrumComponent = $this->normalize(-1, 1, $items);
                     $this->spectrumComponent[] = $spectrumComponent;
-                    $this->spectrum[] = round(array_sum($spectrumComponent), 2);
                     $items = [];
                 }
             }
@@ -95,6 +93,7 @@ class SanSignal extends SanPlay
                 $item[$i][$j] = ($j + 1) * $this->spectrumComponent[$i][$j];
             }
             $this->heuristicSpectrum[$i] = round(array_sum($item[$i]), 2);
+            $this->spectrum[] = round(array_sum($this->spectrumComponent[$i]), 2);
         }
     }
 }
