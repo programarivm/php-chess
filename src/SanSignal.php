@@ -39,11 +39,11 @@ class SanSignal extends SanPlay
     public array $freq = [];
 
     /**
-     * Signal components.
+     * Time components of the signal.
      *
      * @var array
      */
-    public array $component = [];
+    public array $timeComponent = [];
 
     /**
      * @param \Chess\Function\AbstractFunction $function
@@ -80,12 +80,12 @@ class SanSignal extends SanPlay
         }
 
         for ($i = 0; $i < count($this->result[0]); $i++) {
-            $this->component[$i] = array_column($this->result, $i);
-            $this->balance[$i] = $this->normalize(-1, 1, $this->component[$i]);
+            $this->timeComponent[$i] = array_column($this->result, $i);
+            $this->balance[$i] = $this->normalize(-1, 1, $this->timeComponent[$i]);
         }
 
-        for ($i = 0; $i < count($this->component[0]); $i++) {
-            $this->unnormalized[$i] = round(array_sum(array_column($this->component, $i)), 2);
+        for ($i = 0; $i < count($this->timeComponent[0]); $i++) {
+            $this->unnormalized[$i] = round(array_sum(array_column($this->timeComponent, $i)), 2);
             $this->time[$i] = round(array_sum(array_column($this->balance, $i)), 2);
         }
     }
