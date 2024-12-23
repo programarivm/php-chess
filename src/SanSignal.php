@@ -32,6 +32,13 @@ class SanSignal extends SanPlay
     public array $time = [];
 
     /**
+     * The normalized signal in the frequency domain.
+     *
+     * @var array
+     */
+    public array $freq = [];
+
+    /**
      * Signal components.
      *
      * @var array
@@ -51,6 +58,7 @@ class SanSignal extends SanPlay
         parent::__construct($movetext, $board);
 
         $this->result[] = array_fill(0, count($function->names()), 0);
+        $this->freq[] = 0;
         $items = [];
 
         foreach ($this->sanMovetext->moves as $val) {
@@ -65,6 +73,7 @@ class SanSignal extends SanPlay
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
                     $this->result[] = $items;
+                    $this->freq[] = round(array_sum($this->normalize(-1, 1, $items)), 2);
                     $items = [];
                 }
             }

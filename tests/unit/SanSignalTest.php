@@ -28,6 +28,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedSpace = [ 0.0, 1.0, 0.25, 0.50, -1.0 ];
         $expectedUnnormalized = [ 0.0, 20.4, 1.1, 10.0, -64.1 ];
         $expectedTime = [ 0.0, 2.0, -1.66, -0.18, -5.0 ];
+        $expectedFreq = [ 0.0, 0.73, -0.45, -2.24, -0.46 ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
@@ -37,6 +38,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $this->assertEquals($expectedSpace, $sanSignal->balance[3]);
         $this->assertEquals($expectedUnnormalized, $sanSignal->unnormalized);
         $this->assertEquals($expectedTime, $sanSignal->time);
+        $this->assertEquals($expectedFreq, $sanSignal->freq);
     }
 
     /**
