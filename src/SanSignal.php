@@ -68,7 +68,7 @@ class SanSignal extends SanPlay
                     }
                     $this->result[] = $items;
                     $spectrumComponent = $this->normalize(-1, 1, $items);
-                    $this->spectrumComponent[] = $this->normalize(-1, 1, $items);
+                    $this->spectrumComponent[] = $spectrumComponent;
                     $this->spectrum[] = round(array_sum($spectrumComponent), 2);
                 }
             }
