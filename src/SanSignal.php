@@ -32,13 +32,6 @@ class SanSignal extends SanPlay
     public array $spectrum = [];
 
     /**
-     * Components of the signal in the spectrum domain.
-     *
-     * @var array
-     */
-    public array $spectrumComponent = [];
-
-    /**
      * The heuristic spectrum.
      *
      * @var array
@@ -58,24 +51,29 @@ class SanSignal extends SanPlay
         parent::__construct($movetext, $board);
 
         $this->result[] = array_fill(0, count($function->names()), 0);
-        $this->spectrumComponent[] = array_fill(0, count($function->names()), 0);
-        $items = [];
+        $this->spectrum[] = 0;
+        $this->heuristicSpectrum[] = 0;
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $val)) {
+                    $resultItems = [];
                     foreach ($function->names() as $val) {
-                        $item = $this->item(EvalFactory::create(
+                        $resultItem = $this->item(EvalFactory::create(
                             $function,
                             $val,
                             $this->board
                         ));
-                        $items[] =  $item[Color::W] - $item[Color::B];
+                        $resultItems[] =  $resultItem[Color::W] - $resultItem[Color::B];
                     }
-                    $this->result[] = $items;
-                    $spectrumComponent = $this->normalize(-1, 1, $items);
-                    $this->spectrumComponent[] = $spectrumComponent;
-                    $items = [];
+                    $this->result[] = $resultItems;
+                    $spectrumItem = $this->normalize(-1, 1, $resultItems);
+                    $this->spectrum[] = round(array_sum($spectrumItem), 2);
+                    $heuristicSpectrumItem = [];
+                    for ($i = 0; $i < count($function->names()); $i++) {
+                        $heuristicSpectrumItem[$i] = ($i + 1) * $spectrumItem[$i];
+                    }
+                    $this->heuristicSpectrum[] = round(array_sum($heuristicSpectrumItem), 2);
                 }
             }
         }
@@ -86,14 +84,6 @@ class SanSignal extends SanPlay
 
         for ($i = 0; $i < count($this->balance[0]); $i++) {
             $this->time[$i] = round(array_sum(array_column($this->balance, $i)), 2);
-        }
-
-        for ($i = 0; $i < count($this->spectrumComponent); $i++) {
-            for ($j = 0; $j < count($this->spectrumComponent[0]); $j++) {
-                $item[$i][$j] = ($j + 1) * $this->spectrumComponent[$i][$j];
-            }
-            $this->heuristicSpectrum[$i] = round(array_sum($item[$i]), 2);
-            $this->spectrum[] = round(array_sum($this->spectrumComponent[$i]), 2);
         }
     }
 }
