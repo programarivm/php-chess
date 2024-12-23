@@ -25,11 +25,11 @@ class SanSignal extends SanPlay
     public array $unnormalized = [];
 
     /**
-     * Normalized signal.
+     * The normalized signal in the time domain.
      *
      * @var array
      */
-    public array $normalized = [];
+    public array $time = [];
 
     /**
      * Signal components.
@@ -77,7 +77,7 @@ class SanSignal extends SanPlay
 
         for ($i = 0; $i < count($this->component[0]); $i++) {
             $this->unnormalized[$i] = round(array_sum(array_column($this->component, $i)), 2);
-            $this->normalized[$i] = round(array_sum(array_column($this->balance, $i)), 2);
+            $this->time[$i] = round(array_sum(array_column($this->balance, $i)), 2);
         }
     }
 }
