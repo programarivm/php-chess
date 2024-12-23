@@ -25,13 +25,6 @@ class SanSignal extends SanPlay
     public array $time = [];
 
     /**
-     * Components of the signal in the time domain.
-     *
-     * @var array
-     */
-    public array $timeComponent = [];
-
-    /**
      * Normalized signal in the spectrum domain.
      *
      * @var array
@@ -90,11 +83,10 @@ class SanSignal extends SanPlay
         }
 
         for ($i = 0; $i < count($this->result[0]); $i++) {
-            $this->timeComponent[$i] = array_column($this->result, $i);
-            $this->balance[$i] = $this->normalize(-1, 1, $this->timeComponent[$i]);
+            $this->balance[$i] = $this->normalize(-1, 1, array_column($this->result, $i));
         }
 
-        for ($i = 0; $i < count($this->timeComponent[0]); $i++) {
+        for ($i = 0; $i < count($this->balance[0]); $i++) {
             $this->time[$i] = round(array_sum(array_column($this->balance, $i)), 2);
         }
 
