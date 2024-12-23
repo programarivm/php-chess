@@ -23,11 +23,18 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function e4_d5_exd5_Qxd5()
     {
-        $expectedCenter = [ 0, 1.0, 0.09, 0.65, -1.0 ];
+        $expectedCenter = [ 0.0, 1.0, 0.09, 0.65, -1.0 ];
         $expectedConnectivity = [ 0.0, -1.0, -1.0, -1.0, 1.0 ];
         $expectedSpace = [ 0.0, 1.0, 0.25, 0.50, -1.0 ];
         $expectedTime = [ 0.0, 2.0, -1.66, -0.18, -5.0 ];
         $expectedSpectrum = [ 0.0, 0.73, -0.45, -2.24, -0.46 ];
+        $expectedSpectrumComponent = [
+            [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+            [ 0.0, 1.0, -1.0, 0.65, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.08, ],
+            [ 0.0, 0.55, -1.0, 1.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, ],
+            [ 0.13, 1.0, -1.0, 0.5, -1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.13, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, ],
+            [ 0.0, -1.0, 1.0, -0.24, -0.07, -0.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02, ],
+        ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $sanSignal = new SanSignal(self::$function, $movetext, new Board());
@@ -37,6 +44,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $this->assertEquals($expectedSpace, $sanSignal->balance[3]);
         $this->assertEquals($expectedTime, $sanSignal->time);
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEquals($expectedSpectrumComponent, $sanSignal->spectrumComponent);
     }
 
     /**

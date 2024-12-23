@@ -32,6 +32,13 @@ class SanSignal extends SanPlay
     public array $spectrum = [];
 
     /**
+     * Spectrum domain components.
+     *
+     * @var array
+     */
+    public array $spectrumComponent = [];
+
+    /**
      * @param \Chess\Function\AbstractFunction $function
      * @param string $movetext
      * @param \Chess\Variant\AbstractBoard $board
@@ -44,6 +51,7 @@ class SanSignal extends SanPlay
         parent::__construct($movetext, $board);
 
         $this->result[] = array_fill(0, count($function->names()), 0);
+        $this->spectrumComponent[] = array_fill(0, count($function->names()), 0);
         $this->spectrum[] = 0;
 
         foreach ($this->sanMovetext->moves as $val) {
@@ -59,8 +67,9 @@ class SanSignal extends SanPlay
                         $resultItems[] =  $resultItem[Color::W] - $resultItem[Color::B];
                     }
                     $this->result[] = $resultItems;
-                    $spectrumItem = $this->normalize(-1, 1, $resultItems);
-                    $this->spectrum[] = round(array_sum($spectrumItem), 2);
+                    $spectrumComponent = $this->normalize(-1, 1, $resultItems);
+                    $this->spectrumComponent[] = $this->normalize(-1, 1, $resultItems);
+                    $this->spectrum[] = round(array_sum($spectrumComponent), 2);
                 }
             }
         }
