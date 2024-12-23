@@ -46,6 +46,13 @@ class SanSignal extends SanPlay
     public array $timeComponent = [];
 
     /**
+     * Frequency components of the signal.
+     *
+     * @var array
+     */
+    public array $freqComponent = [];
+
+    /**
      * @param \Chess\Function\AbstractFunction $function
      * @param string $movetext
      * @param \Chess\Variant\AbstractBoard $board
@@ -58,6 +65,7 @@ class SanSignal extends SanPlay
         parent::__construct($movetext, $board);
 
         $this->result[] = array_fill(0, count($function->names()), 0);
+        $this->freqComponent[] = array_fill(0, count($function->names()), 0);
         $this->freq[] = 0;
         $items = [];
 
@@ -73,7 +81,9 @@ class SanSignal extends SanPlay
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
                     $this->result[] = $items;
-                    $this->freq[] = round(array_sum($this->normalize(-1, 1, $items)), 2);
+                    $freqComponent = $this->normalize(-1, 1, $items);
+                    $this->freqComponent[] = $freqComponent;
+                    $this->freq[] = round(array_sum($freqComponent), 2);
                     $items = [];
                 }
             }
