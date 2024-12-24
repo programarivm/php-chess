@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Signal
  *
- * Continuous oscillations in terms of heuristic evaluation features.
+ * Continuous oscillations of evaluation features.
  */
 class SanSignal extends SanPlay
 {

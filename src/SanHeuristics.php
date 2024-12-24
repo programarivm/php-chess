@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Heuristics
  *
- * Continuous oscillations by name in terms of heuristic evaluation features.
+ * Continuous oscillations of evaluation features by name.
  */
 class SanHeuristics extends SanPlay
 {
