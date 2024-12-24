@@ -20,10 +20,11 @@
             <directory>tests/unit/Randomizer</directory>
             <directory>tests/unit/Tutor</directory>
             <directory>tests/unit/Variant</directory>
+            <file>tests/unit/EvalArrayTest.php</file>
             <file>tests/unit/EvalFactoryTest.php</file>
-            <file>tests/unit/FenHeuristicsTest.php</file>
             <file>tests/unit/FenToBoardFactoryTest.php</file>
             <file>tests/unit/SanHeuristicsTest.php</file>
+            <file>tests/unit/SanSignalTest.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
