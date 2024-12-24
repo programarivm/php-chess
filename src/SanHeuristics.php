@@ -31,7 +31,9 @@ class SanHeuristics extends SanPlay
     ) {
         parent::__construct($movetext, $board);
 
-        $this->result[] = $this->item(EvalFactory::create(
+        $result = [];
+
+        $result[] = $this->item(EvalFactory::create(
             $function,
             $name,
             $this->board
@@ -40,7 +42,7 @@ class SanHeuristics extends SanPlay
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $val)) {
-                    $this->result[] = $this->item(EvalFactory::create(
+                    $result[] = $this->item(EvalFactory::create(
                         $function,
                         $name,
                         $this->board
@@ -49,8 +51,8 @@ class SanHeuristics extends SanPlay
             }
         }
 
-        foreach ($this->result as $result) {
-            $this->balance[] = $result[Color::W] - $result[Color::B];
+        foreach ($result as $val) {
+            $this->balance[] = $val[Color::W] - $val[Color::B];
         }
 
         $this->balance = $this->normalize(-1, 1, $this->balance);

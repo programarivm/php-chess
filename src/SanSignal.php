@@ -50,7 +50,9 @@ class SanSignal extends SanPlay
     ) {
         parent::__construct($movetext, $board);
 
-        $this->result[] = array_fill(0, count($function->names()), 0);
+        $result = [];
+
+        $result[] = array_fill(0, count($function->names()), 0);
         $this->spectrumComponent[] = array_fill(0, count($function->names()), 0);
         $this->spectrum[] = 0;
 
@@ -66,7 +68,7 @@ class SanSignal extends SanPlay
                         ));
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
-                    $this->result[] = $items;
+                    $result[] = $items;
                     $spectrumComponent = $this->normalize(-1, 1, $items);
                     $this->spectrumComponent[] = $spectrumComponent;
                     $this->spectrum[] = round(array_sum($spectrumComponent), 2);
@@ -74,8 +76,8 @@ class SanSignal extends SanPlay
             }
         }
 
-        for ($i = 0; $i < count($this->result[0]); $i++) {
-            $this->balance[$i] = $this->normalize(-1, 1, array_column($this->result, $i));
+        for ($i = 0; $i < count($result[0]); $i++) {
+            $this->balance[$i] = $this->normalize(-1, 1, array_column($result, $i));
         }
 
         for ($i = 0; $i < count($this->balance[0]); $i++) {

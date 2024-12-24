@@ -9,13 +9,6 @@ use Chess\Variant\Classical\PGN\AN\Color;
 trait SanTrait
 {
     /**
-     * Continuous oscillations.
-     *
-     * @var array
-     */
-    public array $result = [];
-
-    /**
      * The balanced result.
      *
      * @var array
