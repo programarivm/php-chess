@@ -52,28 +52,26 @@ class EvalGuess
      */
     public static function item(AbstractEval $eval): array
     {
-        $result = $eval->result;
-
-        if (is_array($result[Color::W])) {
+        if (is_array($eval->result[Color::W])) {
             if ($eval instanceof InverseEvalInterface) {
                 $item = [
-                    Color::W => count($result[Color::B]),
-                    Color::B => count($result[Color::W]),
+                    Color::W => count($eval->result[Color::B]),
+                    Color::B => count($eval->result[Color::W]),
                 ];
             } else {
                 $item = [
-                    Color::W => count($result[Color::W]),
-                    Color::B => count($result[Color::B]),
+                    Color::W => count($eval->result[Color::W]),
+                    Color::B => count($eval->result[Color::B]),
                 ];
             }
         } else {
             if ($eval instanceof InverseEvalInterface) {
                 $item = [
-                    Color::W => $result[Color::B],
-                    Color::B => $result[Color::W],
+                    Color::W => $eval->result[Color::B],
+                    Color::B => $eval->result[Color::W],
                 ];
             } else {
-                $item = $result;
+                $item = $eval->result;
             }
         }
 
