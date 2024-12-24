@@ -162,7 +162,7 @@ $balance = (new SanHeuristics($f, $movetext, $name))->balance;
 print_r($balance);
 ```
 
-```txt
+```text
 Array
 (
     [0] => 0
@@ -174,3 +174,25 @@ Array
 ```
 
 🎉 Chess positions and games can now be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
+
+## Evaluation Function
+
+Described next is how to determine the relative value of a position in FEN format without considering checkmate.
+
+```php
+use Chess\EvalArray;
+use Chess\FenToBoardFactory;
+use Chess\Function\CompleteFunction;
+
+$board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
+
+$sum = EvalArray::sum(new CompleteFunction(), $board);
+
+echo $sum;
+```
+
+```text
+0.42
+```
+
+In this example, White is slightly better than Black because the value obtained is a positive number.
