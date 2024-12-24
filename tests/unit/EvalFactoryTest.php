@@ -9,11 +9,11 @@ use Chess\Variant\Classical\FEN\StrToBoard;
 
 class EvalFactoryTest extends AbstractUnitTestCase
 {
-    static private CompleteFunction $function;
+    static private CompleteFunction $f;
 
     public static function setUpBeforeClass(): void
     {
-        self::$function = new CompleteFunction();
+        self::$f = new CompleteFunction();
     }
 
     /**
@@ -26,7 +26,7 @@ class EvalFactoryTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/8/5k1n/6P1/7K/8/8/8 w - -'))
             ->create();
 
-        $eval = EvalFactory::create(self::$function, 'foo', $board);
+        $eval = EvalFactory::create(self::$f, 'foo', $board);
     }
 
     /**
@@ -46,7 +46,7 @@ class EvalFactoryTest extends AbstractUnitTestCase
             "Absolute fork attack on the knight on h6.",
         ];
 
-        $eval = EvalFactory::create(self::$function, 'Absolute fork', $board);
+        $eval = EvalFactory::create(self::$f, 'Absolute fork', $board);
 
         $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedPhrase, $eval->elaborate());
@@ -69,7 +69,7 @@ class EvalFactoryTest extends AbstractUnitTestCase
             "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.",
         ];
 
-        $eval = EvalFactory::create(self::$function, 'Absolute pin', $board);
+        $eval = EvalFactory::create(self::$f, 'Absolute pin', $board);
 
         $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedPhrase, $eval->elaborate());
@@ -92,7 +92,7 @@ class EvalFactoryTest extends AbstractUnitTestCase
         $board = (new StrToBoard('8/3qk3/8/3b4/4KR2/5Q2/8/8 w - - 0 1'))
             ->create();
 
-        $eval = EvalFactory::create(self::$function, 'Absolute skewer', $board);
+        $eval = EvalFactory::create(self::$f, 'Absolute skewer', $board);
 
         $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedPhrase, $eval->elaborate());

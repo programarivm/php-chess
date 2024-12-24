@@ -9,11 +9,11 @@ use Chess\Tests\AbstractUnitTestCase;
 
 class EvalArrayTest extends AbstractUnitTestCase
 {
-    static private CompleteFunction $function;
+    static private CompleteFunction $f;
 
     public static function setUpBeforeClass(): void
     {
-        self::$function = new CompleteFunction();
+        self::$f = new CompleteFunction();
     }
 
     /**
@@ -25,7 +25,7 @@ class EvalArrayTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
-        $sum = EvalArray::sum(self::$function, $board);
+        $sum = EvalArray::sum(self::$f, $board);
 
         $this->assertSame($expectedGuess, $sum);
     }

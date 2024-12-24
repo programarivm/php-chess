@@ -10,11 +10,11 @@ use Chess\Tests\AbstractUnitTestCase;
 
 class SumLabellerTest extends AbstractUnitTestCase
 {
-    static private CompleteFunction $function;
+    static private CompleteFunction $f;
 
     public static function setUpBeforeClass(): void
     {
-        self::$function = new CompleteFunction();
+        self::$f = new CompleteFunction();
     }
 
     /**
@@ -28,7 +28,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A00))->validate()->board;
 
-        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->balance;
+        $balance = (new SanHeuristics(self::$f, $board->movetext(), $name))->balance;
 
         $label = (new SumLabeller())->label($balance);
 
@@ -48,7 +48,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A08))->validate()->board;
 
-        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->balance;
+        $balance = (new SanHeuristics(self::$f, $board->movetext(), $name))->balance;
 
         $label = (new SumLabeller())->label($balance);
 
@@ -68,7 +68,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A59))->validate()->board;
 
-        $balance = (new SanHeuristics(self::$function, $board->movetext(), $name))->balance;
+        $balance = (new SanHeuristics(self::$f, $board->movetext(), $name))->balance;
 
         $label = (new SumLabeller())->label($balance);
 
