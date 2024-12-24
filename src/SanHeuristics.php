@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Heuristics
  *
- * Continuous oscillations in terms of heuristic evaluation features.
+ * Continuous oscillations by name in terms of heuristic evaluation features.
  */
 class SanHeuristics extends SanPlay
 {
@@ -20,7 +20,9 @@ class SanHeuristics extends SanPlay
      *
      * @var array
      */
-    public array $balance = [];
+    public array $balance = [
+        0,
+    ];
 
     /**
      * @param \Chess\Function\AbstractFunction $f
@@ -41,13 +43,11 @@ class SanHeuristics extends SanPlay
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $val)) {
-                    $result[] = EvalArray::add(EvalFactory::create($f, $name, $this->board));
+                    $result = EvalArray::add(EvalFactory::create($f, $name, $this->board));
+                    $result[] = $result;
+                    $this->balance[] = $result[Color::W] - $result[Color::B];
                 }
             }
-        }
-
-        foreach ($result as $val) {
-            $this->balance[] = $val[Color::W] - $val[Color::B];
         }
 
         $this->balance = EvalArray::normalize(-1, 1, $this->balance);
