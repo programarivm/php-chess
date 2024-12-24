@@ -284,9 +284,8 @@ The example below describes how to play the Open Sicilian.
 Sicilian Defense. (2023, July 2). In Wikipedia. [https://en.wikipedia.org/wiki/Sicilian_Defence](https://en.wikipedia.org/wiki/Sicilian_Defence)
 
 ![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/read-moves_01.png)
-Figure 1. The Open Sicilian explained with the help of comments and variations.
 
-The RAV reader in Figure 1 displays the variation levels in different shades of gray. It is a 2D scrollable HTML table where the main line is shown in a white background color. The deeper the level, the darker the background color.
+The RAV reader above displays the variation levels in different shades of gray. It is a 2D scrollable HTML table where the main line is shown in a white background color. The deeper the level, the darker the background color.
 
 [Chess\Play\RavPlay](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Play/RavPlayTest.php) allows to play a RAV movetext.
 
