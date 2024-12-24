@@ -10,6 +10,13 @@ use Chess\Variant\Classical\PGN\AN\Color;
 
 class EvalGuess
 {
+    /**
+     * Makes a guess in the form of an array of normalized values.
+     *
+     * @param \Chess\Function\AbstractFunction $function
+     * @param \Chess\Variant\AbstractBoard $board
+     * @return array
+     */
     public static function balance(AbstractFunction $function, AbstractBoard $board): array
     {
         $items = [];
@@ -23,6 +30,18 @@ class EvalGuess
         }
 
         return self::normalize(-1, 1, $items);
+    }
+
+    /**
+     * Makes a guess in the form of a float value.
+     *
+     * @param \Chess\Function\AbstractFunction $function
+     * @param \Chess\Variant\AbstractBoard $board
+     * @return float
+     */
+    public static function guess(AbstractFunction $function, AbstractBoard $board): float
+    {
+        return round(array_sum(self::balance($function, $board)), 2);
     }
 
     /**
