@@ -19,7 +19,7 @@ class GoodPgnEvaluation extends AbstractParagraph
     {
         $this->limit = $limit;
         $this->uciEngine = $uciEngine;
-        $this->function = $f;
+        $this->f = $f;
         $this->board = $board;
 
         $analysis = $uciEngine->analysis($this->board, $limit);
@@ -28,6 +28,6 @@ class GoodPgnEvaluation extends AbstractParagraph
         $last = array_slice($clone->history, -1)[0];
 
         $this->pgn = $last['pgn'];
-        $this->paragraph = (new PgnEvaluation($this->pgn, $this->function, $this->board))->paragraph;
+        $this->paragraph = (new PgnEvaluation($this->pgn, $this->f, $this->board))->paragraph;
     }
 }

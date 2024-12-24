@@ -13,10 +13,10 @@ class FenEvaluation extends AbstractParagraph
 {
     public function __construct(AbstractFunction $f, AbstractBoard $board)
     {
-        $this->function = $f;
+        $this->f = $f;
         $this->board = $board;
 
-        $balance = EvalArray::balance($this->function, $this->board);
+        $balance = EvalArray::balance($this->f, $this->board);
 
         $this->paragraph = [
             ...$this->fenExplanation(),
@@ -30,7 +30,7 @@ class FenEvaluation extends AbstractParagraph
     {
         $paragraph = [];
 
-        foreach ($this->function->eval as $val) {
+        foreach ($this->f->eval as $val) {
             $eval = new $val($this->board);
             if (in_array(ExplainEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->explain()) {
@@ -46,7 +46,7 @@ class FenEvaluation extends AbstractParagraph
     {
         $paragraph = [];
 
-        foreach ($this->function->eval as $val) {
+        foreach ($this->f->eval as $val) {
             $eval = new $val($this->board);
             if (in_array(ElaborateEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->elaborate()) {

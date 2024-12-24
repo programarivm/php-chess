@@ -9,14 +9,14 @@ class PgnEvaluation extends AbstractParagraph
 {
     public function __construct(string $pgn, AbstractFunction $f, Board $board)
     {
-        $this->function = $f;
+        $this->f = $f;
         $this->board = $board;
 
-        $fenEvaluation = new FenEvaluation($this->function, $this->board);
+        $fenEvaluation = new FenEvaluation($this->f, $this->board);
         $this->board = $fenEvaluation->board;
         $this->board->play($board->turn, $pgn);
 
-        foreach ((new FenEvaluation($this->function, $this->board))->paragraph as $key => $val) {
+        foreach ((new FenEvaluation($this->f, $this->board))->paragraph as $key => $val) {
             if (!in_array($val, $fenEvaluation->paragraph)) {
                 $this->paragraph[] = $val;
             }
