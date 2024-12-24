@@ -28,9 +28,9 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A00))->validate()->board;
 
-        $balance = (new SanHeuristics(self::$f, $board->movetext(), $name))->balance;
+        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
 
-        $label = (new SumLabeller())->label($balance);
+        $label = (new SumLabeller())->label($time);
 
         $expected = 0.0;
 
@@ -48,9 +48,9 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A08))->validate()->board;
 
-        $balance = (new SanHeuristics(self::$f, $board->movetext(), $name))->balance;
+        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
 
-        $label = (new SumLabeller())->label($balance);
+        $label = (new SumLabeller())->label($time);
 
         $expected = 0.24;
 
@@ -68,9 +68,9 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A59))->validate()->board;
 
-        $balance = (new SanHeuristics(self::$f, $board->movetext(), $name))->balance;
+        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
 
-        $label = (new SumLabeller())->label($balance);
+        $label = (new SumLabeller())->label($time);
 
         $expected = 2.0;
 

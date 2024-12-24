@@ -26,7 +26,7 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-        $balance = (new SanHeuristics(self::$f, $movetext))->balance;
+        $time = (new SanHeuristics(self::$f, $movetext))->time;
     }
 
     /**
@@ -38,11 +38,11 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-        $balance = (new SanHeuristics(self::$f, $movetext, $name))->balance;
+        $time = (new SanHeuristics(self::$f, $movetext, $name))->time;
 
         $expected = [ 0, 1.0, 0.09, 0.65, -1.0 ];
 
-        $this->assertSame($expected, $balance);
+        $this->assertSame($expected, $time);
     }
 
     /**
@@ -54,11 +54,11 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-        $balance = (new SanHeuristics(self::$f, $movetext, $name))->balance;
+        $time = (new SanHeuristics(self::$f, $movetext, $name))->time;
 
         $expected = [ 0, -1.0, -1.0, -1.0, 1.0 ];
 
-        $this->assertSame($expected, $balance);
+        $this->assertSame($expected, $time);
     }
 
     /**
@@ -70,11 +70,11 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-        $balance = (new SanHeuristics(self::$f, $movetext, $name))->balance;
+        $time = (new SanHeuristics(self::$f, $movetext, $name))->time;
 
         $expected = [ 0, 1.0, 0.25, 0.50, -1.0 ];
 
-        $this->assertSame($expected, $balance);
+        $this->assertSame($expected, $time);
     }
 
     /**
@@ -90,11 +90,11 @@ class SanHeuristicsTest extends AbstractUnitTestCase
         $board->playLan('b', 'f8g7');
         $board->playLan('w', 'e2e4');
 
-        $balance = (new SanHeuristics(self::$f, $board->movetext(), $name))->balance;
+        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
 
         $expected = [ 0, 1.0 ];
 
-        $this->assertSame($expected, $balance);
+        $this->assertSame($expected, $time);
     }
 
     /**
@@ -109,10 +109,10 @@ class SanHeuristicsTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'a5');
 
-        $balance = (new SanHeuristics(self::$f, $board->movetext(), $name))->balance;
+        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
 
         $expected = [ 0, 1.0, 0.92 ];
 
-        $this->assertSame($expected, $balance);
+        $this->assertSame($expected, $time);
     }
 }

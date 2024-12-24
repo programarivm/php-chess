@@ -16,11 +16,11 @@ use Chess\Variant\Classical\PGN\AN\Color;
 class SanHeuristics extends SanPlay
 {
     /**
-     * The balanced result.
+     * Normalized values in the time domain.
      *
      * @var array
      */
-    public array $balance = [
+    public array $time = [
         0,
     ];
 
@@ -45,11 +45,11 @@ class SanHeuristics extends SanPlay
                 if ($this->board->play($this->board->turn, $val)) {
                     $result = EvalArray::add(EvalFactory::create($f, $name, $this->board));
                     $result[] = $result;
-                    $this->balance[] = $result[Color::W] - $result[Color::B];
+                    $this->time[] = $result[Color::W] - $result[Color::B];
                 }
             }
         }
 
-        $this->balance = EvalArray::normalize(-1, 1, $this->balance);
+        $this->time = EvalArray::normalize(-1, 1, $this->time);
     }
 }
