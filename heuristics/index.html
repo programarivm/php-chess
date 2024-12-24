@@ -83,6 +83,14 @@
             
             <li class="nav-item" data-level="1"><a href="#heuristics" class="nav-link">Heuristics</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#evaluation-function" class="nav-link">Evaluation Function</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#oscillations-by-name-in-the-time-domain" class="nav-link">Oscillations by Name in the Time Domain</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -263,20 +271,22 @@
 </tr>
 </tbody>
 </table>
-<p>The evaluation features are used in two heuristics classes: <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenHeuristicsTest.php">Chess\FenHeuristics</a> and <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicTest.php">Chess\SanHeuristic</a>. The former allows to transform a FEN position to ternary digits while the latter transforms an entire chess game in SAN format to decimal numbers between -1 and 1.</p>
-<pre><code class="language-php">use Chess\FenHeuristics;
+<p>The evaluation features are used in several classes.</p>
+<h2 id="evaluation-function">Evaluation Function</h2>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php">Chess\EvalArray</a> allows to transform a FEN position to decimal numbers between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.</p>
+<pre><code class="language-php">use Chess\EvalArray;
 use Chess\FenToBoardFactory;
 use Chess\Function\CompleteFunction;
 
-$function = new CompleteFunction();
+$f = new CompleteFunction();
 
 $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
 $board = FenToBoardFactory::create($fen);
 
 $result = [
-    'names' =&gt; $function-&gt;names(),
-    'balance' =&gt; (new FenHeuristics($function, $board))-&gt;balance,
+    'names' =&gt; $f-&gt;names(),
+    'normd' =&gt; EvalArray::normalization($f, $board),
 ];
 
 print_r($result);
@@ -312,19 +322,19 @@ print_r($result);
             [24] =&gt; Bad bishop
             [25] =&gt; Diagonal opposition
             [26] =&gt; Direct opposition
-            [27] =&gt; Attack
-            [28] =&gt; Overloading
-            [29] =&gt; Back-rank threat
-            [30] =&gt; Checkability
-            [31] =&gt; Flight square
+            [27] =&gt; Overloading
+            [28] =&gt; Back-rank threat
+            [29] =&gt; Flight square
+            [30] =&gt; Attack
+            [31] =&gt; Checkability
         )
 
-    [balance] =&gt; Array
+    [normd] =&gt; Array
         (
             [0] =&gt; 0
             [1] =&gt; 1
             [2] =&gt; -1
-            [3] =&gt; 1
+            [3] =&gt; 0.24
             [4] =&gt; 0
             [5] =&gt; 0
             [6] =&gt; 0
@@ -357,21 +367,38 @@ print_r($result);
 
 )
 </code></pre>
-<p>A chess game can be plotted in terms of balance. +1 is the best possible evaluation for White and -1 the best possible evaluation for Black. Both forces being set to 0 means they're balanced.</p>
+<p>The relative value of a position in FEN format without considering checkmate can be obtained by adding the above values.</p>
+<pre><code class="language-php">use Chess\EvalArray;
+use Chess\FenToBoardFactory;
+use Chess\Function\CompleteFunction;
+
+$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
+
+$board = FenToBoardFactory::create($fen);
+
+$sum = EvalArray::sum(new CompleteFunction(), $board);
+
+echo $sum;
+</code></pre>
+<pre><code class="language-text">0.24
+</code></pre>
+<p>In this example, White is slightly better than Black because the value obtained is a positive number. This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.</p>
+<h2 id="oscillations-by-name-in-the-time-domain">Oscillations by Name in the Time Domain</h2>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php">Chess\SanHeuristics</a> returns the continuous oscillations of an evaluation feature in the time domain.</p>
 <pre><code class="language-php">use Chess\SanHeuristics;
 use Chess\Function\CompleteFunction;
 
-$function = new CompleteFunction();
+$f = new CompleteFunction();
 
 $name = 'Space';
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$balance = (new SanHeuristics($function, $movetext, $name))-&gt;balance;
+$time = (new SanHeuristics($f, $movetext, $name))-&gt;time;
 
-print_r($balance);
+print_r($time);
 </code></pre>
-<pre><code class="language-txt">Array
+<pre><code class="language-text">Array
 (
     [0] =&gt; 0
     [1] =&gt; 1
@@ -380,7 +407,7 @@ print_r($balance);
     [4] =&gt; -1
 )
 </code></pre>
-<p>🎉 Chess positions and games can now be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of <a href="https://chesslablab.github.io/chess-data/data-mining/">Data Mining</a> tools.</p></div>
+<p>🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of <a href="https://chesslablab.github.io/chess-data/data-mining/">Data Mining</a> tools.</p></div>
             </div>
         </div>
 
