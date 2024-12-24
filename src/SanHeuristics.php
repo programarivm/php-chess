@@ -15,8 +15,6 @@ use Chess\Variant\Classical\PGN\AN\Color;
  */
 class SanHeuristics extends SanPlay
 {
-    use SanTrait;
-
     /**
      * The balanced result.
      *
@@ -40,20 +38,16 @@ class SanHeuristics extends SanPlay
 
         $result = [];
 
-        $result[] = $this->item(EvalFactory::create(
-            $function,
-            $name,
-            $this->board
-        ));
+        $result[] = EvalGuess::item(
+            EvalFactory::create($function, $name, $this->board)
+        );
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $val)) {
-                    $result[] = $this->item(EvalFactory::create(
-                        $function,
-                        $name,
-                        $this->board
-                    ));
+                    $result[] = EvalGuess::item(
+                        EvalFactory::create($function, $name, $this->board)
+                    );
                 }
             }
         }
@@ -62,6 +56,6 @@ class SanHeuristics extends SanPlay
             $this->balance[] = $val[Color::W] - $val[Color::B];
         }
 
-        $this->balance = $this->normalize(-1, 1, $this->balance);
+        $this->balance = EvalGuess::normalize(-1, 1, $this->balance);
     }
 }

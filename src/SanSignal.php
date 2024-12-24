@@ -15,8 +15,6 @@ use Chess\Variant\Classical\PGN\AN\Color;
  */
 class SanSignal extends SanPlay
 {
-    use SanTrait;
-
     /**
      * The balanced result.
      *
@@ -68,15 +66,13 @@ class SanSignal extends SanPlay
                 if ($this->board->play($this->board->turn, $val)) {
                     $items = [];
                     foreach ($function->names() as $val) {
-                        $item = $this->item(EvalFactory::create(
-                            $function,
-                            $val,
-                            $this->board
-                        ));
+                        $item = EvalGuess::item(
+                            EvalFactory::create($function, $val, $this->board)
+                        );
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
                     $result[] = $items;
-                    $spectrumComponent = $this->normalize(-1, 1, $items);
+                    $spectrumComponent = EvalGuess::normalize(-1, 1, $items);
                     $this->spectrumComponent[] = $spectrumComponent;
                     $this->spectrum[] = round(array_sum($spectrumComponent), 2);
                 }
@@ -84,7 +80,7 @@ class SanSignal extends SanPlay
         }
 
         for ($i = 0; $i < count($result[0]); $i++) {
-            $this->balance[$i] = $this->normalize(-1, 1, array_column($result, $i));
+            $this->balance[$i] = EvalGuess::normalize(-1, 1, array_column($result, $i));
         }
 
         for ($i = 0; $i < count($this->balance[0]); $i++) {
