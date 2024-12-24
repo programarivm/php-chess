@@ -23,31 +23,25 @@ class SanHeuristics extends SanPlay
     public array $balance = [];
 
     /**
-     * @param \Chess\Function\AbstractFunction $function
+     * @param \Chess\Function\AbstractFunction $f
      * @param string $movetext
      * @param string $name
      * @param \Chess\Variant\AbstractBoard $board
      */
     public function __construct(
-        AbstractFunction $function,
+        AbstractFunction $f,
         string $movetext = '',
         string $name = '',
         AbstractBoard $board = null
     ) {
         parent::__construct($movetext, $board);
 
-        $result = [];
-
-        $result[] = EvalGuess::item(
-            EvalFactory::create($function, $name, $this->board)
-        );
+        $result[] = EvalArray::add(EvalFactory::create($f, $name, $this->board));
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $val)) {
-                    $result[] = EvalGuess::item(
-                        EvalFactory::create($function, $name, $this->board)
-                    );
+                    $result[] = EvalArray::add(EvalFactory::create($f, $name, $this->board));
                 }
             }
         }
@@ -56,6 +50,6 @@ class SanHeuristics extends SanPlay
             $this->balance[] = $val[Color::W] - $val[Color::B];
         }
 
-        $this->balance = EvalGuess::normalize(-1, 1, $this->balance);
+        $this->balance = EvalArray::normalize(-1, 1, $this->balance);
     }
 }

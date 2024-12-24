@@ -44,12 +44,12 @@ class SanSignal extends SanPlay
     public array $spectrumComponent = [];
 
     /**
-     * @param \Chess\Function\AbstractFunction $function
+     * @param \Chess\Function\AbstractFunction $f
      * @param string $movetext
      * @param \Chess\Variant\AbstractBoard $board
      */
     public function __construct(
-        AbstractFunction $function,
+        AbstractFunction $f,
         string $movetext,
         AbstractBoard $board
     ) {
@@ -57,22 +57,20 @@ class SanSignal extends SanPlay
 
         $result = [];
 
-        $result[] = array_fill(0, count($function->names()), 0);
-        $this->spectrumComponent[] = array_fill(0, count($function->names()), 0);
+        $result[] = array_fill(0, count($f->names()), 0);
+        $this->spectrumComponent[] = array_fill(0, count($f->names()), 0);
         $this->spectrum[] = 0;
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $val)) {
                     $items = [];
-                    foreach ($function->names() as $val) {
-                        $item = EvalGuess::item(
-                            EvalFactory::create($function, $val, $this->board)
-                        );
+                    foreach ($f->names() as $val) {
+                        $item = EvalArray::add(EvalFactory::create($f, $val, $this->board));
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
                     $result[] = $items;
-                    $spectrumComponent = EvalGuess::normalize(-1, 1, $items);
+                    $spectrumComponent = EvalArray::normalize(-1, 1, $items);
                     $this->spectrumComponent[] = $spectrumComponent;
                     $this->spectrum[] = round(array_sum($spectrumComponent), 2);
                 }
@@ -80,7 +78,7 @@ class SanSignal extends SanPlay
         }
 
         for ($i = 0; $i < count($result[0]); $i++) {
-            $this->balance[$i] = EvalGuess::normalize(-1, 1, array_column($result, $i));
+            $this->balance[$i] = EvalArray::normalize(-1, 1, array_column($result, $i));
         }
 
         for ($i = 0; $i < count($this->balance[0]); $i++) {

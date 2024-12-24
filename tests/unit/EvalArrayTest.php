@@ -2,12 +2,12 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\EvalGuess;
+use Chess\EvalArray;
 use Chess\FenToBoardFactory;
 use Chess\Function\CompleteFunction;
 use Chess\Tests\AbstractUnitTestCase;
 
-class EvalGuessTest extends AbstractUnitTestCase
+class EvalArrayTest extends AbstractUnitTestCase
 {
     static private CompleteFunction $function;
 
@@ -25,8 +25,8 @@ class EvalGuessTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
-        $guess = EvalGuess::guess(self::$function, $board);
+        $sum = EvalArray::sum(self::$function, $board);
 
-        $this->assertSame($expectedGuess, $guess);
+        $this->assertSame($expectedGuess, $sum);
     }
 }

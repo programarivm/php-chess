@@ -8,24 +8,20 @@ use Chess\Function\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 
-class EvalGuess
+class EvalArray
 {
     /**
-     * Makes a guess in the form of an array of normalized values.
+     * Returns an array of normalized values.
      *
-     * @param \Chess\Function\AbstractFunction $function
+     * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @return array
      */
-    public static function balance(AbstractFunction $function, AbstractBoard $board): array
+    public static function balance(AbstractFunction $f, AbstractBoard $board): array
     {
         $items = [];
-        foreach ($function->names() as $val) {
-            $item = self::item(EvalFactory::create(
-                $function,
-                $val,
-                $board
-            ));
+        foreach ($f->names() as $val) {
+            $item = self::add(EvalFactory::create($f, $val, $board));
             $items[] =  $item[Color::W] - $item[Color::B];
         }
 
@@ -33,24 +29,24 @@ class EvalGuess
     }
 
     /**
-     * Makes a guess in the form of a float value.
+     * Returns the sum of the elements in the array of normalized values.
      *
-     * @param \Chess\Function\AbstractFunction $function
+     * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
      */
-    public static function guess(AbstractFunction $function, AbstractBoard $board): float
+    public static function sum(AbstractFunction $f, AbstractBoard $board): float
     {
-        return round(array_sum(self::balance($function, $board)), 2);
+        return round(array_sum(self::balance($f, $board)), 2);
     }
 
     /**
-     * Calculates an item.
+     * Add an item to the array.
      *
      * @param \Chess\Eval\AbstractEval $eval
      * @return array
      */
-    public static function item(AbstractEval $eval): array
+    public static function add(AbstractEval $eval): array
     {
         if (is_array($eval->result[Color::W])) {
             if ($eval instanceof InverseEvalInterface) {
@@ -79,7 +75,7 @@ class EvalGuess
     }
 
     /**
-     * Normalizes an array of values.
+     * Normalizes the given array of values.
      *
      * @param int $newMin
      * @param int $newMax
