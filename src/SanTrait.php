@@ -9,13 +9,6 @@ use Chess\Variant\Classical\PGN\AN\Color;
 trait SanTrait
 {
     /**
-     * The balanced result.
-     *
-     * @var array
-     */
-    public array $balance = [];
-
-    /**
      * Calculates an item.
      *
      * @param \Chess\Eval\AbstractEval $eval

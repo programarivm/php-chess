@@ -18,6 +18,13 @@ class SanSignal extends SanPlay
     use SanTrait;
 
     /**
+     * The balanced result.
+     *
+     * @var array
+     */
+    public array $balance = [];
+
+    /**
      * Normalized signal in the time domain.
      *
      * @var array

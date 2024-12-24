@@ -18,6 +18,13 @@ class SanHeuristics extends SanPlay
     use SanTrait;
 
     /**
+     * The balanced result.
+     *
+     * @var array
+     */
+    public array $balance = [];
+
+    /**
      * @param \Chess\Function\AbstractFunction $function
      * @param string $movetext
      * @param string $name
