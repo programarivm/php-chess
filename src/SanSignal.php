@@ -16,18 +16,18 @@ use Chess\Variant\Classical\PGN\AN\Color;
 class SanSignal extends SanPlay
 {
     /**
-     * The balanced result.
-     *
-     * @var array
-     */
-    public array $balance = [];
-
-    /**
      * Normalized signal in the time domain.
      *
      * @var array
      */
     public array $time = [];
+
+    /**
+     * Time domain components.
+     *
+     * @var array
+     */
+    public array $timeComponent = [];
 
     /**
      * Normalized signal in the spectrum domain.
@@ -77,11 +77,11 @@ class SanSignal extends SanPlay
         }
 
         for ($i = 0; $i < count($result[0]); $i++) {
-            $this->balance[$i] = EvalArray::normalize(-1, 1, array_column($result, $i));
+            $this->timeComponent[$i] = EvalArray::normalize(-1, 1, array_column($result, $i));
         }
 
-        for ($i = 0; $i < count($this->balance[0]); $i++) {
-            $this->time[$i] = round(array_sum(array_column($this->balance, $i)), 2);
+        for ($i = 0; $i < count($this->timeComponent[0]); $i++) {
+            $this->time[$i] = round(array_sum(array_column($this->timeComponent, $i)), 2);
         }
     }
 }

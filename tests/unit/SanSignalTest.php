@@ -23,10 +23,11 @@ class SanSignalTest extends AbstractUnitTestCase
      */
     public function e4_d5_exd5_Qxd5()
     {
-        $expectedCenter = [ 0.0, 1.0, 0.09, 0.65, -1.0 ];
-        $expectedConnectivity = [ 0.0, -1.0, -1.0, -1.0, 1.0 ];
-        $expectedSpace = [ 0.0, 1.0, 0.25, 0.50, -1.0 ];
         $expectedTime = [ 0.0, 2.0, -1.66, -0.18, -5.0 ];
+        $expectedTimeComponentCenter = [ 0.0, 1.0, 0.09, 0.65, -1.0 ];
+        $expectedTimeComponentConnectivity = [ 0.0, -1.0, -1.0, -1.0, 1.0 ];
+        $expectedTimeComponentSpace = [ 0.0, 1.0, 0.25, 0.50, -1.0 ];
+
         $expectedSpectrum = [ 0.0, 0.73, -0.45, -2.24, -0.46 ];
         $expectedSpectrumComponent = [
             [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
@@ -39,10 +40,11 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedCenter, $sanSignal->balance[1]);
-        $this->assertEquals($expectedConnectivity, $sanSignal->balance[2]);
-        $this->assertEquals($expectedSpace, $sanSignal->balance[3]);
         $this->assertEquals($expectedTime, $sanSignal->time);
+        $this->assertEquals($expectedTimeComponentCenter, $sanSignal->timeComponent[1]);
+        $this->assertEquals($expectedTimeComponentConnectivity, $sanSignal->timeComponent[2]);
+        $this->assertEquals($expectedTimeComponentSpace, $sanSignal->timeComponent[3]);
+        
         $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
         $this->assertEquals($expectedSpectrumComponent, $sanSignal->spectrumComponent);
     }
