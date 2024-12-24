@@ -7,7 +7,7 @@ use Chess\Function\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\AN\Color;
 
-class EvalGuesser
+class EvalGuess
 {
     public static function balance(AbstractFunction $function, AbstractBoard $board): array
     {
