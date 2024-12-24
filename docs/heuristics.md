@@ -46,10 +46,14 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | Space | This is a measure of the number of squares controlled by each player. | [Chess\Eval\SpaceEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/SpaceEvalTest.php) |
 | Square outpost | A square protected by a pawn that cannot be attacked by an opponent's pawn. | [Chess\Eval\SqOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/SqOutpostEvalTest.php) |
 
-The evaluation features are used in two heuristics classes: [Chess\FenHeuristics](https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenHeuristicsTest.php) and [Chess\SanHeuristic](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicTest.php). The former allows to transform a FEN position to ternary digits while the latter transforms an entire chess game in SAN format to decimal numbers between -1 and 1.
+The evaluation features are used in several classes.
+
+## Evaluation Function
+
+[Chess\EvalArray](https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php) allows to transform a FEN position to decimal numbers between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.
 
 ```php
-use Chess\FenHeuristics;
+use Chess\EvalArray;
 use Chess\FenToBoardFactory;
 use Chess\Function\CompleteFunction;
 
@@ -61,7 +65,7 @@ $board = FenToBoardFactory::create($fen);
 
 $result = [
     'names' => $f->names(),
-    'balance' => (new FenHeuristics($f, $board))->balance,
+    'normd' => EvalArray::normalization($f, $board),
 ];
 
 print_r($result);
@@ -99,19 +103,19 @@ Array
             [24] => Bad bishop
             [25] => Diagonal opposition
             [26] => Direct opposition
-            [27] => Attack
-            [28] => Overloading
-            [29] => Back-rank threat
-            [30] => Checkability
-            [31] => Flight square
+            [27] => Overloading
+            [28] => Back-rank threat
+            [29] => Flight square
+            [30] => Attack
+            [31] => Checkability
         )
 
-    [balance] => Array
+    [normd] => Array
         (
             [0] => 0
             [1] => 1
             [2] => -1
-            [3] => 1
+            [3] => 0.24
             [4] => 0
             [5] => 0
             [6] => 0
@@ -145,7 +149,31 @@ Array
 )
 ```
 
-A chess game can be plotted in terms of balance. +1 is the best possible evaluation for White and -1 the best possible evaluation for Black. Both forces being set to 0 means they're balanced.
+The relative value of a position in FEN format without considering checkmate can be obtained by adding the above values.
+
+```php
+use Chess\EvalArray;
+use Chess\FenToBoardFactory;
+use Chess\Function\CompleteFunction;
+
+$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
+
+$board = FenToBoardFactory::create($fen);
+
+$sum = EvalArray::sum(new CompleteFunction(), $board);
+
+echo $sum;
+```
+
+```text
+0.24
+```
+
+In this example, White is slightly better than Black because the value obtained is a positive number. This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
+
+## Oscillations by Name
+
+[Chess\SanHeuristics](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php) returns the continuous oscillations of an evaluation feature in the time domain.
 
 ```php
 use Chess\SanHeuristics;
@@ -157,9 +185,9 @@ $name = 'Space';
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$balance = (new SanHeuristics($f, $movetext, $name))->balance;
+$time = (new SanHeuristics($f, $movetext, $name))->time;
 
-print_r($balance);
+print_r($time);
 ```
 
 ```text
@@ -173,26 +201,4 @@ Array
 )
 ```
 
-🎉 Chess positions and games can now be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
-
-## Evaluation Function
-
-Described next is how to determine the relative value of a position in FEN format without considering checkmate.
-
-```php
-use Chess\EvalArray;
-use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
-
-$board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
-
-$sum = EvalArray::sum(new CompleteFunction(), $board);
-
-echo $sum;
-```
-
-```text
-0.42
-```
-
-In this example, White is slightly better than Black because the value obtained is a positive number.
+🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
