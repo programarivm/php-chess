@@ -53,15 +53,15 @@ use Chess\FenHeuristics;
 use Chess\FenToBoardFactory;
 use Chess\Function\CompleteFunction;
 
-$function = new CompleteFunction();
+$f = new CompleteFunction();
 
 $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
 $board = FenToBoardFactory::create($fen);
 
 $result = [
-    'names' => $function->names(),
-    'balance' => (new FenHeuristics($function, $board))->balance,
+    'names' => $f->names(),
+    'balance' => (new FenHeuristics($f, $board))->balance,
 ];
 
 print_r($result);
@@ -151,13 +151,13 @@ A chess game can be plotted in terms of balance. +1 is the best possible evaluat
 use Chess\SanHeuristics;
 use Chess\Function\CompleteFunction;
 
-$function = new CompleteFunction();
+$f = new CompleteFunction();
 
 $name = 'Space';
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$balance = (new SanHeuristics($function, $movetext, $name))->balance;
+$balance = (new SanHeuristics($f, $movetext, $name))->balance;
 
 print_r($balance);
 ```

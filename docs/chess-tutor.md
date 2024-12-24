@@ -11,11 +11,11 @@ use Chess\FenToBoardFactory;
 use Chess\Function\CompleteFunction;
 use Chess\Tutor\FenEvaluation;
 
-$function = new CompleteFunction();
+$f = new CompleteFunction();
 
 $board = FenToBoardFactory::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');
 
-$paragraph = (new FenEvaluation($function, $board))->paragraph;
+$paragraph = (new FenEvaluation($f, $board))->paragraph;
 
 $text = implode(' ', $paragraph);
 
@@ -43,12 +43,12 @@ use Chess\Tutor\PgnEvaluation;
 
 $pgn = 'd4';
 
-$function = new CompleteFunction();
+$f = new CompleteFunction();
 
 $movetext = '1.Nf3 d5 2.g3 c5';
 $board = (new SanPlay($movetext))->validate()->board;
 
-$paragraph = (new PgnEvaluation($pgn, $function, $board))->paragraph;
+$paragraph = (new PgnEvaluation($pgn, $f, $board))->paragraph;
 
 $text = implode(' ', $paragraph);
 
@@ -79,12 +79,12 @@ $limit->depth = 12;
 
 $stockfish = new UciEngine('/usr/games/stockfish');
 
-$function = new CompleteFunction();
+$f = new CompleteFunction();
 
 $movetext = '1.d4 d5 2.c4 Nc6 3.cxd5 Qxd5 4.e3 e5 5.Nc3 Bb4 6.Bd2 Bxc3 7.Bxc3 exd4 8.Ne2';
 $board = (new SanPlay($movetext))->validate()->board;
 
-$goodPgnEvaluation = new GoodPgnEvaluation($limit, $stockfish, $function, $board);
+$goodPgnEvaluation = new GoodPgnEvaluation($limit, $stockfish, $f, $board);
 
 $pgn = $goodPgnEvaluation->pgn;
 $paragraph = implode(' ', $goodPgnEvaluation->paragraph);
