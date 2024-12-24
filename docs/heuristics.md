@@ -171,7 +171,7 @@ echo $sum;
 
 In this example, White is slightly better than Black because the value obtained is a positive number. This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
-## Oscillations by Name
+## Oscillations by Name in the Time Domain
 
 [Chess\SanHeuristics](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php) returns the continuous oscillations of an evaluation feature in the time domain.
 
