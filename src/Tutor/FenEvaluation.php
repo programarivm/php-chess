@@ -11,9 +11,9 @@ use Chess\Variant\AbstractBoard;
 
 class FenEvaluation extends AbstractParagraph
 {
-    public function __construct(AbstractFunction $function, AbstractBoard $board)
+    public function __construct(AbstractFunction $f, AbstractBoard $board)
     {
-        $this->function = $function;
+        $this->function = $f;
         $this->board = $board;
         $this->paragraph = [
             ...$this->fenExplanation(),

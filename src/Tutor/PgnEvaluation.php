@@ -7,9 +7,9 @@ use Chess\Variant\Classical\Board;
 
 class PgnEvaluation extends AbstractParagraph
 {
-    public function __construct(string $pgn, AbstractFunction $function, Board $board)
+    public function __construct(string $pgn, AbstractFunction $f, Board $board)
     {
-        $this->function = $function;
+        $this->function = $f;
         $this->board = $board;
 
         $fenEvaluation = new FenEvaluation($this->function, $this->board);

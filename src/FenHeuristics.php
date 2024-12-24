@@ -29,12 +29,12 @@ class FenHeuristics
     public array $balance = [];
 
     /**
-     * @param \Chess\Function\AbstractFunction $function
+     * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      */
-    public function __construct(AbstractFunction $function, AbstractBoard $board)
+    public function __construct(AbstractFunction $f, AbstractBoard $board)
     {
-        foreach ($function->eval as $val) {
+        foreach ($f->eval as $val) {
             $eval = new $val($board);
             $item = $eval->result;
             if (is_array($item[Color::W])) {

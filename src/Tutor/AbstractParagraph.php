@@ -7,7 +7,7 @@ use Chess\Variant\AbstractBoard;
 
 abstract class AbstractParagraph
 {
-    public AbstractFunction $function;
+    public AbstractFunction $f;
 
     public AbstractBoard $board;
 

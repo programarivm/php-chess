@@ -15,11 +15,11 @@ class GoodPgnEvaluation extends AbstractParagraph
 
     public string $pgn;
 
-    public function __construct(Limit $limit, UciEngine $uciEngine, AbstractFunction $function, Board $board)
+    public function __construct(Limit $limit, UciEngine $uciEngine, AbstractFunction $f, Board $board)
     {
         $this->limit = $limit;
         $this->uciEngine = $uciEngine;
-        $this->function = $function;
+        $this->function = $f;
         $this->board = $board;
 
         $analysis = $uciEngine->analysis($this->board, $limit);
