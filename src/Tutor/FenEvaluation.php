@@ -16,13 +16,13 @@ class FenEvaluation extends AbstractParagraph
         $this->f = $f;
         $this->board = $board;
 
-        $balance = EvalArray::balance($this->f, $this->board);
+        $normd = EvalArray::normalization($this->f, $this->board);
 
         $this->paragraph = [
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),
-            ...$this->count($balance),
-            ...$this->sum($balance),
+            ...$this->count($normd),
+            ...$this->sum($normd),
         ];
     }
 
@@ -58,9 +58,9 @@ class FenEvaluation extends AbstractParagraph
         return $paragraph;
     }
 
-    private function count(array $balance): array
+    private function count(array $normd): array
     {
-        $count = EvalArray::count($balance);
+        $count = EvalArray::count($normd);
 
         if ($count > 0) {
             $color = 'White';
@@ -76,9 +76,9 @@ class FenEvaluation extends AbstractParagraph
         ];
     }
 
-    private function sum(array $balance): array
+    private function sum(array $normd): array
     {
-        $sum = round(array_sum($balance), 2);
+        $sum = round(array_sum($normd), 2);
 
         return [
             "The relative evaluation of this position is {$sum}.",

@@ -16,7 +16,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 class SanHeuristics extends SanPlay
 {
     /**
-     * Normalized values in the time domain.
+     * Normalization of the time domain.
      *
      * @var array
      */

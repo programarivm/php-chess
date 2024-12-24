@@ -17,7 +17,7 @@ class EvalArray
      * @param \Chess\Variant\AbstractBoard $board
      * @return array
      */
-    public static function balance(AbstractFunction $f, AbstractBoard $board): array
+    public static function normalization(AbstractFunction $f, AbstractBoard $board): array
     {
         $items = [];
         foreach ($f->names() as $val) {
@@ -37,7 +37,7 @@ class EvalArray
      */
     public static function sum(AbstractFunction $f, AbstractBoard $board): float
     {
-        return round(array_sum(self::balance($f, $board)), 2);
+        return round(array_sum(self::normalization($f, $board)), 2);
     }
 
     /**
@@ -79,38 +79,38 @@ class EvalArray
      *
      * @param int $newMin
      * @param int $newMax
-     * @param array $values
+     * @param array $unnormd
      * @return array
      */
-    public static function normalize(int $newMin, int $newMax, array $values): array
+    public static function normalize(int $newMin, int $newMax, array $unnormd): array
     {
-        $min = min($values);
-        $max = max($values);
+        $min = min($unnormd);
+        $max = max($unnormd);
 
-        foreach ($values as $key => $val) {
+        foreach ($unnormd as $key => $val) {
             if ($val > 0) {
-                $values[$key] = round($values[$key] * $newMax / $max, 2);
+                $unnormd[$key] = round($unnormd[$key] * $newMax / $max, 2);
             } elseif ($val < 0) {
-                $values[$key] = round($values[$key] * $newMin / $min, 2);
+                $unnormd[$key] = round($unnormd[$key] * $newMin / $min, 2);
             } else {
-                $values[$key] = 0;
+                $unnormd[$key] = 0;
             }
         }
 
-        return $values;
+        return $unnormd;
     }
 
     /**
      * Counts the number of evaluation features favoring the players.
      *
-     * @param array $balance
+     * @param array $normd
      * @return int
      */
-    public static function count(array $balance): int
+    public static function count(array $normd): int
     {
         $count = 0;
 
-        foreach ($balance as $val) {
+        foreach ($normd as $val) {
             if ($val > 0) {
                 $count += 1;
             } elseif ($val < 0) {

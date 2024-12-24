@@ -16,7 +16,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 class SanSignal extends SanPlay
 {
     /**
-     * Normalized signal in the time domain.
+     * Normalization of the time domain.
      *
      * @var array
      */
@@ -30,7 +30,7 @@ class SanSignal extends SanPlay
     public array $timeComponent = [];
 
     /**
-     * Normalized signal in the spectrum domain.
+     * Normalization of the spectrum domain.
      *
      * @var array
      */
