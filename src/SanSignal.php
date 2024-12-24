@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Signal
  *
- * A signal encoding the continuous oscillations of a chessboard.
+ * Continuous oscillations in terms of heuristic evaluation features.
  */
 class SanSignal extends SanPlay
 {
@@ -34,7 +34,9 @@ class SanSignal extends SanPlay
      *
      * @var array
      */
-    public array $spectrum = [];
+    public array $spectrum = [
+        0,
+    ];
 
     /**
      * Spectrum domain components.
@@ -55,11 +57,8 @@ class SanSignal extends SanPlay
     ) {
         parent::__construct($movetext, $board);
 
-        $result = [];
-
         $result[] = array_fill(0, count($f->names()), 0);
         $this->spectrumComponent[] = array_fill(0, count($f->names()), 0);
-        $this->spectrum[] = 0;
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
