@@ -99,4 +99,25 @@ class EvalArray
 
         return $values;
     }
+
+    /**
+     * Counts the number of evaluation features favoring the players.
+     *
+     * @param array $balance
+     * @return int
+     */
+    public static function count(array $balance): int
+    {
+        $count = 0;
+
+        foreach ($balance as $val) {
+            if ($val > 0) {
+                $count += 1;
+            } elseif ($val < 0) {
+                $count -= 1;
+            }
+        }
+
+        return $count;
+    }
 }

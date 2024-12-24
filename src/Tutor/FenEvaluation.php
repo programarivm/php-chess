@@ -2,7 +2,7 @@
 
 namespace Chess\Tutor;
 
-use Chess\FenHeuristics;
+use Chess\EvalArray;
 use Chess\Eval\ExplainEvalTrait;
 use Chess\Eval\ElaborateEvalTrait;
 use Chess\Function\AbstractFunction;
@@ -15,10 +15,14 @@ class FenEvaluation extends AbstractParagraph
     {
         $this->function = $f;
         $this->board = $board;
+
+        $balance = EvalArray::balance($this->function, $this->board);
+
         $this->paragraph = [
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),
-            ...$this->evaluate(),
+            ...$this->count($balance),
+            ...$this->sum($balance),
         ];
     }
 
@@ -54,32 +58,40 @@ class FenEvaluation extends AbstractParagraph
         return $paragraph;
     }
 
-    private function evaluate(): array
+    private function count(array $balance): array
     {
-        $balance = (new FenHeuristics($this->function, $this->board))->balance;
-        $sum = (new SumLabeller())->label($balance);
-        $abs = abs($sum);
+        $count = EvalArray::count($balance);
 
-        if ($sum > 0) {
+        if ($count > 0) {
             $color = 'White';
-        } elseif ($sum < 0) {
+        } elseif ($count < 0) {
             $color = 'Black';
+            $count = abs($count);
         } else {
             $color = 'either player';
         }
 
         return [
-            "Overall, {$abs} {$this->noun($sum)} {$this->verb($sum)} favoring {$color}.",
+            "Overall, {$count} {$this->noun($count)} {$this->verb($count)} favoring {$color}.",
         ];
     }
 
-    private function noun(int $abs): string
+    private function sum(array $balance): array
     {
-        return $abs === 1 ? 'evaluation feature' : 'evaluation features';
+        $sum = round(array_sum($balance), 2);
+
+        return [
+            "The relative evaluation of this position is {$sum}.",
+        ];
     }
 
-    private function verb(int $abs)
+    private function noun(int $count): string
     {
-        return $abs === 1 ? 'is' : 'are';
+        return $count === 1 ? 'evaluation feature' : 'evaluation features';
+    }
+
+    private function verb(int $count)
+    {
+        return $count === 1 ? 'is' : 'are';
     }
 }
