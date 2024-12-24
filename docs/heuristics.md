@@ -169,7 +169,9 @@ echo $sum;
 0.24
 ```
 
-In this example, White is slightly better than Black because the value obtained is a positive number. This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
+In this example, White is slightly better than Black because the value obtained is a positive number.
+
+This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
 ## Oscillations by Name in the Time Domain
 
@@ -200,5 +202,8 @@ Array
     [4] => -1
 )
 ```
+
+![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png)
+Figure 1. Space evaluation plotted in the time domain
 
 🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
