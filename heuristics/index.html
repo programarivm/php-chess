@@ -87,7 +87,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#oscillations-by-name-in-the-time-domain" class="nav-link">Oscillations by Name in the Time Domain</a>
+            <li class="nav-item" data-level="2"><a href="#oscillations-of-a-game-by-evaluation-feature" class="nav-link">Oscillations of a Game by Evaluation Feature</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#all-oscillations-of-a-game" class="nav-link">All Oscillations of a Game</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -401,8 +405,8 @@ echo $sum;
 </code></pre>
 <p>White is slightly better than Black because the value obtained is a positive number.</p>
 <p>This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.</p>
-<h2 id="oscillations-by-name-in-the-time-domain">Oscillations by Name in the Time Domain</h2>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php">Chess\SanHeuristics</a> returns the continuous oscillations of an evaluation feature in the time domain.</p>
+<h2 id="oscillations-of-a-game-by-evaluation-feature">Oscillations of a Game by Evaluation Feature</h2>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php">Chess\SanHeuristics</a> returns the oscillations of an evaluation feature in the time domain.</p>
 <pre><code class="language-php">use Chess\SanHeuristics;
 use Chess\Function\CompleteFunction;
 
@@ -426,6 +430,89 @@ print_r($time);
 )
 </code></pre>
 <p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png" /></p>
+<h2 id="all-oscillations-of-a-game">All Oscillations of a Game</h2>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanSignalTest.php">Chess\SanSignal</a> returns the oscillations of all evaluation features both in the time domain and the spectrum domain, and it also returns the individual components of both domains.</p>
+<pre><code class="language-php">use Chess\SanSignal;
+use Chess\Function\CompleteFunction;
+use Chess\Variant\Classical\Board;
+
+$f = new CompleteFunction();
+
+$movetext = '1.e4 d5 2.exd5 Qxd5';
+
+$sanSignal = new SanSignal($f, $movetext, new Board());
+
+print_r($sanSignal-&gt;time);
+print_r($sanSignal-&gt;spectrum);
+</code></pre>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; 0
+    [1] =&gt; 2
+    [2] =&gt; -1.66
+    [3] =&gt; -0.18
+    [4] =&gt; -5
+)
+Array
+(
+    [0] =&gt; 0
+    [1] =&gt; 0.73
+    [2] =&gt; -0.95
+    [3] =&gt; -3.11
+    [4] =&gt; -0.46
+)
+</code></pre>
+<p>The time domain and the spectrum domain are calculated by adding up its individual components, so this is how to obtain the space oscillations.</p>
+<pre><code class="language-php">print_r($sanSignal-&gt;timeComponent[3]);
+</code></pre>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; 0
+    [1] =&gt; 1
+    [2] =&gt; 0.25
+    [3] =&gt; 0.5
+    [4] =&gt; -1
+)
+</code></pre>
+<p>And this is how to obtain the oscillations of all evaluation features after the second move (4 plies) has been played.</p>
+<pre><code class="language-php">print_r($sanSignal-&gt;timeComponent[4]);
+</code></pre>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; 0
+    [1] =&gt; -1
+    [2] =&gt; 1
+    [3] =&gt; -0.24
+    [4] =&gt; -0.07
+    [5] =&gt; -0.02
+    [6] =&gt; 0
+    [7] =&gt; 0
+    [8] =&gt; 0
+    [9] =&gt; 0
+    [10] =&gt; 0
+    [11] =&gt; 0
+    [12] =&gt; 0
+    [13] =&gt; 0
+    [14] =&gt; -0.11
+    [15] =&gt; 0
+    [16] =&gt; 0
+    [17] =&gt; 0
+    [18] =&gt; 0
+    [19] =&gt; 0
+    [20] =&gt; 0
+    [21] =&gt; 0
+    [22] =&gt; 0
+    [23] =&gt; 0
+    [24] =&gt; 0
+    [25] =&gt; 0
+    [26] =&gt; 0
+    [27] =&gt; 0
+    [28] =&gt; 0
+    [29] =&gt; -0.02
+    [30] =&gt; 0
+    [31] =&gt; 0
+)
+</code></pre>
 <p>🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of <a href="https://chesslablab.github.io/chess-data/data-mining/">Data Mining</a> tools.</p></div>
             </div>
         </div>
