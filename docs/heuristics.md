@@ -196,9 +196,9 @@ White is slightly better than Black because the value obtained is a positive num
 
 This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
-## Oscillations by Name in the Time Domain
+## Oscillations of a Game by Evaluation Feature
 
-[Chess\SanHeuristics](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php) returns the continuous oscillations of an evaluation feature in the time domain.
+[Chess\SanHeuristics](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php) returns the oscillations of an evaluation feature in the time domain.
 
 ```php
 use Chess\SanHeuristics;
@@ -227,5 +227,104 @@ Array
 ```
 
 ![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png)
+
+## All Oscillations of a Game
+
+[Chess\SanSignal](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanSignalTest.php) returns the oscillations of all evaluation features both in the time domain and the spectrum domain, and it also returns the individual components of both domains.
+
+```php
+use Chess\SanSignal;
+use Chess\Function\CompleteFunction;
+use Chess\Variant\Classical\Board;
+
+$f = new CompleteFunction();
+
+$movetext = '1.e4 d5 2.exd5 Qxd5';
+
+$sanSignal = new SanSignal($f, $movetext, new Board());
+
+print_r($sanSignal->time);
+print_r($sanSignal->spectrum);
+```
+
+```text
+Array
+(
+    [0] => 0
+    [1] => 2
+    [2] => -1.66
+    [3] => -0.18
+    [4] => -5
+)
+Array
+(
+    [0] => 0
+    [1] => 0.73
+    [2] => -0.95
+    [3] => -3.11
+    [4] => -0.46
+)
+```
+
+The time domain and the spectrum domain are calculated by adding up its individual components, so this is how to obtain the space oscillations.
+
+```php
+print_r($sanSignal->timeComponent[3]);
+```
+
+```text
+Array
+(
+    [0] => 0
+    [1] => 1
+    [2] => 0.25
+    [3] => 0.5
+    [4] => -1
+)
+```
+
+And this is how to obtain the oscillations of all evaluation features after the second move (4 plies) has been played.
+
+```php
+print_r($sanSignal->timeComponent[4]);
+```
+
+```text
+Array
+(
+    [0] => 0
+    [1] => -1
+    [2] => 1
+    [3] => -0.24
+    [4] => -0.07
+    [5] => -0.02
+    [6] => 0
+    [7] => 0
+    [8] => 0
+    [9] => 0
+    [10] => 0
+    [11] => 0
+    [12] => 0
+    [13] => 0
+    [14] => -0.11
+    [15] => 0
+    [16] => 0
+    [17] => 0
+    [18] => 0
+    [19] => 0
+    [20] => 0
+    [21] => 0
+    [22] => 0
+    [23] => 0
+    [24] => 0
+    [25] => 0
+    [26] => 0
+    [27] => 0
+    [28] => 0
+    [29] => -0.02
+    [30] => 0
+    [31] => 0
+)
+```
 
 🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
