@@ -631,12 +631,19 @@ abstract class AbstractBoard extends \SplObjectStorage
             if ($last['id'] === Piece::P) {
                 $prevFile = substr($last['from'], 1);
                 $nextFile = substr($last['to'], 1);
+                $truePrevFile = chr(ord($last['from'][0]) - 1);
+                $trueNextFile = chr(ord($last['from'][0]) + 1);
+                $rank = $last['color'] === Color::W ? $prevFile + 1 : $prevFile - 1;
                 if ($last['color'] === Color::W) {
                     if ($nextFile - $prevFile === 2) {
-                        return $last['from'][0] . $prevFile + 1;
+                        if(($truePrevFile >= 'a' && ($prevPiece = $this->pieceBySq($truePrevFile . $rank)) && $prevPiece->color !== $last['move']['color'] && $prevPiece->id === Piece::P) || ($trueNextFile <= 'h' && ($nextPiece = $this->pieceBySq($trueNextFile . $rank)) && $nextPiece->color !== $last['move']['color'] && $nextPiece->id === Piece::P)) {
+                            return $last['from'][0] . $rank;
+                        }
                     }
                 } elseif ($prevFile - $nextFile === 2) {
-                    return $last['from'][0] . $prevFile - 1;
+                    if(($truePrevFile >= 'a' && ($prevPiece = $this->pieceBySq($truePrevFile . $rank)) && $prevPiece->color !== $last['move']['color'] && $prevPiece->id === Piece::P) || ($trueNextFile <= 'h' && ($nextPiece = $this->pieceBySq($trueNextFile . $rank)) && $nextPiece->color !== $last['move']['color'] && $nextPiece->id === Piece::P)) {
+                        return $last['from'][0] . $rank;
+                    }
                 }
             }
         }
