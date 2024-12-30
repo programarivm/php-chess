@@ -266,7 +266,7 @@ Array
 )
 ```
 
-The time domain and the spectrum domain are calculated by adding up its individual components, so this is how to obtain the space oscillations.
+The time domain and the spectrum domain are calculated by adding up their individual components. This is how to obtain the space oscillations by using time component number three.
 
 ```php
 print_r($sanSignal->timeComponent[3]);
