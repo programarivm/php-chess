@@ -89,4 +89,28 @@ class EvalArrayTest extends AbstractUnitTestCase
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
     }
+
+    /**
+     * @test
+     */
+    public function no_mode()
+    {
+        $expectedNormd = [ -1.0, -0.4, -0.2, 0.09, 0.09, 0.09, 0.09, 0.11, 0.19, 0.3, 0.3, 0.35, 1 ];
+        $expectedMean = 0.24;
+        $expectedMedian = 0.24;
+        $expectedMode = null;
+
+        $board = FenToBoardFactory::create('rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -');
+
+        $normalization = array_filter(EvalArray::normalization(self::$f, $board));
+        sort($normalization);
+
+        $mean = EvalArray::mean(self::$f, $board);
+        $median = EvalArray::median(self::$f, $board);
+        $mode = EvalArray::mode(self::$f, $board);
+
+        $this->assertSame($expectedMean, $mean);
+        $this->assertSame($expectedMedian, $median);
+        $this->assertSame($expectedMode, $mode);
+    }
 }

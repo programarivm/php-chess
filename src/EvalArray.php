@@ -95,9 +95,9 @@ class EvalArray
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
-     * @return float
+     * @return null|float
      */
-    public static function mode(AbstractFunction $f, AbstractBoard $board): float
+    public static function mode(AbstractFunction $f, AbstractBoard $board): ?float
     {
         $normd = array_filter(self::normalization($f, $board));
         foreach ($normd as &$val) {
@@ -105,8 +105,11 @@ class EvalArray
         }
         $values = array_count_values($normd);
         arsort($values);
+        if (current($values) > 1) {
+            return floatval(array_key_first($values));
+        }
 
-        return floatval(array_key_first($values));
+        return null;
     }
 
     /**
