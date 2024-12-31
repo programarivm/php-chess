@@ -266,6 +266,10 @@ Array
 )
 ```
 
+![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png)
+
+![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
+
 The time domain and the spectrum domain are calculated by adding up their individual components. This is how to obtain the space oscillations by using time component number three.
 
 ```php
@@ -286,7 +290,7 @@ Array
 And this is how to obtain the oscillations of all evaluation features after the second move (4 plies) has been played.
 
 ```php
-print_r($sanSignal->timeComponent[4]);
+print_r($sanSignal->spectrumComponent[4]);
 ```
 
 ```text
@@ -326,5 +330,7 @@ Array
     [31] => 0
 )
 ```
+
+![Figure 4](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png)
 
 🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
