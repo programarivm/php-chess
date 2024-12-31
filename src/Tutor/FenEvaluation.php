@@ -6,7 +6,6 @@ use Chess\EvalArray;
 use Chess\Eval\ExplainEvalTrait;
 use Chess\Eval\ElaborateEvalTrait;
 use Chess\Function\AbstractFunction;
-use Chess\Labeller\SumLabeller;
 use Chess\Variant\AbstractBoard;
 
 class FenEvaluation extends AbstractParagraph
@@ -15,14 +14,11 @@ class FenEvaluation extends AbstractParagraph
     {
         $this->f = $f;
         $this->board = $board;
-
-        $normd = EvalArray::normalization($this->f, $this->board);
-
         $this->paragraph = [
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),
-            ...$this->steinitz($this->f, $this->board),
-            ...$this->sum($normd),
+            ...$this->steinitz(),
+            ...$this->mean(),
         ];
     }
 
@@ -58,9 +54,9 @@ class FenEvaluation extends AbstractParagraph
         return $paragraph;
     }
 
-    private function steinitz(AbstractFunction $f, AbstractBoard $board): array
+    private function steinitz(): array
     {
-        $steinitz = EvalArray::steinitz($f, $board);
+        $steinitz = EvalArray::steinitz($this->f, $this->board);
 
         if ($steinitz > 0) {
             $color = 'White';
@@ -76,12 +72,12 @@ class FenEvaluation extends AbstractParagraph
         ];
     }
 
-    private function sum(array $normd): array
+    private function mean(): array
     {
-        $sum = round(array_sum($normd), 2);
+        $mean = EvalArray::mean($this->f, $this->board);
 
         return [
-            "The relative evaluation of this position is {$sum}.",
+            "The mean evaluation of this position is {$mean}.",
         ];
     }
 
