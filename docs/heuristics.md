@@ -48,7 +48,7 @@ Listed below are the chess heuristics implemented in PHP Chess.
 
 The evaluation features are used in several classes.
 
-## Evaluation Function
+## Evaluation Functions
 
 [Chess\EvalArray](https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php) allows to transform a FEN position to numbers between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.
 
