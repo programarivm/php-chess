@@ -29,6 +29,32 @@ class EvalArray
     }
 
     /**
+     * Steinitz Evaluation 
+     *
+     * As chess champion William Steinitz pointed out, a strong position can be
+     * created by accumulating small advantages. The relative value of the
+     * position without considering checkmate is obtained by counting the
+     * advantages in the evaluation array.
+     *
+     * @param array $normd
+     * @return int
+     */
+    public static function steinitz(array $normd): int
+    {
+        $count = 0;
+
+        foreach ($normd as $val) {
+            if ($val > 0) {
+                $count += 1;
+            } elseif ($val < 0) {
+                $count -= 1;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
      * Returns the sum of the elements in the array of normalized values.
      *
      * @param \Chess\Function\AbstractFunction $f
@@ -98,29 +124,5 @@ class EvalArray
         }
 
         return $unnormd;
-    }
-
-    /**
-     * As chess champion William Steinitz pointed out, a strong position can be
-     * created by accumulating small advantages. The relative value of the
-     * position without considering checkmate is obtained by counting the
-     * advantages in the evaluation array.
-     *
-     * @param array $normd
-     * @return int
-     */
-    public static function steinitz(array $normd): int
-    {
-        $count = 0;
-
-        foreach ($normd as $val) {
-            if ($val > 0) {
-                $count += 1;
-            } elseif ($val < 0) {
-                $count -= 1;
-            }
-        }
-
-        return $count;
     }
 }
