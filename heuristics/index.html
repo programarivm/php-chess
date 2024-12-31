@@ -480,7 +480,7 @@ Array
 )
 </code></pre>
 <p>And this is how to obtain the oscillations of all evaluation features after the second move (4 plies) has been played.</p>
-<pre><code class="language-php">print_r($sanSignal-&gt;timeComponent[4]);
+<pre><code class="language-php">print_r($sanSignal-&gt;spectrumComponent[4]);
 </code></pre>
 <pre><code class="language-text">Array
 (
@@ -518,6 +518,7 @@ Array
     [31] =&gt; 0
 )
 </code></pre>
+<p><img alt="Figure 4" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png" /></p>
 <p>🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of <a href="https://chesslablab.github.io/chess-data/data-mining/">Data Mining</a> tools.</p></div>
             </div>
         </div>
