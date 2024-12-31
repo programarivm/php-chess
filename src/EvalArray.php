@@ -91,6 +91,28 @@ class EvalArray
     }
 
     /**
+     * Mode Evaluation
+     *
+     * Returns the most common number in the array of normalized values.
+     *
+     * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
+     * @return float
+     */
+    public static function mode(AbstractFunction $f, AbstractBoard $board): float
+    {
+        $normalization = self::normalization($f, $board);
+        $normalization = array_filter($normalization);
+        foreach ($normalization as &$val) {
+            $val = strval($val);
+        }
+        $values = array_count_values($normalization);
+        arsort($values);
+
+        return floatval(array_key_first($values));
+    }
+
+    /**
      * Add an item to the array.
      *
      * @param \Chess\Eval\AbstractEval $eval
