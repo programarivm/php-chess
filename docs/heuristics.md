@@ -149,6 +149,8 @@ Array
 )
 ```
 
+### Steinitz Evaluation
+
 As chess champion William Steinitz pointed out, a strong position can be created by accumulating small advantages. The relative value of the position without considering checkmate is obtained by counting the advantages in the evaluation array.
 
 ```php
@@ -161,7 +163,7 @@ $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 $board = FenToBoardFactory::create($fen);
 
 $normd = EvalArray::normalization(new CompleteFunction(), $board);
-$count = EvalArray::count($normd);
+$count = EvalArray::steinitz($normd);
 
 echo $count;
 ```
@@ -172,7 +174,9 @@ echo $count;
 
 In this example, one evaluation feature is favoring White.
 
-An alternative way to look at it is to add up the values ​​in the evaluation array.
+### Mean Evaluation
+
+The mean represents the center of the evaluation array being intermediate to the extreme values.
 
 ```php
 use Chess\EvalArray;
@@ -183,7 +187,7 @@ $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
 $board = FenToBoardFactory::create($fen);
 
-$sum = EvalArray::sum(new CompleteFunction(), $board);
+$sum = EvalArray::mean(new CompleteFunction(), $board);
 
 echo $sum;
 ```
