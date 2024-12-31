@@ -266,6 +266,10 @@ Array
 )
 ```
 
+![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png)
+
+![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
+
 The time domain and the spectrum domain are calculated by adding up their individual components. This is how to obtain the space oscillations by using time component number three.
 
 ```php
