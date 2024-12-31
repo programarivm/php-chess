@@ -21,16 +21,21 @@ class EvalArrayTest extends AbstractUnitTestCase
      */
     public function kaufman_06()
     {
+        $expectedNormalization = [ -1.0, -0.33, 0.01, 0.08, 0.08, 0.08, 0.08, 0.42, 1.0 ];
         $expectedMean = 0.42;
         $expectedMedian = 0.08;
         $expectedMode = 0.08;
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
+        $normalization = array_filter(EvalArray::normalization(self::$f, $board));
+        sort($normalization);
+
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
 
+        $this->assertSame($expectedNormalization, $normalization);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
