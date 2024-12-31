@@ -31,10 +31,9 @@ class EvalArray
     /**
      * Steinitz Evaluation
      *
-     * As chess champion William Steinitz pointed out, a strong position can be
-     * created by accumulating small advantages. The relative value of the
-     * position without considering checkmate is obtained by counting the
-     * advantages in the evaluation array.
+     * A strong position can be created by accumulating small advantages. The
+     * relative value of the position without considering checkmate is obtained
+     * by counting the advantages in the evaluation array.
      *
      * @param array $normd
      * @return int
@@ -79,8 +78,7 @@ class EvalArray
      */
     public static function median(AbstractFunction $f, AbstractBoard $board): float
     {
-        $normalization = self::normalization($f, $board);
-        $normalization = array_filter($normalization);
+        $normalization = array_filter(self::normalization($f, $board));
         sort($normalization);
         $size = sizeof($normalization);
         if ($size % 2 == 0) {
@@ -101,8 +99,7 @@ class EvalArray
      */
     public static function mode(AbstractFunction $f, AbstractBoard $board): float
     {
-        $normalization = self::normalization($f, $board);
-        $normalization = array_filter($normalization);
+        $normalization = array_filter(self::normalization($f, $board));
         foreach ($normalization as &$val) {
             $val = strval($val);
         }
