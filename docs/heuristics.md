@@ -149,6 +149,8 @@ Array
 )
 ```
 
+This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
+
 ### Steinitz Evaluation
 
 As chess champion William Steinitz pointed out, a strong position can be created by accumulating small advantages. The relative value of the position without considering checkmate is obtained by counting the advantages in the evaluation array.
@@ -220,8 +222,6 @@ echo $median;
 0.24
 ```
 
-White is slightly better than Black because the value obtained is a positive number.
-
 ### Mode Evaluation
 
 The mode is the value that appears most frequently in the evaluation array.
@@ -243,10 +243,6 @@ echo $mode;
 ```text
 1
 ```
-
-White is slightly better than Black because the value obtained is a positive number.
-
-This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
 ## Oscillations of a Game by Evaluation Feature
 
