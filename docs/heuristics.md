@@ -222,6 +222,30 @@ echo $median;
 
 White is slightly better than Black because the value obtained is a positive number.
 
+### Mode Evaluation
+
+The mode is the value that appears most frequently in the evaluation array.
+
+```php
+use Chess\EvalArray;
+use Chess\FenToBoardFactory;
+use Chess\Function\CompleteFunction;
+
+$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
+
+$board = FenToBoardFactory::create($fen);
+
+$mode = EvalArray::mode(new CompleteFunction(), $board);
+
+echo $mode;
+```
+
+```text
+1
+```
+
+White is slightly better than Black because the value obtained is a positive number.
+
 This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
 ## Oscillations of a Game by Evaluation Feature
