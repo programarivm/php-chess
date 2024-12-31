@@ -164,10 +164,9 @@ $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
 $board = FenToBoardFactory::create($fen);
 
-$normd = EvalArray::normalization(new CompleteFunction(), $board);
-$count = EvalArray::steinitz($normd);
+$steinitz = EvalArray::steinitz(new CompleteFunction(), $board);
 
-echo $count;
+echo $steinitz;
 ```
 
 ```text
