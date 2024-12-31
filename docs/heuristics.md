@@ -198,6 +198,30 @@ echo $sum;
 
 White is slightly better than Black because the value obtained is a positive number.
 
+### Median Evaluation
+
+The median is the value in the middle of the evaluation array.
+
+```php
+use Chess\EvalArray;
+use Chess\FenToBoardFactory;
+use Chess\Function\CompleteFunction;
+
+$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
+
+$board = FenToBoardFactory::create($fen);
+
+$median = EvalArray::median(new CompleteFunction(), $board);
+
+echo $median;
+```
+
+```text
+0.24
+```
+
+White is slightly better than Black because the value obtained is a positive number.
+
 This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
 ## Oscillations of a Game by Evaluation Feature
