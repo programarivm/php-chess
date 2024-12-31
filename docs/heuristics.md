@@ -202,7 +202,7 @@ White is slightly better than Black because the value obtained is a positive num
 
 ### Median Evaluation
 
-The median is the value in the middle of the evaluation array.
+The median is the value in the middle of the evaluation array without counting the zeros.
 
 ```php
 use Chess\EvalArray;
@@ -241,8 +241,10 @@ echo $mode;
 ```
 
 ```text
-1
+NULL
 ```
+
+No mode exists since there are no repeating numbers in the evaluation array.
 
 ## Oscillations of a Game by Evaluation Feature
 
