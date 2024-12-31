@@ -21,7 +21,7 @@ class EvalArrayTest extends AbstractUnitTestCase
      */
     public function kaufman_06()
     {
-        $expectedNormalization = [ -1.0, -0.33, 0.01, 0.08, 0.08, 0.08, 0.08, 0.42, 1.0 ];
+        $expectedNormd = [ -1.0, -0.33, 0.01, 0.08, 0.08, 0.08, 0.08, 0.42, 1.0 ];
         $expectedMean = 0.42;
         $expectedMedian = 0.08;
         $expectedMode = 0.08;
@@ -35,7 +35,7 @@ class EvalArrayTest extends AbstractUnitTestCase
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
 
-        $this->assertSame($expectedNormalization, $normalization);
+        $this->assertSame($expectedNormd, $normalization);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);

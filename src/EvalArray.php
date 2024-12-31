@@ -78,14 +78,14 @@ class EvalArray
      */
     public static function median(AbstractFunction $f, AbstractBoard $board): float
     {
-        $normalization = array_filter(self::normalization($f, $board));
-        sort($normalization);
-        $size = sizeof($normalization);
+        $normd = array_filter(self::normalization($f, $board));
+        sort($normd);
+        $size = sizeof($normd);
         if ($size % 2 == 0) {
-            return ($normalization[$size / 2] + $normalization[$size / 2 - 1]) / 2;
+            return ($normd[$size / 2] + $normd[$size / 2 - 1]) / 2;
         }
 
-        return $normalization[floor($size / 2)];
+        return $normd[floor($size / 2)];
     }
 
     /**
@@ -99,11 +99,11 @@ class EvalArray
      */
     public static function mode(AbstractFunction $f, AbstractBoard $board): float
     {
-        $normalization = array_filter(self::normalization($f, $board));
-        foreach ($normalization as &$val) {
+        $normd = array_filter(self::normalization($f, $board));
+        foreach ($normd as &$val) {
             $val = strval($val);
         }
-        $values = array_count_values($normalization);
+        $values = array_count_values($normd);
         arsort($values);
 
         return floatval(array_key_first($values));
