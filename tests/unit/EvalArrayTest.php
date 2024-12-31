@@ -22,6 +22,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     public function kaufman_06()
     {
         $expectedNormd = [ -1.0, -0.33, 0.01, 0.08, 0.08, 0.08, 0.08, 0.42, 1.0 ];
+        $expectedSteinitz = 5;
         $expectedMean = 0.42;
         $expectedMedian = 0.08;
         $expectedMode = 0.08;
@@ -31,11 +32,13 @@ class EvalArrayTest extends AbstractUnitTestCase
         $normd = array_filter(EvalArray::normalization(self::$f, $board));
         sort($normd);
 
+        $steinitz = EvalArray::steinitz(self::$f, $board);
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
 
         $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
@@ -47,6 +50,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     public function kaufman_07()
     {
         $expectedNormd = [ -1.0, -0.31, -0.31, 0.1, 0.1, 0.1, 0.58, 1.0 ];
+        $expectedSteinitz = 2;
         $expectedMean = 0.26;
         $expectedMedian = 0.1;
         $expectedMode = 0.1;
@@ -56,11 +60,13 @@ class EvalArrayTest extends AbstractUnitTestCase
         $normd = array_filter(EvalArray::normalization(self::$f, $board));
         sort($normd);
 
+        $steinitz = EvalArray::steinitz(self::$f, $board);
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
 
         $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
@@ -72,6 +78,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     public function kaufman_08()
     {
         $expectedNormd = [ -1.0, -0.4, -0.2, 0.09, 0.09, 0.09, 0.09, 0.11, 0.19, 0.3, 0.3, 0.35, 1.0 ];
+        $expectedSteinitz = 7;
         $expectedMean = 1.01;
         $expectedMedian = 0.09;
         $expectedMode = 0.09;
@@ -81,11 +88,13 @@ class EvalArrayTest extends AbstractUnitTestCase
         $normd = array_filter(EvalArray::normalization(self::$f, $board));
         sort($normd);
 
+        $steinitz = EvalArray::steinitz(self::$f, $board);
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
 
         $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
@@ -97,6 +106,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     public function no_mode()
     {
         $expectedNormd = [ -1.0, 0.24, 1.0 ];
+        $expectedSteinitz = 1;
         $expectedMean = 0.24;
         $expectedMedian = 0.24;
         $expectedMode = null;
@@ -106,11 +116,13 @@ class EvalArrayTest extends AbstractUnitTestCase
         $normd = array_filter(EvalArray::normalization(self::$f, $board));
         sort($normd);
 
+        $steinitz = EvalArray::steinitz(self::$f, $board);
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
 
         $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
