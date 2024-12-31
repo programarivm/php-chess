@@ -65,4 +65,28 @@ class EvalArrayTest extends AbstractUnitTestCase
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
     }
+
+    /**
+     * @test
+     */
+    public function kaufman_08()
+    {
+        $expectedNormd = [ -1.0, -0.4, -0.2, 0.09, 0.09, 0.09, 0.09, 0.11, 0.19, 0.3, 0.3, 0.35, 1 ];
+        $expectedMean = 1.01;
+        $expectedMedian = 0.09;
+        $expectedMode = 0.09;
+
+        $board = FenToBoardFactory::create('5r1k/6pp/1n2Q3/4p3/8/7P/PP4PK/R1B1q3 b - -');
+
+        $normalization = array_filter(EvalArray::normalization(self::$f, $board));
+        sort($normalization);
+
+        $mean = EvalArray::mean(self::$f, $board);
+        $median = EvalArray::median(self::$f, $board);
+        $mode = EvalArray::mode(self::$f, $board);
+
+        $this->assertSame($expectedMean, $mean);
+        $this->assertSame($expectedMedian, $median);
+        $this->assertSame($expectedMode, $mode);
+    }
 }
