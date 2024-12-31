@@ -101,12 +101,15 @@ class EvalArray
     }
 
     /**
-     * Counts the number of evaluation features favoring the players.
+     * As chess champion William Steinitz pointed out, a strong position can be
+     * created by accumulating small advantages. The relative value of the
+     * position without considering checkmate is obtained by counting the
+     * advantages in the evaluation array.
      *
      * @param array $normd
      * @return int
      */
-    public static function count(array $normd): int
+    public static function steinitz(array $normd): int
     {
         $count = 0;
 

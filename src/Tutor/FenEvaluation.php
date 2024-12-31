@@ -60,7 +60,7 @@ class FenEvaluation extends AbstractParagraph
 
     private function count(array $normd): array
     {
-        $count = EvalArray::count($normd);
+        $count = EvalArray::steinitz($normd);
 
         if ($count > 0) {
             $color = 'White';
