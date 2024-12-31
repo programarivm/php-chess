@@ -69,6 +69,28 @@ class EvalArray
     }
 
     /**
+     * Median Evaluation
+     *
+     * Returns the value in the middle of the array of normalized values.
+     *
+     * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
+     * @return float
+     */
+    public static function median(AbstractFunction $f, AbstractBoard $board): float
+    {
+        $normalization = self::normalization($f, $board);
+        $normalization = array_filter($normalization);
+        sort($normalization);
+        $size = sizeof($normalization);
+        if ($size % 2 == 0) {
+            return ($normalization[$size / 2] + $normalization[$size / 2 - 1]) / 2;
+        }
+
+        return $normalization[floor($size / 2)];
+    }
+
+    /**
      * Add an item to the array.
      *
      * @param \Chess\Eval\AbstractEval $eval
