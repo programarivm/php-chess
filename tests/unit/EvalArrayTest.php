@@ -21,12 +21,12 @@ class EvalArrayTest extends AbstractUnitTestCase
      */
     public function kaufman_06()
     {
-        $expectedGuess = 0.42;
+        $expectedMean = 0.42;
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
-        $sum = EvalArray::sum(self::$f, $board);
+        $mean = EvalArray::mean(self::$f, $board);
 
-        $this->assertSame($expectedGuess, $sum);
+        $this->assertSame($expectedMean, $mean);
     }
 }

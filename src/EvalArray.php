@@ -29,7 +29,7 @@ class EvalArray
     }
 
     /**
-     * Steinitz Evaluation 
+     * Steinitz Evaluation
      *
      * As chess champion William Steinitz pointed out, a strong position can be
      * created by accumulating small advantages. The relative value of the
@@ -55,13 +55,15 @@ class EvalArray
     }
 
     /**
+     * Mean Evaluation
+     *
      * Returns the sum of the elements in the array of normalized values.
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
      */
-    public static function sum(AbstractFunction $f, AbstractBoard $board): float
+    public static function mean(AbstractFunction $f, AbstractBoard $board): float
     {
         return round(array_sum(self::normalization($f, $board)), 2);
     }
