@@ -21,7 +21,7 @@ class FenEvaluation extends AbstractParagraph
         $this->paragraph = [
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),
-            ...$this->count($normd),
+            ...$this->steinitz($this->f, $this->board),
             ...$this->sum($normd),
         ];
     }
@@ -58,21 +58,21 @@ class FenEvaluation extends AbstractParagraph
         return $paragraph;
     }
 
-    private function count(array $normd): array
+    private function steinitz(AbstractFunction $f, AbstractBoard $board): array
     {
-        $count = EvalArray::steinitz($normd);
+        $steinitz = EvalArray::steinitz($f, $board);
 
-        if ($count > 0) {
+        if ($steinitz > 0) {
             $color = 'White';
-        } elseif ($count < 0) {
+        } elseif ($steinitz < 0) {
             $color = 'Black';
-            $count = abs($count);
+            $steinitz = abs($steinitz);
         } else {
             $color = 'either player';
         }
 
         return [
-            "Overall, {$count} {$this->noun($count)} {$this->verb($count)} favoring {$color}.",
+            "Overall, {$steinitz} {$this->noun($steinitz)} {$this->verb($steinitz)} favoring {$color}.",
         ];
     }
 

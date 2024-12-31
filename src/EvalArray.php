@@ -38,10 +38,10 @@ class EvalArray
      * @param array $normd
      * @return int
      */
-    public static function steinitz(array $normd): int
+    public static function steinitz(AbstractFunction $f, AbstractBoard $board): int
     {
         $count = 0;
-
+        $normd = array_filter(self::normalization($f, $board));
         foreach ($normd as $val) {
             if ($val > 0) {
                 $count += 1;
