@@ -187,9 +187,9 @@ $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
 $board = FenToBoardFactory::create($fen);
 
-$sum = EvalArray::mean(new CompleteFunction(), $board);
+$mean = EvalArray::mean(new CompleteFunction(), $board);
 
-echo $sum;
+echo $mean;
 ```
 
 ```text
