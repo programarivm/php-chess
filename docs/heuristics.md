@@ -50,7 +50,7 @@ The evaluation features are used in several classes.
 
 ## Evaluation Functions
 
-[Chess\EvalArray](https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php) allows to transform a FEN position to numbers between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.
+[Chess\EvalArray](https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php) allows to transform a FEN position to a normalized array of values between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.
 
 ```php
 use Chess\EvalArray;
@@ -149,7 +149,7 @@ Array
 )
 ```
 
-This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
+This data structure is used to estimate who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
 ### Steinitz Evaluation
 
@@ -174,6 +174,8 @@ echo $steinitz;
 ```
 
 In this example, one evaluation feature is favoring White.
+
+The Steinitz evaluation alone has proven to be quite good for making relative estimates of chess positions in a way that is easy for human players to understand and to learn. However, it can be complemented with other statistical measures such as the mean, median, and mode of the evaluation array.
 
 ### Mean Evaluation
 
@@ -243,7 +245,7 @@ echo $mode;
 NULL
 ```
 
-No mode exists since there are no repeating numbers in the evaluation array.
+In this example, no mode exists since there are no repeating numbers in the evaluation array.
 
 ## Oscillations of a Game by Evaluation Feature
 
