@@ -68,7 +68,7 @@ class EvalArray
         $sum = array_sum($normd);
         $count = count($normd);
 
-        return round($sum / $count, 4);
+        return round($sum / $count, 4, PHP_ROUND_HALF_UP);
     }
 
     /**
