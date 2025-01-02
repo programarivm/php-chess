@@ -23,11 +23,11 @@ class EvalArrayTest extends AbstractUnitTestCase
     {
         $expectedNormd = [ -1.0, -0.33, 0.01, 0.08, 0.08, 0.08, 0.08, 0.42, 1.0 ];
         $expectedSteinitz = 5;
-        $expectedMean = 0.0131;
+        $expectedMean = 0.0467;
         $expectedMedian = 0.08;
         $expectedMode = 0.08;
-        $expectedVar = 0.2557;
-        $expectedSd = 0.5057;
+        $expectedVar = 0.2546;
+        $expectedSd = 0.5046;
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
@@ -57,11 +57,11 @@ class EvalArrayTest extends AbstractUnitTestCase
     {
         $expectedNormd = [ -1.0, -0.31, -0.31, 0.1, 0.1, 0.1, 0.58, 1.0 ];
         $expectedSteinitz = 2;
-        $expectedMean = 0.0081;
+        $expectedMean = 0.0325;
         $expectedMedian = 0.1;
         $expectedMode = 0.1;
-        $expectedVar = 0.3194;
-        $expectedSd = 0.5652;
+        $expectedVar = 0.3188;
+        $expectedSd = 0.5646;
 
         $board = FenToBoardFactory::create('2r2rk1/1bqnbpp1/1p1ppn1p/pP6/N1P1P3/P2B1N1P/1B2QPP1/R2R2K1 b - -');
 
@@ -91,11 +91,11 @@ class EvalArrayTest extends AbstractUnitTestCase
     {
         $expectedNormd = [ -1.0, -0.4, -0.2, 0.09, 0.09, 0.09, 0.09, 0.11, 0.19, 0.3, 0.3, 0.35, 1.0 ];
         $expectedSteinitz = 7;
-        $expectedMean = 0.0316;
+        $expectedMean = 0.0777;
         $expectedMedian = 0.09;
         $expectedMode = 0.09;
-        $expectedVar = 0.1948;
-        $expectedSd = 0.4414;
+        $expectedVar = 0.1927;
+        $expectedSd = 0.439;
 
         $board = FenToBoardFactory::create('5r1k/6pp/1n2Q3/4p3/8/7P/PP4PK/R1B1q3 b - -');
 
@@ -125,11 +125,11 @@ class EvalArrayTest extends AbstractUnitTestCase
     {
         $expectedNormd = [ -1.0, 0.24, 1.0 ];
         $expectedSteinitz = 1;
-        $expectedMean = 0.0075;
+        $expectedMean = 0.08;
         $expectedMedian = 0.24;
         $expectedMode = null;
-        $expectedVar = 0.6847;
-        $expectedSd = 0.8275;
+        $expectedVar = 0.6795;
+        $expectedSd = 0.8243;
 
         $board = FenToBoardFactory::create('rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -');
 

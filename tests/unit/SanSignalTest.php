@@ -28,7 +28,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $expectedTimeComponentConnectivity = [ 0.0, -1.0, -1.0, -1.0, 1.0 ];
         $expectedTimeComponentSpace = [ 0.0, 1.0, 0.25, 0.50, -1.0 ];
 
-        $expectedSpectrum = [ 0.0, 0.0243, -0.015, -0.0747, -0.0153 ];
+        $expectedSpectrum = [ 0.0, 0.1825, -0.1125, -0.28, -0.0657 ];
         $expectedSpectrumComponent = [
             [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
             [ 0.0, 1.0, -1.0, 0.65, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.08, ],
@@ -55,7 +55,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function A59()
     {
         $expectedTime = [ 0.0, 2.5, 0.78, 1.0, 1.32, 1.4, 1.7, 3.53, 3.04, 2.78, 0.0, 1.86, 0.19, 0.89, -2.17, 3.41, 2.05, 2.23 ];
-        $expectedSpectrum = [ 0.0, 0.054, 0.0167, 0.0373, 0.0783, 0.041, 0.0567, 0.0733, 0.0233, 0.1223, 0.1293, 0.04, -0.0317, -0.0183, -0.024, 0.01, 0.0097, 0.01 ];
+        $expectedSpectrum = [ 0.0, 0.54, 0.1667, 0.28, 0.5875, 0.246, 0.34, 0.2444, 0.07, 0.3336, 0.3527, 0.1091, -0.1056, -0.0611, -0.0655, 0.03, 0.0322, 0.03 ];
 
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
         $sanSignal = new SanSignal(self::$f, $A59, new Board());
@@ -70,7 +70,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function a3()
     {
         $expectedTime = [ 0.0, 2.0 ];
-        $expectedSpectrum = [ 0.0, 0.0667 ];
+        $expectedSpectrum = [ 0.0, 1.0 ];
 
         $movetext = '1.a3';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -85,7 +85,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function a4()
     {
         $expectedTime = [ 0.0, 2.0 ];
-        $expectedSpectrum = [ 0.0, 0.05 ];
+        $expectedSpectrum = [ 0.0, 0.75 ];
 
         $movetext = '1.a4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -100,7 +100,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function b4()
     {
         $expectedTime = [ 0.0, 1.0 ];
-        $expectedSpectrum = [ 0.0, 0.0333 ];
+        $expectedSpectrum = [ 0.0, 0.3333 ];
 
         $movetext = '1.b4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -115,7 +115,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function c4()
     {
         $expectedTime = [ 0.0, 1.0 ];
-        $expectedSpectrum = [ 0.0, 0.0223 ];
+        $expectedSpectrum = [ 0.0, 0.2233 ];
 
         $movetext = '1.c4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -130,7 +130,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function d4()
     {
         $expectedTime = [ 0.0, 3.0 ];
-        $expectedSpectrum = [ 0.0, 0.054 ];
+        $expectedSpectrum = [ 0.0, 0.54 ];
 
         $movetext = '1.d4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -145,7 +145,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function e4()
     {
         $expectedTime = [ 0.0, 2.0 ];
-        $expectedSpectrum = [ 0.0, 0.0243 ];
+        $expectedSpectrum = [ 0.0, 0.1825 ];
 
         $movetext = '1.e4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -160,7 +160,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function f4()
     {
         $expectedTime = [ 0.0, 2.0 ];
-        $expectedSpectrum = [ 0.0, 0.0213 ];
+        $expectedSpectrum = [ 0.0, 0.16 ];
 
         $movetext = '1.f4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -175,7 +175,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function g4()
     {
         $expectedTime = [ 0.0, 1.0 ];
-        $expectedSpectrum = [ 0.0, 0.0303 ];
+        $expectedSpectrum = [ 0.0, 0.3033 ];
 
         $movetext = '1.g4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -190,7 +190,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function h4()
     {
         $expectedTime = [ 0.0, 2.0 ];
-        $expectedSpectrum = [ 0.0, 0.0533 ];
+        $expectedSpectrum = [ 0.0, 0.8 ];
 
         $movetext = '1.h4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -205,7 +205,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function a4_h5()
     {
         $expectedTime = [ 0.0, 2.0, -1.0 ];
-        $expectedSpectrum = [ 0.0, 0.05, -0.0333 ];
+        $expectedSpectrum = [ 0.0, 0.75, -1.0 ];
 
         $movetext = '1.a4 h5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -220,7 +220,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function a4_a5()
     {
         $expectedTime = [ 0.0, 2.0, 0.0 ];
-        $expectedSpectrum = [ 0.0, 0.05, 0.0 ];
+        $expectedSpectrum = [ 0.0, 0.75, 0.0 ];
 
         $movetext = '1.a4 a5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -235,7 +235,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function a4_e5()
     {
         $expectedTime = [ 0.0, 2.0, -2.0 ];
-        $expectedSpectrum = [ 0.0, 0.05, -0.0207 ];
+        $expectedSpectrum = [ 0.0, 0.75, -0.155 ];
 
         $movetext = '1.a4 e5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -250,7 +250,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function h4_e5()
     {
         $expectedTime = [ 0.0, 2.0, -3.0 ];
-        $expectedSpectrum = [ 0.0, 0.0533, -0.021 ];
+        $expectedSpectrum = [ 0.0, 0.8, -0.126 ];
 
         $movetext = '1.h4 e5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
@@ -265,7 +265,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function a5()
     {
         $expectedTime = [ 0.0, 4.0 ];
-        $expectedSpectrum = [ 0.0, 0.1333 ];
+        $expectedSpectrum = [ 0.0, 0.5 ];
 
         $fen = '7k/8/8/8/P7/8/8/7K w - -';
         $movetext = '1.a5';
@@ -282,7 +282,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function a6()
     {
         $expectedTime = [ 0.0, 5.0 ];
-        $expectedSpectrum = [ 0.0, 0.1667 ];
+        $expectedSpectrum = [ 0.0, 0.5556 ];
 
         $fen = '7k/8/8/P7/8/8/8/7K w - -';
         $movetext = '1.a6';
@@ -299,7 +299,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function a7()
     {
         $expectedTime = [ 0.0, 3.0 ];
-        $expectedSpectrum = [ 0.0, 0.1 ];
+        $expectedSpectrum = [ 0.0, 0.4286 ];
 
         $fen = '4k3/8/P7/8/8/8/8/4K3 w - -';
         $movetext = '1.a7';
@@ -316,7 +316,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function b5()
     {
         $expectedTime = [ 0.0, 4.0 ];
-        $expectedSpectrum = [ 0.0, 0.0443 ];
+        $expectedSpectrum = [ 0.0, 0.1663 ];
 
         $fen = '7k/8/8/8/1P6/8/8/7K w - -';
         $movetext = '1.b5';
@@ -333,7 +333,7 @@ class SanSignalTest extends AbstractUnitTestCase
     public function h7()
     {
         $expectedTime = [ 0.0, 4.0 ];
-        $expectedSpectrum = [ 0.0, 0.1067 ];
+        $expectedSpectrum = [ 0.0, 0.4 ];
 
         $fen = '4k3/8/7P/8/8/8/8/4K3 w - -';
         $movetext = '1.h7';
