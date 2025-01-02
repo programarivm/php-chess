@@ -151,4 +151,78 @@ class EvalArrayTest extends AbstractUnitTestCase
         $this->assertSame($expectedVar, $var);
         $this->assertSame($expectedSd, $sd);
     }
+
+    /**
+     * @test
+     */
+    public function A59_a6_sd_collision()
+    {
+        $expectedUnfilteredNormd = [ 0.5, -0.3, 0, 0.5, -1.0, 0, -1.0, 0, 0, 0, 1.0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 1.0, 0, 0, 0, -1.0, 0, 0, 0, 0, 0.5, -1.0, -1.0 ];
+        $expectedNormd = [ -1.0, -1.0, -1.0, -1.0, -1.0, -0.3, 0.5, 0.5, 0.5, 0.5, 1.0, 1.0 ];
+        $expectedSteinitz = 0;
+        $expectedMean = -0.1083;
+        $expectedMedian = 0.1;
+        $expectedMode = -1.0;
+        $expectedVar = 0.6624;
+        $expectedSd = 0.8139;
+
+        $board = FenToBoardFactory::create('rnbqkb1r/3ppppp/p4n2/1PpP4/8/8/PP2PPPP/RNBQKBNR w KQkq -');
+
+        $unfilteredNormd = EvalArray::normalization(self::$f, $board);
+        $normd = array_filter($unfilteredNormd);
+        sort($normd);
+
+        $steinitz = EvalArray::steinitz(self::$f, $board);
+        $mean = EvalArray::mean(self::$f, $board);
+        $median = EvalArray::median(self::$f, $board);
+        $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
+        $sd = EvalArray::sd(self::$f, $board);
+
+        $this->assertSame($expectedUnfilteredNormd, $unfilteredNormd);
+        $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
+        $this->assertSame($expectedMean, $mean);
+        $this->assertSame($expectedMedian, $median);
+        $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
+        $this->assertSame($expectedSd, $sd);
+    }
+
+    /**
+     * @test
+     */
+    public function A59_Ba6_sd_collision()
+    {
+        $expectedUnfilteredNormd = [ 0.5, -0.3, 0, 0.5, -1.0, 0, -1.0, 0, 0, 0, 1.0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 1.0, 0, 0, 0, -1.0, 0, 0, 0, 0, 0.5, 0.67, -1.0 ];
+        $expectedNormd = [ -1.0, -1.0, -1.0, -1.0, -0.3, 0.5, 0.5, 0.5, 0.5, 0.67, 1.0, 1.0 ];
+        $expectedSteinitz = 2;
+        $expectedMean = 0.0308;
+        $expectedMedian = 0.5;
+        $expectedMode = 0.5;
+        $expectedVar = 0.6273;
+        $expectedSd = 0.792;
+
+        $board = FenToBoardFactory::create('rn1qkb1r/p2ppppp/b4n2/1PpP4/8/8/PP2PPPP/RNBQKBNR w KQkq -');
+
+        $unfilteredNormd = EvalArray::normalization(self::$f, $board);
+        $normd = array_filter($unfilteredNormd);
+        sort($normd);
+
+        $steinitz = EvalArray::steinitz(self::$f, $board);
+        $mean = EvalArray::mean(self::$f, $board);
+        $median = EvalArray::median(self::$f, $board);
+        $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
+        $sd = EvalArray::sd(self::$f, $board);
+
+        $this->assertSame($expectedUnfilteredNormd, $unfilteredNormd);
+        $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
+        $this->assertSame($expectedMean, $mean);
+        $this->assertSame($expectedMedian, $median);
+        $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
+        $this->assertSame($expectedSd, $sd);
+    }
 }
