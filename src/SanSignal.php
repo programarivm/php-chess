@@ -71,7 +71,14 @@ class SanSignal extends SanPlay
                     $result[] = $items;
                     $spectrumComponent = EvalArray::normalize(-1, 1, $items);
                     $this->spectrumComponent[] = $spectrumComponent;
-                    $this->spectrum[] = EvalArray::mean($f, $this->board);
+                    $mean = EvalArray::mean($f, $this->board);
+                    if ($mean > 0) {
+                        $this->spectrum[] = EvalArray::sd($f, $this->board);
+                    } elseif ($mean < 0) {
+                        $this->spectrum[] = EvalArray::sd($f, $this->board) * -1;
+                    } else {
+                        $this->spectrum[] = 0;
+                    }
                 }
             }
         }
