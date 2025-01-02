@@ -140,6 +140,23 @@ class EvalArray
     }
 
     /**
+     * Standard Deviation Evaluation
+     *
+     * Measures how the array of normalized values is spread out from their
+     * average value.
+     *
+     * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
+     * @return float
+     */
+    public static function sd(AbstractFunction $f, AbstractBoard $board): float
+    {
+        $var = self::var($f, $board);
+
+        return round (sqrt($var), 4);
+    }
+
+    /**
      * Add an item to the array.
      *
      * @param \Chess\Eval\AbstractEval $eval
