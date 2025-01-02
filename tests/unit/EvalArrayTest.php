@@ -155,7 +155,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function A59_a6_sd_collision()
+    public function A59_a6()
     {
         $expectedUnfilteredNormd = [ 0.5, -0.3, 0, 0.5, -1.0, 0, -1.0, 0, 0, 0, 1.0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 1.0, 0, 0, 0, -1.0, 0, 0, 0, 0, 0.5, -1.0, -1.0 ];
         $expectedNormd = [ -1.0, -1.0, -1.0, -1.0, -1.0, -0.3, 0.5, 0.5, 0.5, 0.5, 1.0, 1.0 ];
@@ -192,7 +192,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function A59_Ba6_sd_collision()
+    public function A59_Ba6()
     {
         $expectedUnfilteredNormd = [ 0.5, -0.3, 0, 0.5, -1.0, 0, -1.0, 0, 0, 0, 1.0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 1.0, 0, 0, 0, -1.0, 0, 0, 0, 0, 0.5, 0.67, -1.0 ];
         $expectedNormd = [ -1.0, -1.0, -1.0, -1.0, -0.3, 0.5, 0.5, 0.5, 0.5, 0.67, 1.0, 1.0 ];
