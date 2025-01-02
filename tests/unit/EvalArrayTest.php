@@ -5,6 +5,7 @@ namespace Chess\Tests\Unit;
 use Chess\EvalArray;
 use Chess\FenToBoardFactory;
 use Chess\Function\CompleteFunction;
+use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 
 class EvalArrayTest extends AbstractUnitTestCase
@@ -204,6 +205,82 @@ class EvalArrayTest extends AbstractUnitTestCase
         $expectedSd = 0.792;
 
         $board = FenToBoardFactory::create('rn1qkb1r/p2ppppp/b4n2/1PpP4/8/8/PP2PPPP/RNBQKBNR w KQkq -');
+
+        $unfilteredNormd = EvalArray::normalization(self::$f, $board);
+        $normd = array_filter($unfilteredNormd);
+        sort($normd);
+
+        $steinitz = EvalArray::steinitz(self::$f, $board);
+        $mean = EvalArray::mean(self::$f, $board);
+        $median = EvalArray::median(self::$f, $board);
+        $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
+        $sd = EvalArray::sd(self::$f, $board);
+
+        $this->assertSame($expectedUnfilteredNormd, $unfilteredNormd);
+        $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
+        $this->assertSame($expectedMean, $mean);
+        $this->assertSame($expectedMedian, $median);
+        $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
+        $this->assertSame($expectedSd, $sd);
+    }
+
+    /**
+     * @test
+     */
+    public function d4_Nf6_c4_c5_d5_b5_cxb5_a6()
+    {
+        $expectedUnfilteredNormd = [ 0.5, -0.3, 0, 0.5, -1.0, 0, -1.0, 0, 0, 0, 1.0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 1.0, 0, 0, 0, -1.0, 0, 0, 0, 0, 0.5, -1.0, -1.0 ];
+        $expectedNormd = [ -1.0, -1.0, -1.0, -1.0, -1.0, -0.3, 0.5, 0.5, 0.5, 0.5, 1.0, 1.0 ];
+        $expectedSteinitz = 0;
+        $expectedMean = -0.1083;
+        $expectedMedian = 0.1;
+        $expectedMode = -1.0;
+        $expectedVar = 0.6624;
+        $expectedSd = 0.8139;
+
+        $movetext = '1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6';
+        $board = (new SanPlay($movetext))->validate()->board;
+
+        $unfilteredNormd = EvalArray::normalization(self::$f, $board);
+        $normd = array_filter($unfilteredNormd);
+        sort($normd);
+
+        $steinitz = EvalArray::steinitz(self::$f, $board);
+        $mean = EvalArray::mean(self::$f, $board);
+        $median = EvalArray::median(self::$f, $board);
+        $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
+        $sd = EvalArray::sd(self::$f, $board);
+
+        $this->assertSame($expectedUnfilteredNormd, $unfilteredNormd);
+        $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
+        $this->assertSame($expectedMean, $mean);
+        $this->assertSame($expectedMedian, $median);
+        $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
+        $this->assertSame($expectedSd, $sd);
+    }
+
+    /**
+     * @test
+     */
+    public function d4_Nf6_c4_c5_d5_b5_cxb5_Ba6()
+    {
+        $expectedUnfilteredNormd = [ 0.5, -0.3, 0, 0.5, -1.0, 0, -1.0, 0, 0, 0, 1.0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 1.0, 0, 0, 0, -1.0, 0, 0, 0, 0, 0.5, 0.67, -1.0 ];
+        $expectedNormd = [ -1.0, -1.0, -1.0, -1.0, -0.3, 0.5, 0.5, 0.5, 0.5, 0.67, 1.0, 1.0 ];
+        $expectedSteinitz = 2;
+        $expectedMean = 0.0308;
+        $expectedMedian = 0.5;
+        $expectedMode = 0.5;
+        $expectedVar = 0.6273;
+        $expectedSd = 0.792;
+
+        $movetext = '1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 Ba6';
+        $board = (new SanPlay($movetext))->validate()->board;
 
         $unfilteredNormd = EvalArray::normalization(self::$f, $board);
         $normd = array_filter($unfilteredNormd);
