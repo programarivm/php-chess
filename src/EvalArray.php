@@ -64,7 +64,11 @@ class EvalArray
      */
     public static function mean(AbstractFunction $f, AbstractBoard $board): float
     {
-        return round(array_sum(self::normalization($f, $board)), 2);
+        $normd = self::normalization($f, $board);
+        $sum = array_sum($normd);
+        $count = count($normd);
+
+        return round($sum / $count, 4);
     }
 
     /**

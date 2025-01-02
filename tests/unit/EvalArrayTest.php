@@ -23,7 +23,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     {
         $expectedNormd = [ -1.0, -0.33, 0.01, 0.08, 0.08, 0.08, 0.08, 0.42, 1.0 ];
         $expectedSteinitz = 5;
-        $expectedMean = 0.42;
+        $expectedMean = 0.0131;
         $expectedMedian = 0.08;
         $expectedMode = 0.08;
 
@@ -51,7 +51,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     {
         $expectedNormd = [ -1.0, -0.31, -0.31, 0.1, 0.1, 0.1, 0.58, 1.0 ];
         $expectedSteinitz = 2;
-        $expectedMean = 0.26;
+        $expectedMean = 0.0081;
         $expectedMedian = 0.1;
         $expectedMode = 0.1;
 
@@ -79,7 +79,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     {
         $expectedNormd = [ -1.0, -0.4, -0.2, 0.09, 0.09, 0.09, 0.09, 0.11, 0.19, 0.3, 0.3, 0.35, 1.0 ];
         $expectedSteinitz = 7;
-        $expectedMean = 1.01;
+        $expectedMean = 0.0316;
         $expectedMedian = 0.09;
         $expectedMode = 0.09;
 
@@ -107,7 +107,7 @@ class EvalArrayTest extends AbstractUnitTestCase
     {
         $expectedNormd = [ -1.0, 0.24, 1.0 ];
         $expectedSteinitz = 1;
-        $expectedMean = 0.24;
+        $expectedMean = 0.0075;
         $expectedMedian = 0.24;
         $expectedMode = null;
 

@@ -32,7 +32,7 @@ class GoodPgnEvaluationTest extends AbstractUnitTestCase
             "These pieces are hanging: Black's queen on d5, the rook on a8, the rook on h8, the pawn on b7, the pawn on c7, the pawn on g7, the bishop on g4, the rook on h1.",
             "The knight on e2 is pinned shielding a piece that is more valuable than the attacking piece.",
             "Overall, 7 evaluation features are favoring Black.",
-            "The mean evaluation of this position is 0.32.",
+            "The mean evaluation of this position is 0.01.",
         ];
 
         $limit = new Limit();
