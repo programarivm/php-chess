@@ -135,7 +135,7 @@ class EvalArray
             $sum += $diff * $diff;
         }
 
-        return round ($sum / count($normd), 4);
+        return round($sum / count($normd), 4);
     }
 
     /**
@@ -151,7 +151,7 @@ class EvalArray
     {
         $var = self::var($f, $board);
 
-        return round (sqrt($var), 4);
+        return round(sqrt($var), 4);
     }
 
     /**
