@@ -119,8 +119,7 @@ class EvalArray
     /**
      * Variance Evaluation
      *
-     * Measures how the array of normalized values is spread out from their
-     * average value.
+     * Returns a measure of how spread out the array of normalized values is.
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
@@ -142,8 +141,7 @@ class EvalArray
     /**
      * Standard Deviation Evaluation
      *
-     * Measures how the array of normalized values is spread out from their
-     * average value.
+     * Returns a measure of how spread out the array of normalized values is.
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
