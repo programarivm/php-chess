@@ -71,7 +71,7 @@ class SanSignal extends SanPlay
                     $result[] = $items;
                     $spectrumComponent = EvalArray::normalize(-1, 1, $items);
                     $this->spectrumComponent[] = $spectrumComponent;
-                    $this->spectrum[] = round(array_sum($spectrumComponent), 2);
+                    $this->spectrum[] = EvalArray::mean($f, $this->board);
                 }
             }
         }
