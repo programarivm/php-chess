@@ -26,6 +26,7 @@ class EvalArrayTest extends AbstractUnitTestCase
         $expectedMean = 0.0131;
         $expectedMedian = 0.08;
         $expectedMode = 0.08;
+        $expectedVar = 0.2557;
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
@@ -36,12 +37,14 @@ class EvalArrayTest extends AbstractUnitTestCase
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
 
         $this->assertSame($expectedNormd, $normd);
         $this->assertSame($expectedSteinitz, $steinitz);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
     }
 
     /**
@@ -54,6 +57,7 @@ class EvalArrayTest extends AbstractUnitTestCase
         $expectedMean = 0.0081;
         $expectedMedian = 0.1;
         $expectedMode = 0.1;
+        $expectedVar = 0.3194;
 
         $board = FenToBoardFactory::create('2r2rk1/1bqnbpp1/1p1ppn1p/pP6/N1P1P3/P2B1N1P/1B2QPP1/R2R2K1 b - -');
 
@@ -64,12 +68,14 @@ class EvalArrayTest extends AbstractUnitTestCase
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
 
         $this->assertSame($expectedNormd, $normd);
         $this->assertSame($expectedSteinitz, $steinitz);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
     }
 
     /**
@@ -82,6 +88,7 @@ class EvalArrayTest extends AbstractUnitTestCase
         $expectedMean = 0.0316;
         $expectedMedian = 0.09;
         $expectedMode = 0.09;
+        $expectedVar = 0.1948;
 
         $board = FenToBoardFactory::create('5r1k/6pp/1n2Q3/4p3/8/7P/PP4PK/R1B1q3 b - -');
 
@@ -92,12 +99,14 @@ class EvalArrayTest extends AbstractUnitTestCase
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
 
         $this->assertSame($expectedNormd, $normd);
         $this->assertSame($expectedSteinitz, $steinitz);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
     }
 
     /**
@@ -110,6 +119,7 @@ class EvalArrayTest extends AbstractUnitTestCase
         $expectedMean = 0.0075;
         $expectedMedian = 0.24;
         $expectedMode = null;
+        $expectedVar = 0.6847;
 
         $board = FenToBoardFactory::create('rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -');
 
@@ -120,11 +130,13 @@ class EvalArrayTest extends AbstractUnitTestCase
         $mean = EvalArray::mean(self::$f, $board);
         $median = EvalArray::median(self::$f, $board);
         $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
 
         $this->assertSame($expectedNormd, $normd);
         $this->assertSame($expectedSteinitz, $steinitz);
         $this->assertSame($expectedMean, $mean);
         $this->assertSame($expectedMedian, $median);
         $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
     }
 }

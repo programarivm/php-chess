@@ -117,6 +117,29 @@ class EvalArray
     }
 
     /**
+     * Variance Evaluation
+     *
+     * Measures how the array of normalized values is spread out from their
+     * average value.
+     *
+     * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
+     * @return float
+     */
+    public static function var(AbstractFunction $f, AbstractBoard $board): float
+    {
+        $normd = array_filter(self::normalization($f, $board));
+        $mean = self::mean($f, $board);
+        $sum = 0;
+        foreach ($normd as $val) {
+            $diff = $val - $mean;
+            $sum += $diff * $diff;
+        }
+
+        return round ($sum / count($normd), 4);
+    }
+
+    /**
      * Add an item to the array.
      *
      * @param \Chess\Eval\AbstractEval $eval
