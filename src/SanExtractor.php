@@ -9,9 +9,9 @@ use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 
 /**
- * SAN Signal
+ * SAN Extractor
  *
- * Oscillations of evaluation features in the heuristic domain.
+ * Oscillations of evaluation features for data analysis purposes.
  */
 class SanExtractor extends SanPlay
 {
