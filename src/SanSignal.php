@@ -11,24 +11,10 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Signal
  *
- * Continuous oscillations of evaluation features.
+ * Oscillations of evaluation features in the heuristic domain.
  */
 class SanSignal extends SanPlay
 {
-    /**
-     * Time domain.
-     *
-     * @var array
-     */
-    public array $time = [];
-
-    /**
-     * Time domain components.
-     *
-     * @var array
-     */
-    public array $timeComponent = [];
-
     /**
      * Mean.
      *
@@ -91,14 +77,6 @@ class SanSignal extends SanPlay
                     }
                 }
             }
-        }
-
-        for ($i = 0; $i < count($result[0]); $i++) {
-            $this->timeComponent[$i] = EvalArray::normalize(-1, 1, array_column($result, $i));
-        }
-
-        for ($i = 0; $i < count($this->timeComponent[0]); $i++) {
-            $this->time[$i] = round(array_sum(array_column($this->timeComponent, $i)), 2);
         }
     }
 }
