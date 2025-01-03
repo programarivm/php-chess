@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Plotter
  *
- * Continuous oscillations of evaluation features by name.
+ * Oscillations of an evaluation feature by name for plotting purposes.
  */
 class SanPlotter extends SanPlay
 {
