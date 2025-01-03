@@ -26,14 +26,14 @@ class SanExtractorTest extends AbstractUnitTestCase
     {
         $expectedMean = [ 0.0, 0.185, -0.115, -0.2838, -0.0657 ];
         $expectedSd = [ 0.0, 0.7591, -0.8998, -0.7603, -0.5406 ];
-        $expectedHeuristic = [ 0.0, -1.0, 1.0, -0.24, -0.07, -0.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02 ];
+        $expectedEval = [ 0.0, -1.0, 1.0, -0.24, -0.07, -0.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02 ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $sanExtractor = new SanExtractor(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedMean, $sanExtractor->mean, 0.0001);
         $this->assertEqualsWithDelta($expectedSd, $sanExtractor->sd, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanExtractor->heuristic[4], 0.0001);
+        $this->assertEqualsWithDelta($expectedEval, $sanExtractor->eval[4], 0.0001);
     }
 
     /**

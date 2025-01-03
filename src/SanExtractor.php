@@ -35,11 +35,11 @@ class SanExtractor extends SanPlay
     ];
 
     /**
-     * Heuristic components.
+     * Evaluation arrays.
      *
      * @var array
      */
-    public array $heuristic = [];
+    public array $eval = [];
 
     /**
      * @param \Chess\Function\AbstractFunction $f
@@ -54,7 +54,7 @@ class SanExtractor extends SanPlay
         parent::__construct($movetext, $board);
 
         $result[] = array_fill(0, count($f->names()), 0);
-        $this->heuristic[] = array_fill(0, count($f->names()), 0);
+        $this->eval[] = array_fill(0, count($f->names()), 0);
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
@@ -65,8 +65,8 @@ class SanExtractor extends SanPlay
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
                     $result[] = $items;
-                    $heuristic = EvalArray::normalize(-1, 1, $items);
-                    $this->heuristic[] = $heuristic;
+                    $eval = EvalArray::normalize(-1, 1, $items);
+                    $this->eval[] = $eval;
                     $mean = EvalArray::mean($f, $this->board);
                     $this->mean[] = $mean;
                     if ($mean > 0) {
