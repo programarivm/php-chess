@@ -10,7 +10,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
  *
  * Measures how close the pieces are to the center of the board.
  */
-class CenterEval extends AbstractEval
+class CenterEval extends AbstractEval implements UniqueEvalInterface
 {
     use ExplainEvalTrait;
 
