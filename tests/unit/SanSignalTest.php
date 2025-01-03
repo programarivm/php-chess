@@ -20,6 +20,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function e4_d5_exd5_Qxd5()
     {
@@ -45,6 +46,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function A59()
     {
@@ -60,6 +62,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function a3()
     {
@@ -75,6 +78,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function a4()
     {
@@ -90,6 +94,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function b4()
     {
@@ -105,6 +110,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function c4()
     {
@@ -120,6 +126,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function d4()
     {
@@ -135,6 +142,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function e4()
     {
@@ -150,6 +158,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function f4()
     {
@@ -165,6 +174,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function g4()
     {
@@ -180,6 +190,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function h4()
     {
@@ -195,6 +206,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function a4_h5()
     {
@@ -210,6 +222,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function a4_a5()
     {
@@ -225,6 +238,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function a4_e5()
     {
@@ -240,6 +254,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function h4_e5()
     {
@@ -255,6 +270,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function a5()
     {
@@ -272,6 +288,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function a6()
     {
@@ -289,6 +306,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function a7()
     {
@@ -306,6 +324,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function b5()
     {
@@ -323,6 +342,7 @@ class SanSignalTest extends AbstractUnitTestCase
 
     /**
      * @test
+     * @requires PHP 8.4
      */
     public function h7()
     {
