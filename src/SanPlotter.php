@@ -11,12 +11,13 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Plotter
  *
- * Oscillations of an evaluation feature by name for plotting purposes.
+ * Given a PGN movetext in SAN format, this class plots the oscillations of an
+ * evaluation feature in the time domain.
  */
 class SanPlotter extends SanPlay
 {
     /**
-     * Normalization of the time domain.
+     * Time domain.
      *
      * @var array
      */

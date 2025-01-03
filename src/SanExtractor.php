@@ -11,7 +11,8 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Extractor
  *
- * Oscillations of evaluation features for data analysis purposes.
+ * Given a PGN movetext in SAN format, this class returns the oscillations of
+ * all evaluation features for data analysis purposes.
  */
 class SanExtractor extends SanPlay
 {
