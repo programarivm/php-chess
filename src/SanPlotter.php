@@ -11,8 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Plotter
  *
- * Plots the oscillations of an evaluation feature in the time domain. The data
- * is plotted in a way that is easy for chess players to understand and learn.
+ * Plots the oscillations of an evaluation feature in the time domain.
  */
 class SanPlotter extends SanPlay
 {
