@@ -16,7 +16,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 class SanSignal extends SanPlay
 {
     /**
-     * Normalization of the time domain.
+     * Time domain.
      *
      * @var array
      */
@@ -28,6 +28,15 @@ class SanSignal extends SanPlay
      * @var array
      */
     public array $timeComponent = [];
+
+    /**
+     * Mean.
+     *
+     * @var array
+     */
+    public array $mean = [
+        0,
+    ];
 
     /**
      * Standard deviation.
@@ -72,6 +81,7 @@ class SanSignal extends SanPlay
                     $heuristicComponent = EvalArray::normalize(-1, 1, $items);
                     $this->heuristicComponent[] = $heuristicComponent;
                     $mean = EvalArray::mean($f, $this->board);
+                    $this->mean[] = $mean;
                     if ($mean > 0) {
                         $this->sd[] = EvalArray::sd($f, $this->board);
                     } elseif ($mean < 0) {
