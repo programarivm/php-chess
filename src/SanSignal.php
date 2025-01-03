@@ -34,11 +34,11 @@ class SanSignal extends SanPlay
     ];
 
     /**
-     * Heuristic domain components.
+     * Heuristic components.
      *
      * @var array
      */
-    public array $heuristicComponent = [];
+    public array $heuristic = [];
 
     /**
      * @param \Chess\Function\AbstractFunction $f
@@ -53,7 +53,7 @@ class SanSignal extends SanPlay
         parent::__construct($movetext, $board);
 
         $result[] = array_fill(0, count($f->names()), 0);
-        $this->heuristicComponent[] = array_fill(0, count($f->names()), 0);
+        $this->heuristic[] = array_fill(0, count($f->names()), 0);
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
@@ -64,8 +64,8 @@ class SanSignal extends SanPlay
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
                     $result[] = $items;
-                    $heuristicComponent = EvalArray::normalize(-1, 1, $items);
-                    $this->heuristicComponent[] = $heuristicComponent;
+                    $heuristic = EvalArray::normalize(-1, 1, $items);
+                    $this->heuristic[] = $heuristic;
                     $mean = EvalArray::mean($f, $this->board);
                     $this->mean[] = $mean;
                     if ($mean > 0) {

@@ -31,7 +31,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristicComponentQxd5, $sanSignal->heuristicComponent[4], 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristicComponentQxd5, $sanSignal->heuristic[4], 0.0001);
     }
 
     /**
