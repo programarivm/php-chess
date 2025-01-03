@@ -12,7 +12,8 @@ use Chess\Variant\Classical\PGN\AN\Color;
  * SAN Plotter
  *
  * Given a PGN movetext in SAN format, this class plots the oscillations of an
- * evaluation feature in the time domain.
+ * evaluation feature in the time domain. The data is plotted in a way that is
+ * easy for chess players to understand and learn.
  */
 class SanPlotter extends SanPlay
 {
