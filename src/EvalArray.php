@@ -29,8 +29,6 @@ class EvalArray
     }
 
     /**
-     * Steinitz Evaluation
-     *
      * A strong position can be created by accumulating small advantages. The
      * relative value of the position without considering checkmate is obtained
      * by counting the advantages in the evaluation array.
@@ -54,9 +52,7 @@ class EvalArray
     }
 
     /**
-     * Mean Evaluation
-     *
-     * Returns the sum of the elements in the array of normalized values.
+     * Returns the mean of the elements in the array.
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
@@ -75,9 +71,7 @@ class EvalArray
     }
 
     /**
-     * Median Evaluation
-     *
-     * Returns the value in the middle of the array of normalized values.
+     * Returns the value in the middle of the array.
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
@@ -96,9 +90,7 @@ class EvalArray
     }
 
     /**
-     * Mode Evaluation
-     *
-     * Returns the most common number in the array of normalized values.
+     * Returns the most common number in the array.
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
@@ -120,9 +112,7 @@ class EvalArray
     }
 
     /**
-     * Variance Evaluation
-     *
-     * Returns a measure of how spread out the array of normalized values is.
+     * Returns a measure of how spread out the array is.
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
@@ -142,9 +132,7 @@ class EvalArray
     }
 
     /**
-     * Standard Deviation Evaluation
-     *
-     * Returns a measure of how spread out the array of normalized values is.
+     * Returns a measure of how spread out the array is.
      *
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
@@ -192,7 +180,7 @@ class EvalArray
     }
 
     /**
-     * Normalizes the given array of values.
+     * Normalizes the given array.
      *
      * @param int $newMin
      * @param int $newMax
