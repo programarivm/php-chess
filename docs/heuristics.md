@@ -271,10 +271,8 @@ use Chess\Function\CompleteFunction;
 use Chess\Variant\Classical\Board;
 
 $f = new CompleteFunction();
-
+$board = new Board();
 $movetext = '1.e4 d5 2.exd5 Qxd5';
-
-$sanExtractor = new SanExtractor($f, $movetext, new Board());
 ```
 
 ### Evaluation Array
@@ -282,7 +280,9 @@ $sanExtractor = new SanExtractor($f, $movetext, new Board());
 This is how component number four, which is to say the normalization of the fourth evaluation array, is obtained from the example above.
 
 ```php
-print_r($sanExtractor->eval[4]);
+$eval = SanExtractor::eval($f, $board, $movetext);
+
+print_r($eval[4]);
 ```
 
 ```text
@@ -330,7 +330,9 @@ The evaluation array can be plotted in a way that is easy for chess players to u
 ### Mean
 
 ```php
-print_r($sanExtractor->mean);
+$mean = SanExtractor::mean($f, $board, $movetext);
+
+print_r($mean);
 ```
 
 ```text
@@ -348,7 +350,9 @@ print_r($sanExtractor->mean);
 ### Standard Deviation
 
 ```php
-print_r($sanExtractor->sd);
+$sd = SanExtractor::sd($f, $board, $movetext);
+
+print_r($sd);
 ```
 
 ```text
