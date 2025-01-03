@@ -227,7 +227,7 @@ echo $sd;
 0.8243
 ```
 
-## Oscillations of a Game
+## Plot the Oscillations of a Game
 
 Given a PGN movetext in SAN format, [Chess\SanPlotter](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanPlotterTest.php) returns the oscillations of an evaluation feature in the time domain.
 
@@ -261,9 +261,9 @@ Array
 
 The data is plotted in a way that is easy for chess players to understand and learn.
 
-## Chess Data Extractor
+## Extract Chess Data
 
-Given a PGN movetext in SAN format, [Chess\SanExtractor](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php) returns the oscillations of all evaluation features for data analysis purposes like in the following example.
+Given a PGN movetext in SAN format, [Chess\SanExtractor](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php) returns the oscillations of all evaluation features for data analysis purposes like the following example.
 
 ```php
 use Chess\SanExtractor;
