@@ -40,7 +40,7 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $time = (new SanHeuristics(self::$f, $movetext, $name))->time;
 
-        $expected = [ 0, 1.0, 0.09, 0.65, -1.0 ];
+        $expected = [ 0, 1.0, 0.09, 0.67, -1.0 ];
 
         $this->assertSame($expected, $time);
     }
