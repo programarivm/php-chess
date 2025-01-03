@@ -11,9 +11,8 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * SAN Plotter
  *
- * Given a PGN movetext in SAN format, this class plots the oscillations of an
- * evaluation feature in the time domain. The data is plotted in a way that is
- * easy for chess players to understand and learn.
+ * Plots the oscillations of an evaluation feature in the time domain. The data
+ * is plotted in a way that is easy for chess players to understand and learn.
  */
 class SanPlotter extends SanPlay
 {
@@ -40,14 +39,11 @@ class SanPlotter extends SanPlay
     ) {
         parent::__construct($movetext, $board);
 
-        $result[] = EvalArray::add(EvalFactory::create($f, $name, $this->board));
-
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($this->board->play($this->board->turn, $val)) {
-                    $result = EvalArray::add(EvalFactory::create($f, $name, $this->board));
-                    $result[] = $result;
-                    $this->time[] = $result[Color::W] - $result[Color::B];
+                    $item = EvalArray::add(EvalFactory::create($f, $name, $this->board));
+                    $this->time[] = $item[Color::W] - $item[Color::B];
                 }
             }
         }
