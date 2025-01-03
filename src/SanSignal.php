@@ -30,11 +30,11 @@ class SanSignal extends SanPlay
     public array $timeComponent = [];
 
     /**
-     * Normalization of the heuristic domain.
+     * Standard deviation.
      *
      * @var array
      */
-    public array $heuristic = [
+    public array $sd = [
         0,
     ];
 
@@ -73,11 +73,11 @@ class SanSignal extends SanPlay
                     $this->heuristicComponent[] = $heuristicComponent;
                     $mean = EvalArray::mean($f, $this->board);
                     if ($mean > 0) {
-                        $this->heuristic[] = EvalArray::sd($f, $this->board);
+                        $this->sd[] = EvalArray::sd($f, $this->board);
                     } elseif ($mean < 0) {
-                        $this->heuristic[] = EvalArray::sd($f, $this->board) * -1;
+                        $this->sd[] = EvalArray::sd($f, $this->board) * -1;
                     } else {
-                        $this->heuristic[] = 0;
+                        $this->sd[] = 0;
                     }
                 }
             }

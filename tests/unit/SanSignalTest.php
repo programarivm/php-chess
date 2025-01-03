@@ -40,7 +40,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $this->assertEqualsWithDelta($expectedTimeComponentConnectivity, $sanSignal->timeComponent[2], 0.0001);
         $this->assertEqualsWithDelta($expectedTimeComponentSpace, $sanSignal->timeComponent[3], 0.0001);
 
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
         $this->assertEqualsWithDelta($expectedHeuristicComponentQxd5, $sanSignal->heuristicComponent[4], 0.0001);
     }
 
@@ -57,7 +57,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $A59, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -73,7 +73,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -89,7 +89,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -105,7 +105,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -121,7 +121,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -137,7 +137,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -153,7 +153,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -169,7 +169,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -185,7 +185,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -201,7 +201,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -217,7 +217,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -233,7 +233,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -249,7 +249,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -265,7 +265,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -283,7 +283,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -301,7 +301,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -319,7 +319,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -337,7 +337,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 
     /**
@@ -355,6 +355,6 @@ class SanSignalTest extends AbstractUnitTestCase
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
         $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
-        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->heuristic, 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanSignal->sd, 0.0001);
     }
 }
