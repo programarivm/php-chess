@@ -48,7 +48,7 @@ Listed below are the chess heuristics implemented in PHP Chess.
 
 The evaluation features are used in several classes.
 
-## Evaluation Functions
+## Evaluate a Chess Position
 
 [Chess\EvalArray](https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php) allows to transform a FEN position to a normalized array of values between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.
 
@@ -156,15 +156,7 @@ This data structure is used to estimate who may be better without considering ch
 As chess champion William Steinitz pointed out, a strong position can be created by accumulating small advantages. The relative value of the position without considering checkmate is obtained by counting the advantages in the evaluation array.
 
 ```php
-use Chess\EvalArray;
-use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
-
-$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
-
-$board = FenToBoardFactory::create($fen);
-
-$steinitz = EvalArray::steinitz(new CompleteFunction(), $board);
+$steinitz = EvalArray::steinitz($f, $board);
 
 echo $steinitz;
 ```
@@ -173,48 +165,30 @@ echo $steinitz;
 1
 ```
 
-In this example, one evaluation feature is favoring White.
+In this example, White is better than Black because the value obtained is a positive number. One evaluation feature is favoring White.
 
-The Steinitz evaluation alone has proven to be quite good for making relative estimates of chess positions in a way that is easy for human players to understand and to learn. However, it can be complemented with other statistical measures such as the mean, median, and mode of the evaluation array.
+The Steinitz evaluation alone has proven to be quite good for making relative estimates of chess positions in a way that is easy for human players to understand and to learn. However, it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array.
 
-### Mean Evaluation
+### Mean
 
 The mean represents the center of the evaluation array being intermediate to the extreme values.
 
 ```php
-use Chess\EvalArray;
-use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
-
-$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
-
-$board = FenToBoardFactory::create($fen);
-
-$mean = EvalArray::mean(new CompleteFunction(), $board);
+$mean = EvalArray::mean($f, $board);
 
 echo $mean;
 ```
 
 ```text
-0.24
+0.08
 ```
 
-White is slightly better than Black because the value obtained is a positive number.
-
-### Median Evaluation
+### Median
 
 The median is the value in the middle of the evaluation array without counting the zeros.
 
 ```php
-use Chess\EvalArray;
-use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
-
-$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
-
-$board = FenToBoardFactory::create($fen);
-
-$median = EvalArray::median(new CompleteFunction(), $board);
+$median = EvalArray::median($f, $board);
 
 echo $median;
 ```
@@ -223,20 +197,12 @@ echo $median;
 0.24
 ```
 
-### Mode Evaluation
+### Mode
 
 The mode is the value that appears most frequently in the evaluation array.
 
 ```php
-use Chess\EvalArray;
-use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
-
-$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
-
-$board = FenToBoardFactory::create($fen);
-
-$mode = EvalArray::mode(new CompleteFunction(), $board);
+$mode = EvalArray::mode($f, $board);
 
 echo $mode;
 ```
@@ -247,12 +213,26 @@ NULL
 
 In this example, no mode exists since there are no repeating numbers in the evaluation array.
 
-## Oscillations of a Game by Evaluation Feature
+### Standard Deviation
 
-[Chess\SanHeuristics](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php) returns the oscillations of an evaluation feature in the time domain.
+The standard deviation is a measure of how spread out the evaluation array is.
 
 ```php
-use Chess\SanHeuristics;
+$sd = EvalArray::sd($f, $board);
+
+echo $sd;
+```
+
+```text
+0.8243
+```
+
+## Oscillations of a Game
+
+Given a PGN movetext in SAN format, [Chess\SanPlotter](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanPlotterTest.php) returns the oscillations of an evaluation feature in the time domain.
+
+```php
+use Chess\SanPlotter;
 use Chess\Function\CompleteFunction;
 
 $f = new CompleteFunction();
@@ -261,7 +241,7 @@ $name = 'Space';
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$time = (new SanHeuristics($f, $movetext, $name))->time;
+$time = (new SanPlotter($f, $movetext, $name))->time;
 
 print_r($time);
 ```
@@ -279,12 +259,14 @@ Array
 
 ![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png)
 
-## All Oscillations of a Game
+The data is plotted in a way that is easy for chess players to understand and learn.
 
-[Chess\SanSignal](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanSignalTest.php) returns the oscillations of all evaluation features both in the time domain and the heuristic domain, and it also returns the individual components of both domains.
+## Chess Data Extractor
+
+Given a PGN movetext in SAN format, [Chess\SanExtractor](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php) returns the oscillations of all evaluation features for data analysis purposes like in the following example.
 
 ```php
-use Chess\SanSignal;
+use Chess\SanExtractor;
 use Chess\Function\CompleteFunction;
 use Chess\Variant\Classical\Board;
 
@@ -292,56 +274,15 @@ $f = new CompleteFunction();
 
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-$sanSignal = new SanSignal($f, $movetext, new Board());
-
-print_r($sanSignal->time);
-print_r($sanSignal->heuristic);
+$sanExtractor = new SanExtractor($f, $movetext, new Board());
 ```
 
-```text
-Array
-(
-    [0] => 0
-    [1] => 2
-    [2] => -1.66
-    [3] => -0.18
-    [4] => -5
-)
-Array
-(
-    [0] => 0
-    [1] => 0.73
-    [2] => -0.95
-    [3] => -3.11
-    [4] => -0.46
-)
-```
+### Evaluation Array
 
-![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png)
-
-![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
-
-The time domain and the heuristic domain are calculated by adding up their individual components. This is how to obtain the space oscillations by using time component number three.
+The heuristic domain is calculated by adding up its individual components. This is how component number four, which is to say the normalization of the fourth evaluation array, is obtained from the example above.
 
 ```php
-print_r($sanSignal->timeComponent[3]);
-```
-
-```text
-Array
-(
-    [0] => 0
-    [1] => 1
-    [2] => 0.25
-    [3] => 0.5
-    [4] => -1
-)
-```
-
-And this is how to obtain the oscillations of all evaluation features after the second move (4 plies) has been played.
-
-```php
-print_r($sanSignal->heuristicComponent[4]);
+print_r($sanExtractor->heuristic[4]);
 ```
 
 ```text
@@ -379,6 +320,45 @@ Array
     [29] => -0.02
     [30] => 0
     [31] => 0
+)
+```
+
+![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png)
+
+The evaluation array can be plotted in a way that is easy for chess players to understand and learn.
+
+### Mean
+
+```php
+print_r($sanExtractor->mean);
+```
+
+```text
+(
+    [0] => 0
+    [1] => 0.185
+    [2] => -0.16
+    [3] => -0.315
+    [4] => -0.0657
+)
+```
+
+![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
+
+### Standard Deviation
+
+```php
+print_r($sanExtractor->sd);
+```
+
+```text
+Array
+(
+    [0] => 0
+    [1] => 0.7591
+    [2] => -0.8552
+    [3] => -0.7274
+    [4] => -0.5406
 )
 ```
 
