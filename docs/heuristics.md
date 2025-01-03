@@ -167,7 +167,7 @@ echo $steinitz;
 
 In this example, White is better than Black because the value obtained is a positive number. One evaluation feature is favoring White.
 
-The Steinitz evaluation alone has proven to be quite good for making relative estimates of chess positions in a way that is easy for human players to understand and to learn. However, it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array.
+The Steinitz evaluation alone has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. However, it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.
 
 ### Mean
 
@@ -185,7 +185,7 @@ echo $mean;
 
 ### Median
 
-The median is the value in the middle of the evaluation array without counting the zeros.
+The median is the value in the middle of the evaluation array.
 
 ```php
 $median = EvalArray::median($f, $board);
