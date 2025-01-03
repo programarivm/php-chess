@@ -9,11 +9,11 @@ use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 
 /**
- * SAN Heuristics
+ * SAN Plotter
  *
  * Continuous oscillations of evaluation features by name.
  */
-class SanHeuristics extends SanPlay
+class SanPlotter extends SanPlay
 {
     /**
      * Normalization of the time domain.

@@ -2,13 +2,13 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\SanHeuristics;
+use Chess\SanPlotter;
 use Chess\Function\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\FEN\StrToBoard;
 
-class SanHeuristicsTest extends AbstractUnitTestCase
+class SanPlotterTest extends AbstractUnitTestCase
 {
     static private FastFunction $f;
 
@@ -26,7 +26,7 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-        $time = (new SanHeuristics(self::$f, $movetext))->time;
+        $time = (new SanPlotter(self::$f, $movetext))->time;
     }
 
     /**
@@ -38,7 +38,7 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-        $time = (new SanHeuristics(self::$f, $movetext, $name))->time;
+        $time = (new SanPlotter(self::$f, $movetext, $name))->time;
 
         $expected = [ 0, 1.0, 0.09, 0.67, -1.0 ];
 
@@ -54,7 +54,7 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-        $time = (new SanHeuristics(self::$f, $movetext, $name))->time;
+        $time = (new SanPlotter(self::$f, $movetext, $name))->time;
 
         $expected = [ 0, -1.0, -1.0, -1.0, 1.0 ];
 
@@ -70,7 +70,7 @@ class SanHeuristicsTest extends AbstractUnitTestCase
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
 
-        $time = (new SanHeuristics(self::$f, $movetext, $name))->time;
+        $time = (new SanPlotter(self::$f, $movetext, $name))->time;
 
         $expected = [ 0, 1.0, 0.25, 0.50, -1.0 ];
 
@@ -90,7 +90,7 @@ class SanHeuristicsTest extends AbstractUnitTestCase
         $board->playLan('b', 'f8g7');
         $board->playLan('w', 'e2e4');
 
-        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
+        $time = (new SanPlotter(self::$f, $board->movetext(), $name))->time;
 
         $expected = [ 0, 1.0 ];
 
@@ -109,7 +109,7 @@ class SanHeuristicsTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'a5');
 
-        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
+        $time = (new SanPlotter(self::$f, $board->movetext(), $name))->time;
 
         $expected = [ 0, 1.0, 0.92 ];
 

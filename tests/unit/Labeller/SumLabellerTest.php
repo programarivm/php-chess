@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\Labeller;
 
-use Chess\SanHeuristics;
+use Chess\SanPlotter;
 use Chess\Function\CompleteFunction;
 use Chess\Labeller\SumLabeller;
 use Chess\Play\SanPlay;
@@ -28,7 +28,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A00))->validate()->board;
 
-        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
+        $time = (new SanPlotter(self::$f, $board->movetext(), $name))->time;
 
         $label = (new SumLabeller())->label($time);
 
@@ -48,7 +48,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A08))->validate()->board;
 
-        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
+        $time = (new SanPlotter(self::$f, $board->movetext(), $name))->time;
 
         $label = (new SumLabeller())->label($time);
 
@@ -68,7 +68,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A59))->validate()->board;
 
-        $time = (new SanHeuristics(self::$f, $board->movetext(), $name))->time;
+        $time = (new SanPlotter(self::$f, $board->movetext(), $name))->time;
 
         $label = (new SumLabeller())->label($time);
 
