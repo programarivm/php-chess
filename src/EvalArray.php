@@ -68,7 +68,7 @@ class EvalArray
         $sum = array_sum($normd);
         $count = count($normd);
         if ($count > 0) {
-            return round($sum / $count, 4, PHP_ROUND_HALF_UP);
+            return round($sum / $count, 4);
         }
 
         return 0.0;
