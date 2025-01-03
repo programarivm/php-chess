@@ -24,14 +24,16 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function e4_d5_exd5_Qxd5()
     {
+        $expectedMean = [ 0.0, 0.185, -0.115, -0.2838, -0.0657 ];
         $expectedSd = [ 0.0, 0.7591, -0.8998, -0.7603, -0.5406 ];
-        $expectedSdComponentQxd5 = [ 0.0, -1.0, 1.0, -0.24, -0.07, -0.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02 ];
+        $expectedHeuristic = [ 0.0, -1.0, 1.0, -0.24, -0.07, -0.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02 ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $sanExtractor = new SanExtractor(self::$f, $movetext, new Board());
 
+        $this->assertEqualsWithDelta($expectedMean, $sanExtractor->mean, 0.0001);
         $this->assertEqualsWithDelta($expectedSd, $sanExtractor->sd, 0.0001);
-        $this->assertEqualsWithDelta($expectedSdComponentQxd5, $sanExtractor->heuristic[4], 0.0001);
+        $this->assertEqualsWithDelta($expectedHeuristic, $sanExtractor->heuristic[4], 0.0001);
     }
 
     /**
@@ -40,11 +42,13 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function A59()
     {
+        $expectedMean = [ 0.0, 0.5433, 0.1667, 0.28, 0.59, 0.246, 0.342, 0.2467, 0.072, 0.3345, 0.3536, 0.1255, -0.1067, -0.0589, -0.07, 0.031, 0.0322, 0.031 ];
         $expectedSd = [ 0.0, 0.3715, 0.8498, 0.809, 0.2435, 0.6693, 0.8366, 0.766, 0.7763, 0.7438, 0.7385, 0.5999, -0.696, -0.6173, -0.5291, 0.5017, 0.5279, 0.5166 ];
 
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
         $sanExtractor = new SanExtractor(self::$f, $A59, new Board());
 
+        $this->assertEqualsWithDelta($expectedMean, $sanExtractor->mean, 0.0001);
         $this->assertEqualsWithDelta($expectedSd, $sanExtractor->sd, 0.0001);
     }
 
