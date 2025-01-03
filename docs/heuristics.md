@@ -279,10 +279,10 @@ $sanExtractor = new SanExtractor($f, $movetext, new Board());
 
 ### Evaluation Array
 
-The heuristic domain is calculated by adding up its individual components. This is how component number four, which is to say the normalization of the fourth evaluation array, is obtained from the example above.
+This is how component number four, which is to say the normalization of the fourth evaluation array, is obtained from the example above.
 
 ```php
-print_r($sanExtractor->heuristic[4]);
+print_r($sanExtractor->eval[4]);
 ```
 
 ```text
