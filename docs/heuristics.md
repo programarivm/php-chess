@@ -281,7 +281,7 @@ Array
 
 ## All Oscillations of a Game
 
-[Chess\SanSignal](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanSignalTest.php) returns the oscillations of all evaluation features both in the time domain and the spectrum domain, and it also returns the individual components of both domains.
+[Chess\SanSignal](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanSignalTest.php) returns the oscillations of all evaluation features both in the time domain and the heuristic domain, and it also returns the individual components of both domains.
 
 ```php
 use Chess\SanSignal;
@@ -295,7 +295,7 @@ $movetext = '1.e4 d5 2.exd5 Qxd5';
 $sanSignal = new SanSignal($f, $movetext, new Board());
 
 print_r($sanSignal->time);
-print_r($sanSignal->spectrum);
+print_r($sanSignal->heuristic);
 ```
 
 ```text
@@ -321,7 +321,7 @@ Array
 
 ![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
 
-The time domain and the spectrum domain are calculated by adding up their individual components. This is how to obtain the space oscillations by using time component number three.
+The time domain and the heuristic domain are calculated by adding up their individual components. This is how to obtain the space oscillations by using time component number three.
 
 ```php
 print_r($sanSignal->timeComponent[3]);
@@ -341,7 +341,7 @@ Array
 And this is how to obtain the oscillations of all evaluation features after the second move (4 plies) has been played.
 
 ```php
-print_r($sanSignal->spectrumComponent[4]);
+print_r($sanSignal->heuristicComponent[4]);
 ```
 
 ```text

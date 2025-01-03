@@ -30,20 +30,20 @@ class SanSignal extends SanPlay
     public array $timeComponent = [];
 
     /**
-     * Normalization of the spectrum domain.
+     * Normalization of the heuristic domain.
      *
      * @var array
      */
-    public array $spectrum = [
+    public array $heuristic = [
         0,
     ];
 
     /**
-     * Spectrum domain components.
+     * Heuristic domain components.
      *
      * @var array
      */
-    public array $spectrumComponent = [];
+    public array $heuristicComponent = [];
 
     /**
      * @param \Chess\Function\AbstractFunction $f
@@ -58,7 +58,7 @@ class SanSignal extends SanPlay
         parent::__construct($movetext, $board);
 
         $result[] = array_fill(0, count($f->names()), 0);
-        $this->spectrumComponent[] = array_fill(0, count($f->names()), 0);
+        $this->heuristicComponent[] = array_fill(0, count($f->names()), 0);
 
         foreach ($this->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
@@ -69,15 +69,15 @@ class SanSignal extends SanPlay
                         $items[] =  $item[Color::W] - $item[Color::B];
                     }
                     $result[] = $items;
-                    $spectrumComponent = EvalArray::normalize(-1, 1, $items);
-                    $this->spectrumComponent[] = $spectrumComponent;
+                    $heuristicComponent = EvalArray::normalize(-1, 1, $items);
+                    $this->heuristicComponent[] = $heuristicComponent;
                     $mean = EvalArray::mean($f, $this->board);
                     if ($mean > 0) {
-                        $this->spectrum[] = EvalArray::sd($f, $this->board);
+                        $this->heuristic[] = EvalArray::sd($f, $this->board);
                     } elseif ($mean < 0) {
-                        $this->spectrum[] = EvalArray::sd($f, $this->board) * -1;
+                        $this->heuristic[] = EvalArray::sd($f, $this->board) * -1;
                     } else {
-                        $this->spectrum[] = 0;
+                        $this->heuristic[] = 0;
                     }
                 }
             }
