@@ -13,7 +13,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
  *
  * Oscillations of evaluation features in the heuristic domain.
  */
-class SanSignal extends SanPlay
+class SanExtractor extends SanPlay
 {
     /**
      * Mean.
