@@ -15,6 +15,13 @@ use Chess\Variant\Classical\PGN\Move;
  */
 class SanExtractor
 {
+    /**
+     * Returns the means.
+     *
+     * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
+     * @param string $movetext
+     */
     public static function mean(AbstractFunction $f, AbstractBoard $board, string $movetext): array
     {
         $mean[] = 0;
@@ -30,6 +37,13 @@ class SanExtractor
         return $mean;
     }
 
+    /**
+     * Returns the standard deviations.
+     *
+     * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
+     * @param string $movetext
+     */
     public static function sd(AbstractFunction $f, AbstractBoard $board, string $movetext): array
     {
         $sd[] = 0;
@@ -52,6 +66,13 @@ class SanExtractor
         return $sd;
     }
 
+    /**
+     * Returns the evaluation arrays.
+     *
+     * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
+     * @param string $movetext
+     */
     public static function eval(AbstractFunction $f, AbstractBoard $board, string $movetext): array
     {
         $eval[] = array_fill(0, count($f->names()), 0);
