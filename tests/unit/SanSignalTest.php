@@ -34,13 +34,13 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedTimeComponentCenter, $sanSignal->timeComponent[1]);
-        $this->assertEquals($expectedTimeComponentConnectivity, $sanSignal->timeComponent[2]);
-        $this->assertEquals($expectedTimeComponentSpace, $sanSignal->timeComponent[3]);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedTimeComponentCenter, $sanSignal->timeComponent[1], 0.0001);
+        $this->assertEqualsWithDelta($expectedTimeComponentConnectivity, $sanSignal->timeComponent[2], 0.0001);
+        $this->assertEqualsWithDelta($expectedTimeComponentSpace, $sanSignal->timeComponent[3], 0.0001);
 
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
-        $this->assertEquals($expectedSpectrumComponentQxd5, $sanSignal->spectrumComponent[4]);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrumComponentQxd5, $sanSignal->spectrumComponent[4], 0.0001);
     }
 
     /**
@@ -54,8 +54,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
         $sanSignal = new SanSignal(self::$f, $A59, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -69,8 +69,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.a3';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -84,8 +84,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.a4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -99,8 +99,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.b4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -114,8 +114,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.c4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -129,8 +129,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.d4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -144,8 +144,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.e4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -159,8 +159,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.f4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -174,8 +174,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.g4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -189,8 +189,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.h4';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -204,8 +204,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.a4 h5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -219,8 +219,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.a4 a5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -234,8 +234,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.a4 e5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -249,8 +249,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $movetext = '1.h4 e5';
         $sanSignal = new SanSignal(self::$f, $movetext, new Board());
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -266,8 +266,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create($fen);
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -283,8 +283,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create($fen);
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -300,8 +300,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create($fen);
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -317,8 +317,8 @@ class SanSignalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create($fen);
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 
     /**
@@ -334,7 +334,7 @@ class SanSignalTest extends AbstractUnitTestCase
         $board = FenToBoardFactory::create($fen);
         $sanSignal = new SanSignal(self::$f, $movetext, $board);
 
-        $this->assertEquals($expectedTime, $sanSignal->time);
-        $this->assertEquals($expectedSpectrum, $sanSignal->spectrum);
+        $this->assertEqualsWithDelta($expectedTime, $sanSignal->time, 0.0001);
+        $this->assertEqualsWithDelta($expectedSpectrum, $sanSignal->spectrum, 0.0001);
     }
 }
