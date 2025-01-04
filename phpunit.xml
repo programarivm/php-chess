@@ -13,7 +13,6 @@
             <directory>tests/unit/Elo</directory>
             <directory>tests/unit/Eval</directory>
             <directory>tests/unit/Function</directory>
-            <directory>tests/unit/Labeller</directory>
             <directory>tests/unit/Media</directory>
             <directory>tests/unit/Movetext</directory>
             <directory>tests/unit/Play</directory>
