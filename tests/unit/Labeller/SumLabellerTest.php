@@ -7,6 +7,7 @@ use Chess\Function\CompleteFunction;
 use Chess\Labeller\SumLabeller;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\Board;
 
 class SumLabellerTest extends AbstractUnitTestCase
 {
@@ -28,7 +29,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A00))->validate()->board;
 
-        $time = (new SanPlotter(self::$f, $board->movetext(), $name))->time;
+        $time = SanPlotter::time(self::$f, new Board(), $board->movetext(), $name);
 
         $label = (new SumLabeller())->label($time);
 
@@ -48,7 +49,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A08))->validate()->board;
 
-        $time = (new SanPlotter(self::$f, $board->movetext(), $name))->time;
+        $time = SanPlotter::time(self::$f, new Board(), $board->movetext(), $name);
 
         $label = (new SumLabeller())->label($time);
 
@@ -68,7 +69,7 @@ class SumLabellerTest extends AbstractUnitTestCase
 
         $board = (new SanPlay($A59))->validate()->board;
 
-        $time = (new SanPlotter(self::$f, $board->movetext(), $name))->time;
+        $time = SanPlotter::time(self::$f, new Board(), $board->movetext(), $name);
 
         $label = (new SumLabeller())->label($time);
 

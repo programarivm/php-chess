@@ -13,40 +13,33 @@ use Chess\Variant\Classical\PGN\AN\Color;
  *
  * Plots the oscillations of an evaluation feature in the time domain.
  */
-class SanPlotter extends SanPlay
+class SanPlotter
 {
     /**
-     * Time domain.
+     * Returns the time.
      *
-     * @var array
-     */
-    public array $time = [
-        0,
-    ];
-
-    /**
      * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
      * @param string $name
-     * @param \Chess\Variant\AbstractBoard $board
      */
-    public function __construct(
+    public static function time(
         AbstractFunction $f,
-        string $movetext = '',
-        string $name = '',
-        AbstractBoard $board = null
-    ) {
-        parent::__construct($movetext, $board);
-
-        foreach ($this->sanMovetext->moves as $val) {
+        AbstractBoard $board,
+        string $movetext,
+        string $name
+    ): array {
+        $time[] = 0;
+        $sanPlay = new SanPlay($movetext, $board);
+        foreach ($sanPlay->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
-                if ($this->board->play($this->board->turn, $val)) {
-                    $item = EvalArray::add(EvalFactory::create($f, $name, $this->board));
-                    $this->time[] = $item[Color::W] - $item[Color::B];
+                if ($board->play($board->turn, $val)) {
+                    $item = EvalArray::add(EvalFactory::create($f, $name, $board));
+                    $time[] = $item[Color::W] - $item[Color::B];
                 }
             }
         }
 
-        $this->time = EvalArray::normalize(-1, 1, $this->time);
+        return EvalArray::normalize(-1, 1, $time);
     }
 }
