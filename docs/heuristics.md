@@ -46,8 +46,6 @@ Listed below are the chess heuristics implemented in PHP Chess.
 | Space | This is a measure of the number of squares controlled by each player. | [Chess\Eval\SpaceEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/SpaceEvalTest.php) |
 | Square outpost | A square protected by a pawn that cannot be attacked by an opponent's pawn. | [Chess\Eval\SqOutpostEval](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/SqOutpostEvalTest.php) |
 
-The evaluation features are used in several classes.
-
 ## Evaluate a Chess Position
 
 [Chess\EvalArray](https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php) allows to transform a FEN position to a normalized array of values between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.
