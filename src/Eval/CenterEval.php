@@ -67,7 +67,7 @@ class CenterEval extends AbstractEval implements UniqueEvalInterface
 
         foreach ($this->center as $sq => $val) {
             if ($piece = $this->board->pieceBySq($sq)) {
-                $this->result[$piece->color] += self::$value[$piece->id];
+                $this->result[$piece->color] += floor(self::$value[$piece->id] * $val);
             }
             if (in_array($sq, $this->board->spaceEval[Color::W])) {
                 $this->result[Color::W] += $val;
