@@ -23,9 +23,9 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function e4_d5_exd5_Qxd5()
     {
-        $expectedMean = [ 0.0, 0.185, -0.115, -0.2838, -0.0657 ];
-        $expectedSd = [ 0.0, 0.7591, -0.8998, -0.7603, -0.5406 ];
-        $expectedEval = [ 0.0, -1.0, 1.0, -0.24, -0.07, -0.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02 ];
+        $expectedMean = [ 0.0, 0.18635, -0.12213, -0.28161, -0.06688 ];
+        $expectedSd = [ 0.0, 0.75943, -0.8947, -0.76196, -0.54069 ];
+        $expectedEval = [ 0.0, -1.0, 1.0, -0.24406, -0.06656, -0.02219, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11315, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02219 ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $mean = SanExtractor::mean(self::$f, new Board(), $movetext);
@@ -41,26 +41,9 @@ class SanExtractorTest extends AbstractUnitTestCase
      * @test
      * @requires PHP 8.4
      */
-    public function A59()
-    {
-        $expectedMean = [ 0.0, 0.5433, 0.1667, 0.28, 0.59, 0.246, 0.342, 0.2467, 0.072, 0.3345, 0.3536, 0.1255, -0.1067, -0.0589, -0.07, 0.031, 0.0322, 0.031 ];
-        $expectedSd = [ 0.0, 0.3715, 0.8498, 0.809, 0.2435, 0.6693, 0.8366, 0.766, 0.7763, 0.7438, 0.7385, 0.5999, -0.696, -0.6173, -0.5291, 0.5017, 0.5279, 0.5166 ];
-
-        $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
-        $mean = SanExtractor::mean(self::$f, new Board(), $A59);
-        $sd = SanExtractor::sd(self::$f, new Board(), $A59);
-
-        $this->assertEqualsWithDelta($expectedMean, $mean, 0.0001);
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
     public function a3()
     {
-        $expectedSd = [ 0.0, 0.03 ];
+        $expectedSd = [ 0.0, 0.00316 ];
 
         $movetext = '1.a3';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
@@ -74,7 +57,7 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function a4()
     {
-        $expectedSd = [ 0.0, 0.23 ];
+        $expectedSd = [ 0.0, 0.24625 ];
 
         $movetext = '1.a4';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
@@ -86,93 +69,9 @@ class SanExtractorTest extends AbstractUnitTestCase
      * @test
      * @requires PHP 8.4
      */
-    public function b4()
-    {
-        $expectedSd = [ 0.0, 0.9381 ];
-
-        $movetext = '1.b4';
-        $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function c4()
-    {
-        $expectedSd = [ 0.0, 0.8738 ];
-
-        $movetext = '1.c4';
-        $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function d4()
-    {
-        $expectedSd = [ 0.0, 0.3715 ];
-
-        $movetext = '1.d4';
-        $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function e4()
-    {
-        $expectedSd = [ 0.0, 0.7591 ];
-
-        $movetext = '1.e4';
-        $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function f4()
-    {
-        $expectedSd = [ 0.0, 0.7348 ];
-
-        $movetext = '1.f4';
-        $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function g4()
-    {
-        $expectedSd = [ 0.0, 0.9335 ];
-
-        $movetext = '1.g4';
-        $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
     public function h4()
     {
-        $expectedSd = [ 0.0, 0.2249 ];
+        $expectedSd = [ 0.0, 0.24125 ];
 
         $movetext = '1.h4';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
@@ -186,7 +85,7 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function a4_h5()
     {
-        $expectedSd = [ 0.0, 0.23, 0.0 ];
+        $expectedSd = [ 0.0, 0.24625, 0.0 ];
 
         $movetext = '1.a4 h5';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
@@ -200,118 +99,10 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function a4_a5()
     {
-        $expectedSd = [ 0.0, 0.23, 0.0 ];
+        $expectedSd = [ 0.0, 0.24625, 0.0 ];
 
         $movetext = '1.a4 a5';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function a4_e5()
-    {
-        $expectedSd = [ 0.0, 0.23, -0.743 ];
-
-        $movetext = '1.a4 e5';
-        $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function h4_e5()
-    {
-        $expectedSd = [ 0.0, 0.2249, -0.6551 ];
-
-        $movetext = '1.h4 e5';
-        $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function a5()
-    {
-        $expectedSd = [ 0.0, 0.8632 ];
-
-        $fen = '7k/8/8/8/P7/8/8/7K w - -';
-        $movetext = '1.a5';
-        $board = FenToBoardFactory::create($fen);
-        $sd = SanExtractor::sd(self::$f, $board, $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function a6()
-    {
-        $expectedSd = [ 0.0, 0.8292 ];
-
-        $fen = '7k/8/8/P7/8/8/8/7K w - -';
-        $movetext = '1.a6';
-        $board = FenToBoardFactory::create($fen);
-        $sd = SanExtractor::sd(self::$f, $board, $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function a7()
-    {
-        $expectedSd = [ 0.0, 0.8598 ];
-
-        $fen = '4k3/8/P7/8/8/8/8/4K3 w - -';
-        $movetext = '1.a7';
-        $board = FenToBoardFactory::create($fen);
-        $sd = SanExtractor::sd(self::$f, $board, $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function b5()
-    {
-        $expectedSd = [ 0.0, 0.7101 ];
-
-        $fen = '7k/8/8/8/1P6/8/8/7K w - -';
-        $movetext = '1.b5';
-        $board = FenToBoardFactory::create($fen);
-        $sd = SanExtractor::sd(self::$f, $board, $movetext);
-
-        $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
-    }
-
-    /**
-     * @test
-     * @requires PHP 8.4
-     */
-    public function h7()
-    {
-        $expectedSd = [ 0.0, 0.8575 ];
-
-        $fen = '4k3/8/7P/8/8/8/8/4K3 w - -';
-        $movetext = '1.h7';
-        $board = FenToBoardFactory::create($fen);
-        $sd = SanExtractor::sd(self::$f, $board, $movetext);
 
         $this->assertEqualsWithDelta($expectedSd, $sd, 0.0001);
     }

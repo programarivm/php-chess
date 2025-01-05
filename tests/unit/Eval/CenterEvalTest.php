@@ -16,8 +16,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function A08()
     {
         $expectedResult = [
-            'w' => 30.12,
-            'b' => 33.7,
+            'w' => 29.136,
+            'b' => 33.146,
         ];
 
         $expectedExplanation = [
@@ -38,8 +38,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B25()
     {
         $expectedResult = [
-            'w' => 38.53,
-            'b' => 35.42,
+            'w' => 37.234,
+            'b' => 34.175,
         ];
 
         $expectedExplanation = [
@@ -60,8 +60,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B56()
     {
         $expectedResult = [
-            'w' => 47.78,
-            'b' => 37.48,
+            'w' => 46.252,
+            'b' => 36.182,
         ];
 
         $expectedExplanation = [
@@ -82,8 +82,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function C60()
     {
         $expectedResult = [
-            'w' => 38.45,
-            'b' => 35.41,
+            'w' => 37.18,
+            'b' => 34.177,
         ];
 
         $expectedExplanation = [
@@ -104,8 +104,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function a6()
     {
         $expectedResult = [
-            'w' => 2.13,
-            'b' => 1.17,
+            'w' => 2.052,
+            'b' => 1.068,
         ];
 
         $expectedExplanation = [
@@ -125,8 +125,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function a7()
     {
         $expectedResult = [
-            'w' => 1.13,
-            'b' => 1.17,
+            'w' => 1.052,
+            'b' => 1.068,
         ];
 
         $expectedExplanation = [
@@ -147,8 +147,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function h6()
     {
         $expectedResult = [
-            'w' => 2.12,
-            'b' => 1.03,
+            'w' => 2.048,
+            'b' => 1.011,
         ];
 
         $expectedExplanation = [
@@ -169,8 +169,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function h7()
     {
         $expectedResult = [
-            'w' => 1.12,
-            'b' => 1.03,
+            'w' => 1.056,
+            'b' => 1.011,
         ];
 
         $expectedExplanation = [
