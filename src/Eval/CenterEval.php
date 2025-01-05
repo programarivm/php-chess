@@ -43,10 +43,10 @@ class CenterEval extends AbstractEval implements UniqueEvalInterface
     /**
      * @param \Chess\Variant\AbstractBoard $board
      *
-     * If a piece occupies a square, its value is considered in the total sum of
-     * the result. The more valuable the piece, the better. To this sum are also
-     * added the squares controlled by each player. The controlled squares are
-     * those that are in each player's space.
+     * The value of each piece occupying a square is considered in the total sum
+     * of the result. The more valuable the piece, the better. To this sum are
+     * also added the squares controlled by each player. The controlled squares
+     * are those in each player's space.
      */
     public function __construct(AbstractBoard $board)
     {
@@ -67,7 +67,7 @@ class CenterEval extends AbstractEval implements UniqueEvalInterface
 
         foreach ($this->center as $sq => $val) {
             if ($piece = $this->board->pieceBySq($sq)) {
-                $this->result[$piece->color] += self::$value[$piece->id] * $val;
+                $this->result[$piece->color] += self::$value[$piece->id];
             }
             if (in_array($sq, $this->board->spaceEval[Color::W])) {
                 $this->result[Color::W] += $val;
@@ -77,7 +77,7 @@ class CenterEval extends AbstractEval implements UniqueEvalInterface
             }
         }
 
-        $this->result[Color::W] = round($this->result[Color::W], 2);
-        $this->result[Color::B] = round($this->result[Color::B], 2);
+        $this->result[Color::W] = round($this->result[Color::W], 4);
+        $this->result[Color::B] = round($this->result[Color::B], 4);
     }
 }

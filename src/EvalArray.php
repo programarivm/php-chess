@@ -194,9 +194,9 @@ class EvalArray
 
         foreach ($unnormd as $key => $val) {
             if ($val > 0) {
-                $unnormd[$key] = round($unnormd[$key] * $newMax / $max, 2);
+                $unnormd[$key] = round($unnormd[$key] * $newMax / $max, 4);
             } elseif ($val < 0) {
-                $unnormd[$key] = round($unnormd[$key] * $newMin / $min, 2);
+                $unnormd[$key] = round($unnormd[$key] * $newMin / $min, 4);
             } else {
                 $unnormd[$key] = 0;
             }
