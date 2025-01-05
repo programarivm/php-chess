@@ -58,7 +58,7 @@ class RelativePinEval extends AbstractEval
                             $valDiff = self::$value[$attacking->id] -
                                 self::$value[$this->board->pieceBySq($sq)->id];
                             if ($valDiff < 0) {
-                                $this->result[$piece->oppColor()] += abs(round($valDiff, 2));
+                                $this->result[$piece->oppColor()] += abs(round($valDiff, 4));
                                 $this->toElaborate[] = $piece;
                             }
                         }
