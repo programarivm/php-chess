@@ -77,7 +77,7 @@ class CenterEval extends AbstractEval implements UniqueEvalInterface
             }
         }
 
-        $this->result[Color::W] = round($this->result[Color::W], 4);
-        $this->result[Color::B] = round($this->result[Color::B], 4);
+        $this->result[Color::W] = round($this->result[Color::W], 5);
+        $this->result[Color::B] = round($this->result[Color::B], 5);
     }
 }
