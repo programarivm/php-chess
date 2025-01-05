@@ -165,7 +165,11 @@ echo $steinitz;
 
 In this example, White is better than Black because the value obtained is a positive number. One evaluation feature is favoring White.
 
-The Steinitz evaluation alone has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. However, it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.
+Chess evaluation functions often consist in multiplying the terms by a weight and adding the results to construct a linear combination.
+
+![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png)
+
+However, the Steinitz evaluation alone, which is to say just counting the advantages, has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. Also it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.
 
 ### Mean
 
@@ -255,7 +259,7 @@ Array
 )
 ```
 
-![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png)
+![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png)
 
 The data is plotted in a way that is easy for chess players to understand and learn.
 
@@ -321,7 +325,7 @@ Array
 )
 ```
 
-![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png)
+![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
 
 The evaluation array can be plotted in a way that is easy for chess players to understand and learn.
 
@@ -343,7 +347,7 @@ print_r($mean);
 )
 ```
 
-![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
+![Figure 4](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png)
 
 ### Standard Deviation
 
@@ -364,6 +368,6 @@ Array
 )
 ```
 
-![Figure 4](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png)
+![Figure 5](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_05.png)
 
 🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
