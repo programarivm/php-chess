@@ -194,4 +194,41 @@ class EvalArrayTest extends AbstractUnitTestCase
         $this->assertSame($expectedVar, $var);
         $this->assertSame($expectedSd, $sd);
     }
+
+    /**
+     * @test
+     */
+    public function A74_a6()
+    {
+        $expectedUnfilteredNormd = [ 0, 1.0, 0, 0.59, -1.0, 0, 0, 0, 0, 0, 0.1, 0, 0, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+        $expectedNormd = [ -1.0, 0.1, 0.1, 0.59, 1.0 ];
+        $expectedSteinitz = 3;
+        $expectedMean = 0.158;
+        $expectedMedian = 0.1;
+        $expectedMode = 0.1;
+        $expectedVar = 0.4487;
+        $expectedSd = 0.6699;
+
+        $board = FenToBoardFactory::create('rnbqkb1r/1p3ppp/3p1n2/p1pP4/4P3/2N5/PP3PPP/R1BQKBNR w KQkq a6');
+
+        $unfilteredNormd = EvalArray::normalization(self::$f, $board);
+        $normd = array_filter($unfilteredNormd);
+        sort($normd);
+
+        $steinitz = EvalArray::steinitz(self::$f, $board);
+        $mean = EvalArray::mean(self::$f, $board);
+        $median = EvalArray::median(self::$f, $board);
+        $mode = EvalArray::mode(self::$f, $board);
+        $var = EvalArray::var(self::$f, $board);
+        $sd = EvalArray::sd(self::$f, $board);
+
+        $this->assertSame($expectedUnfilteredNormd, $unfilteredNormd);
+        $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
+        $this->assertSame($expectedMean, $mean);
+        $this->assertSame($expectedMedian, $median);
+        $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
+        $this->assertSame($expectedSd, $sd);
+    }
 }
