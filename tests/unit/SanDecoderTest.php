@@ -1,0 +1,32 @@
+<?php
+
+namespace Chess\Tests\Unit;
+
+use Chess\SanDecoder;
+use Chess\Function\FastFunction;
+use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\Board;
+
+class SanDecoderTest extends AbstractUnitTestCase
+{
+    static private FastFunction $f;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$f = new FastFunction();
+    }
+
+    /**
+     * @test
+     */
+    public function A59()
+    {
+        $expected = '1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6 Bxa6 6.Nc3 d6 7.e4 Bxf1 8.Kxf1 g6 9.g3';
+
+        $mean = [ 0, 0.5381, 0.5465, 0.26965, 0.6575, 0.28393, 0.4208, 0.29222, 0.1088, 0.34909, 0.349, 0.12338, -0.10694, -0.05983, -0.06842, 0.03005, 0.03099, 0.02949 ];
+
+        $sanDecoder = new SanDecoder(self::$f, new Board(), $mean);
+
+        $this->assertEquals($expected, $sanDecoder->board->movetext());
+    }
+}
