@@ -22,6 +22,7 @@ class SanPlotter
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
      * @param string $name
+     * @return array
      */
     public static function time(
         AbstractFunction $f,
