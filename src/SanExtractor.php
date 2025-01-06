@@ -21,6 +21,7 @@ class SanExtractor
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
+     * @return array
      */
     public static function mean(AbstractFunction $f, AbstractBoard $board, string $movetext): array
     {
@@ -43,6 +44,7 @@ class SanExtractor
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
+     * @return array
      */
     public static function sd(AbstractFunction $f, AbstractBoard $board, string $movetext): array
     {
@@ -72,6 +74,7 @@ class SanExtractor
      * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
+     * @return array
      */
     public static function eval(AbstractFunction $f, AbstractBoard $board, string $movetext): array
     {
