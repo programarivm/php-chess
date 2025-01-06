@@ -23,9 +23,9 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function e4_d5_exd5_Qxd5()
     {
-        $expectedMean = [ 0.0, 0.18635, -0.12213, -0.28161, -0.06688 ];
-        $expectedSd = [ 0.0, 0.75943, -0.8947, -0.76196, -0.54069 ];
-        $expectedEval = [ 0.0, -1.0, 1.0, -0.24406, -0.06656, -0.02219, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11315, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02219 ];
+        $expectedMean = [ 0.0, 0.17974, -0.08313, -0.28566, -0.06652 ];
+        $expectedSd = [ 0.0, 0.7559, -0.92438, -0.7585, -0.54063 ];
+        $expectedEval = [ 0.0, -1.0, 1.0, -0.24276, -0.06621, -0.02207, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.11255, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.02207 ];
 
         $movetext = '1.e4 d5 2.exd5 Qxd5';
         $mean = SanExtractor::mean(self::$f, new Board(), $movetext);
@@ -43,7 +43,7 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function a3()
     {
-        $expectedSd = [ 0.0, 0.00316 ];
+        $expectedSd = [ 0.0, 0.08781 ];
 
         $movetext = '1.a3';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
@@ -57,7 +57,7 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function a4()
     {
-        $expectedSd = [ 0.0, 0.24625 ];
+        $expectedSd = [ 0.0, 0.17776 ];
 
         $movetext = '1.a4';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
@@ -71,7 +71,7 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function h4()
     {
-        $expectedSd = [ 0.0, 0.24125 ];
+        $expectedSd = [ 0.0, 0.1955 ];
 
         $movetext = '1.h4';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
@@ -85,7 +85,7 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function a4_h5()
     {
-        $expectedSd = [ 0.0, 0.24625, 0.0 ];
+        $expectedSd = [ 0.0, 0.17776, 0.0 ];
 
         $movetext = '1.a4 h5';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);
@@ -99,7 +99,7 @@ class SanExtractorTest extends AbstractUnitTestCase
      */
     public function a4_a5()
     {
-        $expectedSd = [ 0.0, 0.24625, 0.0 ];
+        $expectedSd = [ 0.0, 0.17776, 0.0 ];
 
         $movetext = '1.a4 a5';
         $sd = SanExtractor::sd(self::$f, new Board(), $movetext);

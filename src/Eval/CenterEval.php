@@ -23,21 +23,31 @@ class CenterEval extends AbstractEval implements UniqueImbalanceEvalInterface
 
     /**
      * The closer a square is to the center, the higher its value. The board is
-     * slightly tilted. Please note how each square is assigned a different
-     * value to break the vertical symmetry and make sure that each move can
-     * create a unique imbalance.
+     * slightly tilted. Please note how each square is assigned a unique slope
+     * to break the symmetry and make sure that each move will create a unique
+     * imbalance.
+     *
+     * The board is divided into four main sections, each of which is assigned
+     * an integer slope starting from 0. The outermost section is assigned a
+     * slope of 0. Moving clockwise, a constant value is then added to each
+     * square to create a sufficiently small imbalance. This constant value will
+     * never exceed 0.10000 after completing a rotation.
+     *
+     * So for example, to each square of the outermost section, 10.000 / (8 x 4)
+     * ≈ 300 is added. To each square of the innermost section, 10.000 / 4
+     * ≈ 2500 is added.
      *
      * @var array
      */
     private array $center = [
-        'a8' => 0.004, 'b8' => 0.003, 'c8' => 0.002, 'd8' => 0.001, 'e8' => 0.028, 'f8' => 0.027, 'g8' => 0.026, 'h8' => 0.025,
-        'a7' => 0.005, 'b7' => 1.003, 'c7' => 1.002, 'd7' => 1.001, 'e7' => 1.020, 'f7' => 1.019, 'g7' => 1.018, 'h7' => 0.024,
-        'a6' => 0.006, 'b6' => 1.004, 'c6' => 2.002, 'd6' => 2.001, 'e6' => 2.012, 'f6' => 2.011, 'g6' => 1.017, 'h6' => 0.023,
-        'a5' => 0.007, 'b5' => 1.005, 'c5' => 2.003, 'd5' => 3.001, 'e5' => 3.004, 'f5' => 2.010, 'g5' => 1.016, 'h5' => 0.022,
-        'a4' => 0.008, 'b4' => 1.006, 'c4' => 2.004, 'd4' => 3.002, 'e4' => 3.003, 'f4' => 2.009, 'g4' => 1.015, 'h4' => 0.021,
-        'a3' => 0.009, 'b3' => 1.007, 'c3' => 2.005, 'd3' => 2.006, 'e3' => 2.007, 'f3' => 2.008, 'g3' => 1.014, 'h3' => 0.020,
-        'a2' => 0.010, 'b2' => 1.008, 'c2' => 1.009, 'd2' => 1.010, 'e2' => 1.011, 'f2' => 1.012, 'g2' => 1.013, 'h2' => 0.019,
-        'a1' => 0.011, 'b1' => 0.012, 'c1' => 0.013, 'd1' => 0.014, 'e1' => 0.015, 'f1' => 0.016, 'g1' => 0.017, 'h1' => 0.018,
+        'a8' => 0.00300, 'b8' => 0.00600, 'c8' => 0.00900, 'd8' => 0.01200, 'e8' => 0.01500, 'f8' => 0.01800, 'g8' => 0.02100, 'h8' => 0.02400,
+        'a7' => 0.08400, 'b7' => 1.00400, 'c7' => 1.00800, 'd7' => 1.01200, 'e7' => 1.01600, 'f7' => 1.02000, 'g7' => 1.02400, 'h7' => 0.02700,
+        'a6' => 0.08100, 'b6' => 1.08000, 'c6' => 2.00600, 'd6' => 2.01200, 'e6' => 2.01800, 'f6' => 2.02400, 'g6' => 1.02800, 'h6' => 0.03000,
+        'a5' => 0.07800, 'b5' => 1.07600, 'c5' => 2.07200, 'd5' => 3.00000, 'e5' => 3.02500, 'f5' => 2.03000, 'g5' => 1.03200, 'h5' => 0.03300,
+        'a4' => 0.07500, 'b4' => 1.07200, 'c4' => 2.06600, 'd4' => 3.07500, 'e4' => 3.05000, 'f4' => 2.03600, 'g4' => 1.03600, 'h4' => 0.03600,
+        'a3' => 0.07200, 'b3' => 1.06800, 'c3' => 2.06000, 'd3' => 2.05400, 'e3' => 2.04800, 'f3' => 2.04200, 'g3' => 1.04000, 'h3' => 0.03900,
+        'a2' => 0.06900, 'b2' => 1.06400, 'c2' => 1.06000, 'd2' => 1.05600, 'e2' => 1.05200, 'f2' => 1.04800, 'g2' => 1.04400, 'h2' => 0.04200,
+        'a1' => 0.06600, 'b1' => 0.06300, 'c1' => 0.06000, 'd1' => 0.05700, 'e1' => 0.05400, 'f1' => 0.05100, 'g1' => 0.04800, 'h1' => 0.04500,
     ];
 
     /**

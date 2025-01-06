@@ -16,8 +16,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function A08()
     {
         $expectedResult = [
-            'w' => 29.136,
-            'b' => 33.146,
+            'w' => 29.637,
+            'b' => 33.745,
         ];
 
         $expectedExplanation = [
@@ -38,8 +38,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B25()
     {
         $expectedResult = [
-            'w' => 37.234,
-            'b' => 34.175,
+            'w' => 37.941,
+            'b' => 34.665,
         ];
 
         $expectedExplanation = [
@@ -60,8 +60,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B56()
     {
         $expectedResult = [
-            'w' => 46.252,
-            'b' => 36.182,
+            'w' => 47.095,
+            'b' => 36.669,
         ];
 
         $expectedExplanation = [
@@ -82,8 +82,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function C60()
     {
         $expectedResult = [
-            'w' => 37.18,
-            'b' => 34.177,
+            'w' => 37.927,
+            'b' => 34.77,
         ];
 
         $expectedExplanation = [
@@ -104,11 +104,12 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function a6()
     {
         $expectedResult = [
-            'w' => 2.052,
-            'b' => 1.068,
+            'w' => 2.138,
+            'b' => 1.072,
         ];
 
         $expectedExplanation = [
+            'White has a slightly better control of the center.',
         ];
 
         $fen = '7k/8/P7/8/8/8/8/7K w - -';
@@ -125,8 +126,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function a7()
     {
         $expectedResult = [
-            'w' => 1.052,
-            'b' => 1.068,
+            'w' => 1.14,
+            'b' => 1.072,
         ];
 
         $expectedExplanation = [
@@ -147,8 +148,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function h6()
     {
         $expectedResult = [
-            'w' => 2.048,
-            'b' => 1.011,
+            'w' => 2.22,
+            'b' => 1.094,
         ];
 
         $expectedExplanation = [
@@ -169,8 +170,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function h7()
     {
         $expectedResult = [
-            'w' => 1.056,
-            'b' => 1.011,
+            'w' => 1.217,
+            'b' => 1.094,
         ];
 
         $expectedExplanation = [
