@@ -25,8 +25,8 @@ class SanDecoderTest extends AbstractUnitTestCase
 
         $mean = [ 0, 0.5381, 0.5465, 0.26965, 0.6575, 0.28393, 0.4208, 0.29222, 0.1088, 0.34909, 0.349, 0.12338, -0.10694, -0.05983, -0.06842, 0.03005, 0.03099, 0.02949 ];
 
-        $sanDecoder = new SanDecoder(self::$f, new Board(), $mean);
+        $board = SanDecoder::mean(self::$f, new Board(), $mean);
 
-        $this->assertEquals($expected, $sanDecoder->board->movetext());
+        $this->assertEquals($expected, $board->movetext());
     }
 }

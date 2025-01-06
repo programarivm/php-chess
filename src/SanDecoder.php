@@ -8,38 +8,22 @@ use Chess\Variant\AbstractBoard;
 
 class SanDecoder
 {
-    public AbstractFunction $f;
-
-    public array $mean;
-
-    public AbstractBoard $board;
-
-    public function __construct(AbstractFunction $f, AbstractBoard $board, array $mean)
+    public static function mean(AbstractFunction $f, AbstractBoard $board, array $mean): AbstractBoard
     {
-        $this->f = $f;
-        $this->board = $board;
-        $this->mean = $mean;
-
-        for ($i = 1; $i < count($this->mean); $i++) {
-            if ($move = $this->move($i, $this->board)) {
-                $this->board->playLan($this->board->turn, $move);
-            }
-        }
-    }
-
-    protected function move($n, $board): bool|string
-    {
-        foreach ($this->board->pieces($this->board->turn) as $piece) {
-            foreach ($piece->moveSqs() as $sq) {
-                $clone = $this->board->clone();
-                if ($clone->playLan($clone->turn, "{$piece->sq}$sq")) {
-                    if (EvalArray::mean($this->f, $clone) === $this->mean[$n]) {
-                        return "{$piece->sq}$sq";
+        for ($i = 1; $i < count($mean); $i++) {
+            foreach ($board->pieces($board->turn) as $piece) {
+                foreach ($piece->moveSqs() as $sq) {
+                    $clone = $board->clone();
+                    if ($clone->playLan($clone->turn, "{$piece->sq}$sq")) {
+                        if (EvalArray::mean($f, $clone) === $mean[$i]) {
+                            $board->playLan($board->turn, "{$piece->sq}$sq");
+                            break 2;
+                        }
                     }
                 }
             }
         }
 
-        return false;
+        return $board;
     }
 }
