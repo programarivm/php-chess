@@ -23,15 +23,13 @@ class CenterEval extends AbstractEval implements UniqueImbalanceEvalInterface
 
     /**
      * The closer a square is to the center, the higher its value. The board is
-     * slightly tilted. Please note how each square is assigned a unique slope
-     * to break the symmetry and make sure that each move will create a unique
-     * imbalance.
+     * slightly tilted. Please note how each square is assigned a unique slope.
      *
      * The board is divided into four main sections, each of which is assigned
-     * an integer slope starting from 0. The outermost section is assigned a
+     * an integer value starting from 0. The outermost section is assigned a
      * slope of 0. Moving clockwise, a constant value is then added to each
-     * square to create a sufficiently small imbalance. This constant value will
-     * never exceed 0.10000 after completing a rotation.
+     * square to create the sufficiently small imbalance. This constant value
+     * will never exceed 0.10000 after completing a rotation.
      *
      * So for example, to each square of the outermost section, 10.000 / (8 x 4)
      * ≈ 300 is added. To each square of the innermost section, 10.000 / 4
