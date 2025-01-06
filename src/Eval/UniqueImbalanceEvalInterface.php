@@ -14,8 +14,8 @@ namespace Chess\Eval;
  *
  * FEN(n) ≡ Ψ(n)
  *
- * Blab's corollary says that an entire chess game can be obtained from a signal
- * encoding the oscillations of a chessboard.
+ * Remember, Blab's corollary says that an entire chess game can be obtained
+ * from a signal encoding the oscillations of a chessboard.
  */
 interface UniqueImbalanceEvalInterface
 {

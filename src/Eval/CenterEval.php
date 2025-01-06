@@ -8,7 +8,8 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * Center Evaluation
  *
- * Measures how close the pieces are to the center of the board.
+ * Measures how close the pieces are to the center of the board in a way that
+ * each move creates a unique sufficiently small imbalance.
  */
 class CenterEval extends AbstractEval implements UniqueImbalanceEvalInterface
 {
@@ -22,18 +23,21 @@ class CenterEval extends AbstractEval implements UniqueImbalanceEvalInterface
     const NAME = 'Center';
 
     /**
-     * The closer a square is to the center, the higher its value. The board is
-     * slightly tilted. Please note how each square is assigned a unique slope.
+     * The board is slightly tilted. Please note how each square is assigned a
+     * unique slope.
      *
      * The board is divided into four main sections, each of which is assigned
-     * an integer value starting from 0. The outermost section is assigned a
-     * slope of 0. Moving clockwise, a constant value is then added to each
-     * square to create the sufficiently small imbalance. This constant value
-     * will never exceed 0.10000 after completing a rotation.
+     * an integer value starting from 0. The closer a square is to the center,
+     * the higher its value. The outermost section is assigned a slope of 0.
      *
-     * So for example, to each square of the outermost section, 10.000 / (8 x 4)
-     * ≈ 300 is added. To each square of the innermost section, 10.000 / 4
-     * ≈ 2500 is added.
+     * Moving clockwise, a constant value is then added to each square to create
+     * the sufficiently small imbalance. This constant value will never exceed
+     * 0.10000 after completing a rotation.
+     *
+     * Examples:
+     *
+     * - Add 10.000 / (8 x 4) ≈ 300 to each square of the outermost section.
+     * - Add 10.000 / 4 ≈ 2500 to each square of the innermost section.
      *
      * @var array
      */
