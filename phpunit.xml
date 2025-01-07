@@ -19,10 +19,10 @@
             <directory>tests/unit/Randomizer</directory>
             <directory>tests/unit/Tutor</directory>
             <directory>tests/unit/Variant</directory>
+            <file>tests/unit/AngleTest.php</file>
             <file>tests/unit/EvalArrayTest.php</file>
             <file>tests/unit/EvalFactoryTest.php</file>
             <file>tests/unit/FenToBoardFactoryTest.php</file>
-            <file>tests/unit/SanDecoderTest.php</file>
             <file>tests/unit/SanExtractorTest.php</file>
             <file>tests/unit/SanPlotterTest.php</file>
         </testsuite>
