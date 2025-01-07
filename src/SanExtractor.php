@@ -16,6 +16,29 @@ use Chess\Variant\Classical\PGN\Move;
 class SanExtractor
 {
     /**
+     * Returns the Steinitz evaluation.
+     *
+     * @param \Chess\Function\AbstractFunction $f
+     * @param \Chess\Variant\AbstractBoard $board
+     * @param string $movetext
+     * @return array
+     */
+    public static function steinitz(AbstractFunction $f, AbstractBoard $board, string $movetext): array
+    {
+        $steinitz[] = 0;
+        $sanPlay = new SanPlay($movetext, $board);
+        foreach ($sanPlay->sanMovetext->moves as $val) {
+            if ($val !== Move::ELLIPSIS) {
+                if ($board->play($board->turn, $val)) {
+                    $steinitz[] = EvalArray::steinitz($f, $board);
+                }
+            }
+        }
+
+        return $steinitz;
+    }
+
+    /**
      * Returns the means.
      *
      * @param \Chess\Function\AbstractFunction $f
