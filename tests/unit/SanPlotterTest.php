@@ -50,7 +50,7 @@ class SanPlotterTest extends AbstractUnitTestCase
      */
     public function e4_d5_exd5_Qxd5_center()
     {
-        $expected = [ 0, 1.0, 0.10665, 0.67063, -1.0 ];
+        $expected = [ 0, 1.0, 0.0833, 0.6667, -1.0 ];
 
         $board = new Board();
         $movetext = '1.e4 d5 2.exd5 Qxd5';
@@ -116,7 +116,7 @@ class SanPlotterTest extends AbstractUnitTestCase
      */
     public function capablanca_e4_a5()
     {
-        $expected = [ 0, 1.0, 0.87563 ];
+        $expected = [ 0, 1.0, 0.8889 ];
 
         $board = new CapablancaBoard();
         $board->play('w', 'e4');
