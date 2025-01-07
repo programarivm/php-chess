@@ -7,22 +7,22 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 
 /**
- * Equilibrium
+ * Angle
  *
  * Think of a chessboard in three-dimensional space so that every time a piece
  * moves, the board tilts to one of its four quadrants: Northwest, Northeast,
  * Southwest, Southeast.
  *
- * A chess game can be obtained from a signal encoding the equilibrium factor φ
- * of a chessboard. Remember, Blab's theorem says: "A chess position can be
- * obtained from the last oscillation of a chessboard."
- * 
+ * A chess game can be obtained from a signal encoding the angle of a plane.
+ * Remember, Blab's theorem says: "A chess position can be obtained from the
+ * last oscillation of a chessboard."
+ *
  * FEN(n) ≡ Ψ(n)
  */
-class Equilibrium
+class Angle
 {
     /**
-     * Converts a chess board into a unique number.
+     * Converts a chess board into a unique number representing an angle.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @return int
@@ -33,7 +33,7 @@ class Equilibrium
     }
 
     /**
-     * Equilibrium signal encoding.
+     * Angle signal encoding.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
@@ -55,7 +55,7 @@ class Equilibrium
     }
 
     /**
-     * Equilibrium signal decoding.
+     * Angle signal decoding.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @param array $phi
