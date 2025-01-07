@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
  * Measures how close the pieces are to the center of the board in a way that
  * each move creates a unique sufficiently small imbalance.
  */
-class CenterEval extends AbstractEval implements UniqueImbalanceEvalInterface
+class CenterEval extends AbstractEval
 {
     use ExplainEvalTrait;
 
