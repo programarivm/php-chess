@@ -11,7 +11,7 @@ use Chess\Variant\Classical\PGN\Move;
 /**
  * SAN Extractor
  *
- * Extracts the oscillations of all evaluation features for further data analysis.
+ * Extracts oscillations data for further analysis.
  */
 class SanExtractor
 {

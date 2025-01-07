@@ -261,7 +261,7 @@ The data is plotted in a way that is easy for chess players to understand and le
 
 ## Extract Chess Data
 
-Given a PGN movetext in SAN format, [Chess\SanExtractor](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php) returns the oscillations of all evaluation features for data analysis purposes like the following example.
+[Chess\SanExtractor](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php) extracts oscillations data for further analysis like the following example.
 
 ```php
 use Chess\SanExtractor;
@@ -325,6 +325,27 @@ Array
 
 The evaluation array can be plotted in a way that is easy for chess players to understand and learn.
 
+### Steinitz Evaluation
+
+```php
+$steinitz = SanExtractor::steinitz($f, $board, $movetext);
+
+print_r($steinitz);
+```
+
+```text
+Array
+(
+    [0] => 0
+    [1] => 2
+    [2] => 0
+    [3] => 0
+    [4] => -5
+)
+```
+
+![Figure 4](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png)
+
 ### Mean
 
 ```php
@@ -344,7 +365,7 @@ Array
 )
 ```
 
-![Figure 4](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png)
+![Figure 5](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_05.png)
 
 ### Standard Deviation
 
@@ -365,6 +386,6 @@ Array
 )
 ```
 
-![Figure 5](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_05.png)
+![Figure 6](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_06.png)
 
 🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chesslablab.github.io/chess-data/data-mining/) tools.
