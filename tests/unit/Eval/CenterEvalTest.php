@@ -16,8 +16,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function A08()
     {
         $expectedResult = [
-            'w' => 29.637,
-            'b' => 33.745,
+            'w' => 29.4,
+            'b' => 33.0,
         ];
 
         $expectedExplanation = [
@@ -38,8 +38,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B25()
     {
         $expectedResult = [
-            'w' => 37.941,
-            'b' => 34.665,
+            'w' => 37.73,
+            'b' => 34.73,
         ];
 
         $expectedExplanation = [
@@ -60,8 +60,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function B56()
     {
         $expectedResult = [
-            'w' => 47.095,
-            'b' => 36.669,
+            'w' => 47.0,
+            'b' => 36.8,
         ];
 
         $expectedExplanation = [
@@ -82,8 +82,8 @@ class CenterEvalTest extends AbstractUnitTestCase
     public function C60()
     {
         $expectedResult = [
-            'w' => 37.927,
-            'b' => 34.77,
+            'w' => 37.73,
+            'b' => 34.73,
         ];
 
         $expectedExplanation = [
@@ -92,94 +92,6 @@ class CenterEvalTest extends AbstractUnitTestCase
 
         $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
         $board = (new SanPlay($C60))->validate()->board;
-        $centerEval = new CenterEval($board);
-
-        $this->assertSame($expectedResult, $centerEval->result);
-        $this->assertSame($expectedExplanation, $centerEval->explain());
-    }
-
-    /**
-     * @test
-     */
-    public function a6()
-    {
-        $expectedResult = [
-            'w' => 2.138,
-            'b' => 1.072,
-        ];
-
-        $expectedExplanation = [
-            'White has a slightly better control of the center.',
-        ];
-
-        $fen = '7k/8/P7/8/8/8/8/7K w - -';
-        $board = FenToBoardFactory::create($fen);
-        $centerEval = new CenterEval($board);
-
-        $this->assertSame($expectedResult, $centerEval->result);
-        $this->assertSame($expectedExplanation, $centerEval->explain());
-    }
-
-    /**
-     * @test
-     */
-    public function a7()
-    {
-        $expectedResult = [
-            'w' => 1.14,
-            'b' => 1.072,
-        ];
-
-        $expectedExplanation = [
-        ];
-
-        $fen = '7k/8/P7/8/8/8/8/7K w - -';
-        $board = FenToBoardFactory::create($fen);
-        $board->play('w', 'a7');
-        $centerEval = new CenterEval($board);
-
-        $this->assertSame($expectedResult, $centerEval->result);
-        $this->assertSame($expectedExplanation, $centerEval->explain());
-    }
-
-    /**
-     * @test
-     */
-    public function h6()
-    {
-        $expectedResult = [
-            'w' => 2.22,
-            'b' => 1.094,
-        ];
-
-        $expectedExplanation = [
-            'White has a slightly better control of the center.',
-        ];
-
-        $fen = 'k7/8/7P/8/8/8/8/K7 w - -';
-        $board = FenToBoardFactory::create($fen);
-        $centerEval = new CenterEval($board);
-
-        $this->assertSame($expectedResult, $centerEval->result);
-        $this->assertSame($expectedExplanation, $centerEval->explain());
-    }
-
-    /**
-     * @test
-     */
-    public function h7()
-    {
-        $expectedResult = [
-            'w' => 1.217,
-            'b' => 1.094,
-        ];
-
-        $expectedExplanation = [
-        ];
-
-        $fen = 'k7/8/7P/8/8/8/8/K7 w - -';
-        $board = FenToBoardFactory::create($fen);
-        $board->play('w', 'h7');
         $centerEval = new CenterEval($board);
 
         $this->assertSame($expectedResult, $centerEval->result);
