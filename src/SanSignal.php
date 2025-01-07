@@ -7,16 +7,18 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 
 /**
- * Angle
+ * SAN Signal
+ *
+ * Analog chess data signal.
  *
  * According to Blab's theorem, a chess position can be obtained from the last
  * oscillation of the chessboard.
 
  * FEN(n) ≡ Ψ(n)
  *
- * Thus, an entire chess game can be obtained from a signal. The precondition
- * for this to be the case is that each position can be transformed into a
- * unique number.
+ * Thus, an entire chess game can be obtained from an analog data signal. The
+ * precondition for this to be the case is that each position can be transformed
+ * into a unique number.
  *
  * You may want to think of a chessboard in three-dimensional space so that
  * every time a piece is moved, the board tilts to one of its four quadrants:
@@ -25,10 +27,10 @@ use Chess\Variant\Classical\PGN\Move;
  *
  * Or more simply, the FEN string can be hashed as a unique number.
  */
-class Angle
+class SanSignal
 {
     /**
-     * Converts a chess board into a unique number representing an angle.
+     * Converts a chess board into a unique number.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @return int
@@ -39,7 +41,7 @@ class Angle
     }
 
     /**
-     * Angle signal encoding.
+     * Signal encoding.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
@@ -61,7 +63,7 @@ class Angle
     }
 
     /**
-     * Angle signal decoding.
+     * Signal decoding.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @param array $phi
