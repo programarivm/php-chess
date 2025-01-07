@@ -113,7 +113,7 @@ Array
             [0] => 0
             [1] => 1
             [2] => -1
-            [3] => 0.24
+            [3] => 0.2419
             [4] => 0
             [5] => 0
             [6] => 0
@@ -182,7 +182,7 @@ echo $mean;
 ```
 
 ```text
-0.08
+0.0806
 ```
 
 ### Median
@@ -196,7 +196,7 @@ echo $median;
 ```
 
 ```text
-0.24
+0.2419
 ```
 
 ### Mode
@@ -207,10 +207,6 @@ The mode is the value that appears most frequently in the evaluation array.
 $mode = EvalArray::mode($f, $board);
 
 echo $mode;
-```
-
-```text
-NULL
 ```
 
 In this example, no mode exists since there are no repeating numbers in the evaluation array.
@@ -226,7 +222,7 @@ echo $sd;
 ```
 
 ```text
-0.8243
+0.8244
 ```
 
 ## Plot the Oscillations of a Game
@@ -236,14 +232,14 @@ Given a PGN movetext in SAN format, [Chess\SanPlotter](https://github.com/chessl
 ```php
 use Chess\SanPlotter;
 use Chess\Function\CompleteFunction;
+use Chess\Variant\Classical\Board;
 
 $f = new CompleteFunction();
-
+$board = new Board();
+$movetext = '1.e4 d5 2.exd5 Qxd5';
 $name = 'Space';
 
-$movetext = '1.e4 d5 2.exd5 Qxd5';
-
-$time = (new SanPlotter($f, $movetext, $name))->time;
+$time = SanPlotter::time($f, $board, $movetext, $name);
 
 print_r($time);
 ```
@@ -293,9 +289,9 @@ Array
     [0] => 0
     [1] => -1
     [2] => 1
-    [3] => -0.24
-    [4] => -0.07
-    [5] => -0.02
+    [3] => -0.2423
+    [4] => -0.0661
+    [5] => -0.022
     [6] => 0
     [7] => 0
     [8] => 0
@@ -304,7 +300,7 @@ Array
     [11] => 0
     [12] => 0
     [13] => 0
-    [14] => -0.11
+    [14] => -0.1123
     [15] => 0
     [16] => 0
     [17] => 0
@@ -319,7 +315,7 @@ Array
     [26] => 0
     [27] => 0
     [28] => 0
-    [29] => -0.02
+    [29] => -0.022
     [30] => 0
     [31] => 0
 )
@@ -338,12 +334,13 @@ print_r($mean);
 ```
 
 ```text
+Array
 (
     [0] => 0
-    [1] => 0.185
-    [2] => -0.16
-    [3] => -0.315
-    [4] => -0.0657
+    [1] => 0.1875
+    [2] => -0.1667
+    [3] => -0.3125
+    [4] => -0.0664
 )
 ```
 
@@ -361,9 +358,9 @@ print_r($sd);
 Array
 (
     [0] => 0
-    [1] => 0.7591
-    [2] => -0.8552
-    [3] => -0.7274
+    [1] => 0.7601
+    [2] => -0.8498
+    [3] => -0.7294
     [4] => -0.5406
 )
 ```
