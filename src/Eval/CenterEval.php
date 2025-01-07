@@ -8,8 +8,7 @@ use Chess\Variant\Classical\PGN\AN\Color;
 /**
  * Center Evaluation
  *
- * Measures how close the pieces are to the center of the board in a way that
- * each move creates a unique sufficiently small imbalance.
+ * Measures how close the pieces are to the center of the board.
  */
 class CenterEval extends AbstractEval
 {
@@ -20,45 +19,32 @@ class CenterEval extends AbstractEval
      *
      * @var string
      */
-    const NAME = 'Center';
+     const NAME = 'Center';
 
     /**
-     * The board is slightly tilted. Please note how each square is assigned a
-     * unique slope.
-     *
-     * The board is divided into four main sections, each of which is assigned
-     * an integer value starting from 0. The closer a square is to the center,
-     * the higher its value. The outermost section is assigned a slope of 0.
-     *
-     * Moving clockwise, a constant value is then added to each square to create
-     * the sufficiently small imbalance. This constant value will never exceed
-     * 0.10000 after completing a rotation.
-     *
-     * Examples:
-     *
-     * - Add 10.000 / (8 x 4) ≈ 300 to each square of the outermost section.
-     * - Add 10.000 / 4 ≈ 2500 to each square of the innermost section.
+     * Integer values are assigned to squares based on their proximity to the
+     * center. The closer a square is to the center, the higher its value.
      *
      * @var array
      */
-    private array $center = [
-        'a8' => 0.00300, 'b8' => 0.00600, 'c8' => 0.00900, 'd8' => 0.01200, 'e8' => 0.01500, 'f8' => 0.01800, 'g8' => 0.02100, 'h8' => 0.02400,
-        'a7' => 0.08400, 'b7' => 1.00400, 'c7' => 1.00800, 'd7' => 1.01200, 'e7' => 1.01600, 'f7' => 1.02000, 'g7' => 1.02400, 'h7' => 0.02700,
-        'a6' => 0.08100, 'b6' => 1.08000, 'c6' => 2.00600, 'd6' => 2.01200, 'e6' => 2.01800, 'f6' => 2.02400, 'g6' => 1.02800, 'h6' => 0.03000,
-        'a5' => 0.07800, 'b5' => 1.07600, 'c5' => 2.07200, 'd5' => 3.00000, 'e5' => 3.02500, 'f5' => 2.03000, 'g5' => 1.03200, 'h5' => 0.03300,
-        'a4' => 0.07500, 'b4' => 1.07200, 'c4' => 2.06600, 'd4' => 3.07500, 'e4' => 3.05000, 'f4' => 2.03600, 'g4' => 1.03600, 'h4' => 0.03600,
-        'a3' => 0.07200, 'b3' => 1.06800, 'c3' => 2.06000, 'd3' => 2.05400, 'e3' => 2.04800, 'f3' => 2.04200, 'g3' => 1.04000, 'h3' => 0.03900,
-        'a2' => 0.06900, 'b2' => 1.06400, 'c2' => 1.06000, 'd2' => 1.05600, 'e2' => 1.05200, 'f2' => 1.04800, 'g2' => 1.04400, 'h2' => 0.04200,
-        'a1' => 0.06600, 'b1' => 0.06300, 'c1' => 0.06000, 'd1' => 0.05700, 'e1' => 0.05400, 'f1' => 0.05100, 'g1' => 0.04800, 'h1' => 0.04500,
+        private array $center = [
+        'a8' => 0, 'b8' => 0, 'c8' => 0, 'd8' => 0, 'e8' => 0, 'f8' => 0, 'g8' => 0, 'h8' => 0,
+        'a7' => 0, 'b7' => 1, 'c7' => 1, 'd7' => 1, 'e7' => 1, 'f7' => 1, 'g7' => 1, 'h7' => 0,
+        'a6' => 0, 'b6' => 1, 'c6' => 2, 'd6' => 2, 'e6' => 2, 'f6' => 2, 'g6' => 1, 'h6' => 0,
+        'a5' => 0, 'b5' => 1, 'c5' => 2, 'd5' => 3, 'e5' => 3, 'f5' => 2, 'g5' => 1, 'h5' => 0,
+        'a4' => 0, 'b4' => 1, 'c4' => 2, 'd4' => 3, 'e4' => 3, 'f4' => 2, 'g4' => 1, 'h4' => 0,
+        'a3' => 0, 'b3' => 1, 'c3' => 2, 'd3' => 2, 'e3' => 2, 'f3' => 2, 'g3' => 1, 'h3' => 0,
+        'a2' => 0, 'b2' => 1, 'c2' => 1, 'd2' => 1, 'e2' => 1, 'f2' => 1, 'g2' => 1, 'h2' => 0,
+        'a1' => 0, 'b1' => 0, 'c1' => 0, 'd1' => 0, 'e1' => 0, 'f1' => 0, 'g1' => 0, 'h1' => 0,
     ];
 
     /**
      * @param \Chess\Variant\AbstractBoard $board
      *
-     * The value of each piece occupying a square is considered in the total sum
-     * of the result. The more valuable the piece, the better. To this sum are
-     * also added the squares controlled by each player. The controlled squares
-     * are those in each player's space.
+     * If a piece occupies a square, its value is considered in the total sum of
+     * the result. The more valuable the piece, the better. To this sum are also
+     * added the squares controlled by each player. The controlled squares are
+     * those that are in each player's space.
      */
     public function __construct(AbstractBoard $board)
     {
@@ -79,7 +65,7 @@ class CenterEval extends AbstractEval
 
         foreach ($this->center as $sq => $val) {
             if ($piece = $this->board->pieceBySq($sq)) {
-                $this->result[$piece->color] += floor(self::$value[$piece->id] * $val);
+                $this->result[$piece->color] += self::$value[$piece->id] * $val;
             }
             if (in_array($sq, $this->board->spaceEval[Color::W])) {
                 $this->result[Color::W] += $val;
