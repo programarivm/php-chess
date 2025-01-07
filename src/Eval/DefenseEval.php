@@ -63,7 +63,7 @@ class DefenseEval extends AbstractEval
                                 $diffPhrases[] = $val;
                             }
                         }
-                        $this->result[$piece->oppColor()] += round($diffResult, 5);
+                        $this->result[$piece->oppColor()] += round($diffResult, 4);
                         $this->toElaborate[] = [
                             $piece,
                             $diffPhrases,

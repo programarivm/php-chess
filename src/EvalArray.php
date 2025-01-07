@@ -64,7 +64,7 @@ class EvalArray
         $sum = array_sum($normd);
         $count = count($normd);
         if ($count > 0) {
-            return round($sum / $count, 5);
+            return round($sum / $count, 4);
         }
 
         return 0.0;
@@ -128,7 +128,7 @@ class EvalArray
             $sum += $diff * $diff;
         }
 
-        return round($sum / count($normd), 5);
+        return round($sum / count($normd), 4);
     }
 
     /**
@@ -142,7 +142,7 @@ class EvalArray
     {
         $var = self::var($f, $board);
 
-        return round(sqrt($var), 5);
+        return round(sqrt($var), 4);
     }
 
     /**
@@ -194,9 +194,9 @@ class EvalArray
 
         foreach ($unnormd as $key => $val) {
             if ($val > 0) {
-                $unnormd[$key] = round($unnormd[$key] * $newMax / $max, 5);
+                $unnormd[$key] = round($unnormd[$key] * $newMax / $max, 4);
             } elseif ($val < 0) {
-                $unnormd[$key] = round($unnormd[$key] * $newMin / $min, 5);
+                $unnormd[$key] = round($unnormd[$key] * $newMin / $min, 4);
             } else {
                 $unnormd[$key] = 0;
             }
