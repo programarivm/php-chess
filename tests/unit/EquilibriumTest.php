@@ -19,9 +19,9 @@ class EquilibriumTest extends AbstractUnitTestCase
 
         $board = new Board();
 
-        $phi = new Equilibrium($board);
+        $phi = Equilibrium::phi($board);
 
-        $this->assertEqualsWithDelta($expectedPhi, $phi->result, 0.0001);
+        $this->assertEqualsWithDelta($expectedPhi, $phi, 0.0001);
     }
 
     /**
@@ -34,8 +34,8 @@ class EquilibriumTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
-        $phi = new Equilibrium($board);
+        $phi = Equilibrium::phi($board);
 
-        $this->assertEqualsWithDelta($expectedPhi, $phi->result, 0.0001);
+        $this->assertEqualsWithDelta($expectedPhi, $phi, 0.0001);
     }
 }
