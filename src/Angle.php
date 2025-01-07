@@ -9,15 +9,21 @@ use Chess\Variant\Classical\PGN\Move;
 /**
  * Angle
  *
- * Think of a chessboard in three-dimensional space so that every time a piece
- * moves, the board tilts to one of its four quadrants: Northwest, Northeast,
- * Southwest, Southeast.
- *
- * A chess game can be obtained from a signal encoding the angle of a plane.
- * Remember, Blab's theorem says: "A chess position can be obtained from the
- * last oscillation of a chessboard."
- *
+ * According to Blab's theorem, a chess position can be obtained from the last
+ * oscillation of the chessboard.
+
  * FEN(n) ≡ Ψ(n)
+ *
+ * Thus, an entire chess game can be obtained from a signal. The precondition
+ * for this to be the case is that each position can be transformed into a
+ * unique number.
+ *
+ * You may want to think of a chessboard in three-dimensional space so that
+ * every time a piece is moved, the board tilts to one of its four quadrants:
+ * Northwest, Northeast, Southwest, Southeast. An angle will be formed that can
+ * then be used to encode the signal.
+ *
+ * Or more simply, the FEN string can be hashed as a unique number.
  */
 class Angle
 {
