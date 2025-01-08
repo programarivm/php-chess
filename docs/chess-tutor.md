@@ -4,7 +4,7 @@
 
 ✨ Chess beginners often think they can checkmate the opponent's king quickly. However, there are so many different things to consider in order to understand a position.
 
-[Chess\Tutor\FenEvaluation](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/FenEvaluationTest.php) helps you improve your chess thinking process by evaluating a FEN position in terms of [chess concepts](https://php-chess.chesslablab.org/heuristics/) like in the example below.
+[Chess\Tutor\FenEvaluation](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/FenEvaluationTest.php) helps you improve your chess thinking process by evaluating a FEN position in terms of chess concepts like the example below.
 
 ```php
 use Chess\FenToBoardFactory;
