@@ -156,7 +156,7 @@ R  N  B  Q  K  .  .  R
 
 Every time a move is made, the state of the board changes.
 
-[Chess\Variant\Classical\Board](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/BoardTest.php) provides you with plenty of methods to interact with a chess board object. It is a quite common use case to query the board state. As discussed in the [Home](https://php-chess.chesslablab.org/) section, you may want to check out the corresponding tests for further details on how to use it. The unit tests are the best documentation. They contain hundreds of real examples on how to use the PHP Chess library.
+[Chess\Variant\Classical\Board](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/BoardTest.php) provides you with plenty of methods to interact with a chess board object. It is a quite common use case to query the board state. As previously discussed, you may want to check out the corresponding tests for further details on how to use it. The unit tests are the best documentation. They contain hundreds of real examples on how to use the PHP Chess library.
 
 The `isCheck()` method will confirm that the white king is in check after 5.Bb5+ while `isMate()` will confirm that it has not been mated.
 
