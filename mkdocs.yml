@@ -1,5 +1,5 @@
 site_name: PHP Chess
-site_url: https://php-chess.chesslablab.org/php-chess/
+site_url: https://php-chess.chesslablab.org
 theme:
   name: mkdocs
 nav:
