@@ -11,12 +11,7 @@ use Chess\Variant\Classical\PGN\Move;
  *
  * Analog chess data signal.
  *
- * According to Blab's theorem, a chess position can be obtained from the last
- * oscillation of the chessboard.
-
- * FEN(n) ≡ Ψ(n)
- *
- * Thus, an entire chess game can be obtained from an analog data signal. The
+ * An entire chess game can be obtained from an analog data signal. The
  * precondition for this to be the case is that each position can be transformed
  * into a unique number.
  *
