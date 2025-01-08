@@ -125,7 +125,7 @@ echo $board->movetext();
 1.Rb1
 ```
 
-The FEN is converted to a chess board object as described in the [Format Converters](https://chesslablab.github.io/php-chess/format-converters/#fen-to-board) section. Then Stockfish's depth limit is set to `12` and the skill level to `20`.
+The FEN is converted to a chess board object as described in the [Format Converters](https://php-chess.chesslablab.org/php-chess/format-converters/#fen-to-board) section. Then Stockfish's depth limit is set to `12` and the skill level to `20`.
 
 The same thing goes to starting a game from a particular SAN movetext. As you can see in the example below, [Chess\Play\SanPlay](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Play/SanPlayTest.php) is used for this purpose.
 

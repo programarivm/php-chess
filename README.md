@@ -10,7 +10,7 @@ A chess library for PHP offering move validation, common formats, multiple varia
 
 ### Documentation
 
-Read the latest docs [here](https://chesslablab.github.io/php-chess/).
+Read the latest docs [here](https://php-chess.chesslablab.org/php-chess/).
 
 ### License
 
