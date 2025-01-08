@@ -388,4 +388,4 @@ Array
 
 ![Figure 6](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_06.png)
 
-🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://php-chess.chesslablab.org/chess-data/data-mining/) tools.
+🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chess-data.chesslablab.org/#data-mining) tools.
