@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://chesslablab.github.io/php-chess/getting-started/">
+        <link rel="canonical" href="https://php-chess.chesslablab.org/getting-started/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Getting Started - PHP Chess</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -213,7 +213,7 @@ P  P  P  .  .  P  P  P
 R  N  B  Q  K  .  .  R
 </code></pre>
 <p>Every time a move is made, the state of the board changes.</p>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/BoardTest.php">Chess\Variant\Classical\Board</a> provides you with plenty of methods to interact with a chess board object. It is a quite common use case to query the board state. As discussed in the <a href="https://chesslablab.github.io/php-chess/">Home</a> section, you may want to check out the corresponding tests for further details on how to use it. The unit tests are the best documentation. They contain hundreds of real examples on how to use the PHP Chess library.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/BoardTest.php">Chess\Variant\Classical\Board</a> provides you with plenty of methods to interact with a chess board object. It is a quite common use case to query the board state. As previously discussed, you may want to check out the corresponding tests for further details on how to use it. The unit tests are the best documentation. They contain hundreds of real examples on how to use the PHP Chess library.</p>
 <p>The <code>isCheck()</code> method will confirm that the white king is in check after 5.Bb5+ while <code>isMate()</code> will confirm that it has not been mated.</p>
 <pre><code class="language-php">var_dump($board-&gt;isCheck());
 </code></pre>

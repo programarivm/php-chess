@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://chesslablab.github.io/php-chess/heuristics/">
+        <link rel="canonical" href="https://php-chess.chesslablab.org/heuristics/">
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Heuristics - PHP Chess</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -86,15 +86,15 @@
             
             <li class="nav-item" data-level="1"><a href="#heuristics" class="nav-link">Heuristics</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#evaluation-function" class="nav-link">Evaluation Function</a>
+            <li class="nav-item" data-level="2"><a href="#evaluate-a-chess-position" class="nav-link">Evaluate a Chess Position</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#oscillations-of-a-game-by-evaluation-feature" class="nav-link">Oscillations of a Game by Evaluation Feature</a>
+            <li class="nav-item" data-level="2"><a href="#plot-the-oscillations-of-a-game" class="nav-link">Plot the Oscillations of a Game</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#all-oscillations-of-a-game" class="nav-link">All Oscillations of a Game</a>
+            <li class="nav-item" data-level="2"><a href="#extract-chess-data" class="nav-link">Extract Chess Data</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -278,9 +278,8 @@
 </tr>
 </tbody>
 </table>
-<p>The evaluation features are used in several classes.</p>
-<h2 id="evaluation-function">Evaluation Function</h2>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php">Chess\EvalArray</a> allows to transform a FEN position to numbers between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.</p>
+<h2 id="evaluate-a-chess-position">Evaluate a Chess Position</h2>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php">Chess\EvalArray</a> allows to transform a FEN position to a normalized array of values between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.</p>
 <pre><code class="language-php">use Chess\EvalArray;
 use Chess\FenToBoardFactory;
 use Chess\Function\CompleteFunction;
@@ -341,7 +340,7 @@ print_r($result);
             [0] =&gt; 0
             [1] =&gt; 1
             [2] =&gt; -1
-            [3] =&gt; 0.24
+            [3] =&gt; 0.2419
             [4] =&gt; 0
             [5] =&gt; 0
             [6] =&gt; 0
@@ -374,52 +373,62 @@ print_r($result);
 
 )
 </code></pre>
+<p>This data structure is used to estimate who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.</p>
+<h3 id="steinitz-evaluation">Steinitz Evaluation</h3>
 <p>As chess champion William Steinitz pointed out, a strong position can be created by accumulating small advantages. The relative value of the position without considering checkmate is obtained by counting the advantages in the evaluation array.</p>
-<pre><code class="language-php">use Chess\EvalArray;
-use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
+<pre><code class="language-php">$steinitz = EvalArray::steinitz($f, $board);
 
-$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
-
-$board = FenToBoardFactory::create($fen);
-
-$normd = EvalArray::normalization(new CompleteFunction(), $board);
-$count = EvalArray::count($normd);
-
-echo $count;
+echo $steinitz;
 </code></pre>
 <pre><code class="language-text">1
 </code></pre>
-<p>In this example, one evaluation feature is favoring White.</p>
-<p>An alternative way to look at it is to add up the values ​​in the evaluation array.</p>
-<pre><code class="language-php">use Chess\EvalArray;
-use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
+<p>In this example, White is better than Black because the value obtained is a positive number. One evaluation feature is favoring White.</p>
+<p>Chess evaluation functions often consist in multiplying the terms by a weight and adding the results to construct a linear combination.</p>
+<p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png" /></p>
+<p>However, the Steinitz evaluation alone, which is to say just counting the advantages, has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. Also it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.</p>
+<h3 id="mean">Mean</h3>
+<p>The mean represents the center of the evaluation array being intermediate to the extreme values.</p>
+<pre><code class="language-php">$mean = EvalArray::mean($f, $board);
 
-$fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
-
-$board = FenToBoardFactory::create($fen);
-
-$sum = EvalArray::sum(new CompleteFunction(), $board);
-
-echo $sum;
+echo $mean;
 </code></pre>
-<pre><code class="language-text">0.24
+<pre><code class="language-text">0.0806
 </code></pre>
-<p>White is slightly better than Black because the value obtained is a positive number.</p>
-<p>This is an estimate that suggests who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.</p>
-<h2 id="oscillations-of-a-game-by-evaluation-feature">Oscillations of a Game by Evaluation Feature</h2>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanHeuristicsTest.php">Chess\SanHeuristics</a> returns the oscillations of an evaluation feature in the time domain.</p>
-<pre><code class="language-php">use Chess\SanHeuristics;
+<h3 id="median">Median</h3>
+<p>The median is the value in the middle of the evaluation array.</p>
+<pre><code class="language-php">$median = EvalArray::median($f, $board);
+
+echo $median;
+</code></pre>
+<pre><code class="language-text">0.2419
+</code></pre>
+<h3 id="mode">Mode</h3>
+<p>The mode is the value that appears most frequently in the evaluation array.</p>
+<pre><code class="language-php">$mode = EvalArray::mode($f, $board);
+
+echo $mode;
+</code></pre>
+<p>In this example, no mode exists since there are no repeating numbers in the evaluation array.</p>
+<h3 id="standard-deviation">Standard Deviation</h3>
+<p>The standard deviation is a measure of how spread out the evaluation array is.</p>
+<pre><code class="language-php">$sd = EvalArray::sd($f, $board);
+
+echo $sd;
+</code></pre>
+<pre><code class="language-text">0.8244
+</code></pre>
+<h2 id="plot-the-oscillations-of-a-game">Plot the Oscillations of a Game</h2>
+<p>Given a PGN movetext in SAN format, <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanPlotterTest.php">Chess\SanPlotter</a> returns the oscillations of an evaluation feature in the time domain.</p>
+<pre><code class="language-php">use Chess\SanPlotter;
 use Chess\Function\CompleteFunction;
+use Chess\Variant\Classical\Board;
 
 $f = new CompleteFunction();
-
+$board = new Board();
+$movetext = '1.e4 d5 2.exd5 Qxd5';
 $name = 'Space';
 
-$movetext = '1.e4 d5 2.exd5 Qxd5';
-
-$time = (new SanHeuristics($f, $movetext, $name))-&gt;time;
+$time = SanPlotter::time($f, $board, $movetext, $name);
 
 print_r($time);
 </code></pre>
@@ -432,64 +441,32 @@ print_r($time);
     [4] =&gt; -1
 )
 </code></pre>
-<p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png" /></p>
-<h2 id="all-oscillations-of-a-game">All Oscillations of a Game</h2>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanSignalTest.php">Chess\SanSignal</a> returns the oscillations of all evaluation features both in the time domain and the spectrum domain, and it also returns the individual components of both domains.</p>
-<pre><code class="language-php">use Chess\SanSignal;
+<p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png" /></p>
+<p>The data is plotted in a way that is easy for chess players to understand and learn.</p>
+<h2 id="extract-chess-data">Extract Chess Data</h2>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php">Chess\SanExtractor</a> extracts oscillations data for further analysis like the following example.</p>
+<pre><code class="language-php">use Chess\SanExtractor;
 use Chess\Function\CompleteFunction;
 use Chess\Variant\Classical\Board;
 
 $f = new CompleteFunction();
-
+$board = new Board();
 $movetext = '1.e4 d5 2.exd5 Qxd5';
+</code></pre>
+<h3 id="evaluation-array">Evaluation Array</h3>
+<p>This is how component number four, which is to say the normalization of the fourth evaluation array, is obtained from the example above.</p>
+<pre><code class="language-php">$eval = SanExtractor::eval($f, $board, $movetext);
 
-$sanSignal = new SanSignal($f, $movetext, new Board());
-
-print_r($sanSignal-&gt;time);
-print_r($sanSignal-&gt;spectrum);
-</code></pre>
-<pre><code class="language-text">Array
-(
-    [0] =&gt; 0
-    [1] =&gt; 2
-    [2] =&gt; -1.66
-    [3] =&gt; -0.18
-    [4] =&gt; -5
-)
-Array
-(
-    [0] =&gt; 0
-    [1] =&gt; 0.73
-    [2] =&gt; -0.95
-    [3] =&gt; -3.11
-    [4] =&gt; -0.46
-)
-</code></pre>
-<p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png" /></p>
-<p><img alt="Figure 3" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png" /></p>
-<p>The time domain and the spectrum domain are calculated by adding up their individual components. This is how to obtain the space oscillations by using time component number three.</p>
-<pre><code class="language-php">print_r($sanSignal-&gt;timeComponent[3]);
-</code></pre>
-<pre><code class="language-text">Array
-(
-    [0] =&gt; 0
-    [1] =&gt; 1
-    [2] =&gt; 0.25
-    [3] =&gt; 0.5
-    [4] =&gt; -1
-)
-</code></pre>
-<p>And this is how to obtain the oscillations of all evaluation features after the second move (4 plies) has been played.</p>
-<pre><code class="language-php">print_r($sanSignal-&gt;spectrumComponent[4]);
+print_r($eval[4]);
 </code></pre>
 <pre><code class="language-text">Array
 (
     [0] =&gt; 0
     [1] =&gt; -1
     [2] =&gt; 1
-    [3] =&gt; -0.24
-    [4] =&gt; -0.07
-    [5] =&gt; -0.02
+    [3] =&gt; -0.2423
+    [4] =&gt; -0.0661
+    [5] =&gt; -0.022
     [6] =&gt; 0
     [7] =&gt; 0
     [8] =&gt; 0
@@ -498,7 +475,7 @@ Array
     [11] =&gt; 0
     [12] =&gt; 0
     [13] =&gt; 0
-    [14] =&gt; -0.11
+    [14] =&gt; -0.1123
     [15] =&gt; 0
     [16] =&gt; 0
     [17] =&gt; 0
@@ -513,13 +490,59 @@ Array
     [26] =&gt; 0
     [27] =&gt; 0
     [28] =&gt; 0
-    [29] =&gt; -0.02
+    [29] =&gt; -0.022
     [30] =&gt; 0
     [31] =&gt; 0
 )
 </code></pre>
+<p><img alt="Figure 3" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png" /></p>
+<p>The evaluation array can be plotted in a way that is easy for chess players to understand and learn.</p>
+<h3 id="steinitz-evaluation_1">Steinitz Evaluation</h3>
+<pre><code class="language-php">$steinitz = SanExtractor::steinitz($f, $board, $movetext);
+
+print_r($steinitz);
+</code></pre>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; 0
+    [1] =&gt; 2
+    [2] =&gt; 0
+    [3] =&gt; 0
+    [4] =&gt; -5
+)
+</code></pre>
 <p><img alt="Figure 4" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png" /></p>
-<p>🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of <a href="https://chesslablab.github.io/chess-data/data-mining/">Data Mining</a> tools.</p></div>
+<h3 id="mean_1">Mean</h3>
+<pre><code class="language-php">$mean = SanExtractor::mean($f, $board, $movetext);
+
+print_r($mean);
+</code></pre>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; 0
+    [1] =&gt; 0.1875
+    [2] =&gt; -0.1667
+    [3] =&gt; -0.3125
+    [4] =&gt; -0.0664
+)
+</code></pre>
+<p><img alt="Figure 5" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_05.png" /></p>
+<h3 id="standard-deviation_1">Standard Deviation</h3>
+<pre><code class="language-php">$sd = SanExtractor::sd($f, $board, $movetext);
+
+print_r($sd);
+</code></pre>
+<pre><code class="language-text">Array
+(
+    [0] =&gt; 0
+    [1] =&gt; 0.7601
+    [2] =&gt; -0.8498
+    [3] =&gt; -0.7294
+    [4] =&gt; -0.5406
+)
+</code></pre>
+<p><img alt="Figure 6" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_06.png" /></p>
+<p>🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of <a href="https://chess-data.chesslablab.org/#data-mining">Data Mining</a> tools.</p></div>
             </div>
         </div>
 
