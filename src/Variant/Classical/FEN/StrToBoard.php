@@ -7,10 +7,10 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArray;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\FEN\Str;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class StrToBoard
 {

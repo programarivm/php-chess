@@ -1,11 +1,11 @@
 <?php
 
-namespace Chess\Variant\Capablanca\Rule;
+namespace Chess\Variant\Capablanca;
 
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Rule\CastlingRule as ClassicalCastlingRule;
+use Chess\Variant\Classical\CastlingRule as ClassicalCastlingRule;
 
 class CastlingRule extends ClassicalCastlingRule
 {

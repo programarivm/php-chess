@@ -11,11 +11,11 @@ use Chess\Variant\Classical\N;
 use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
+use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class Board extends AbstractBoard
 {

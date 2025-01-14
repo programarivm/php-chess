@@ -7,9 +7,9 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArray;
 use Chess\Variant\VariantType;
 use Chess\Variant\Capablanca\Board;
+use Chess\Variant\Capablanca\CastlingRule;
 use Chess\Variant\Capablanca\FEN\Str;
 use Chess\Variant\Capablanca\PGN\AN\Square;
-use Chess\Variant\Capablanca\Rule\CastlingRule;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 
 class StrToBoard extends ClassicalFenStrToBoard

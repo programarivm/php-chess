@@ -7,7 +7,7 @@ use Chess\Variant\RType;
 use Chess\Variant\VariantType;
 use Chess\Variant\Capablanca\A;
 use Chess\Variant\Capablanca\C;
-use Chess\Variant\Capablanca\Rule\CastlingRule;
+use Chess\Variant\Capablanca\CastlingRule;
 use Chess\Variant\Capablanca\PGN\Move;
 use Chess\Variant\Capablanca\PGN\AN\Square;
 use Chess\Variant\Classical\B;

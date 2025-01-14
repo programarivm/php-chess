@@ -6,7 +6,7 @@ use Chess\Exception\UnknownNotationException;
 use Chess\Variant\Classical\FEN\Str as ClassicalStr;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
+use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Dunsany\FEN\PiecePlacement;
 
 class Str extends ClassicalStr

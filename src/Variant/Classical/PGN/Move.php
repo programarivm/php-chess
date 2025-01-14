@@ -3,13 +3,12 @@
 namespace Chess\Variant\Classical\PGN;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Piece\K;
 use Chess\Variant\AbstractNotation;
+use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Check;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class Move extends AbstractNotation
 {

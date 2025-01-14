@@ -6,9 +6,9 @@ use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArray;
 use Chess\Variant\VariantType;
+use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule;
 use Chess\Variant\Dunsany\Board;
 use Chess\Variant\Dunsany\FEN\Str;
 

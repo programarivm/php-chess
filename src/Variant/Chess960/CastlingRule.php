@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Variant\Chess960\Rule;
+namespace Chess\Variant\Chess960;
 
 use Chess\Variant\RandomCastlingRuleTrait;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Rule\CastlingRule as ClassicalCastlingRule;
+use Chess\Variant\Classical\CastlingRule as ClassicalCastlingRule;
 
 class CastlingRule extends ClassicalCastlingRule
 {

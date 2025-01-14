@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Variant\Classical\Rule;
+namespace Chess\Variant\Classical;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractNotation;

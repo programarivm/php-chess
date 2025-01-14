@@ -4,11 +4,11 @@ namespace Chess\Tests\Unit\Variant\Classical\PGN;
 
 use Chess\Piece\K;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Rule\CastlingRule;
 
 class MoveTest extends AbstractUnitTestCase
 {

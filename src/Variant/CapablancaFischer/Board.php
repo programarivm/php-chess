@@ -7,8 +7,8 @@ use Chess\Variant\RandomBoardInterface;
 use Chess\Variant\VariantType;
 use Chess\Variant\Capablanca\PGN\Move;
 use Chess\Variant\Capablanca\PGN\AN\Square;
+use Chess\Variant\CapablancaFischer\CastlingRule;
 use Chess\Variant\CapablancaFischer\StartPieces;
-use Chess\Variant\CapablancaFischer\Rule\CastlingRule;
 use Chess\Variant\Classical\PGN\AN\Color;
 
 class Board extends AbstractBoard implements RandomBoardInterface

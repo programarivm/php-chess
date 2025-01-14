@@ -10,7 +10,7 @@ use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Rule\CastlingRule;
+use Chess\Variant\Classical\CastlingRule;
 
 abstract class AbstractPiece
 {
