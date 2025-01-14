@@ -7,7 +7,6 @@ use Chess\Piece\K;
 use Chess\Variant\AbstractNotation;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Check;
-use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Rule\CastlingRule;
@@ -84,7 +83,7 @@ class Move extends AbstractNotation
         throw new UnknownNotationException();
     }
 
-    public function toArray(string $str, string $pgn, CastlingRule $castlingRule = null, Color $color): array
+    public function toArray(string $color, string $pgn, CastlingRule $castlingRule = null): array
     {
         if (preg_match('/^' . static::PIECE . '$/', $pgn)) {
             $sqs = $this->extractSqs($pgn);
@@ -93,7 +92,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::PIECE,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => mb_substr($pgn, 0, 1),
                 'from' => $from,
                 'to' => $to,
@@ -103,7 +102,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::PIECE_CAPTURES,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => mb_substr($pgn, 0, 1),
                 'from' => $this->extractSqs($arr[0]),
                 'to' => $this->extractSqs($arr[1]),
@@ -112,7 +111,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::PAWN,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::P,
                 'from' => mb_substr($pgn, 0, 1),
                 'to' => $this->extractSqs($pgn),
@@ -122,7 +121,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::PAWN_CAPTURES,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::P,
                 'from' => mb_substr($pgn, 0, 1),
                 'to' => $this->extractSqs($arr[1]),
@@ -134,7 +133,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::KNIGHT,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::N,
                 'from' => $from,
                 'to' => $to,
@@ -144,7 +143,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::KNIGHT_CAPTURES,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::N,
                 'from' => $this->extractSqs($arr[0]),
                 'to' => $this->extractSqs($arr[1]),
@@ -153,7 +152,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::KING,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::K,
                 'from' => '',
                 'to' => $this->extractSqs($pgn),
@@ -162,7 +161,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::KING_CAPTURES,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::K,
                 'from' => '',
                 'to' => $this->extractSqs($pgn),
@@ -171,25 +170,25 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::CASTLE_SHORT,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::K,
-                'from' => $castlingRule?->rule[$str][Piece::K][Castle::SHORT]['from'],
-                'to' => $castlingRule?->rule[$str][Piece::K][Castle::SHORT]['to'],
+                'from' => $castlingRule?->rule[$color][Piece::K][Castle::SHORT]['from'],
+                'to' => $castlingRule?->rule[$color][Piece::K][Castle::SHORT]['to'],
             ];
         } elseif (preg_match('/^' . static::CASTLE_LONG . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
                 'case' => static::CASTLE_LONG,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::K,
-                'from' => $castlingRule?->rule[$str][Piece::K][Castle::LONG]['from'],
-                'to' => $castlingRule?->rule[$str][Piece::K][Castle::LONG]['to'],
+                'from' => $castlingRule?->rule[$color][Piece::K][Castle::LONG]['from'],
+                'to' => $castlingRule?->rule[$color][Piece::K][Castle::LONG]['to'],
             ];
         } elseif (preg_match('/^' . static::PAWN_PROMOTES . '$/', $pgn)) {
             return [
                 'pgn' => $pgn,
                 'case' => static::PAWN_PROMOTES,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::P,
                 'newId' => substr(explode('=', $pgn)[1], 0, 1),
                 'from' => '',
@@ -200,7 +199,7 @@ class Move extends AbstractNotation
             return [
                 'pgn' => $pgn,
                 'case' => static::PAWN_CAPTURES_AND_PROMOTES,
-                'color' => $color->validate($str),
+                'color' => $color,
                 'id' => Piece::P,
                 'newId' => substr(explode('=', $pgn)[1], 0, 1),
                 'from' => '',
