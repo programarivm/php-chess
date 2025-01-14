@@ -30,13 +30,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     public array $history = [];
 
     /**
-     * Color.
-     *
-     * @var \Chess\Variant\AbstractNotation
-     */
-    public AbstractNotation $color;
-
-    /**
      * Castling rule.
      *
      * @var \Chess\Variant\AbstractNotation
@@ -275,8 +268,8 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function refresh(): void
     {
-        $this->turn = $this->color->opp($this->turn);
-
+        $this->turn = $this->turn === Color::W ? Color::B : Color::W; 
+        
         $this->sqCount = $this->sqCount();
 
         $this->detachPieces()
@@ -395,7 +388,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     public function play(string $color, string $pgn): bool
     {
         $pieces = [];
-        $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
+        $move = $this->move->toArray($color, $pgn, $this->castlingRule);
         foreach ($this->pickPiece($move) as $piece) {
             if ($piece->isMovable()) {
                 if (!$piece->isLeftInCheck()) {
