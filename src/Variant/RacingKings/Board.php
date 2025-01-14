@@ -23,7 +23,6 @@ class Board extends AbstractBoard
 
     public function __construct(array $pieces = null)
     {
-        $this->color = new Color();
         $this->square = new Square();
         $this->move = new Move();
         $this->variant = VariantType::CLASSICAL;

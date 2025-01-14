@@ -126,7 +126,7 @@ abstract class AbstractPiece
      */
     public function oppColor(): string
     {
-        return $this->board->color->opp($this->color);
+        return $this->color === Color::W ? Color::B : Color::W; 
     }
 
     /**

@@ -24,7 +24,6 @@ class Board extends AbstractBoard
 
     public function __construct(array $pieces = null, string $castlingAbility = '-')
     {
-        $this->color = new Color();
         $this->castlingRule = new CastlingRule();
         $this->square = new Square();
         $this->move = new Move();

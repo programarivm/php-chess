@@ -21,7 +21,6 @@ class Board extends AbstractBoard
 
     public function __construct(array $pieces = null)
     {
-        $this->color = new Color();
         $this->square = new Square();
         $this->move = new Move();
         $this->variant = VariantType::LOSING;
@@ -102,7 +101,7 @@ class Board extends AbstractBoard
     public function play(string $color, string $pgn): bool
     {
         if ($captureSqs = $this->captureSqs()) {
-            $move = $this->move->toArray($color, $pgn, $this->castlingRule, $this->color);
+            $move = $this->move->toArray($color, $pgn, $this->castlingRule);
             if (in_array($move['to'], $captureSqs)) {
                 return parent::play($color, $pgn);
             }

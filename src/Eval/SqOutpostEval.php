@@ -93,10 +93,7 @@ class SqOutpostEval extends AbstractEval
         $rank = substr($sq, 1);
         for ($i = 2; $i < 8; $i++) {
             if ($piece = $this->board->pieceBySq($file . $i)) {
-                if (
-                    $piece->id === Piece::P &&
-                    $piece->color === $this->board->color->opp($color)
-                ) {
+                if ($piece->id === Piece::P && $piece->color !== $color) {
                     if ($color === Color::W) {
                         if ($i > $rank) {
                             return true;
