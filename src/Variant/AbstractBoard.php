@@ -197,8 +197,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                 } elseif ($a->id === Piece::P) {
                     if ($b) {
                         $pgn[] = "{$a->file()}x{$sqs[1]}";
-                    } elseif ($a->enPassantSq) {
-                        $pgn[] = "{$a->file()}x{$a->enPassantSq}";
+                    } elseif ($a->enPassant) {
+                        $pgn[] = "{$a->file()}x{$a->enPassant}";
                     } else {
                         $pgn[] = $sqs[1];
                     }

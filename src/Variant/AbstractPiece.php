@@ -335,7 +335,7 @@ abstract class AbstractPiece
     {
         if (str_contains($this->move['case'], 'x')) {
             if ($this->id === Piece::P &&
-                $this->enPassantSq &&
+                $this->enPassant &&
                 !$this->board->pieceBySq($this->move['to'])
             ) {
                 $captured = $this->enPassantPawn();

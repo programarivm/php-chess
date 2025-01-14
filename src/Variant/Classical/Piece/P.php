@@ -13,7 +13,7 @@ class P extends AbstractPiece
 
     public array $captureSqs;
 
-    public string $enPassantSq = '';
+    public string $enPassant = '';
 
     public function __construct(string $color, string $sq, Square $square)
     {
@@ -92,7 +92,7 @@ class P extends AbstractPiece
                 if ($this->rank() === $this->board->square::SIZE['ranks'] - 3) {
                     $captureSq = $end['to'][0] . ($this->rank() + 1);
                     if (in_array($captureSq, $this->captureSqs)) {
-                        $this->enPassantSq = $captureSq;
+                        $this->enPassant = $captureSq;
                         $sqs[] = $captureSq;
                     }
                 }
@@ -100,13 +100,13 @@ class P extends AbstractPiece
                 if ($this->rank() === 4) {
                     $captureSq = $end['to'][0] . ($this->rank() - 1);
                     if (in_array($captureSq, $this->captureSqs)) {
-                        $this->enPassantSq = $captureSq;
+                        $this->enPassant = $captureSq;
                         $sqs[] = $captureSq;
                     }
                 }
             }
         } else {
-            $sqs[] = $this->enPassantSq;
+            $sqs[] = $this->enPassant;
         }
 
         return array_filter(array_unique($sqs));
@@ -138,10 +138,10 @@ class P extends AbstractPiece
 
     public function enPassantPawn(): ?AbstractPiece
     {
-        if ($this->enPassantSq) {
-            $rank = (int) substr($this->enPassantSq, 1);
+        if ($this->enPassant) {
+            $rank = (int) substr($this->enPassant, 1);
             $this->color === Color::W ? $rank-- : $rank++;
-            return $this->board->pieceBySq($this->enPassantSq[0] . $rank);
+            return $this->board->pieceBySq($this->enPassant[0] . $rank);
         }
 
         return null;
