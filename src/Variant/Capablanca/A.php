@@ -1,24 +1,23 @@
 <?php
 
-namespace Chess\Variant\Capablanca\Piece;
+namespace Chess\Variant\Capablanca;
 
 use Chess\Variant\AbstractLinePiece;
-use Chess\Variant\RType;
 use Chess\Variant\Capablanca\PGN\AN\Piece;
 use Chess\Variant\Capablanca\PGN\AN\Square;
-use Chess\Variant\Classical\Piece\N;
-use Chess\Variant\Classical\Piece\R;
+use Chess\Variant\Classical\B;
+use Chess\Variant\Classical\N;
 
-class C extends AbstractLinePiece
+class A extends AbstractLinePiece
 {
     use CapablancaTrait;
 
     public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, Piece::C);
+        parent::__construct($color, $sq, Piece::A);
 
         $this->flow = [
-            ...(new R($color, $sq, $square, RType::R))->flow,
+            ...(new B($color, $sq, $square))->flow,
             (new N($color, $sq, $square))->flow,
         ];
     }

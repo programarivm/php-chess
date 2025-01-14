@@ -3,10 +3,10 @@
 namespace Chess\Variant;
 
 use Chess\Variant\RType;
-use Chess\Variant\Classical\Piece\B;
-use Chess\Variant\Classical\Piece\N;
-use Chess\Variant\Classical\Piece\Q;
-use Chess\Variant\Classical\Piece\R;
+use Chess\Variant\Classical\B;
+use Chess\Variant\Classical\N;
+use Chess\Variant\Classical\Q;
+use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;

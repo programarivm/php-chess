@@ -4,11 +4,11 @@ namespace Chess\Variant;
 
 use Chess\FenToBoardFactory;
 use Chess\Eval\SpaceEval;
+use Chess\Variant\Classical\K;
+use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Piece\K;
-use Chess\Variant\Classical\Piece\P;
 use Chess\Variant\Classical\PGN\Move;
 
 abstract class AbstractBoard extends \SplObjectStorage

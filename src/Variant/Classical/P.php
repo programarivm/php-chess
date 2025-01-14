@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Variant\Classical\Piece;
+namespace Chess\Variant\Classical;
 
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\AN\Color;

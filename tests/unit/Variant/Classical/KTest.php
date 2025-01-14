@@ -1,15 +1,15 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Classical\Piece;
+namespace Chess\Tests\Unit\Variant\Classical;
 
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\PGN\AN\Square as CapablancaSquare;
+use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square as ClassicalSquare;
-use Chess\Variant\Classical\Piece\K;
 use Chess\Variant\Classical\Rule\CastlingRule;
 
 class KTest extends AbstractUnitTestCase

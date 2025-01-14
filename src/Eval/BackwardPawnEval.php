@@ -4,9 +4,9 @@ namespace Chess\Eval;
 
 use Chess\Eval\IsolatedPawnEval;
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Piece\P;
 
 /**
  * Backward Pawn Evaluation
@@ -80,7 +80,7 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
     /**
      * Returns true if the given pawn can be defended by other pawns in its chain.
      *
-     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @param \namespace Chess\Tests\Unit\Variant\Classical; $pawn
      * @param string $file
      * @return bool
      */

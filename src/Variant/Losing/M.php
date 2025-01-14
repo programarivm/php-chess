@@ -1,31 +1,22 @@
 <?php
 
-namespace Chess\Variant\Classical\Piece;
+namespace Chess\Variant\Losing;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractPiece;
-use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Losing\PGN\AN\Piece;
 
-class N extends AbstractPiece
+class M extends AbstractPiece
 {
     public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, Piece::N);
+        parent::__construct($color, $sq, Piece::M);
 
         $this->flow = [];
 
         try {
-            $file = chr(ord($this->file()) - 1);
-            $rank = $this->rank() + 2;
-            if ($square->validate($file . $rank)) {
-                $this->flow[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
-        }
-
-        try {
-            $file = chr(ord($this->file()) - 2);
+            $file = $this->sq[0];
             $rank = $this->rank() + 1;
             if ($square->validate($file . $rank)) {
                 $this->flow[] = $file . $rank;
@@ -34,7 +25,7 @@ class N extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->file()) - 2);
+            $file = $this->sq[0];
             $rank = $this->rank() - 1;
             if ($square->validate($file . $rank)) {
                 $this->flow[] = $file . $rank;
@@ -43,8 +34,8 @@ class N extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->file()) - 1);
-            $rank = $this->rank() - 2;
+            $file = chr(ord($this->sq[0]) - 1);
+            $rank = $this->rank();
             if ($square->validate($file . $rank)) {
                 $this->flow[] = $file . $rank;
             }
@@ -52,8 +43,8 @@ class N extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->file()) + 1);
-            $rank = $this->rank() - 2;
+            $file = chr(ord($this->sq[0]) + 1);
+            $rank = $this->rank();
             if ($square->validate($file . $rank)) {
                 $this->flow[] = $file . $rank;
             }
@@ -61,16 +52,7 @@ class N extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->file()) + 2);
-            $rank = $this->rank() - 1;
-            if ($square->validate($file . $rank)) {
-                $this->flow[] = $file . $rank;
-            }
-        } catch (UnknownNotationException $e) {
-        }
-
-        try {
-            $file = chr(ord($this->file()) + 2);
+            $file = chr(ord($this->sq[0]) - 1);
             $rank = $this->rank() + 1;
             if ($square->validate($file . $rank)) {
                 $this->flow[] = $file . $rank;
@@ -79,8 +61,26 @@ class N extends AbstractPiece
         }
 
         try {
-            $file = chr(ord($this->file()) + 1);
-            $rank = $this->rank() + 2;
+            $file = chr(ord($this->sq[0]) + 1);
+            $rank = $this->rank() + 1;
+            if ($square->validate($file . $rank)) {
+                $this->flow[] = $file . $rank;
+            }
+        } catch (UnknownNotationException $e) {
+        }
+
+        try {
+            $file = chr(ord($this->sq[0]) - 1);
+            $rank = $this->rank() - 1;
+            if ($square->validate($file . $rank)) {
+                $this->flow[] = $file . $rank;
+            }
+        } catch (UnknownNotationException $e) {
+        }
+
+        try {
+            $file = chr(ord($this->sq[0]) + 1);
+            $rank = $this->rank() - 1;
             if ($square->validate($file . $rank)) {
                 $this->flow[] = $file . $rank;
             }

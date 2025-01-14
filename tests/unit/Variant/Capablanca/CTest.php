@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Capablanca\Piece;
+namespace Chess\Tests\Unit\Variant\Capablanca;
 
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\PGN\AN\Square;
-use Chess\Variant\Capablanca\Piece\C;
+use Chess\Variant\Capablanca\C;
 
 class CTest extends AbstractUnitTestCase
 {

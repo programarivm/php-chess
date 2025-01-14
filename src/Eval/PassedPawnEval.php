@@ -3,9 +3,9 @@
 namespace Chess\Eval;
 
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Piece\P;
 
 /**
  * Passed Pawn Evaluation
@@ -60,7 +60,7 @@ class PassedPawnEval extends AbstractEval
     /**
      * Returns true if the given pawn is passed.
      *
-     * @param \Chess\Variant\Classical\Piece\P $pawn
+     * @param \Chess\Variant\Classical\P $pawn
      * @return bool
      */
     private function isPassed(P $pawn): bool

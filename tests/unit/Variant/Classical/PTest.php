@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Dunsany\Piece;
+namespace Chess\Tests\Unit\Variant\Classical;
 
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Dunsany\Piece\P;
 
 class PTest extends AbstractUnitTestCase
 {
@@ -23,7 +23,7 @@ class PTest extends AbstractUnitTestCase
         $pawn = new P('w', 'a2', self::$square);
 
         $position = 'a2';
-        $flow = ['a3'];
+        $flow = ['a3', 'a4'];
         $captureSquares = ['b3'];
 
         $this->assertSame($position, $pawn->sq);

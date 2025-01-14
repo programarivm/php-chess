@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Variant\Dunsany\Piece;
+namespace Chess\Variant\Dunsany;
 
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Piece\P as ClassicalP;
+use Chess\Variant\Classical\P as ClassicalP;
 
 class P extends ClassicalP
 {

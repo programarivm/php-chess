@@ -4,9 +4,9 @@ namespace Chess\Variant;
 
 use Chess\Variant\RType;
 use Chess\Variant\VariantType;
+use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Piece\P;
 
 trait RandomStartPiecesTrait
 {

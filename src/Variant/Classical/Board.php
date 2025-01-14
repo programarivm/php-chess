@@ -5,15 +5,15 @@ namespace Chess\Variant\Classical;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
 use Chess\Variant\VariantType;
+use Chess\Variant\Classical\B;
+use Chess\Variant\Classical\K;
+use Chess\Variant\Classical\N;
+use Chess\Variant\Classical\P;
+use Chess\Variant\Classical\Q;
+use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Piece\B;
-use Chess\Variant\Classical\Piece\K;
-use Chess\Variant\Classical\Piece\N;
-use Chess\Variant\Classical\Piece\P;
-use Chess\Variant\Classical\Piece\Q;
-use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\Rule\CastlingRule;
 
 class Board extends AbstractBoard

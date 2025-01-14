@@ -17,11 +17,11 @@ class VariantType
     public static function getClass(string $variant, string $name)
     {
         $namespace = ucfirst($variant);
-        $class = "\\Chess\\Variant\\{$namespace}\\Piece\\{$name}";
+        $class = "\\Chess\\Variant\\{$namespace}\\{$name}";
         if (class_exists($class)) {
             return $class;
         }
 
-        return "\\Chess\\Variant\\Classical\\Piece\\{$name}";
+        return "\\Chess\\Variant\\Classical\\{$name}";
     }
 }

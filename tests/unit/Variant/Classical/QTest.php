@@ -1,11 +1,11 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Classical\Piece;
+namespace Chess\Tests\Unit\Variant\Classical;
 
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Piece\Q;
+use Chess\Variant\Classical\Q;
 
 class QTest extends AbstractUnitTestCase
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Classical\Piece;
+namespace Chess\Tests\Unit\Variant\Classical;
 
 use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Piece\B;
+use Chess\Variant\Classical\B;
 
 class BTest extends AbstractUnitTestCase
 {

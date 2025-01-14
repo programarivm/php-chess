@@ -5,9 +5,9 @@ namespace Chess\Randomizer;
 use Chess\Variant\RType;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\Piece\K;
 
 class Randomizer
 {

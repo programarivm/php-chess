@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Variant\Classical\Piece;
+namespace Chess\Variant\Classical;
 
 use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\RType;

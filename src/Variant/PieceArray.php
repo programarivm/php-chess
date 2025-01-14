@@ -2,11 +2,11 @@
 
 namespace Chess\Variant;
 
+use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
 use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\Rule\CastlingRule;
 
 class PieceArray
