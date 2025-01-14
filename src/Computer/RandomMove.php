@@ -10,7 +10,7 @@ class RandomMove
 
     public function __construct(AbstractBoard $board)
     {
-        $this->board = $board->clone();
+        $this->board = $board;
     }
 
     public function move(): ?array

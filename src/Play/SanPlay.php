@@ -16,7 +16,7 @@ class SanPlay extends AbstractPlay
     {
         if ($board) {
             $this->initialBoard = $board;
-            $this->board = $board->clone();
+            $this->board = $board;
         } else {
             $this->initialBoard = new Board();
             $this->board = new Board();
