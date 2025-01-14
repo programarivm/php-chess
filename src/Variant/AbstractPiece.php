@@ -36,7 +36,7 @@ abstract class AbstractPiece
     public string $id;
 
     /**
-     * flow.
+     * The mobility of the piece.
      *
      * @var array
      */
