@@ -3,7 +3,7 @@
 namespace Chess\Glossary;
 
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Piece;
 
 class OpenFileTerm extends AbstractTerm
 {

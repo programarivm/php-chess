@@ -9,8 +9,8 @@ use Chess\Variant\VariantType;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\FEN\Str;
-use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Piece;
+use Chess\Variant\Classical\PGN\Square;
 
 class StrToBoard
 {

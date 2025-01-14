@@ -4,7 +4,7 @@ namespace Chess\Tests\Unit\Variant\Classical;
 
 use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Classical\B;
 
 class BTest extends AbstractUnitTestCase

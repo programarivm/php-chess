@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Variant\Dunsany;
 
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Dunsany\P;
 
 class PTest extends AbstractUnitTestCase

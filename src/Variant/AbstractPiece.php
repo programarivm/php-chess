@@ -7,9 +7,9 @@ use Chess\Variant\Classical\B;
 use Chess\Variant\Classical\N;
 use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
-use Chess\Variant\Classical\PGN\AN\Castle;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Castle;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Classical\CastlingRule;
 
 abstract class AbstractPiece

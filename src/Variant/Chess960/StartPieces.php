@@ -4,7 +4,7 @@ namespace Chess\Variant\Chess960;
 
 use Chess\Variant\RandomStartPiecesTrait;
 use Chess\Variant\VariantType;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 
 class StartPieces
 {

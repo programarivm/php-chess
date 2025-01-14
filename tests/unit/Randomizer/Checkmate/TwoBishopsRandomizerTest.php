@@ -4,7 +4,7 @@ namespace Chess\Tests\Unit\Randomizer\Checkmate;
 
 use Chess\Randomizer\Checkmate\TwoBishopsRandomizer;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class TwoBishopsRandomizerTest extends AbstractUnitTestCase
 {

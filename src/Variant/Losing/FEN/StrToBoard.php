@@ -8,7 +8,7 @@ use Chess\Variant\PieceArray;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Losing\Board;
 use Chess\Variant\Losing\FEN\Str;
 

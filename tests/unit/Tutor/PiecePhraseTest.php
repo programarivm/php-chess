@@ -4,7 +4,7 @@ namespace Chess\Tests\Unit\Tutor;
 
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Phrase\PiecePhrase;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Classical\N;
 
 class PiecePhraseTest extends AbstractUnitTestCase

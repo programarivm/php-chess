@@ -4,7 +4,7 @@ namespace Chess\Tests\Unit\Randomizer;
 
 use Chess\Randomizer\Randomizer;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class RandomizerTest extends AbstractUnitTestCase
 {

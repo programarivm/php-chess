@@ -3,8 +3,8 @@
 namespace Chess\Eval;
 
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\Capablanca\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Capablanca\PGN\Piece;
+use Chess\Variant\Classical\PGN\Color;
 
 abstract class AbstractEval
 {

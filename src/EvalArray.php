@@ -6,7 +6,7 @@ use Chess\Eval\AbstractEval;
 use Chess\Eval\InverseEvalInterface;
 use Chess\Function\AbstractFunction;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class EvalArray
 {

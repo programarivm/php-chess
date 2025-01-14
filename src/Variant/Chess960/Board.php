@@ -6,8 +6,8 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\RandomBoardInterface;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Chess960\CastlingRule;
 use Chess\Variant\Chess960\StartPieces;
 

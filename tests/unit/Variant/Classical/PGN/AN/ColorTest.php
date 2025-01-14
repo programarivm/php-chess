@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Variant\Classical\PGN\AN;
 
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class ColorTest extends AbstractUnitTestCase
 {

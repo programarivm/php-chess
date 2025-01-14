@@ -4,8 +4,8 @@ namespace Chess\Variant\Classical;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractPiece;
-use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Piece;
+use Chess\Variant\Classical\PGN\Square;
 
 class N extends AbstractPiece
 {

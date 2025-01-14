@@ -4,7 +4,7 @@ namespace Chess\Variant\RacingKings\FEN;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\Classical\FEN\Str as ClassicalStr;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\RacingKings\FEN\PiecePlacement;
 
 class Str extends ClassicalStr

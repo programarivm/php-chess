@@ -10,7 +10,7 @@ use Chess\Variant\Chess960\Board;
 use Chess\Variant\Chess960\CastlingRule;
 use Chess\Variant\Classical\FEN\Str;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 
 class StrToBoard extends ClassicalFenStrToBoard
 {

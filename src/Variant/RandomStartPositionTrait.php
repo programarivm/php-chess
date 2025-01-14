@@ -2,7 +2,7 @@
 
 namespace Chess\Variant;
 
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Piece;
 
 trait RandomStartPositionTrait
 {

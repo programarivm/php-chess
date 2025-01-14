@@ -4,7 +4,7 @@ namespace Chess\Variant\CapablancaFischer;
 
 use Chess\Variant\RandomStartPiecesTrait;
 use Chess\Variant\VariantType;
-use Chess\Variant\Capablanca\PGN\AN\Square;
+use Chess\Variant\Capablanca\PGN\Square;
 
 class StartPieces
 {

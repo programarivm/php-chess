@@ -3,9 +3,9 @@
 namespace Chess\Tests\Unit\Variant\CapablancaFischer;
 
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\PGN\AN\Castle;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Castle;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\CapablancaFischer\Board;
 use Chess\Variant\CapablancaFischer\StartPosition;
 

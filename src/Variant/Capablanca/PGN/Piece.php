@@ -1,10 +1,11 @@
 <?php
 
-namespace Chess\Variant\Losing\PGN\AN;
+namespace Chess\Variant\Capablanca\PGN;
 
 use Chess\Variant\Classical\PGN\Piece as ClassicalPiece;
 
 class Piece extends ClassicalPiece
 {
-    const M = 'M';
+    const A = 'A';
+    const C = 'C';
 }

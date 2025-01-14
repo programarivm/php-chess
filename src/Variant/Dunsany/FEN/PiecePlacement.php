@@ -3,7 +3,7 @@
 namespace Chess\Variant\Dunsany\FEN;
 
 use Chess\Variant\Classical\FEN\PiecePlacement as ClassicalPiecePlacement;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class PiecePlacement extends ClassicalPiecePlacement
 {

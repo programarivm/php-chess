@@ -3,10 +3,10 @@
 namespace Chess\Variant\Capablanca\FEN;
 
 use Chess\Variant\Capablanca\FEN\PiecePlacement;
-use Chess\Variant\Capablanca\PGN\AN\Square;
+use Chess\Variant\Capablanca\PGN\Square;
 use Chess\Variant\Capablanca\CastlingRule;
 use Chess\Variant\Classical\FEN\Str as ClassicalFenStr;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class Str extends ClassicalFenStr
 {

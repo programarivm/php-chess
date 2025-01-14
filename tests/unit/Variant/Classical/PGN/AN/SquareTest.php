@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Variant\Classical\PGN\AN;
 
 use Chess\Exception\UnknownNotationException;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Tests\AbstractUnitTestCase;
 
 class SquareTest extends AbstractUnitTestCase

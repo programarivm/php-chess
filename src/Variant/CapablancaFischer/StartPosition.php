@@ -3,7 +3,7 @@
 namespace Chess\Variant\CapablancaFischer;
 
 use Chess\Variant\RandomStartPositionTrait;
-use Chess\Variant\Capablanca\PGN\AN\Piece;
+use Chess\Variant\Capablanca\PGN\Piece;
 
 class StartPosition
 {

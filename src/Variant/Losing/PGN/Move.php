@@ -3,8 +3,8 @@
 namespace Chess\Variant\Losing\PGN;
 
 use Chess\Variant\Classical\PGN\Move as ClassicalPgnMove;
-use Chess\Variant\Classical\PGN\AN\Check;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Check;
+use Chess\Variant\Classical\PGN\Square;
 
 class Move extends ClassicalPgnMove
 {

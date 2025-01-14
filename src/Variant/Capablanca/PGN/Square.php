@@ -1,8 +1,8 @@
 <?php
 
-namespace Chess\Variant\Capablanca\PGN\AN;
+namespace Chess\Variant\Capablanca\PGN;
 
-use Chess\Variant\Classical\PGN\AN\Square as ClassicalSquare;
+use Chess\Variant\Classical\PGN\Square as ClassicalSquare;
 
 class Square extends ClassicalSquare
 {

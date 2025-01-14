@@ -13,9 +13,9 @@ use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\Board as ClassicalBoard;
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Square;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Square;
+use Chess\Variant\Classical\PGN\Piece;
 
 class Board extends AbstractBoard
 {

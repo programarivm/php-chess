@@ -2,8 +2,8 @@
 
 namespace Chess\Variant;
 
-use Chess\Variant\Classical\PGN\AN\Castle;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Castle;
+use Chess\Variant\Classical\PGN\Piece;
 
 class RType
 {

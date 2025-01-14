@@ -3,7 +3,7 @@
 namespace Chess\Movetext;
 
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Variant\Classical\PGN\AN\Termination;
+use Chess\Variant\Classical\PGN\Termination;
 
 abstract class AbstractMovetext
 {

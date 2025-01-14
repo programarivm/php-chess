@@ -3,7 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Piece;
 
 /**
  * Flight Square Evaluation

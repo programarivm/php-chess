@@ -9,14 +9,14 @@ use Chess\Variant\Capablanca\A;
 use Chess\Variant\Capablanca\C;
 use Chess\Variant\Capablanca\CastlingRule;
 use Chess\Variant\Capablanca\PGN\Move;
-use Chess\Variant\Capablanca\PGN\AN\Square;
+use Chess\Variant\Capablanca\PGN\Square;
 use Chess\Variant\Classical\B;
 use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\N;
 use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class Board extends AbstractBoard
 {

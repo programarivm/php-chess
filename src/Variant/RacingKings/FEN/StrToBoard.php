@@ -7,7 +7,7 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArray;
 use Chess\Variant\VariantType;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\RacingKings\Board;
 use Chess\Variant\RacingKings\FEN\Str;
 

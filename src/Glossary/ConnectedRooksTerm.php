@@ -4,8 +4,8 @@ namespace Chess\Glossary;
 
 use Chess\Phrase\ColorPhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
 
 class ConnectedRooksTerm extends AbstractTerm
 {

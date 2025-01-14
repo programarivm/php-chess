@@ -3,7 +3,7 @@
 namespace Chess\Movetext;
 
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Piece;
 
 class FanMovetext extends AbstractMovetext
 {

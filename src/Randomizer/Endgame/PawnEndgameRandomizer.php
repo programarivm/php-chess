@@ -3,7 +3,7 @@
 namespace Chess\Randomizer\Endgame;
 
 use Chess\Randomizer\Randomizer;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class PawnEndgameRandomizer extends Randomizer
 {

@@ -6,9 +6,9 @@ use Chess\Piece\K;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Variant\Classical\PGN\AN\Castle;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Castle;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
 
 class MoveTest extends AbstractUnitTestCase
 {

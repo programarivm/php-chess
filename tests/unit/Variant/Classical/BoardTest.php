@@ -17,9 +17,9 @@ use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\FEN\StrToBoard;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Classical\PGN\Move;
 
 class BoardTest extends AbstractUnitTestCase

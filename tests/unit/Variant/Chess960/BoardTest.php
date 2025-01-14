@@ -3,9 +3,9 @@
 namespace Chess\Tests\Unit\Variant\Chess960;
 
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\PGN\AN\Castle;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Castle;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Chess960\Board;
 use Chess\Variant\Chess960\StartPosition;
 

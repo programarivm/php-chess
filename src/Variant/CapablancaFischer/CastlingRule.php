@@ -3,7 +3,7 @@
 namespace Chess\Variant\CapablancaFischer;
 
 use Chess\Variant\RandomCastlingRuleTrait;
-use Chess\Variant\Capablanca\PGN\AN\Square;
+use Chess\Variant\Capablanca\PGN\Square;
 use Chess\Variant\Capablanca\CastlingRule as CapablancaCastlingRule;
 
 class CastlingRule extends CapablancaCastlingRule

@@ -3,7 +3,7 @@
 namespace Chess\Movetext;
 
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class SanMovetext extends AbstractMovetext
 {

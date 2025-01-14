@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Variant\Classical\PGN\AN;
+namespace Chess\Variant\Classical\PGN;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractNotation;

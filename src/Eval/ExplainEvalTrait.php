@@ -3,7 +3,7 @@
 namespace Chess\Eval;
 
 use Chess\Variant\AbstractPiece;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 trait ExplainEvalTrait
 {

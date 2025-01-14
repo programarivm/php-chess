@@ -4,8 +4,8 @@ namespace Chess\Eval;
 
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\P;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Piece;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
 
 /**
  * Advanced Pawn Evaluation

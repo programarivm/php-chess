@@ -3,8 +3,8 @@
 namespace Chess\Variant\Classical;
 
 use Chess\Variant\AbstractLinePiece;
-use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Piece;
+use Chess\Variant\Classical\PGN\Square;
 
 class R extends AbstractLinePiece
 {

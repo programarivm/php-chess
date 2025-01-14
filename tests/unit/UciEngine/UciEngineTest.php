@@ -7,7 +7,7 @@ use Chess\Tests\AbstractUnitTestCase;
 use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
 use Chess\Variant\Classical\Board;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Square;
 
 class UciEngineTest extends AbstractUnitTestCase
 {

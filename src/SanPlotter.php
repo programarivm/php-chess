@@ -6,7 +6,7 @@ use Chess\Function\AbstractFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 /**
  * SAN Plotter

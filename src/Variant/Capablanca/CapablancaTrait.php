@@ -2,7 +2,7 @@
 
 namespace Chess\Variant\Capablanca;
 
-use Chess\Variant\Capablanca\PGN\AN\Piece;
+use Chess\Variant\Capablanca\PGN\Piece;
 
 trait CapablancaTrait
 {

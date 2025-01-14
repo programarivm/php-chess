@@ -10,8 +10,8 @@ use Chess\Variant\Classical\N;
 use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Losing\M;
 use Chess\Variant\Losing\PGN\Move;
 

@@ -6,10 +6,10 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\RandomBoardInterface;
 use Chess\Variant\VariantType;
 use Chess\Variant\Capablanca\PGN\Move;
-use Chess\Variant\Capablanca\PGN\AN\Square;
+use Chess\Variant\Capablanca\PGN\Square;
 use Chess\Variant\CapablancaFischer\CastlingRule;
 use Chess\Variant\CapablancaFischer\StartPieces;
-use Chess\Variant\Classical\PGN\AN\Color;
+use Chess\Variant\Classical\PGN\Color;
 
 class Board extends AbstractBoard implements RandomBoardInterface
 {

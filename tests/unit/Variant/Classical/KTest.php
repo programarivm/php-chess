@@ -4,13 +4,13 @@ namespace Chess\Tests\Unit\Variant\Classical;
 
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Capablanca\PGN\AN\Square as CapablancaSquare;
+use Chess\Variant\Capablanca\PGN\Square as CapablancaSquare;
 use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\CastlingRule;
-use Chess\Variant\Classical\PGN\AN\Castle;
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square as ClassicalSquare;
+use Chess\Variant\Classical\PGN\Castle;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
+use Chess\Variant\Classical\PGN\Square as ClassicalSquare;
 
 class KTest extends AbstractUnitTestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Chess\Variant\Dunsany;
 
-use Chess\Variant\Classical\PGN\AN\Color;
-use Chess\Variant\Classical\PGN\AN\Square;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Classical\P as ClassicalP;
 
 class P extends ClassicalP
