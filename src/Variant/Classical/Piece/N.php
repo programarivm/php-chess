@@ -11,14 +11,14 @@ class N extends AbstractPiece
 {
     public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $square, Piece::N);
+        parent::__construct($color, $sq, Piece::N);
 
         $this->mobility = [];
 
         try {
             $file = chr(ord($this->file()) - 1);
             $rank = $this->rank() + 2;
-            if ($this->square->validate($file . $rank)) {
+            if ($square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -27,7 +27,7 @@ class N extends AbstractPiece
         try {
             $file = chr(ord($this->file()) - 2);
             $rank = $this->rank() + 1;
-            if ($this->square->validate($file . $rank)) {
+            if ($square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -36,7 +36,7 @@ class N extends AbstractPiece
         try {
             $file = chr(ord($this->file()) - 2);
             $rank = $this->rank() - 1;
-            if ($this->square->validate($file . $rank)) {
+            if ($square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -45,7 +45,7 @@ class N extends AbstractPiece
         try {
             $file = chr(ord($this->file()) - 1);
             $rank = $this->rank() - 2;
-            if ($this->square->validate($file . $rank)) {
+            if ($square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -54,7 +54,7 @@ class N extends AbstractPiece
         try {
             $file = chr(ord($this->file()) + 1);
             $rank = $this->rank() - 2;
-            if ($this->square->validate($file . $rank)) {
+            if ($square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -63,7 +63,7 @@ class N extends AbstractPiece
         try {
             $file = chr(ord($this->file()) + 2);
             $rank = $this->rank() - 1;
-            if ($this->square->validate($file . $rank)) {
+            if ($square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -72,7 +72,7 @@ class N extends AbstractPiece
         try {
             $file = chr(ord($this->file()) + 2);
             $rank = $this->rank() + 1;
-            if ($this->square->validate($file . $rank)) {
+            if ($square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
@@ -81,7 +81,7 @@ class N extends AbstractPiece
         try {
             $file = chr(ord($this->file()) + 1);
             $rank = $this->rank() + 2;
-            if ($this->square->validate($file . $rank)) {
+            if ($square->validate($file . $rank)) {
                 $this->mobility[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {

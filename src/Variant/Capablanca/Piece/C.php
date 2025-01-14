@@ -15,7 +15,7 @@ class C extends AbstractLinePiece
 
     public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $square, Piece::C);
+        parent::__construct($color, $sq, Piece::C);
 
         $this->mobility = [
             ...(new R($color, $sq, $square, RType::R))->mobility,

@@ -10,7 +10,6 @@ use Chess\Variant\Classical\Piece\R;
 use Chess\Variant\Classical\PGN\AN\Castle;
 use Chess\Variant\Classical\PGN\AN\Color;
 use Chess\Variant\Classical\PGN\AN\Piece;
-use Chess\Variant\Classical\PGN\AN\Square;
 use Chess\Variant\Classical\Rule\CastlingRule;
 
 abstract class AbstractPiece
@@ -28,13 +27,6 @@ abstract class AbstractPiece
      * @var string
      */
     public string $sq;
-
-    /**
-     * Square.
-     *
-     * @var \Chess\Variant\Classical\PGN\AN\Square
-     */
-    public Square $square;
 
     /**
      * Identifier.
@@ -67,14 +59,12 @@ abstract class AbstractPiece
     /**
      * @param string $color
      * @param string $sq
-     * @param \Chess\Variant\Classical\PGN\AN\Square $square
      * @param string $id
      */
-    public function __construct(string $color, string $sq, Square $square, string $id)
+    public function __construct(string $color, string $sq, string $id)
     {
         $this->color = $color;
         $this->sq = $sq;
-        $this->square = $square;
         $this->id = $id;
     }
 

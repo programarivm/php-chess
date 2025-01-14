@@ -17,16 +17,16 @@ class P extends AbstractPiece
 
     public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $square, Piece::P);
+        parent::__construct($color, $sq, Piece::P);
 
         $this->ranks = $this->color === Color::W
             ? [
                 'start' => 2,
                 'next' => $this->rank() + 1,
-                'end' => $this->square::SIZE['ranks'],
+                'end' => $square::SIZE['ranks'],
             ]
             : [
-                'start' => $this->square::SIZE['ranks'] - 1,
+                'start' => $square::SIZE['ranks'] - 1,
                 'next' => $this->rank() - 1,
                 'end' => 1,
             ];
@@ -36,29 +36,29 @@ class P extends AbstractPiece
         $this->mobility = [];
 
         // next rank
-        if ($this->ranks['next'] <= $this->square::SIZE['ranks']) {
+        if ($this->ranks['next'] <= $square::SIZE['ranks']) {
             $this->mobility[] = $this->file() . $this->ranks['next'];
         }
 
         // two square advance
         if ($this->rank() === 2 && $this->ranks['start'] == 2) {
             $this->mobility[] = $this->file() . ($this->ranks['start'] + 2);
-        } elseif ($this->rank() === $this->square::SIZE['ranks'] - 1 &&
-            $this->ranks['start'] == $this->square::SIZE['ranks'] - 1
+        } elseif ($this->rank() === $square::SIZE['ranks'] - 1 &&
+            $this->ranks['start'] == $square::SIZE['ranks'] - 1
         ) {
             $this->mobility[] = $this->file() . ($this->ranks['start'] - 2);
         }
 
         // capture square
         $file = ord($this->file()) - 1;
-        if ($file >= 97 && $this->ranks['next'] <= $this->square::SIZE['ranks']) {
+        if ($file >= 97 && $this->ranks['next'] <= $square::SIZE['ranks']) {
             $this->captureSqs[] = chr($file) . $this->ranks['next'];
         }
 
         // capture square
         $file = ord($this->file()) + 1;
-        if ($file <= 97 + $this->square::SIZE['files'] - 1 &&
-            $this->ranks['next'] <= $this->square::SIZE['ranks']
+        if ($file <= 97 + $square::SIZE['files'] - 1 &&
+            $this->ranks['next'] <= $square::SIZE['ranks']
         ) {
             $this->captureSqs[] = chr($file) . $this->ranks['next'];
         }
@@ -89,7 +89,7 @@ class P extends AbstractPiece
         $end = end($history);
         if ($end && $end['id'] === Piece::P && $end['color'] === $this->oppColor()) {
             if ($this->color === Color::W) {
-                if ($this->rank() === $this->square::SIZE['ranks'] - 3) {
+                if ($this->rank() === $this->board->square::SIZE['ranks'] - 3) {
                     $captureSq = $end['to'][0] . ($this->rank() + 1);
                     if (in_array($captureSq, $this->captureSqs)) {
                         $this->enPassantSq = $captureSq;

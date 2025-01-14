@@ -13,12 +13,12 @@ class K extends AbstractPiece
 {
     public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $square, Piece::K);
+        parent::__construct($color, $sq, Piece::K);
 
         $this->mobility = [];
 
         $rank = $this->rank() + 1;
-        if ($rank <= $this->square::SIZE['ranks']) {
+        if ($rank <= $square::SIZE['ranks']) {
             $this->mobility[] = $this->file() . $rank;
         }
 
@@ -33,19 +33,19 @@ class K extends AbstractPiece
         }
 
         $file = ord($this->file()) + 1;
-        if ($file <= 97 + $this->square::SIZE['files'] - 1) {
+        if ($file <= 97 + $square::SIZE['files'] - 1) {
             $this->mobility[] = chr($file) . $this->rank();
         }
 
         $file = ord($this->file()) - 1;
         $rank = $this->rank() + 1;
-        if ($file >= 97 && $rank <= $this->square::SIZE['ranks']) {
+        if ($file >= 97 && $rank <= $square::SIZE['ranks']) {
             $this->mobility[] = chr($file) . $rank;
         }
 
         $file = ord($this->file()) + 1;
         $rank = $this->rank() + 1;
-        if ($file <= 97 + $this->square::SIZE['files'] - 1 && $rank <= $this->square::SIZE['ranks']) {
+        if ($file <= 97 + $square::SIZE['files'] - 1 && $rank <= $square::SIZE['ranks']) {
             $this->mobility[] = chr($file) . $rank;
         }
 
@@ -57,7 +57,7 @@ class K extends AbstractPiece
 
         $file = ord($this->file()) + 1;
         $rank = $this->rank() - 1;
-        if ($file <= 97 + $this->square::SIZE['files'] - 1 && $rank >= 1) {
+        if ($file <= 97 + $square::SIZE['files'] - 1 && $rank >= 1) {
             $this->mobility[] = chr($file) . $rank;
         }
     }
@@ -169,7 +169,7 @@ class K extends AbstractPiece
                 new K(
                     $this->color,
                     $this->board->castlingRule->rule[$this->color][Piece::K][rtrim($this->move['pgn'], '+')]['to'],
-                    $this->square
+                    $this->board->square
                 )
              );
             $this->board->detach($rook);
@@ -177,7 +177,7 @@ class K extends AbstractPiece
                 new R(
                     $rook->color,
                     $this->board->castlingRule->rule[$this->color][Piece::R][rtrim($this->move['pgn'], '+')]['to'],
-                    $this->square,
+                    $this->board->square,
                     $rook->type
                 )
             );

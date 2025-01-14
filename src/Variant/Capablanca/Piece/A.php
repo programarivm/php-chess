@@ -14,7 +14,7 @@ class A extends AbstractLinePiece
 
     public function __construct(string $color, string $sq, Square $square)
     {
-        parent::__construct($color, $sq, $square, Piece::A);
+        parent::__construct($color, $sq, Piece::A);
 
         $this->mobility = [
             ...(new B($color, $sq, $square))->mobility,

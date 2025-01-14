@@ -12,7 +12,7 @@ class R extends AbstractLinePiece
 
     public function __construct(string $color, string $sq, Square $square, string $type)
     {
-        parent::__construct($color, $sq, $square, Piece::R);
+        parent::__construct($color, $sq, Piece::R);
 
         $this->type = $type;
 
@@ -23,7 +23,7 @@ class R extends AbstractLinePiece
             3 => [],
         ];
 
-        for ($i = $this->rank() + 1; $i <= $this->square::SIZE['ranks']; $i++) {
+        for ($i = $this->rank() + 1; $i <= $square::SIZE['ranks']; $i++) {
             $this->mobility[0][] = $this->file() . $i;
         }
 
@@ -35,7 +35,7 @@ class R extends AbstractLinePiece
             $this->mobility[2][] = chr($i) . $this->rank();
         }
 
-        for ($i = ord($this->file()) + 1; $i <= 97 + $this->square::SIZE['files'] - 1; $i++) {
+        for ($i = ord($this->file()) + 1; $i <= 97 + $square::SIZE['files'] - 1; $i++) {
             $this->mobility[3][] = chr($i) . $this->rank();
         }
     }
