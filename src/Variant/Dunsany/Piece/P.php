@@ -14,7 +14,7 @@ class P extends ClassicalP
 
         // two square advance
         if ($this->color === Color::W) {
-            unset($this->mobility[1]);
+            unset($this->flow[1]);
         }
     }
 }

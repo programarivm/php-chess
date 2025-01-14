@@ -18,10 +18,10 @@ class NTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function mobility_d4()
+    public function flow_d4()
     {
         $knight = new N('w', 'd4', self::$square);
-        $mobility = [
+        $flow = [
             'c6',
             'b5',
             'b3',
@@ -32,35 +32,35 @@ class NTest extends AbstractUnitTestCase
             'e6'
         ];
 
-        $this->assertSame($mobility, $knight->mobility);
+        $this->assertSame($flow, $knight->flow);
     }
 
     /**
      * @test
      */
-    public function mobility_h1()
+    public function flow_h1()
     {
         $knight = new N('w', 'h1', self::$square);
-        $mobility = [
+        $flow = [
             'g3',
             'f2'
         ];
 
-        $this->assertSame($mobility, $knight->mobility);
+        $this->assertSame($flow, $knight->flow);
     }
 
     /**
      * @test
      */
-    public function mobility_b1()
+    public function flow_b1()
     {
         $knight = new N('w', 'b1', self::$square);
-        $mobility = [
+        $flow = [
             'a3',
             'd2',
             'c3'
         ];
 
-        $this->assertSame($mobility, $knight->mobility);
+        $this->assertSame($flow, $knight->flow);
     }
 }

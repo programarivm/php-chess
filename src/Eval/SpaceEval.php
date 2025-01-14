@@ -51,7 +51,7 @@ class SpaceEval extends AbstractEval
             if ($piece->id === Piece::K) {
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
-                    ...$piece->mobility,
+                    ...$piece->flow,
                 ];
             } elseif ($piece->id === Piece::P) {
                 $this->result[$piece->color] = [

@@ -50,7 +50,7 @@ class KingSafetyEval extends AbstractEval implements InverseEvalInterface
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
-                foreach ($piece->mobility as $sq) {
+                foreach ($piece->flow as $sq) {
                     if ($pieceBySq = $this->board->pieceBySq($sq)) {
                         if ($pieceBySq->color === $piece->oppColor()) {
                             $this->result[$piece->color] += 1;

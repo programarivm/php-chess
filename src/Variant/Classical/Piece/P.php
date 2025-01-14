@@ -33,20 +33,20 @@ class P extends AbstractPiece
 
         $this->captureSqs = [];
 
-        $this->mobility = [];
+        $this->flow = [];
 
         // next rank
         if ($this->ranks['next'] <= $square::SIZE['ranks']) {
-            $this->mobility[] = $this->file() . $this->ranks['next'];
+            $this->flow[] = $this->file() . $this->ranks['next'];
         }
 
         // two square advance
         if ($this->rank() === 2 && $this->ranks['start'] == 2) {
-            $this->mobility[] = $this->file() . ($this->ranks['start'] + 2);
+            $this->flow[] = $this->file() . ($this->ranks['start'] + 2);
         } elseif ($this->rank() === $square::SIZE['ranks'] - 1 &&
             $this->ranks['start'] == $square::SIZE['ranks'] - 1
         ) {
-            $this->mobility[] = $this->file() . ($this->ranks['start'] - 2);
+            $this->flow[] = $this->file() . ($this->ranks['start'] - 2);
         }
 
         // capture square
@@ -68,8 +68,8 @@ class P extends AbstractPiece
     {
         $sqs = [];
 
-        // mobility squares
-        foreach ($this->mobility as $sq) {
+        // flow squares
+        foreach ($this->flow as $sq) {
             if (in_array($sq, $this->board->sqCount['free'])) {
                 $sqs[] = $sq;
             } else {

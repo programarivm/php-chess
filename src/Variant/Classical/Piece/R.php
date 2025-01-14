@@ -16,7 +16,7 @@ class R extends AbstractLinePiece
 
         $this->type = $type;
 
-        $this->mobility = [
+        $this->flow = [
             0 => [],
             1 => [],
             2 => [],
@@ -24,19 +24,19 @@ class R extends AbstractLinePiece
         ];
 
         for ($i = $this->rank() + 1; $i <= $square::SIZE['ranks']; $i++) {
-            $this->mobility[0][] = $this->file() . $i;
+            $this->flow[0][] = $this->file() . $i;
         }
 
         for ($i = $this->rank() - 1; $i >= 1; $i--) {
-            $this->mobility[1][] = $this->file() . $i;
+            $this->flow[1][] = $this->file() . $i;
         }
 
         for ($i = ord($this->file()) - 1; $i >= 97; $i--) {
-            $this->mobility[2][] = chr($i) . $this->rank();
+            $this->flow[2][] = chr($i) . $this->rank();
         }
 
         for ($i = ord($this->file()) + 1; $i <= 97 + $square::SIZE['files'] - 1; $i++) {
-            $this->mobility[3][] = chr($i) . $this->rank();
+            $this->flow[3][] = chr($i) . $this->rank();
         }
     }
 }

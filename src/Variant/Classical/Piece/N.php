@@ -13,13 +13,13 @@ class N extends AbstractPiece
     {
         parent::__construct($color, $sq, Piece::N);
 
-        $this->mobility = [];
+        $this->flow = [];
 
         try {
             $file = chr(ord($this->file()) - 1);
             $rank = $this->rank() + 2;
             if ($square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
+                $this->flow[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -28,7 +28,7 @@ class N extends AbstractPiece
             $file = chr(ord($this->file()) - 2);
             $rank = $this->rank() + 1;
             if ($square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
+                $this->flow[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -37,7 +37,7 @@ class N extends AbstractPiece
             $file = chr(ord($this->file()) - 2);
             $rank = $this->rank() - 1;
             if ($square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
+                $this->flow[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -46,7 +46,7 @@ class N extends AbstractPiece
             $file = chr(ord($this->file()) - 1);
             $rank = $this->rank() - 2;
             if ($square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
+                $this->flow[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -55,7 +55,7 @@ class N extends AbstractPiece
             $file = chr(ord($this->file()) + 1);
             $rank = $this->rank() - 2;
             if ($square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
+                $this->flow[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -64,7 +64,7 @@ class N extends AbstractPiece
             $file = chr(ord($this->file()) + 2);
             $rank = $this->rank() - 1;
             if ($square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
+                $this->flow[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -73,7 +73,7 @@ class N extends AbstractPiece
             $file = chr(ord($this->file()) + 2);
             $rank = $this->rank() + 1;
             if ($square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
+                $this->flow[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -82,7 +82,7 @@ class N extends AbstractPiece
             $file = chr(ord($this->file()) + 1);
             $rank = $this->rank() + 2;
             if ($square->validate($file . $rank)) {
-                $this->mobility[] = $file . $rank;
+                $this->flow[] = $file . $rank;
             }
         } catch (UnknownNotationException $e) {
         }
@@ -91,7 +91,7 @@ class N extends AbstractPiece
     public function moveSqs(): array
     {
         $sqs = [];
-        foreach ($this->mobility as $sq) {
+        foreach ($this->flow as $sq) {
             if (in_array($sq, $this->board->sqCount['free'])) {
                 $sqs[] = $sq;
             } elseif (in_array($sq, $this->board->sqCount['used'][$this->oppColor()])) {
@@ -105,7 +105,7 @@ class N extends AbstractPiece
     public function defendedSqs(): array
     {
         $sqs = [];
-        foreach ($this->mobility as $sq) {
+        foreach ($this->flow as $sq) {
             if (in_array($sq, $this->board->sqCount['used'][$this->color])) {
                 $sqs[] = $sq;
             }

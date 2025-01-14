@@ -12,7 +12,7 @@ class B extends AbstractLinePiece
     {
         parent::__construct($color, $sq, Piece::B);
 
-        $this->mobility = [
+        $this->flow = [
             0 => [],
             1 => [],
             2 => [],
@@ -22,7 +22,7 @@ class B extends AbstractLinePiece
         $file = ord($this->file()) - 1;
         $rank = $this->rank() + 1;
         while ($file >= 97 && $rank <= $square::SIZE['ranks']) {
-            $this->mobility[0][] = chr($file) . $rank;
+            $this->flow[0][] = chr($file) . $rank;
             $file -= 1;
             $rank += 1;
         }
@@ -30,7 +30,7 @@ class B extends AbstractLinePiece
         $file = ord($this->file()) + 1;
         $rank = $this->rank() + 1;
         while ($file <= 97 + $square::SIZE['files'] - 1 && $rank <= $square::SIZE['ranks']) {
-            $this->mobility[1][]  = chr($file) . $rank;
+            $this->flow[1][]  = chr($file) . $rank;
             $file += 1;
             $rank += 1;
         }
@@ -38,7 +38,7 @@ class B extends AbstractLinePiece
         $file = ord($this->file()) - 1;
         $rank = $this->rank() - 1;
         while ($file >= 97 && $rank >= 1) {
-            $this->mobility[2][] = chr($file) . $rank;
+            $this->flow[2][] = chr($file) . $rank;
             $file -= 1;
             $rank -= 1;
         }
@@ -46,7 +46,7 @@ class B extends AbstractLinePiece
         $file = ord($this->file()) + 1;
         $rank = $this->rank() - 1;
         while ($file <= 97 + $square::SIZE['files'] - 1 && $rank >= 1) {
-            $this->mobility[3][] = chr($file) . $rank;
+            $this->flow[3][] = chr($file) . $rank;
             $file += 1;
             $rank -= 1;
         }

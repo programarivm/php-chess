@@ -9,7 +9,7 @@ trait CapablancaTrait
     public function moveSqs(): array
     {
         $sqs = [];
-        foreach ($this->mobility as $key => $val) {
+        foreach ($this->flow as $key => $val) {
             if ($key !== 4) {
                 foreach ($val as $sq) {
                     if (!in_array($sq, $this->board->sqCount['used'][$this->color]) &&
@@ -40,7 +40,7 @@ trait CapablancaTrait
     public function defendedSqs(): array
     {
         $sqs = [];
-        foreach ($this->mobility as $key => $val) {
+        foreach ($this->flow as $key => $val) {
             if ($key !== 4) {
                 foreach ($val as $sq) {
                     if (in_array($sq, $this->board->sqCount['used'][$this->color])) {

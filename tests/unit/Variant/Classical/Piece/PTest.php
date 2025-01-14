@@ -23,11 +23,11 @@ class PTest extends AbstractUnitTestCase
         $pawn = new P('w', 'a2', self::$square);
 
         $position = 'a2';
-        $mobility = ['a3', 'a4'];
+        $flow = ['a3', 'a4'];
         $captureSquares = ['b3'];
 
         $this->assertSame($position, $pawn->sq);
-        $this->assertEquals($mobility, $pawn->mobility);
+        $this->assertEquals($flow, $pawn->flow);
         $this->assertSame($captureSquares, $pawn->captureSqs);
     }
 
@@ -39,11 +39,11 @@ class PTest extends AbstractUnitTestCase
         $pawn = new P('w', 'd5', self::$square);
 
         $position = 'd5';
-        $mobility = ['d6'];
+        $flow = ['d6'];
         $captureSquares = ['c6', 'e6'];
 
         $this->assertSame($position, $pawn->sq);
-        $this->assertEquals($mobility, $pawn->mobility);
+        $this->assertEquals($flow, $pawn->flow);
         $this->assertSame($captureSquares, $pawn->captureSqs);
     }
 
@@ -55,11 +55,11 @@ class PTest extends AbstractUnitTestCase
         $pawn = new P('w', 'f7', self::$square);
 
         $position = 'f7';
-        $mobility = ['f8'];
+        $flow = ['f8'];
         $captureSquares = ['e8', 'g8'];
 
         $this->assertSame($position, $pawn->sq);
-        $this->assertEquals($mobility, $pawn->mobility);
+        $this->assertEquals($flow, $pawn->flow);
         $this->assertSame($captureSquares, $pawn->captureSqs);
     }
 
@@ -71,11 +71,11 @@ class PTest extends AbstractUnitTestCase
         $pawn = new P('w', 'f8', self::$square);
 
         $position = 'f8';
-        $mobility = [];
+        $flow = [];
         $captureSquares = [];
 
         $this->assertSame($position, $pawn->sq);
-        $this->assertEquals($mobility, $pawn->mobility);
+        $this->assertEquals($flow, $pawn->flow);
         $this->assertSame($captureSquares, $pawn->captureSqs);
     }
 
@@ -87,11 +87,11 @@ class PTest extends AbstractUnitTestCase
         $pawn = new P('b', 'a2', self::$square);
 
         $position = 'a2';
-        $mobility = ['a1'];
+        $flow = ['a1'];
         $captureSquares = ['b1'];
 
         $this->assertSame($position, $pawn->sq);
-        $this->assertEquals($mobility, $pawn->mobility);
+        $this->assertEquals($flow, $pawn->flow);
         $this->assertSame($captureSquares, $pawn->captureSqs);
     }
 
@@ -103,11 +103,11 @@ class PTest extends AbstractUnitTestCase
         $pawn = new P('b', 'd5', self::$square);
 
         $position = 'd5';
-        $mobility = ['d4'];
+        $flow = ['d4'];
         $captureSquares = ['c4', 'e4'];
 
         $this->assertSame($position, $pawn->sq);
-        $this->assertEquals($mobility, $pawn->mobility);
+        $this->assertEquals($flow, $pawn->flow);
         $this->assertSame($captureSquares, $pawn->captureSqs);
     }
 }

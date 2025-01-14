@@ -16,9 +16,9 @@ class A extends AbstractLinePiece
     {
         parent::__construct($color, $sq, Piece::A);
 
-        $this->mobility = [
-            ...(new B($color, $sq, $square))->mobility,
-            (new N($color, $sq, $square))->mobility,
+        $this->flow = [
+            ...(new B($color, $sq, $square))->flow,
+            (new N($color, $sq, $square))->flow,
         ];
     }
 

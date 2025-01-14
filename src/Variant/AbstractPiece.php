@@ -36,11 +36,11 @@ abstract class AbstractPiece
     public string $id;
 
     /**
-     * Mobility.
+     * flow.
      *
      * @var array
      */
-    public array $mobility;
+    public array $flow;
 
     /**
      * Current move.

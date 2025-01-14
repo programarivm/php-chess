@@ -15,50 +15,50 @@ class K extends AbstractPiece
     {
         parent::__construct($color, $sq, Piece::K);
 
-        $this->mobility = [];
+        $this->flow = [];
 
         $rank = $this->rank() + 1;
         if ($rank <= $square::SIZE['ranks']) {
-            $this->mobility[] = $this->file() . $rank;
+            $this->flow[] = $this->file() . $rank;
         }
 
         $rank = $this->rank() - 1;
         if ($rank >= 1) {
-            $this->mobility[] = $this->file() . $rank;
+            $this->flow[] = $this->file() . $rank;
         }
 
         $file = ord($this->file()) - 1;
         if ($file >= 97) {
-            $this->mobility[] = chr($file) . $this->rank();
+            $this->flow[] = chr($file) . $this->rank();
         }
 
         $file = ord($this->file()) + 1;
         if ($file <= 97 + $square::SIZE['files'] - 1) {
-            $this->mobility[] = chr($file) . $this->rank();
+            $this->flow[] = chr($file) . $this->rank();
         }
 
         $file = ord($this->file()) - 1;
         $rank = $this->rank() + 1;
         if ($file >= 97 && $rank <= $square::SIZE['ranks']) {
-            $this->mobility[] = chr($file) . $rank;
+            $this->flow[] = chr($file) . $rank;
         }
 
         $file = ord($this->file()) + 1;
         $rank = $this->rank() + 1;
         if ($file <= 97 + $square::SIZE['files'] - 1 && $rank <= $square::SIZE['ranks']) {
-            $this->mobility[] = chr($file) . $rank;
+            $this->flow[] = chr($file) . $rank;
         }
 
         $file = ord($this->file()) - 1;
         $rank = $this->rank() - 1;
         if ($file >= 97 && $rank >= 1) {
-            $this->mobility[] = chr($file) . $rank;
+            $this->flow[] = chr($file) . $rank;
         }
 
         $file = ord($this->file()) + 1;
         $rank = $this->rank() - 1;
         if ($file <= 97 + $square::SIZE['files'] - 1 && $rank >= 1) {
-            $this->mobility[] = chr($file) . $rank;
+            $this->flow[] = chr($file) . $rank;
         }
     }
 
@@ -77,7 +77,7 @@ class K extends AbstractPiece
     public function defendedSqs(): array
     {
         $sqs = [];
-        foreach ($this->mobility as $sq) {
+        foreach ($this->flow as $sq) {
             if (in_array($sq, $this->board->sqCount['used'][$this->color])) {
                 $sqs[] = $sq;
             }
@@ -117,7 +117,7 @@ class K extends AbstractPiece
     protected function sqsCaptures(): ?array
     {
         $sqsCaptures = [];
-        foreach ($this->mobility as $sq) {
+        foreach ($this->flow as $sq) {
             if ($piece = $this->board->pieceBySq($sq)) {
                 if ($this->oppColor() === $piece->color) {
                     if (!$piece->defending()) {
@@ -133,7 +133,7 @@ class K extends AbstractPiece
 
     protected function sqsKing(): ?array
     {
-        $sqsKing = array_intersect($this->mobility, $this->board->sqCount['free']);
+        $sqsKing = array_intersect($this->flow, $this->board->sqCount['free']);
 
         return array_diff($sqsKing, $this->board->spaceEval[$this->oppColor()]);
     }

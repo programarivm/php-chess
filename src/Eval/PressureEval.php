@@ -54,7 +54,7 @@ class PressureEval extends AbstractEval
                 $this->result[$piece->color] = [
                     ...$this->result[$piece->color],
                     ...array_intersect(
-                        $piece->mobility,
+                        $piece->flow,
                         $this->board->sqCount['used'][$piece->oppColor()]
                     )
                 ];

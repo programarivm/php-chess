@@ -84,45 +84,45 @@ class KTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function mobility_w_a2()
+    public function flow_w_a2()
     {
         $king = new K('w', 'a2', self::$square);
-        $mobility = ['a3', 'a1', 'b2', 'b3', 'b1'];
+        $flow = ['a3', 'a1', 'b2', 'b3', 'b1'];
 
-        $this->assertEquals($mobility, $king->mobility);
+        $this->assertEquals($flow, $king->flow);
     }
 
     /**
      * @test
      */
-    public function mobility_w_d5()
+    public function flow_w_d5()
     {
         $king = new K('w', 'd5', self::$square);
-        $mobility = ['d6', 'd4', 'c5', 'e5', 'c6', 'e6', 'c4', 'e4'];
+        $flow = ['d6', 'd4', 'c5', 'e5', 'c6', 'e6', 'c4', 'e4'];
 
-        $this->assertEquals($mobility, $king->mobility);
+        $this->assertEquals($flow, $king->flow);
     }
 
     /**
      * @test
      */
-    public function mobility_w_f1()
+    public function flow_w_f1()
     {
         $king = new K('w', 'f1', self::$square);
-        $mobility = ['f2', 'e1', 'g1', 'e2', 'g2'];
+        $flow = ['f2', 'e1', 'g1', 'e2', 'g2'];
 
-        $this->assertEquals($mobility, $king->mobility);
+        $this->assertEquals($flow, $king->flow);
     }
 
     /**
      * @test
      */
-    public function mobility_b_f8()
+    public function flow_b_f8()
     {
         $king = new K('b', 'f8', self::$square);
-        $mobility = ['f7', 'e8', 'g8', 'e7', 'g7'];
+        $flow = ['f7', 'e8', 'g8', 'e7', 'g7'];
 
-        $this->assertEquals($mobility, $king->mobility);
+        $this->assertEquals($flow, $king->flow);
     }
 
     /**
@@ -144,12 +144,12 @@ class KTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function capablanca_mobility_w_f1()
+    public function capablanca_flow_w_f1()
     {
         $king = new K('w', 'f1', new CapablancaSquare());
 
-        $mobility = ['f2', 'e1', 'g1', 'e2', 'g2'];
+        $flow = ['f2', 'e1', 'g1', 'e2', 'g2'];
 
-        $this->assertEquals($mobility, $king->mobility);
+        $this->assertEquals($flow, $king->flow);
     }
 }

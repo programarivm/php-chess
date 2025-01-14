@@ -42,8 +42,8 @@ class DiagonalOppositionEval extends AbstractEval
         ];
 
         $intersect = array_intersect(
-            $this->board->piece(Color::W, Piece::K)->mobility,
-            $this->board->piece(Color::B, Piece::K)->mobility
+            $this->board->piece(Color::W, Piece::K)->flow,
+            $this->board->piece(Color::B, Piece::K)->flow
         );
 
         if (count($intersect) === 1) {

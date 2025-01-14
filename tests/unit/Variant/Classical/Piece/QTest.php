@@ -19,10 +19,10 @@ class QTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function mobility_a2()
+    public function flow_a2()
     {
         $queen = new Q('w', 'a2', self::$square);
-        $mobility = [
+        $flow = [
             0 => ['a3', 'a4', 'a5', 'a6', 'a7', 'a8'],
             1 => ['a1'],
             2 => [],
@@ -33,16 +33,16 @@ class QTest extends AbstractUnitTestCase
             7 => ['b1'],
         ];
 
-        $this->assertEquals($mobility, $queen->mobility);
+        $this->assertEquals($flow, $queen->flow);
     }
 
     /**
      * @test
      */
-    public function mobility_d5()
+    public function flow_d5()
     {
         $queen = new Q('w', 'd5', self::$square);
-        $mobility = [
+        $flow = [
             0 => ['d6', 'd7', 'd8'],
             1 => ['d4', 'd3', 'd2', 'd1'],
             2 => ['c5', 'b5', 'a5'],
@@ -53,7 +53,7 @@ class QTest extends AbstractUnitTestCase
             7 => ['e4', 'f3', 'g2', 'h1'],
         ];
 
-        $this->assertEquals($mobility, $queen->mobility);
+        $this->assertEquals($flow, $queen->flow);
     }
 
     /**

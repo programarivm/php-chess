@@ -41,7 +41,7 @@ class FlightSquareEval extends AbstractEval
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::K) {
-                foreach ($piece->mobility as $sq) {
+                foreach ($piece->flow as $sq) {
                     if (!in_array($sq, $this->board->spaceEval[$piece->oppColor()]) &&
                         in_array($sq, $this->board->sqCount['free'])
                     ) {
