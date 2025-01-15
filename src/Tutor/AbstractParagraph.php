@@ -2,12 +2,12 @@
 
 namespace Chess\Tutor;
 
-use Chess\Function\AbstractFunction;
+use Chess\Function\FunctionInterface;
 use Chess\Variant\AbstractBoard;
 
 abstract class AbstractParagraph
 {
-    public AbstractFunction $f;
+    public FunctionInterface $f;
 
     public AbstractBoard $board;
 
