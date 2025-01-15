@@ -12,15 +12,12 @@
             <directory>tests/unit/Computer</directory>
             <directory>tests/unit/Elo</directory>
             <directory>tests/unit/Eval</directory>
-            <directory>tests/unit/Function</directory>
             <directory>tests/unit/Media</directory>
             <directory>tests/unit/Movetext</directory>
             <directory>tests/unit/Play</directory>
             <directory>tests/unit/Randomizer</directory>
             <directory>tests/unit/Tutor</directory>
             <directory>tests/unit/Variant</directory>
-            <file>tests/unit/EvalArrayTest.php</file>
-            <file>tests/unit/EvalFactoryTest.php</file>
             <file>tests/unit/FenToBoardFactoryTest.php</file>
             <file>tests/unit/SanExtractorTest.php</file>
             <file>tests/unit/SanPlotterTest.php</file>

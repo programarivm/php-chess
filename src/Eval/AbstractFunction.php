@@ -1,27 +1,64 @@
 <?php
 
-namespace Chess;
+namespace Chess\Eval;
 
-use Chess\Eval\AbstractEval;
-use Chess\Eval\InverseEvalInterface;
-use Chess\Function\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Color;
 
-class EvalArray
+class AbstractFunction
 {
     /**
-     * Returns an array of normalized values.
+     * Evaluation features.
      *
-     * @param \Chess\Function\AbstractFunction $f
+     * @var array
+     */
+    public static array $eval = [];
+
+    /**
+     * Returns the names of the evaluation features.
+     *
+     * @return array
+     */
+    public static function names(): array
+    {   
+        $names = [];
+        foreach (static::$eval as $val) {
+            $names[] = (new \ReflectionClass($val))->getConstant('NAME');
+        }
+
+        return $names;
+    }
+
+    /**
+     * Returns an evaluation by name.
+     *
+     * @param string $name
+     * @param \Chess\Variant\AbstractBoard $board
+     * @return \Chess\Eval\AbstractEval
+     */
+    public static function evaluate(string $name, AbstractBoard $board): AbstractEval
+    {
+        foreach (static::$eval as $val) {
+            $class = new \ReflectionClass($val);
+            if ($name === $class->getConstant('NAME')) {
+                return $class->newInstanceArgs([$board]);
+            }
+        }
+
+        throw new \InvalidArgumentException();
+    }
+
+    /**
+     * Returns an array of normalized evaluations.
+     *
      * @param \Chess\Variant\AbstractBoard $board
      * @return array
      */
-    public static function normalization(AbstractFunction $f, AbstractBoard $board): array
+    public static function normalization(AbstractBoard $board): array
     {
         $items = [];
-        foreach ($f->names() as $val) {
-            $item = self::add(EvalFactory::create($f, $val, $board));
+        foreach (self::names() as $val) {
+            $item = self::add(self::evaluate($val, $board));
             $items[] =  $item[Color::W] - $item[Color::B];
         }
 
@@ -33,13 +70,13 @@ class EvalArray
      * relative value of the position without considering checkmate is obtained
      * by counting the advantages in the evaluation array.
      *
-     * @param array $normd
+     * @param \Chess\Variant\AbstractBoard $board
      * @return int
      */
-    public static function steinitz(AbstractFunction $f, AbstractBoard $board): int
+    public static function steinitz(AbstractBoard $board): int
     {
         $count = 0;
-        $normd = array_filter(self::normalization($f, $board));
+        $normd = array_filter(self::normalization($board));
         foreach ($normd as $val) {
             if ($val > 0) {
                 $count += 1;
@@ -52,15 +89,14 @@ class EvalArray
     }
 
     /**
-     * Returns the mean of the elements in the array.
+     * Returns the mean of the evaluations.
      *
-     * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
      */
-    public static function mean(AbstractFunction $f, AbstractBoard $board): float
+    public static function mean(AbstractBoard $board): float
     {
-        $normd = array_filter(self::normalization($f, $board));
+        $normd = array_filter(self::normalization($board));
         $sum = array_sum($normd);
         $count = count($normd);
         if ($count > 0) {
@@ -71,15 +107,14 @@ class EvalArray
     }
 
     /**
-     * Returns the value in the middle of the array.
+     * Returns the value in the middle of the evaluations array.
      *
-     * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
      */
-    public static function median(AbstractFunction $f, AbstractBoard $board): float
+    public static function median(AbstractBoard $board): float
     {
-        $normd = array_filter(self::normalization($f, $board));
+        $normd = array_filter(self::normalization($board));
         sort($normd);
         $size = sizeof($normd);
         if ($size % 2 == 0) {
@@ -90,15 +125,14 @@ class EvalArray
     }
 
     /**
-     * Returns the most common number in the array.
+     * Returns the most common number in the evaluations array.
      *
-     * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @return null|float
      */
-    public static function mode(AbstractFunction $f, AbstractBoard $board): ?float
+    public static function mode(AbstractBoard $board): ?float
     {
-        $normd = array_filter(self::normalization($f, $board));
+        $normd = array_filter(self::normalization($board));
         foreach ($normd as &$val) {
             $val = strval($val);
         }
@@ -112,16 +146,15 @@ class EvalArray
     }
 
     /**
-     * Returns a measure of how spread out the array is.
+     * Returns a measure of how spread out the evaluations array is.
      *
-     * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
      */
-    public static function var(AbstractFunction $f, AbstractBoard $board): float
+    public static function var(AbstractBoard $board): float
     {
-        $normd = array_filter(self::normalization($f, $board));
-        $mean = self::mean($f, $board);
+        $normd = array_filter(self::normalization($board));
+        $mean = self::mean($board);
         $sum = 0;
         foreach ($normd as $val) {
             $diff = $val - $mean;
@@ -132,21 +165,20 @@ class EvalArray
     }
 
     /**
-     * Returns a measure of how spread out the array is.
+     * Returns a measure of how spread out the evaluations array is.
      *
-     * @param \Chess\Function\AbstractFunction $f
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
      */
-    public static function sd(AbstractFunction $f, AbstractBoard $board): float
+    public static function sd(AbstractBoard $board): float
     {
-        $var = self::var($f, $board);
+        $var = self::var($board);
 
         return round(sqrt($var), 4);
     }
 
     /**
-     * Add an item to the array.
+     * Add an item to the evaluations array.
      *
      * @param \Chess\Eval\AbstractEval $eval
      * @return array

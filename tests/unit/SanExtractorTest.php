@@ -4,7 +4,7 @@ namespace Chess\Tests\Unit;
 
 use Chess\FenToBoardFactory;
 use Chess\SanExtractor;
-use Chess\Function\FastFunction;
+use Chess\Eval\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 

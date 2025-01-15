@@ -8,7 +8,7 @@
 
 ```php
 use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
+use Chess\Eval\CompleteFunction;
 use Chess\Tutor\FenEvaluation;
 
 $f = new CompleteFunction();
@@ -23,7 +23,7 @@ echo $text;
 ```
 
 ```text
-White has a decisive material advantage. White has a slightly better control of the center. The white player is pressuring more squares than its opponent. White has an absolute pin advantage. White has the bishop pair. Black's king has more safe squares to move to than its counterpart. Black's king can be checked so it is vulnerable to forced moves. The knight on e6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check. Overall, 5 evaluation features are favoring White. The relative evaluation of this position is 2.26.
+White has a decisive material advantage. White has a slightly better control of the center. The white player is pressuring more squares than its opponent. White has an absolute pin advantage. White has the bishop pair. Black's king has more safe squares to move to than its counterpart. Black's king can be checked so it is vulnerable to forced moves. The knight on e6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check. Overall, 5 evaluation features are favoring White.
 ```
 
 🎉 This is a form of abductive reasoning.
@@ -35,7 +35,7 @@ White has a decisive material advantage. White has a slightly better control of 
 [Chess\Tutor\PgnEvaluation](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/PgnEvaluationTest.php) explains how a particular move changes the position.
 
 ```php
-use Chess\Function\CompleteFunction;
+use Chess\Eval\CompleteFunction;
 use Chess\Play\SanPlay;
 use Chess\Tutor\PgnEvaluation;
 
@@ -54,7 +54,7 @@ echo $text;
 ```
 
 ```text
-Black has a slight space advantage. White has a slight protection advantage. White has a slight attack advantage. White's king can be checked so it is vulnerable to forced moves. These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8, the pawn on c5. The pawn on c5 is unprotected. The pawn on c5 is under threat of being attacked. Overall, 0 evaluation features are favoring either player. The relative evaluation of this position is 1.5.
+Black has a slight space advantage. White has a slight protection advantage. White has a slight attack advantage. White's king can be checked so it is vulnerable to forced moves. These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8, the pawn on c5. The pawn on c5 is unprotected. The pawn on c5 is under threat of being attacked. Overall, 0 evaluation features are favoring either player.
 ```
 
 The resulting text may sound a little robotic but it can be easily rephrased by the AI of your choice to make it sound more human-like.
@@ -66,7 +66,7 @@ The resulting text may sound a little robotic but it can be easily rephrased by 
 With the help of an UCI engine [Chess\Tutor\GoodPgnEvaluation](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/GoodPgnEvaluationTest.php) can explain the why of a good move.
 
 ```php
-use Chess\Function\CompleteFunction;
+use Chess\Eval\CompleteFunction;
 use Chess\Play\SanPlay;
 use Chess\Tutor\GoodPgnEvaluation;
 use Chess\UciEngine\UciEngine;
@@ -93,7 +93,7 @@ echo $paragraph . PHP_EOL;
 
 ```text
 Bg4
-The black player is pressuring more squares than its opponent. The black pieces are timidly approaching the other side's king. Black has a relative pin advantage. These pieces are hanging: Black's queen on d5, the rook on a8, the rook on h8, the pawn on b7, the pawn on c7, the pawn on g7, the bishop on g4, the rook on h1. The knight on e2 is pinned shielding a piece that is more valuable than the attacking piece. Overall, 7 evaluation features are favoring Black. The relative evaluation of this position is 0.32.
+The black player is pressuring more squares than its opponent. The black pieces are timidly approaching the other side's king. Black has a relative pin advantage. These pieces are hanging: Black's queen on d5, the rook on a8, the rook on h8, the pawn on b7, the pawn on c7, the pawn on g7, the bishop on g4, the rook on h1. The knight on e2 is pinned shielding a piece that is more valuable than the attacking piece. Overall, 7 evaluation features are favoring Black.
 ```
 
 🎉 Let's do this!

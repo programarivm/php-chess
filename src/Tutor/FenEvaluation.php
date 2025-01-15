@@ -2,10 +2,9 @@
 
 namespace Chess\Tutor;
 
-use Chess\EvalArray;
 use Chess\Eval\ExplainEvalTrait;
 use Chess\Eval\ElaborateEvalTrait;
-use Chess\Function\AbstractFunction;
+use Chess\Eval\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 
 class FenEvaluation extends AbstractParagraph
@@ -18,7 +17,6 @@ class FenEvaluation extends AbstractParagraph
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),
             ...$this->steinitz(),
-            ...$this->mean(),
         ];
     }
 
@@ -26,7 +24,7 @@ class FenEvaluation extends AbstractParagraph
     {
         $paragraph = [];
 
-        foreach ($this->f->eval as $val) {
+        foreach ($this->f::$eval as $val) {
             $eval = new $val($this->board);
             if (in_array(ExplainEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->explain()) {
@@ -42,7 +40,7 @@ class FenEvaluation extends AbstractParagraph
     {
         $paragraph = [];
 
-        foreach ($this->f->eval as $val) {
+        foreach ($this->f::$eval as $val) {
             $eval = new $val($this->board);
             if (in_array(ElaborateEvalTrait::class, class_uses($eval))) {
                 if ($phrases = $eval->elaborate()) {
@@ -56,7 +54,7 @@ class FenEvaluation extends AbstractParagraph
 
     private function steinitz(): array
     {
-        $steinitz = EvalArray::steinitz($this->f, $this->board);
+        $steinitz = $this->f::steinitz($this->board);
 
         if ($steinitz > 0) {
             $color = 'White';
@@ -69,15 +67,6 @@ class FenEvaluation extends AbstractParagraph
 
         return [
             "Overall, {$steinitz} {$this->noun($steinitz)} {$this->verb($steinitz)} favoring {$color}.",
-        ];
-    }
-
-    private function mean(): array
-    {
-        $mean = EvalArray::mean($this->f, $this->board);
-
-        return [
-            "The mean evaluation of this position is {$mean}.",
         ];
     }
 

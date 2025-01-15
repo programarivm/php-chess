@@ -2,7 +2,7 @@
 
 namespace Chess\Tutor;
 
-use Chess\Function\AbstractFunction;
+use Chess\Eval\AbstractFunction;
 use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
 use Chess\Variant\Classical\Board;

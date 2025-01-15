@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\Function\AbstractFunction;
+use Chess\Eval\AbstractFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
@@ -18,7 +18,7 @@ class SanPlotter
     /**
      * Returns the time.
      *
-     * @param \Chess\Function\AbstractFunction $f
+     * @param $f \Chess\Eval\AbstractFunction
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
      * @param string $name
@@ -35,12 +35,12 @@ class SanPlotter
         foreach ($sanPlay->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($board->play($board->turn, $val)) {
-                    $item = EvalArray::add(EvalFactory::create($f, $name, $board));
+                    $item = $f::add($f::evaluate($name, $board));
                     $time[] = $item[Color::W] - $item[Color::B];
                 }
             }
         }
 
-        return EvalArray::normalize(-1, 1, $time);
+        return $f::normalize(-1, 1, $time);
     }
 }
