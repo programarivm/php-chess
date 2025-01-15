@@ -3,10 +3,10 @@
 namespace Chess\Tests\Unit\Function;
 
 use Chess\FenToBoardFactory;
-use Chess\Eval\CompleteF;
+use Chess\Eval\CompleteFunction;
 use Chess\Tests\AbstractUnitTestCase;
 
-class CompleteFTest extends AbstractUnitTestCase
+class CompleteFunctionTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -48,7 +48,7 @@ class CompleteFTest extends AbstractUnitTestCase
             'Checkability',
         ];
 
-        $this->assertSame($expected, CompleteF::names());
+        $this->assertSame($expected, CompleteFunction::names());
     }
 
     /**
@@ -60,7 +60,7 @@ class CompleteFTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('8/8/5k1n/6P1/7K/8/8/8 w - -');
 
-        $eval = CompleteF::evaluate('foo', $board);
+        $eval = CompleteFunction::evaluate('foo', $board);
     }
 
     /**
@@ -79,7 +79,7 @@ class CompleteFTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('8/8/5k1n/6P1/7K/8/8/8 w - -');
 
-        $eval = CompleteF::evaluate('Absolute fork', $board);
+        $eval = CompleteFunction::evaluate('Absolute fork', $board);
 
         $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedElaboration, $eval->elaborate());
@@ -101,7 +101,7 @@ class CompleteFTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -');
 
-        $eval = CompleteF::evaluate('Absolute pin', $board);
+        $eval = CompleteFunction::evaluate('Absolute pin', $board);
 
         $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedElaboration, $eval->elaborate());
@@ -124,7 +124,7 @@ class CompleteFTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('8/3qk3/8/3b4/4KR2/5Q2/8/8 w - - 0 1');
 
-        $eval = CompleteF::evaluate('Absolute skewer', $board);
+        $eval = CompleteFunction::evaluate('Absolute skewer', $board);
 
         $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedElaboration, $eval->elaborate());

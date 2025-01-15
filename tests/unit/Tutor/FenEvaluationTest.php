@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Tutor;
 
 use Chess\FenToBoardFactory;
-use Chess\Eval\CompleteF;
+use Chess\Eval\CompleteFunction;
 use Chess\Play\SanPlay;
 use Chess\Tutor\FenEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
@@ -29,7 +29,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
         $board = (new SanPlay($A08))->validate()->board;
 
-        $paragraph = (new FenEvaluation(new CompleteF(), $board))->paragraph;
+        $paragraph = (new FenEvaluation(new CompleteFunction(), $board))->paragraph;
 
         $this->assertEquals(array_diff($expected, $paragraph), []);
     }
@@ -55,7 +55,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
             new CapablancaBoard()
         );
 
-        $paragraph = (new FenEvaluation(new CompleteF(), $board))->paragraph;
+        $paragraph = (new FenEvaluation(new CompleteFunction(), $board))->paragraph;
 
         $this->assertSame($expected, $paragraph);
     }

@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\Tutor;
 
-use Chess\Eval\CompleteF;
+use Chess\Eval\CompleteFunction;
 use Chess\Play\SanPlay;
 use Chess\Tutor\GoodPgnEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
@@ -37,7 +37,7 @@ class GoodPgnEvaluationTest extends AbstractUnitTestCase
         $goodPgnEvaluation = new GoodPgnEvaluation(
             $limit, 
             $stockfish, 
-            new CompleteF(), 
+            new CompleteFunction(), 
             $board
         );
 

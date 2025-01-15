@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Tutor;
 
 use Chess\FenToBoardFactory;
-use Chess\Eval\CompleteF;
+use Chess\Eval\CompleteFunction;
 use Chess\Play\SanPlay;
 use Chess\Tutor\PgnEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
@@ -30,7 +30,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
         $board = (new SanPlay($A08))->validate()->board;
 
-        $paragraph = (new PgnEvaluation('d4', new CompleteF(), $board))->paragraph;
+        $paragraph = (new PgnEvaluation('d4', new CompleteFunction(), $board))->paragraph;
 
         $this->assertSame($expected, $paragraph);
     }
@@ -54,7 +54,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');
 
-        $paragraph = (new PgnEvaluation('Bxe6+', new CompleteF(), $board))->paragraph;
+        $paragraph = (new PgnEvaluation('Bxe6+', new CompleteFunction(), $board))->paragraph;
 
         $this->assertSame($expected, $paragraph);
     }

@@ -2,7 +2,7 @@
 
 namespace Chess\Eval;
 
-class CompleteF extends AbstractFunction
+class CompleteFunction extends AbstractFunction
 {
     public static array $eval = [
         MaterialEval::class,
