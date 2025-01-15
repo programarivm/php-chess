@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit;
 
 use Chess\SanPlotter;
-use Chess\Eval\FastF;
+use Chess\Eval\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\Board;
@@ -11,11 +11,11 @@ use Chess\Variant\Classical\FEN\StrToBoard;
 
 class SanPlotterTest extends AbstractUnitTestCase
 {
-    static private FastF $f;
+    static private FastFunction $f;
 
     public static function setUpBeforeClass(): void
     {
-        self::$f = new FastF();
+        self::$f = new FastFunction();
     }
 
     /**

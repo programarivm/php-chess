@@ -2,7 +2,7 @@
 
 namespace Chess\Eval;
 
-class FastF extends AbstractFunction
+class FastFunction extends AbstractFunction
 {
     public static array $eval = [
         MaterialEval::class,
