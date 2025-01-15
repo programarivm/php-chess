@@ -17,7 +17,6 @@ class FenEvaluation extends AbstractParagraph
             ...$this->fenExplanation(),
             ...$this->fenElaboration(),
             ...$this->steinitz(),
-            ...$this->mean(),
         ];
     }
 
@@ -68,15 +67,6 @@ class FenEvaluation extends AbstractParagraph
 
         return [
             "Overall, {$steinitz} {$this->noun($steinitz)} {$this->verb($steinitz)} favoring {$color}.",
-        ];
-    }
-
-    private function mean(): array
-    {
-        $mean = $this->f::mean($this->board);
-
-        return [
-            "The mean evaluation of this position is {$mean}.",
         ];
     }
 

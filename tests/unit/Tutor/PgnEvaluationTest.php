@@ -24,7 +24,6 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "The pawn on c5 is unprotected.",
             "The pawn on c5 is under threat of being attacked.",
             "Overall, 0 evaluation features are favoring either player.",
-            "The mean evaluation of this position is 0.2445.",
         ];
 
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
@@ -49,7 +48,6 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "These pieces are hanging: The bishop on e6.",
             "The bishop on e6 is unprotected.",
             "Overall, 4 evaluation features are favoring White.",
-            "The mean evaluation of this position is 0.0535.",
         ];
 
         $board = FenToBoardFactory::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');
