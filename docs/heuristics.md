@@ -53,7 +53,7 @@ Evaluation functions allow to transform a FEN position to a normalized array of 
 - [Chess\Eval\CompleteFunction](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CompleteFunctionTest.php)
 - [Chess\Eval\FastFunction](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FastFunctionTest.php)
 
-The complete evaluation function is intended to be used for chess positions while the fast evaluation function is used for entire games.
+The fast evaluation function is convenient to evaluate entire games while the complete evaluation function is intended for specific chess positions as shown in the following example.
 
 ```php
 use Chess\FenToBoardFactory;
@@ -263,14 +263,14 @@ The data is plotted in a way that is easy for chess players to understand and le
 
 ## Extract Chess Data
 
-[Chess\SanExtractor](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php) extracts oscillations data for further analysis like the following example.
+[Chess\SanExtractor](https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php) extracts data from entire games like the following example.
 
 ```php
 use Chess\SanExtractor;
-use Chess\Eval\CompleteFunction;
+use Chess\Eval\FastFunction;
 use Chess\Variant\Classical\Board;
 
-$f = new CompleteFunction();
+$f = new FastFunction();
 $board = new Board();
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 ```
@@ -318,8 +318,6 @@ Array
     [27] => 0
     [28] => 0
     [29] => -0.022
-    [30] => 0
-    [31] => 0
 )
 ```
 
@@ -361,8 +359,8 @@ Array
 (
     [0] => 0
     [1] => 0.1875
-    [2] => -0.1667
-    [3] => -0.3125
+    [2] => -0.125
+    [3] => -0.2813
     [4] => -0.0664
 )
 ```
@@ -382,8 +380,8 @@ Array
 (
     [0] => 0
     [1] => 0.7601
-    [2] => -0.8498
-    [3] => -0.7294
+    [2] => -0.8927
+    [3] => -0.7623
     [4] => -0.5406
 )
 ```
