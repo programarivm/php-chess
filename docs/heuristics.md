@@ -149,7 +149,7 @@ Array
 )
 ```
 
-You may be wondering why two functions instead of just one. Well, that's because a computer may well take about 0.2 seconds to evaluate a chess position, which is perfectly fine. Now, if we take this number and multiply it by 80 different positions that a chess game has on average, the result obtained is 16 seconds. The fast evaluation function comes to the rescue in these situations as a workaround.
+You may be wondering why two functions instead of just one. Well, that's because a computer may well take about 0.1 seconds to evaluate a chess position, which is perfectly fine. Now, if we take this number and multiply it by 80 different positions that a chess game has on average, the result obtained is 8 seconds. The fast evaluation function comes to the rescue in these situations as a workaround.
 
 The evaluation array is used to estimate who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
