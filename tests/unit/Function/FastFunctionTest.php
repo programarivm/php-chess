@@ -45,6 +45,6 @@ class FastFunctionTest extends AbstractUnitTestCase
             'Flight square',
         ];
 
-        $this->assertSame($expected, (new FastFunction())->names());
+        $this->assertSame($expected, FastFunction::names());
     }
 }

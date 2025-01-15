@@ -34,9 +34,11 @@ use Chess\Eval\RelativePinEval;
 use Chess\Eval\SpaceEval;
 use Chess\Eval\SqOutpostEval;
 
-class FastFunction extends AbstractFunction
+class FastFunction
 {
-    public array $eval = [
+    use FunctionTrait;
+
+    public static array $eval = [
         MaterialEval::class,
         CenterEval::class,
         ConnectivityEval::class,

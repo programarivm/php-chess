@@ -47,6 +47,6 @@ class CompleteFunctionTest extends AbstractUnitTestCase
             'Checkability',
         ];
 
-        $this->assertSame($expected, (new CompleteFunction())->names());
+        $this->assertSame($expected, CompleteFunction::names());
     }
 }

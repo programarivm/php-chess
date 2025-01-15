@@ -2,11 +2,11 @@
 
 namespace Chess\Function;
 
-abstract class AbstractFunction
+trait FunctionTrait
 {
-    public function names(): array
-    {
-        foreach ($this->eval as $val) {
+    public static function names(): array
+    {   
+        foreach (self::$eval as $val) {
             $names[] = (new \ReflectionClass($val))->getConstant('NAME');
         }
 
