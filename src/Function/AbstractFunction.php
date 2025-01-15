@@ -9,8 +9,18 @@ use Chess\Variant\Classical\PGN\Color;
 
 class AbstractFunction
 {
+    /**
+     * Evaluation features.
+     *
+     * @var array
+     */
     public static array $eval = [];
 
+    /**
+     * Returns the names of the evaluation features.
+     *
+     * @return array
+     */
     public static function names(): array
     {   
         $names = [];
@@ -21,7 +31,14 @@ class AbstractFunction
         return $names;
     }
 
-    public static function evaluate(string $name, AbstractBoard $board)
+    /**
+     * Returns an evaluation by name.
+     *
+     * @param string $name
+     * @param \Chess\Variant\AbstractBoard $board
+     * @return \Chess\Eval\AbstractEval
+     */
+    public static function evaluate(string $name, AbstractBoard $board): AbstractEval
     {
         foreach (static::$eval as $val) {
             $class = new \ReflectionClass($val);
@@ -34,7 +51,7 @@ class AbstractFunction
     }
 
     /**
-     * Returns an array of normalized values.
+     * Returns an array of normalized evaluations.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @return array
@@ -74,7 +91,7 @@ class AbstractFunction
     }
 
     /**
-     * Returns the mean of the elements in the array.
+     * Returns the mean of the evaluations.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
@@ -92,7 +109,7 @@ class AbstractFunction
     }
 
     /**
-     * Returns the value in the middle of the array.
+     * Returns the value in the middle of the evaluations array.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
@@ -110,7 +127,7 @@ class AbstractFunction
     }
 
     /**
-     * Returns the most common number in the array.
+     * Returns the most common number in the evaluations array.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @return null|float
@@ -131,7 +148,7 @@ class AbstractFunction
     }
 
     /**
-     * Returns a measure of how spread out the array is.
+     * Returns a measure of how spread out the evaluations array is.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
@@ -150,7 +167,7 @@ class AbstractFunction
     }
 
     /**
-     * Returns a measure of how spread out the array is.
+     * Returns a measure of how spread out the evaluations array is.
      *
      * @param \Chess\Variant\AbstractBoard $board
      * @return float
@@ -163,7 +180,7 @@ class AbstractFunction
     }
 
     /**
-     * Add an item to the array.
+     * Add an item to the evaluations array.
      *
      * @param \Chess\Eval\AbstractEval $eval
      * @return array
