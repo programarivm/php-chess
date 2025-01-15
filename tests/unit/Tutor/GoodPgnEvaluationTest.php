@@ -37,7 +37,7 @@ class GoodPgnEvaluationTest extends AbstractUnitTestCase
         $goodPgnEvaluation = new GoodPgnEvaluation(
             $limit, 
             $stockfish, 
-            CompleteF::create(), 
+            new CompleteF(), 
             $board
         );
 

@@ -9,11 +9,6 @@ use Chess\Variant\Classical\PGN\Color;
 
 trait FunctionTrait
 {
-    public static function create() 
-    {
-        return new self();
-    }
-
     public static function names(): array
     {   
         foreach (self::$eval as $val) {
