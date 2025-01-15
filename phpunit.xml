@@ -12,7 +12,6 @@
             <directory>tests/unit/Computer</directory>
             <directory>tests/unit/Elo</directory>
             <directory>tests/unit/Eval</directory>
-            <directory>tests/unit/Function</directory>
             <directory>tests/unit/Media</directory>
             <directory>tests/unit/Movetext</directory>
             <directory>tests/unit/Play</directory>

@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Tutor;
 
 use Chess\FenToBoardFactory;
-use Chess\Function\CompleteF;
+use Chess\Eval\CompleteF;
 use Chess\Play\SanPlay;
 use Chess\Tutor\FenEvaluation;
 use Chess\Tests\AbstractUnitTestCase;

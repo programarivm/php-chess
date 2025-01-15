@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit;
 
 use Chess\SanPlotter;
-use Chess\Function\FastF;
+use Chess\Eval\FastF;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\Board;

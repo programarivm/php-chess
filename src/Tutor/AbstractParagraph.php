@@ -2,7 +2,7 @@
 
 namespace Chess\Tutor;
 
-use Chess\Function\AbstractFunction;
+use Chess\Eval\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 
 abstract class AbstractParagraph

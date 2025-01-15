@@ -2,7 +2,7 @@
 
 namespace Chess\Tests\Unit\Tutor;
 
-use Chess\Function\CompleteF;
+use Chess\Eval\CompleteF;
 use Chess\Play\SanPlay;
 use Chess\Tutor\GoodPgnEvaluation;
 use Chess\Tests\AbstractUnitTestCase;

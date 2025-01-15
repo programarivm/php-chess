@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Function;
 
 use Chess\FenToBoardFactory;
-use Chess\Function\FastF;
+use Chess\Eval\FastF;
 use Chess\Tests\AbstractUnitTestCase;
 
 class FastFTest extends AbstractUnitTestCase

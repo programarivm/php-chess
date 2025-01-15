@@ -3,7 +3,7 @@
 namespace Chess\Tests\Unit\Function;
 
 use Chess\FenToBoardFactory;
-use Chess\Function\CompleteF;
+use Chess\Eval\CompleteF;
 use Chess\Tests\AbstractUnitTestCase;
 
 class CompleteFTest extends AbstractUnitTestCase

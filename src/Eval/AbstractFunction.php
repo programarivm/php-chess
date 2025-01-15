@@ -1,9 +1,7 @@
 <?php
 
-namespace Chess\Function;
+namespace Chess\Eval;
 
-use Chess\Eval\AbstractEval;
-use Chess\Eval\InverseEvalInterface;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Color;
 

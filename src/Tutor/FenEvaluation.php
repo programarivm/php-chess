@@ -4,7 +4,7 @@ namespace Chess\Tutor;
 
 use Chess\Eval\ExplainEvalTrait;
 use Chess\Eval\ElaborateEvalTrait;
-use Chess\Function\AbstractFunction;
+use Chess\Eval\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 
 class FenEvaluation extends AbstractParagraph
