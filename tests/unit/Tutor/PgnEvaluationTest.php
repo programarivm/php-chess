@@ -10,6 +10,13 @@ use Chess\Tests\AbstractUnitTestCase;
 
 class PgnEvaluationTest extends AbstractUnitTestCase
 {
+    static private CompleteFunction $f;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$f = new CompleteFunction();
+    }
+
     /**
      * @test
      */
@@ -29,7 +36,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
         $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
         $board = (new SanPlay($A08))->validate()->board;
 
-        $paragraph = (new PgnEvaluation('d4', new CompleteFunction(), $board))->paragraph;
+        $paragraph = (new PgnEvaluation('d4', self::$f, $board))->paragraph;
 
         $this->assertSame($expected, $paragraph);
     }
@@ -52,7 +59,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');
 
-        $paragraph = (new PgnEvaluation('Bxe6+', new CompleteFunction(), $board))->paragraph;
+        $paragraph = (new PgnEvaluation('Bxe6+', self::$f, $board))->paragraph;
 
         $this->assertSame($expected, $paragraph);
     }
