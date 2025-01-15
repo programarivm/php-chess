@@ -284,7 +284,7 @@
 <li><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CompleteFunctionTest.php">Chess\Eval\CompleteFunction</a></li>
 <li><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FastFunctionTest.php">Chess\Eval\FastFunction</a></li>
 </ul>
-<p>The complete evaluation function is intended to be used for chess positions while the fast evaluation function is used for entire games.</p>
+<p>The fast evaluation function is convenient to evaluate entire games while the complete evaluation function is intended for specific chess positions as shown in the following example.</p>
 <pre><code class="language-php">use Chess\FenToBoardFactory;
 use Chess\Eval\CompleteFunction;
 
@@ -446,12 +446,12 @@ print_r($time);
 <p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png" /></p>
 <p>The data is plotted in a way that is easy for chess players to understand and learn.</p>
 <h2 id="extract-chess-data">Extract Chess Data</h2>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php">Chess\SanExtractor</a> extracts oscillations data for further analysis like the following example.</p>
+<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php">Chess\SanExtractor</a> extracts data from entire games like the following example.</p>
 <pre><code class="language-php">use Chess\SanExtractor;
-use Chess\Eval\CompleteFunction;
+use Chess\Eval\FastFunction;
 use Chess\Variant\Classical\Board;
 
-$f = new CompleteFunction();
+$f = new FastFunction();
 $board = new Board();
 $movetext = '1.e4 d5 2.exd5 Qxd5';
 </code></pre>
@@ -493,8 +493,6 @@ print_r($eval[4]);
     [27] =&gt; 0
     [28] =&gt; 0
     [29] =&gt; -0.022
-    [30] =&gt; 0
-    [31] =&gt; 0
 )
 </code></pre>
 <p><img alt="Figure 3" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png" /></p>
@@ -523,8 +521,8 @@ print_r($mean);
 (
     [0] =&gt; 0
     [1] =&gt; 0.1875
-    [2] =&gt; -0.1667
-    [3] =&gt; -0.3125
+    [2] =&gt; -0.125
+    [3] =&gt; -0.2813
     [4] =&gt; -0.0664
 )
 </code></pre>
@@ -538,8 +536,8 @@ print_r($sd);
 (
     [0] =&gt; 0
     [1] =&gt; 0.7601
-    [2] =&gt; -0.8498
-    [3] =&gt; -0.7294
+    [2] =&gt; -0.8927
+    [3] =&gt; -0.7623
     [4] =&gt; -0.5406
 )
 </code></pre>
