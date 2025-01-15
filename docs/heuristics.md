@@ -180,7 +180,7 @@ However, the Steinitz evaluation alone, which is to say just counting the advant
 The mean represents the center of the evaluation array being intermediate to the extreme values.
 
 ```php
-$mean = EvalArray::mean($f, $board);
+$mean = CompleteFunction::mean($f, $board);
 
 echo $mean;
 ```
