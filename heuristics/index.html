@@ -391,7 +391,7 @@ echo $steinitz;
 <p>However, the Steinitz evaluation alone, which is to say just counting the advantages, has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. Also it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.</p>
 <h3 id="mean">Mean</h3>
 <p>The mean represents the center of the evaluation array being intermediate to the extreme values.</p>
-<pre><code class="language-php">$mean = EvalArray::mean($f, $board);
+<pre><code class="language-php">$mean = CompleteFunction::mean($f, $board);
 
 echo $mean;
 </code></pre>
