@@ -129,4 +129,38 @@ class CompleteFunctionTest extends AbstractUnitTestCase
         $this->assertSame($expectedResult, $eval->result);
         $this->assertSame($expectedElaboration, $eval->elaborate());
     }
+
+        /**
+     * @test
+     */
+    public function kaufman_06()
+    {
+        $expectedNormd = [ -1.0, -0.3333, 0.0112, 0.0865, 0.0865, 0.0865, 0.0865, 0.4325, 1.0 ];
+        $expectedSteinitz = 5;
+        $expectedMean = 0.0507;
+        $expectedMedian = 0.0865;
+        $expectedMode = 0.0865;
+        $expectedVar = 0.2561;
+        $expectedSd = 0.5061;
+
+        $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
+
+        $normd = array_filter(CompleteFunction::normalization($board));
+        sort($normd);
+
+        $steinitz = CompleteFunction::steinitz($board);
+        $mean = CompleteFunction::mean($board);
+        $median = CompleteFunction::median($board);
+        $mode = CompleteFunction::mode($board);
+        $var = CompleteFunction::var($board);
+        $sd = CompleteFunction::sd($board);
+
+        $this->assertSame($expectedNormd, $normd);
+        $this->assertSame($expectedSteinitz, $steinitz);
+        $this->assertSame($expectedMean, $mean);
+        $this->assertSame($expectedMedian, $median);
+        $this->assertSame($expectedMode, $mode);
+        $this->assertSame($expectedVar, $var);
+        $this->assertSame($expectedSd, $sd);
+    }
 }
