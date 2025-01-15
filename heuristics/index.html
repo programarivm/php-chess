@@ -279,20 +279,22 @@
 </tbody>
 </table>
 <h2 id="evaluate-a-chess-position">Evaluate a Chess Position</h2>
-<p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php">Chess\EvalArray</a> allows to transform a FEN position to a normalized array of values between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.</p>
-<pre><code class="language-php">use Chess\EvalArray;
-use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
-
-$f = new CompleteFunction();
+<p>Evaluation functions allow to transform a FEN position to a normalized array of values between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.</p>
+<ul>
+<li><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CompleteFunctionTest.php">Chess\Eval\CompleteFunction</a></li>
+<li><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FastFunctionTest.php">Chess\Eval\FastFunction</a></li>
+</ul>
+<p>The complete evaluation function is intended to be used for chess positions while the fast evaluation function is used for entire games.</p>
+<pre><code class="language-php">use Chess\FenToBoardFactory;
+use Chess\Eval\CompleteFunction;
 
 $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
 $board = FenToBoardFactory::create($fen);
 
 $result = [
-    'names' =&gt; $f-&gt;names(),
-    'normd' =&gt; EvalArray::normalization($f, $board),
+    'names' =&gt; CompleteFunction::names(),
+    'normd' =&gt; CompleteFunction::normalization($board),
 ];
 
 print_r($result);
@@ -376,7 +378,7 @@ print_r($result);
 <p>This data structure is used to estimate who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.</p>
 <h3 id="steinitz-evaluation">Steinitz Evaluation</h3>
 <p>As chess champion William Steinitz pointed out, a strong position can be created by accumulating small advantages. The relative value of the position without considering checkmate is obtained by counting the advantages in the evaluation array.</p>
-<pre><code class="language-php">$steinitz = EvalArray::steinitz($f, $board);
+<pre><code class="language-php">$steinitz = CompleteFunction::steinitz($board);
 
 echo $steinitz;
 </code></pre>
@@ -396,7 +398,7 @@ echo $mean;
 </code></pre>
 <h3 id="median">Median</h3>
 <p>The median is the value in the middle of the evaluation array.</p>
-<pre><code class="language-php">$median = EvalArray::median($f, $board);
+<pre><code class="language-php">$median = CompleteFunction::median($board);
 
 echo $median;
 </code></pre>
@@ -404,14 +406,14 @@ echo $median;
 </code></pre>
 <h3 id="mode">Mode</h3>
 <p>The mode is the value that appears most frequently in the evaluation array.</p>
-<pre><code class="language-php">$mode = EvalArray::mode($f, $board);
+<pre><code class="language-php">$mode = CompleteFunction::mode($board);
 
 echo $mode;
 </code></pre>
 <p>In this example, no mode exists since there are no repeating numbers in the evaluation array.</p>
 <h3 id="standard-deviation">Standard Deviation</h3>
 <p>The standard deviation is a measure of how spread out the evaluation array is.</p>
-<pre><code class="language-php">$sd = EvalArray::sd($f, $board);
+<pre><code class="language-php">$sd = CompleteFunction::sd($board);
 
 echo $sd;
 </code></pre>
@@ -420,7 +422,7 @@ echo $sd;
 <h2 id="plot-the-oscillations-of-a-game">Plot the Oscillations of a Game</h2>
 <p>Given a PGN movetext in SAN format, <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanPlotterTest.php">Chess\SanPlotter</a> returns the oscillations of an evaluation feature in the time domain.</p>
 <pre><code class="language-php">use Chess\SanPlotter;
-use Chess\Function\CompleteFunction;
+use Chess\Eval\CompleteFunction;
 use Chess\Variant\Classical\Board;
 
 $f = new CompleteFunction();
@@ -446,7 +448,7 @@ print_r($time);
 <h2 id="extract-chess-data">Extract Chess Data</h2>
 <p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php">Chess\SanExtractor</a> extracts oscillations data for further analysis like the following example.</p>
 <pre><code class="language-php">use Chess\SanExtractor;
-use Chess\Function\CompleteFunction;
+use Chess\Eval\CompleteFunction;
 use Chess\Variant\Classical\Board;
 
 $f = new CompleteFunction();
