@@ -53,6 +53,8 @@ Evaluation functions allow to transform a FEN position to a normalized array of 
 - [Chess\Eval\CompleteFunction](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CompleteFunctionTest.php)
 - [Chess\Eval\FastFunction](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FastFunctionTest.php)
 
+The complete evaluation function is intended to be used for chess positions while the fast evaluation function is used for entire games.
+
 ```php
 use Chess\FenToBoardFactory;
 use Chess\Eval\CompleteFunction;
