@@ -2,7 +2,6 @@
 
 namespace Chess;
 
-use Chess\EvalArray;
 use Chess\Eval\AbstractFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\AbstractBoard;
@@ -30,7 +29,7 @@ class SanExtractor
         foreach ($sanPlay->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($board->play($board->turn, $val)) {
-                    $steinitz[] = EvalArray::steinitz($f, $board);
+                    $steinitz[] = $f::steinitz($board);
                 }
             }
         }
@@ -53,7 +52,7 @@ class SanExtractor
         foreach ($sanPlay->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($board->play($board->turn, $val)) {
-                    $mean[] = EvalArray::mean($f, $board);
+                    $mean[] = $f::mean($board);
                 }
             }
         }
@@ -76,11 +75,11 @@ class SanExtractor
         foreach ($sanPlay->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($board->play($board->turn, $val)) {
-                    $mean = EvalArray::mean($f, $board);
+                    $mean = $f::mean($board);
                     if ($mean > 0) {
-                        $sd[] = EvalArray::sd($f, $board);
+                        $sd[] = $f::sd($board);
                     } elseif ($mean < 0) {
-                        $sd[] = EvalArray::sd($f, $board) * -1;
+                        $sd[] = $f::sd($board) * -1;
                     } else {
                         $sd[] = 0;
                     }
@@ -106,7 +105,7 @@ class SanExtractor
         foreach ($sanPlay->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($board->play($board->turn, $val)) {
-                    $eval[] = EvalArray::normalization($f, $board);
+                    $eval[] = $f::normalization($board);
                 }
             }
         }

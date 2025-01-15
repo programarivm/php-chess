@@ -48,22 +48,22 @@ Listed below are the chess heuristics implemented in PHP Chess.
 
 ## Evaluate a Chess Position
 
-[Chess\EvalArray](https://github.com/chesslablab/php-chess/blob/main/tests/unit/EvalArrayTest.php) allows to transform a FEN position to a normalized array of values between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.
+Evaluation functions allow to transform a FEN position to a normalized array of values between -1 and +1. -1 is the best possible evaluation for Black and +1 the best possible evaluation for White. Both forces being set to 0 means they're balanced.
+
+- [Chess\Eval\CompleteFunction](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/CompleteFunctionTest.php)
+- [Chess\Eval\FastFunction](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Eval/FastFunctionTest.php)
 
 ```php
-use Chess\EvalArray;
 use Chess\FenToBoardFactory;
-use Chess\Function\CompleteFunction;
-
-$f = new CompleteFunction();
+use Chess\Eval\CompleteFunction;
 
 $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
 $board = FenToBoardFactory::create($fen);
 
 $result = [
-    'names' => $f->names(),
-    'normd' => EvalArray::normalization($f, $board),
+    'names' => CompleteFunction::names(),
+    'normd' => CompleteFunction::normalization($board),
 ];
 
 print_r($result);
@@ -154,7 +154,7 @@ This data structure is used to estimate who may be better without considering ch
 As chess champion William Steinitz pointed out, a strong position can be created by accumulating small advantages. The relative value of the position without considering checkmate is obtained by counting the advantages in the evaluation array.
 
 ```php
-$steinitz = EvalArray::steinitz($f, $board);
+$steinitz = CompleteFunction::steinitz($board);
 
 echo $steinitz;
 ```
@@ -190,7 +190,7 @@ echo $mean;
 The median is the value in the middle of the evaluation array.
 
 ```php
-$median = EvalArray::median($f, $board);
+$median = CompleteFunction::median($board);
 
 echo $median;
 ```
@@ -204,7 +204,7 @@ echo $median;
 The mode is the value that appears most frequently in the evaluation array.
 
 ```php
-$mode = EvalArray::mode($f, $board);
+$mode = CompleteFunction::mode($board);
 
 echo $mode;
 ```
@@ -216,7 +216,7 @@ In this example, no mode exists since there are no repeating numbers in the eval
 The standard deviation is a measure of how spread out the evaluation array is.
 
 ```php
-$sd = EvalArray::sd($f, $board);
+$sd = CompleteFunction::sd($board);
 
 echo $sd;
 ```
@@ -231,7 +231,7 @@ Given a PGN movetext in SAN format, [Chess\SanPlotter](https://github.com/chessl
 
 ```php
 use Chess\SanPlotter;
-use Chess\Function\CompleteFunction;
+use Chess\Eval\CompleteFunction;
 use Chess\Variant\Classical\Board;
 
 $f = new CompleteFunction();
@@ -265,7 +265,7 @@ The data is plotted in a way that is easy for chess players to understand and le
 
 ```php
 use Chess\SanExtractor;
-use Chess\Function\CompleteFunction;
+use Chess\Eval\CompleteFunction;
 use Chess\Variant\Classical\Board;
 
 $f = new CompleteFunction();
