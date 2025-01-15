@@ -11,13 +11,6 @@ use Chess\UciEngine\Details\Limit;
 
 class GoodPgnEvaluationTest extends AbstractUnitTestCase
 {
-    static private CompleteFunction $f;
-
-    public static function setUpBeforeClass(): void
-    {
-        self::$f = new CompleteFunction();
-    }
-
     /**
      * @test
      */
@@ -41,7 +34,12 @@ class GoodPgnEvaluationTest extends AbstractUnitTestCase
         $D07 = file_get_contents(self::DATA_FOLDER.'/sample/D07.pgn');
         $board = (new SanPlay($D07))->validate()->board;
 
-        $goodPgnEvaluation = new GoodPgnEvaluation($limit, $stockfish, self::$f, $board);
+        $goodPgnEvaluation = new GoodPgnEvaluation(
+            $limit, 
+            $stockfish, 
+            CompleteFunction::create(), 
+            $board
+        );
 
         $this->assertSame($expectedPgn, $goodPgnEvaluation->pgn);
         $this->assertSame($expectedParagraph, $goodPgnEvaluation->paragraph);
