@@ -18,14 +18,14 @@ class SanPlotter
     /**
      * Returns the time.
      *
-     * @param \Chess\Function\AbstractFunction $f
+     * @param $f
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
      * @param string $name
      * @return array
      */
     public static function time(
-        AbstractFunction $f,
+        $f,
         AbstractBoard $board,
         string $movetext,
         string $name
@@ -35,12 +35,12 @@ class SanPlotter
         foreach ($sanPlay->sanMovetext->moves as $val) {
             if ($val !== Move::ELLIPSIS) {
                 if ($board->play($board->turn, $val)) {
-                    $item = EvalArray::add(EvalFactory::create($f, $name, $board));
+                    $item = $f::add($f::evaluate($name, $board));
                     $time[] = $item[Color::W] - $item[Color::B];
                 }
             }
         }
 
-        return EvalArray::normalize(-1, 1, $time);
+        return $f::normalize(-1, 1, $time);
     }
 }
