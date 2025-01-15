@@ -34,7 +34,7 @@ use Chess\Eval\RelativePinEval;
 use Chess\Eval\SpaceEval;
 use Chess\Eval\SqOutpostEval;
 
-class FastFunction
+class FastFunction implements FunctionInterface
 {
     use FunctionTrait;
 

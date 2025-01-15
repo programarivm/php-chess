@@ -36,7 +36,7 @@ use Chess\Eval\RelativePinEval;
 use Chess\Eval\SpaceEval;
 use Chess\Eval\SqOutpostEval;
 
-class CompleteFunction
+class CompleteFunction implements FunctionInterface
 {
     use FunctionTrait;
 
