@@ -36,10 +36,8 @@ use Chess\Eval\RelativePinEval;
 use Chess\Eval\SpaceEval;
 use Chess\Eval\SqOutpostEval;
 
-class CompleteF implements FunctionInterface
+class CompleteF extends AbstractFunction
 {
-    use FunctionTrait;
-
     public static array $eval = [
         MaterialEval::class,
         CenterEval::class,

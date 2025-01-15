@@ -4,12 +4,12 @@ namespace Chess\Tutor;
 
 use Chess\Eval\ExplainEvalTrait;
 use Chess\Eval\ElaborateEvalTrait;
-use Chess\Function\FunctionInterface;
+use Chess\Function\AbstractFunction;
 use Chess\Variant\AbstractBoard;
 
 class FenEvaluation extends AbstractParagraph
 {
-    public function __construct(FunctionInterface $f, AbstractBoard $board)
+    public function __construct(AbstractFunction $f, AbstractBoard $board)
     {
         $this->f = $f;
         $this->board = $board;

@@ -2,7 +2,7 @@
 
 namespace Chess;
 
-use Chess\Function\FunctionInterface;
+use Chess\Function\AbstractFunction;
 use Chess\Play\SanPlay;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
@@ -18,14 +18,14 @@ class SanPlotter
     /**
      * Returns the time.
      *
-     * @param $f \Chess\Function\FunctionInterface
+     * @param $f \Chess\Function\AbstractFunction
      * @param \Chess\Variant\AbstractBoard $board
      * @param string $movetext
      * @param string $name
      * @return array
      */
     public static function time(
-        FunctionInterface $f,
+        AbstractFunction $f,
         AbstractBoard $board,
         string $movetext,
         string $name

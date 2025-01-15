@@ -7,11 +7,14 @@ use Chess\Eval\InverseEvalInterface;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Color;
 
-trait FunctionTrait
+class AbstractFunction
 {
+    public static array $eval = [];
+
     public static function names(): array
     {   
-        foreach (self::$eval as $val) {
+        $names = [];
+        foreach (static::$eval as $val) {
             $names[] = (new \ReflectionClass($val))->getConstant('NAME');
         }
 
@@ -20,7 +23,7 @@ trait FunctionTrait
 
     public static function evaluate(string $name, AbstractBoard $board)
     {
-        foreach (self::$eval as $val) {
+        foreach (static::$eval as $val) {
             $class = new \ReflectionClass($val);
             if ($name === $class->getConstant('NAME')) {
                 return $class->newInstanceArgs([$board]);

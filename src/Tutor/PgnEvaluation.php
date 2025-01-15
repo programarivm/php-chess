@@ -2,12 +2,12 @@
 
 namespace Chess\Tutor;
 
-use Chess\Function\FunctionInterface;
+use Chess\Function\AbstractFunction;
 use Chess\Variant\Classical\Board;
 
 class PgnEvaluation extends AbstractParagraph
 {
-    public function __construct(string $pgn, FunctionInterface $f, Board $board)
+    public function __construct(string $pgn, AbstractFunction $f, Board $board)
     {
         $this->f = $f;
         $this->board = $board;

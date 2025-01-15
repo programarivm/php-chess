@@ -2,7 +2,7 @@
 
 namespace Chess\Tutor;
 
-use Chess\Function\FunctionInterface;
+use Chess\Function\AbstractFunction;
 use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
 use Chess\Variant\Classical\Board;
@@ -15,7 +15,7 @@ class GoodPgnEvaluation extends AbstractParagraph
 
     public string $pgn;
 
-    public function __construct(Limit $limit, UciEngine $uciEngine, FunctionInterface $f, Board $board)
+    public function __construct(Limit $limit, UciEngine $uciEngine, AbstractFunction $f, Board $board)
     {
         $this->limit = $limit;
         $this->uciEngine = $uciEngine;
