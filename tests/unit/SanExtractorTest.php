@@ -4,17 +4,17 @@ namespace Chess\Tests\Unit;
 
 use Chess\FenToBoardFactory;
 use Chess\SanExtractor;
-use Chess\Function\FastFunction;
+use Chess\Function\FastF;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
 
 class SanExtractorTest extends AbstractUnitTestCase
 {
-    static private FastFunction $f;
+    static private FastF $f;
 
     public static function setUpBeforeClass(): void
     {
-        self::$f = new FastFunction();
+        self::$f = new FastF();
     }
 
     /**

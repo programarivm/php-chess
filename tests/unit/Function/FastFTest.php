@@ -3,10 +3,10 @@
 namespace Chess\Tests\Unit\Function;
 
 use Chess\FenToBoardFactory;
-use Chess\Function\FastFunction;
+use Chess\Function\FastF;
 use Chess\Tests\AbstractUnitTestCase;
 
-class FastFunctionTest extends AbstractUnitTestCase
+class FastFTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -46,7 +46,7 @@ class FastFunctionTest extends AbstractUnitTestCase
             'Flight square',
         ];
 
-        $this->assertSame($expected, FastFunction::names());
+        $this->assertSame($expected, FastF::names());
     }
 
     /**
@@ -64,15 +64,15 @@ class FastFunctionTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
-        $normd = array_filter(FastFunction::normalization($board));
+        $normd = array_filter(FastF::normalization($board));
         sort($normd);
 
-        $steinitz = FastFunction::steinitz($board);
-        $mean = FastFunction::mean($board);
-        $median = FastFunction::median($board);
-        $mode = FastFunction::mode($board);
-        $var = FastFunction::var($board);
-        $sd = FastFunction::sd($board);
+        $steinitz = FastF::steinitz($board);
+        $mean = FastF::mean($board);
+        $median = FastF::median($board);
+        $mode = FastF::mode($board);
+        $var = FastF::var($board);
+        $sd = FastF::sd($board);
 
         $this->assertSame($expectedNormd, $normd);
         $this->assertSame($expectedSteinitz, $steinitz);
