@@ -132,9 +132,7 @@ class P extends AbstractPiece
 
     public function isPromoted(): bool
     {
-        $rank = (int) substr($this->move['to'], 1);
-
-        return isset($this->move['newId']) && $rank === $this->ranks['end'];
+        return (int) substr($this->move['to'], 1) === $this->ranks['end'];
     }
 
     public function enPassantPawn(): ?AbstractPiece

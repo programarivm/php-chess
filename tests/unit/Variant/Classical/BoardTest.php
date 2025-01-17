@@ -2775,7 +2775,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertSame($expected, $board->toArray());
     }
 
-        /**
+    /**
      * @test
      */
     public function play_lan_a4_b5_axb5_a6_b6()
@@ -2796,6 +2796,27 @@ class BoardTest extends AbstractUnitTestCase
             3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
             2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
             1 => [ '.', 'P', 'P', 'P', 'P', 'P', 'P', 'P' ],
+            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
+        ];
+
+        $this->assertSame($expected, $board->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function b4_h6_b5_a5_bxa6_h5_a7_h4_axb8()
+    {
+        $board = (new SanPlay('1.b4 h6 2.b5 a5 3.bxa6 h5 4.a7 h4 5.axb8'))->validate()->board;
+
+        $expected = [
+            7 => [ 'r', 'Q', 'b', 'q', 'k', 'b', 'n', 'r' ],
+            6 => [ '.', 'p', 'p', 'p', 'p', 'p', 'p', '.' ],
+            5 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', '.', '.', '.', 'p' ],
+            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            1 => [ 'P', '.', 'P', 'P', 'P', 'P', 'P', 'P' ],
             0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
         ];
 

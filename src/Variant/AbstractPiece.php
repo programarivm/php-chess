@@ -298,7 +298,13 @@ abstract class AbstractPiece
         if ($this->id === Piece::P) {
             if ($this->isPromoted()) {
                 $this->board->detach($this->board->pieceBySq($this->move['to']));
-                if ($this->move['newId'] === Piece::N) {
+                if (!isset($this->move['newId'])) {
+                    $this->board->attach(new Q(
+                        $this->color,
+                        $this->move['to'],
+                        $this->board->square
+                    ));
+                } elseif ($this->move['newId'] === Piece::N) {
                     $this->board->attach(new N(
                         $this->color,
                         $this->move['to'],
@@ -317,7 +323,7 @@ abstract class AbstractPiece
                         $this->board->square,
                         RType::R
                     ));
-                } else {
+                } elseif ($this->move['newId'] === Piece::Q) {
                     $this->board->attach(new Q(
                         $this->color,
                         $this->move['to'],
