@@ -2774,4 +2774,31 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $board->toArray());
     }
+
+        /**
+     * @test
+     */
+    public function play_lan_a4_b5_axb5_a6_b6()
+    {
+        $board = new Board();
+
+        $board->playLan('w', 'a2a4');
+        $board->playLan('b', 'b7b5');
+        $board->playLan('w', 'a4b5');
+        $board->playLan('b', 'a7a6');
+        $board->playLan('w', 'b5b6');
+
+        $expected = [
+            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
+            6 => [ '.', '.', 'p', 'p', 'p', 'p', 'p', 'p' ],
+            5 => [ 'p', 'P', '.', '.', '.', '.', '.', '.' ],
+            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            1 => [ '.', 'P', 'P', 'P', 'P', 'P', 'P', 'P' ],
+            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
+        ];
+
+        $this->assertSame($expected, $board->toArray());
+    }
 }
