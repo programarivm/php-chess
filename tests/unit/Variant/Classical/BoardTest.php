@@ -2747,4 +2747,31 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertEqualsCanonicalizing($expected, $sqCount['free']);
     }
+
+    /**
+     * @test
+     */
+    public function a4_b5_axb5_a6_b6()
+    {
+        $board = new Board();
+
+        $board->play('w', 'a4');
+        $board->play('b', 'b5');
+        $board->play('w', 'axb5');
+        $board->play('b', 'a6');
+        $board->play('w', 'b6');
+
+        $expected = [
+            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
+            6 => [ '.', '.', 'p', 'p', 'p', 'p', 'p', 'p' ],
+            5 => [ 'p', 'P', '.', '.', '.', '.', '.', '.' ],
+            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            1 => [ '.', 'P', 'P', 'P', 'P', 'P', 'P', 'P' ],
+            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
+        ];
+
+        $this->assertSame($expected, $board->toArray());
+    }
 }
