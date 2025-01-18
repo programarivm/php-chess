@@ -104,23 +104,21 @@ class P extends AbstractPiece
 
         // en passant square
         $end = end($this->board->history);
-        if ($end && $end['id'] === Piece::P && $end['color'] === $this->oppColor()) {
-            if ('-' !== explode(' ', $end['fen'])[3]) {
-                if ($this->color === Color::W) {
-                    if ($this->rank() === $this->board->square::SIZE['ranks'] - 3) {
-                        $captureSq = $end['to'][0] . ($this->rank() + 1);
-                        if (in_array($captureSq, $this->captureSqs)) {
-                            $this->enPassant = $captureSq;
-                            $sqs[] = $captureSq;
-                        }
+        if ($end && $end['color'] === $this->oppColor() && '-' != explode(' ', $end['fen'])[3]) {
+            if ($this->color === Color::W) {
+                if ($this->rank() === $this->board->square::SIZE['ranks'] - 3) {
+                    $captureSq = $end['to'][0] . ($this->rank() + 1);
+                    if (in_array($captureSq, $this->captureSqs)) {
+                        $this->enPassant = $captureSq;
+                        $sqs[] = $captureSq;
                     }
-                } elseif ($this->color === Color::B) {
-                    if ($this->rank() === 4) {
-                        $captureSq = $end['to'][0] . ($this->rank() - 1);
-                        if (in_array($captureSq, $this->captureSqs)) {
-                            $this->enPassant = $captureSq;
-                            $sqs[] = $captureSq;
-                        }
+                }
+            } elseif ($this->color === Color::B) {
+                if ($this->rank() === 4) {
+                    $captureSq = $end['to'][0] . ($this->rank() - 1);
+                    if (in_array($captureSq, $this->captureSqs)) {
+                        $this->enPassant = $captureSq;
+                        $sqs[] = $captureSq;
                     }
                 }
             }
