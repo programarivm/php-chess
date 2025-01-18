@@ -22,8 +22,8 @@ class P extends AbstractPiece
         $this->flow = [];
 
         // next rank
-        if ($this->nextRank($square) <= $square::SIZE['ranks']) {
-            $this->flow[] = $this->file() . $this->nextRank($square);
+        if ($this->nextRank() <= $square::SIZE['ranks']) {
+            $this->flow[] = $this->file() . $this->nextRank();
         }
 
         // two square advance
@@ -37,16 +37,16 @@ class P extends AbstractPiece
 
         // capture square
         $file = ord($this->file()) - 1;
-        if ($file >= 97 && $this->nextRank($square) <= $square::SIZE['ranks']) {
-            $this->captureSqs[] = chr($file) . $this->nextRank($square);
+        if ($file >= 97 && $this->nextRank() <= $square::SIZE['ranks']) {
+            $this->captureSqs[] = chr($file) . $this->nextRank();
         }
 
         // capture square
         $file = ord($this->file()) + 1;
         if ($file <= 97 + $square::SIZE['files'] - 1 &&
-            $this->nextRank($square) <= $square::SIZE['ranks']
+            $this->nextRank() <= $square::SIZE['ranks']
         ) {
-            $this->captureSqs[] = chr($file) . $this->nextRank($square);
+            $this->captureSqs[] = chr($file) . $this->nextRank();
         }
     }
 
@@ -59,7 +59,7 @@ class P extends AbstractPiece
         return $square::SIZE['ranks'] - 1;
     }
 
-    public function nextRank(Square $square) 
+    public function nextRank() 
     {
         if ($this->color === Color::W) {
             return $this->rank() + 1;
