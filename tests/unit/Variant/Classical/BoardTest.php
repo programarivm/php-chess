@@ -2823,4 +2823,35 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $board->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function play_lan_b4_a6_b5_h6_h3_c5_g3_h5_b6()
+    {
+        $board = new Board();
+
+        $board->playLan('w', 'b2b4');
+        $board->playLan('b', 'a7a6');
+        $board->playLan('w', 'b4b5');
+        $board->playLan('b', 'h7h6');
+        $board->playLan('w', 'h2h3');
+        $board->playLan('b', 'c7c5');
+        $board->playLan('w', 'g2g3');
+        $board->playLan('b', 'h6h5');
+        $board->playLan('w', 'b5b6');
+
+        $expected = [
+            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
+            6 => [ '.', 'p', '.', 'p', 'p', 'p', 'p', '.' ],
+            5 => [ 'p', 'P', '.', '.', '.', '.', '.', '.' ],
+            4 => [ '.', '.', 'p', '.', '.', '.', '.', 'p' ],
+            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            2 => [ '.', '.', '.', '.', '.', '.', 'P', 'P' ],
+            1 => [ 'P', '.', 'P', 'P', 'P', 'P', '.', '.' ],
+            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
+        ];
+
+        $this->assertSame($expected, $board->toArray());
+    }
 }
