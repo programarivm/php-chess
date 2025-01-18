@@ -17,12 +17,12 @@ class PawnEndgameRandomizer extends Randomizer
             parent::__construct($turn, $items);
             foreach ($this->board->pieces() as $piece) {
                 if ($piece->id === 'P') {
-                    $ranks = $piece->ranks;
+                    $nextRank = $piece->nextRank($this->board->square);
                 }
             }
         } while (
-            $turn === Color::W && ($ranks['next'] === 2 || $ranks['next'] === 9) ||
-            $turn === Color::B && ($ranks['next'] === 7 || $ranks['next'] === 0)
+            $turn === Color::W && ($nextRank === 2 || $nextRank === 9) ||
+            $turn === Color::B && ($nextRank === 7 || $nextRank === 0)
         );
     }
 }

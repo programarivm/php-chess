@@ -296,7 +296,7 @@ abstract class AbstractPiece
     public function promotion(): void
     {
         if ($this->id === Piece::P) {
-            if ($this->isPromoted()) {
+            if ($this->isPromoted($this->board->square)) {
                 $this->board->detach($this->board->pieceBySq($this->move['to']));
                 if (!isset($this->move['newId'])) {
                     $this->board->attach(new Q(

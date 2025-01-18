@@ -9,8 +9,6 @@ use Chess\Variant\Classical\PGN\Square;
 
 class P extends AbstractPiece
 {
-    public array $ranks;
-
     public array $captureSqs;
 
     public string $enPassant = '';
@@ -19,49 +17,69 @@ class P extends AbstractPiece
     {
         parent::__construct($color, $sq, Piece::P);
 
-        $this->ranks = $this->color === Color::W
-            ? [
-                'start' => 2,
-                'next' => $this->rank() + 1,
-                'end' => $square::SIZE['ranks'],
-            ]
-            : [
-                'start' => $square::SIZE['ranks'] - 1,
-                'next' => $this->rank() - 1,
-                'end' => 1,
-            ];
-
         $this->captureSqs = [];
 
         $this->flow = [];
 
         // next rank
-        if ($this->ranks['next'] <= $square::SIZE['ranks']) {
-            $this->flow[] = $this->file() . $this->ranks['next'];
+        if ($this->nextRank($square) <= $square::SIZE['ranks']) {
+            $this->flow[] = $this->file() . $this->nextRank($square);
         }
 
         // two square advance
-        if ($this->rank() === 2 && $this->ranks['start'] == 2) {
-            $this->flow[] = $this->file() . ($this->ranks['start'] + 2);
+        if ($this->rank() === 2 && $this->startRank($square) == 2) {
+            $this->flow[] = $this->file() . ($this->startRank($square) + 2);
         } elseif ($this->rank() === $square::SIZE['ranks'] - 1 &&
-            $this->ranks['start'] == $square::SIZE['ranks'] - 1
+            $this->startRank($square) == $square::SIZE['ranks'] - 1
         ) {
-            $this->flow[] = $this->file() . ($this->ranks['start'] - 2);
+            $this->flow[] = $this->file() . ($this->startRank($square) - 2);
         }
 
         // capture square
         $file = ord($this->file()) - 1;
-        if ($file >= 97 && $this->ranks['next'] <= $square::SIZE['ranks']) {
-            $this->captureSqs[] = chr($file) . $this->ranks['next'];
+        if ($file >= 97 && $this->nextRank($square) <= $square::SIZE['ranks']) {
+            $this->captureSqs[] = chr($file) . $this->nextRank($square);
         }
 
         // capture square
         $file = ord($this->file()) + 1;
         if ($file <= 97 + $square::SIZE['files'] - 1 &&
-            $this->ranks['next'] <= $square::SIZE['ranks']
+            $this->nextRank($square) <= $square::SIZE['ranks']
         ) {
-            $this->captureSqs[] = chr($file) . $this->ranks['next'];
+            $this->captureSqs[] = chr($file) . $this->nextRank($square);
         }
+    }
+
+    public function startRank(Square $square) 
+    {
+        if ($this->color === Color::W) {
+            return 2;
+        }
+
+        return $square::SIZE['ranks'] - 1;
+    }
+
+    public function nextRank(Square $square) 
+    {
+        if ($this->color === Color::W) {
+            return $this->rank() + 1;
+        }
+
+        return $this->rank() - 1;
+    }
+
+    public function promoRank(Square $square) 
+    {
+        if ($this->color === Color::W) {
+            return $square::SIZE['ranks'];
+        }
+
+        return 1;
+    }
+
+    public function isPromoted(Square $square): bool
+    {
+        return (int) substr($this->move['to'], 1) === $this->promoRank($square);
     }
 
     public function moveSqs(): array
@@ -128,11 +146,6 @@ class P extends AbstractPiece
     public function lineOfAttack(): array
     {
         return [];
-    }
-
-    public function isPromoted(): bool
-    {
-        return (int) substr($this->move['to'], 1) === $this->ranks['end'];
     }
 
     public function enPassantPawn(): ?AbstractPiece
