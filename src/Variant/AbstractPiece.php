@@ -376,11 +376,16 @@ abstract class AbstractPiece
     }
 
     /**
-     * Adds a new move to the history.
+     * Adds a new element to the history array.
      */
     public function pushHistory(): void
     {
-        $this->move['from'] = $this->sq;
-        $this->board->history[] = $this->move;
+        $this->board->history[] = [
+            'pgn' => $this->move['pgn'],
+            'color' => $this->move['color'],
+            'id' => $this->move['id'],
+            'from' => $this->sq,
+            'to' => $this->move['to'],
+        ];
     }
 }
