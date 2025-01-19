@@ -205,16 +205,13 @@ abstract class AbstractBoard extends \SplObjectStorage
                 }
             }
             if ($a->id === Piece::P) {
-                if (ctype_alpha(mb_substr($lan, -1))) {
-                    $newId = mb_strtoupper(mb_substr($lan, -1));
+                if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
+                    ctype_alpha(mb_substr($lan, -1)) 
+                        ? $newId = mb_strtoupper(mb_substr($lan, -1)) 
+                        : $newId = Piece::Q;
                     return [
-                        "{$a->file()}x{$sqs[1]}=" . $newId,
-                        $sqs[1] . '=' . $newId,
-                    ];
-                } elseif ($a->promoRank($this->square) == substr($sqs[1], 1)) {
-                    return [
-                        "{$a->file()}x{$sqs[1]}=" . Piece::Q,
-                        $sqs[1] . '=' . Piece::Q,
+                        "{$a->file()}x{$sqs[1]}=$newId",
+                        "$sqs[1]=$newId",
                     ];
                 } else {
                     return [
