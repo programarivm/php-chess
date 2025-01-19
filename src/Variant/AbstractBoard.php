@@ -186,11 +186,11 @@ abstract class AbstractBoard extends \SplObjectStorage
         }
         if ($a = $this->pieceBySq($sqs[0])) {
             if ($a->id === Piece::K) {
-                if ($a->sqCastle(Castle::SHORT)) {
+                if ($a->sqCastle(Castle::SHORT) === $sqs[1]) {
                     return [ 
                         Castle::SHORT,
                     ];
-                } elseif ($a->sqCastle(Castle::LONG)) {
+                } elseif ($a->sqCastle(Castle::LONG) === $sqs[1]) {
                     return [ 
                         Castle::LONG,
                     ];
