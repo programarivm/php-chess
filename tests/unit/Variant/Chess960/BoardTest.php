@@ -729,4 +729,43 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $board->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function play_lan_RQKNBBRN_castle_short()
+    {
+        $startPos = ['R', 'Q', 'K', 'N', 'B', 'B', 'R', 'N'];
+
+        $board = new Board($startPos);
+
+        $board->playLan('w', 'd1e3');
+        $board->playLan('b', 'd8e6');
+        $board->playLan('w', 'f2f3');
+        $board->playLan('b', 'f7f6');
+        $board->playLan('w', 'e1f2');
+        $board->playLan('b', 'g7g6');
+        $board->playLan('w', 'g2g3');
+        $board->playLan('b', 'e8f7');
+        $board->playLan('w', 'f1g2');
+        $board->playLan('b', 'f8g7');
+        $board->playLan('w', 'c2c3');
+        $board->playLan('b', 'c7c6');
+        $board->playLan('w', 'b1c2');
+        $board->playLan('b', 'b8c7');
+        $board->playLan('w', 'c1c1');
+
+        $expected = [
+            7 => [ 'r', '.', 'k', '.', '.', '.', 'r', 'n' ],
+            6 => [ 'p', 'p', 'q', 'p', 'p', 'b', 'b', 'p' ],
+            5 => [ '.', '.', 'p', '.', 'n', 'p', 'p', '.' ],
+            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            2 => [ '.', '.', 'P', '.', 'N', 'P', 'P', '.' ],
+            1 => [ 'P', 'P', 'Q', 'P', 'P', 'B', 'B', 'P' ],
+            0 => [ '.', '.', 'K', 'R', '.', '.', 'R', 'N' ],
+        ];
+
+        $this->assertSame($expected, $board->toArray());
+    }
 }
