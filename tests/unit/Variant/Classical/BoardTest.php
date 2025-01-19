@@ -2856,4 +2856,26 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $board->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function play_lan_pawn_promotion()
+    {
+        $board = new Board();
+
+        $board->playLan('w', 'a2a4');
+        $board->playLan('b', 'h7h5');
+        $board->playLan('w', 'a4a5');
+        $board->playLan('b', 'b7b5');
+        $board->playLan('w', 'a5b6');
+        $board->playLan('b', 'h5h4');
+        $board->playLan('w', 'b6c7');
+        $board->playLan('b', 'h4h3');
+        $board->playLan('w', 'c7b8');
+
+        $expected = '1.a4 h5 2.a5 b5 3.axb6 h4 4.bxc7 h3 5.cxb8=Q';
+
+        $this->assertSame($expected, $board->movetext());
+    }
 }

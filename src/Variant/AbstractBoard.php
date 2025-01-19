@@ -211,6 +211,11 @@ abstract class AbstractBoard extends \SplObjectStorage
                         "{$a->file()}x{$sqs[1]}=" . $newId,
                         $sqs[1] . '=' . $newId,
                     ];
+                } elseif ($a->promoRank($this->square) == substr($sqs[1], 1)) {
+                    return [
+                        "{$a->file()}x{$sqs[1]}=" . Piece::Q,
+                        $sqs[1] . '=' . Piece::Q,
+                    ];
                 } else {
                     return [
                         "{$a->file()}x{$sqs[1]}",
