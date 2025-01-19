@@ -220,19 +220,12 @@ abstract class AbstractBoard extends \SplObjectStorage
                     ];
                 }
             }
-            if ($b = $this->pieceBySq($sqs[1])) {
-                return [
-                    "{$a->id}x{$sqs[1]}",
-                    "{$a->id}{$a->file()}x{$sqs[1]}",
-                    "{$a->id}{$a->rank()}x{$sqs[1]}",
-                    "{$a->id}{$a->sq}x{$sqs[1]}",
-                ];
-            }
+            $b = $this->pieceBySq($sqs[1]) ? $x = 'x' : $x = '';
             return [
-                "{$a->id}{$sqs[1]}",
-                "{$a->id}{$a->file()}{$sqs[1]}",
-                "{$a->id}{$a->rank()}{$sqs[1]}",
-                "{$a->id}{$a->sq}{$sqs[1]}",
+                "{$a->id}$x{$sqs[1]}",
+                "{$a->id}{$a->file()}$x{$sqs[1]}",
+                "{$a->id}{$a->rank()}$x{$sqs[1]}",
+                "{$a->id}{$a->sq}$x{$sqs[1]}",
             ];
         }
 
