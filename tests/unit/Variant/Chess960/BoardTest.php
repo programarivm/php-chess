@@ -733,7 +733,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_lan_RQKNBBRN_castle_short()
+    public function play_lan_RQKNBBRN_castle_long()
     {
         $startPos = ['R', 'Q', 'K', 'N', 'B', 'B', 'R', 'N'];
 
