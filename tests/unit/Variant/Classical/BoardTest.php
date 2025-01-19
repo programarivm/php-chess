@@ -2245,9 +2245,11 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_lan_w_foo()
     {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
         $board = new Board();
 
-        $this->assertFalse($board->playLan('w', 'foo'));
+        $board->playLan('w', 'foo');
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Chess\Variant;
 
 use Chess\FenToBoardFactory;
 use Chess\Eval\SpaceEval;
+use Chess\Exception\UnknownNotationException;
 use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\Castle;
@@ -174,51 +175,66 @@ abstract class AbstractBoard extends \SplObjectStorage
      *
      * @param string $color
      * @param string $lan
+     * @throws \Chess\Exception\UnknownNotationException
      * @return array
      */
     protected function lanToPgn(string $color, string $lan): array
     {
-        $pgn = [];
         $sqs = $this->move->explodeSqs($lan);
-        if (isset($sqs[0]) && isset($sqs[1])) {
-            $a = $this->pieceBySq($sqs[0]);
-            $b = $this->pieceBySq($sqs[1]);
-            if ($a) {
-                if ($a->id === Piece::K) {
-                    if ($a->sqCastle(Castle::SHORT)) {
-                        $pgn[] = Castle::SHORT;
-                    } elseif ($a->sqCastle(Castle::LONG)) {
-                        $pgn[] = Castle::LONG;
-                    } elseif ($b) {
-                        $pgn[] = "{$a->id}x{$sqs[1]}";
-                    } else {
-                        $pgn[] = "{$a->id}{$sqs[1]}";
-                    }
-                } elseif ($a->id === Piece::P) {
-                    $pgn[] = "{$a->file()}x{$sqs[1]}";
-                    $pgn[] = $sqs[1];
-                    $newId = mb_substr($lan, -1);
-                    if (ctype_alpha($newId)) {
-                        $pgn[0] .= '=' . mb_strtoupper($newId);
-                        $pgn[1] .= '=' . mb_strtoupper($newId);
-                    }
+        if (!isset($sqs[0]) && !isset($sqs[1])) {
+            throw new UnknownNotationException();
+        }
+        if ($a = $this->pieceBySq($sqs[0])) {
+            if ($a->id === Piece::K) {
+                if ($a->sqCastle(Castle::SHORT)) {
+                    return [ 
+                        Castle::SHORT,
+                    ];
+                } elseif ($a->sqCastle(Castle::LONG)) {
+                    return [ 
+                        Castle::LONG,
+                    ];
+                } elseif ($b = $this->pieceBySq($sqs[1])) {
+                    return [ 
+                        "{$a->id}x{$sqs[1]}",
+                    ];
                 } else {
-                    if ($b) {
-                        $pgn[] = "{$a->id}x{$sqs[1]}";
-                        $pgn[] = "{$a->id}{$a->file()}x{$sqs[1]}";
-                        $pgn[] = "{$a->id}{$a->rank()}x{$sqs[1]}";
-                        $pgn[] = "{$a->id}{$a->sq}x{$sqs[1]}";
-                    } else {
-                        $pgn[] = "{$a->id}{$sqs[1]}";
-                        $pgn[] = "{$a->id}{$a->file()}{$sqs[1]}";
-                        $pgn[] = "{$a->id}{$a->rank()}{$sqs[1]}";
-                        $pgn[] = "{$a->id}{$a->sq}{$sqs[1]}";
-                    }
+                    return [ 
+                        "{$a->id}{$sqs[1]}",
+                    ];
                 }
             }
+            if ($a->id === Piece::P) {
+                $newId = mb_substr($lan, -1);
+                if (ctype_alpha($newId)) {
+                    return [
+                        "{$a->file()}x{$sqs[1]}=" . mb_strtoupper($newId),
+                        $sqs[1] . '=' . mb_strtoupper($newId),
+                    ];
+                } else {
+                    return [
+                        "{$a->file()}x{$sqs[1]}",
+                        $sqs[1],
+                    ];
+                }
+            }
+            if ($b = $this->pieceBySq($sqs[1])) {
+                return [
+                    "{$a->id}x{$sqs[1]}",
+                    "{$a->id}{$a->file()}x{$sqs[1]}",
+                    "{$a->id}{$a->rank()}x{$sqs[1]}",
+                    "{$a->id}{$a->sq}x{$sqs[1]}",
+                ];
+            }
+            return [
+                "{$a->id}{$sqs[1]}",
+                "{$a->id}{$a->file()}{$sqs[1]}",
+                "{$a->id}{$a->rank()}{$sqs[1]}",
+                "{$a->id}{$a->sq}{$sqs[1]}",
+            ];
         }
 
-        return $pgn;
+        return [];
     }
 
     /**

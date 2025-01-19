@@ -12,7 +12,7 @@ class LanPlayTest extends AbstractUnitTestCase
      */
     public function foo()
     {
-        $this->expectException(\Chess\Exception\PlayException::class);
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
         $movetext = 'foo';
         $board = (new LanPlay($movetext))->validate()->board;
