@@ -2,7 +2,7 @@
 
 namespace Chess\Play;
 
-use Chess\Exception\PlayException;
+use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\Board;
 
@@ -23,11 +23,11 @@ class LanPlay extends AbstractPlay
         foreach ($this->moves as $key => $val) {
             if ($key % 2 === 0) {
                 if (!$this->board->playLan('w', $val)) {
-                    throw new PlayException();
+                    throw new UnknownNotationException();
                 }
             } else {
                 if (!$this->board->playLan('b', $val)) {
-                    throw new PlayException();
+                    throw new UnknownNotationException();
                 }
             }
             $this->fen[] = $this->board->toFen();

@@ -2,7 +2,7 @@
 
 namespace Chess\Play;
 
-use Chess\Exception\PlayException;
+use Chess\Exception\UnknownNotationException;
 use Chess\Movetext\SanMovetext;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\Board;
@@ -30,7 +30,7 @@ class SanPlay extends AbstractPlay
         foreach ($this->sanMovetext->moves as $key => $val) {
             if ($val !== Move::ELLIPSIS) {
                 if (!$this->board->play($this->board->turn, $val)) {
-                    throw new PlayException();
+                    throw new UnknownNotationException();
                 }
                 $this->fen[] = $this->board->toFen();
             }

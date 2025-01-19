@@ -3,7 +3,7 @@
 namespace Chess\Play;
 
 use Chess\FenToBoardFactory;
-use Chess\Exception\PlayException;
+use Chess\Exception\UnknownNotationException;
 use Chess\Movetext\RavMovetext;
 use Chess\Movetext\SanMovetext;
 use Chess\Variant\AbstractBoard;
@@ -47,7 +47,7 @@ class RavPlay extends AbstractPlay
     /**
      * Makes the moves in the main variation of a RAV movetext.
      *
-     * @throws \Chess\Exception\PlayException
+     * @throws \Chess\Exception\UnknownNotationException
      * @return \Chess\Play\RavPlay
      */
     public function validate(): RavPlay
@@ -59,7 +59,7 @@ class RavPlay extends AbstractPlay
 
         foreach ($moves as $key => $val) {
             if (!$this->board->play($this->board->turn, $val)) {
-                throw new PlayException();
+                throw new UnknownNotationException();
             }
         }
 
