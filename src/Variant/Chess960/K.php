@@ -18,11 +18,9 @@ class K extends ClassicalK
      */
     public function moveSqs(): array
     {
-        $sqs = [
+        return [
             ...$this->moveSqs(),
             ...[$this->sq],
         ];
-
-        return array_filter(array_unique($sqs));
     }
 }
