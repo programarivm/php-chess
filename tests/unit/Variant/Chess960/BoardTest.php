@@ -803,17 +803,12 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_lan_RNQNBBKR_castle_short()
     {
-        $startPos = ['R', 'N', 'Q', 'N', 'B', 'B', 'K', 'R'];
+        $expectedLegal = [
+            'f1',
+            'g1',
+        ];
 
-        $board = new Board($startPos);
-
-        $board->playLan('w', 'g2g3');
-        $board->playLan('b', 'g7g6');
-        $board->playLan('w', 'f1g2');
-        $board->playLan('b', 'f8g7');
-        $board->playLan('w', 'g1g1');
-
-        $expected = [
+        $expectedArray = [
             7 => [ 'r', 'n', 'q', 'n', 'b', '.', 'k', 'r' ],
             6 => [ 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'p' ],
             5 => [ '.', '.', '.', '.', '.', '.', 'p', '.' ],
@@ -824,6 +819,19 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ 'R', 'N', 'Q', 'N', 'B', 'R', 'K', '.' ],
         ];
 
-        $this->assertSame($expected, $board->toArray());
+        $startPos = ['R', 'N', 'Q', 'N', 'B', 'B', 'K', 'R'];
+
+        $board = new Board($startPos);
+
+        $board->playLan('w', 'g2g3');
+        $board->playLan('b', 'g7g6');
+        $board->playLan('w', 'f1g2');
+        $board->playLan('b', 'f8g7');
+
+        $this->assertSame($expectedLegal, $board->legal('g1'));
+
+        $board->playLan('w', 'g1g1');
+
+        $this->assertSame($expectedArray, $board->toArray());
     }
 }
