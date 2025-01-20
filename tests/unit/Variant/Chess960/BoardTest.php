@@ -768,4 +768,33 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $board->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function play_RNQNBBKR_castle_short()
+    {
+        $startPos = ['R', 'N', 'Q', 'N', 'B', 'B', 'K', 'R'];
+
+        $board = new Board($startPos);
+
+        $board->play('w', 'g3');
+        $board->play('b', 'g6');
+        $board->play('w', 'Bg2');
+        $board->play('b', 'Bg7');
+        $board->play('w', 'O-O');
+
+        $expected = [
+            7 => [ 'r', 'n', 'q', 'n', 'b', '.', 'k', 'r' ],
+            6 => [ 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'p' ],
+            5 => [ '.', '.', '.', '.', '.', '.', 'p', '.' ],
+            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            2 => [ '.', '.', '.', '.', '.', '.', 'P', '.' ],
+            1 => [ 'P', 'P', 'P', 'P', 'P', 'P', 'B', 'P' ],
+            0 => [ 'R', 'N', 'Q', 'N', 'B', 'R', 'K', '.' ],
+        ];
+
+        $this->assertSame($expected, $board->toArray());
+    }
 }
