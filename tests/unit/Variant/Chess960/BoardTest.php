@@ -797,4 +797,33 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $board->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function play_lan_RNQNBBKR_castle_short()
+    {
+        $startPos = ['R', 'N', 'Q', 'N', 'B', 'B', 'K', 'R'];
+
+        $board = new Board($startPos);
+
+        $board->playLan('w', 'g2g3');
+        $board->playLan('b', 'g7g6');
+        $board->playLan('w', 'f1g2');
+        $board->playLan('b', 'f8g7');
+        $board->playLan('w', 'g1g1');
+
+        $expected = [
+            7 => [ 'r', 'n', 'q', 'n', 'b', '.', 'k', 'r' ],
+            6 => [ 'p', 'p', 'p', 'p', 'p', 'p', 'b', 'p' ],
+            5 => [ '.', '.', '.', '.', '.', '.', 'p', '.' ],
+            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            2 => [ '.', '.', '.', '.', '.', '.', 'P', '.' ],
+            1 => [ 'P', 'P', 'P', 'P', 'P', 'P', 'B', 'P' ],
+            0 => [ 'R', 'N', 'Q', 'N', 'B', 'R', 'K', '.' ],
+        ];
+
+        $this->assertSame($expected, $board->toArray());
+    }
 }
