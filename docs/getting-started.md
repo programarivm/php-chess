@@ -102,7 +102,7 @@ R  N  B  Q  K  B  .  R
 No worries! The `undo()` method comes to the rescue to take back a move.
 
 ```php
-$board = $board->undo();
+$board->undo();
 $board->play('b', 'Nf6');
 
 echo $board->movetext();
