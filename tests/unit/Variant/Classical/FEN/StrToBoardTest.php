@@ -503,7 +503,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('w', 'Ke4'));
         $this->assertTrue($board->play('b', 'Rxa6'));
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = '8/8/R7/8/4Q3/rk3K2/8/8 w - -';
 
@@ -525,7 +525,7 @@ class StrToBoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('w', 'Ke4'));
         $this->assertTrue($board->play('b', 'Rxa6'));
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = '8/8/R7/3Q4/4K3/r7/1k6/8 b - -';
 

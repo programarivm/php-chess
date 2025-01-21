@@ -197,7 +197,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board->play('w', 'O-O');
 
-        $board = $board->undo();
+        $board->undo();
 
         $array = $board->toArray();
 
@@ -230,8 +230,8 @@ class StrToBoardTest extends AbstractUnitTestCase
         $board->play('w', 'O-O');
         $board->play('b', 'O-O');
 
-        $board = $board->undo();
-        $board = $board->undo();
+        $board->undo();
+        $board->undo();
 
         $array = $board->toArray();
 

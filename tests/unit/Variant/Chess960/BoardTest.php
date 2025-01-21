@@ -687,7 +687,7 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->play('b', 'Bh7'));
         $this->assertTrue($board->play('w', 'Kg1'));
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = [
             7 => [ 'n', 'b', 'q', 'n', 'r', 'k', '.', 'r' ],
@@ -714,7 +714,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertTrue($board->play('w', 'O-O'));
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = [
             7 => [ 'r', 'n', 'n', 'q', 'b', 'k', 'r', 'b' ],

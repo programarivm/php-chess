@@ -2017,7 +2017,7 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('w', 'e4');
         $board->play('b', 'e5');
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3';
 
@@ -2039,7 +2039,7 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('b', 'Nc6');
         $board->play('w', 'O-O');
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = 'r2qkbnr/pbpppppp/1pn5/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq -';
 
@@ -2061,7 +2061,7 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('b', 'Nc6');
         $board->play('w', 'Ke2');
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = 'r2qkbnr/pbpppppp/1pn5/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq -';
 
@@ -2083,7 +2083,7 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('b', 'Be7');
         $board->play('w', 'O-O');
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = 'rnbqk2r/ppppbppp/5n2/4p3/4P3/5N2/PPPPBPPP/RNBQK2R w KQkq -';
 
@@ -2105,7 +2105,7 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('b', 'Be7');
         $board->play('w', 'O-O');
 
-        $board = $board->undo();
+        $board->undo();
 
         $expected = ['f1', 'g1'];
 
@@ -2124,10 +2124,10 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('w', 'Nf3');
         $board->play('b', 'Nc6');
 
-        $board = $board->undo();
-        $board = $board->undo();
-        $board = $board->undo();
-        $board = $board->undo();
+        $board->undo();
+        $board->undo();
+        $board->undo();
+        $board->undo();
 
         $board->play('w', 'e4');
 

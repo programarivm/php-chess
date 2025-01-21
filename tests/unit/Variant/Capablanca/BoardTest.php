@@ -135,8 +135,7 @@ class BoardTest extends AbstractUnitTestCase
         $board->play('w', 'Bh2');
         $board->play('b', 'Ci6');
         $board->play('w', 'O-O');
-
-        $board = $board->undo();
+        $board->undo();
 
         $expected = [
             7 => [ 'r', '.', 'a', 'b', 'q', 'k', 'b', '.', 'n', 'r' ],
