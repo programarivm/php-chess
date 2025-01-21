@@ -235,13 +235,13 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns true if the king is left in check.
+     * Returns true if the king is not left in check because of moving the piece.
      *
      * @return bool
      */
-    public function isLeftInCheck(): bool
+    public function isLineOfAttackSafe(): bool
     {
-        $isLeftInCheck = false;
+        $isCheck = false;
         $turn = $this->board->turn;
         $history = $this->board->history;
         $castlingAbility = $this->board->castlingAbility;
@@ -249,7 +249,7 @@ abstract class AbstractPiece
         $spaceEval = $this->board->spaceEval;
         $pieces = $this->board->pieces();
         if ($this->move()) {
-            $isLeftInCheck = $this->board->piece($this->color, Piece::K)?->attacking() != [];
+            $isCheck = $this->board->piece($this->color, Piece::K)?->attacking() != [];
             $this->board->turn = $turn;
             $this->board->history = $history;
             $this->board->castlingAbility = $castlingAbility;
@@ -266,7 +266,7 @@ abstract class AbstractPiece
             }
         }
 
-        return $isLeftInCheck;
+        return !$isCheck;
     }
 
     /**
