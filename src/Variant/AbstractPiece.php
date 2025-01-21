@@ -255,8 +255,11 @@ abstract class AbstractPiece
             $this->board->castlingAbility = $castlingAbility;
             $this->board->sqCount = $sqCount;
             $this->board->spaceEval = $spaceEval;
-            foreach ($this->board->pieces() as $val) {
-                $this->board->detach($val);
+            $this->board->rewind();
+            while ($this->board->valid()) {
+                $piece = $this->board->current();
+                $this->board->next();
+                $this->board->detach($piece);
             }
             foreach ($pieces as $val) {
                 $this->board->attach($val);
