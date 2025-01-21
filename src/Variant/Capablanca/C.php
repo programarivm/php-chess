@@ -22,9 +22,4 @@ class C extends AbstractLinePiece
             (new N($color, $sq, $square))->flow,
         ];
     }
-
-    public function lineOfAttack(): array
-    {
-        return [];
-    }
 }

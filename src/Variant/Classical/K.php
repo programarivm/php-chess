@@ -86,11 +86,6 @@ class K extends AbstractPiece
         return $sqs;
     }
 
-    public function lineOfAttack(): array
-    {
-        return [];
-    }
-
     public function sqCastle(string $type): ?string
     {
         if ($type === Castle::SHORT) {

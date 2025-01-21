@@ -6,6 +6,8 @@ use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Classical\B;
+use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Piece;
 
 class BTest extends AbstractUnitTestCase
 {
@@ -76,7 +78,7 @@ class BTest extends AbstractUnitTestCase
             'd5',
         ];
 
-        $this->assertEquals($expected, $board->pieceBySq('e4')->lineOfAttack());
+        $this->assertEquals($expected, $board->pieceBySq('e4')->line($board->piece(Color::B, Piece::K)));
     }
 
     /**
@@ -91,7 +93,7 @@ class BTest extends AbstractUnitTestCase
             'f6',
         ];
 
-        $this->assertEquals($expected, $board->pieceBySq('e5')->lineOfAttack());
+        $this->assertEquals($expected, $board->pieceBySq('e5')->line($board->piece(Color::B, Piece::K)));
     }
 
     /**
@@ -107,7 +109,7 @@ class BTest extends AbstractUnitTestCase
             'e5',
         ];
 
-        $this->assertEquals($expected, $board->pieceBySq('d6')->lineOfAttack());
+        $this->assertEquals($expected, $board->pieceBySq('d6')->line($board->piece(Color::B, Piece::K)));
     }
 
     /**
@@ -124,6 +126,6 @@ class BTest extends AbstractUnitTestCase
             'f5',
         ];
 
-        $this->assertEquals($expected, $board->pieceBySq('g6')->lineOfAttack());
+        $this->assertEquals($expected, $board->pieceBySq('g6')->line($board->piece(Color::B, Piece::K)));
     }
 }

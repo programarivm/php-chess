@@ -129,11 +129,6 @@ class P extends AbstractPiece
         return $sqs;
     }
 
-    public function lineOfAttack(): array
-    {
-        return [];
-    }
-
     public function enPassantPawn(): ?AbstractPiece
     {
         if ($this->enPassant) {

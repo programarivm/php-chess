@@ -83,13 +83,6 @@ abstract class AbstractPiece
     abstract public function defendedSqs(): array;
 
     /**
-     * Returns an array representing the line of attack of this piece.
-     *
-     * @return array
-     */
-    abstract public function lineOfAttack(): array;
-
-    /**
      * Returns the piece's file.
      *
      * @return array
@@ -117,6 +110,61 @@ abstract class AbstractPiece
     public function oppColor(): string
     {
         return $this->color === Color::W ? Color::B : Color::W; 
+    }
+
+    /**
+     * Returns an array of squares connecting this piece to another piece.
+     * This is helpful to calculate lines of attack between pieces, lines of
+     * defense, and so on.
+     *
+     * @return array
+     */
+    public function line(AbstractPiece $piece): array
+    {
+        $sqs = [];
+        if ($this->file() === $piece->file()) {
+            if ($this->rank() > $piece->rank()) {
+                for ($i = 1; $i < $this->rank() - $piece->rank(); $i++) {
+                    $sqs[] = $this->file() . ($piece->rank() + $i);
+                }
+            } else {
+                for ($i = 1; $i < $piece->rank() - $this->rank(); $i++) {
+                    $sqs[] = $this->file() . ($piece->rank() - $i);
+                }
+            }
+        } elseif ($this->rank() === $piece->rank()) {
+            if ($this->file() > $piece->file()) {
+                for ($i = 1; $i < ord($this->file()) - ord($piece->file()); $i++) {
+                    $sqs[] = chr(ord($piece->file()) + $i) . $this->rank();
+                }
+            } else {
+                for ($i = 1; $i < ord($piece->file()) - ord($this->file()); $i++) {
+                    $sqs[] = chr(ord($piece->file()) - $i) . $this->rank();
+                }
+            }
+        } elseif (abs(ord($this->file()) - ord($piece->file())) ===
+            abs(ord($this->rank()) - ord($piece->rank()))
+        ) {
+            if ($this->file() > $piece->file() && $this->rank() < $piece->rank()) {
+                for ($i = 1; $i < $piece->rank() - $this->rank(); $i++) {
+                    $sqs[] = chr(ord($piece->file()) + $i) . ($piece->rank() - $i);
+                }
+            } elseif ($this->file() < $piece->file() && $this->rank() < $piece->rank()) {
+                for ($i = 1; $i < $piece->rank() - $this->rank(); $i++) {
+                    $sqs[] = chr(ord($piece->file()) - $i) . ($piece->rank() - $i);
+                }
+            } elseif ($this->file() < $piece->file() && $this->rank() > $piece->rank()) {
+                for ($i = 1; $i < $this->rank() - $piece->rank(); $i++) {
+                    $sqs[] = chr(ord($piece->file()) - $i) . ($piece->rank() + $i);
+                }
+            } else {
+                for ($i = 1; $i < $this->rank() - $piece->rank(); $i++) {
+                    $sqs[] = chr(ord($piece->file()) + $i) . ($piece->rank() + $i);
+                }
+            }
+        }
+
+        return $sqs;
     }
 
     /**
