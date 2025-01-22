@@ -287,7 +287,7 @@ abstract class AbstractPiece
      *
      * @return bool
      */
-    public function isLineOfAttackSafe(): bool
+    public function isKingLeftInCheck(): bool
     {
         $isCheck = false;
         $turn = $this->board->turn;
