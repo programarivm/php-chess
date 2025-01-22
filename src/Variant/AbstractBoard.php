@@ -96,11 +96,9 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $pieces = [];
         foreach ($this->pieces($move['color']) as $piece) {
-            if ($piece->id === $move['id']) {
-                if (strstr($piece->sq, $move['from'])) {
-                    $piece->move = $move;
-                    $pieces[] = $piece;
-                }
+            if ($piece->id === $move['id'] && strstr($piece->sq, $move['from'])) {
+                $piece->move = $move;
+                $pieces[] = $piece;
             }
         }
 
@@ -397,10 +395,8 @@ abstract class AbstractBoard extends \SplObjectStorage
         $pieces = [];
         $move = $this->move->toArray($color, $pgn, $this->castlingRule);
         foreach ($this->pickPiece($move) as $piece) {
-            if ($piece->isMovable()) {
-                if (!$piece->isKingLeftInCheck()) {
-                    $pieces[] = $piece;
-                }
+            if ($piece->isMovable() && !$piece->isKingLeftInCheck()) {
+                $pieces[] = $piece;
             }
         }
         if (!$this->isAmbiguous($move, $pieces)) {
