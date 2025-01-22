@@ -183,6 +183,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             throw new UnknownNotationException();
         }
         if ($a = $this->pieceBySq($sqs[0])) {
+            $b = $this->pieceBySq($sqs[1]) ? $x = 'x' : $x = '';
             if ($a->id === Piece::K) {
                 if ($a->sqCastle(Castle::SHORT) === $sqs[1]) {
                     return [ 
@@ -192,13 +193,9 @@ abstract class AbstractBoard extends \SplObjectStorage
                     return [ 
                         Castle::LONG,
                     ];
-                } elseif ($b = $this->pieceBySq($sqs[1])) {
-                    return [ 
-                        "{$a->id}x{$sqs[1]}",
-                    ];
                 } else {
                     return [ 
-                        "{$a->id}{$sqs[1]}",
+                        "{$a->id}$x{$sqs[1]}",
                     ];
                 }
             }
@@ -218,7 +215,6 @@ abstract class AbstractBoard extends \SplObjectStorage
                     ];
                 }
             }
-            $b = $this->pieceBySq($sqs[1]) ? $x = 'x' : $x = '';
             return [
                 "{$a->id}$x{$sqs[1]}",
                 "{$a->id}{$a->file()}$x{$sqs[1]}",
