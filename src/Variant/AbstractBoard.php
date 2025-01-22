@@ -198,8 +198,7 @@ abstract class AbstractBoard extends \SplObjectStorage
                         "{$a->id}$x{$sqs[1]}",
                     ];
                 }
-            }
-            if ($a->id === Piece::P) {
+            } elseif ($a->id === Piece::P) {
                 if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
                     ctype_alpha(mb_substr($lan, -1)) 
                         ? $newId = mb_strtoupper(mb_substr($lan, -1)) 
