@@ -283,7 +283,7 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns true if the king is not left in check because of moving the piece.
+     * Returns true if the king is left in check because of moving the piece.
      *
      * @return bool
      */
@@ -314,7 +314,7 @@ abstract class AbstractPiece
             }
         }
 
-        return !$isCheck;
+        return $isCheck;
     }
 
     /**
