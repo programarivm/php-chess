@@ -92,7 +92,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @param array $move
      * @return array
      */
-    protected function pickPiece(array $move): array
+    protected function pick(array $move): array
     {
         $pieces = [];
         foreach ($this->pieces($move['color']) as $piece) {
@@ -394,7 +394,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $pieces = [];
         $move = $this->move->toArray($color, $pgn, $this->castlingRule);
-        foreach ($this->pickPiece($move) as $piece) {
+        foreach ($this->pick($move) as $piece) {
             if ($piece->isMovable() && !$piece->isKingLeftInCheck()) {
                 $pieces[] = $piece;
             }
