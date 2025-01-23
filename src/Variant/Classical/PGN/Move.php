@@ -17,14 +17,12 @@ class Move extends AbstractNotation
     const ELLIPSIS = '...';
     const KING = 'K' . Square::REGEX . Check::REGEX;
     const KING_CAPTURES = 'Kx' . Square::REGEX . Check::REGEX;
-    const KNIGHT = 'N[a-h]{0,1}[1-8]{0,1}' . Square::REGEX . Check::REGEX;
-    const KNIGHT_CAPTURES = 'N[a-h]{0,1}[1-8]{0,1}x' . Square::REGEX . Check::REGEX;
     const PAWN = Square::REGEX . Check::REGEX;
     const PAWN_CAPTURES = '[a-h]{1}x' . Square::REGEX . Check::REGEX;
     const PAWN_PROMOTES = '[a-h]{1}(1|8){1}' . '[=]{0,1}[NBRQ]{0,1}' . Check::REGEX;
     const PAWN_CAPTURES_AND_PROMOTES = '[a-h]{1}x' . '[a-h]{1}(1|8){1}' . '[=]{0,1}[NBRQ]{0,1}' . Check::REGEX;
-    const PIECE = '[BRQ]{1}[a-h]{0,1}[1-8]{0,1}' . Square::REGEX . Check::REGEX;
-    const PIECE_CAPTURES = '[BRQ]{1}[a-h]{0,1}[1-8]{0,1}x' . Square::REGEX . Check::REGEX;
+    const PIECE = '[BNRQ]{1}[a-h]{0,1}[1-8]{0,1}' . Square::REGEX . Check::REGEX;
+    const PIECE_CAPTURES = '[BNRQ]{1}[a-h]{0,1}[1-8]{0,1}x' . Square::REGEX . Check::REGEX;
 
     public function cases(): array
     {
@@ -60,10 +58,6 @@ class Move extends AbstractNotation
             case preg_match('/^' . static::PAWN . '$/', $value):
                 return $value;
             case preg_match('/^' . static::PAWN_CAPTURES . '$/', $value):
-                return $value;
-            case preg_match('/^' . static::KNIGHT . '$/', $value):
-                return $value;
-            case preg_match('/^' . static::KNIGHT_CAPTURES . '$/', $value):
                 return $value;
             case preg_match('/^' . static::KING . '$/', $value):
                 return $value;
@@ -123,28 +117,6 @@ class Move extends AbstractNotation
                 'color' => $color,
                 'id' => Piece::P,
                 'from' => mb_substr($pgn, 0, 1),
-                'to' => $this->extractSqs($arr[1]),
-            ];
-        } elseif (preg_match('/^' . static::KNIGHT . '$/', $pgn)) {
-            $sqs = $this->extractSqs($pgn);
-            $to = substr($sqs, -2);
-            $from = str_replace($to, '', $sqs);
-            return [
-                'pgn' => $pgn,
-                'case' => static::KNIGHT,
-                'color' => $color,
-                'id' => Piece::N,
-                'from' => $from,
-                'to' => $to,
-            ];
-        } elseif (preg_match('/^' . static::KNIGHT_CAPTURES . '$/', $pgn)) {
-            $arr = explode('x', $pgn);
-            return [
-                'pgn' => $pgn,
-                'case' => static::KNIGHT_CAPTURES,
-                'color' => $color,
-                'id' => Piece::N,
-                'from' => $this->extractSqs($arr[0]),
                 'to' => $this->extractSqs($arr[1]),
             ];
         } elseif (preg_match('/^' . static::KING . '$/', $pgn)) {
