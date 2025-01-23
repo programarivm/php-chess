@@ -193,7 +193,7 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Kg7';
         $expected = [
             'pgn' => 'Kg7',
-            'case' => self::$move->case(MOVE::KING),
+            'case' => self::$move->case(MOVE::PIECE),
             'color' => 'w',
             'id' => Piece::K,
             'from' => '',
