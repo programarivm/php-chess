@@ -65,9 +65,6 @@ class FanMovetext extends AbstractMovetext
         if ($letter === Piece::K) {
             preg_match_all('/' . Move::KING . '/', $movetext, $a);
             preg_match_all('/' . Move::KING_CAPTURES . '/', $movetext, $b);
-        } elseif ($letter === Piece::N) {
-            preg_match_all('/' . Move::KNIGHT . '/', $movetext, $a);
-            preg_match_all('/' . Move::KNIGHT_CAPTURES . '/', $movetext, $b);
         } else {
             preg_match_all('/' . Move::PIECE . '/', $movetext, $a);
             preg_match_all('/' . Move::PIECE_CAPTURES . '/', $movetext, $b);
