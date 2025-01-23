@@ -6,21 +6,21 @@ use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractNotation;
 use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\PGN\Castle;
-use Chess\Variant\Classical\PGN\Check;
 use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Classical\PGN\Square;
 
 class Move extends AbstractNotation
 {
-    const CASTLE_SHORT = Castle::SHORT . Check::REGEX;
-    const CASTLE_LONG = Castle::LONG . Check::REGEX;
+    const CHECK = '[\+\#]{0,1}';
+    const CASTLE_SHORT = Castle::SHORT . self::CHECK;
+    const CASTLE_LONG = Castle::LONG . self::CHECK;
     const ELLIPSIS = '...';
-    const PAWN = Square::REGEX . Check::REGEX;
-    const PAWN_CAPTURES = '[a-h]{1}x' . Square::REGEX . Check::REGEX;
-    const PAWN_PROMOTES = '[a-h]{1}(1|8){1}' . '[=]{0,1}[NBRQ]{0,1}' . Check::REGEX;
-    const PAWN_CAPTURES_AND_PROMOTES = '[a-h]{1}x' . '[a-h]{1}(1|8){1}' . '[=]{0,1}[NBRQ]{0,1}' . Check::REGEX;
-    const PIECE = '[BKNQR]{1}[a-h]{0,1}[1-8]{0,1}' . Square::REGEX . Check::REGEX;
-    const PIECE_CAPTURES = '[BKNQR]{1}[a-h]{0,1}[1-8]{0,1}x' . Square::REGEX . Check::REGEX;
+    const PAWN = Square::REGEX . self::CHECK;
+    const PAWN_CAPTURES = '[a-h]{1}x' . Square::REGEX . self::CHECK;
+    const PAWN_PROMOTES = '[a-h]{1}(1|8){1}' . '[=]{0,1}[NBRQ]{0,1}' . self::CHECK;
+    const PAWN_CAPTURES_AND_PROMOTES = '[a-h]{1}x' . '[a-h]{1}(1|8){1}' . '[=]{0,1}[NBRQ]{0,1}' . self::CHECK;
+    const PIECE = '[BKNQR]{1}[a-h]{0,1}[1-8]{0,1}' . Square::REGEX . self::CHECK;
+    const PIECE_CAPTURES = '[BKNQR]{1}[a-h]{0,1}[1-8]{0,1}x' . Square::REGEX . self::CHECK;
 
     public function cases(): array
     {
