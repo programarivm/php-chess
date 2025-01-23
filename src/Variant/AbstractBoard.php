@@ -169,63 +169,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Converts a LAN move into an array of disambiguated PGN moves.
-     *
-     * @param string $color
-     * @param string $lan
-     * @throws \Chess\Exception\UnknownNotationException
-     * @return array
-     */
-    protected function lanToPgn(string $color, string $lan): array
-    {
-        $sqs = $this->move->explodeSqs($lan);
-        if (!isset($sqs[0]) && !isset($sqs[1])) {
-            throw new UnknownNotationException();
-        }
-        if ($a = $this->pieceBySq($sqs[0])) {
-            $b = $this->pieceBySq($sqs[1]) ? $x = 'x' : $x = '';
-            if ($a->id === Piece::K) {
-                if ($a->sqCastle(Castle::SHORT) === $sqs[1]) {
-                    return [ 
-                        Castle::SHORT,
-                    ];
-                } elseif ($a->sqCastle(Castle::LONG) === $sqs[1]) {
-                    return [ 
-                        Castle::LONG,
-                    ];
-                } else {
-                    return [ 
-                        "{$a->id}$x{$sqs[1]}",
-                    ];
-                }
-            } elseif ($a->id === Piece::P) {
-                if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
-                    ctype_alpha(mb_substr($lan, -1)) 
-                        ? $newId = mb_strtoupper(mb_substr($lan, -1)) 
-                        : $newId = Piece::Q;
-                    return [
-                        "{$a->file()}x{$sqs[1]}=$newId",
-                        "$sqs[1]=$newId",
-                    ];
-                } else {
-                    return [
-                        "{$a->file()}x{$sqs[1]}",
-                        $sqs[1],
-                    ];
-                }
-            }
-            return [
-                "{$a->id}$x{$sqs[1]}",
-                "{$a->id}{$a->file()}$x{$sqs[1]}",
-                "{$a->id}{$a->rank()}$x{$sqs[1]}",
-                "{$a->id}{$a->sq}$x{$sqs[1]}",
-            ];
-        }
-
-        return [];
-    }
-
-    /**
      * Updates the history after a LAN move has been played.
      *
      * @return bool
@@ -406,18 +349,63 @@ abstract class AbstractBoard extends \SplObjectStorage
      *
      * @param string $color
      * @param string $lan
+     * @throws \Chess\Exception\UnknownNotationException
      * @return bool
      */
     public function playLan(string $color, string $lan): bool
     {
+        $sqs = $this->move->explodeSqs($lan);
+        if (!isset($sqs[0]) && !isset($sqs[1])) {
+            throw new UnknownNotationException();
+        }
         if ($color === $this->turn) {
-            foreach ($this->lanToPgn($color, $lan) as $val) {
-                if ($this->play($color, $val)) {
-                    return $this->afterPlayLan();
+            if ($a = $this->pieceBySq($sqs[0])) {
+                $x = $this->pieceBySq($sqs[1]) ? 'x' : '';
+                if ($a->id === Piece::K) {
+                    if ($a->sqCastle(Castle::SHORT) === $sqs[1]) {
+                        if ($this->play($color, Castle::SHORT)) {
+                            return $this->afterPlayLan();
+                        }
+                    } elseif ($a->sqCastle(Castle::LONG) === $sqs[1]) {
+                        if ($this->play($color, Castle::LONG)) {
+                            return $this->afterPlayLan();
+                        }
+                    } else {
+                        if ($this->play($color, "{$a->id}{$x}{$sqs[1]}")) {
+                            return $this->afterPlayLan();
+                        }
+                    }
+                } elseif ($a->id === Piece::P) {
+                    if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
+                        ctype_alpha(mb_substr($lan, -1))
+                            ? $newId = mb_strtoupper(mb_substr($lan, -1))
+                            : $newId = Piece::Q;
+                        if ($this->play($color, "{$a->file()}x{$sqs[1]}=$newId")) {
+                            return $this->afterPlayLan();
+                        } elseif ($this->play($color, "{$sqs[1]}=$newId")) {
+                            return $this->afterPlayLan();
+                        }
+                    } else {
+                        if ($this->play($color, "{$a->file()}x{$sqs[1]}")) {
+                            return $this->afterPlayLan();
+                        } elseif ($this->play($color, "{$sqs[1]}")) {
+                            return $this->afterPlayLan();
+                        }
+                    }
+                } else {
+                    if ($this->play($color, "{$a->id}{$x}{$sqs[1]}")) {
+                        return $this->afterPlayLan();
+                    } elseif ($this->play($color, "{$a->id}{$a->file()}{$x}{$sqs[1]}")) {
+                        return $this->afterPlayLan();
+                    } elseif ($this->play($color, "{$a->id}{$a->rank()}{$x}{$sqs[1]}")) {
+                        return $this->afterPlayLan();
+                    } elseif ($this->play($color, "{$a->id}{$sqs[0]}{$x}{$sqs[1]}")) {
+                        return $this->afterPlayLan();
+                    }
                 }
             }
         }
-
+        
         return false;
     }
 
