@@ -106,22 +106,22 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Returns true if the move is ambiguous.
+     * Returns a disambiguated piece from an array of pieces.
      *
      * @param array $move
      * @param array $pieces
-     * @return bool
+     * @return null|\Chess\Variant\AbstractPiece
      */
-    protected function isAmbiguous(array $move, array $pieces): bool
+    protected function disambiguate(array $move, array $pieces): ?AbstractPiece
     {
         if (str_contains($move['case'], 'x')) {
             if ($move['id'] === Piece::P) {
                 $enPassant = $this->history ? $this->enPassant() : explode(' ', $this->startFen)[3];
                 if (!$this->pieceBySq($move['to']) && $enPassant !== $move['to']) {
-                    return true;
+                    return null;
                 }
             } elseif (!$this->pieceBySq($move['to'])) {
-                return true;
+                return null;
             }
         }
         $ambiguous = [];
@@ -131,26 +131,28 @@ abstract class AbstractBoard extends \SplObjectStorage
             }
         }
 
-        return count($ambiguous) > 1;
+        if (count($ambiguous) === 1) {
+            return $pieces[0];
+        }
+
+        return null;
     }
 
     /**
      * Returns true if the move is legal.
      *
      * @param array $move
-     * @param array $pieces
+     * @param \Chess\Variant\AbstractPiece $piece
      * @return bool
      */
-    protected function isLegal(array $move, array $pieces): bool
+    protected function isLegal(array $move, AbstractPiece $piece): bool
     {
-        foreach ($pieces as $piece) {
-            if ($piece->move['case'] === $this->move->case(Move::CASTLE_SHORT)) {
-                return $piece->castle(RType::CASTLE_SHORT);
-            } elseif ($piece->move['case'] === $this->move->case(Move::CASTLE_LONG)) {
-                return $piece->castle(RType::CASTLE_LONG);
-            } else {
-                return $piece->move();
-            }
+        if ($piece->move['case'] === $this->move->case(Move::CASTLE_SHORT)) {
+            return $piece->castle(RType::CASTLE_SHORT);
+        } elseif ($piece->move['case'] === $this->move->case(Move::CASTLE_LONG)) {
+            return $piece->castle(RType::CASTLE_LONG);
+        } else {
+            return $piece->move();
         }
 
         return false;
@@ -337,8 +339,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                 $pieces[] = $piece;
             }
         }
-        if (!$this->isAmbiguous($move, $pieces)) {
-            return $this->isLegal($move, $pieces);
+        if ($piece = $this->disambiguate($move, $pieces)) {
+            return $this->isLegal($move, $piece);
         }
 
         return false;
