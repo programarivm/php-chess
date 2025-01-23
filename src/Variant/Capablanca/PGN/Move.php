@@ -9,14 +9,12 @@ use Chess\Variant\Classical\PGN\Color;
 
 class Move extends ClassicalMove
 {
-    const KING = 'K' . Square::REGEX . Check::REGEX;
-    const KING_CAPTURES = 'Kx' . Square::REGEX . Check::REGEX;
     const PAWN = Square::REGEX . Check::REGEX;
     const PAWN_CAPTURES = '[a-j]{1}x' . Square::REGEX . Check::REGEX;
     const PAWN_PROMOTES = '[a-j]{1}(1|8){1}' . '[=]{0,1}[NBRQAC]{0,1}' . Check::REGEX;
     const PAWN_CAPTURES_AND_PROMOTES = '[a-j]{1}x' . '[a-j]{1}(1|8){1}' . '[=]{0,1}[NBRQAC]{0,1}' . Check::REGEX;
-    const PIECE = '[ABCNRQ]{1}[a-j]{0,1}[1-8]{0,1}' . Square::REGEX . Check::REGEX;
-    const PIECE_CAPTURES = '[ABCNRQ]{1}[a-j]{0,1}[1-8]{0,1}x' . Square::REGEX . Check::REGEX;
+    const PIECE = '[ABCKNQR]{1}[a-j]{0,1}[1-8]{0,1}' . Square::REGEX . Check::REGEX;
+    const PIECE_CAPTURES = '[ABCKNQR]{1}[a-j]{0,1}[1-8]{0,1}x' . Square::REGEX . Check::REGEX;
 
     public function extractSqs(string $string): string
     {
