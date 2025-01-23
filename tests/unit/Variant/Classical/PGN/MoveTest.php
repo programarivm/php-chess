@@ -175,7 +175,7 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Ndb4';
         $expected = [
             'pgn' => 'Ndb4',
-            'case' => self::$move->case(MOVE::KNIGHT),
+            'case' => self::$move->case(MOVE::PIECE),
             'color' => 'b',
             'id' => Piece::N,
             'from' => 'd',
@@ -319,7 +319,7 @@ class MoveTest extends AbstractUnitTestCase
         $move = 'Nxe4';
         $expected = [
             'pgn' => 'Nxe4',
-            'case' => self::$move->case(MOVE::KNIGHT_CAPTURES),
+            'case' => self::$move->case(MOVE::PIECE_CAPTURES),
             'color' => 'b',
             'id' => Piece::N,
             'from' => '',
