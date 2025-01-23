@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Variant\Losing\PGN\AN;
+namespace Chess\Variant\Losing\PGN;
 
 use Chess\Variant\Classical\PGN\Piece as ClassicalPiece;
 

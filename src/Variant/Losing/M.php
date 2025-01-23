@@ -5,7 +5,7 @@ namespace Chess\Variant\Losing;
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractPiece;
 use Chess\Variant\Classical\PGN\Square;
-use Chess\Variant\Losing\PGN\AN\Piece;
+use Chess\Variant\Losing\PGN\Piece;
 
 class M extends AbstractPiece
 {
