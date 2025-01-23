@@ -2686,13 +2686,27 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function c6_is_pinned()
+    public function c6_is_pinned_play_lan_c6e7()
     {
         $board = FenToBoardFactory::create('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -');
 
         $expected = [];
 
         $this->assertEquals($expected, $board->legal('c6'));
+        $this->assertFalse($board->playLan('b', 'c6e7'));
+    }
+
+    /**
+     * @test
+     */
+    public function c6_is_pinned_play_Ne7()
+    {
+        $board = FenToBoardFactory::create('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -');
+
+        $expected = [];
+
+        $this->assertEquals($expected, $board->legal('c6'));
+        $this->assertTrue($board->play('b', 'Ne7'));
     }
 
     /**

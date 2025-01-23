@@ -345,14 +345,14 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Makes a move in LAN format.
+     * Converts a LAN move into PGN format.
      *
      * @param string $color
      * @param string $lan
      * @throws \Chess\Exception\UnknownNotationException
-     * @return bool
+     * @return null|array
      */
-    public function playLan(string $color, string $lan): bool
+    public function lanToPgn(string $color, string $lan): ?array
     {
         $sqs = $this->move->explodeSqs($lan);
         if (!isset($sqs[0]) && !isset($sqs[1])) {
@@ -363,49 +363,104 @@ abstract class AbstractBoard extends \SplObjectStorage
                 $x = $this->pieceBySq($sqs[1]) ? 'x' : '';
                 if ($a->id === Piece::K) {
                     if ($a->sqCastle(Castle::SHORT) === $sqs[1]) {
-                        if ($this->play($color, Castle::SHORT)) {
-                            return $this->afterPlayLan();
-                        }
+                        return [
+                            'id' => Piece::K,
+                            'from' => $a->sq,
+                            'pgn' => Castle::SHORT,
+                        ];
                     } elseif ($a->sqCastle(Castle::LONG) === $sqs[1]) {
-                        if ($this->play($color, Castle::LONG)) {
-                            return $this->afterPlayLan();
-                        }
+                        return [
+                            'id' => Piece::K,
+                            'from' => $a->sq,
+                            'pgn' => Castle::LONG,
+                        ];
                     } else {
-                        if ($this->play($color, "{$a->id}{$x}{$sqs[1]}")) {
-                            return $this->afterPlayLan();
-                        }
+                        return [
+                            'id' => Piece::K,
+                            'from' => $a->sq,
+                            'pgn' => "{$a->id}{$x}{$sqs[1]}",
+                        ];
                     }
                 } elseif ($a->id === Piece::P) {
                     if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
                         ctype_alpha(mb_substr($lan, -1))
                             ? $newId = mb_strtoupper(mb_substr($lan, -1))
                             : $newId = Piece::Q;
-                        if ($this->play($color, "{$a->file()}x{$sqs[1]}=$newId")) {
-                            return $this->afterPlayLan();
-                        } elseif ($this->play($color, "{$sqs[1]}=$newId")) {
-                            return $this->afterPlayLan();
+                        if ($x) {
+                            return [
+                                'id' => Piece::P,
+                                'from' => $a->sq,
+                                'pgn' => "{$a->file()}x{$sqs[1]}=$newId",
+                            ];
+                        } else {
+                            return [
+                                'id' => Piece::P,
+                                'from' => $a->sq,
+                                'pgn' => "{$sqs[1]}=$newId",
+                            ];
                         }
                     } else {
-                        if ($this->play($color, "{$a->file()}x{$sqs[1]}")) {
-                            return $this->afterPlayLan();
-                        } elseif ($this->play($color, "{$sqs[1]}")) {
-                            return $this->afterPlayLan();
+                        if ($x) {
+                            return [
+                                'id' => Piece::P,
+                                'from' => $a->sq,
+                                'pgn' => "{$a->file()}x{$sqs[1]}",
+                            ];
+                        } elseif ($a->enPassant === $sqs[1]) {
+                            return [
+                                'id' => Piece::P,
+                                'from' => $a->sq,
+                                'pgn' => "{$a->file()}x{$sqs[1]}",
+                            ];
+                        } else {
+                            return [
+                                'id' => Piece::P,
+                                'from' => $a->sq,
+                                'pgn' => $sqs[1],
+                            ];
                         }
                     }
                 } else {
-                    if ($this->play($color, "{$a->id}{$x}{$sqs[1]}")) {
+                    return [
+                        'id' => $a->id,
+                        'from' => $a->sq,
+                        'pgn' => "{$a->id}{$x}{$sqs[1]}",
+                    ];
+                }
+            }
+        }
+        
+        return null;
+    }
+
+    /**
+     * Makes a move in LAN format.
+     *
+     * @param string $color
+     * @param string $lan
+     * @return bool
+     */
+    public function playLan(string $color, string $lan): bool
+    {
+        if ($pgn = $this->lanToPgn($color, $lan)) {
+            if ($color === $this->turn) {
+                if ($this->play($color, $pgn['pgn'])) {
+                    return $this->afterPlayLan();
+                } elseif ($pgn['id'] !== Piece::K && $pgn['id'] !== Piece::P) {
+                    $fileDisambiguation = substr_replace($pgn['pgn'], $pgn['from'][0], 1, 0);
+                    $rankDisambiguation = substr_replace($pgn['pgn'], substr($pgn['from'], 1), 1, 0);
+                    $sqDisambiguation = substr_replace($pgn['pgn'], $pgn['from'], 1, 0);
+                    if ($this->play($color, $fileDisambiguation)) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$a->id}{$a->file()}{$x}{$sqs[1]}")) {
+                    } elseif ($this->play($color, $rankDisambiguation)) {
                         return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$a->id}{$a->rank()}{$x}{$sqs[1]}")) {
-                        return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$a->id}{$sqs[0]}{$x}{$sqs[1]}")) {
+                    } elseif ($this->play($color, $sqDisambiguation)) {
                         return $this->afterPlayLan();
                     }
                 }
             }
         }
-        
+
         return false;
     }
 
