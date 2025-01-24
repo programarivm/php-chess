@@ -457,7 +457,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         if ($pgn = $this->lanToPseudoPgn($color, $lan)) {
             if ($color === $this->turn) {
                 if ($this->play($color, $pgn)) {
-                    return $this->afterPlayLan();
+                    return $this->pseudoPgnToPgn();
                 }
             }
         }
