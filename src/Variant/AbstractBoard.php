@@ -637,17 +637,8 @@ abstract class AbstractBoard extends \SplObjectStorage
         $legal = [];
         if ($piece = $this->pieceBySq($sq)) {
             foreach ($piece->moveSqs() as $moveSq) {
-                $clone = $this->clone();
-                if ($piece->id === Piece::K || $piece->id === Piece::P) {
-                    if ($clone->playLan($this->turn, "$sq$moveSq")) {
-                        $legal[] = $moveSq;
-                    }
-                } else {
-                    if ($clone->play($this->turn, "{$piece->id}{$sq}{$moveSq}")) {
-                        $legal[] = $moveSq;
-                    } elseif ($clone->play($this->turn, "{$piece->id}{$sq}x{$moveSq}")) {
-                        $legal[] = $moveSq;
-                    }
+                if ($this->clone()->playLan($this->turn, "$sq$moveSq")) {
+                    $legal[] = $moveSq;
                 }
             }
         }
