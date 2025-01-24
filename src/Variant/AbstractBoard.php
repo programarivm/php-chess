@@ -259,10 +259,10 @@ abstract class AbstractBoard extends \SplObjectStorage
                         foreach ($identical as $identicalPiece) {
                             $file = $sqs[0][0];
                             $rank = (int) substr($sqs[0], 1);
-                            if ($rank === $identicalPiece->rank()) {
-                                $dblDisambiguation = str_replace($rank, '', $dblDisambiguation);
-                            } elseif ($file  === $identicalPiece->file()) {
+                            if ($file  === $identicalPiece->file()) {
                                 $dblDisambiguation = str_replace($file , '', $dblDisambiguation);
+                            } else {
+                                $dblDisambiguation = str_replace($rank, '', $dblDisambiguation);
                             }
                         }
                         $last['pgn'] = $piece->id . $dblDisambiguation . $x . $sqs[1];
