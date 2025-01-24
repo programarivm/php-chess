@@ -212,9 +212,7 @@ abstract class AbstractBoard extends \SplObjectStorage
                             return "{$sqs[1]}=$newId";
                         }
                     } else {
-                        if ($x) {
-                            return "{$a->file()}x{$sqs[1]}";
-                        } elseif ($a->enPassant === $sqs[1]) {
+                        if ($x || $a->enPassant === $sqs[1]) {
                             return "{$a->file()}x{$sqs[1]}";
                         } else {
                             return $sqs[1];
