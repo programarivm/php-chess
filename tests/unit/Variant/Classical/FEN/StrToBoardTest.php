@@ -852,4 +852,19 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->toFen());
     }
+
+    /**
+     * @test
+     */
+    public function disambiguate_d4_knight_legal()
+    {
+        $board = (new StrToBoard('1rb1r1k1/1pq1bppp/p2p1n2/4p3/P1nNPP2/2N2B2/1PP2QPP/R1B2R1K w - -'))
+            ->create();
+
+        $board->playLan('w', 'd4e2');
+
+        $expected = '1.Nd4e2';
+
+        $this->assertEquals($expected, $board->movetext());
+    }
 }
