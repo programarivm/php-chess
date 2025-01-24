@@ -177,14 +177,46 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function afterPlayLan(): bool
     {
+        // undo the double disambiguation
         $last = $this->history[count($this->history) - 1];
+        if (preg_match('/^' . Move::PIECE . '$/', $last['pgn']) ||
+            preg_match('/^' . Move::PIECE_CAPTURES . '$/', $last['pgn'])
+        ) {
+            $sqs = $this->move->explodeSqs($last['pgn']);
+            if (isset($sqs[0]) && isset($sqs[1])) {
+                if ($piece = $this->pieceBySq($sqs[1])) {
+                    $x = str_contains($last['pgn'], 'x') ? 'x' : '';
+                    $identical = [];
+                    foreach ($piece->defending() as $defending) {
+                        if ($defending->id === $piece->id) {
+                            $identical[] = $defending;
+                        }
+                    }
+                    if ($identical) {
+                        $toReplace = $this->move->explodeSqs($last['pgn']);
+                        foreach ($identical as $identicalPiece) {
+                            $file = $sqs[0][0];
+                            $rank = (int) substr($sqs[0], 1);
+                            if ($rank === $identicalPiece->rank()) {
+                                $toReplace[0] = str_replace($rank, '', $toReplace[0]);
+                            } elseif ($file  === $identicalPiece->file()) {
+                                $toReplace[0] = str_replace($file , '', $toReplace[0]);
+                            }
+                        }
+                        $last['pgn'] = $piece->id . $toReplace[0] . $x . $sqs[1];
+                    } else {
+                        $last['pgn'] = str_replace($sqs[0], '', $last['pgn']);
+                    }
 
-        // TODO: Undo the double disambiguation.
+                    $this->history[count($this->history) - 1] = $last;
+                }
+            }
+        }
 
         if ($this->isMate()) {
-            $last['pgn'] .= '#';
+            $this->history[count($this->history) - 1]['pgn'] .= '#';
         } elseif ($this->isCheck()) {
-            $last['pgn'] .= '+';
+            $this->history[count($this->history) - 1]['pgn'] .= '+';
         }
 
         return true;
