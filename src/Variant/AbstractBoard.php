@@ -173,11 +173,10 @@ abstract class AbstractBoard extends \SplObjectStorage
     /**
      * Converts a LAN move into a pseudo-move in PGN format. 
      * 
-     * This method is implementing an intermediate step that is required to
-     * make a move in LAN format. The pseudo-PGN fromat is characterized by a
-     * double disambiguation — the file and the rank of departure — used to
-     * identify a piece. The notation for both check and checkmate is also
-     * omitted.
+     * This is an intermediate step required to make a move in LAN format.
+     * The pseudo-PGN fromat is characterized by a double disambiguation — the
+     * file and the rank of departure — used to identify a piece. The notation
+     * for both check and checkmate is omitted.
      *
      * @param string $color
      * @param string $lan
@@ -231,9 +230,8 @@ abstract class AbstractBoard extends \SplObjectStorage
      * Fixes the history array after a LAN move has been made.
      * 
      * The pseudo-PGN move in the history array needs to be converted to PGN.
-     * On the one hand, the double disambiguation needs to be undone, while on
-     * the other hand the notation for check and checkmate is to be added to
-     * the move.
+     * On the one hand, the double disambiguation is undone, while on the other
+     * hand the notation for check and checkmate is added to the move.
      *
      * @return bool
      */
@@ -264,7 +262,7 @@ abstract class AbstractBoard extends \SplObjectStorage
                 }
             }
         }
-        // add the notation for check and checkmate
+        // add the notation for check and checkmate to the move
         if ($this->isMate()) {
             $this->history[count($this->history) - 1]['pgn'] .= '#';
         } elseif ($this->isCheck()) {
@@ -436,6 +434,8 @@ abstract class AbstractBoard extends \SplObjectStorage
 
     /**
      * Makes a move in LAN format.
+     * 
+     * This method delegates the call to the play() method.
      *
      * @param string $color
      * @param string $lan
