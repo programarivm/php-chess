@@ -151,6 +151,8 @@ Array
 
 You may be wondering why two functions instead of just one. Well, that's because a computer may well take about 0.1 seconds to evaluate a chess position, which is perfectly fine. Now, if we take this number and multiply it by 80 different positions that a chess game has on average, the result obtained is 8 seconds. The fast evaluation function comes to the rescue in these situations as a workaround.
 
+![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png)
+
 The evaluation array is used to estimate who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.
 
 ### Steinitz Evaluation
@@ -171,7 +173,7 @@ In this example, White is better than Black because the value obtained is a posi
 
 Chess evaluation functions often consist in multiplying the terms by a weight and adding the results to construct a linear combination.
 
-![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png)
+![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png)
 
 However, the Steinitz evaluation alone, which is to say just counting the advantages, has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. Also it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.
 
@@ -259,7 +261,7 @@ Array
 )
 ```
 
-![Figure 2](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png)
+![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
 
 The data is plotted in a way that is easy for chess players to understand and learn.
 
@@ -323,7 +325,7 @@ Array
 )
 ```
 
-![Figure 3](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png)
+![Figure 4](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png)
 
 The evaluation array can be plotted in a way that is easy for chess players to understand and learn.
 
@@ -346,7 +348,7 @@ Array
 )
 ```
 
-![Figure 4](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png)
+![Figure 5](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_05.png)
 
 ### Mean
 
@@ -367,7 +369,7 @@ Array
 )
 ```
 
-![Figure 5](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_05.png)
+![Figure 6](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_06.png)
 
 ### Standard Deviation
 
@@ -388,6 +390,6 @@ Array
 )
 ```
 
-![Figure 6](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_06.png)
+![Figure 7](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_07.png)
 
 🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of [Data Mining](https://chess-data.chesslablab.org/#data-mining) tools.
