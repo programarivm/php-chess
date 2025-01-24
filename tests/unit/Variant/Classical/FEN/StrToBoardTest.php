@@ -867,4 +867,19 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->movetext());
     }
+
+        /**
+     * @test
+     */
+    public function disambiguate_c1_rook_legal()
+    {
+        $board = (new StrToBoard('r5k1/2rb2p1/3p3p/q2Pbp2/P1P1p3/1QN3PP/R4P2/2R2BK1 w - -'))
+            ->create();
+
+        $board->playLan('w', 'c1c2');
+
+        $expected = '1.Rcc2';
+
+        $this->assertEquals($expected, $board->movetext());
+    }
 }
