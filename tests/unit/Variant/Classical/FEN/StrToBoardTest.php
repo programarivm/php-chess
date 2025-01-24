@@ -863,7 +863,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board->playLan('w', 'd4e2');
 
-        $expected = '1.Nd4e2';
+        $expected = '1.Nde2';
 
         $this->assertEquals($expected, $board->movetext());
     }
