@@ -193,17 +193,17 @@ abstract class AbstractBoard extends \SplObjectStorage
                         }
                     }
                     if ($identical) {
-                        $toReplace = $this->move->explodeSqs($last['pgn']);
+                        $dblDisambiguation = $this->move->explodeSqs($last['pgn'])[0];
                         foreach ($identical as $identicalPiece) {
                             $file = $sqs[0][0];
                             $rank = (int) substr($sqs[0], 1);
                             if ($rank === $identicalPiece->rank()) {
-                                $toReplace[0] = str_replace($rank, '', $toReplace[0]);
+                                $dblDisambiguation = str_replace($rank, '', $dblDisambiguation);
                             } elseif ($file  === $identicalPiece->file()) {
-                                $toReplace[0] = str_replace($file , '', $toReplace[0]);
+                                $dblDisambiguation = str_replace($file , '', $dblDisambiguation);
                             }
                         }
-                        $last['pgn'] = $piece->id . $toReplace[0] . $x . $sqs[1];
+                        $last['pgn'] = $piece->id . $dblDisambiguation . $x . $sqs[1];
                     } else {
                         $last['pgn'] = $piece->id . $x . $sqs[1];
                     }
