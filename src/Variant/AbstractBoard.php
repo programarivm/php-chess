@@ -106,22 +106,22 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Returns true if the move is ambiguous.
+     * Returns a disambiguated piece from an array of pieces.
      *
      * @param array $move
      * @param array $pieces
-     * @return bool
+     * @return null|\Chess\Variant\AbstractPiece
      */
-    protected function isAmbiguous(array $move, array $pieces): bool
+    protected function disambiguate(array $move, array $pieces): ?AbstractPiece
     {
         if (str_contains($move['case'], 'x')) {
             if ($move['id'] === Piece::P) {
                 $enPassant = $this->history ? $this->enPassant() : explode(' ', $this->startFen)[3];
                 if (!$this->pieceBySq($move['to']) && $enPassant !== $move['to']) {
-                    return true;
+                    return null;
                 }
             } elseif (!$this->pieceBySq($move['to'])) {
-                return true;
+                return null;
             }
         }
         $ambiguous = [];
@@ -131,26 +131,28 @@ abstract class AbstractBoard extends \SplObjectStorage
             }
         }
 
-        return count($ambiguous) > 1;
+        if (count($ambiguous) === 1) {
+            return $pieces[0];
+        }
+
+        return null;
     }
 
     /**
      * Returns true if the move is legal.
      *
      * @param array $move
-     * @param array $pieces
+     * @param \Chess\Variant\AbstractPiece $piece
      * @return bool
      */
-    protected function isLegal(array $move, array $pieces): bool
+    protected function isLegal(array $move, AbstractPiece $piece): bool
     {
-        foreach ($pieces as $piece) {
-            if ($piece->move['case'] === $this->move->case(Move::CASTLE_SHORT)) {
-                return $piece->castle(RType::CASTLE_SHORT);
-            } elseif ($piece->move['case'] === $this->move->case(Move::CASTLE_LONG)) {
-                return $piece->castle(RType::CASTLE_LONG);
-            } else {
-                return $piece->move();
-            }
+        if ($piece->move['case'] === $this->move->case(Move::CASTLE_SHORT)) {
+            return $piece->castle(RType::CASTLE_SHORT);
+        } elseif ($piece->move['case'] === $this->move->case(Move::CASTLE_LONG)) {
+            return $piece->castle(RType::CASTLE_LONG);
+        } else {
+            return $piece->move();
         }
 
         return false;
@@ -169,12 +171,98 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Updates the history after a LAN move has been played.
+     * Converts a LAN move into a pseudo-move in PGN format. 
+     * 
+     * This is an intermediate step required to make a move in LAN format.
+     * The pseudo-PGN fromat is characterized by a double disambiguation — the
+     * file and the rank of departure — used to identify a piece. The notation
+     * for both check and checkmate is omitted.
+     *
+     * @param string $color
+     * @param string $lan
+     * @throws \Chess\Exception\UnknownNotationException
+     * @return string
+     */
+    protected function lanToPseudoPgn(string $color, string $lan): string
+    {
+        $sqs = $this->move->explodeSqs($lan);
+        if (!isset($sqs[0]) && !isset($sqs[1])) {
+            throw new UnknownNotationException();
+        }
+        if ($color === $this->turn) {
+            if ($a = $this->pieceBySq($sqs[0])) {
+                $x = $this->pieceBySq($sqs[1]) ? 'x' : '';
+                if ($a->id === Piece::K) {
+                    if ($a->sqCastle(Castle::SHORT) === $sqs[1]) {
+                        return Castle::SHORT;
+                    } elseif ($a->sqCastle(Castle::LONG) === $sqs[1]) {
+                        return Castle::LONG;
+                    } else {
+                        return "{$a->id}{$x}{$sqs[1]}";
+                    }
+                } elseif ($a->id === Piece::P) {
+                    if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
+                        ctype_alpha(mb_substr($lan, -1))
+                            ? $newId = mb_strtoupper(mb_substr($lan, -1))
+                            : $newId = Piece::Q;
+                        if ($x) {
+                            return "{$a->file()}x{$sqs[1]}=$newId";
+                        } else {
+                            return "{$sqs[1]}=$newId";
+                        }
+                    } else {
+                        if ($x || $a->enPassant === $sqs[1]) {
+                            return "{$a->file()}x{$sqs[1]}";
+                        } else {
+                            return $sqs[1];
+                        }
+                    }
+                } else {
+                    return "{$a->id}{$a->sq}{$x}{$sqs[1]}";
+                }
+            }
+        }
+        
+        return '';
+    }
+
+    /**
+     * Fixes the history array after a LAN move has been made.
+     * 
+     * The pseudo-PGN move in the history array needs to be converted to PGN.
+     * On the one hand, the double disambiguation is undone, while on the other
+     * hand the notation for check and checkmate is added to the move.
      *
      * @return bool
      */
-    protected function afterPlayLan(): bool
+    protected function fixPseudoPgn(): bool
     {
+        // undo the double disambiguation
+        $last = $this->history[count($this->history) - 1];
+        if (preg_match('/^' . Move::PIECE . '$/', $last['pgn']) ||
+            preg_match('/^' . Move::PIECE_CAPTURES . '$/', $last['pgn'])
+        ) {
+            $sqs = $this->move->explodeSqs($last['pgn']);
+            if (isset($sqs[0]) && isset($sqs[1])) {
+                if ($piece = $this->pieceBySq($sqs[1])) {
+                    $disambiguation = $sqs[0];
+                    $x = str_contains($last['pgn'], 'x') ? 'x' : '';
+                    foreach ($piece->defending() as $defending) {
+                        if ($defending->id === $piece->id) {
+                            $file = $sqs[0][0];
+                            $rank = (int) substr($sqs[0], 1);
+                            $disambiguation = $file  === $defending->file()
+                                ? str_replace($file , '', $disambiguation)
+                                : str_replace($rank, '', $disambiguation);
+                        }
+                    }
+                    $this->history[count($this->history) - 1]['pgn'] = $disambiguation === $sqs[0]
+                        ? $piece->id . $x . $sqs[1]
+                        : $piece->id . $disambiguation . $x . $sqs[1];
+                }
+            }
+        }
+        // add the notation for check and checkmate to the move
         if ($this->isMate()) {
             $this->history[count($this->history) - 1]['pgn'] .= '#';
         } elseif ($this->isCheck()) {
@@ -337,8 +425,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                 $pieces[] = $piece;
             }
         }
-        if (!$this->isAmbiguous($move, $pieces)) {
-            return $this->isLegal($move, $pieces);
+        if ($piece = $this->disambiguate($move, $pieces)) {
+            return $this->isLegal($move, $piece);
         }
 
         return false;
@@ -346,66 +434,23 @@ abstract class AbstractBoard extends \SplObjectStorage
 
     /**
      * Makes a move in LAN format.
+     * 
+     * This method delegates the call to the play() method.
      *
      * @param string $color
      * @param string $lan
-     * @throws \Chess\Exception\UnknownNotationException
      * @return bool
      */
     public function playLan(string $color, string $lan): bool
     {
-        $sqs = $this->move->explodeSqs($lan);
-        if (!isset($sqs[0]) && !isset($sqs[1])) {
-            throw new UnknownNotationException();
-        }
-        if ($color === $this->turn) {
-            if ($a = $this->pieceBySq($sqs[0])) {
-                $x = $this->pieceBySq($sqs[1]) ? 'x' : '';
-                if ($a->id === Piece::K) {
-                    if ($a->sqCastle(Castle::SHORT) === $sqs[1]) {
-                        if ($this->play($color, Castle::SHORT)) {
-                            return $this->afterPlayLan();
-                        }
-                    } elseif ($a->sqCastle(Castle::LONG) === $sqs[1]) {
-                        if ($this->play($color, Castle::LONG)) {
-                            return $this->afterPlayLan();
-                        }
-                    } else {
-                        if ($this->play($color, "{$a->id}{$x}{$sqs[1]}")) {
-                            return $this->afterPlayLan();
-                        }
-                    }
-                } elseif ($a->id === Piece::P) {
-                    if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
-                        ctype_alpha(mb_substr($lan, -1))
-                            ? $newId = mb_strtoupper(mb_substr($lan, -1))
-                            : $newId = Piece::Q;
-                        if ($this->play($color, "{$a->file()}x{$sqs[1]}=$newId")) {
-                            return $this->afterPlayLan();
-                        } elseif ($this->play($color, "{$sqs[1]}=$newId")) {
-                            return $this->afterPlayLan();
-                        }
-                    } else {
-                        if ($this->play($color, "{$a->file()}x{$sqs[1]}")) {
-                            return $this->afterPlayLan();
-                        } elseif ($this->play($color, "{$sqs[1]}")) {
-                            return $this->afterPlayLan();
-                        }
-                    }
-                } else {
-                    if ($this->play($color, "{$a->id}{$x}{$sqs[1]}")) {
-                        return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$a->id}{$a->file()}{$x}{$sqs[1]}")) {
-                        return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$a->id}{$a->rank()}{$x}{$sqs[1]}")) {
-                        return $this->afterPlayLan();
-                    } elseif ($this->play($color, "{$a->id}{$sqs[0]}{$x}{$sqs[1]}")) {
-                        return $this->afterPlayLan();
-                    }
+        if ($pgn = $this->lanToPseudoPgn($color, $lan)) {
+            if ($color === $this->turn) {
+                if ($this->play($color, $pgn)) {
+                    return $this->fixPseudoPgn();
                 }
             }
         }
-        
+
         return false;
     }
 
@@ -588,17 +633,8 @@ abstract class AbstractBoard extends \SplObjectStorage
         $legal = [];
         if ($piece = $this->pieceBySq($sq)) {
             foreach ($piece->moveSqs() as $moveSq) {
-                $clone = $this->clone();
-                if ($piece->id === Piece::K || $piece->id === Piece::P) {
-                    if ($clone->playLan($this->turn, "$sq$moveSq")) {
-                        $legal[] = $moveSq;
-                    }
-                } else {
-                    if ($clone->play($this->turn, "{$piece->id}{$sq}{$moveSq}")) {
-                        $legal[] = $moveSq;
-                    } elseif ($clone->play($this->turn, "{$piece->id}{$sq}x{$moveSq}")) {
-                        $legal[] = $moveSq;
-                    }
+                if ($this->clone()->playLan($this->turn, "$sq$moveSq")) {
+                    $legal[] = $moveSq;
                 }
             }
         }

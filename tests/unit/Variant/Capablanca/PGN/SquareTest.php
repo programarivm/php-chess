@@ -1,6 +1,6 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Capablanca\PGN\AN;
+namespace Chess\Tests\Unit\Variant\Capablanca\PGN;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Tests\AbstractUnitTestCase;
