@@ -233,7 +233,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @throws \Chess\Exception\UnknownNotationException
      * @return string
      */
-    protected function lanToDoubleDisambiguatedPgn(string $color, string $lan): string
+    protected function lanToPseudoPgn(string $color, string $lan): string
     {
         $sqs = $this->move->explodeSqs($lan);
         if (!isset($sqs[0]) && !isset($sqs[1])) {
@@ -447,7 +447,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function playLan(string $color, string $lan): bool
     {
-        if ($pgn = $this->lanToDoubleDisambiguatedPgn($color, $lan)) {
+        if ($pgn = $this->lanToPseudoPgn($color, $lan)) {
             if ($color === $this->turn) {
                 if ($this->play($color, $pgn)) {
                     return $this->afterPlayLan();
