@@ -255,7 +255,7 @@ abstract class AbstractBoard extends \SplObjectStorage
                         }
                     }
                     if ($identical) {
-                        $dblDisambiguation = $this->move->explodeSqs($last['pgn'])[0];
+                        $dblDisambiguation = $sqs[0];
                         foreach ($identical as $identicalPiece) {
                             $file = $sqs[0][0];
                             $rank = (int) substr($sqs[0], 1);
