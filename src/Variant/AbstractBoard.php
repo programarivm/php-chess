@@ -248,22 +248,21 @@ abstract class AbstractBoard extends \SplObjectStorage
             if (isset($sqs[0]) && isset($sqs[1])) {
                 if ($piece = $this->pieceBySq($sqs[1])) {
                     $x = str_contains($last['pgn'], 'x') ? 'x' : '';
-                    $dblDisambiguation = $sqs[0];
+                    $disambiguation = $sqs[0];
                     foreach ($piece->defending() as $defending) {
                         if ($defending->id === $piece->id) {
                             $file = $sqs[0][0];
                             $rank = (int) substr($sqs[0], 1);
                             if ($rank === $defending->rank()) {
-                                $dblDisambiguation = str_replace($rank, '', $dblDisambiguation);
+                                $disambiguation = str_replace($rank, '', $disambiguation);
                             } elseif ($file  === $defending->file()) {
-                                $dblDisambiguation = str_replace($file , '', $dblDisambiguation);
+                                $disambiguation = str_replace($file , '', $disambiguation);
                             }
                         }
                     }
-                    $last['pgn'] = $dblDisambiguation === $sqs[0] 
+                    $this->history[count($this->history) - 1]['pgn'] = $disambiguation === $sqs[0]
                         ? $piece->id . $x . $sqs[1] 
-                        : $piece->id . $dblDisambiguation . $x . $sqs[1];
-                    $this->history[count($this->history) - 1] = $last;
+                        : $piece->id . $disambiguation . $x . $sqs[1];
                 }
             }
         }
