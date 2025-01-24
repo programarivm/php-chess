@@ -248,21 +248,28 @@ abstract class AbstractBoard extends \SplObjectStorage
             if (isset($sqs[0]) && isset($sqs[1])) {
                 if ($piece = $this->pieceBySq($sqs[1])) {
                     $x = str_contains($last['pgn'], 'x') ? 'x' : '';
-                    $disambiguation = $sqs[0];
+                    $identical = [];
                     foreach ($piece->defending() as $defending) {
                         if ($defending->id === $piece->id) {
-                            $file = $sqs[0][0];
-                            $rank = (int) substr($sqs[0], 1);
-                            if ($rank === $defending->rank()) {
-                                $disambiguation = str_replace($rank, '', $disambiguation);
-                            } elseif ($file  === $defending->file()) {
-                                $disambiguation = str_replace($file , '', $disambiguation);
-                            }
+                            $identical[] = $defending;
                         }
                     }
-                    $this->history[count($this->history) - 1]['pgn'] = $disambiguation === $sqs[0]
-                        ? $piece->id . $x . $sqs[1] 
-                        : $piece->id . $disambiguation . $x . $sqs[1];
+                    if ($identical) {
+                        $dblDisambiguation = $sqs[0];
+                        foreach ($identical as $identicalPiece) {
+                            $file = $sqs[0][0];
+                            $rank = (int) substr($sqs[0], 1);
+                            if ($rank === $identicalPiece->rank()) {
+                                $dblDisambiguation = str_replace($rank, '', $dblDisambiguation);
+                            } elseif ($file  === $identicalPiece->file()) {
+                                $dblDisambiguation = str_replace($file , '', $dblDisambiguation);
+                            }
+                        }
+                        $last['pgn'] = $piece->id . $dblDisambiguation . $x . $sqs[1];
+                    } else {
+                        $last['pgn'] = $piece->id . $x . $sqs[1];
+                    }
+                    $this->history[count($this->history) - 1] = $last;
                 }
             }
         }
