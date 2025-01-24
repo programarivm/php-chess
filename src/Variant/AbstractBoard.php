@@ -171,62 +171,13 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Updates the history after a LAN move has been played.
-     *
-     * @return bool
-     */
-    protected function afterPlayLan(): bool
-    {
-        // undo the double disambiguation
-        $last = $this->history[count($this->history) - 1];
-        if (preg_match('/^' . Move::PIECE . '$/', $last['pgn']) ||
-            preg_match('/^' . Move::PIECE_CAPTURES . '$/', $last['pgn'])
-        ) {
-            $sqs = $this->move->explodeSqs($last['pgn']);
-            if (isset($sqs[0]) && isset($sqs[1])) {
-                if ($piece = $this->pieceBySq($sqs[1])) {
-                    $x = str_contains($last['pgn'], 'x') ? 'x' : '';
-                    $identical = [];
-                    foreach ($piece->defending() as $defending) {
-                        if ($defending->id === $piece->id) {
-                            $identical[] = $defending;
-                        }
-                    }
-                    if ($identical) {
-                        $dblDisambiguation = $this->move->explodeSqs($last['pgn'])[0];
-                        foreach ($identical as $identicalPiece) {
-                            $file = $sqs[0][0];
-                            $rank = (int) substr($sqs[0], 1);
-                            if ($rank === $identicalPiece->rank()) {
-                                $dblDisambiguation = str_replace($rank, '', $dblDisambiguation);
-                            } elseif ($file  === $identicalPiece->file()) {
-                                $dblDisambiguation = str_replace($file , '', $dblDisambiguation);
-                            }
-                        }
-                        $last['pgn'] = $piece->id . $dblDisambiguation . $x . $sqs[1];
-                    } else {
-                        $last['pgn'] = $piece->id . $x . $sqs[1];
-                    }
-                    $this->history[count($this->history) - 1] = $last;
-                }
-            }
-        }
-
-        if ($this->isMate()) {
-            $this->history[count($this->history) - 1]['pgn'] .= '#';
-        } elseif ($this->isCheck()) {
-            $this->history[count($this->history) - 1]['pgn'] .= '+';
-        }
-
-        return true;
-    }
-
-    /**
-     * Converts a LAN move into a pseudo-move in PGN format.
+     * Converts a LAN move into a pseudo-move in PGN format. 
      * 
-     * A double disambiguation — the file and the rank of departure — is always
-     * used to identify a piece. Then, once the move has been made, the double
-     * disambiguation needs to be undone.
+     * This method is implementing an intermediate step that is required to
+     * make a move in LAN format. The pseudo-PGN fromat is characterized by a
+     * double disambiguation — the file and the rank of departure — used to
+     * identify a piece. The notation for both check and checkmate is also
+     * omitted.
      *
      * @param string $color
      * @param string $lan
@@ -276,6 +227,62 @@ abstract class AbstractBoard extends \SplObjectStorage
         }
         
         return '';
+    }
+
+    /**
+     * Fixes the history array after a LAN move has been made.
+     * 
+     * The pseudo-PGN move in the history array needs to be converted to PGN.
+     * On the one hand, the double disambiguation needs to be undone, while on
+     * the other hand the notation for check and checkmate is to be added to
+     * the move.
+     *
+     * @return bool
+     */
+    protected function pseudoPgnToPgn(): bool
+    {
+        // undo the double disambiguation
+        $last = $this->history[count($this->history) - 1];
+        if (preg_match('/^' . Move::PIECE . '$/', $last['pgn']) ||
+            preg_match('/^' . Move::PIECE_CAPTURES . '$/', $last['pgn'])
+        ) {
+            $sqs = $this->move->explodeSqs($last['pgn']);
+            if (isset($sqs[0]) && isset($sqs[1])) {
+                if ($piece = $this->pieceBySq($sqs[1])) {
+                    $x = str_contains($last['pgn'], 'x') ? 'x' : '';
+                    $identical = [];
+                    foreach ($piece->defending() as $defending) {
+                        if ($defending->id === $piece->id) {
+                            $identical[] = $defending;
+                        }
+                    }
+                    if ($identical) {
+                        $dblDisambiguation = $this->move->explodeSqs($last['pgn'])[0];
+                        foreach ($identical as $identicalPiece) {
+                            $file = $sqs[0][0];
+                            $rank = (int) substr($sqs[0], 1);
+                            if ($rank === $identicalPiece->rank()) {
+                                $dblDisambiguation = str_replace($rank, '', $dblDisambiguation);
+                            } elseif ($file  === $identicalPiece->file()) {
+                                $dblDisambiguation = str_replace($file , '', $dblDisambiguation);
+                            }
+                        }
+                        $last['pgn'] = $piece->id . $dblDisambiguation . $x . $sqs[1];
+                    } else {
+                        $last['pgn'] = $piece->id . $x . $sqs[1];
+                    }
+                    $this->history[count($this->history) - 1] = $last;
+                }
+            }
+        }
+        // add the notation for check and checkmate
+        if ($this->isMate()) {
+            $this->history[count($this->history) - 1]['pgn'] .= '#';
+        } elseif ($this->isCheck()) {
+            $this->history[count($this->history) - 1]['pgn'] .= '+';
+        }
+
+        return true;
     }
 
     /**
