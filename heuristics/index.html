@@ -376,6 +376,7 @@ print_r($result);
 )
 </code></pre>
 <p>You may be wondering why two functions instead of just one. Well, that's because a computer may well take about 0.1 seconds to evaluate a chess position, which is perfectly fine. Now, if we take this number and multiply it by 80 different positions that a chess game has on average, the result obtained is 8 seconds. The fast evaluation function comes to the rescue in these situations as a workaround.</p>
+<p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png" /></p>
 <p>The evaluation array is used to estimate who may be better without considering checkmate. Please note that a heuristic evaluation is not the same thing as a chess calculation. Heuristic evaluations are often correct but may fail because they are based on probabilities.</p>
 <h3 id="steinitz-evaluation">Steinitz Evaluation</h3>
 <p>As chess champion William Steinitz pointed out, a strong position can be created by accumulating small advantages. The relative value of the position without considering checkmate is obtained by counting the advantages in the evaluation array.</p>
@@ -387,7 +388,7 @@ echo $steinitz;
 </code></pre>
 <p>In this example, White is better than Black because the value obtained is a positive number. One evaluation feature is favoring White.</p>
 <p>Chess evaluation functions often consist in multiplying the terms by a weight and adding the results to construct a linear combination.</p>
-<p><img alt="Figure 1" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png" /></p>
+<p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png" /></p>
 <p>However, the Steinitz evaluation alone, which is to say just counting the advantages, has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. Also it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.</p>
 <h3 id="mean">Mean</h3>
 <p>The mean represents the center of the evaluation array being intermediate to the extreme values.</p>
@@ -444,7 +445,7 @@ print_r($time);
     [4] =&gt; -1
 )
 </code></pre>
-<p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png" /></p>
+<p><img alt="Figure 3" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png" /></p>
 <p>The data is plotted in a way that is easy for chess players to understand and learn.</p>
 <h2 id="extract-chess-data">Extract Chess Data</h2>
 <p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/SanExtractorTest.php">Chess\SanExtractor</a> extracts data from entire games like the following example.</p>
@@ -496,7 +497,7 @@ print_r($eval[4]);
     [29] =&gt; -0.022
 )
 </code></pre>
-<p><img alt="Figure 3" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_03.png" /></p>
+<p><img alt="Figure 4" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png" /></p>
 <p>The evaluation array can be plotted in a way that is easy for chess players to understand and learn.</p>
 <h3 id="steinitz-evaluation_1">Steinitz Evaluation</h3>
 <pre><code class="language-php">$steinitz = SanExtractor::steinitz($f, $board, $movetext);
@@ -512,7 +513,7 @@ print_r($steinitz);
     [4] =&gt; -5
 )
 </code></pre>
-<p><img alt="Figure 4" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_04.png" /></p>
+<p><img alt="Figure 5" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_05.png" /></p>
 <h3 id="mean_1">Mean</h3>
 <pre><code class="language-php">$mean = SanExtractor::mean($f, $board, $movetext);
 
@@ -527,7 +528,7 @@ print_r($mean);
     [4] =&gt; -0.0664
 )
 </code></pre>
-<p><img alt="Figure 5" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_05.png" /></p>
+<p><img alt="Figure 6" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_06.png" /></p>
 <h3 id="standard-deviation_1">Standard Deviation</h3>
 <pre><code class="language-php">$sd = SanExtractor::sd($f, $board, $movetext);
 
@@ -542,7 +543,7 @@ print_r($sd);
     [4] =&gt; -0.5406
 )
 </code></pre>
-<p><img alt="Figure 6" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_06.png" /></p>
+<p><img alt="Figure 7" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_07.png" /></p>
 <p>🎉 So chess positions and games can be plotted on charts and processed with machine learning techniques. Become a better player by extracting knowledge from games with the help of <a href="https://chess-data.chesslablab.org/#data-mining">Data Mining</a> tools.</p></div>
             </div>
         </div>
