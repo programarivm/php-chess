@@ -192,8 +192,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                             $identical[] = $defending;
                         }
                     }
+                    $toReplace = $this->move->explodeSqs($last['pgn']);
                     if ($identical) {
-                        $toReplace = $this->move->explodeSqs($last['pgn']);
                         foreach ($identical as $identicalPiece) {
                             $file = $sqs[0][0];
                             $rank = (int) substr($sqs[0], 1);
@@ -205,9 +205,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                         }
                         $last['pgn'] = $piece->id . $toReplace[0] . $x . $sqs[1];
                     } else {
-                        $last['pgn'] = str_replace($sqs[0], '', $last['pgn']);
+                        $last['pgn'] = $piece->id . $x . $sqs[1];
                     }
-
                     $this->history[count($this->history) - 1] = $last;
                 }
             }
