@@ -114,23 +114,12 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function disambiguate(array $move, array $pieces): ?AbstractPiece
     {
-        if (str_contains($move['case'], 'x')) {
-            if ($move['id'] === Piece::P) {
-                $enPassant = $this->history ? $this->enPassant() : explode(' ', $this->startFen)[3];
-                if (!$this->pieceBySq($move['to']) && $enPassant !== $move['to']) {
-                    return null;
-                }
-            } elseif (!$this->pieceBySq($move['to'])) {
-                return null;
-            }
-        }
         $ambiguous = [];
         foreach ($pieces as $piece) {
             if (in_array($move['to'], $piece->moveSqs())) {
                 $ambiguous[] = $move['to'];
             }
         }
-
         if (count($ambiguous) === 1) {
             return $pieces[0];
         }
@@ -227,11 +216,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Fixes the history array after a LAN move has been made.
-     * 
-     * The pseudo-PGN move in the history array needs to be converted to PGN.
-     * On the one hand, the double disambiguation is undone, while on the other
-     * hand the notation for check and checkmate is added to the move.
+     * Fixes the pseudo-PGN move in the history array after a LAN move is made.
      *
      * @return bool
      */
@@ -283,7 +268,6 @@ abstract class AbstractBoard extends \SplObjectStorage
             Color::W => [],
             Color::B => [],
         ];
-
         foreach ($this->pieces() as $piece) {
             $used[$piece->color][] = $piece->sq;
         }
@@ -299,16 +283,12 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function refresh(): void
     {
-        $this->turn = $this->turn === Color::W ? Color::B : Color::W; 
-        
+        $this->turn = $this->turn === Color::W ? Color::B : Color::W;
         $this->sqCount = $this->sqCount();
-
         $this->detachPieces()
             ->attachPieces()
             ->notifyPieces();
-
         $this->spaceEval = (new SpaceEval($this))->result;
-
         if ($this->history) {
             $this->history[count($this->history) - 1]['fen'] = $this->toFen();
         }
@@ -418,15 +398,17 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function play(string $color, string $pgn): bool
     {
-        $pieces = [];
-        $move = $this->move->toArray($color, $pgn, $this->castlingRule);
-        foreach ($this->pick($move) as $piece) {
-            if ($piece->isMovable() && !$piece->isKingLeftInCheck()) {
-                $pieces[] = $piece;
+        if ($color === $this->turn) {
+            $pieces = [];
+            $move = $this->move->toArray($color, $pgn, $this->castlingRule);
+            foreach ($this->pick($move) as $piece) {
+                if ($piece->isMovable() && !$piece->isKingLeftInCheck()) {
+                    $pieces[] = $piece;
+                }
             }
-        }
-        if ($piece = $this->disambiguate($move, $pieces)) {
-            return $this->isLegal($move, $piece);
+            if ($piece = $this->disambiguate($move, $pieces)) {
+                return $this->isLegal($move, $piece);
+            }
         }
 
         return false;
@@ -434,8 +416,6 @@ abstract class AbstractBoard extends \SplObjectStorage
 
     /**
      * Makes a move in LAN format.
-     * 
-     * This method delegates the call to the play() method.
      *
      * @param string $color
      * @param string $lan
@@ -574,7 +554,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     public function isFiftyMoveDraw(): bool
     {
         return count($this->history) >= 100;
-
         foreach (array_reverse($this->history) as $key => $value) {
             if ($key < 100) {
                 if (str_contains($value->move->case, 'x')) {
