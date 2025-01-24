@@ -220,7 +220,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      *
      * @return bool
      */
-    protected function fixPseudoPgn(): bool
+    protected function onPlayLan(): bool
     {
         // undo the double disambiguation
         $last = $this->history[count($this->history) - 1];
@@ -415,7 +415,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Makes a move in LAN format.
+     * Makes a move in LAN format delegating the call to the PGN parser.
      *
      * @param string $color
      * @param string $lan
@@ -423,10 +423,10 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function playLan(string $color, string $lan): bool
     {
-        if ($pgn = $this->lanToPseudoPgn($color, $lan)) {
-            if ($color === $this->turn) {
+        if ($color === $this->turn) {
+            if ($pgn = $this->lanToPseudoPgn($color, $lan)) {
                 if ($this->play($color, $pgn)) {
-                    return $this->fixPseudoPgn();
+                    return $this->onPlayLan();
                 }
             }
         }
