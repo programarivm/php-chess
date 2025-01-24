@@ -192,8 +192,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                             $identical[] = $defending;
                         }
                     }
-                    $toReplace = $this->move->explodeSqs($last['pgn']);
                     if ($identical) {
+                        $toReplace = $this->move->explodeSqs($last['pgn']);
                         foreach ($identical as $identicalPiece) {
                             $file = $sqs[0][0];
                             $rank = (int) substr($sqs[0], 1);
