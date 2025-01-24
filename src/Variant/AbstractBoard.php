@@ -183,7 +183,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      * @throws \Chess\Exception\UnknownNotationException
      * @return string
      */
-    protected function lanToPseudo(string $color, string $lan): string
+    protected function lanToPseudoPgn(string $color, string $lan): string
     {
         $sqs = $this->move->explodeSqs($lan);
         if (!isset($sqs[0]) && !isset($sqs[1])) {
@@ -235,7 +235,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      *
      * @return bool
      */
-    protected function pseudoToPgn(): bool
+    protected function fixPseudoPgn(): bool
     {
         // undo the double disambiguation
         $last = $this->history[count($this->history) - 1];
@@ -443,10 +443,10 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function playLan(string $color, string $lan): bool
     {
-        if ($pgn = $this->lanToPseudo($color, $lan)) {
+        if ($pgn = $this->lanToPseudoPgn($color, $lan)) {
             if ($color === $this->turn) {
                 if ($this->play($color, $pgn)) {
-                    return $this->pseudoToPgn();
+                    return $this->fixPseudoPgn();
                 }
             }
         }
