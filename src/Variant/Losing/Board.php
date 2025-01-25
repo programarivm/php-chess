@@ -101,7 +101,7 @@ class Board extends AbstractBoard
     public function play(string $color, string $pgn): bool
     {
         if ($xSqs = $this->xSqs()) {
-            $move = $this->move->toArray($color, $pgn, $this->castlingRule);
+            $move = $this->move->toArray($color, $pgn, $this->square, $this->castlingRule);
             if (in_array($move['to'], $xSqs)) {
                 return parent::play($color, $pgn);
             }

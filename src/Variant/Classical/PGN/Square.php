@@ -89,4 +89,16 @@ class Square extends AbstractNotation
 
         return $file . $rank;
     }
+
+    public function extract(string $string): string
+    {
+        return preg_replace(static::EXTRACT, '', $string);
+    }
+
+    public function explode(string $string): array
+    {
+        preg_match_all('/'.static::REGEX.'/', $string, $matches);
+
+        return $matches[0];
+    }
 }

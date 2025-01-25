@@ -174,7 +174,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     protected function lanToPseudoPgn(string $color, string $lan): string
     {
-        $sqs = $this->move->explodeSqs($lan);
+        $sqs = $this->square->explode($lan);
         if (!isset($sqs[0]) && !isset($sqs[1])) {
             throw new UnknownNotationException();
         }
@@ -227,7 +227,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         if (preg_match('/^' . Move::PIECE . '$/', $last['pgn']) ||
             preg_match('/^' . Move::PIECE_CAPTURES . '$/', $last['pgn'])
         ) {
-            $sqs = $this->move->explodeSqs($last['pgn']);
+            $sqs = $this->square->explode($last['pgn']);
             if (isset($sqs[0]) && isset($sqs[1])) {
                 if ($piece = $this->pieceBySq($sqs[1])) {
                     $disambiguation = $sqs[0];
@@ -400,7 +400,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         if ($color === $this->turn) {
             $pieces = [];
-            $move = $this->move->toArray($color, $pgn, $this->castlingRule);
+            $move = $this->move->toArray($color, $pgn, $this->square, $this->castlingRule);
             foreach ($this->pick($move) as $piece) {
                 if ($piece->isMovable() && !$piece->isKingLeftInCheck()) {
                     $pieces[] = $piece;
