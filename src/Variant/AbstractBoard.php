@@ -191,20 +191,17 @@ abstract class AbstractBoard extends \SplObjectStorage
                     }
                 } elseif ($a->id === Piece::P) {
                     if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
-                        ctype_alpha(mb_substr($lan, -1))
-                            ? $newId = mb_strtoupper(mb_substr($lan, -1))
-                            : $newId = Piece::Q;
-                        if ($x) {
-                            return "{$a->file()}x{$sqs[1]}=$newId";
-                        } else {
-                            return "{$sqs[1]}=$newId";
-                        }
+                        $newId = mb_substr($lan, -1);
+                        ctype_alpha($newId)
+                            ? $promo = '=' . mb_strtoupper($newId)
+                            : $promo = '=' . Piece::Q;
                     } else {
-                        if ($x || $a->enPassant === $sqs[1]) {
-                            return "{$a->file()}x{$sqs[1]}";
-                        } else {
-                            return $sqs[1];
-                        }
+                        $promo = '';
+                    }
+                    if ($x || $a->enPassant === $sqs[1]) {
+                        return "{$a->file()}x{$sqs[1]}{$promo}";
+                    } else {
+                        return "{$sqs[1]}{$promo}";
                     }
                 } else {
                     return "{$a->id}{$a->sq}{$x}{$sqs[1]}";
