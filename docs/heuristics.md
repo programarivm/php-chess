@@ -149,7 +149,7 @@ Array
 )
 ```
 
-You may be wondering why two functions instead of just one. Well, that's because a computer may well take about 0.1 seconds to evaluate a chess position, which is perfectly fine. Now, if we take this number and multiply it by 80 different positions that a chess game has on average, the result obtained is 8 seconds. The fast evaluation function comes to the rescue in these situations as a workaround.
+So why two functions instead of just one? Well, a computer may well take about 0.1 seconds to evaluate a chess position. Now, if this number is multiplied by 80 different positions that a chess game has on average, the result obtained is 8 seconds. The fast evaluation function comes to the rescue to evaluate a bunch of positions at once.
 
 ![Figure 1](https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_01.png)
 
