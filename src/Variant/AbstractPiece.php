@@ -266,6 +266,27 @@ abstract class AbstractPiece
     }
 
     /**
+     * Returns true if this piece is aligned with another one in relation to
+     * a target piece.
+     *
+     * @return bool
+     */
+    public function isAlignedWith(AbstractPiece $withPiece, AbstractPiece $targetPiece): bool
+    {
+        $a = $this->line($targetPiece);
+        $b = $withPiece->line($targetPiece);
+        if (!empty(array_intersect($a, $b))) {
+            return true;
+        } elseif (in_array($withPiece->sq, $a)) {
+            return true;
+        } elseif (in_array($this->sq, $b)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Returns true if the piece is pinned.
      *
      * @return bool

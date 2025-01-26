@@ -128,4 +128,20 @@ class BTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->pieceBySq('g6')->line($board->piece(Color::B, Piece::K)));
     }
+
+    /**
+     * @test
+     */
+    public function is_aligned_with_a_b_c()
+    {
+        $board = FenToBoardFactory::create('8/3qk3/8/3b4/4KR2/5Q2/8/8 w - - 0 1');
+
+        $a = $board->pieceBySq('f3');
+        $b = $board->pieceBySq('e4');
+        $c = $board->pieceBySq('d5');
+
+        $this->assertTrue($a->isAlignedWith($b, $c));
+        $this->assertTrue($b->isAlignedWith($a, $c));
+        $this->assertFalse($c->isAlignedWith($a, $b));
+    }
 }
