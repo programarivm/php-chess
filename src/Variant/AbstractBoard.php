@@ -5,6 +5,7 @@ namespace Chess\Variant;
 use Chess\FenToBoardFactory;
 use Chess\Eval\SpaceEval;
 use Chess\Exception\UnknownNotationException;
+use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\Castle;
@@ -56,7 +57,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      *
      * @var string
      */
-    public string $castlingAbility = '-';
+    public string $castlingAbility = CastlingRule::NEITHER;
 
     /**
      * Variant.
@@ -640,7 +641,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             }
         }
 
-        return '-';
+        return CastlingRule::NEITHER;
     }
 
     /**
