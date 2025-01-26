@@ -168,6 +168,16 @@ abstract class AbstractPiece
     }
 
     /**
+     * Returns true if the given line of squares is empty of pieces.
+     *
+     * @return bool
+     */
+    public function isEmptyLine(array $line): bool
+    {
+        return !array_diff($line, $this->board->sqCount['free']);
+    }
+
+    /**
      * Returns the opponent's pieces being attacked by this piece.
      *
      * @return array
@@ -293,14 +303,18 @@ abstract class AbstractPiece
      */
     public function isPinned(): bool
     {
-        $before = $this->board->piece($this->color, Piece::K)->attacking();
-        $this->board->detach($this);
-        $this->board->refresh();
-        $after = $this->board->piece($this->color, Piece::K)->attacking();
-        $this->board->attach($this);
-        $this->board->refresh();
+        foreach ($this->attacking() as $attacking) {
+            if (is_a($attacking, AbstractLinePiece::class)) {
+                $king = $this->board->piece($this->color, Piece::K);
+                if ($this->isAlignedWith($king, $attacking) && 
+                    $this->isEmptyLine($this->line($king))
+                ) { 
+                        return true;
+                }
+            }
+        }
 
-        return $this->board->diffPieces($before, $after) !== [];
+        return false;
     }
 
     /**

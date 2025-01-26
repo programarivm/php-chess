@@ -28,7 +28,6 @@ class FenEvaluationTest extends AbstractUnitTestCase
             "The white pieces are slightly better connected.",
             "Black has a moderate space advantage.",
             "Black's king has more safe squares to move to than its counterpart.",
-            "These pieces are hanging: The rook on a8, the rook on h8, the pawn on c5, the rook on a1, the rook on h1.",
             "Overall, 2 evaluation features are favoring Black.",
         ];
 
@@ -51,7 +50,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
             "White has a total space advantage.",
             "The white player is pressuring more squares than its opponent.",
             "White's king has more safe squares to move to than its counterpart.",
-            "These pieces are hanging: The pawn on f4, the pawn on i2, the rook on a1, White's archbishop on c1, White's chancellor on h1, the rook on j1, the rook on a8, Black's archbishop on c8, Black's chancellor on h8, the rook on j8, the pawn on i7.",
+            "These pieces are hanging: The rook on a8, Black's archbishop on c8, Black's chancellor on h8, the rook on j8, the pawn on i7, the pawn on f4, the pawn on i2, the rook on a1, White's archbishop on c1, White's chancellor on h1, the rook on j1.",
             "Overall, 3 evaluation features are favoring White.",
         ];
 

@@ -27,7 +27,6 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "White has a slight protection advantage.",
             "White has a slight attack advantage.",
             "White's king can be checked so it is vulnerable to forced moves.",
-            "These pieces are hanging: The rook on a1, the rook on h1, the rook on a8, the rook on h8, the pawn on c5.",
             "The pawn on c5 is unprotected.",
             "The pawn on c5 is under threat of being attacked.",
             "Overall, 0 evaluation features are favoring either player.",
