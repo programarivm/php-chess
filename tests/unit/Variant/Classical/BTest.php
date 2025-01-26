@@ -132,7 +132,7 @@ class BTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function is_alignment_with_a_b_c()
+    public function is_between_a_b_c()
     {
         $board = FenToBoardFactory::create('8/3qk3/8/3b4/4KR2/5Q2/8/8 w - - 0 1');
 
@@ -140,8 +140,8 @@ class BTest extends AbstractUnitTestCase
         $b = $board->pieceBySq('e4');
         $c = $board->pieceBySq('d5');
 
-        $this->assertTrue($a->isAlignment($b, $c));
-        $this->assertTrue($b->isAlignment($a, $c));
-        $this->assertFalse($c->isAlignment($a, $b));
+        $this->assertTrue($b->isBetween($a, $c));
+        $this->assertTrue($b->isBetween($c, $a));
+        $this->assertFalse($c->isBetween($a, $b));
     }
 }

@@ -276,24 +276,15 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns true if this piece is aligned with another one in relation to
-     * a third piece.
+     * Returns true if this piece is between the given two pieces.
      *
+     * @param \Chess\Variant\AbstractPiece $a
+     * @param \Chess\Variant\AbstractPiece $b
      * @return bool
      */
-    public function isAlignment(AbstractPiece $withPiece, AbstractPiece $thirdPiece): bool
+    public function isBetween(AbstractPiece $a, AbstractPiece $b): bool
     {
-        $a = $this->line($thirdPiece);
-        $b = $withPiece->line($thirdPiece);
-        if (!empty(array_intersect($a, $b))) {
-            return true;
-        } elseif (in_array($withPiece->sq, $a)) {
-            return true;
-        } elseif (in_array($this->sq, $b)) {
-            return true;
-        }
-
-        return false;
+        return in_array($this->sq, $a->line($b));
     }
 
     /**
@@ -306,7 +297,7 @@ abstract class AbstractPiece
         foreach ($this->attacking() as $attacking) {
             if (is_a($attacking, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
-                if ($this->isAlignment($king, $attacking) && $this->isEmpty($this->line($king))) { 
+                if ($this->isBetween($attacking, $king) && $this->isEmpty($this->line($king))) { 
                     return true;
                 }
             }
