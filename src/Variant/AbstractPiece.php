@@ -281,7 +281,7 @@ abstract class AbstractPiece
      *
      * @return bool
      */
-    public function isAlignedWith(AbstractPiece $withPiece, AbstractPiece $targetPiece): bool
+    public function isAlignment(AbstractPiece $withPiece, AbstractPiece $targetPiece): bool
     {
         $a = $this->line($targetPiece);
         $b = $withPiece->line($targetPiece);
@@ -306,10 +306,8 @@ abstract class AbstractPiece
         foreach ($this->attacking() as $attacking) {
             if (is_a($attacking, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
-                if ($this->isAlignedWith($king, $attacking) && 
-                    $this->isEmptyLine($this->line($king))
-                ) { 
-                        return true;
+                if ($this->isAlignment($king, $attacking) && $this->isEmptyLine($this->line($king))) { 
+                    return true;
                 }
             }
         }

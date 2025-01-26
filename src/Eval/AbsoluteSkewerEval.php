@@ -36,7 +36,7 @@ class AbsoluteSkewerEval extends AbstractEval
             if (is_a($piece, AbstractLinePiece::class) && $piece->isAttackingKing()) {
                 $king = $this->board->piece($this->board->turn, Piece::K);
                 foreach ($king->defending() as $defending) {
-                    if ($defending->isAlignedWith($king, $piece)) {
+                    if ($defending->isAlignment($king, $piece)) {
                         if (self::$value[$piece->id] < self::$value[$defending->id]) {
                             $this->result[$piece->color] = 1;
                             $this->toElaborate[] = [
