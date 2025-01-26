@@ -277,14 +277,14 @@ abstract class AbstractPiece
 
     /**
      * Returns true if this piece is aligned with another one in relation to
-     * a target piece.
+     * a third piece.
      *
      * @return bool
      */
-    public function isAlignment(AbstractPiece $withPiece, AbstractPiece $targetPiece): bool
+    public function isAlignment(AbstractPiece $withPiece, AbstractPiece $thirdPiece): bool
     {
-        $a = $this->line($targetPiece);
-        $b = $withPiece->line($targetPiece);
+        $a = $this->line($thirdPiece);
+        $b = $withPiece->line($thirdPiece);
         if (!empty(array_intersect($a, $b))) {
             return true;
         } elseif (in_array($withPiece->sq, $a)) {
