@@ -113,10 +113,9 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns an array of squares connecting this piece to another piece.
-     * This is helpful to calculate lines of attack between pieces, lines of
-     * defense, and so on.
-     *
+     * Returns the squares connecting this piece to another piece.
+     * 
+     * @param \Chess\Variant\AbstractPiece $piece
      * @return array
      */
     public function line(AbstractPiece $piece): array
@@ -170,6 +169,7 @@ abstract class AbstractPiece
     /**
      * Returns true if the given line of squares is empty of pieces.
      *
+     * @param array $line
      * @return bool
      */
     public function isEmpty(array $line): bool
