@@ -172,7 +172,7 @@ abstract class AbstractPiece
      *
      * @return bool
      */
-    public function isEmptyLine(array $line): bool
+    public function isEmpty(array $line): bool
     {
         return !array_diff($line, $this->board->sqCount['free']);
     }
@@ -306,7 +306,7 @@ abstract class AbstractPiece
         foreach ($this->attacking() as $attacking) {
             if (is_a($attacking, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
-                if ($this->isAlignment($king, $attacking) && $this->isEmptyLine($this->line($king))) { 
+                if ($this->isAlignment($king, $attacking) && $this->isEmpty($this->line($king))) { 
                     return true;
                 }
             }
