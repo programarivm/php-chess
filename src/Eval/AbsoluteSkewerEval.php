@@ -4,6 +4,7 @@ namespace Chess\Eval;
 
 use Chess\Phrase\PiecePhrase;
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\Classical\PGN\Piece;
 
 /**
@@ -32,19 +33,17 @@ class AbsoluteSkewerEval extends AbstractEval
         $this->board = $board;
 
         foreach ($this->board->pieces() as $piece) {
-            if ($piece->isAttackingKing()) {
+            if (is_a($piece, AbstractLinePiece::class) && $piece->isAttackingKing()) {
                 $king = $this->board->piece($this->board->turn, Piece::K);
-                $clone = $this->board->clone();
-                $clone->playLan($clone->turn, $king->sq . current($king->moveSqs()));
-                $attacked = $piece->attacked();
-                $newAttacked = $clone->pieceBySq($piece->sq)->attacked();
-                if ($diffPieces = $this->board->diffPieces($attacked, $newAttacked)) {
-                    if (self::$value[$piece->id] < self::$value[current($diffPieces)->id]) {
-                        $this->result[$piece->color] = 1;
-                        $this->toElaborate[] = [
-                            $piece,
-                            $king,
-                        ];
+                foreach ($king->defending() as $defending) {
+                    if ($defending->isAlignedWith($king, $piece)) {
+                        if (self::$value[$piece->id] < self::$value[$defending->id]) {
+                            $this->result[$piece->color] = 1;
+                            $this->toElaborate[] = [
+                                $piece,
+                                $king,
+                            ];
+                        }
                     }
                 }
             }
