@@ -42,9 +42,12 @@ class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
         ];
 
         foreach ($this->board->pieces() as $piece) {
-            if ($piece->isPinned()) {
+            if ($pinning = $piece->isPinned()) {
                 $this->result[$piece->color] += self::$value[$piece->id];
-                $this->toElaborate[] = $piece;
+                $this->toElaborate[] = [
+                    $piece,
+                    $pinning,
+                ];
             }
         }
     }
@@ -57,8 +60,9 @@ class AbsolutePinEval extends AbstractEval implements InverseEvalInterface
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create($val);
-            $this->elaboration[] = ucfirst("$phrase is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.");
+            $pinned = PiecePhrase::create($val[0]);
+            $pinning = PiecePhrase::create($val[1]);
+            $this->elaboration[] = ucfirst("$pinned is pinned shielding the king so it cannot move out of the line of attack of $pinning because the king would be put in check.");
         }
 
         return $this->elaboration;

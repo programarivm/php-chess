@@ -96,7 +96,7 @@ class CompleteFunctionTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.",
+            "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack of the bishop on b5 because the king would be put in check.",
         ];
 
         $board = FenToBoardFactory::create('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -');

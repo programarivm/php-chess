@@ -22,7 +22,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.",
+            "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack of the bishop on b5 because the king would be put in check.",
         ];
 
         $absPinEval = new AbsolutePinEval($board);
@@ -45,7 +45,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.",
+            "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack of the bishop on b5 because the king would be put in check.",
         ];
 
         $absPinEval = new AbsolutePinEval($board);
@@ -68,8 +68,8 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.",
-            "The knight on c3 is pinned shielding the king so it cannot move out of the line of attack because the king would be put in check.",
+            "The knight on c6 is pinned shielding the king so it cannot move out of the line of attack of the bishop on b5 because the king would be put in check.",
+            "The knight on c3 is pinned shielding the king so it cannot move out of the line of attack of the bishop on b4 because the king would be put in check.",
         ];
 
         $absPinEval = new AbsolutePinEval($board);
