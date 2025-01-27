@@ -186,16 +186,16 @@ abstract class AbstractPiece
      */
     public function attacked(): array
     {
-        $attacked = [];
+        $pieces = [];
         foreach ($sqs = $this->moveSqs() as $sq) {
             if ($piece = $this->board->pieceBySq($sq)) {
                 if ($piece->color === $this->oppColor()) {
-                    $attacked[] = $piece;
+                    $pieces[] = $piece;
                 }
             }
         }
 
-        return $attacked;
+        return $pieces;
     }
 
     /**
@@ -205,14 +205,14 @@ abstract class AbstractPiece
      */
     public function attacking(): array
     {
-        $attacking = [];
+        $pieces = [];
         foreach ($this->board->pieces($this->oppColor()) as $piece) {
             if (in_array($this->sq, $piece->moveSqs())) {
-                $attacking[] = $piece;
+                $pieces[] = $piece;
             }
         }
 
-        return $attacking;
+        return $pieces;
     }
 
     /**
@@ -222,16 +222,16 @@ abstract class AbstractPiece
      */
     public function defended(): array
     {
-        $defended = [];
+        $pieces = [];
         foreach ($this->defendedSqs() as $sq) {
             if ($piece = $this->board->pieceBySq($sq)) {
                 if ($piece->id !== Piece::K) {
-                    $defended[] = $piece;
+                    $pieces[] = $piece;
                 }
             }
         }
 
-        return $defended;
+        return $pieces;
     }
 
     /**
@@ -241,14 +241,14 @@ abstract class AbstractPiece
      */
     public function defending(): array
     {
-        $defending = [];
+        $pieces = [];
         foreach ($this->board->pieces($this->color) as $piece) {
             if (in_array($this->sq, $piece->defendedSqs())) {
-                $defending[] = $piece;
+                $pieces[] = $piece;
             }
         }
 
-        return $defending;
+        return $pieces;
     }
 
     /**
@@ -296,11 +296,11 @@ abstract class AbstractPiece
      */
     public function isPinned(): ?AbstractPiece
     {
-        foreach ($this->attacking() as $attacking) {
-            if (is_a($attacking, AbstractLinePiece::class)) {
+        foreach ($this->attacking() as $pieces) {
+            if (is_a($pieces, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
-                if ($this->isBetween($attacking, $king) && $this->isEmpty($this->line($king->sq))) { 
-                    return $attacking;
+                if ($this->isBetween($pieces, $king) && $this->isEmpty($this->line($king->sq))) { 
+                    return $pieces;
                 }
             }
         }
