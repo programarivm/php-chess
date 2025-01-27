@@ -290,7 +290,7 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns the pinning piece if the piece is pinned.
+     * Returns the pinning piece.
      *
      * @return \Chess\Variant\AbstractPiece
      */
