@@ -2892,4 +2892,44 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame($expected, $board->movetext());
     }
+
+    /**
+     * @test
+     */
+    public function e4_h6_e5_f5_h3_h5_exf6()
+    {
+        $expected = ['e6'];
+
+        $board = new Board();
+
+        $board->play('w', 'e4');
+        $board->play('b', 'h6');
+        $board->play('w', 'e5');
+        $board->play('b', 'f5');
+        $board->play('w', 'h3');
+        $board->play('b', 'h5');
+      
+        $this->assertEquals($expected, $board->legal('e5'));
+        $this->assertFalse($board->play('w', 'exf6'));
+    }
+
+    /**
+     * @test
+     */
+    public function e2e4_h7h6_e4e5_f7f5_h2h3_h6h5_e5f6()
+    {
+        $expected = ['e6'];
+
+        $board = new Board();
+
+        $board->playLan('w', 'e2e4');
+        $board->playLan('b', 'h7h6');
+        $board->playLan('w', 'e4e5');
+        $board->playLan('b', 'f7f5');
+        $board->playLan('w', 'h2h3');
+        $board->playLan('b', 'h6h5');
+      
+        $this->assertEquals($expected, $board->legal('e5'));
+        $this->assertFalse($board->playLan('w', 'e5f6'));
+    }
 }
