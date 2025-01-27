@@ -72,7 +72,7 @@ class BTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function line_of_attack_e4()
+    public function line_e4()
     {
         $expected = [
             'c6',
@@ -88,7 +88,7 @@ class BTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function line_of_attack_e5()
+    public function line_e5()
     {
         $expected = [
             'g7',
@@ -104,7 +104,7 @@ class BTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function line_of_attack_d6()
+    public function line_d6()
     {
         $expected = [
             'g3',
@@ -121,7 +121,7 @@ class BTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function line_of_attack_g6()
+    public function line_g6()
     {
         $expected = [
             'c2',

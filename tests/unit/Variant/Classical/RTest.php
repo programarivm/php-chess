@@ -56,7 +56,7 @@ class RTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function line_of_attack_b7()
+    public function line_b7()
     {
         $expected = [
             'b3',
@@ -74,7 +74,7 @@ class RTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function line_of_attack_c2()
+    public function line_c2()
     {
         $expected = [
             'c6',
@@ -92,7 +92,7 @@ class RTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function line_of_attack_a4()
+    public function line_a4()
     {
         $expected = [
             'e4',
@@ -110,7 +110,7 @@ class RTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function line_of_attack_f5()
+    public function line_f5()
     {
         $expected = [
             'b5',
