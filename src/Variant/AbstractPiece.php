@@ -187,7 +187,7 @@ abstract class AbstractPiece
     public function attacked(): array
     {
         $pieces = [];
-        foreach ($sqs = $this->moveSqs() as $sq) {
+        foreach ($this->moveSqs() as $sq) {
             if ($piece = $this->board->pieceBySq($sq)) {
                 if ($piece->color === $this->oppColor()) {
                     $pieces[] = $piece;
