@@ -76,7 +76,7 @@ abstract class AbstractPiece
     abstract public function moveSqs(): array;
 
     /**
-     * Returns the defended squares.
+     * Returns the squares defended by this piece.
      *
      * @return array
      */

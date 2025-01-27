@@ -83,7 +83,7 @@ class K extends AbstractPiece
     }
 
     /**
-     * Returns the defended squares.
+     * Returns the squares defended by this piece.
      *
      * @return array
      */
