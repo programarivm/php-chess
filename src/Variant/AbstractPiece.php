@@ -113,52 +113,54 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns the squares connecting this piece to another piece.
+     * Returns the squares connecting this piece to the given square.
      * 
-     * @param \Chess\Variant\AbstractPiece $piece
+     * @param string $sq
      * @return array
      */
-    public function line(AbstractPiece $piece): array
+    public function line(string $sq): array
     {
+        $file = $sq[0];
+        $rank = (int) substr($sq, 1);
         $sqs = [];
-        if ($this->file() === $piece->file()) {
-            if ($this->rank() > $piece->rank()) {
-                for ($i = 1; $i < $this->rank() - $piece->rank(); $i++) {
-                    $sqs[] = $this->file() . ($piece->rank() + $i);
+        if ($this->file() === $file) {
+            if ($this->rank() > $rank) {
+                for ($i = 1; $i < $this->rank() - $rank; $i++) {
+                    $sqs[] = $this->file() . ($rank + $i);
                 }
             } else {
-                for ($i = 1; $i < $piece->rank() - $this->rank(); $i++) {
-                    $sqs[] = $this->file() . ($piece->rank() - $i);
+                for ($i = 1; $i < $rank - $this->rank(); $i++) {
+                    $sqs[] = $this->file() . ($rank - $i);
                 }
             }
-        } elseif ($this->rank() === $piece->rank()) {
-            if ($this->file() > $piece->file()) {
-                for ($i = 1; $i < ord($this->file()) - ord($piece->file()); $i++) {
-                    $sqs[] = chr(ord($piece->file()) + $i) . $this->rank();
+        } elseif ($this->rank() === $rank) {
+            if ($this->file() > $file) {
+                for ($i = 1; $i < ord($this->file()) - ord($file); $i++) {
+                    $sqs[] = chr(ord($file) + $i) . $this->rank();
                 }
             } else {
-                for ($i = 1; $i < ord($piece->file()) - ord($this->file()); $i++) {
-                    $sqs[] = chr(ord($piece->file()) - $i) . $this->rank();
+                for ($i = 1; $i < ord($file) - ord($this->file()); $i++) {
+                    $sqs[] = chr(ord($file) - $i) . $this->rank();
                 }
             }
-        } elseif (abs(ord($this->file()) - ord($piece->file())) ===
-            abs(ord($this->rank()) - ord($piece->rank()))
+        } elseif (abs(ord($this->file()) - ord($file)) ===
+            abs(ord($this->rank()) - ord($rank))
         ) {
-            if ($this->file() > $piece->file() && $this->rank() < $piece->rank()) {
-                for ($i = 1; $i < $piece->rank() - $this->rank(); $i++) {
-                    $sqs[] = chr(ord($piece->file()) + $i) . ($piece->rank() - $i);
+            if ($this->file() > $file && $this->rank() < $rank) {
+                for ($i = 1; $i < $rank - $this->rank(); $i++) {
+                    $sqs[] = chr(ord($file) + $i) . ($rank - $i);
                 }
-            } elseif ($this->file() < $piece->file() && $this->rank() < $piece->rank()) {
-                for ($i = 1; $i < $piece->rank() - $this->rank(); $i++) {
-                    $sqs[] = chr(ord($piece->file()) - $i) . ($piece->rank() - $i);
+            } elseif ($this->file() < $file && $this->rank() < $rank) {
+                for ($i = 1; $i < $rank - $this->rank(); $i++) {
+                    $sqs[] = chr(ord($file) - $i) . ($rank - $i);
                 }
-            } elseif ($this->file() < $piece->file() && $this->rank() > $piece->rank()) {
-                for ($i = 1; $i < $this->rank() - $piece->rank(); $i++) {
-                    $sqs[] = chr(ord($piece->file()) - $i) . ($piece->rank() + $i);
+            } elseif ($this->file() < $file && $this->rank() > $rank) {
+                for ($i = 1; $i < $this->rank() - $rank; $i++) {
+                    $sqs[] = chr(ord($file) - $i) . ($rank + $i);
                 }
             } else {
-                for ($i = 1; $i < $this->rank() - $piece->rank(); $i++) {
-                    $sqs[] = chr(ord($piece->file()) + $i) . ($piece->rank() + $i);
+                for ($i = 1; $i < $this->rank() - $rank; $i++) {
+                    $sqs[] = chr(ord($file) + $i) . ($rank + $i);
                 }
             }
         }
@@ -284,7 +286,7 @@ abstract class AbstractPiece
      */
     public function isBetween(AbstractPiece $a, AbstractPiece $b): bool
     {
-        return in_array($this->sq, $a->line($b));
+        return in_array($this->sq, $a->line($b->sq));
     }
 
     /**
@@ -297,7 +299,7 @@ abstract class AbstractPiece
         foreach ($this->attacking() as $attacking) {
             if (is_a($attacking, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
-                if ($this->isBetween($attacking, $king) && $this->isEmpty($this->line($king))) { 
+                if ($this->isBetween($attacking, $king) && $this->isEmpty($this->line($king->sq))) { 
                     return true;
                 }
             }

@@ -78,7 +78,7 @@ class BTest extends AbstractUnitTestCase
             'd5',
         ];
 
-        $this->assertEquals($expected, $board->pieceBySq('e4')->line($board->piece(Color::B, Piece::K)));
+        $this->assertEquals($expected, $board->pieceBySq('e4')->line($board->piece(Color::B, Piece::K)->sq));
     }
 
     /**
@@ -93,7 +93,7 @@ class BTest extends AbstractUnitTestCase
             'f6',
         ];
 
-        $this->assertEquals($expected, $board->pieceBySq('e5')->line($board->piece(Color::B, Piece::K)));
+        $this->assertEquals($expected, $board->pieceBySq('e5')->line($board->piece(Color::B, Piece::K)->sq));
     }
 
     /**
@@ -109,7 +109,7 @@ class BTest extends AbstractUnitTestCase
             'e5',
         ];
 
-        $this->assertEquals($expected, $board->pieceBySq('d6')->line($board->piece(Color::B, Piece::K)));
+        $this->assertEquals($expected, $board->pieceBySq('d6')->line($board->piece(Color::B, Piece::K)->sq));
     }
 
     /**
@@ -126,7 +126,7 @@ class BTest extends AbstractUnitTestCase
             'f5',
         ];
 
-        $this->assertEquals($expected, $board->pieceBySq('g6')->line($board->piece(Color::B, Piece::K)));
+        $this->assertEquals($expected, $board->pieceBySq('g6')->line($board->piece(Color::B, Piece::K)->sq));
     }
 
     /**
