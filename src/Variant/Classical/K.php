@@ -184,4 +184,14 @@ class K extends AbstractPiece
 
         return false;
     }
+
+    /**
+     * Returns true if the king is left in check because of moving the piece.
+     *
+     * @return bool
+     */
+    public function isKingLeftInCheck(): bool
+    {
+        return in_array($this->move['to'], $this->board->spaceEval[$this->oppColor()]);
+    }
 }
