@@ -492,9 +492,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                             ];
                         }
                     }
-                    $lineOfAttack = $attacking[0]->line($this->piece($this->turn, Piece::K)->sq);
-                    return $king->moveSqs() === [] &&
-                        array_intersect($lineOfAttack, $moveSqs) === [];
+                    $line = $attacking[0]->line($this->piece($this->turn, Piece::K)->sq);
+                    return $king->moveSqs() === [] && array_intersect($line, $moveSqs) === [];
                 } elseif (count($attacking) > 1) {
                     return $king->moveSqs() === [];
                 }
