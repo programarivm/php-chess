@@ -315,32 +315,23 @@ abstract class AbstractPiece
      */
     public function isKingLeftInCheck(): bool
     {
-        $isCheck = false;
-        $turn = $this->board->turn;
-        $history = $this->board->history;
-        $castlingAbility = $this->board->castlingAbility;
-        $sqCount = $this->board->sqCount;
-        $spaceEval = $this->board->spaceEval;
-        $pieces = $this->board->pieces();
-        if ($this->move()) {
-            $isCheck = $this->board->piece($this->color, Piece::K)?->attacking() != [];
-            $this->board->turn = $turn;
-            $this->board->history = $history;
-            $this->board->castlingAbility = $castlingAbility;
-            $this->board->sqCount = $sqCount;
-            $this->board->spaceEval = $spaceEval;
-            $this->board->rewind();
-            while ($this->board->valid()) {
-                $piece = $this->board->current();
-                $this->board->next();
-                $this->board->detach($piece);
+        if ($king = $this->board->piece($this->color, Piece::K)) {
+            foreach ($king->attacking() as $attacking) {
+                if ($this->move['to'] !== $attacking->sq && 
+                    !in_array($this->move['to'], $attacking->line($king->sq))
+                ) {
+                    return true;
+                }
             }
-            foreach ($pieces as $val) {
-                $this->board->attach($val);
+        }        
+        if ($pinning = $this->isPinned()) {
+            if ($this->move['to'] !== $pinning->sq && 
+                !in_array($this->move['to'], $pinning->line($king->sq))) {
+                return true;
             }
         }
 
-        return $isCheck;
+        return false;
     }
 
     /**
