@@ -296,11 +296,11 @@ abstract class AbstractPiece
      */
     public function isPinned(): ?AbstractPiece
     {
-        foreach ($this->attacking() as $pieces) {
-            if (is_a($pieces, AbstractLinePiece::class)) {
+        foreach ($this->attacking() as $piece) {
+            if (is_a($piece, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
-                if ($this->isBetween($pieces, $king) && $this->isEmpty($this->line($king->sq))) { 
-                    return $pieces;
+                if ($this->isBetween($piece, $king) && $this->isEmpty($this->line($king->sq))) { 
+                    return $piece;
                 }
             }
         }
