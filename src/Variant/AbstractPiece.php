@@ -316,9 +316,9 @@ abstract class AbstractPiece
     public function isKingLeftInCheck(): bool
     {
         if ($king = $this->board->piece($this->color, Piece::K)) {
-            foreach ($king->attacking() as $attacking) {
-                if ($this->move['to'] !== $attacking->sq && 
-                    !in_array($this->move['to'], $attacking->line($king->sq))
+            foreach ($king->attacking() as $piece) {
+                if ($this->move['to'] !== $piece->sq && 
+                    !in_array($this->move['to'], $piece->line($king->sq))
                 ) {
                     return true;
                 }
