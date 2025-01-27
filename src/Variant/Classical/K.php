@@ -14,7 +14,7 @@ class K extends AbstractPiece
     /**
      * @param string $color
      * @param string $sq
-     * @param string \Chess\Variant\Classical\PGN\Square
+     * @param \Chess\Variant\Classical\PGN\Square $square
      */
     public function __construct(string $color, string $sq, Square $square)
     {
