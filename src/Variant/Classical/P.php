@@ -9,10 +9,25 @@ use Chess\Variant\Classical\PGN\Square;
 
 class P extends AbstractPiece
 {
+    /**
+     * Capture squares.
+     *
+     * @var array
+     */
     public array $xSqs;
 
+    /**
+     * En passant square.
+     *
+     * @var string
+     */
     public string $enPassant = '';
 
+    /**
+     * @param string $color
+     * @param string $sq
+     * @param \Chess\Variant\Classical\PGN\Square $square
+     */
     public function __construct(string $color, string $sq, Square $square)
     {
         parent::__construct($color, $sq, Piece::P);
@@ -50,6 +65,11 @@ class P extends AbstractPiece
         }
     }
 
+    /**
+     * Returns the piece's moves.
+     *
+     * @return array
+     */
     public function moveSqs(): array
     {
         $sqs = [];
@@ -70,6 +90,11 @@ class P extends AbstractPiece
         return array_filter(array_unique($sqs));
     }
 
+    /**
+     * Returns the defended squares.
+     *
+     * @return array
+     */
     public function defendedSqs(): array
     {
         $sqs = [];
@@ -82,6 +107,12 @@ class P extends AbstractPiece
         return $sqs;
     }
 
+    /**
+     * Returns the start rank.
+     *
+     * @param \Chess\Variant\Classical\PGN\Square $square
+     * @return int
+     */
     public function startRank(Square $square): int
     {
         if ($this->color === Color::W) {
@@ -91,6 +122,11 @@ class P extends AbstractPiece
         return $square::SIZE['ranks'] - 1;
     }
 
+    /**
+     * Returns the next rank.
+     *
+     * @return int
+     */
     public function nextRank(): int
     {
         if ($this->color === Color::W) {
@@ -100,6 +136,12 @@ class P extends AbstractPiece
         return $this->rank() - 1;
     }
 
+    /**
+     * Returns the promotion rank.
+     *
+     * @param \Chess\Variant\Classical\PGN\Square $square
+     * @return int
+     */
     public function promoRank(Square $square): int
     {
         if ($this->color === Color::W) {
@@ -109,6 +151,11 @@ class P extends AbstractPiece
         return 1;
     }
 
+    /**
+     * Returns the en passant square.
+     *
+     * @return string
+     */
     public function enPassant(): string
     {
         if ($end = end($this->board->history)) {
@@ -123,6 +170,11 @@ class P extends AbstractPiece
         return $this->enPassant;
     }
 
+    /**
+     * Returns the en passant pawn.
+     *
+     * @return null|\Chess\Variant\AbstractPiece
+     */
     public function enPassantPawn(): ?AbstractPiece
     {
         if ($this->enPassant) {
@@ -134,6 +186,12 @@ class P extends AbstractPiece
         return null;
     }
 
+    /**
+     * Returns true if the pawn is promoted.
+     *
+     * @param \Chess\Variant\Classical\PGN\Square $square
+     * @return bool
+     */
     public function isPromoted(Square $square): bool
     {
         return (int) substr($this->move['to'], 1) === $this->promoRank($square);
