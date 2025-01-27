@@ -290,22 +290,22 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns true if the piece is pinned.
+     * Returns the pinning piece if the piece is pinned.
      *
-     * @return bool
+     * @return \Chess\Variant\AbstractPiece
      */
-    public function isPinned(): bool
+    public function isPinned(): ?AbstractPiece
     {
         foreach ($this->attacking() as $attacking) {
             if (is_a($attacking, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
                 if ($this->isBetween($attacking, $king) && $this->isEmpty($this->line($king->sq))) { 
-                    return true;
+                    return $attacking;
                 }
             }
         }
 
-        return false;
+        return null;
     }
 
     /**

@@ -145,9 +145,9 @@ class K extends AbstractPiece
         return null;
     }
 
-    public function isPinned(): bool
+    public function isPinned(): ?AbstractPiece
     {
-        return false;
+        return null;
     }
 
     /**
