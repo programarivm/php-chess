@@ -50,43 +50,9 @@ class P extends AbstractPiece
         }
     }
 
-    public function startRank(Square $square) 
-    {
-        if ($this->color === Color::W) {
-            return 2;
-        }
-
-        return $square::SIZE['ranks'] - 1;
-    }
-
-    public function nextRank() 
-    {
-        if ($this->color === Color::W) {
-            return $this->rank() + 1;
-        }
-
-        return $this->rank() - 1;
-    }
-
-    public function promoRank(Square $square) 
-    {
-        if ($this->color === Color::W) {
-            return $square::SIZE['ranks'];
-        }
-
-        return 1;
-    }
-
-    public function isPromoted(Square $square): bool
-    {
-        return (int) substr($this->move['to'], 1) === $this->promoRank($square);
-    }
-
     public function moveSqs(): array
     {
         $sqs = [];
-
-        // flow squares
         foreach ($this->flow as $sq) {
             if (in_array($sq, $this->board->sqCount['free'])) {
                 $sqs[] = $sq;
@@ -94,25 +60,12 @@ class P extends AbstractPiece
                 break;
             }
         }
-
-        // capture squares
         foreach ($this->xSqs as $sq) {
             if (in_array($sq, $this->board->sqCount['used'][$this->oppColor()])) {
                 $sqs[] = $sq;
             }
         }
-
-        // en passant square
-        $end = end($this->board->history);
-        if ($end && $end['color'] === $this->oppColor()) {
-            $enPassant = explode(' ', $end['fen'])[3];
-            if (in_array($enPassant, $this->xSqs)) {
-                $this->enPassant = $enPassant;
-                $sqs[] = $enPassant;
-            }
-        } else {
-            $sqs[] = $this->enPassant;
-        }
+        $sqs[] = $this->enPassant();
 
         return array_filter(array_unique($sqs));
     }
@@ -129,6 +82,47 @@ class P extends AbstractPiece
         return $sqs;
     }
 
+    public function startRank(Square $square): int
+    {
+        if ($this->color === Color::W) {
+            return 2;
+        }
+
+        return $square::SIZE['ranks'] - 1;
+    }
+
+    public function nextRank(): int
+    {
+        if ($this->color === Color::W) {
+            return $this->rank() + 1;
+        }
+
+        return $this->rank() - 1;
+    }
+
+    public function promoRank(Square $square): int
+    {
+        if ($this->color === Color::W) {
+            return $square::SIZE['ranks'];
+        }
+
+        return 1;
+    }
+
+    public function enPassant(): string
+    {
+        if ($end = end($this->board->history)) {
+            if ($end['color'] === $this->oppColor()) {
+                $enPassant = explode(' ', $end['fen'])[3];
+                if (in_array($enPassant, $this->xSqs)) {
+                    $this->enPassant = $enPassant;
+                }
+            }
+        }
+
+        return $this->enPassant;
+    }
+
     public function enPassantPawn(): ?AbstractPiece
     {
         if ($this->enPassant) {
@@ -138,6 +132,11 @@ class P extends AbstractPiece
         }
 
         return null;
+    }
+
+    public function isPromoted(Square $square): bool
+    {
+        return (int) substr($this->move['to'], 1) === $this->promoRank($square);
     }
 
     /**

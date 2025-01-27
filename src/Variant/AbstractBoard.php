@@ -199,7 +199,7 @@ abstract class AbstractBoard extends \SplObjectStorage
                     } else {
                         $promo = '';
                     }
-                    if ($x || $a->enPassant === $sqs[1]) {
+                    if ($x || $a->enPassant() === $sqs[1]) {
                         return "{$a->file()}x{$sqs[1]}{$promo}";
                     } else {
                         return "{$sqs[1]}{$promo}";
