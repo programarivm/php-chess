@@ -5,6 +5,7 @@ namespace Chess\Variant;
 use Chess\Variant\RType;
 use Chess\Variant\Classical\B;
 use Chess\Variant\Classical\N;
+use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\PGN\Castle;
@@ -362,21 +363,25 @@ abstract class AbstractPiece
     public function enPassant(): void
     {
         if ($this->id === Piece::P) { 
-            abs($this->rank() - (int) substr($this->move['to'], 1)) === 2 
-                ? $this->enPassantSq($this->move['to'])
-                : $this->enPassantReset();
-        } else {
-            $this->enPassantReset();
+            if (abs($this->rank() - (int) substr($this->move['to'], 1)) === 2) {
+                $this->enPassantSq($this->move['to']);
+            } elseif ($pawn = $this->enPassantPawn()) {
+                $pawn->enPassant = '';
+            }
+        } elseif ($pawn = $this->enPassantPawn()) {
+            $pawn->enPassant = '';
         }
     }
 
-    public function enPassantReset(): void
+    public function enPassantPawn(): ?P
     {
         foreach ($this->board->pieces($this->oppColor()) as $piece) {
             if ($piece->id === Piece::P && $piece->enPassant) {
-                $piece->enPassant = '';
+                return $piece;
             }
         }
+
+        return null;
     }
 
     /**
