@@ -365,24 +365,12 @@ abstract class AbstractPiece
             $rankFrom = (int) substr($this->sq, 1);
             $rankTo = (int) substr($this->move['to'], 1);
             $diff = abs($rankFrom - $rankTo);
-            if ($this->color === Color::W) {
-                if ($diff === 2) {
-                    $this->enPassantSq($this->move['to']);
-                } else {
-                    foreach ($this->board->pieces($this->oppColor()) as $piece) {
-                        if ($piece->id === Piece::P) {
-                            $piece->enPassant = '';
-                        }
-                    }
-                }
+            if ($diff === 2) {
+                $this->enPassantSq($this->move['to']);
             } else {
-                if ($diff === 2) {
-                    $this->enPassantSq($this->move['to']);
-                } else {
-                    foreach ($this->board->pieces($this->oppColor()) as $piece) {
-                        if ($piece->id === Piece::P) {
-                            $piece->enPassant = '';
-                        }
+                foreach ($this->board->pieces($this->oppColor()) as $piece) {
+                    if ($piece->id === Piece::P) {
+                        $piece->enPassant = '';
                     }
                 }
             }
