@@ -5,6 +5,7 @@ namespace Chess\Variant;
 use Chess\Variant\RType;
 use Chess\Variant\Classical\B;
 use Chess\Variant\Classical\N;
+use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\PGN\Castle;
@@ -341,6 +342,7 @@ abstract class AbstractPiece
      */
     public function move(): bool
     {
+        $this->enPassant();
         $this->capture();
         $this->board->detach($this->board->pieceBySq($this->sq));
         $class = VariantType::getClass($this->board->variant, $this->id);
@@ -356,6 +358,22 @@ abstract class AbstractPiece
         $this->board->refresh();
 
         return true;
+    }
+
+    /**
+     * Set the en passant capture square.
+     */
+    public function enPassant(): void
+    {
+        if ($this->id === Piece::P) { 
+            if (abs($this->rank() - (int) substr($this->move['to'], 1)) === 2) {
+                $this->xEnPassantSq($this->move['to']);
+            } elseif ($pawn = $this->xEnPassantPawn()) {
+                $pawn->xEnPassantSq = '';
+            }
+        } elseif ($pawn = $this->xEnPassantPawn()) {
+            $pawn->xEnPassantSq = '';
+        }
     }
 
     /**
@@ -438,6 +456,22 @@ abstract class AbstractPiece
         }
 
         return $this;
+    }
+
+    /**
+     * Returns the en passant capture pawn.
+     *
+     * @return null|\Chess\Variant\Classical\P
+     */
+    public function xEnPassantPawn(): ?P
+    {
+        foreach ($this->board->pieces($this->oppColor()) as $piece) {
+            if ($piece->id === Piece::P && $piece->xEnPassantSq) {
+                return $piece;
+            }
+        }
+
+        return null;
     }
 
     /**
