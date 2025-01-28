@@ -352,7 +352,7 @@ abstract class AbstractPiece
             $this->board->square,
             $this->id === Piece::R ? $this->type : null
         ));
-        $this->promotion();
+        $this->promote();
         $this->updateCastle();
         $this->pushHistory();
         $this->board->refresh();
@@ -377,9 +377,9 @@ abstract class AbstractPiece
     }
 
     /**
-     * Piece promotion.
+     * Pawn promotion to piece.
      */
-    public function promotion(): void
+    public function promote(): void
     {
         if ($this->id === Piece::P) {
             if ($this->isPromoted($this->board->square)) {
