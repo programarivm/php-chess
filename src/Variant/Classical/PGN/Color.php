@@ -18,13 +18,4 @@ class Color extends AbstractNotation
 
         throw new UnknownNotationException();
     }
-
-    public function opp(string $color): string
-    {
-        if ($color === self::W) {
-            return self::B;
-        }
-
-        return self::W;
-    }
 }
