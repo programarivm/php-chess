@@ -350,12 +350,63 @@ abstract class AbstractPiece
             $this->board->square,
             $this->id === Piece::R ? $this->type : null
         ));
+        $this->enPassant();
         $this->promotion();
         $this->updateCastle();
         $this->pushHistory();
         $this->board->refresh();
 
         return true;
+    }
+
+    public function enPassant(): void
+    {
+        if ($this->id === Piece::P) { 
+            $rankFrom = (int) substr($this->sq, 1);
+            $rankTo = (int) substr($this->move['to'], 1);
+            $diff = abs($rankFrom - $rankTo);
+            if ($this->color === Color::W) {
+                if ($diff === 2) {
+                    foreach ($this->board->pieces($this->oppColor()) as $piece) {
+                        if ($piece->id === Piece::P) {
+                            $enPassant = $this->enPassantSq($this->move['to']);
+                            if (in_array($enPassant, $piece->xSqs)) {
+                                $piece->enPassant = $enPassant;
+                            }
+                        }
+                    }
+                } else {
+                    foreach ($this->board->pieces($this->oppColor()) as $piece) {
+                        if ($piece->id === Piece::P) {
+                            $piece->enPassant = '';
+                        }
+                    }
+                }
+            } else {
+                if ($diff === 2) {
+                    foreach ($this->board->pieces($this->oppColor()) as $piece) {
+                        if ($piece->id === Piece::P) {
+                            $enPassant = $this->enPassantSq($this->move['to']);
+                            if (in_array($enPassant, $piece->xSqs)) {
+                                $piece->enPassant = $enPassant;
+                            }
+                        }
+                    }
+                } else {
+                    foreach ($this->board->pieces($this->oppColor()) as $piece) {
+                        if ($piece->id === Piece::P) {
+                            $piece->enPassant = '';
+                        }
+                    }
+                }
+            }
+         } else {
+            foreach ($this->board->pieces($this->oppColor()) as $piece) {
+                if ($piece->id === Piece::P) {
+                    $piece->enPassant = '';
+                }
+            }
+        }
     }
 
     /**

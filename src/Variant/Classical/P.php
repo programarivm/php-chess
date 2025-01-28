@@ -85,7 +85,7 @@ class P extends AbstractPiece
                 $sqs[] = $sq;
             }
         }
-        $sqs[] = $this->enPassant();
+        $sqs[] = $this->enPassant;
 
         return array_filter(array_unique($sqs));
     }
@@ -151,39 +151,11 @@ class P extends AbstractPiece
         return 1;
     }
 
-    /**
-     * Returns the en passant square.
-     *
-     * @return string
-     */
-    public function enPassant(): string
-    {
-        if ($end = end($this->board->history)) {
-            if ($end['color'] === $this->oppColor()) {
-                $enPassant = explode(' ', $end['fen'])[3];
-                if (in_array($enPassant, $this->xSqs)) {
-                    $this->enPassant = $enPassant;
-                }
-            }
-        }
-
-        return $this->enPassant;
-    }
-
-    /**
-     * Returns the en passant pawn.
-     *
-     * @return null|\Chess\Variant\AbstractPiece
-     */
-    public function enPassantPawn(): ?AbstractPiece
-    {
-        if ($this->enPassant) {
-            $rank = (int) substr($this->enPassant, 1);
-            $this->color === Color::W ? $rank-- : $rank++;
-            return $this->board->pieceBySq($this->enPassant[0] . $rank);
-        }
-
-        return null;
+    public function enPassantSq(string $sq) {
+        $rank = (int) substr($sq, 1);
+        $rank = $this->color === Color::W ? $rank - 1 : $rank + 1;
+        
+        return $sq[0] . $rank;
     }
 
     /**
@@ -203,7 +175,13 @@ class P extends AbstractPiece
     public function capture(): void
     {
         if (str_contains($this->move['case'], 'x')) {
-            if ($piece = $this->enPassantPawn() ?? $this->board->pieceBySq($this->move['to'])) {
+            if ($this->enPassant) { 
+                $rank = (int) substr($this->enPassant, 1);
+                $rank = $this->color === Color::W ? $rank - 1 : $rank + 1;
+                if ($piece = $this->board->pieceBySq($this->enPassant[0] . $rank)) {
+                    $this->board->detach($piece);
+                }
+            } elseif ($piece = $this->board->pieceBySq($this->move['to'])) {
                 $this->board->detach($piece);
             }
         }
