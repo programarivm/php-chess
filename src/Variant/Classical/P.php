@@ -108,6 +108,23 @@ class P extends AbstractPiece
     }
 
     /**
+     * Set the en passant capture square.
+     */
+    public function xEnPassantSq(string $sq): void
+    {
+        foreach ($this->board->pieces($this->oppColor()) as $piece) {
+            if ($piece->id === Piece::P) {
+                $rank = (int) substr($sq, 1);
+                $rank = $this->color === Color::W ? $rank - 1 : $rank + 1;
+                $xEnPassantSq = $sq[0] . $rank;
+                if (in_array($xEnPassantSq, $piece->xSqs)) {
+                    $piece->xEnPassantSq = $xEnPassantSq;
+                }
+            }
+        }
+    }
+
+    /**
      * Returns the start rank.
      *
      * @param \Chess\Variant\Classical\PGN\Square $square
@@ -149,20 +166,6 @@ class P extends AbstractPiece
         }
 
         return 1;
-    }
-
-    public function xEnPassantSq(string $sq): void
-    {
-        foreach ($this->board->pieces($this->oppColor()) as $piece) {
-            if ($piece->id === Piece::P) {
-                $rank = (int) substr($sq, 1);
-                $rank = $this->color === Color::W ? $rank - 1 : $rank + 1;
-                $xEnPassantSq = $sq[0] . $rank;
-                if (in_array($xEnPassantSq, $piece->xSqs)) {
-                    $piece->xEnPassantSq = $xEnPassantSq;
-                }
-            }
-        }
     }
 
     /**
