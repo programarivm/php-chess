@@ -151,11 +151,14 @@ class P extends AbstractPiece
         return 1;
     }
 
-    public function enPassantSq(string $sq) {
+    public function enPassantSq(string $sq, P $pawn): void
+    {
         $rank = (int) substr($sq, 1);
         $rank = $this->color === Color::W ? $rank - 1 : $rank + 1;
-        
-        return $sq[0] . $rank;
+        $enPassant = $sq[0] . $rank;
+        if (in_array($enPassant, $pawn->xSqs)) {
+            $pawn->enPassant = $enPassant;
+        }
     }
 
     /**

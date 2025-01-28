@@ -369,10 +369,7 @@ abstract class AbstractPiece
                 if ($diff === 2) {
                     foreach ($this->board->pieces($this->oppColor()) as $piece) {
                         if ($piece->id === Piece::P) {
-                            $enPassant = $this->enPassantSq($this->move['to']);
-                            if (in_array($enPassant, $piece->xSqs)) {
-                                $piece->enPassant = $enPassant;
-                            }
+                            $this->enPassantSq($this->move['to'], $piece);
                         }
                     }
                 } else {
@@ -386,10 +383,7 @@ abstract class AbstractPiece
                 if ($diff === 2) {
                     foreach ($this->board->pieces($this->oppColor()) as $piece) {
                         if ($piece->id === Piece::P) {
-                            $enPassant = $this->enPassantSq($this->move['to']);
-                            if (in_array($enPassant, $piece->xSqs)) {
-                                $piece->enPassant = $enPassant;
-                            }
+                            $this->enPassantSq($this->move['to'], $piece);
                         }
                     }
                 } else {
