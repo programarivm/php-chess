@@ -439,20 +439,19 @@ abstract class AbstractPiece
      */
     public function updateCastle(): AbstractPiece
     {
+        $search = '';
         if ($this->id === Piece::K) {
             $search = $this->board->turn === Color::W ? 'KQ' : 'kq';
-            $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility)
-                ?: CastlingRule::NEITHER;
         } elseif ($this->id === Piece::R) {
             if ($this->type === RType::CASTLE_SHORT) {
                 $search = $this->board->turn === Color::W ? 'K' : 'k';
-                $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility)
-                    ?: CastlingRule::NEITHER;
             } elseif ($this->type === RType::CASTLE_LONG) {
                 $search = $this->board->turn === Color::W ? 'Q' : 'q';
-                $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility)
-                    ?: CastlingRule::NEITHER;
             }
+        }
+        if ($search) {
+            $this->board->castlingAbility = str_replace($search, '', $this->board->castlingAbility) 
+                ?: CastlingRule::NEITHER;
         }
 
         return $this;
