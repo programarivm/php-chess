@@ -151,7 +151,7 @@ class P extends AbstractPiece
         return 1;
     }
 
-    public function enPassantSq(string $sq): void
+    public function xEnPassantSq(string $sq): void
     {
         foreach ($this->board->pieces($this->oppColor()) as $piece) {
             if ($piece->id === Piece::P) {

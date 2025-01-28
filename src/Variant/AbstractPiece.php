@@ -364,7 +364,7 @@ abstract class AbstractPiece
     {
         if ($this->id === Piece::P) { 
             if (abs($this->rank() - (int) substr($this->move['to'], 1)) === 2) {
-                $this->enPassantSq($this->move['to']);
+                $this->xEnPassantSq($this->move['to']);
             } elseif ($pawn = $this->enPassantPawn()) {
                 $pawn->xEnPassantSq = '';
             }
