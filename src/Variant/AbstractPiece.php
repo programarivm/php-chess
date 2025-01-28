@@ -362,23 +362,19 @@ abstract class AbstractPiece
     public function enPassant(): void
     {
         if ($this->id === Piece::P) { 
-            $rankFrom = (int) substr($this->sq, 1);
-            $rankTo = (int) substr($this->move['to'], 1);
-            $diff = abs($rankFrom - $rankTo);
-            if ($diff === 2) {
-                $this->enPassantSq($this->move['to']);
-            } else {
-                foreach ($this->board->pieces($this->oppColor()) as $piece) {
-                    if ($piece->id === Piece::P) {
-                        $piece->enPassant = '';
-                    }
-                }
-            }
-         } else {
-            foreach ($this->board->pieces($this->oppColor()) as $piece) {
-                if ($piece->id === Piece::P) {
-                    $piece->enPassant = '';
-                }
+            abs($this->rank() - (int) substr($this->move['to'], 1)) === 2 
+                ? $this->enPassantSq($this->move['to'])
+                : $this->enPassantReset();
+        } else {
+            $this->enPassantReset();
+        }
+    }
+
+    public function enPassantReset(): void
+    {
+        foreach ($this->board->pieces($this->oppColor()) as $piece) {
+            if ($piece->id === Piece::P && $piece->enPassant) {
+                $piece->enPassant = '';
             }
         }
     }
