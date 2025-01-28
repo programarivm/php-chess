@@ -367,11 +367,7 @@ abstract class AbstractPiece
             $diff = abs($rankFrom - $rankTo);
             if ($this->color === Color::W) {
                 if ($diff === 2) {
-                    foreach ($this->board->pieces($this->oppColor()) as $piece) {
-                        if ($piece->id === Piece::P) {
-                            $this->enPassantSq($this->move['to'], $piece);
-                        }
-                    }
+                    $this->enPassantSq($this->move['to']);
                 } else {
                     foreach ($this->board->pieces($this->oppColor()) as $piece) {
                         if ($piece->id === Piece::P) {
@@ -381,11 +377,7 @@ abstract class AbstractPiece
                 }
             } else {
                 if ($diff === 2) {
-                    foreach ($this->board->pieces($this->oppColor()) as $piece) {
-                        if ($piece->id === Piece::P) {
-                            $this->enPassantSq($this->move['to'], $piece);
-                        }
-                    }
+                    $this->enPassantSq($this->move['to']);
                 } else {
                     foreach ($this->board->pieces($this->oppColor()) as $piece) {
                         if ($piece->id === Piece::P) {
