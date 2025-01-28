@@ -17,11 +17,11 @@ class P extends AbstractPiece
     public array $xSqs;
 
     /**
-     * En passant square.
+     * En passant capture square.
      *
      * @var string
      */
-    public string $enPassant = '';
+    public string $xEnPassantSq = '';
 
     /**
      * @param string $color
@@ -85,7 +85,7 @@ class P extends AbstractPiece
                 $sqs[] = $sq;
             }
         }
-        $sqs[] = $this->enPassant;
+        $sqs[] = $this->xEnPassantSq;
 
         return array_filter(array_unique($sqs));
     }
@@ -157,9 +157,9 @@ class P extends AbstractPiece
             if ($piece->id === Piece::P) {
                 $rank = (int) substr($sq, 1);
                 $rank = $this->color === Color::W ? $rank - 1 : $rank + 1;
-                $enPassant = $sq[0] . $rank;
-                if (in_array($enPassant, $piece->xSqs)) {
-                    $piece->enPassant = $enPassant;
+                $xEnPassantSq = $sq[0] . $rank;
+                if (in_array($xEnPassantSq, $piece->xSqs)) {
+                    $piece->xEnPassantSq = $xEnPassantSq;
                 }
             }
         }
@@ -182,10 +182,10 @@ class P extends AbstractPiece
     public function capture(): void
     {
         if (str_contains($this->move['case'], 'x')) {
-            if ($this->enPassant) { 
-                $rank = (int) substr($this->enPassant, 1);
+            if ($this->xEnPassantSq) { 
+                $rank = (int) substr($this->xEnPassantSq, 1);
                 $rank = $this->color === Color::W ? $rank - 1 : $rank + 1;
-                if ($piece = $this->board->pieceBySq($this->enPassant[0] . $rank)) {
+                if ($piece = $this->board->pieceBySq($this->xEnPassantSq[0] . $rank)) {
                     $this->board->detach($piece);
                 }
             } elseif ($piece = $this->board->pieceBySq($this->move['to'])) {
