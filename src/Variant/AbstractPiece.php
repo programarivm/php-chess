@@ -365,15 +365,15 @@ abstract class AbstractPiece
         if ($this->id === Piece::P) { 
             if (abs($this->rank() - (int) substr($this->move['to'], 1)) === 2) {
                 $this->xEnPassantSq($this->move['to']);
-            } elseif ($pawn = $this->enPassantPawn()) {
+            } elseif ($pawn = $this->xEnPassantPawn()) {
                 $pawn->xEnPassantSq = '';
             }
-        } elseif ($pawn = $this->enPassantPawn()) {
+        } elseif ($pawn = $this->xEnPassantPawn()) {
             $pawn->xEnPassantSq = '';
         }
     }
 
-    public function enPassantPawn(): ?P
+    public function xEnPassantPawn(): ?P
     {
         foreach ($this->board->pieces($this->oppColor()) as $piece) {
             if ($piece->id === Piece::P && $piece->xEnPassantSq) {
