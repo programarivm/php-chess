@@ -725,20 +725,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Returns the difference of two arrays of pieces.
-     *
-     * @param array $array1
-     * @param array $array2
-     * @return array
-     */
-    public function diffPieces(array $array1, array $array2): array
-    {
-        return array_udiff($array2, $array1, function ($b, $a) {
-            return $a->sq <=> $b->sq;
-        });
-    }
-
-    /**
      * Returns true if the game results in a draw.
      *
      * @return bool
