@@ -5,6 +5,7 @@ namespace Chess\Eval;
 use Chess\Phrase\ColorPhrase;
 use Chess\Phrase\PiecePhrase;
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\Classical\PGN\Piece;
 
 /**
@@ -48,18 +49,15 @@ class DiscoveredCheckEval extends AbstractEval
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id !== Piece::K) {
-                $before = $this->board->piece($piece->oppColor(), Piece::K)->attacking();
-                $this->board->detach($piece);
-                $this->board->refresh();
-                $after = $this->board->piece($piece->oppColor(), Piece::K)->attacking();
-                foreach ($this->board->diffPieces($before, $after) as $diffPiece) {
-                    if ($diffPiece->color === $piece->color) {
-                        $this->result[$piece->color] += self::$value[$piece->id];
-                        $this->toElaborate[] = $piece;
+                foreach ($piece->defending() as $defending) {
+                    if (is_a($defending, AbstractLinePiece::class)) {
+                        $king = $this->board->piece($piece->oppColor(), Piece::K);
+                        if ($piece->isBetween($king, $defending) && $piece->isEmpty($piece->line($king->sq))) {
+                            $this->result[$piece->color] += self::$value[$piece->id];
+                            $this->toElaborate[] = $piece;
+                        }
                     }
                 }
-                $this->board->attach($piece);
-                $this->board->refresh();
             }
         }
     }
