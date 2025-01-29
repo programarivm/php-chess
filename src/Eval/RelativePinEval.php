@@ -2,9 +2,9 @@
 
 namespace Chess\Eval;
 
-use Chess\Eval\PressureEval;
 use Chess\Phrase\PiecePhrase;
 use Chess\Variant\AbstractBoard;
+use Chess\Variant\AbstractLinePiece;
 use Chess\Variant\Classical\PGN\Piece;
 
 /**
@@ -44,28 +44,22 @@ class RelativePinEval extends AbstractEval
             "has a relative pin advantage",
         ];
 
-        $before = (new PressureEval($this->board))->result;
-
         foreach ($this->board->pieces() as $piece) {
-            if ($piece->id !== Piece::K && $piece->id !== Piece::Q) {
-                $this->board->detach($piece);
-                $this->board->refresh();
-                if (!$this->board->isCheck()) {
-                    $after = (new PressureEval($this->board))->result;
-                    $diff = array_diff($after[$piece->oppColor()], $before[$piece->oppColor()]);
-                    foreach ($diff as $sq) {
-                        foreach ($this->board->pieceBySq($sq)->attacking() as $attacking) {
-                            $valDiff = self::$value[$attacking->id] -
-                                self::$value[$this->board->pieceBySq($sq)->id];
-                            if ($valDiff < 0) {
-                                $this->result[$piece->oppColor()] += abs(round($valDiff, 4));
+            foreach ($piece->attacking() as $attacking) {
+                if (is_a($attacking, AbstractLinePiece::class)) {
+                    foreach ($this->board->pieces($piece->color) as $val) {
+                        if ($val->id !== Piece::K &&
+                            $piece->isBetween($attacking, $val) &&
+                            $piece->isEmpty($piece->line($val->sq))
+                        ) {
+                            $diff = self::$value[$attacking->id] - self::$value[$val->id];
+                            if ($diff < 0) {
+                                $this->result[$piece->oppColor()] += abs(round($diff, 4));
                                 $this->toElaborate[] = $piece;
                             }
                         }
                     }
                 }
-                $this->board->attach($piece);
-                $this->board->refresh();
             }
         }
     }
