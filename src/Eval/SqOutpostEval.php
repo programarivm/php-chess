@@ -51,7 +51,7 @@ class SqOutpostEval extends AbstractEval
         foreach ($this->board->pieces() as $piece) {
             if ($piece->id === Piece::P) {
                 $xSqs = $piece->xSqs;
-                if ($piece->promoRank($this->board->square) !== (int) substr($xSqs[0], 1)) {
+                if ($this->board->square->promoRank($piece->color) !== (int) substr($xSqs[0], 1)) {
                     $left = chr(ord($xSqs[0]) - 1);
                     $right = chr(ord($xSqs[0]) + 1);
                     if (

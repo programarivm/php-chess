@@ -191,7 +191,7 @@ abstract class AbstractBoard extends \SplObjectStorage
                         return "{$a->id}{$x}{$sqs[1]}";
                     }
                 } elseif ($a->id === Piece::P) {
-                    if ($a->promoRank($this->square) == substr($sqs[1], 1)) {
+                    if ($this->square->promoRank($color) === (int) substr($sqs[1], 1)) {
                         $newId = mb_substr($lan, -1);
                         ctype_alpha($newId)
                             ? $promo = '=' . mb_strtoupper($newId)

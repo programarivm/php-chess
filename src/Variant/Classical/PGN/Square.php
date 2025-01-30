@@ -71,6 +71,15 @@ class Square extends AbstractNotation
         ];
     }
 
+    public function promoRank(string $color): int
+    {
+        if ($color === Color::W) {
+            return static::SIZE['ranks'];
+        }
+
+        return 1;
+    }
+
     public function toIndex(string $sq): array
     {
         $j = ord($sq[0]) - 97;

@@ -154,32 +154,6 @@ class P extends AbstractPiece
     }
 
     /**
-     * Returns the promotion rank.
-     *
-     * @param \Chess\Variant\Classical\PGN\Square $square
-     * @return int
-     */
-    public function promoRank(Square $square): int
-    {
-        if ($this->color === Color::W) {
-            return $square::SIZE['ranks'];
-        }
-
-        return 1;
-    }
-
-    /**
-     * Returns true if the pawn is promoted.
-     *
-     * @param \Chess\Variant\Classical\PGN\Square $square
-     * @return bool
-     */
-    public function isPromoted(Square $square): bool
-    {
-        return (int) substr($this->move['to'], 1) === $this->promoRank($square);
-    }
-
-    /**
      * Captures a piece.
      */
     public function capture(): void

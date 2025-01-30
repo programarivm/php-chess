@@ -380,41 +380,41 @@ abstract class AbstractPiece
      */
     public function promote(): void
     {
-        if ($this->id === Piece::P) {
-            if ($this->isPromoted($this->board->square)) {
-                $this->board->detach($this->board->pieceBySq($this->move['to']));
-                if (!isset($this->move['newId'])) {
-                    $this->board->attach(new Q(
-                        $this->color,
-                        $this->move['to'],
-                        $this->board->square
-                    ));
-                } elseif ($this->move['newId'] === Piece::N) {
-                    $this->board->attach(new N(
-                        $this->color,
-                        $this->move['to'],
-                        $this->board->square
-                    ));
-                } elseif ($this->move['newId'] === Piece::B) {
-                    $this->board->attach(new B(
-                        $this->color,
-                        $this->move['to'],
-                        $this->board->square
-                    ));
-                } elseif ($this->move['newId'] === Piece::R) {
-                    $this->board->attach(new R(
-                        $this->color,
-                        $this->move['to'],
-                        $this->board->square,
-                        RType::R
-                    ));
-                } elseif ($this->move['newId'] === Piece::Q) {
-                    $this->board->attach(new Q(
-                        $this->color,
-                        $this->move['to'],
-                        $this->board->square
-                    ));
-                }
+        if ($this->id === Piece::P && 
+            $this->board->square->promoRank($this->color) === (int) substr($this->move['to'], 1)
+        ) {
+            $this->board->detach($this->board->pieceBySq($this->move['to']));
+            if (!isset($this->move['newId'])) {
+                $this->board->attach(new Q(
+                    $this->color,
+                    $this->move['to'],
+                    $this->board->square
+                ));
+            } elseif ($this->move['newId'] === Piece::N) {
+                $this->board->attach(new N(
+                    $this->color,
+                    $this->move['to'],
+                    $this->board->square
+                ));
+            } elseif ($this->move['newId'] === Piece::B) {
+                $this->board->attach(new B(
+                    $this->color,
+                    $this->move['to'],
+                    $this->board->square
+                ));
+            } elseif ($this->move['newId'] === Piece::R) {
+                $this->board->attach(new R(
+                    $this->color,
+                    $this->move['to'],
+                    $this->board->square,
+                    RType::R
+                ));
+            } elseif ($this->move['newId'] === Piece::Q) {
+                $this->board->attach(new Q(
+                    $this->color,
+                    $this->move['to'],
+                    $this->board->square
+                ));
             }
         }
     }
