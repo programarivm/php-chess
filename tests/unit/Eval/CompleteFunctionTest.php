@@ -74,7 +74,7 @@ class CompleteFunctionTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "The pawn on g5 is attacking the knight on h6 and the opponent's king at the same time.",
+            "The pawn on g5 is attacking both the knight on h6 and the opponent's king at the same time.",
         ];
 
         $board = FenToBoardFactory::create('8/8/5k1n/6P1/7K/8/8/8 w - -');

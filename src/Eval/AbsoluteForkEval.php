@@ -15,6 +15,7 @@ use Chess\Variant\Classical\PGN\Piece;
 class AbsoluteForkEval extends AbstractEval
 {
     use ElaborateEvalTrait;
+    use ExplainEvalTrait;
 
     /**
      * The name of the heuristic.
@@ -29,6 +30,17 @@ class AbsoluteForkEval extends AbstractEval
     public function __construct(AbstractBoard $board)
     {
         $this->board = $board;
+
+        $this->range = [1];
+
+        $this->subject = [
+            'White',
+            'Black',
+        ];
+
+        $this->observation = [
+            "has an absolute fork advantage",
+        ];
 
         foreach ($this->board->pieces() as $piece) {
             if ($piece->isAttackingKing()) {
@@ -56,7 +68,7 @@ class AbsoluteForkEval extends AbstractEval
     {
         foreach ($this->toElaborate as $val) {
              $this->elaboration[] = ucfirst(PiecePhrase::create($val[0])) .
-                " is attacking " .
+                " is attacking both " .
                 PiecePhrase::create($val[1]) .
                 " and the opponent's king at the same time.";
         }
