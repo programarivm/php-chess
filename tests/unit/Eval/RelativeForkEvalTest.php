@@ -38,7 +38,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has a moderate relative fork advantage.",
+            "White has a relative fork advantage.",
         ];
 
         $expectedElaboration = [
@@ -210,6 +210,10 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
+        $expectedExplanation = [
+            "White has a relative fork advantage.",
+        ];
+
         $expectedElaboration = [
             "Relative fork attack on the rook on b2.",
             "Relative fork attack on the rook on d6.",
@@ -221,6 +225,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
+        $this->assertSame($expectedExplanation, $relativeForkEval->explain());
         $this->assertSame($expectedElaboration, $relativeForkEval->elaborate());
     }
 
@@ -229,17 +234,28 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
      */
     public function knight_forks_queen_and_rook()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 13.9,
+        ];
+
+        $expectedExplanation = [
+            "Black has a relative fork advantage.",
+        ];
+
+        $expectedElaboration = [
+            "Relative fork attack on White's queen on c4.",
+            "Relative fork attack on the rook on f7.",
         ];
 
         $board = (new StrToBoard('8/5R2/2kn4/8/2Q5/8/6K1/8 w - -'))
             ->create();
 
-        $result = (new RelativeForkEval($board))->result;
+        $relativeForkEval = new RelativeForkEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $relativeForkEval->result);
+        $this->assertSame($expectedExplanation, $relativeForkEval->explain());
+        $this->assertSame($expectedElaboration, $relativeForkEval->elaborate());
     }
 
     /**

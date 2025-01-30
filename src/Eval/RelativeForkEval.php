@@ -31,7 +31,7 @@ class RelativeForkEval extends AbstractEval
     {
         $this->board = $board;
 
-        $this->range = [1, 9];
+        $this->range = [1];
 
         $this->subject = [
             'White',
@@ -39,9 +39,7 @@ class RelativeForkEval extends AbstractEval
         ];
 
         $this->observation = [
-            "has a slight relative fork advantage",
-            "has a moderate relative fork advantage",
-            "has a total relative fork advantage",
+            "has a relative fork advantage",
         ];
 
         foreach ($this->board->pieces() as $piece) {
