@@ -343,8 +343,8 @@ abstract class AbstractPiece
     {
         $this->enPassant();
         $this->capture();
-        $this->board->detach($this->board->pieceBySq($this->sq));
-        $class = VariantType::getClass($this->board->variant, $this->id);
+        $this->board->detach($this);
+        $class = $this::class;
         $this->board->attach(new $class(
             $this->color,
             $this->move['to'],
