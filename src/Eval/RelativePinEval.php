@@ -55,7 +55,11 @@ class RelativePinEval extends AbstractEval
                             $diff = self::$value[$attacking->id] - self::$value[$val->id];
                             if ($diff < 0) {
                                 $this->result[$piece->oppColor()] += abs(round($diff, 4));
-                                $this->toElaborate[] = $piece;
+                                $this->toElaborate[] = [
+                                    $piece,
+                                    $attacking,
+                                    $val,
+                                ];
                             }
                         }
                     }
@@ -72,8 +76,10 @@ class RelativePinEval extends AbstractEval
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create($val);
-            $this->elaboration[] = ucfirst("$phrase is pinned shielding a piece that is more valuable than the attacking piece.");
+            $pinned = PiecePhrase::create($val[0]);
+            $pinning = PiecePhrase::create($val[1]);
+            $attacked = PiecePhrase::create($val[2]);
+            $this->elaboration[] = ucfirst("$pinned is relatively pinned by $pinning shielding $attacked.");
         }
 
         return $this->elaboration;
