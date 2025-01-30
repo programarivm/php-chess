@@ -50,8 +50,8 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "Relative fork attack on the bishop on f6.",
-            "Relative fork attack on the knight on h6.",
+            "The bishop on f6 is under a fork attack by the pawn on g5.",
+            "The knight on h6 is under a fork attack by the pawn on g5.",
         ];
 
         $board = (new StrToBoard('8/1k6/5b1n/6P1/7K/8/8/8 w - -'))
@@ -287,8 +287,8 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "Relative fork attack on the rook on b2.",
-            "Relative fork attack on the rook on d6.",
+            "The rook on b2 is under a fork attack by the knight on c4.",
+            "The rook on d6 is under a fork attack by the knight on c4.",
         ];
 
         $board = (new StrToBoard('8/2k5/3r4/8/2N5/5K2/1r6/8 w - -'))
@@ -316,8 +316,8 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "Relative fork attack on White's queen on c4.",
-            "Relative fork attack on the rook on f7.",
+            "White's queen on c4 is under a fork attack by the knight on d6.",
+            "The rook on f7 is under a fork attack by the knight on d6.",
         ];
 
         $board = (new StrToBoard('8/5R2/2kn4/8/2Q5/8/6K1/8 w - -'))

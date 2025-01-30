@@ -51,7 +51,10 @@ class RelativeForkEval extends AbstractEval
                         $attackedValue = self::$value[$val->id];
                         if ($pieceValue < $attackedValue) {
                             $this->result[$piece->color] += $attackedValue;
-                            $this->toElaborate[] = $val;
+                            $this->toElaborate[] = [
+                                $piece,
+                                $val,
+                            ];
                         }
                     }
                 }
@@ -67,8 +70,9 @@ class RelativeForkEval extends AbstractEval
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $this->elaboration[] = "Relative fork attack on " . 
-                PiecePhrase::create($val) . 
+            $this->elaboration[] = ucfirst(PiecePhrase::create($val[1])) . 
+                " is under a fork attack by " . 
+                PiecePhrase::create($val[0]) .
                 ".";
         }
 
