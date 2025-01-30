@@ -58,7 +58,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "Absolute fork attack on the knight on h6.",
+            "The pawn on g5 is attacking the knight on h6 and the opponent's king at the same time.",
         ];
 
         $absForkEval = new AbsoluteForkEval($board);
@@ -81,7 +81,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "Absolute fork attack on the rook on h6.",
+            "The pawn on g5 is attacking the rook on h6 and the opponent's king at the same time.",
         ];
 
         $absForkEval = new AbsoluteForkEval($board);
@@ -104,7 +104,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedElaboration = [
-            "Absolute fork attack on Black's queen on h6.",
+            "The pawn on g5 is attacking Black's queen on h6 and the opponent's king at the same time.",
         ];
 
         $absForkEval = new AbsoluteForkEval($board);
