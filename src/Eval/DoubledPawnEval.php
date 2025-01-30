@@ -4,7 +4,6 @@ namespace Chess\Eval;
 
 use Chess\Phrase\PiecePhrase;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Piece;
 
 /**
@@ -61,8 +60,8 @@ class DoubledPawnEval extends AbstractEval implements InverseEvalInterface
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create($val);
-            $this->elaboration[] = ucfirst("$phrase is doubled.");
+            $this->elaboration[] = ucfirst(PiecePhrase::create($val)) . 
+                " is doubled.";
         }
 
         return $this->elaboration;

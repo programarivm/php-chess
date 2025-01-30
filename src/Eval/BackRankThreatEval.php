@@ -195,8 +195,8 @@ class BackRankThreatEval extends AbstractEval
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create($val);
-            $this->elaboration[] = "{$phrase} may soon need to be guarded against back-rank threats.";
+            $this->elaboration[] = PiecePhrase::create($val) . 
+                " may soon need to be guarded against back-rank threats.";
         }
 
         return $this->elaboration;

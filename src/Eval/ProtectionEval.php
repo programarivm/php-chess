@@ -70,8 +70,7 @@ class ProtectionEval extends AbstractEval
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create($val);
-            $phrase = ucfirst("$phrase is unprotected.");
+            $phrase = ucfirst(PiecePhrase::create($val)) . " is unprotected.";
             if (!in_array($phrase, $this->elaboration)) {
                 $this->elaboration[] = $phrase;
             }

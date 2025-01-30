@@ -70,9 +70,11 @@ class DiscoveredCheckEval extends AbstractEval
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $pPhrase = PiecePhrase::create($val);
-            $cPhrase = ColorPhrase::sentence($val->oppColor());
-            $this->elaboration[] = "The $cPhrase king can be put in check as long as $pPhrase moves out of the way.";
+            $this->elaboration[] = "The " . 
+                ColorPhrase::sentence($val->oppColor()) .
+                " king can be put in check as long as " .
+                PiecePhrase::create($val) .
+                " moves out of the way.";
         }
 
         return $this->elaboration;

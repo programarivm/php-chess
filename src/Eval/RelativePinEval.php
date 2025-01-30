@@ -76,10 +76,12 @@ class RelativePinEval extends AbstractEval
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $pinned = PiecePhrase::create($val[0]);
-            $pinning = PiecePhrase::create($val[1]);
-            $attacked = PiecePhrase::create($val[2]);
-            $this->elaboration[] = ucfirst("$pinned is relatively pinned by $pinning shielding $attacked.");
+            $this->elaboration[] = ucfirst(PiecePhrase::create($val[0]))  . 
+                " is relatively pinned by " . 
+                PiecePhrase::create($val[1]) . 
+                " shielding " . 
+                PiecePhrase::create($val[2]) . 
+                ".";
         }
 
         return $this->elaboration;

@@ -54,8 +54,8 @@ class KnightOutpostEval extends AbstractEval
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create($val);
-            $this->elaboration[] = ucfirst("$phrase is nicely placed on an outpost.");
+            $this->elaboration[] = ucfirst(PiecePhrase::create($val)) . 
+                " is nicely placed on an outpost.";
         }
 
         return $this->elaboration;

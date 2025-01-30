@@ -100,8 +100,8 @@ class AttackEval extends AbstractEval
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create($val);
-            $this->elaboration[] = ucfirst("$phrase is under threat of being attacked.");
+            $this->elaboration[] = ucfirst(PiecePhrase::create($val)) . 
+                " is under threat of being attacked.";
         }
 
         return $this->elaboration;

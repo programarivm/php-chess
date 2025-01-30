@@ -79,8 +79,8 @@ class OverloadingEval extends AbstractEval implements InverseEvalInterface
     public function elaborate(): array
     {
         foreach ($this->toElaborate as $val) {
-            $phrase = PiecePhrase::create($val);
-            $this->elaboration[] = ucfirst("$phrase is overloaded with defensive tasks.");
+            $this->elaboration[] = ucfirst(PiecePhrase::create($val)) . 
+                " is overloaded with defensive tasks.";
         }
 
         return $this->elaboration;
