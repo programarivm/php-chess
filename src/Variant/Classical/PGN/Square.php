@@ -48,6 +48,60 @@ class Square extends AbstractNotation
     }
 
     /**
+     * Returns true if the line of squares has consecutive files with the
+     * precondition that the array is sorted in alphabetical order.
+     *
+     * @param array $line
+     * @return bool
+     */
+    protected function hasConsecutiveFiles(array $line): bool
+    {
+        for ($i = 1; $i < count($line); $i++) {
+            if (ord($line[$i - 1][0]) !== ord($line[$i][0]) - 1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Returns true if the line of squares has consecutive ranks with the
+     * precondition that the array is sorted in alphabetical order.
+     *
+     * @param array $line
+     * @return bool
+     */
+    protected function hasConsecutiveRanks(array $line, int $diff): bool
+    {
+        $ranks = $this->ranks($line);
+        for ($i = 1; $i < count($ranks); $i++) {
+            if ($ranks[$i] - $ranks[$i - 1] !== $diff) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Returns the ranks in a line with the precondition that the array is
+     * sorted in alphabetical order.
+     *
+     * @param array $line
+     * @return array
+     */
+    protected function ranks(array $line): array
+    {
+        $ranks = [];
+        for ($i = 0; $i < count($line); $i++) { 
+            $ranks[] = (int) substr($line[$i], 1);
+        }
+
+        return $ranks;
+    }
+
+    /**
      * Validate a square in standard algebraic notation.
      * 
      * @param string $sq
@@ -217,7 +271,8 @@ class Square extends AbstractNotation
     }
 
     /**
-     * Returns true if the line of squares is a diagonal line.
+     * Returns true if the line of squares is a diagonal line with the
+     * precondition that the array is sorted in alphabetical order.
      *
      * @param array $line
      * @return bool
@@ -229,32 +284,6 @@ class Square extends AbstractNotation
         }
         
         return $this->hasConsecutiveRanks($line, 1) xor $this->hasConsecutiveRanks($line, -1);
-    }
-
-    public function hasConsecutiveFiles(array $sqs)
-    {
-        for ($i = 1; $i < count($sqs); $i++) {
-            if (ord($sqs[$i - 1][0]) !== ord($sqs[$i][0]) - 1) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public function hasConsecutiveRanks(array $sqs, int $diff)
-    {
-        $ranks = [];
-        for ($i = 0; $i < count($sqs); $i++) { 
-            $ranks[] = (int) substr($sqs[$i], 1);
-        }
-        for ($i = 1; $i < count($ranks); $i++) {
-            if ($ranks[$i] - $ranks[$i - 1] !== $diff) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     /**
