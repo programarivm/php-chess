@@ -102,6 +102,36 @@ class Square extends AbstractNotation
     }
 
     /**
+     * Returns true if the line of squares is a diagonal line with the
+     * precondition that the array is sorted in alphabetical order.
+     *
+     * @param array $line
+     * @return bool
+     */
+    public function isDiagonalLine(array $line): bool
+    {
+        if (!$this->hasConsecutiveFiles($line)) {
+            return false;
+        } elseif ($this->hasConsecutiveRanks($line, 1)) {
+            return true;
+        }
+        
+        return $this->hasConsecutiveRanks($line, -1);
+    }
+
+    /**
+     * Returns true if the line of squares is a straight line with the
+     * precondition that the array is sorted in alphabetical order.
+     *
+     * @param array $line
+     * @return bool
+     */
+    public function isStraightLine(array $line): bool
+    {
+       return $this->hasConsecutiveFiles($line) || $this->hasConsecutiveRanks($line, 1);
+    }
+
+    /**
      * Validate a square in standard algebraic notation.
      * 
      * @param string $sq
@@ -268,22 +298,6 @@ class Square extends AbstractNotation
         sort($sqs);
 
         return $sqs;
-    }
-
-    /**
-     * Returns true if the line of squares is a diagonal line with the
-     * precondition that the array is sorted in alphabetical order.
-     *
-     * @param array $line
-     * @return bool
-     */
-    public function isDiagonalLine(array $line): bool
-    {
-        if (!$this->hasConsecutiveFiles($line)) {
-            return false;
-        }
-        
-        return $this->hasConsecutiveRanks($line, 1) xor $this->hasConsecutiveRanks($line, -1);
     }
 
     /**

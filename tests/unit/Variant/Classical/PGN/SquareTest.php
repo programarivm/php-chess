@@ -174,4 +174,36 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->assertFalse(self::$square->isDiagonalLine(['b4', 'c3', 'd6']));
     }
+
+    /**
+     * @test
+     */
+    public function is_straight_line_c7_d7_e7()
+    {
+        $this->assertTrue(self::$square->isStraightLine(['c7', 'd7', 'e7']));
+    }
+
+    /**
+     * @test
+     */
+    public function is_straight_line_c7_e7_d7()
+    {
+        $this->assertFalse(self::$square->isStraightLine(['c7', 'e7', 'd7']));
+    }
+
+    /**
+     * @test
+     */
+    public function is_straight_line_c7_c6_c5()
+    {
+        $this->assertFalse(self::$square->isStraightLine(['c7', 'c6', 'c5']));
+    }
+
+    /**
+     * @test
+     */
+    public function is_straight_line_c5_c6_c7()
+    {
+        $this->assertTrue(self::$square->isStraightLine(['c5', 'c6', 'c7']));
+    }
 }
