@@ -110,13 +110,8 @@ class Square extends AbstractNotation
      */
     public function isDiagonalLine(array $line): bool
     {
-        if (!$this->hasConsecutiveFiles($line)) {
-            return false;
-        } elseif ($this->hasConsecutiveRanks($line, 1)) {
-            return true;
-        }
-        
-        return $this->hasConsecutiveRanks($line, -1);
+        return $this->hasConsecutiveFiles($line) && 
+            ($this->hasConsecutiveRanks($line, -1) xor $this->hasConsecutiveRanks($line, 1));
     }
 
     /**
