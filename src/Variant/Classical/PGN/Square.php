@@ -216,6 +216,19 @@ class Square extends AbstractNotation
     }
 
     /**
+     * Returns true if the B square is between the given two squares A and C.
+     *
+     * @param string $a
+     * @param string $b
+     * @param string $c
+     * @return bool
+     */
+    public function isBetween(string $a, string $b, string $c): bool
+    {
+        return in_array($b, $this->line($a, $c));
+    }
+
+    /**
      * Extract squares from a string.
      * 
      * @param string $string

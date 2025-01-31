@@ -222,18 +222,6 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns true if this piece is between the given two pieces.
-     *
-     * @param \Chess\Variant\AbstractPiece $a
-     * @param \Chess\Variant\AbstractPiece $b
-     * @return bool
-     */
-    public function isBetween(AbstractPiece $a, AbstractPiece $b): bool
-    {
-        return in_array($this->sq, $this->board->square->line($a->sq, $b->sq));
-    }
-
-    /**
      * Returns the pinning piece.
      *
      * @return \Chess\Variant\AbstractPiece
@@ -243,7 +231,9 @@ abstract class AbstractPiece
         foreach ($this->attacking() as $piece) {
             if (is_a($piece, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
-                if ($this->isBetween($piece, $king) && $this->isEmpty($this->board->square->line($this->sq, $king->sq))) { 
+                if ($this->board->square->isBetween($piece->sq, $this->sq, $king->sq) &&
+                    $this->isEmpty($this->board->square->line($this->sq, $king->sq))
+                ) {
                     return $piece;
                 }
             }
