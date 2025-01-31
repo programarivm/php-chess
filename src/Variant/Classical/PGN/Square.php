@@ -93,10 +93,16 @@ class Square extends AbstractNotation
         return 1;
     }
 
+    /**
+     * Converts a square to a pair of indices i and j.
+     * 
+     * @param string $sq
+     * @return array
+     */
     public function toIndex(string $sq): array
     {
         $j = ord($sq[0]) - 97;
-        $i = intval(ltrim($sq, $sq[0])) - 1;
+        $i = (int) substr($sq, 1) - 1;
 
         return [
             $i,
