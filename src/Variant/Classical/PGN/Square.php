@@ -15,6 +15,13 @@ class Square extends AbstractNotation
     const REGEX = '[a-h]{1}[1-8]{1}';
 
     /**
+     * Regular expression representing a square for further extraction from strings.
+     *
+     * @var string
+     */
+    const EXTRACT = '/[^a-h0-9 "\']/';
+
+    /**
      * The size of the chess board.
      *
      * @var array
@@ -23,13 +30,6 @@ class Square extends AbstractNotation
         'files' => 8,
         'ranks' => 8,
     ];
-
-    /**
-     * Regular expression representing a square for further extraction from strings.
-     *
-     * @var string
-     */
-    const EXTRACT = '/[^a-h0-9 "\']/';
 
     /**
      * All squares of the chess board.
