@@ -7,15 +7,35 @@ use Chess\Variant\AbstractNotation;
 
 class Square extends AbstractNotation
 {
+    /**
+     * Regular expression representing a square for multiple purposes.
+     *
+     * @var string
+     */
     const REGEX = '[a-h]{1}[1-8]{1}';
 
+    /**
+     * The size of the chess board.
+     *
+     * @var array
+     */
     const SIZE = [
         'files' => 8,
         'ranks' => 8,
     ];
 
+    /**
+     * Regular expression representing a square for further extraction from strings.
+     *
+     * @var string
+     */
     const EXTRACT = '/[^a-h0-9 "\']/';
 
+    /**
+     * All squares of the chess board.
+     *
+     * @var array
+     */
     public array $all = [];
 
     public function __construct()
@@ -74,6 +94,11 @@ class Square extends AbstractNotation
         return Color::W;
     }
 
+    /**
+     * Returns the corner of the chess board.
+     * 
+     * @return array
+     */
     public function corner(): array
     {
         return [
@@ -84,6 +109,12 @@ class Square extends AbstractNotation
         ];
     }
 
+    /**
+     * Returns the promotion rank.
+     * 
+     * @param string $color
+     * @return int
+     */
     public function promoRank(string $color): int
     {
         if ($color === Color::W) {
@@ -94,7 +125,8 @@ class Square extends AbstractNotation
     }
 
     /**
-     * Converts a square to a pair of indices i and j.
+     * Converts a square in standard algebraic notation to a pair of indices
+     * i and j.
      * 
      * @param string $sq
      * @return array
@@ -110,6 +142,14 @@ class Square extends AbstractNotation
         ];
     }
 
+    /**
+     * Converts a pair of indices i and j to a square in standard algebraic
+     * notation.
+     * 
+     * @param int $i
+     * @param int $j
+     * @return string
+     */
     public function toAlgebraic(int $i, int $j): string
     {
         $file = chr(97 + $i);
@@ -175,11 +215,23 @@ class Square extends AbstractNotation
         return $sqs;
     }
 
+    /**
+     * Extract squares from a string.
+     * 
+     * @param string $string
+     * @return string
+     */
     public function extract(string $string): string
     {
         return preg_replace(static::EXTRACT, '', $string);
     }
 
+    /**
+     * Explode squares from a string.
+     * 
+     * @param string $string
+     * @return array
+     */
     public function explode(string $string): array
     {
         preg_match_all('/'.static::REGEX.'/', $string, $matches);
