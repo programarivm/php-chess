@@ -85,7 +85,7 @@ abstract class AbstractPiece
     /**
      * Returns the piece's file.
      *
-     * @return array
+     * @return string
      */
     public function file(): string
     {
@@ -95,7 +95,7 @@ abstract class AbstractPiece
     /**
      * Returns the piece's rank.
      *
-     * @return array
+     * @return int
      */
     public function rank(): int
     {
@@ -105,7 +105,7 @@ abstract class AbstractPiece
     /**
      * Returns the opposite color of the piece.
      *
-     * @return array
+     * @return string
      */
     public function oppColor(): string
     {
