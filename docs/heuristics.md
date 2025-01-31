@@ -177,6 +177,8 @@ Chess evaluation functions often consist in multiplying the terms by a weight an
 
 However, the Steinitz evaluation alone, which is to say just counting the advantages, has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. Also it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.
 
+The interesting thing about this evaluation is that it objectively describes how a chess game is developed in terms of advantages and can be used for obtaining insights.
+
 ### Mean
 
 The mean represents the center of the evaluation array being intermediate to the extreme values.
