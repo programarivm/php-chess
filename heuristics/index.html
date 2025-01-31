@@ -390,6 +390,7 @@ echo $steinitz;
 <p>Chess evaluation functions often consist in multiplying the terms by a weight and adding the results to construct a linear combination.</p>
 <p><img alt="Figure 2" src="https://raw.githubusercontent.com/chesslablab/php-chess/main/docs/heuristics_02.png" /></p>
 <p>However, the Steinitz evaluation alone, which is to say just counting the advantages, has proven to be quite accurate as a relative estimate for chess positions in a way that is easy for human players to understand and to learn. Also it can be complemented with other statistical measures such as the mean, median, mode, and standard deviation of the evaluation array without counting the zeros.</p>
+<p>The interesting thing about this evaluation is that it objectively describes how a chess game is developed in terms of advantages and can be used for obtaining insights.</p>
 <h3 id="mean">Mean</h3>
 <p>The mean represents the center of the evaluation array being intermediate to the extreme values.</p>
 <pre><code class="language-php">$mean = CompleteFunction::mean($f, $board);
