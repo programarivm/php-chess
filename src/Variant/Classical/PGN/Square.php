@@ -27,10 +27,17 @@ class Square extends AbstractNotation
         }
     }
 
+    /**
+     * Validate a square in standard algebraic notation.
+     * 
+     * @param string $sq
+     * @throws \Chess\Exception\UnknownNotationException
+     * @return string
+     */
     public function validate(string $sq): string
     {
         $file = ord($sq[0]);
-        $rank = intval(ltrim($sq, $sq[0]));
+        $rank = (int) substr($sq, 1);
 
         if ($file >= 97 &&
             $file <= 97 + static::SIZE['files'] - 1 &&
