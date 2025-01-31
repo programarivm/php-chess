@@ -48,8 +48,7 @@ class Square extends AbstractNotation
     }
 
     /**
-     * Returns true if the line of squares has consecutive files with the
-     * precondition that the array is sorted in alphabetical order.
+     * Returns true if the line of squares has consecutive files.
      *
      * @param array $line
      * @return bool
@@ -66,8 +65,7 @@ class Square extends AbstractNotation
     }
 
     /**
-     * Returns true if the line of squares has consecutive ranks with the
-     * precondition that the array is sorted in alphabetical order.
+     * Returns true if the line of squares has consecutive ranks.
      *
      * @param array $line
      * @return bool
@@ -85,8 +83,7 @@ class Square extends AbstractNotation
     }
 
     /**
-     * Returns the ranks in a line with the precondition that the array is
-     * sorted in alphabetical order.
+     * Returns the ranks in a line.
      *
      * @param array $line
      * @return array
@@ -141,7 +138,6 @@ class Square extends AbstractNotation
     {
         $file = ord($sq[0]);
         $rank = (int) substr($sq, 1);
-
         if ($file >= 97 &&
             $file <= 97 + static::SIZE['files'] - 1 &&
             $rank >= 1 &&
@@ -163,7 +159,6 @@ class Square extends AbstractNotation
     {
         $file = $sq[0];
         $rank = (int) substr($sq, 1);
-
         if ((ord($file) - 97) % 2 === 0) {
             if ($rank % 2 !== 0) {
                 return Color::B;
@@ -216,12 +211,9 @@ class Square extends AbstractNotation
      */
     public function toIndex(string $sq): array
     {
-        $j = ord($sq[0]) - 97;
-        $i = (int) substr($sq, 1) - 1;
-
         return [
-            $i,
-            $j,
+            (int) substr($sq, 1) - 1,
+            ord($sq[0]) - 97,
         ];
     }
 
@@ -235,10 +227,7 @@ class Square extends AbstractNotation
      */
     public function toAlgebraic(int $i, int $j): string
     {
-        $file = chr(97 + $i);
-        $rank = $j + 1;
-
-        return $file . $rank;
+        return chr(97 + $i) . $j + 1;
     }
 
     /**
