@@ -128,7 +128,11 @@ class Square extends AbstractNotation
      */
     public function isStraightLine(array $line): bool
     {
-       return $this->hasConsecutiveFiles($line) || $this->hasConsecutiveRanks($line, 1);
+        if ($this->hasConsecutiveFiles($line)) {
+            return !$this->hasConsecutiveRanks($line, -1) && !$this->hasConsecutiveRanks($line, 1);
+        }
+
+        return $this->hasConsecutiveRanks($line, -1) xor $this->hasConsecutiveRanks($line, 1);
     }
 
     /**
