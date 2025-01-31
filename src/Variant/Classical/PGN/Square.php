@@ -50,10 +50,16 @@ class Square extends AbstractNotation
         throw new UnknownNotationException();
     }
 
+    /**
+     * Returns the color of the given square.
+     * 
+     * @param string $sq
+     * @return string
+     */
     public function color(string $sq): string
     {
         $file = $sq[0];
-        $rank = substr($sq, 1);
+        $rank = (int) substr($sq, 1);
 
         if ((ord($file) - 97) % 2 === 0) {
             if ($rank % 2 !== 0) {
