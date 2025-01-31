@@ -132,7 +132,7 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function is_diagonal_line_b4_d6_c5()
     {
-        $this->assertTrue(self::$square->isDiagonalLine(['b4', 'd6', 'c5']));
+        $this->assertFalse(self::$square->isDiagonalLine(['b4', 'd6', 'c5']));
     }
 
     /**

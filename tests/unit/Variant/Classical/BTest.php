@@ -91,8 +91,8 @@ class BTest extends AbstractUnitTestCase
     public function line_e5()
     {
         $expected = [
-            'g7',
             'f6',
+            'g7',
         ];
 
         $board = FenToBoardFactory::create('7k/8/8/4B3/8/4K3/8/8 b - -');
@@ -107,9 +107,9 @@ class BTest extends AbstractUnitTestCase
     public function line_d6()
     {
         $expected = [
-            'g3',
-            'f4',
             'e5',
+            'f4',
+            'g3',
         ];
 
         $board = FenToBoardFactory::create('8/8/3B4/8/8/4K3/7k/8 b - -');

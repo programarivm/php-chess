@@ -77,10 +77,10 @@ class RTest extends AbstractUnitTestCase
     public function line_c2()
     {
         $expected = [
-            'c6',
-            'c5',
-            'c4',
             'c3',
+            'c4',
+            'c5',
+            'c6',
         ];
 
         $board = FenToBoardFactory::create('4K3/2k5/8/8/8/8/2R5/8 b - -');
@@ -95,10 +95,10 @@ class RTest extends AbstractUnitTestCase
     public function line_a4()
     {
         $expected = [
-            'e4',
-            'd4',
-            'c4',
             'b4',
+            'c4',
+            'd4',
+            'e4',
         ];
 
         $board = FenToBoardFactory::create('7k/8/8/8/r4K2/8/8/8 w - -');

@@ -211,6 +211,7 @@ class Square extends AbstractNotation
                 }
             }
         }
+        sort($sqs);
 
         return $sqs;
     }
@@ -223,7 +224,6 @@ class Square extends AbstractNotation
      */
     public function isDiagonalLine(array $line): bool
     {
-        sort($line);
         if (!$this->hasConsecutiveFiles($line)) {
             return false;
         }
