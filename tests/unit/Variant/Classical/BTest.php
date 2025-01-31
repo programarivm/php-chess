@@ -80,7 +80,7 @@ class BTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('8/1k6/8/8/4B3/4K3/8/8 b - -');
-        $line = $board->pieceBySq('e4')->line($board->piece(Color::B, Piece::K)->sq);
+        $line = self::$square->line('e4', $board->piece(Color::B, Piece::K)->sq);
 
         $this->assertEquals($expected, $line);
     }
@@ -96,7 +96,7 @@ class BTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('7k/8/8/4B3/8/4K3/8/8 b - -');
-        $line = $board->pieceBySq('e5')->line($board->piece(Color::B, Piece::K)->sq);
+        $line = self::$square->line('e5', $board->piece(Color::B, Piece::K)->sq);
 
         $this->assertEquals($expected, $line);
     }
@@ -113,7 +113,7 @@ class BTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('8/8/3B4/8/8/4K3/7k/8 b - -');
-        $line = $board->pieceBySq('d6')->line($board->piece(Color::B, Piece::K)->sq);
+        $line = self::$square->line('d6', $board->piece(Color::B, Piece::K)->sq);
 
         $this->assertEquals($expected, $line);
     }
@@ -131,7 +131,7 @@ class BTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('8/8/6B1/8/8/4K3/8/1k6 b - -');
-        $line = $board->pieceBySq('g6')->line($board->piece(Color::B, Piece::K)->sq);
+        $line = self::$square->line('g6', $board->piece(Color::B, Piece::K)->sq);
 
         $this->assertEquals($expected, $line);
     }

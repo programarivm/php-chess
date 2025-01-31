@@ -99,6 +99,63 @@ class Square extends AbstractNotation
         return $file . $rank;
     }
 
+    /**
+     * Returns the squares found between the two endpoints of a line segment.
+     * 
+     * @param string $a
+     * @param string $b
+     * @return array
+     */
+    public function line(string $a, string $b): array
+    {
+        $sqs = [];
+        $aFile = $a[0];
+        $aRank = (int) substr($a, 1);
+        $bFile = $b[0];
+        $bRank = (int) substr($b, 1);
+        if ($aFile === $bFile) {
+            if ($aRank > $bRank) {
+                for ($i = 1; $i < $aRank - $bRank; $i++) {
+                    $sqs[] = $aFile . ($bRank + $i);
+                }
+            } else {
+                for ($i = 1; $i < $bRank - $aRank; $i++) {
+                    $sqs[] = $aFile . ($bRank - $i);
+                }
+            }
+        } elseif ($aRank === $bRank) {
+            if ($aFile > $bFile) {
+                for ($i = 1; $i < ord($aFile) - ord($bFile); $i++) {
+                    $sqs[] = chr(ord($bFile) + $i) . $aRank;
+                }
+            } else {
+                for ($i = 1; $i < ord($bFile) - ord($aFile); $i++) {
+                    $sqs[] = chr(ord($bFile) - $i) . $aRank;
+                }
+            }
+        } elseif (abs(ord($aFile) - ord($bFile)) === abs(ord($aRank) - ord($bRank))) {
+            if ($aFile > $bFile && $aRank < $bRank) {
+                for ($i = 1; $i < $bRank - $aRank; $i++) {
+                    $sqs[] = chr(ord($bFile) + $i) . ($bRank - $i);
+                }
+            } elseif ($aFile < $bFile && $aRank < $bRank) {
+                for ($i = 1; $i < $bRank - $aRank; $i++) {
+                    $sqs[] = chr(ord($bFile) - $i) . ($bRank - $i);
+                }
+            } elseif ($aFile < $bFile && $aRank > $bRank) {
+                for ($i = 1; $i < $aRank - $bRank; $i++) {
+                    $sqs[] = chr(ord($bFile) - $i) . ($bRank + $i);
+                }
+            } else {
+                for ($i = 1; $i < $aRank - $bRank; $i++) {
+                    $sqs[] = chr(ord($bFile) + $i) . ($bRank + $i);
+                }
+            }
+        }
+
+        return $sqs;
+    }
+
     public function extract(string $string): string
     {
         return preg_replace(static::EXTRACT, '', $string);

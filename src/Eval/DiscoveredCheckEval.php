@@ -52,7 +52,9 @@ class DiscoveredCheckEval extends AbstractEval
                 $king = $this->board->piece($piece->oppColor(), Piece::K);
                 foreach ($piece->defending() as $defending) {
                     if (is_a($defending, AbstractLinePiece::class)) {
-                        if ($piece->isBetween($king, $defending) && $piece->isEmpty($piece->line($king->sq))) {
+                        if ($piece->isBetween($king, $defending) && 
+                            $piece->isEmpty($this->board->square->line($piece->sq, $king->sq))
+                        ) {
                             $this->result[$piece->color] += self::$value[$piece->id];
                             $this->toElaborate[] = $piece;
                         }
