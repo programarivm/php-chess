@@ -113,17 +113,6 @@ abstract class AbstractPiece
     }
 
     /**
-     * Returns true if the given line of squares is empty of pieces.
-     *
-     * @param array $line
-     * @return bool
-     */
-    public function isEmpty(array $line): bool
-    {
-        return !array_diff($line, $this->board->sqCount['free']);
-    }
-
-    /**
      * Returns the opponent's pieces being attacked by this piece.
      *
      * @return array
@@ -232,7 +221,7 @@ abstract class AbstractPiece
             if (is_a($piece, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
                 if ($this->board->square->isBetween($piece->sq, $this->sq, $king->sq) &&
-                    $this->isEmpty($this->board->square->line($this->sq, $king->sq))
+                    $this->board->isEmptyLine($this->board->square->line($this->sq, $king->sq))
                 ) {
                     return $piece;
                 }

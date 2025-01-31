@@ -50,7 +50,7 @@ class RelativePinEval extends AbstractEval
                     foreach ($this->board->pieces($piece->color) as $val) {
                         if ($val->id !== Piece::K &&
                             $this->board->square->isBetween($attacking->sq, $piece->sq, $val->sq) &&
-                            $piece->isEmpty($this->board->square->line($piece->sq, $val->sq))
+                            $this->board->isEmptyLine($this->board->square->line($piece->sq, $val->sq))
                         ) {
                             $diff = self::$value[$attacking->id] - self::$value[$val->id];
                             if ($diff < 0) {

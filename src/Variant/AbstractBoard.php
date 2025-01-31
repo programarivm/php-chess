@@ -616,6 +616,17 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
+     * Returns true if the given line of squares is empty of pieces.
+     *
+     * @param array $line
+     * @return bool
+     */
+    public function isEmptyLine(array $line): bool
+    {
+        return !array_diff($line, $this->sqCount['free']);
+    }
+
+    /**
      * Returns the legal moves of the given piece.
      *
      * @param string $sq
