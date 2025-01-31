@@ -224,14 +224,32 @@ class Square extends AbstractNotation
     public function isDiagonalLine(array $line): bool
     {
         sort($line);
-        for ($i = 0; $i < count($line) - 1; $i++) {
-            $file = $line[$i][0];
-            $rank = (int) substr($line[$i], 1);
-            $nextFile = $line[$i + 1][0];
-            $nextRank = (int) substr($line[$i + 1], 1);
-            if (ord($file) !== ord($nextFile) - 1) {
+        if (!$this->hasConsecutiveFiles($line)) {
+            return false;
+        }
+        
+        return $this->hasConsecutiveRanks($line, 1) xor $this->hasConsecutiveRanks($line, -1);
+    }
+
+    public function hasConsecutiveFiles(array $sqs)
+    {
+        for ($i = 1; $i < count($sqs); $i++) {
+            if (ord($sqs[$i - 1][0]) !== ord($sqs[$i][0]) - 1) {
                 return false;
-            } elseif ($rank !== $nextRank + 1 && $rank !== $nextRank - 1) {
+            }
+        }
+
+        return true;
+    }
+
+    public function hasConsecutiveRanks(array $sqs, int $diff)
+    {
+        $ranks = [];
+        for ($i = 0; $i < count($sqs); $i++) { 
+            $ranks[] = (int) substr($sqs[$i], 1);
+        }
+        for ($i = 1; $i < count($ranks); $i++) {
+            if ($ranks[$i] - $ranks[$i - 1] !== $diff) {
                 return false;
             }
         }
