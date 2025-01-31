@@ -223,7 +223,7 @@ class Square extends AbstractNotation
      * @param string $c
      * @return bool
      */
-    public function isBetween(string $a, string $b, string $c): bool
+    public function isBetweenSqs(string $a, string $b, string $c): bool
     {
         return in_array($b, $this->line($a, $c));
     }

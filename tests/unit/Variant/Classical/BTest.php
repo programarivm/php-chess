@@ -147,8 +147,8 @@ class BTest extends AbstractUnitTestCase
         $b = $board->pieceBySq('e4');
         $c = $board->pieceBySq('d5');
 
-        $this->assertTrue(self::$square->isBetween($a->sq, $b->sq, $c->sq));
-        $this->assertTrue(self::$square->isBetween($c->sq, $b->sq, $a->sq));
-        $this->assertFalse(self::$square->isBetween($a->sq, $c->sq, $b->sq));
+        $this->assertTrue(self::$square->isBetweenSqs($a->sq, $b->sq, $c->sq));
+        $this->assertTrue(self::$square->isBetweenSqs($c->sq, $b->sq, $a->sq));
+        $this->assertFalse(self::$square->isBetweenSqs($a->sq, $c->sq, $b->sq));
     }
 }

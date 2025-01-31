@@ -220,7 +220,7 @@ abstract class AbstractPiece
         foreach ($this->attacking() as $piece) {
             if (is_a($piece, AbstractLinePiece::class)) {
                 $king = $this->board->piece($this->color, Piece::K);
-                if ($this->board->square->isBetween($piece->sq, $this->sq, $king->sq) &&
+                if ($this->board->square->isBetweenSqs($piece->sq, $this->sq, $king->sq) &&
                     $this->board->isEmptyLine($this->board->square->line($this->sq, $king->sq))
                 ) {
                     return $piece;
