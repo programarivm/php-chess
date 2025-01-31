@@ -216,6 +216,30 @@ class Square extends AbstractNotation
     }
 
     /**
+     * Returns true if the line of squares is a diagonal line.
+     *
+     * @param array $line
+     * @return bool
+     */
+    public function isDiagonalLine(array $line): bool
+    {
+        sort($line);
+        for ($i = 0; $i < count($line) - 1; $i++) {
+            $file = $line[$i][0];
+            $rank = (int) substr($line[$i], 1);
+            $nextFile = $line[$i + 1][0];
+            $nextRank = (int) substr($line[$i + 1], 1);
+            if (ord($file) !== ord($nextFile) - 1) {
+                return false;
+            } elseif ($rank !== $nextRank + 1 && $rank !== $nextRank - 1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Returns true if the B square is between the given two squares A and C.
      *
      * @param string $a

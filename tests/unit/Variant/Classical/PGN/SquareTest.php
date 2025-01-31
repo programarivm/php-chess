@@ -118,4 +118,44 @@ class SquareTest extends AbstractUnitTestCase
     {
         $this->assertSame('a9', self::$square->toAlgebraic(0, 8));
     }
+
+    /**
+     * @test
+     */
+    public function is_diagonal_line_b4_c5_d6()
+    {
+        $this->assertTrue(self::$square->isDiagonalLine(['b4', 'c5', 'd6']));
+    }
+
+    /**
+     * @test
+     */
+    public function is_diagonal_line_b4_d6_c5()
+    {
+        $this->assertTrue(self::$square->isDiagonalLine(['b4', 'd6', 'c5']));
+    }
+
+    /**
+     * @test
+     */
+    public function is_diagonal_line_b4_c3_d2()
+    {
+        $this->assertTrue(self::$square->isDiagonalLine(['b4', 'c3', 'd2']));
+    }
+
+    /**
+     * @test
+     */
+    public function is_diagonal_line_b4_d2()
+    {
+        $this->assertFalse(self::$square->isDiagonalLine(['b4', 'd2']));
+    }
+
+    /**
+     * @test
+     */
+    public function is_diagonal_line_b4_c4()
+    {
+        $this->assertFalse(self::$square->isDiagonalLine(['b4', 'c4']));
+    }
 }
