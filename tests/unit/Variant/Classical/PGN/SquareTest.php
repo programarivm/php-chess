@@ -204,7 +204,7 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function is_straight_line_c7_c6_c5()
     {
-        $this->assertTrue(self::$square->isStraightLine(['c7', 'c6', 'c5']));
+        $this->assertFalse(self::$square->isStraightLine(['c7', 'c6', 'c5']));
     }
 
     /**

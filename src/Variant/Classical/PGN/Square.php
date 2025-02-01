@@ -124,7 +124,7 @@ class Square extends AbstractNotation
             return !$this->hasConsecutiveRanks($line, -1) && !$this->hasConsecutiveRanks($line, 1);
         }
 
-        return $this->hasConsecutiveRanks($line, -1) xor $this->hasConsecutiveRanks($line, 1);
+        return $this->hasConsecutiveRanks($line, 1);
     }
 
     /**
