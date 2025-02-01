@@ -100,7 +100,7 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_0_0()
     {
-        $this->assertSame('a1', self::$square->toAlgebraic(0, 0));
+        $this->assertSame('a1', self::$square->toAn(0, 0));
     }
 
     /**
@@ -108,7 +108,7 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_0_7()
     {
-        $this->assertSame('a8', self::$square->toAlgebraic(0, 7));
+        $this->assertSame('a8', self::$square->toAn(0, 7));
     }
 
     /**
@@ -116,7 +116,7 @@ class SquareTest extends AbstractUnitTestCase
      */
     public function from_index_to_algebraic_0_8()
     {
-        $this->assertSame('a9', self::$square->toAlgebraic(0, 8));
+        $this->assertSame('a9', self::$square->toAn(0, 8));
     }
 
     /**

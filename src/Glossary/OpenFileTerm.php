@@ -18,7 +18,7 @@ class OpenFileTerm extends AbstractTerm
         for ($i = 0; $i < $this->board->square::SIZE['files']; $i++) {
             $this->toElaborate[] = chr(97 + $i);
             for ($j = 0; $j < $this->board->square::SIZE['ranks']; $j++) {
-                if ($piece = $this->board->pieceBySq($this->board->square->toAlgebraic($i, $j))) {
+                if ($piece = $this->board->pieceBySq($this->board->square->toAn($i, $j))) {
                     if ($piece->id === Piece::P) {
                         array_pop($this->toElaborate);
                         break;

@@ -42,7 +42,7 @@ class Square extends AbstractNotation
     {
         for ($i = 0; $i < static::SIZE['files']; $i++) {
             for ($j = 0; $j < static::SIZE['ranks']; $j++) {
-                $this->all[] = $this->toAlgebraic($i, $j);
+                $this->all[] = $this->toAn($i, $j);
             }
         }
     }
@@ -180,10 +180,10 @@ class Square extends AbstractNotation
     public function corner(): array
     {
         return [
-            $this->toAlgebraic(0, 0),
-            $this->toAlgebraic(static::SIZE['files'] - 1, 0),
-            $this->toAlgebraic(0, static::SIZE['ranks'] - 1),
-            $this->toAlgebraic(static::SIZE['files'] - 1, static::SIZE['ranks'] - 1),
+            $this->toAn(0, 0),
+            $this->toAn(static::SIZE['files'] - 1, 0),
+            $this->toAn(0, static::SIZE['ranks'] - 1),
+            $this->toAn(static::SIZE['files'] - 1, static::SIZE['ranks'] - 1),
         ];
     }
 
@@ -225,7 +225,7 @@ class Square extends AbstractNotation
      * @param int $j
      * @return string
      */
-    public function toAlgebraic(int $i, int $j): string
+    public function toAn(int $i, int $j): string
     {
         return chr(97 + $i) . $j + 1;
     }

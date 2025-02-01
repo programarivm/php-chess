@@ -28,7 +28,7 @@ class PieceArray
         foreach ($array as $i => $rank) {
             foreach ($rank as $j => $char) {
                 if ($char !== '.') {
-                    $sq = $this->square->toAlgebraic($j, $i);
+                    $sq = $this->square->toAn($j, $i);
                     if (ctype_lower($char)) {
                         $color = Color::B;
                         $char = strtoupper($char);
