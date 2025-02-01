@@ -128,7 +128,7 @@ class Square extends AbstractNotation
     }
 
     /**
-     * Validate a square in standard algebraic notation.
+     * Validate a square in algebraic notation.
      * 
      * @param string $sq
      * @throws \Chess\Exception\UnknownNotationException
@@ -203,8 +203,7 @@ class Square extends AbstractNotation
     }
 
     /**
-     * Converts a square in standard algebraic notation to a pair of indices
-     * i and j.
+     * Converts a square in algebraic notation to a pair of indices i and j.
      * 
      * @param string $sq
      * @return array
@@ -218,8 +217,7 @@ class Square extends AbstractNotation
     }
 
     /**
-     * Converts a pair of indices i and j to a square in standard algebraic
-     * notation.
+     * Converts a pair of indices i and j to a square in algebraic notation.
      * 
      * @param int $i
      * @param int $j
