@@ -208,7 +208,7 @@ class Square extends AbstractNotation
      * @param string $sq
      * @return array
      */
-    public function toIndex(string $sq): array
+    public function toIndices(string $sq): array
     {
         return [
             (int) substr($sq, 1) - 1,

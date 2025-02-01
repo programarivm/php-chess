@@ -683,7 +683,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             $array[$i] = array_fill(0, $this->square::SIZE['files'], '.');
         }
         foreach ($this->pieces() as $piece) {
-            list($file, $rank) = $this->square->toIndex($piece->sq);
+            list($file, $rank) = $this->square->toIndices($piece->sq);
             if ($flip) {
                 $diff = $this->square::SIZE['files'] - $this->square::SIZE['ranks'];
                 $file = $this->square::SIZE['files'] - 1 - $file - $diff;
