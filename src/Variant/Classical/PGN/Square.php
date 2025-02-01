@@ -307,7 +307,7 @@ class Square extends AbstractNotation
      * @param string $string
      * @return string
      */
-    public function extract(string $string): string
+    public function substr(string $string): string
     {
         return preg_replace(static::EXTRACT, '', $string);
     }

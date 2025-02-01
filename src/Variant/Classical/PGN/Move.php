@@ -61,7 +61,7 @@ class Move extends AbstractNotation
     public function toArray(string $color, string $pgn, Square $square, CastlingRule $castlingRule = null): array
     {
         if (preg_match('/^' . static::PIECE . '$/', $pgn)) {
-            $sqs = $square->extract($pgn);
+            $sqs = $square->substr($pgn);
             $to = substr($sqs, -2);
             $from = str_replace($to, '', $sqs);
             return [
@@ -79,8 +79,8 @@ class Move extends AbstractNotation
                 'case' => static::PIECE_CAPTURES,
                 'color' => $color,
                 'id' => mb_substr($pgn, 0, 1),
-                'from' => $square->extract($arr[0]),
-                'to' => $square->extract($arr[1]),
+                'from' => $square->substr($arr[0]),
+                'to' => $square->substr($arr[1]),
             ];
         } elseif (preg_match('/^' . static::PAWN . '$/', $pgn)) {
             return [
@@ -89,7 +89,7 @@ class Move extends AbstractNotation
                 'color' => $color,
                 'id' => Piece::P,
                 'from' => mb_substr($pgn, 0, 1),
-                'to' => $square->extract($pgn),
+                'to' => $square->substr($pgn),
             ];
         } elseif (preg_match('/^' . static::PAWN_CAPTURES . '$/', $pgn)) {
             $arr = explode('x', $pgn);
@@ -99,7 +99,7 @@ class Move extends AbstractNotation
                 'color' => $color,
                 'id' => Piece::P,
                 'from' => mb_substr($pgn, 0, 1),
-                'to' => $square->extract($arr[1]),
+                'to' => $square->substr($arr[1]),
             ];
         } elseif (preg_match('/^' . static::CASTLE_SHORT . '$/', $pgn)) {
             return [
@@ -127,7 +127,7 @@ class Move extends AbstractNotation
                 'id' => Piece::P,
                 'newId' => substr(explode('=', $pgn)[1], 0, 1),
                 'from' => '',
-                'to' => $square->extract($pgn),
+                'to' => $square->substr($pgn),
             ];
         } elseif (preg_match('/^' . static::PAWN_CAPTURES_AND_PROMOTES . '$/', $pgn)) {
             $arr = explode('x', $pgn);
@@ -138,7 +138,7 @@ class Move extends AbstractNotation
                 'id' => Piece::P,
                 'newId' => substr(explode('=', $pgn)[1], 0, 1),
                 'from' => '',
-                'to' => $square->extract($arr[1]),
+                'to' => $square->substr($arr[1]),
             ];
         }
 
