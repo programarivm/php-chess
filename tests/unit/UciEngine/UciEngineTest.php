@@ -72,7 +72,7 @@ class UciEngineTest extends AbstractUnitTestCase
         $stockfish = new UciEngine('/usr/games/stockfish');
         $analysis = $stockfish->analysis($board, $limit);
 
-        preg_match_all('/'.Square::AN.'/', $analysis['bestmove'], $matches);
+        preg_match_all('/' . Square::AN . '/', $analysis['bestmove'], $matches);
 
         $this->assertIsString($board->square->validate($matches[0][0]));
         $this->assertIsString($board->square->validate($matches[0][1]));
@@ -96,7 +96,7 @@ class UciEngineTest extends AbstractUnitTestCase
 
         $analysis = $stockfish->analysis($board, $limit);
 
-        preg_match_all('/'.Square::AN.'/', $analysis['bestmove'], $matches);
+        preg_match_all('/' . Square::AN . '/', $analysis['bestmove'], $matches);
 
         $this->assertIsString($board->square->validate($matches[0][0]));
         $this->assertIsString($board->square->validate($matches[0][1]));
