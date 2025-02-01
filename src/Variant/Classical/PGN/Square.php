@@ -320,7 +320,7 @@ class Square extends AbstractNotation
      */
     public function explode(string $string): array
     {
-        preg_match_all('/'.static::AN.'/', $string, $matches);
+        preg_match_all('/' . static::AN . '/', $string, $matches);
 
         return $matches[0];
     }
