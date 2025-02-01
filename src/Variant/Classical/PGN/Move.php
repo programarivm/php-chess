@@ -15,12 +15,12 @@ class Move extends AbstractNotation
     const CASTLE_SHORT = Castle::SHORT . self::CHECK;
     const CASTLE_LONG = Castle::LONG . self::CHECK;
     const ELLIPSIS = '...';
-    const PAWN = Square::REGEX . self::CHECK;
-    const PAWN_CAPTURES = '[a-h]{1}x' . Square::REGEX . self::CHECK;
-    const PAWN_PROMOTES = Square::REGEX . '[=]{0,1}[NBRQ]{0,1}' . self::CHECK;
+    const PAWN = Square::AN . self::CHECK;
+    const PAWN_CAPTURES = '[a-h]{1}x' . Square::AN . self::CHECK;
+    const PAWN_PROMOTES = Square::AN . '[=]{0,1}[NBRQ]{0,1}' . self::CHECK;
     const PAWN_CAPTURES_AND_PROMOTES = '[a-h]{1}x' . '[a-h]{1}(1|8){1}' . '[=]{0,1}[NBRQ]{0,1}' . self::CHECK;
-    const PIECE = '[BKNQR]{1}[a-h]{0,1}[1-8]{0,1}' . Square::REGEX . self::CHECK;
-    const PIECE_CAPTURES = '[BKNQR]{1}[a-h]{0,1}[1-8]{0,1}x' . Square::REGEX . self::CHECK;
+    const PIECE = '[BKNQR]{1}[a-h]{0,1}[1-8]{0,1}' . Square::AN . self::CHECK;
+    const PIECE_CAPTURES = '[BKNQR]{1}[a-h]{0,1}[1-8]{0,1}x' . Square::AN . self::CHECK;
 
     public function cases(): array
     {

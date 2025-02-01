@@ -8,11 +8,11 @@ use Chess\Variant\AbstractNotation;
 class Square extends AbstractNotation
 {
     /**
-     * Regular expression representing a square for multiple purposes.
+     * Regular expression representing a square in algebraic notation.
      *
      * @var string
      */
-    const REGEX = '[a-h]{1}[1-8]{1}';
+    const AN = '[a-h]{1}[1-8]{1}';
 
     /**
      * Regular expression representing a square for further extraction from strings.
@@ -320,7 +320,7 @@ class Square extends AbstractNotation
      */
     public function explode(string $string): array
     {
-        preg_match_all('/'.static::REGEX.'/', $string, $matches);
+        preg_match_all('/'.static::AN.'/', $string, $matches);
 
         return $matches[0];
     }
