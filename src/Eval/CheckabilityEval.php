@@ -43,38 +43,16 @@ class CheckabilityEval extends AbstractEval
             "can be checked so it is vulnerable to forced moves",
         ];
 
-        $wKing = $this->board->piece(Color::W, Piece::K);
-        $bKing = $this->board->piece(Color::B, Piece::K);
-
-        if ($this->isCheckable($bKing)) {
-            $this->result[Color::W] = 1;
-        }
-
-        if ($this->isCheckable($wKing)) {
-            $this->result[Color::B] = 1;
-        }
-    }
-
-    /**
-     * Returns true if the king is checkable.
-     *
-     * @param \Chess\Variant\AbstractPiece $king
-     * @return bool
-     */
-    private function isCheckable(AbstractPiece $king): bool
-    {
-        foreach ($this->board->pieces($king->oppColor()) as $piece) {
+        foreach ($this->board->pieces($this->board->turn) as $piece) {
             foreach ($piece->moveSqs() as $sq) {
                 $clone = $this->board->clone();
-                $clone->turn = $king->oppColor();
-                if ($clone->playLan($king->oppColor(), "{$piece->sq}$sq")) {
+                if ($clone->playLan($this->board->turn, "{$piece->sq}$sq")) {
                     if ($clone->isCheck()) {
-                        return true;
+                        $this->result[$this->board->turn] = 1;
+                        break 2;
                     }
                 }
             }
         }
-
-        return false;
     }
 }

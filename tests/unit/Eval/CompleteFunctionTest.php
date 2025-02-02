@@ -135,13 +135,13 @@ class CompleteFunctionTest extends AbstractUnitTestCase
      */
     public function kaufman_06()
     {
-        $expectedNormd = [ -1.0, -0.3333, 0.0112, 0.0865, 0.0865, 0.0865, 0.0865, 0.4325, 1.0 ];
-        $expectedSteinitz = 5;
-        $expectedMean = 0.0507;
+        $expectedNormd = [ -1.0, -0.3333, 0.0112, 0.0865, 0.0865, 0.0865, 0.4325, 1.0 ];
+        $expectedSteinitz = 4;
+        $expectedMean = 0.0462;
         $expectedMedian = 0.0865;
         $expectedMode = 0.0865;
-        $expectedVar = 0.2561;
-        $expectedSd = 0.5061;
+        $expectedVar = 0.288;
+        $expectedSd = 0.5367;
 
         $board = FenToBoardFactory::create('r5k1/3n1ppp/1p6/3p1p2/3P1B2/r3P2P/PR3PP1/2R3K1 b - -');
 
