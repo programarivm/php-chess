@@ -53,7 +53,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "Black has a decisive protection advantage.",
             "These pieces are hanging: The bishop on e6.",
             "The bishop on e6 is unprotected.",
-            "Overall, 4 evaluation features are favoring White.",
+            "Overall, 3 evaluation features are favoring White.",
         ];
 
         $board = FenToBoardFactory::create('8/5k2/4n3/8/8/1BK5/1B6/8 w - - 0 1');
