@@ -3,9 +3,6 @@
 namespace Chess\Eval;
 
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\AbstractPiece;
-use Chess\Variant\Classical\PGN\Color;
-use Chess\Variant\Classical\PGN\Piece;
 
 /**
  * Checkability Evaluation
