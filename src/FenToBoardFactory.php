@@ -6,7 +6,7 @@ use Chess\Variant\AbstractBoard;;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Capablanca\FEN\StrToBoardFactory as CapablancaFenStrToBoardFactory;
 use Chess\Variant\CapablancaFischer\Board as CapablancaFischerBoard;
-use Chess\Variant\CapablancaFischer\FEN\StrToBoard as CapablancaFischerFenStrToBoard;
+use Chess\Variant\CapablancaFischer\FEN\StrToBoardFactory as CapablancaFischerFenStrToBoardFactory;
 use Chess\Variant\Chess960\Board as Chess960Board;
 use Chess\Variant\Chess960\FEN\StrToBoardFactory as Chess960FenStrToBoardFactory;
 use Chess\Variant\Classical\Board as ClassicalBoard;
@@ -28,7 +28,7 @@ class FenToBoardFactory
             return CapablancaFenStrToBoardFactory::create($fen);
         } elseif (is_a($board, CapablancaFischerBoard::class)) {
             $startPos = $board->getStartPos();
-            return (new CapablancaFischerFenStrToBoard($fen, $startPos))->create();
+            return CapablancaFischerFenStrToBoardFactory::create($fen, $board->getStartPos());
         } elseif (is_a($board, Chess960Board::class)) {
             return Chess960FenStrToBoardFactory::create($fen, $board->getStartPos());
         } elseif (is_a($board, DunsanyBoard::class)) {
