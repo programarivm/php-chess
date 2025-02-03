@@ -9,8 +9,18 @@ use Chess\Variant\Classical\FEN\Str;
 use Chess\Variant\Classical\FenToBoardFactory as ClassicalFenToBoardFactory;
 use Chess\Variant\Classical\PGN\Square;
 
+/**
+ * FEN to Board Factory
+ *
+ * A factory of Chess960 boards.
+ */
 class FenToBoardFactory
 {
+    /**
+     * @param string $string
+     * @param array $startPos
+     * @return \Chess\Variant\AbstractBoard
+     */
     public static function create(string $string, array $startPos): AbstractBoard
     {
         $fenStr = new Str();

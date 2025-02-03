@@ -9,8 +9,17 @@ use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\RacingKings\FEN\Str;
 
+/**
+ * FEN to Board Factory
+ *
+ * A factory of Racing Kings chess boards.
+ */
 class FenToBoardFactory
 {
+    /**
+     * @param string $string
+     * @return \Chess\Variant\AbstractBoard
+     */
     public static function create(string $string): AbstractBoard
     {
         $fenStr = new Str();

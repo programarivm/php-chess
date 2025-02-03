@@ -10,8 +10,17 @@ use Chess\Variant\Classical\FenToBoardFactory as ClassicalFenToBoardFactory;
 use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Losing\FEN\Str;
 
+/**
+ * FEN to Board Factory
+ *
+ * A factory of Losing chess boards.
+ */
 class FenToBoardFactory
 {
+    /**
+     * @param string $string
+     * @return \Chess\Variant\AbstractBoard
+     */
     public static function create(string $string): AbstractBoard
     {
         $fenStr = new Str();

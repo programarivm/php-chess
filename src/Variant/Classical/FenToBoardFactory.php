@@ -9,8 +9,17 @@ use Chess\Variant\Classical\FEN\Str;
 use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Classical\PGN\Square;
 
+/**
+ * FEN to Board Factory
+ *
+ * A factory of classical chess boards.
+ */
 class FenToBoardFactory
 {
+    /**
+     * @param string $string
+     * @return \Chess\Variant\AbstractBoard
+     */
     public static function create(string $string): AbstractBoard
     {
         $fenStr = new Str();
