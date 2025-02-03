@@ -23,7 +23,7 @@ class StrToBoardFactory
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
                 new Square(),
-                new CastlingRule(),
+                new CastlingRule($startPos),
                 $namespace
             );
             $board = new Board($startPos, $pieces, $fields[2]);
