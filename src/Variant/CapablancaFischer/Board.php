@@ -8,17 +8,13 @@ use Chess\Variant\Capablanca\PGN\Move;
 use Chess\Variant\Capablanca\PGN\Square;
 use Chess\Variant\CapablancaFischer\CastlingRule;
 use Chess\Variant\CapablancaFischer\StartPieces;
-use Chess\Variant\Classical\PGN\Color;
 
 class Board extends AbstractBoard implements RandomBoardInterface
 {
     private array $startPos;
 
-    public function __construct(
-        array $startPos = null,
-        array $pieces = null,
-        string $castlingAbility = '-'
-    ) {
+    public function __construct(array $startPos = null, array $pieces = null, string $castlingAbility = '-')
+    {
         $this->startPos = $startPos ?? (new StartPosition())->getDefault();
         $this->castlingRule = new CastlingRule($this->startPos);
         $this->square = new Square();
@@ -32,9 +28,7 @@ class Board extends AbstractBoard implements RandomBoardInterface
         foreach ($pieces as $piece) {
             $this->attach($piece);
         }
-
         $this->refresh();
-
         $this->startFen = $this->toFen();
     }
 

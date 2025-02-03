@@ -72,9 +72,7 @@ class Board extends AbstractBoard
             }
             $this->castlingAbility = $castlingAbility;
         }
-
         $this->refresh();
-
         $this->startFen = $this->toFen();
     }
 }

@@ -79,11 +79,8 @@ class Board extends AbstractBoard
             }
             $this->castlingAbility = $castlingAbility;
         }
-
         $this->refresh();
-
         $this->turn = Color::B;
-
         $this->startFen = $this->toFen();
     }
 

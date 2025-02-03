@@ -44,9 +44,7 @@ class Board extends AbstractBoard
                 $this->attach($piece);
             }
         }
-
         $this->refresh();
-
         $this->startFen = $this->toFen();
     }
 
@@ -66,12 +64,10 @@ class Board extends AbstractBoard
     {
         $wKing = $this->piece(Color::W, Piece::K);
         $bKing = $this->piece(Color::B, Piece::K);
-
         $wWins = $wKing->rank() === $this->square::SIZE['ranks'] &&
             $bKing->rank() !== $this->square::SIZE['ranks'];
         $bWins = $wKing->rank() !== $this->square::SIZE['ranks'] &&
             $bKing->rank() === $this->square::SIZE['ranks'];
-
         if ($this->turn === Color::W) {
             return $wWins xor $bWins;
         }
@@ -83,7 +79,6 @@ class Board extends AbstractBoard
     {
         $wKing = $this->piece(Color::W, Piece::K);
         $bKing = $this->piece(Color::B, Piece::K);
-
         if ($this->turn === Color::W) {
             return $wKing->rank() === $this->square::SIZE['ranks'] &&
                 $bKing->rank() === $this->square::SIZE['ranks'];

@@ -58,9 +58,7 @@ class Board extends AbstractBoard
                 $this->attach($piece);
             }
         }
-
         $this->refresh();
-
         $this->startFen = $this->toFen();
     }
 
