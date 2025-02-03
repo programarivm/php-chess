@@ -1,17 +1,15 @@
 <?php
 
-namespace Chess\Variant\CapablancaFischer\FEN;
+namespace Chess\Variant\CapablancaFischer;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArrayFactory;
-use Chess\Variant\CapablancaFischer\Board;
-use Chess\Variant\CapablancaFischer\CastlingRule;
 use Chess\Variant\Capablanca\FEN\Str;
 use Chess\Variant\Capablanca\PGN\Square;
-use Chess\Variant\Classical\FEN\StrToBoardFactory as ClassicalFenStrToBoardFactory;
+use Chess\Variant\Classical\FenToBoardFactory as ClassicalFenToBoardFactory;
 
-class StrToBoardFactory
+class FenToBoardFactory
 {
     public static function create(string $string, array $startPos): AbstractBoard
     {
@@ -29,7 +27,7 @@ class StrToBoardFactory
             $board = new Board($startPos, $pieces, $fields[2]);
             $board->turn = $fields[1];
             $board->startFen = $string;
-            ClassicalFenStrToBoardFactory::enPassant($fields, $board);
+            ClassicalFenToBoardFactory::enPassant($fields, $board);
         } catch (\Throwable $e) {
             throw new UnknownNotationException();
         }

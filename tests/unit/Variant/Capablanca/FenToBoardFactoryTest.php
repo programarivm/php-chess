@@ -1,22 +1,18 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Capablanca\FEN;
+namespace Chess\Tests\Unit\Variant\Capablanca;
 
-use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Capablanca\Board;
+use Chess\Variant\Capablanca\FenToBoardFactory;
 
-class StrToBoardTest extends AbstractUnitTestCase
+class FenToBoardFactoryTest extends AbstractUnitTestCase
 {
     /**
      * @test
      */
     public function f4()
     {
-        $board = FenToBoardFactory::create(
-            'rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3',
-            new Board()
-        );
+        $board = FenToBoardFactory::create('rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3');
 
         $array = $board->toArray();
 
@@ -39,10 +35,7 @@ class StrToBoardTest extends AbstractUnitTestCase
      */
     public function e4_e5()
     {
-        $board = FenToBoardFactory::create(
-            'rnabqkbcnr/pppp1ppppp/10/4p5/4P5/10/PPPP1PPPPP/RNABQKBCNR w KQkq e6',
-            new Board()
-        );
+        $board = FenToBoardFactory::create('rnabqkbcnr/pppp1ppppp/10/4p5/4P5/10/PPPP1PPPPP/RNABQKBCNR w KQkq e6');
 
         $array = $board->toArray();
 

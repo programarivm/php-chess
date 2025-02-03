@@ -1,16 +1,15 @@
 <?php
 
-namespace Chess\Variant\RacingKings\FEN;
+namespace Chess\Variant\RacingKings;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArrayFactory;
 use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\PGN\Square;
-use Chess\Variant\RacingKings\Board;
 use Chess\Variant\RacingKings\FEN\Str;
 
-class StrToBoardFactory
+class FenToBoardFactory
 {
     public static function create(string $string): AbstractBoard
     {

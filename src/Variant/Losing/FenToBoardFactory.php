@@ -1,24 +1,23 @@
 <?php
 
-namespace Chess\Variant\Dunsany\FEN;
+namespace Chess\Variant\Losing;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArrayFactory;
 use Chess\Variant\Classical\CastlingRule;
-use Chess\Variant\Classical\FEN\StrToBoardFactory as ClassicalFenStrToBoardFactory;
+use Chess\Variant\Classical\FenToBoardFactory as ClassicalFenToBoardFactory;
 use Chess\Variant\Classical\PGN\Square;
-use Chess\Variant\Dunsany\Board;
-use Chess\Variant\Dunsany\FEN\Str;
+use Chess\Variant\Losing\FEN\Str;
 
-class StrToBoardFactory
+class FenToBoardFactory
 {
     public static function create(string $string): AbstractBoard
     {
         $fenStr = new Str();
         $string = $fenStr->validate($string);
         $fields = array_filter(explode(' ', $string));
-        $namespace = 'Dunsany';
+        $namespace = 'Losing';
         try {
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
@@ -29,7 +28,7 @@ class StrToBoardFactory
             $board = new Board($pieces, $fields[2]);
             $board->turn = $fields[1];
             $board->startFen = $string;
-            ClassicalFenStrToBoardFactory::enPassant($fields, $board);
+            ClassicalFenToBoardFactory::enPassant($fields, $board);
         } catch (\Throwable $e) {
             throw new UnknownNotationException();
         }

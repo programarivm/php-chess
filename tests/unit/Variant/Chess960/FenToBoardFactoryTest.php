@@ -1,12 +1,11 @@
 <?php
 
-namespace Chess\Tests\Unit\Variant\Chess960\FEN;
+namespace Chess\Tests\Unit\Variant\Chess960;
 
-use Chess\FenToBoardFactory;
-use Chess\Variant\Chess960\Board;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Chess960\FenToBoardFactory;
 
-class StrToBoardTest extends AbstractUnitTestCase
+class FenToBoardFactoryTest extends AbstractUnitTestCase
 {
     /**
      * @test
@@ -17,7 +16,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1',
-            new Board($startPos)
+            $startPos
         );
 
         $array = $board->toArray();
@@ -45,7 +44,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2',
-            new Board($startPos)
+            $startPos
         );
 
         $array = $board->toArray();
@@ -73,7 +72,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -',
-            new Board($startPos)
+            $startPos
         );
 
         $array = $board->toArray();
@@ -101,7 +100,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -',
-            new Board($startPos)
+            $startPos
         );
 
         $board->play('w', 'O-O');
@@ -131,7 +130,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'b4rkr/ppppqppp/2nnpb2/8/4P3/2PP4/PP1NNPPP/B2BQRKR w KQkq -',
-            new Board($startPos)
+            $startPos
         );
 
         $array = $board->toArray();
@@ -159,7 +158,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'qrkr1nbb/pppp2pp/3n1p2/4p3/4P3/4NP2/PPPP2PP/QRKRN1BB w KQkq -',
-            new Board($startPos)
+            $startPos
         );
 
         $board->play('w', 'Bf2');
@@ -193,7 +192,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -',
-            new Board($startPos)
+            $startPos
         );
 
         $board->play('w', 'O-O');
@@ -225,7 +224,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -',
-            new Board($startPos)
+            $startPos
         );
 
         $board->play('w', 'O-O');
@@ -259,7 +258,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -',
-            new Board($startPos)
+            $startPos
         );
 
         $board->play('b', 'd5');
@@ -278,7 +277,7 @@ class StrToBoardTest extends AbstractUnitTestCase
 
         $board = FenToBoardFactory::create(
             'rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -',
-            new Board($startPos)
+            $startPos
         );
 
         $board->play('b', 'd5');
