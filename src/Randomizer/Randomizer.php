@@ -75,7 +75,7 @@ class Randomizer
             foreach ($ids as $id) {
                 $arrayRand = array_rand($freeSqs, 1);
                 $sq = $freeSqs[$arrayRand];
-                $class = VariantType::getClass($this->board->variant, $id);
+                $class = VariantType::getClass($id);
                 $pieces[] = new $class(
                     $color,
                     $sq,

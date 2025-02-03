@@ -60,13 +60,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     public string $castlingAbility = CastlingRule::NEITHER;
 
     /**
-     * Variant.
-     *
-     * @var string
-     */
-    public string $variant = '';
-
-    /**
      * Start FEN position.
      *
      * @var string

@@ -5,7 +5,6 @@ namespace Chess\Variant\RacingKings;
 use Chess\FenToBoardFactory;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
-use Chess\Variant\VariantType;
 use Chess\Variant\Classical\B;
 use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\N;
@@ -19,13 +18,10 @@ use Chess\Variant\Classical\PGN\Piece;
 
 class Board extends AbstractBoard
 {
-    const VARIANT = 'racing-kings';
-
     public function __construct(array $pieces = null)
     {
         $this->square = new Square();
         $this->move = new Move();
-        $this->variant = VariantType::CLASSICAL;
         if (!$pieces) {
             $this->attach(new Q(Color::B, 'a1', $this->square));
             $this->attach(new R(Color::B, 'b1', $this->square, RType::R));

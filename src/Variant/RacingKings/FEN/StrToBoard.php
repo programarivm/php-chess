@@ -5,7 +5,6 @@ namespace Chess\Variant\RacingKings\FEN;
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArray;
-use Chess\Variant\VariantType;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\RacingKings\Board;
@@ -19,7 +18,7 @@ class StrToBoard extends ClassicalFenStrToBoard
         $this->fenStr = new Str();
         $this->string = $this->fenStr->validate($string);
         $this->fields = array_filter(explode(' ', $this->string));
-        $this->variant = VariantType::RACING_KINGS;
+        $this->namespace = 'RacingKings';
     }
 
     public function create(): AbstractBoard
@@ -29,7 +28,7 @@ class StrToBoard extends ClassicalFenStrToBoard
                 $this->fenStr->toArray($this->fields[0]),
                 $this->square,
                 $this->castlingRule,
-                $this->variant
+                $this->namespace
             ))->pieces;
             $board = new Board($pieces, $this->castlingAbility);
             $board->turn = $this->fields[1];

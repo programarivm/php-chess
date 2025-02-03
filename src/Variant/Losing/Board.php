@@ -4,7 +4,6 @@ namespace Chess\Variant\Losing;
 
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
-use Chess\Variant\VariantType;
 use Chess\Variant\Classical\B;
 use Chess\Variant\Classical\N;
 use Chess\Variant\Classical\P;
@@ -17,13 +16,10 @@ use Chess\Variant\Losing\PGN\Move;
 
 class Board extends AbstractBoard
 {
-    const VARIANT = VariantType::LOSING;
-
     public function __construct(array $pieces = null)
     {
         $this->square = new Square();
         $this->move = new Move();
-        $this->variant = VariantType::LOSING;
         if (!$pieces) {
             $this->attach(new R(Color::W, 'a1', $this->square, RType::R));
             $this->attach(new N(Color::W, 'b1', $this->square));

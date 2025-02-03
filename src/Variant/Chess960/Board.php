@@ -4,7 +4,6 @@ namespace Chess\Variant\Chess960;
 
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RandomBoardInterface;
-use Chess\Variant\VariantType;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Square;
@@ -13,8 +12,6 @@ use Chess\Variant\Chess960\StartPieces;
 
 class Board extends AbstractBoard implements RandomBoardInterface
 {
-    const VARIANT = '960';
-
     private array $startPos;
 
     public function __construct(
@@ -26,7 +23,6 @@ class Board extends AbstractBoard implements RandomBoardInterface
         $this->castlingRule = new CastlingRule($this->startPos);
         $this->square = new Square();
         $this->move = new Move();
-        $this->variant = VariantType::CLASSICAL;
         if (!$pieces) {
             $pieces = (new StartPieces($this->startPos))->create();
             $this->castlingAbility = CastlingRule::START;
