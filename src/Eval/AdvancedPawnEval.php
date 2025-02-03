@@ -58,7 +58,7 @@ class AdvancedPawnEval extends AbstractEval
     /**
      * Returns true if the pawn is advanced.
      *
-     * @param \namespace Chess\Tests\Unit\Variant\Classical; $pawn
+     * @param \Chess\Variant\Classical\P $pawn
      * @return bool
      */
     private function isAdvanced(P $pawn): bool
