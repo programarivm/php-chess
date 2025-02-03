@@ -12,7 +12,7 @@ use Chess\Variant\Chess960\FEN\StrToBoardFactory as Chess960FenStrToBoardFactory
 use Chess\Variant\Classical\Board as ClassicalBoard;
 use Chess\Variant\Classical\FEN\StrToBoardFactory as ClassicalFenStrToBoardFactory;
 use Chess\Variant\Dunsany\Board as DunsanyBoard;
-use Chess\Variant\Dunsany\FEN\StrToBoard as DunsanyFenStrToBoard;
+use Chess\Variant\Dunsany\FEN\StrToBoardFactory as DunsanyFenStrToBoardFactory;
 use Chess\Variant\Losing\Board as LosingBoard;
 use Chess\Variant\Losing\FEN\StrToBoard as LosingFenStrToBoard;
 use Chess\Variant\RacingKings\Board as RacingKingsBoard;
@@ -32,7 +32,7 @@ class FenToBoardFactory
         } elseif (is_a($board, Chess960Board::class)) {
             return Chess960FenStrToBoardFactory::create($fen, $board->getStartPos());
         } elseif (is_a($board, DunsanyBoard::class)) {
-            return (new DunsanyFenStrToBoard($fen))->create();
+            return DunsanyFenStrToBoardFactory::create($fen);
         } elseif (is_a($board, LosingBoard::class)) {
             return (new LosingFenStrToBoard($fen))->create();
         } elseif (is_a($board, RacingKingsBoard::class)) {
