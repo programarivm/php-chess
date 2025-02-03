@@ -19,10 +19,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     {
         $this->expectException(UnknownNotationException::class);
 
-        $board = FenToBoardFactory::create(
-            'foo',
-            new ClassicalBoard()
-        );
+        $board = FenToBoardFactory::create('foo', new ClassicalBoard());
     }
 
     /**
@@ -30,9 +27,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function classical_kaufman_01()
     {
-        $board = FenToBoardFactory::create(
-            '1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+',
-        );
+        $board = FenToBoardFactory::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
 
         $array = $board->toArray();
 
@@ -136,10 +131,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function classical_en_passant_b4_e6_b5_c5_bxc6()
     {
-        $board = FenToBoardFactory::create(
-            'rnbqkbnr/pp1p1ppp/4p3/1Pp5/8/8/P1PPPPPP/RNBQKBNR w KQkq c6',
-            new ClassicalBoard()
-        );
+        $board = FenToBoardFactory::create('rnbqkbnr/pp1p1ppp/4p3/1Pp5/8/8/P1PPPPPP/RNBQKBNR w KQkq c6');
 
         $board->play('w', 'bxc6');
 
