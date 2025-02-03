@@ -16,7 +16,6 @@ use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\CastlingRule;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Classical\PGN\Square;
@@ -43,8 +42,7 @@ class BoardTest extends AbstractUnitTestCase
             $movetext = file_get_contents(self::DATA_FOLDER."/pgn/$filename");
             $san = new SanMovetext($move, $movetext);
             if ($san->validate()) {
-                $board = (new StrToBoard('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -'))
-                    ->create();
+                $board = FenToBoardFactory::create('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -');
                 foreach ($san->moves as $key => $val) {
                     $this->assertTrue($board->play($board->turn, $val));
                 }
