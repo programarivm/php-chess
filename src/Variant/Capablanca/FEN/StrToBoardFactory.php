@@ -8,7 +8,6 @@ use Chess\Variant\PieceArrayFactory;
 use Chess\Variant\Capablanca\Board;
 use Chess\Variant\Capablanca\CastlingRule;
 use Chess\Variant\Capablanca\FEN\Str;
-use Chess\Variant\Capablanca\PGN\Piece;
 use Chess\Variant\Capablanca\PGN\Square;
 use Chess\Variant\Classical\FEN\StrToBoardFactory as ClassicalFenStrToBoardFactory;
 
@@ -20,7 +19,6 @@ class StrToBoardFactory
         $string = $fenStr->validate($string);
         $fields = array_filter(explode(' ', $string));
         $namespace = 'Capablanca';
-
         try {
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
@@ -31,11 +29,10 @@ class StrToBoardFactory
             $board = new Board($pieces, $fields[2]);
             $board->turn = $fields[1];
             $board->startFen = $string;
+            ClassicalFenStrToBoardFactory::enPassant($fields, $board);
         } catch (\Throwable $e) {
             throw new UnknownNotationException();
         }
-
-        ClassicalFenStrToBoardFactory::enPassant($fields, $board);
 
         return $board;
     }

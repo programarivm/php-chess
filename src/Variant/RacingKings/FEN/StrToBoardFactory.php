@@ -18,7 +18,6 @@ class StrToBoardFactory
         $string = $fenStr->validate($string);
         $fields = array_filter(explode(' ', $string));
         $namespace = 'RacingKings';
-
         try {
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),

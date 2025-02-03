@@ -19,7 +19,6 @@ class StrToBoardFactory
         $string = $fenStr->validate($string);
         $fields = array_filter(explode(' ', $string));
         $namespace = 'Classical';
-
         try {
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
@@ -30,11 +29,10 @@ class StrToBoardFactory
             $board = new Board($pieces, $fields[2]);
             $board->turn = $fields[1];
             $board->startFen = $string;
+            self::enPassant($fields, $board);
         } catch (\Throwable $e) {
             throw new UnknownNotationException();
         }
-
-        self::enPassant($fields, $board);
 
         return $board;
     }
