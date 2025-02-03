@@ -2,8 +2,8 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\AbsolutePinEval;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
 class AbsolutePinEvalTest extends AbstractUnitTestCase
@@ -13,9 +13,8 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
      */
     public function c62_ruy_lopez_steinitz_defense()
     {
-        $board = (new StrToBoard('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -');
+        
         $expectedResult = [
             'w' => 0,
             'b' => 3.2,
@@ -36,8 +35,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
      */
     public function c62_ruy_lopez_steinitz_defense_center_gambit_Bg4()
     {
-        $board = (new StrToBoard('r2qkbnr/ppp2ppp/2np4/1B2p3/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQkq -'))
-            ->create();
+        $board = FenToBoardFactory::create('r2qkbnr/ppp2ppp/2np4/1B2p3/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQkq -');
 
         $expectedResult = [
             'w' => 0,
@@ -59,8 +57,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
      */
     public function both_knights_pinned()
     {
-        $board = (new StrToBoard('r2qk1nr/ppp2ppp/2n5/1B1pp3/1b1PP1b1/2N1BN2/PPP2PPP/R2QK2R w KQkq -'))
-            ->create();
+        $board = FenToBoardFactory::create('r2qk1nr/ppp2ppp/2n5/1B1pp3/1b1PP1b1/2N1BN2/PPP2PPP/R2QK2R w KQkq -');
 
         $expectedResult = [
             'w' => 3.2,
@@ -83,8 +80,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
      */
     public function endgame_Qg5_check()
     {
-        $board = (new StrToBoard('1r4k1/7p/pqb5/3p2Q1/6P1/1PP4P/6B1/5R1K b - -'))
-            ->create();
+        $board = FenToBoardFactory::create('1r4k1/7p/pqb5/3p2Q1/6P1/1PP4P/6B1/5R1K b - -');
 
         $expected = [
             'w' => 0,
@@ -101,8 +97,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
      */
     public function endgame_Rb2_check()
     {
-        $board = (new StrToBoard('8/2rk2p1/4R1p1/1K1P4/4PR1P/8/1r5P/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/2rk2p1/4R1p1/1K1P4/4PR1P/8/1r5P/8 w - -');
 
         $expected = [
             'w' => 0,
@@ -119,9 +114,8 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
      */
     public function giuoco_piano()
     {
-        $board = (new StrToBoard('r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQ1RK1 b kq -');
+        
         $expected = [
             'w' => 1,
             'b' => 0,
@@ -137,8 +131,7 @@ class AbsolutePinEvalTest extends AbstractUnitTestCase
      */
     public function b20_sicilian_defense()
     {
-        $board = (new StrToBoard('r1b1kbnr/pp3ppp/2n1q3/4p3/1pP5/P4N2/1B1P1PPP/RN1QKB1R w KQkq -'))
-            ->create();
+        $board = FenToBoardFactory::create('r1b1kbnr/pp3ppp/2n1q3/4p3/1pP5/P4N2/1B1P1PPP/RN1QKB1R w KQkq -');
 
         $expected = [
             'w' => 0,

@@ -2,10 +2,9 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\RelativePinEval;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\Board;
 
 class RelativePinEvalTest extends AbstractUnitTestCase
 {
@@ -14,17 +13,15 @@ class RelativePinEvalTest extends AbstractUnitTestCase
      */
     public function c62_ruy_lopez_steinitz_defense()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $board = (new StrToBoard('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -'))
-            ->create();
+        $board = FenToBoardFactory::create('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -');
+        $relativePinEval = new RelativePinEval($board);
 
-        $result = (new RelativePinEval($board))->result;
-
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $relativePinEval->result);
     }
 
     /**
@@ -45,9 +42,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
             "The knight on f3 is relatively pinned by the bishop on g4 shielding White's queen on d1.",
         ];
 
-        $board = (new StrToBoard('r2qkbnr/ppp2ppp/2np4/1B2p3/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQkq -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('r2qkbnr/ppp2ppp/2np4/1B2p3/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQkq -');
         $relativePinEval = new RelativePinEval($board);
 
         $this->assertSame($expectedResult, $relativePinEval->result);
@@ -73,9 +68,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
             "The knight on e6 is relatively pinned by the rook on e3 shielding Black's queen on e8.",
         ];
 
-        $board = (new StrToBoard('4q1k1/8/4n3/8/8/4R3/8/6K1 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('4q1k1/8/4n3/8/8/4R3/8/6K1 w - -');
         $relativePinEval = new RelativePinEval($board);
 
         $this->assertSame($expectedResult, $relativePinEval->result);
@@ -101,9 +94,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
             "The knight on c6 is relatively pinned by the bishop on a4 shielding Black's queen on e8.",
         ];
 
-        $board = (new StrToBoard('4q1k1/8/2n5/8/B7/8/8/6K1 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('4q1k1/8/2n5/8/B7/8/8/6K1 w - -');
         $relativePinEval = new RelativePinEval($board);
 
         $this->assertSame($expectedResult, $relativePinEval->result);
@@ -129,9 +120,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
             "The knight on c6 is relatively pinned by the bishop on a4 shielding the rook on e8.",
         ];
 
-        $board = (new StrToBoard('4r1k1/8/2n5/8/B7/8/8/6K1 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('4r1k1/8/2n5/8/B7/8/8/6K1 w - -');
         $relativePinEval = new RelativePinEval($board);
 
         $this->assertSame($expectedResult, $relativePinEval->result);
@@ -157,9 +146,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
             "The knight on c6 is relatively pinned by the bishop on a4 shielding the rook on e8.",
         ];
 
-        $board = (new StrToBoard('4r1k1/8/2n5/8/B2R4/8/8/6K1 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('4r1k1/8/2n5/8/B2R4/8/8/6K1 w - -');
         $relativePinEval = new RelativePinEval($board);
 
         $this->assertSame($expectedResult, $relativePinEval->result);
@@ -181,9 +168,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $expectedElaboration = [];
 
-        $board = (new StrToBoard('4r1k1/4r3/4p3/8/8/8/8/4R1K1 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('4r1k1/4r3/4p3/8/8/8/8/4R1K1 w - -');
         $relativePinEval = new RelativePinEval($board);
 
         $this->assertSame($expectedResult, $relativePinEval->result);
@@ -205,9 +190,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $expectedElaboration = [];
 
-        $board = (new StrToBoard('rrb3k1/3qn1bp/3p4/1NpP4/P7/1PN1Bp1P/R2Q1P1K/1R6 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('rrb3k1/3qn1bp/3p4/1NpP4/P7/1PN1Bp1P/R2Q1P1K/1R6 w - -');
         $relativePinEval = new RelativePinEval($board);
 
         $this->assertSame($expectedResult, $relativePinEval->result);
@@ -229,9 +212,7 @@ class RelativePinEvalTest extends AbstractUnitTestCase
 
         $expectedElaboration = [];
 
-        $board = (new StrToBoard('8/7p/1pnnk3/3N1p2/2K2P2/P2B3P/8/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/7p/1pnnk3/3N1p2/2K2P2/P2B3P/8/8 w - -');
         $relativePinEval = new RelativePinEval($board);
 
         $this->assertSame($expectedResult, $relativePinEval->result);

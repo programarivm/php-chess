@@ -2,10 +2,9 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\RelativeForkEval;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\Board;
 
 class RelativeForkEvalTest extends AbstractUnitTestCase
 {
@@ -25,9 +24,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -54,9 +51,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
             "The knight on h6 is under a fork attack by the pawn on g5.",
         ];
 
-        $board = (new StrToBoard('8/1k6/5b1n/6P1/7K/8/8/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/1k6/5b1n/6P1/7K/8/8/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -80,9 +75,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/5k1n/6P1/7K/8/8/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/8/5k1n/6P1/7K/8/8/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -106,9 +99,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/5k1r/6P1/7K/8/8/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/8/5k1r/6P1/7K/8/8/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -132,9 +123,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/5k1q/6P1/7K/8/8/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/8/5k1q/6P1/7K/8/8/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -158,9 +147,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/1k6/4b1P1/2N4K/8/8/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/8/1k6/4b1P1/2N4K/8/8/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -184,9 +171,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/1k6/4n1P1/2N4K/8/8/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/8/1k6/4n1P1/2N4K/8/8/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -210,9 +195,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/2k5/5b2/6R1/8/2K5/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/8/2k5/5b2/6R1/8/2K5/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -236,9 +219,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/2k5/5b2/6Q1/8/2K5/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/8/2k5/5b2/6Q1/8/2K5/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -262,9 +243,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/2k5/5b2/6N1/8/2K5/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/8/2k5/5b2/6N1/8/2K5/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -291,9 +270,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
             "The rook on d6 is under a fork attack by the knight on c4.",
         ];
 
-        $board = (new StrToBoard('8/2k5/3r4/8/2N5/5K2/1r6/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/2k5/3r4/8/2N5/5K2/1r6/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -320,9 +297,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
             "The rook on f7 is under a fork attack by the knight on d6.",
         ];
 
-        $board = (new StrToBoard('8/5R2/2kn4/8/2Q5/8/6K1/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/5R2/2kn4/8/2Q5/8/6K1/8 w - -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -346,9 +321,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('rn1qk2r/pb1pbppp/1p2pn2/8/2Pp4/2N2NP1/PP2PPBP/R1BQ1RK1 w kq -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('rn1qk2r/pb1pbppp/1p2pn2/8/2Pp4/2N2NP1/PP2PPBP/R1BQ1RK1 w kq -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -372,9 +345,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('r1bqk2r/pp1n1pp1/2pbpn1p/6N1/3P4/3B1N2/PPP1QPPP/R1B1K2R w KQkq -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('r1bqk2r/pp1n1pp1/2pbpn1p/6N1/3P4/3B1N2/PPP1QPPP/R1B1K2R w KQkq -');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);
@@ -398,9 +369,7 @@ class RelativeForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('rnbqkb1r/p4p2/2p1pn1p/1p2P1p1/2pP3B/2N2N2/PP3PPP/R2QKB1R w KQkq g6'))
-            ->create();
-
+        $board = FenToBoardFactory::create('rnbqkb1r/p4p2/2p1pn1p/1p2P1p1/2pP3B/2N2N2/PP3PPP/R2QKB1R w KQkq g6');
         $relativeForkEval = new RelativeForkEval($board);
 
         $this->assertSame($expectedResult, $relativeForkEval->result);

@@ -2,8 +2,8 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\AbsoluteForkEval;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
 class AbsoluteForkEvalTest extends AbstractUnitTestCase
@@ -24,8 +24,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -'))
-            ->create();
+        $board = FenToBoardFactory::create('r1bqkbnr/ppp2ppp/2np4/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -50,8 +49,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/1k6/5b1n/6P1/7K/8/8/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/1k6/5b1n/6P1/7K/8/8/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -78,8 +76,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             "The pawn on g5 is attacking both the knight on h6 and the opponent's king at the same time.",
         ];
 
-        $board = (new StrToBoard('8/8/5k1n/6P1/7K/8/8/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/8/5k1n/6P1/7K/8/8/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -106,8 +103,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             "The pawn on g5 is attacking both the rook on h6 and the opponent's king at the same time.",
         ];
 
-        $board = (new StrToBoard('8/8/5k1r/6P1/7K/8/8/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/8/5k1r/6P1/7K/8/8/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -134,8 +130,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             "The pawn on g5 is attacking both Black's queen on h6 and the opponent's king at the same time.",
         ];
 
-        $board = (new StrToBoard('8/8/5k1q/6P1/7K/8/8/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/8/5k1q/6P1/7K/8/8/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -162,8 +157,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             "The knight on c4 is attacking both the bishop on e5 and the opponent's king at the same time.",
         ];
 
-        $board = (new StrToBoard('8/8/1k6/4b1P1/2N4K/8/8/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/8/1k6/4b1P1/2N4K/8/8/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -187,9 +181,8 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
 
         $expectedElaboration = [
         ];
-
-        $board = (new StrToBoard('8/8/1k6/4n1P1/2N4K/8/8/8 w - -'))
-            ->create();
+    
+        $board = FenToBoardFactory::create('8/8/1k6/4n1P1/2N4K/8/8/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -216,8 +209,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             "The bishop on f5 is attacking both the rook on g4 and the opponent's king at the same time.",
         ];
 
-        $board = (new StrToBoard('8/8/2k5/5b2/6R1/8/2K5/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/8/2k5/5b2/6R1/8/2K5/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -244,8 +236,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
             "The bishop on f5 is attacking both White's queen on g4 and the opponent's king at the same time.",
         ];
 
-        $board = (new StrToBoard('8/8/2k5/5b2/6Q1/8/2K5/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/8/2k5/5b2/6Q1/8/2K5/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -270,8 +261,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/8/2k5/5b2/6N1/8/2K5/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/8/2k5/5b2/6N1/8/2K5/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -296,8 +286,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/2k5/3r4/8/2N5/5K2/1r6/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/2k5/3r4/8/2N5/5K2/1r6/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 
@@ -322,8 +311,7 @@ class AbsoluteForkEvalTest extends AbstractUnitTestCase
         $expectedElaboration = [
         ];
 
-        $board = (new StrToBoard('8/5R2/2kn4/8/2Q5/8/6K1/8 w - -'))
-            ->create();
+        $board = FenToBoardFactory::create('8/5R2/2kn4/8/2Q5/8/6K1/8 w - -');
 
         $absoluteForkEval = new AbsoluteForkEval($board);
 

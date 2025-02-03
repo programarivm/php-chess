@@ -2,8 +2,8 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\DirectOppositionEval;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
 class DirectOppositionEvalTest extends AbstractUnitTestCase
@@ -18,7 +18,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $board = (new StrToBoard('8/8/2k5/8/5K2/8/8/8 w - - 0 1'))->create();
+        $board = FenToBoardFactory::create('8/8/2k5/8/5K2/8/8/8 w - - 0 1');
         $result = (new DirectOppositionEval($board))->result;
 
         $this->assertSame($expected, $result);
@@ -38,7 +38,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             "The black king has the direct opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/8/2k5/8/2K5/8/8/8 w - - 0 1'))->create();
+        $board = FenToBoardFactory::create('8/8/2k5/8/2K5/8/8/8 w - - 0 1');
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
@@ -59,7 +59,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             "The white king has the direct opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/8/2k5/8/2K5/8/8/8 b - - 0 1'))->create();
+        $board = FenToBoardFactory::create('8/8/2k5/8/2K5/8/8/8 b - - 0 1');
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
@@ -76,7 +76,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $board = (new StrToBoard('8/2k5/8/8/2K5/8/8/8 w - - 0 1'))->create();
+        $board = FenToBoardFactory::create('8/2k5/8/8/2K5/8/8/8 w - - 0 1');
         $result = (new DirectOppositionEval($board))->result;
 
         $this->assertSame($expected, $result);
@@ -96,7 +96,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             "The white king has the direct opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/8/8/8/8/k7/8/K7 b - - 0 1'))->create();
+        $board = FenToBoardFactory::create('8/8/8/8/8/k7/8/K7 b - - 0 1');
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
@@ -117,7 +117,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             "The white king has the direct opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/8/5k1K/8/7p/8/8/8 b - - 0 1'))->create();
+        $board = FenToBoardFactory::create('8/8/5k1K/8/7p/8/8/8 b - - 0 1');
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
@@ -138,7 +138,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             "The black king has the direct opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/8/4k1K1/8/7p/8/8/8 w - -'))->create();
+        $board = FenToBoardFactory::create('8/8/4k1K1/8/7p/8/8/8 w - -');
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
@@ -159,7 +159,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             "The white king has the direct opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/5k2/8/5K2/7p/8/8/8 b - -'))->create();
+        $board = FenToBoardFactory::create('8/5k2/8/5K2/7p/8/8/8 b - -');
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
@@ -180,7 +180,7 @@ class DirectOppositionEvalTest extends AbstractUnitTestCase
             "The black king has the direct opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/5k2/8/5K2/8/7p/8/8 w - -'))->create();
+        $board = FenToBoardFactory::create('8/5k2/8/5K2/8/7p/8/8 w - -');
         $directOppositionEval = new DirectOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);

@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\BishopPairEval;
 use Chess\Play\SanPlay;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
 class BishopPairEvalTest extends AbstractUnitTestCase
@@ -14,16 +14,16 @@ class BishopPairEvalTest extends AbstractUnitTestCase
      */
     public function B25()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
         $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
-        $result = (new BishopPairEval($board))->result;
+        $bishopPairEval = new BishopPairEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $bishopPairEval->result);
     }
 
     /**
@@ -53,15 +53,15 @@ class BishopPairEvalTest extends AbstractUnitTestCase
      */
     public function B_B_vs_b_b()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $board = (new StrToBoard('8/5b2/4k3/4b3/8/8/1KBB4/8 w - -'))->create();
-        $result = (new BishopPairEval($board))->result;
+        $board = FenToBoardFactory::create('8/5b2/4k3/4b3/8/8/1KBB4/8 w - -');
+        $bishopPairEval = new BishopPairEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $bishopPairEval->result);
     }
 
     /**
@@ -78,7 +78,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             "White has the bishop pair.",
         ];
 
-        $board = (new StrToBoard('8/5n2/4k3/4b3/8/8/1KBB4/8 w - -'))->create();
+        $board = FenToBoardFactory::create('8/5n2/4k3/4b3/8/8/1KBB4/8 w - -');
         $bishopPairEval = new BishopPairEval($board);
 
         $this->assertSame($expectedResult, $bishopPairEval->result);
@@ -99,7 +99,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             "Black has the bishop pair.",
         ];
 
-        $board = (new StrToBoard('8/3k4/2bb4/8/8/4BN2/4K3/8 w - -'))->create();
+        $board = FenToBoardFactory::create('8/3k4/2bb4/8/8/4BN2/4K3/8 w - -');
         $bishopPairEval = new BishopPairEval($board);
 
         $this->assertSame($expectedResult, $bishopPairEval->result);
@@ -111,15 +111,14 @@ class BishopPairEvalTest extends AbstractUnitTestCase
      */
     public function P_P_R_N_vs_q()
     {
-        $expected = [
+        $expectedResult = [
             'w' => 0,
             'b' => 0,
         ];
 
-        $fen = '3k4/5RN1/4P3/5P2/7K/8/8/6q1 b - -';
-        $board = (new StrToBoard($fen))->create();
-        $result = (new BishopPairEval($board))->result;
+        $board = FenToBoardFactory::create('3k4/5RN1/4P3/5P2/7K/8/8/6q1 b - -');
+        $bishopPairEval = new BishopPairEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $bishopPairEval->result);
     }
 }

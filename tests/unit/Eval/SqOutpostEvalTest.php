@@ -4,9 +4,7 @@ namespace Chess\Tests\Unit\Eval;
 
 use Chess\FenToBoardFactory;
 use Chess\Eval\SqOutpostEval;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\Board;
 
 class SqOutpostEvalTest extends AbstractUnitTestCase
 {
@@ -14,78 +12,72 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
      * @dataProvider wAdvancingData
      * @test
      */
-    public function w_advancing($expected, $fen)
+    public function w_advancing($expectedResult, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
+        $sqOutpostEval = new SqOutpostEval($board);
 
-        $result = (new SqOutpostEval($board))->result;
-
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $sqOutpostEval->result);
     }
 
     /**
      * @dataProvider wAdvancingUnderAttackData
      * @test
      */
-    public function w_advancing_under_attack($expected, $fen)
+    public function w_advancing_under_attack($expectedResult, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
+        $sqOutpostEval = new SqOutpostEval($board);
 
-        $result = (new SqOutpostEval($board))->result;
-
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $sqOutpostEval->result);
     }
 
     /**
      * @dataProvider wAdvancingCanBeAttackedData
      * @test
      */
-    public function w_advancing_can_be_attacked($expected, $fen)
+    public function w_advancing_can_be_attacked($expectedResult, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
+        $sqOutpostEval = new SqOutpostEval($board);
 
-        $result = (new SqOutpostEval($board))->result;
-
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $sqOutpostEval->result);
     }
 
     /**
      * @dataProvider bAdvancingData
      * @test
      */
-    public function b_advancing($expected, $fen)
+    public function b_advancing($expectedResult, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
+        $sqOutpostEval = new SqOutpostEval($board);
 
-        $result = (new SqOutpostEval($board))->result;
-
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $sqOutpostEval->result);
     }
 
     /**
      * @dataProvider bAdvancingUnderAttackData
      * @test
      */
-    public function b_advancing_under_attack($expected, $fen)
+    public function b_advancing_under_attack($expectedResult, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
+        $sqOutpostEval = new SqOutpostEval($board);
 
-        $result = (new SqOutpostEval($board))->result;
-
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $sqOutpostEval->result);
     }
 
     /**
      * @dataProvider bAdvancingCanBeAttackedData
      * @test
      */
-    public function b_advancing_can_be_attacked($expected, $fen)
+    public function b_advancing_can_be_attacked($expectedResult, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
+        $sqOutpostEval = new SqOutpostEval($board);
 
-        $result = (new SqOutpostEval($board))->result;
-
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $sqOutpostEval->result);
     }
 
     /**
@@ -107,7 +99,6 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('5k2/7K/8/8/8/P7/8/8 w - -');
-
         $sqOutpostEval = new SqOutpostEval($board);
 
         $this->assertSame($expectedResult, $sqOutpostEval->result);
@@ -138,7 +129,6 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
         ];
 
         $board = FenToBoardFactory::create('5k2/7K/8/2p5/P7/8/8/8 w - -');
-
         $sqOutpostEval = new SqOutpostEval($board);
 
         $this->assertSame($expectedResult, $sqOutpostEval->result);
@@ -411,16 +401,15 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
      */
     public function d17()
     {
-        $expected = [
+        $expectedResult = [
             'w' => [],
             'b' => [],
         ];
 
-        $fen = 'r3kb1r/ppq2ppp/2p2n2/4nb2/P1N5/2N3P1/1P2PP1P/R1BQKB1R w KQkq -';
-        $board = (new StrToBoard($fen))->create();
-        $result = (new SqOutpostEval($board))->result;
+        $board = FenToBoardFactory::create('r3kb1r/ppq2ppp/2p2n2/4nb2/P1N5/2N3P1/1P2PP1P/R1BQKB1R w KQkq -');
+        $sqOutpostEval = new SqOutpostEval($board);
 
-        $this->assertSame($expected, $result);
+        $this->assertSame($expectedResult, $sqOutpostEval->result);
     }
 
     /**
@@ -443,8 +432,7 @@ class SqOutpostEvalTest extends AbstractUnitTestCase
             "These are outpost squares: d4, d5.",
         ];
 
-        $fen = 'r1b2rk1/2q1bppp/p2p1n2/np2p3/3PP3/5N1P/PPBN1PP1/R1BQR1K1 b - - 0 13';
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create('r1b2rk1/2q1bppp/p2p1n2/np2p3/3PP3/5N1P/PPBN1PP1/R1BQR1K1 b - - 0 13');
         $sqOutpostEval = new SqOutpostEval($board);
 
         $this->assertSame($expectedResult, $sqOutpostEval->result);

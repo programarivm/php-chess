@@ -2,8 +2,8 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\DiagonalOppositionEval;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
 class DiagonalOppositionEvalTest extends AbstractUnitTestCase
@@ -22,7 +22,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
             "The white king has the diagonal opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/8/2K5/8/4k3/8/8/8 b - - 0 1'))->create();
+        $board = FenToBoardFactory::create('8/8/2K5/8/4k3/8/8/8 b - - 0 1');
         $directOppositionEval = new DiagonalOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
@@ -43,7 +43,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
             "The white king has the diagonal opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('5k2/6p1/3K2P1/5P2/8/8/8/8 b - - 0 1'))->create();
+        $board = FenToBoardFactory::create('5k2/6p1/3K2P1/5P2/8/8/8/8 b - - 0 1');
         $directOppositionEval = new DiagonalOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);
@@ -64,7 +64,7 @@ class DiagonalOppositionEvalTest extends AbstractUnitTestCase
             "The black king has the diagonal opposition preventing the advance of the other king.",
         ];
 
-        $board = (new StrToBoard('8/8/8/8/8/2K5/8/k7 w - - 0 1'))->create();
+        $board = FenToBoardFactory::create('8/8/8/8/8/2K5/8/k7 w - - 0 1');
         $directOppositionEval = new DiagonalOppositionEval($board);
 
         $this->assertSame($expectedResult, $directOppositionEval->result);

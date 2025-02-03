@@ -2,11 +2,11 @@
 
 namespace Chess\Tests\Unit\Eval;
 
+use Chess\FenToBoardFactory;
 use Chess\Eval\AttackEval;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
-use Chess\Variant\Classical\FEN\StrToBoard;
 
 class AttackEvalTest extends AbstractUnitTestCase
 {
@@ -44,7 +44,7 @@ class AttackEvalTest extends AbstractUnitTestCase
             "The bishop on c4 is under threat of being attacked.",
         ];
 
-        $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1p6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6'))->create();
+        $board = FenToBoardFactory::create('r1bqkbnr/5ppp/p1npp3/1p6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6');
         $attackEval = new AttackEval($board);
 
         $this->assertSame($expectedResult, $attackEval->result);
@@ -66,7 +66,7 @@ class AttackEvalTest extends AbstractUnitTestCase
 
         $expectedElaboration = [];
 
-        $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1p6/4P3/1BN2N2/PP2QPPP/R1B2RK1 b kq -'))->create();
+        $board = FenToBoardFactory::create('r1bqkbnr/5ppp/p1npp3/1p6/4P3/1BN2N2/PP2QPPP/R1B2RK1 b kq -');
         $attackEval = new AttackEval($board);
 
         $this->assertSame($expectedResult, $attackEval->result);
@@ -126,7 +126,7 @@ class AttackEvalTest extends AbstractUnitTestCase
             "The knight on b5 is under threat of being attacked.",
         ];
 
-        $board = (new StrToBoard('r1bqkbnr/5ppp/p1npp3/1n6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6'))->create();
+        $board = FenToBoardFactory::create('r1bqkbnr/5ppp/p1npp3/1n6/2B1P3/2N2N2/PP2QPPP/R1B2RK1 w kq b6');
         $attackEval = new AttackEval($board);
 
         $this->assertSame($expectedResult, $attackEval->result);
@@ -152,7 +152,7 @@ class AttackEvalTest extends AbstractUnitTestCase
             "The pawn on d4 is under threat of being attacked.",
         ];
 
-        $board = (new StrToBoard('6k1/6p1/2n2b2/8/3P4/5N2/2K5/8 w - -'))->create();
+        $board = FenToBoardFactory::create('6k1/6p1/2n2b2/8/3P4/5N2/2K5/8 w - -');
         $attackEval = new AttackEval($board);
 
         $this->assertSame($expectedResult, $attackEval->result);
@@ -174,7 +174,7 @@ class AttackEvalTest extends AbstractUnitTestCase
             "Black has a moderate attack advantage.",
         ];
 
-        $board = (new StrToBoard('2r3k1/8/8/2q5/8/8/2N5/1K6 w - -'))->create();
+        $board = FenToBoardFactory::create('2r3k1/8/8/2q5/8/8/2N5/1K6 w - -');
         $attackEval = new AttackEval($board);
 
         $this->assertSame($expectedResult, $attackEval->result);
@@ -299,9 +299,7 @@ class AttackEvalTest extends AbstractUnitTestCase
             "The pawn on e5 is under threat of being attacked.",
         ];
 
-        $board = (new StrToBoard('r2qkbnr/ppp2ppp/2np4/1B2p3/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQkq -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('r2qkbnr/ppp2ppp/2np4/1B2p3/3PP1b1/5N2/PPP2PPP/RNBQK2R w KQkq -');
         $attackEval = new AttackEval($board);
 
         $this->assertSame($expectedResult, $attackEval->result);
@@ -323,9 +321,7 @@ class AttackEvalTest extends AbstractUnitTestCase
 
         $expectedElaboration = [];
 
-        $board = (new StrToBoard('8/p4pk1/6b1/3P1PQ1/8/P1q3K1/2p3B1/8 w - -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('8/p4pk1/6b1/3P1PQ1/8/P1q3K1/2p3B1/8 w - -');
         $attackEval = new AttackEval($board);
 
         $this->assertSame($expectedResult, $attackEval->result);
@@ -347,9 +343,7 @@ class AttackEvalTest extends AbstractUnitTestCase
 
         $expectedElaboration = [];
 
-        $board = (new StrToBoard('b3k2r/5p2/pR2p3/r7/2pbPp2/P1N2R1P/1PP3P1/6K1 w k -'))
-            ->create();
-
+        $board = FenToBoardFactory::create('b3k2r/5p2/pR2p3/r7/2pbPp2/P1N2R1P/1PP3P1/6K1 w k -');
         $attackEval = new AttackEval($board);
 
         $this->assertSame($expectedResult, $attackEval->result);

@@ -4,7 +4,6 @@ namespace Chess\Tests\Unit\Eval;
 
 use Chess\FenToBoardFactory;
 use Chess\Eval\BishopOutpostEval;
-use Chess\Variant\Classical\FEN\StrToBoard;
 use Chess\Tests\AbstractUnitTestCase;
 
 class BishopOutpostEvalTest extends AbstractUnitTestCase
@@ -15,7 +14,7 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
      */
     public function w_advancing($expected, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
 
         $result = (new BishopOutpostEval($board))->result;
 
@@ -28,7 +27,7 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
      */
     public function w_advancing_under_attack($expected, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
 
         $result = (new BishopOutpostEval($board))->result;
 
@@ -41,7 +40,7 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
      */
     public function w_advancing_can_be_attacked($expected, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
 
         $result = (new BishopOutpostEval($board))->result;
 
@@ -54,7 +53,7 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
      */
     public function b_advancing($expected, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
 
         $result = (new BishopOutpostEval($board))->result;
 
@@ -67,7 +66,7 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
      */
     public function b_advancing_under_attack($expected, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
 
         $result = (new BishopOutpostEval($board))->result;
 
@@ -80,7 +79,7 @@ class BishopOutpostEvalTest extends AbstractUnitTestCase
      */
     public function b_advancing_can_be_attacked($expected, $fen)
     {
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
 
         $result = (new BishopOutpostEval($board))->result;
 
