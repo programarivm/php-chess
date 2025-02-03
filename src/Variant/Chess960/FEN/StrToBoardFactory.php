@@ -8,6 +8,7 @@ use Chess\Variant\PieceArrayFactory;
 use Chess\Variant\Chess960\Board;
 use Chess\Variant\Chess960\CastlingRule;
 use Chess\Variant\Classical\FEN\Str;
+use Chess\Variant\Classical\FEN\StrToBoardFactory as ClassicalFenStrToBoardFactory;
 use Chess\Variant\Classical\PGN\Square;
 
 class StrToBoardFactory
@@ -33,15 +34,7 @@ class StrToBoardFactory
             throw new UnknownNotationException();
         }
 
-        if ($fields[3] !== '-') {
-            foreach ($board->pieces($fields[1]) as $piece) {
-                if ($piece->id === Piece::P) {
-                    if (in_array($fields[3], $piece->xSqs)) {
-                        $piece->xEnPassantSq = $fields[3];
-                    }
-                }
-            }
-        }
+        ClassicalFenStrToBoardFactory::enPassant($fields, $board);
 
         return $board;
     }

@@ -34,6 +34,13 @@ class StrToBoardFactory
             throw new UnknownNotationException();
         }
 
+        self::enPassant($fields, $board);
+
+        return $board;
+    }
+
+    public static function enPassant(array $fields, AbstractBoard $board) 
+    {
         if ($fields[3] !== '-') {
             foreach ($board->pieces($fields[1]) as $piece) {
                 if ($piece->id === Piece::P) {
@@ -43,7 +50,5 @@ class StrToBoardFactory
                 }
             }
         }
-
-        return $board;
     }
 }

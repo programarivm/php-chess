@@ -10,6 +10,7 @@ use Chess\Variant\Capablanca\CastlingRule;
 use Chess\Variant\Capablanca\FEN\Str;
 use Chess\Variant\Capablanca\PGN\Piece;
 use Chess\Variant\Capablanca\PGN\Square;
+use Chess\Variant\Classical\FEN\StrToBoardFactory as ClassicalFenStrToBoardFactory;
 
 class StrToBoardFactory
 {
@@ -34,15 +35,7 @@ class StrToBoardFactory
             throw new UnknownNotationException();
         }
 
-        if ($fields[3] !== '-') {
-            foreach ($board->pieces($fields[1]) as $piece) {
-                if ($piece->id === Piece::P) {
-                    if (in_array($fields[3], $piece->xSqs)) {
-                        $piece->xEnPassantSq = $fields[3];
-                    }
-                }
-            }
-        }
+        ClassicalFenStrToBoardFactory::enPassant($fields, $board);
 
         return $board;
     }
