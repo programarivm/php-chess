@@ -5,6 +5,8 @@ namespace Chess\Variant;
 class VariantType
 {
     const CAPABLANCA = 'capablanca';
+
+    const CAPABLANCA_FISCHER = 'capablanca-fischer';
     
     const CHESS_960 = '960';
     
