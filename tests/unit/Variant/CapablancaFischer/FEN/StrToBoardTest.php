@@ -2,8 +2,9 @@
 
 namespace Chess\Tests\Unit\Variant\CapablancaFischer\FEN;
 
+use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\CapablancaFischer\FEN\StrToBoard;
+use Chess\Variant\CapablancaFischer\Board;
 
 class StrToBoardTest extends AbstractUnitTestCase
 {
@@ -14,10 +15,10 @@ class StrToBoardTest extends AbstractUnitTestCase
     {
         $startPos = ['A', 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R', 'C' ];
 
-        $board = (new StrToBoard(
+        $board = FenToBoardFactory::create(
             'arnbqkbnrc/pppppppppp/10/10/5P4/10/PPPPP1PPPP/ARNBQKBNRC b KQkq e3 0 1',
-            $startPos
-        ))->create();
+            new Board($startPos)
+        );
 
         $array = $board->toArray();
 

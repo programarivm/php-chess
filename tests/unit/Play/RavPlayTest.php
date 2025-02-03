@@ -5,7 +5,6 @@ namespace Chess\Tests\Unit\Play;
 use Chess\FenToBoardFactory;
 use Chess\Play\RavPlay;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\FEN\StrToBoard;
 
 class RavPlayTest extends AbstractUnitTestCase
 {
@@ -382,7 +381,7 @@ class RavPlayTest extends AbstractUnitTestCase
             '6...Kd8 7.Ra8#',
         ];
 
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
         $ravPlay = new RavPlay($movetext, $board);
 
         $this->assertSame($expected, $ravPlay->ravMovetext->breakdown);
@@ -432,7 +431,7 @@ class RavPlayTest extends AbstractUnitTestCase
             'R2k4/8/3K4/8/8/8/8/8 b - -',
         ];
 
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
         $ravPlay = (new RavPlay($movetext, $board))->validate();
 
         $this->assertSame($expected, $ravPlay->fen);
@@ -480,7 +479,7 @@ class RavPlayTest extends AbstractUnitTestCase
             '8/8/8/8/8/2K5/8/R1k5 b - -',
         ];
 
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
         $ravPlay = (new RavPlay($movetext, $board))->validate();
 
         $this->assertSame($expected, $ravPlay->fen);

@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Play;
 
+use Chess\FenToBoardFactory;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 
 class SanPlayTest extends AbstractUnitTestCase
 {
@@ -47,7 +47,7 @@ class SanPlayTest extends AbstractUnitTestCase
     public function ellipsis_Nc6_Bc4()
     {
         $fen = 'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -';
-        $board = (new ClassicalFenStrToBoard($fen))->create();
+        $board = FenToBoardFactory::create($fen);
         $movetext = '2...Nc6 3.Bc4';
         $board = (new SanPlay($movetext, $board))->validate()->board;
         $expected = '1...Nc6 2.Bc4';

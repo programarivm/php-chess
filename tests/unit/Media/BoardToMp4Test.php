@@ -2,10 +2,11 @@
 
 namespace Chess\Tests\Unit\Media;
 
+use Chess\FenToBoardFactory;
 use Chess\Media\BoardToMp4;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Chess960\FEN\StrToBoard as Chess960FenStrToBoard;
-use Chess\Variant\Classical\Board;
+use Chess\Variant\Chess960\Board as Chess960Board;
+use Chess\Variant\Classical\Board as ClassicalBoard;
 
 class BoardToMp4Test extends AbstractUnitTestCase
 {
@@ -23,7 +24,7 @@ class BoardToMp4Test extends AbstractUnitTestCase
     {
         $A74 = file_get_contents(self::DATA_FOLDER.'/sample/A74.pgn');
 
-        $board = new Board();
+        $board = new ClassicalBoard();
 
         $filename = (new BoardToMp4(
             $A74,
@@ -43,7 +44,7 @@ class BoardToMp4Test extends AbstractUnitTestCase
 
         $startPos = ['Q', 'R', 'K', 'R', 'N', 'N', 'B', 'B'];
 
-        $board = (new Chess960FenStrToBoard($fen, $startPos))->create();
+        $board = FenToBoardFactory::create($fen, new Chess960Board($startPos));
 
         $movetext = '1.Bf2 Re8 2.Nd3 O-O-O 3.O-O';
 
@@ -65,7 +66,7 @@ class BoardToMp4Test extends AbstractUnitTestCase
 
         $startPos = ['B', 'N', 'N', 'B', 'Q', 'R', 'K', 'R'];
 
-        $board = (new Chess960FenStrToBoard($fen, $startPos))->create();
+        $board = FenToBoardFactory::create($fen, new Chess960Board($startPos));
 
         $movetext = '1.Bc2 O-O-O 2.Qc1 Rhe8 3.Rd1 h6 4.O-O';
 

@@ -2,12 +2,12 @@
 
 namespace Chess\Tests\Unit;
 
+use Chess\FenToBoardFactory;
 use Chess\SanPlotter;
 use Chess\Eval\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\Board;
-use Chess\Variant\Classical\FEN\StrToBoard;
 
 class SanPlotterTest extends AbstractUnitTestCase
 {
@@ -100,8 +100,7 @@ class SanPlotterTest extends AbstractUnitTestCase
     {
         $expected = [ 0, 1.0 ];
 
-        $fen = 'rnbqkb1r/pppppp1p/5np1/8/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq -';
-        $board = (new StrToBoard($fen))->create();
+        $board = FenToBoardFactory::create('rnbqkb1r/pppppp1p/5np1/8/2PP4/2N5/PP2PPPP/R1BQKBNR b KQkq -');
         $board->playLan('b', 'f8g7');
         $board->playLan('w', 'e2e4');
         $name = 'Space';
