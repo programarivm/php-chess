@@ -4,7 +4,7 @@ namespace Chess\Variant\Losing\FEN;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
-use Chess\Variant\PieceArray;
+use Chess\Variant\PieceArrayFactory;
 use Chess\Variant\Classical\CastlingRule;
 use Chess\Variant\Classical\FEN\StrToBoard as ClassicalFenStrToBoard;
 use Chess\Variant\Classical\PGN\Square;
@@ -27,12 +27,12 @@ class StrToBoard extends ClassicalFenStrToBoard
     public function create(): AbstractBoard
     {
         try {
-            $pieces = (new PieceArray(
+            $pieces = PieceArrayFactory::create(
                 $this->fenStr->toArray($this->fields[0]),
                 $this->square,
                 $this->castlingRule,
                 $this->namespace
-            ))->pieces;
+            );
             $board = new Board($pieces, $this->castlingAbility);
             $board->turn = $this->fields[1];
             $board->startFen = $this->string;

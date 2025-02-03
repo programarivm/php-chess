@@ -9,12 +9,11 @@ use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Classical\CastlingRule;
 
-class PieceArray
+class PieceArrayFactory
 {
-    public array $pieces;
-
-    public function __construct(array $array, Square $square, CastlingRule $castlingRule = null, string $namespace)
+    public static function create(array $array, Square $square, CastlingRule $castlingRule = null, string $namespace)
     {
+        $pieces = [];
         foreach ($array as $i => $rank) {
             foreach ($rank as $j => $char) {
                 if ($char !== '.') {
@@ -27,18 +26,20 @@ class PieceArray
                     }
                     if ($char === Piece::R) {
                         if ($sq === $castlingRule?->rule[$color][Piece::R][Castle::LONG]['from']) {
-                            $this->pieces[] = new R($color, $sq, $square, RType::CASTLE_LONG);
+                            $pieces[] = new R($color, $sq, $square, RType::CASTLE_LONG);
                         } elseif ($sq === $castlingRule?->rule[$color][Piece::R][Castle::SHORT]['from']) {
-                            $this->pieces[] = new R($color, $sq, $square, RType::CASTLE_SHORT);
+                            $pieces[] = new R($color, $sq, $square, RType::CASTLE_SHORT);
                         } else {
-                            $this->pieces[] = new R($color, $sq, $square, RType::R);
+                            $pieces[] = new R($color, $sq, $square, RType::R);
                         }
                     } else {
                         $class = VariantType::getClass($char, $namespace);
-                        $this->pieces[] = new $class($color, $sq, $square);
+                        $pieces[] = new $class($color, $sq, $square);
                     }
                 }
             }
         }
+
+        return $pieces;
     }
 }
