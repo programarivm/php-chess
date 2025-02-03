@@ -11,7 +11,12 @@ use Chess\Variant\Classical\CastlingRule;
 
 class PieceArrayFactory
 {
-    public static function create(array $array, Square $square, CastlingRule $castlingRule = null, string $namespace)
+    public static function create(
+        array $array, 
+        Square $square, 
+        CastlingRule $castlingRule = null, 
+        string $namespace
+    ): array
     {
         $pieces = [];
         foreach ($array as $i => $rank) {
