@@ -4,7 +4,6 @@ namespace Chess\Variant\Classical;
 
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
-use Chess\Variant\VariantType;
 use Chess\Variant\Classical\B;
 use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\N;
@@ -18,14 +17,11 @@ use Chess\Variant\Classical\PGN\Square;
 
 class Board extends AbstractBoard
 {
-    const VARIANT = VariantType::CLASSICAL;
-
     public function __construct(array $pieces = null, string $castlingAbility = '-') {
         $this->castlingRule = new CastlingRule();
         $this->square = new Square();
         $this->move = new Move();
         $this->castlingAbility = CastlingRule::START;
-        $this->variant = VariantType::CLASSICAL;
         if (!$pieces) {
             $this->attach(new R(Color::W, 'a1', $this->square, RType::CASTLE_LONG));
             $this->attach(new N(Color::W, 'b1', $this->square));

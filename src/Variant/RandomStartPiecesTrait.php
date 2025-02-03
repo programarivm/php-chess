@@ -3,15 +3,12 @@
 namespace Chess\Variant;
 
 use Chess\Variant\RType;
-use Chess\Variant\VariantType;
 use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Piece;
 
 trait RandomStartPiecesTrait
 {
-    protected string $variant;
-
     protected array $startPos;
 
     protected array $startPieces = [];
@@ -23,7 +20,7 @@ trait RandomStartPiecesTrait
         foreach ($this->startPos as $key => $val) {
             $wSq = chr(97 + $key) . '1';
             $bSq = chr(97 + $key) . $this->square::SIZE['ranks'];
-            $class = VariantType::getClass($this->variant, $val);
+            $class = VariantType::getClass($val, $this->namespace);
             if ($val !== Piece::R) {
                 $this->startPieces[] =  new $class(Color::W, $wSq, $this->square);
                 $this->startPieces[] =  new $class(Color::B, $bSq, $this->square);

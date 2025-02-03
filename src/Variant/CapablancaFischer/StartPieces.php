@@ -3,7 +3,6 @@
 namespace Chess\Variant\CapablancaFischer;
 
 use Chess\Variant\RandomStartPiecesTrait;
-use Chess\Variant\VariantType;
 use Chess\Variant\Capablanca\PGN\Square;
 
 class StartPieces
@@ -12,7 +11,7 @@ class StartPieces
 
     public function __construct(array $startPos)
     {
-        $this->variant = VariantType::CAPABLANCA;
+        $this->namespace = 'Capablanca';
 
         $this->startPos = $startPos;
 

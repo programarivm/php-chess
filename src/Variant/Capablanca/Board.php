@@ -4,7 +4,6 @@ namespace Chess\Variant\Capablanca;
 
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
-use Chess\Variant\VariantType;
 use Chess\Variant\Capablanca\A;
 use Chess\Variant\Capablanca\C;
 use Chess\Variant\Capablanca\CastlingRule;
@@ -20,15 +19,12 @@ use Chess\Variant\Classical\PGN\Color;
 
 class Board extends AbstractBoard
 {
-    const VARIANT = VariantType::CAPABLANCA;
-
     public function __construct(array $pieces = null, string $castlingAbility = '-')
     {
         $this->castlingRule = new CastlingRule();
         $this->square = new Square();
         $this->move = new Move();
         $this->castlingAbility = CastlingRule::START;
-        $this->variant = VariantType::CAPABLANCA;
         if (!$pieces) {
             $this->attach(new R(Color::W, 'a1', $this->square, RType::CASTLE_LONG));
             $this->attach(new N(Color::W, 'b1', $this->square));

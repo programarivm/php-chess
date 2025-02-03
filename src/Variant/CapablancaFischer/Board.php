@@ -4,7 +4,6 @@ namespace Chess\Variant\CapablancaFischer;
 
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RandomBoardInterface;
-use Chess\Variant\VariantType;
 use Chess\Variant\Capablanca\PGN\Move;
 use Chess\Variant\Capablanca\PGN\Square;
 use Chess\Variant\CapablancaFischer\CastlingRule;
@@ -13,8 +12,6 @@ use Chess\Variant\Classical\PGN\Color;
 
 class Board extends AbstractBoard implements RandomBoardInterface
 {
-    const VARIANT = 'capablanca-fischer';
-
     private array $startPos;
 
     public function __construct(
@@ -26,7 +23,6 @@ class Board extends AbstractBoard implements RandomBoardInterface
         $this->castlingRule = new CastlingRule($this->startPos);
         $this->square = new Square();
         $this->move = new Move();
-        $this->variant = VariantType::CAPABLANCA;
         if (!$pieces) {
             $pieces = (new StartPieces($this->startPos))->create();
             $this->castlingAbility = CastlingRule::START;

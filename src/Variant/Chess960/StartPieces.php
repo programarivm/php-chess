@@ -3,7 +3,6 @@
 namespace Chess\Variant\Chess960;
 
 use Chess\Variant\RandomStartPiecesTrait;
-use Chess\Variant\VariantType;
 use Chess\Variant\Classical\PGN\Square;
 
 class StartPieces
@@ -12,7 +11,7 @@ class StartPieces
 
     public function __construct(array $startPos)
     {
-        $this->variant = VariantType::CLASSICAL;
+        $this->namespace = 'Classical';
 
         $this->startPos = $startPos;
 

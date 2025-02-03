@@ -4,7 +4,6 @@ namespace Chess\Variant\Dunsany;
 
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
-use Chess\Variant\VariantType;
 use Chess\Variant\Classical\B;
 use Chess\Variant\Classical\K;
 use Chess\Variant\Classical\N;
@@ -19,15 +18,12 @@ use Chess\Variant\Classical\PGN\Square;
 
 class Board extends AbstractBoard
 {
-    const VARIANT = 'dunsany';
-
     public function __construct(array $pieces = null, string $castlingAbility = '-')
     {
         $this->castlingRule = new CastlingRule();
         $this->square = new Square();
         $this->move = new Move();
         $this->castlingAbility = substr(CastlingRule::START, -2);
-        $this->variant = VariantType::DUNSANY;
         if (!$pieces) {
             $this->attach(new P(Color::W, 'a1', $this->square));
             $this->attach(new P(Color::W, 'b1', $this->square));
