@@ -14,7 +14,7 @@ use Chess\Variant\Classical\FEN\StrToBoardFactory as ClassicalFenStrToBoardFacto
 use Chess\Variant\Dunsany\Board as DunsanyBoard;
 use Chess\Variant\Dunsany\FEN\StrToBoardFactory as DunsanyFenStrToBoardFactory;
 use Chess\Variant\Losing\Board as LosingBoard;
-use Chess\Variant\Losing\FEN\StrToBoard as LosingFenStrToBoard;
+use Chess\Variant\Losing\FEN\StrToBoardFactory as LosingFenStrToBoardFactory;
 use Chess\Variant\RacingKings\Board as RacingKingsBoard;
 use Chess\Variant\RacingKings\FEN\StrToBoardFactory as RackingKingsFenStrToBoardFactory;
 
@@ -34,7 +34,7 @@ class FenToBoardFactory
         } elseif (is_a($board, DunsanyBoard::class)) {
             return DunsanyFenStrToBoardFactory::create($fen);
         } elseif (is_a($board, LosingBoard::class)) {
-            return (new LosingFenStrToBoard($fen))->create();
+            return LosingFenStrToBoardFactory::create($fen);
         } elseif (is_a($board, RacingKingsBoard::class)) {
             return RackingKingsFenStrToBoardFactory::create($fen);
         }
