@@ -35,7 +35,7 @@ class SqOutpostEval extends AbstractEval
             Color::B => [],
         ];
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
             'White',
@@ -43,9 +43,7 @@ class SqOutpostEval extends AbstractEval
         ];
 
         $this->observation = [
-            "has a slight outpost advantage",
-            "has a moderate outpost advantage",
-            "has a total outpost advantage",
+            "has more outpost squares than its opponent",
         ];
 
         foreach ($this->board->pieces() as $piece) {
