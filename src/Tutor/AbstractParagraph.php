@@ -13,7 +13,7 @@ abstract class AbstractParagraph
 
     public array $paragraph = [];
 
-    public function futurize() 
+    public function futurize(): array
     {
         foreach ($this->paragraph as &$val) {
             $val = preg_replace('/\bare\b/u', 'will be', $val);
