@@ -37,7 +37,7 @@ class PassedPawnEval extends AbstractEval
             Color::B => [],
         ];
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
             'White',
@@ -45,9 +45,7 @@ class PassedPawnEval extends AbstractEval
         ];
 
         $this->observation = [
-            "has a slight passed pawn advantage",
-            "has a moderate passed pawn advantage",
-            "has a decisive passed pawn advantage",
+            "has more passed pawns",
         ];
 
         foreach ($this->board->pieces() as $piece) {

@@ -19,7 +19,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a slight passed pawn advantage.",
+            "Black has more passed pawns.",
         ];
 
         $expectedElaboration = [
@@ -46,7 +46,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has a slight passed pawn advantage.",
+            "White has more passed pawns.",
         ];
 
         $expectedElaboration = [
@@ -73,7 +73,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a moderate passed pawn advantage.",
+            "Black has more passed pawns.",
         ];
 
         $expectedElaboration = [
@@ -100,7 +100,7 @@ class PassedPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has a slight passed pawn advantage.",
+            "White has more passed pawns.",
         ];
 
         $expectedElaboration = [
