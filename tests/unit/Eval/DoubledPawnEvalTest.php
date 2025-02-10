@@ -19,7 +19,7 @@ class DoubledPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has more doubled pawns than its opponent.",
+            "White has more doubled pawns against.",
         ];
 
         $expectedElaboration = [
@@ -57,7 +57,7 @@ class DoubledPawnEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has more doubled pawns than its opponent.",
+            "Black has more doubled pawns against.",
         ];
 
         $expectedElaboration = [

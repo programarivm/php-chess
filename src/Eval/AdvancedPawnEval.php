@@ -44,7 +44,7 @@ class AdvancedPawnEval extends AbstractEval
         ];
 
         $this->observation = [
-            "has more advanced pawns",
+            "has more advanced pawns in its favor",
         ];
 
         foreach ($this->board->pieces() as $piece) {

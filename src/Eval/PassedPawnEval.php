@@ -45,7 +45,7 @@ class PassedPawnEval extends AbstractEval
         ];
 
         $this->observation = [
-            "has more passed pawns",
+            "has more passed pawns in its favor",
         ];
 
         foreach ($this->board->pieces() as $piece) {

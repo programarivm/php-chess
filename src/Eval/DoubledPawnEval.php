@@ -37,7 +37,7 @@ class DoubledPawnEval extends AbstractEval implements InverseEvalInterface
         ];
 
         $this->observation = [
-            "has more doubled pawns than its opponent",
+            "has more doubled pawns against",
         ];
 
         foreach ($this->board->pieces() as $piece) {

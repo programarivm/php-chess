@@ -53,7 +53,7 @@ class BackwardPawnEval extends AbstractEval implements InverseEvalInterface
         ];
 
         $this->observation = [
-            "has more backward pawns",
+            "has more backward pawns against",
         ];
 
         $this->isolatedPawnEval = (new IsolatedPawnEval($board))->result;

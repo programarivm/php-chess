@@ -45,7 +45,7 @@ class IsolatedPawnEval extends AbstractEval implements InverseEvalInterface
         ];
 
         $this->observation = [
-            "has more isolated pawns",
+            "has more isolated pawns against than its opponent",
         ];
 
         foreach ($this->board->pieces() as $piece) {
