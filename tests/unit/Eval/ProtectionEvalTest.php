@@ -36,7 +36,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a slight protection advantage.",
+            "Black has better protected pieces.",
         ];
 
         $expectedElaboration = [
@@ -99,7 +99,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "Black has a decisive protection advantage.",
+            "Black has better protected pieces.",
         ];
 
         $expectedElaboration = [
@@ -134,7 +134,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has a decisive protection advantage.",
+            "White has better protected pieces.",
         ];
 
         $expectedElaboration = [
@@ -209,7 +209,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
         ];
 
         $expectedExplanation = [
-            "White has a slight protection advantage.",
+            "White has better protected pieces.",
         ];
 
         $expectedElaboration = [

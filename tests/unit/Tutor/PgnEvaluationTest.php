@@ -24,7 +24,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
     {
         $expected = [
             "Black has a slight space advantage.",
-            "White has a slight protection advantage.",
+            "White has better protected pieces.",
             "White has a slight attack advantage.",
             "White's king can be checked so it is vulnerable to forced moves.",
             "The pawn on c5 is unprotected.",
@@ -50,7 +50,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "The black pieces are slightly better connected.",
             "White has a total space advantage.",
             "The white pieces are timidly approaching the other side's king.",
-            "Black has a decisive protection advantage.",
+            "Black has better protected pieces.",
             "These pieces are hanging: The bishop on e6.",
             "The bishop on e6 is unprotected.",
             "Overall, 3 evaluation features are favoring White.",

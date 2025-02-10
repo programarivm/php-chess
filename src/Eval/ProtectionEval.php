@@ -37,7 +37,7 @@ class ProtectionEval extends AbstractEval
     {
         $this->board = $board;
 
-        $this->range = [1, 4];
+        $this->range = [1];
 
         $this->subject = [
             'White',
@@ -45,9 +45,7 @@ class ProtectionEval extends AbstractEval
         ];
 
         $this->observation = [
-            "has a slight protection advantage",
-            "has a moderate protection advantage",
-            "has a decisive protection advantage",
+            "has better protected pieces",
         ];
 
         foreach ($this->board->pieces() as $piece) {
