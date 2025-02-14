@@ -2930,4 +2930,24 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertEquals($expected, $board->legal('e5'));
         $this->assertFalse($board->playLan('w', 'e5f6'));
     }
+
+    /**
+     * @test
+     */
+    public function e4_h5_e5_f5_h3_g5()
+    {
+        $expected = ['e6'];
+
+        $board = new Board();
+
+        $board->play('w', 'e4');
+        $board->play('b', 'h5');
+        $board->play('w', 'e5');
+        $board->play('b', 'f5');
+        $board->play('w', 'h3');
+        $board->play('b', 'g5');
+      
+        $this->assertEquals($expected, $board->legal('e5'));
+        $this->assertFalse($board->play('w', 'exf6'));
+    }
 }
