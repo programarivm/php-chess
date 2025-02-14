@@ -108,20 +108,29 @@ class P extends AbstractPiece
     }
 
     /**
-     * Set the en passant capture square.
+     * Set the en passant capture squares.
+     *
+     * @param \Chess\Variant\Classical\P $pawn
+     * @return bool
      */
-    public function xEnPassantSq(string $sq): void
+    public function xEnPassantSqs(P $pawn): bool
     {
-        foreach ($this->board->pieces($this->oppColor()) as $piece) {
-            if ($piece->id === Piece::P) {
-                $rank = (int) substr($sq, 1);
-                $rank = $this->color === Color::W ? $rank - 1 : $rank + 1;
-                $xEnPassantSq = $sq[0] . $rank;
-                if (in_array($xEnPassantSq, $piece->xSqs)) {
-                    $piece->xEnPassantSq = $xEnPassantSq;
+        $isSet = false;
+        if (abs($pawn->rank() - (int) substr($pawn->move['to'], 1)) === 2) {
+            foreach ($this->board->pieces($this->oppColor()) as $piece) {
+                if ($piece->id === Piece::P) {
+                    $rank = (int) substr($pawn->move['to'], 1);
+                    $enPassantRank = $this->color === Color::W ? $rank - 1 : $rank + 1;
+                    $xEnPassantSq = $pawn->move['to'][0] . $enPassantRank;
+                    if (in_array($xEnPassantSq, $piece->xSqs)) {
+                        $piece->xEnPassantSq = $xEnPassantSq;
+                        $isSet = true;
+                    }
                 }
             }
         }
+
+        return $isSet;
     }
 
     /**

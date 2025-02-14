@@ -315,20 +315,21 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Returns the en passant capture pawn.
+     * Returns the en passant capture pawns.
      *
-     * @return null|\Chess\Variant\Classical\P
+     * @return array
      */
-    public function xEnPassantPawn(): ?P
+    public function xEnPassantPawns(): array
     {
+        $pieces = [];
         $color = $this->turn === Color::W ? Color::B : Color::W;
         foreach ($this->pieces($color) as $piece) {
             if ($piece->id === Piece::P && $piece->xEnPassantSq) {
-                return $piece;
+                $pieces[] = $piece;
             }
         }
 
-        return null;
+        return $pieces;
     }
 
     /**

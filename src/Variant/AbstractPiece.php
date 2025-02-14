@@ -284,18 +284,20 @@ abstract class AbstractPiece
     }
 
     /**
-     * Set the en passant capture square.
+     * Set the en passant capture squares.
      */
     public function enPassant(): void
     {
-        if ($this->id === Piece::P) { 
-            if (abs($this->rank() - (int) substr($this->move['to'], 1)) === 2) {
-                $this->xEnPassantSq($this->move['to']);
-            } elseif ($pawn = $this->board->xEnPassantPawn()) {
+        if ($this->id === Piece::P) {
+            if (!$this->xEnPassantSqs($this)) {
+                foreach ($this->board->xEnPassantPawns() as $pawn) {
+                    $pawn->xEnPassantSq = '';
+                }
+            }
+        } else {
+            foreach ($this->board->xEnPassantPawns() as $pawn) {
                 $pawn->xEnPassantSq = '';
             }
-        } elseif ($pawn = $this->board->xEnPassantPawn()) {
-            $pawn->xEnPassantSq = '';
         }
     }
 
