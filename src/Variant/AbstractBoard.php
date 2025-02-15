@@ -588,9 +588,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             return true;
         } elseif ($count === 3) {
             foreach ($this->pieces() as $piece) {
-                if ($piece->id === Piece::N) {
-                    return true;
-                } elseif ($piece->id === Piece::B) {
+                if ($piece->id === Piece::N xor $piece->id === Piece::B) {
                     return true;
                 }
             }
@@ -601,7 +599,7 @@ abstract class AbstractBoard extends \SplObjectStorage
                     $colors .= $this->square->color($piece->sq);
                 }
             }
-            return $colors === Color::W . Color::W || $colors === Color::B . Color::B;
+            return $colors === Color::W . Color::W xor $colors === Color::B . Color::B;
         }
 
         return false;
