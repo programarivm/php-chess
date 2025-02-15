@@ -114,11 +114,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                 $ambiguous[] = $move['to'];
             }
         }
-        if (count($ambiguous) === 1) {
-            return $pieces[0];
-        }
 
-        return null;
+        return count($ambiguous) === 1 ? $pieces[0] : null;
     }
 
     /**
