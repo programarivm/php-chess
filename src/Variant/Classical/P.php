@@ -125,6 +125,8 @@ class P extends AbstractPiece
                     if (in_array($xEnPassantSq, $piece->xSqs)) {
                         $piece->xEnPassantSq = $xEnPassantSq;
                         $isSet = true;
+                    } else {
+                        $piece->xEnPassantSq = '';
                     }
                 }
             }
