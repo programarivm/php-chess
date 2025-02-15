@@ -649,11 +649,9 @@ abstract class AbstractBoard extends \SplObjectStorage
                 $prevFile = substr($last['from'], 1);
                 $nextFile = substr($last['to'], 1);
                 if (abs($nextFile - $prevFile) === 2) {
-                    if ($last['color'] === Color::W) {
-                        return $last['from'][0] . $prevFile + 1;
-                    } else {
-                        return $last['from'][0] . $prevFile - 1;
-                    }
+                    return $last['color'] === Color::W
+                        ? $last['from'][0] . $prevFile + 1
+                        : $last['from'][0] . $prevFile - 1;
                 }
             }
         }
