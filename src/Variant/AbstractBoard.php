@@ -131,11 +131,9 @@ abstract class AbstractBoard extends \SplObjectStorage
             return $piece->castle(RType::CASTLE_SHORT);
         } elseif ($piece->move['case'] === $this->move->case(Move::CASTLE_LONG)) {
             return $piece->castle(RType::CASTLE_LONG);
-        } else {
-            return $piece->move();
         }
 
-        return false;
+        return $piece->move();
     }
 
     /**
