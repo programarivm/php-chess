@@ -90,7 +90,7 @@ abstract class AbstractBoard extends \SplObjectStorage
     {
         $pieces = [];
         foreach ($this->pieces($move['color']) as $piece) {
-            if ($piece->id === $move['id'] && strstr($piece->sq, $move['from'])) {
+            if ($piece->id === $move['id'] && str_contains($piece->sq, $move['from'])) {
                 $piece->move = $move;
                 $pieces[] = $piece;
             }
