@@ -289,11 +289,7 @@ abstract class AbstractPiece
     public function enPassant(): void
     {
         if ($this->id === Piece::P) {
-            if (!$this->xEnPassantSqs($this)) {
-                foreach ($this->board->xEnPassantPawns() as $pawn) {
-                    $pawn->xEnPassantSq = '';
-                }
-            }
+            $this->xEnPassantSqs($this);
         } else {
             foreach ($this->board->xEnPassantPawns() as $pawn) {
                 $pawn->xEnPassantSq = '';
