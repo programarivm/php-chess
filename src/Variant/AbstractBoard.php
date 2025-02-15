@@ -185,10 +185,8 @@ abstract class AbstractBoard extends \SplObjectStorage
                     }
                 } elseif ($a->id === Piece::P) {
                     if ($this->square->promoRank($color) === (int) substr($sqs[1], 1)) {
-                        $newId = mb_substr($lan, -1);
-                        ctype_alpha($newId)
-                            ? $promo = '=' . mb_strtoupper($newId)
-                            : $promo = '=' . Piece::Q;
+                        $newId = mb_strtoupper(mb_substr($lan, -1));
+                        $promo = ctype_alpha($newId) ? '=' . $newId : '=' . Piece::Q;
                     } else {
                         $promo = '';
                     }
