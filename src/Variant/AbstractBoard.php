@@ -137,18 +137,6 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
-     * Removes an element from the history.
-     *
-     * @return \Chess\Variant\AbstractBoard
-     */
-    protected function popHistory(): AbstractBoard
-    {
-        array_pop($this->history);
-
-        return $this;
-    }
-
-    /**
      * Converts a LAN move into a pseudo-move in PGN format. 
      * 
      * This is an intermediate step required to make a move in LAN format.
@@ -448,7 +436,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             : $this->startFen;
         $board = FenToBoardFactory::create($startFen, $this);
         $this->castlingAbility = $board->castlingAbility;
-        $this->popHistory();
+        array_pop($this->history);
         $this->rewind();
         while ($this->valid()) {
             $this->detach($this->current());
