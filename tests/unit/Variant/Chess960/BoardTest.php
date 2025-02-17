@@ -16,8 +16,8 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function pieces()
     {
-        $startPos = (new Shuffle())->create();
-        $board = new Board($startPos);
+        $shuffle = (new Shuffle())->create();
+        $board = new Board($shuffle);
         $pieces = $board->pieces();
 
         $this->assertSame(32, count($pieces));
@@ -28,9 +28,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function castling_rule_RBBKRQNN()
     {
-        $startPos = ['R', 'B', 'B', 'K', 'R', 'Q', 'N', 'N'];
+        $shuffle = ['R', 'B', 'B', 'K', 'R', 'Q', 'N', 'N'];
 
-        $castlingRule = (new Board($startPos))->castlingRule;
+        $castlingRule = (new Board($shuffle))->castlingRule;
 
         $expected = [
             Color::W => [
@@ -95,9 +95,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function castling_rule_QRBKRBNN()
     {
-        $startPos = ['Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N'];
+        $shuffle = ['Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N'];
 
-        $castlingRule = (new Board($startPos))->castlingRule;
+        $castlingRule = (new Board($shuffle))->castlingRule;
 
         $expected = [
             Color::W => [
@@ -162,9 +162,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function castling_rule_BQNRKBRN()
     {
-        $startPos = ['B', 'Q', 'N', 'R', 'K', 'B', 'R', 'N'];
+        $shuffle = ['B', 'Q', 'N', 'R', 'K', 'B', 'R', 'N'];
 
-        $castlingRule = (new Board($startPos))->castlingRule;
+        $castlingRule = (new Board($shuffle))->castlingRule;
 
         $expected = [
             Color::W => [
@@ -229,9 +229,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_QRBKRBNN_e4_e5()
     {
-        $startPos = ['Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N'];
+        $shuffle = ['Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $board->play('w', 'e4');
         $board->play('b', 'e5');
@@ -255,9 +255,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_BBNRKRQN_e4_e5()
     {
-        $startPos = ['B', 'B', 'N', 'R', 'K', 'R', 'Q', 'N'];
+        $shuffle = ['B', 'B', 'N', 'R', 'K', 'R', 'Q', 'N'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $board->play('w', 'e4');
         $board->play('b', 'e5');
@@ -281,9 +281,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_NRNQKBBR_e4_Nd6_Bc4_e6_f3_Qe7_Bf2()
     {
-        $startPos = ['N', 'R', 'N', 'Q', 'K', 'B', 'B', 'R'];
+        $shuffle = ['N', 'R', 'N', 'Q', 'K', 'B', 'B', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $board->play('w', 'e4');
         $board->play('b', 'Nd6');
@@ -315,9 +315,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_NRNQKBBR_e4_Nd6_Bc4_e6_f3_Qe7_Bf2_O_O_O()
     {
-        $startPos = ['N', 'R', 'N', 'Q', 'K', 'B', 'B', 'R'];
+        $shuffle = ['N', 'R', 'N', 'Q', 'K', 'B', 'B', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $board->play('w', 'e4');
         $board->play('b', 'Nd6');
@@ -350,9 +350,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_BBRQNNKR_Ne3_Ne6_O_O()
     {
-        $startPos = ['B', 'B', 'R', 'Q', 'N', 'N', 'K', 'R'];
+        $shuffle = ['B', 'B', 'R', 'Q', 'N', 'N', 'K', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'Ne3'));
         $this->assertTrue($board->play('b', 'Ne6'));
@@ -377,9 +377,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_BQNRKBRN_e3_g6_Bc4_Bh6()
     {
-        $startPos = ['B', 'Q', 'N', 'R', 'K', 'B', 'R', 'N'];
+        $shuffle = ['B', 'Q', 'N', 'R', 'K', 'B', 'R', 'N'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'e3'));
         $this->assertTrue($board->play('b', 'g6'));
@@ -405,9 +405,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_BQNRKBRN_e3_g6_Bc4_Bh6_a3()
     {
-        $startPos = ['B', 'Q', 'N', 'R', 'K', 'B', 'R', 'N'];
+        $shuffle = ['B', 'Q', 'N', 'R', 'K', 'B', 'R', 'N'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'e3'));
         $this->assertTrue($board->play('b', 'g6'));
@@ -434,9 +434,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_NRQBBKRN_O_O()
     {
-        $startPos = ['N', 'R', 'Q', 'B', 'B', 'K', 'R', 'N'];
+        $shuffle = ['N', 'R', 'Q', 'B', 'B', 'K', 'R', 'N'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'O-O'));
 
@@ -459,9 +459,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_BNQRKRNB_Nf3_b6_O_O()
     {
-        $startPos = ['B', 'N', 'Q', 'R', 'K', 'R', 'N', 'B'];
+        $shuffle = ['B', 'N', 'Q', 'R', 'K', 'R', 'N', 'B'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'Nf3'));
         $this->assertTrue($board->play('b', 'b6'));
@@ -486,9 +486,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_QBBNRNKR_Nf1e3_Nd8e6_Kf1()
     {
-        $startPos = ['Q', 'B', 'B', 'N', 'R', 'N', 'K', 'R'];
+        $shuffle = ['Q', 'B', 'B', 'N', 'R', 'N', 'K', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'Nf1e3'));
         $this->assertTrue($board->play('b', 'Nd8e6'));
@@ -513,9 +513,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_QBBNRNKR_Nf1e3_Nd8e6_O_O()
     {
-        $startPos = ['Q', 'B', 'B', 'N', 'R', 'N', 'K', 'R'];
+        $shuffle = ['Q', 'B', 'B', 'N', 'R', 'N', 'K', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'Nf1e3'));
         $this->assertTrue($board->play('b', 'Nd8e6'));
@@ -540,9 +540,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_RKRNBQNB_Ne3_Ne6_O_O_O()
     {
-        $startPos = ['R', 'K', 'R', 'N', 'B', 'Q', 'N', 'B'];
+        $shuffle = ['R', 'K', 'R', 'N', 'B', 'Q', 'N', 'B'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'Ne3'));
         $this->assertTrue($board->play('b', 'Ne6'));
@@ -567,9 +567,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_RKNBBQNR_Nd3_Nf6_Kc1()
     {
-        $startPos = ['R', 'K', 'N', 'B', 'B', 'Q', 'N', 'R'];
+        $shuffle = ['R', 'K', 'N', 'B', 'B', 'Q', 'N', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'Nd3'));
         $this->assertTrue($board->play('b', 'Nf6'));
@@ -594,9 +594,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_RKNBBQNR_Nd3_Nf6_O_O()
     {
-        $startPos = ['R', 'K', 'N', 'B', 'B', 'Q', 'N', 'R'];
+        $shuffle = ['R', 'K', 'N', 'B', 'B', 'Q', 'N', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'Nd3'));
         $this->assertTrue($board->play('b', 'Nf6'));
@@ -621,9 +621,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_RKNBBQNR_Nd3_Nf6_O_O_O()
     {
-        $startPos = ['R', 'K', 'N', 'B', 'B', 'Q', 'N', 'R'];
+        $shuffle = ['R', 'K', 'N', 'B', 'B', 'Q', 'N', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'Nd3'));
         $this->assertTrue($board->play('b', 'Nf6'));
@@ -648,9 +648,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_NBQNRKBR_h3_h6_Bh2_Bh7_Kg1()
     {
-        $startPos = ['N', 'B', 'Q', 'N', 'R', 'K', 'B', 'R'];
+        $shuffle = ['N', 'B', 'Q', 'N', 'R', 'K', 'B', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'h3'));
         $this->assertTrue($board->play('b', 'h6'));
@@ -677,9 +677,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_NBQNRKBR_h3_h6_Bh2_Bh7_Kg1_undo()
     {
-        $startPos = ['N', 'B', 'Q', 'N', 'R', 'K', 'B', 'R'];
+        $shuffle = ['N', 'B', 'Q', 'N', 'R', 'K', 'B', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'h3'));
         $this->assertTrue($board->play('b', 'h6'));
@@ -708,9 +708,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_RNNQBKRB_O_O_undo()
     {
-        $startPos = ['R', 'N', 'N', 'Q', 'B', 'K', 'R', 'B'];
+        $shuffle = ['R', 'N', 'N', 'Q', 'B', 'K', 'R', 'B'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $this->assertTrue($board->play('w', 'O-O'));
 
@@ -735,9 +735,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_lan_RQKNBBRN_castle_long()
     {
-        $startPos = ['R', 'Q', 'K', 'N', 'B', 'B', 'R', 'N'];
+        $shuffle = ['R', 'Q', 'K', 'N', 'B', 'B', 'R', 'N'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $board->playLan('w', 'd1e3');
         $board->playLan('b', 'd8e6');
@@ -774,9 +774,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_RNQNBBKR_castle_short()
     {
-        $startPos = ['R', 'N', 'Q', 'N', 'B', 'B', 'K', 'R'];
+        $shuffle = ['R', 'N', 'Q', 'N', 'B', 'B', 'K', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $board->play('w', 'g3');
         $board->play('b', 'g6');
@@ -819,9 +819,9 @@ class BoardTest extends AbstractUnitTestCase
             0 => [ 'R', 'N', 'Q', 'N', 'B', 'R', 'K', '.' ],
         ];
 
-        $startPos = ['R', 'N', 'Q', 'N', 'B', 'B', 'K', 'R'];
+        $shuffle = ['R', 'N', 'Q', 'N', 'B', 'B', 'K', 'R'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $board->playLan('w', 'g2g3');
         $board->playLan('b', 'g7g6');

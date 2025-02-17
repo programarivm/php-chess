@@ -12,11 +12,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function ARNBQKBNRC_e4()
     {
-        $startPos = ['A', 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R', 'C' ];
+        $shuffle = ['A', 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R', 'C' ];
 
         $board = FenToBoardFactory::create(
             'arnbqkbnrc/pppppppppp/10/10/5P4/10/PPPPP1PPPP/ARNBQKBNRC b KQkq e3 0 1',
-            $startPos
+            $shuffle
         );
 
         $array = $board->toArray();

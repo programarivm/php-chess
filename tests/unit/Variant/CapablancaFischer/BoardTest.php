@@ -16,8 +16,8 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function pieces()
     {
-        $startPos = (new Shuffle())->create();
-        $board = new Board($startPos);
+        $shuffle = (new Shuffle())->create();
+        $board = new Board($shuffle);
         $pieces = $board->pieces();
 
         $this->assertSame(40, count($pieces));
@@ -28,9 +28,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function castling_rule_ARBBKRQNNC()
     {
-        $startPos = ['A', 'R', 'B', 'B', 'K', 'R', 'Q', 'N', 'N', 'C'];
+        $shuffle = ['A', 'R', 'B', 'B', 'K', 'R', 'Q', 'N', 'N', 'C'];
 
-        $castlingRule = (new Board($startPos))->castlingRule;
+        $castlingRule = (new Board($shuffle))->castlingRule;
 
         $expected = [
             Color::W => [
@@ -95,9 +95,9 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_AQRBKRBNNC_e4_e5()
     {
-        $startPos = ['A', 'Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N', 'C'];
+        $shuffle = ['A', 'Q', 'R', 'B', 'K', 'R', 'B', 'N', 'N', 'C'];
 
-        $board = new Board($startPos);
+        $board = new Board($shuffle);
 
         $board->play('w', 'e4');
         $board->play('b', 'e5');

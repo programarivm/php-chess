@@ -12,11 +12,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function RNBQKBNR_e4()
     {
-        $startPos = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ];
+        $shuffle = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ];
 
         $board = FenToBoardFactory::create(
             'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1',
-            $startPos
+            $shuffle
         );
 
         $array = $board->toArray();
@@ -40,11 +40,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function RNBQKBNR_e4_e5()
     {
-        $startPos = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ];
+        $shuffle = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ];
 
         $board = FenToBoardFactory::create(
             'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2',
-            $startPos
+            $shuffle
         );
 
         $array = $board->toArray();
@@ -68,11 +68,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QNBRKBRN_e4_e5_Ng3_Nc6_Bc4_d6()
     {
-        $startPos = ['Q', 'N', 'B', 'R', 'K', 'B', 'R', 'N' ];
+        $shuffle = ['Q', 'N', 'B', 'R', 'K', 'B', 'R', 'N' ];
 
         $board = FenToBoardFactory::create(
             'q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -',
-            $startPos
+            $shuffle
         );
 
         $array = $board->toArray();
@@ -96,11 +96,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QNBRKBRN_e4_e5_Ng3_Nc6_Bc4_d6_O_O()
     {
-        $startPos = ['Q', 'N', 'B', 'R', 'K', 'B', 'R', 'N' ];
+        $shuffle = ['Q', 'N', 'B', 'R', 'K', 'B', 'R', 'N' ];
 
         $board = FenToBoardFactory::create(
             'q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -',
-            $startPos
+            $shuffle
         );
 
         $board->play('w', 'O-O');
@@ -126,11 +126,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function BNNBQRKR_e4_Nc6_d3_Nd6_c3_e6_Nd2_Bf6_Ne2_Qe7()
     {
-        $startPos = ['B', 'N', 'N', 'B', 'Q', 'R', 'K', 'R' ];
+        $shuffle = ['B', 'N', 'N', 'B', 'Q', 'R', 'K', 'R' ];
 
         $board = FenToBoardFactory::create(
             'b4rkr/ppppqppp/2nnpb2/8/4P3/2PP4/PP1NNPPP/B2BQRKR w KQkq -',
-            $startPos
+            $shuffle
         );
 
         $array = $board->toArray();
@@ -154,11 +154,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QRKRNNBB_Bf2_Re8_Nd3_O_O_O_O_O()
     {
-        $startPos = ['Q', 'R', 'K', 'R', 'N', 'N', 'B', 'B' ];
+        $shuffle = ['Q', 'R', 'K', 'R', 'N', 'N', 'B', 'B' ];
 
         $board = FenToBoardFactory::create(
             'qrkr1nbb/pppp2pp/3n1p2/4p3/4P3/4NP2/PPPP2PP/QRKRN1BB w KQkq -',
-            $startPos
+            $shuffle
         );
 
         $board->play('w', 'Bf2');
@@ -188,11 +188,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QNRNBKRB_O_O_undo()
     {
-        $startPos = ['Q', 'N', 'R', 'N', 'B', 'K', 'R', 'B' ];
+        $shuffle = ['Q', 'N', 'R', 'N', 'B', 'K', 'R', 'B' ];
 
         $board = FenToBoardFactory::create(
             'qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -',
-            $startPos
+            $shuffle
         );
 
         $board->play('w', 'O-O');
@@ -220,11 +220,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QNRNBKRB_O_O_O_O_undo_undo()
     {
-        $startPos = ['Q', 'N', 'R', 'N', 'B', 'K', 'R', 'B' ];
+        $shuffle = ['Q', 'N', 'R', 'N', 'B', 'K', 'R', 'B' ];
 
         $board = FenToBoardFactory::create(
             'qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -',
-            $startPos
+            $shuffle
         );
 
         $board->play('w', 'O-O');
@@ -254,11 +254,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function resume_RKNRQNBB_d5()
     {
-        $startPos = ['R', 'K', 'N', 'R', 'Q', 'N', 'B', 'B' ];
+        $shuffle = ['R', 'K', 'N', 'R', 'Q', 'N', 'B', 'B' ];
 
         $board = FenToBoardFactory::create(
             'rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -',
-            $startPos
+            $shuffle
         );
 
         $board->play('b', 'd5');
@@ -273,11 +273,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function resume_RKNRQNBB_d5_Nd3()
     {
-        $startPos = ['R', 'K', 'N', 'R', 'Q', 'N', 'B', 'B' ];
+        $shuffle = ['R', 'K', 'N', 'R', 'Q', 'N', 'B', 'B' ];
 
         $board = FenToBoardFactory::create(
             'rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -',
-            $startPos
+            $shuffle
         );
 
         $board->play('b', 'd5');

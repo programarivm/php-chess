@@ -42,9 +42,9 @@ class BoardToMp4Test extends AbstractUnitTestCase
     {
         $fen = 'qrkr1nbb/pppp2pp/3n1p2/4p3/4P3/4NP2/PPPP2PP/QRKRN1BB w KQkq -';
 
-        $startPos = ['Q', 'R', 'K', 'R', 'N', 'N', 'B', 'B'];
+        $shuffle = ['Q', 'R', 'K', 'R', 'N', 'N', 'B', 'B'];
 
-        $board = FenToBoardFactory::create($fen, new Chess960Board($startPos));
+        $board = FenToBoardFactory::create($fen, new Chess960Board($shuffle));
 
         $movetext = '1.Bf2 Re8 2.Nd3 O-O-O 3.O-O';
 
@@ -64,9 +64,9 @@ class BoardToMp4Test extends AbstractUnitTestCase
     {
         $fen = 'b4rkr/ppppqppp/2nnpb2/8/4P3/2PP4/PP1NNPPP/B2BQRKR w KQkq -';
 
-        $startPos = ['B', 'N', 'N', 'B', 'Q', 'R', 'K', 'R'];
+        $shuffle = ['B', 'N', 'N', 'B', 'Q', 'R', 'K', 'R'];
 
-        $board = FenToBoardFactory::create($fen, new Chess960Board($startPos));
+        $board = FenToBoardFactory::create($fen, new Chess960Board($shuffle));
 
         $movetext = '1.Bc2 O-O-O 2.Qc1 Rhe8 3.Rd1 h6 4.O-O';
 
