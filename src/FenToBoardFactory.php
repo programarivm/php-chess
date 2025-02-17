@@ -27,7 +27,6 @@ class FenToBoardFactory
         if (is_a($board, CapablancaBoard::class)) {
             return CapablancaFenToBoardFactory::create($fen);
         } elseif (is_a($board, CapablancaFischerBoard::class)) {
-            $startPos = $board->getStartPos();
             return CapablancaFischerFenToBoardFactory::create($fen, $board->getStartPos());
         } elseif (is_a($board, Chess960Board::class)) {
             return Chess960FenToBoardFactory::create($fen, $board->getStartPos());
