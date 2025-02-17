@@ -32,7 +32,7 @@ class Board extends AbstractBoard implements RandomBoardInterface
         $this->startFen = $this->toFen();
     }
 
-    public function getStartPos(): array
+    public function getShuffle(): array
     {
         return $this->shuffle;
     }
