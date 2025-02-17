@@ -10,12 +10,12 @@ class CastlingRule extends CapablancaCastlingRule
 {
     use RandomCastlingRuleTrait;
 
-    public function __construct(array $startPos)
+    public function __construct(array $shuffle)
     {
-        $this->startPos = $startPos;
+        $this->shuffle = $shuffle;
 
-        for ($i = 0; $i < count($this->startPos); $i++) {
-            $this->startFiles[chr(97 + $i)] = $this->startPos[$i];
+        for ($i = 0; $i < count($this->shuffle); $i++) {
+            $this->startFiles[chr(97 + $i)] = $this->shuffle[$i];
         }
 
         $this->size = Square::SIZE;

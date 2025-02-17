@@ -18,10 +18,10 @@ class FenToBoardFactory
 {
     /**
      * @param string $string
-     * @param array $startPos
+     * @param array $shuffle
      * @return \Chess\Variant\AbstractBoard
      */
-    public static function create(string $string, array $startPos): AbstractBoard
+    public static function create(string $string, array $shuffle): AbstractBoard
     {
         $fenStr = new Str();
         $string = $fenStr->validate($string);
@@ -31,10 +31,10 @@ class FenToBoardFactory
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
                 new Square(),
-                new CastlingRule($startPos),
+                new CastlingRule($shuffle),
                 $namespace
             );
-            $board = new Board($startPos, $pieces, $fields[2]);
+            $board = new Board($shuffle, $pieces, $fields[2]);
             $board->turn = $fields[1];
             $board->startFen = $string;
             ClassicalFenToBoardFactory::enPassant($fields, $board);

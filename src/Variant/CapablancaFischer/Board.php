@@ -11,16 +11,16 @@ use Chess\Variant\CapablancaFischer\StartPieces;
 
 class Board extends AbstractBoard implements RandomBoardInterface
 {
-    private array $startPos;
+    private array $shuffle;
 
-    public function __construct(array $startPos = null, array $pieces = null, string $castlingAbility = '-')
+    public function __construct(array $shuffle = null, array $pieces = null, string $castlingAbility = '-')
     {
-        $this->startPos = $startPos ?? (new StartPosition())->create();
-        $this->castlingRule = new CastlingRule($this->startPos);
+        $this->shuffle = $shuffle ?? (new StartPosition())->create();
+        $this->castlingRule = new CastlingRule($this->shuffle);
         $this->square = new Square();
         $this->move = new Move();
         if (!$pieces) {
-            $pieces = (new StartPieces($this->startPos))->create();
+            $pieces = (new StartPieces($this->shuffle))->create();
             $this->castlingAbility = CastlingRule::START;
         } else {
             $this->castlingAbility = $castlingAbility;
@@ -34,6 +34,6 @@ class Board extends AbstractBoard implements RandomBoardInterface
 
     public function getStartPos(): array
     {
-        return $this->startPos;
+        return $this->shuffle;
     }
 }

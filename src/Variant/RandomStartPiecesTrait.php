@@ -9,7 +9,7 @@ use Chess\Variant\Classical\PGN\Piece;
 
 trait RandomStartPiecesTrait
 {
-    protected array $startPos;
+    protected array $shuffle;
 
     protected array $startPieces = [];
 
@@ -17,7 +17,7 @@ trait RandomStartPiecesTrait
     {
         $longCastlingRook = null;
 
-        foreach ($this->startPos as $key => $val) {
+        foreach ($this->shuffle as $key => $val) {
             $wSq = chr(97 + $key) . '1';
             $bSq = chr(97 + $key) . $this->square::SIZE['ranks'];
             $class = VariantType::getClass($val, $this->namespace);
@@ -27,7 +27,7 @@ trait RandomStartPiecesTrait
             } elseif (!$longCastlingRook) {
                 $this->startPieces[] =  new $class(Color::W, $wSq, $this->square, RType::CASTLE_LONG);
                 $this->startPieces[] =  new $class(Color::B, $bSq, $this->square, RType::CASTLE_LONG);
-                $longCastlingRook = $this->startPos[$key];
+                $longCastlingRook = $this->shuffle[$key];
             } else {
                 $this->startPieces[] =  new $class(Color::W, $wSq, $this->square, RType::CASTLE_SHORT);
                 $this->startPieces[] =  new $class(Color::B, $bSq, $this->square, RType::CASTLE_SHORT);
