@@ -1,25 +1,23 @@
 <?php
 
-namespace Chess\Variant\CapablancaFischer;
+namespace Chess\Variant\Chess960;
 
-use Chess\Variant\RandomStartPositionTrait;
-use Chess\Variant\Capablanca\PGN\Piece;
+use Chess\Variant\RandomShuffleTrait;
+use Chess\Variant\Classical\PGN\Piece;
 
-class StartPosition
+class Shuffle
 {
-    use RandomStartPositionTrait;
-
+    use RandomShuffleTrait;
+    
     public function __construct()
     {
         $this->default =  [
             Piece::R,
             Piece::N,
-            Piece::A,
             Piece::B,
             Piece::Q,
             Piece::K,
             Piece::B,
-            Piece::C,
             Piece::N,
             Piece::R,
         ];

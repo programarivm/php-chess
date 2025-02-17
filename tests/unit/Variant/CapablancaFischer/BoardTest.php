@@ -7,7 +7,7 @@ use Chess\Variant\Classical\PGN\Castle;
 use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\CapablancaFischer\Board;
-use Chess\Variant\CapablancaFischer\StartPosition;
+use Chess\Variant\CapablancaFischer\Shuffle;
 
 class BoardTest extends AbstractUnitTestCase
 {
@@ -16,7 +16,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function pieces()
     {
-        $startPos = (new StartPosition())->create();
+        $startPos = (new Shuffle())->create();
         $board = new Board($startPos);
         $pieces = $board->pieces();
 
