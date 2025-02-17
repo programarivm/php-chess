@@ -4,5 +4,5 @@ namespace Chess\Variant;
 
 interface RandomBoardInterface
 {
-    public function getStartPos(): array;
+    public function getShuffle(): array;
 }

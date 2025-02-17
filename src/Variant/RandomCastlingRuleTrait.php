@@ -8,7 +8,7 @@ use Chess\Variant\Classical\PGN\Piece;
 
 trait RandomCastlingRuleTrait
 {
-    protected array $startPos;
+    protected array $shuffle;
 
     protected array $startFiles;
 
@@ -17,7 +17,7 @@ trait RandomCastlingRuleTrait
     protected function sq()
     {
         $longCastlingRook = false;
-        foreach ($this->startPos as $key => $val) {
+        foreach ($this->shuffle as $key => $val) {
             $wSq = chr(97 + $key) . '1';
             $bSq = chr(97 + $key) . $this->size['ranks'];
             if ($val === Piece::R) {

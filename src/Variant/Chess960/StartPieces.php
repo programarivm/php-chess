@@ -9,11 +9,11 @@ class StartPieces
 {
     use RandomStartPiecesTrait;
 
-    public function __construct(array $startPos)
+    public function __construct(array $shuffle)
     {
         $this->namespace = 'Classical';
 
-        $this->startPos = $startPos;
+        $this->shuffle = $shuffle;
 
         $this->square = new Square();
     }

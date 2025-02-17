@@ -17,10 +17,6 @@ trait RandomStartPositionTrait
         return $this->default;
     }
 
-    public function getDefault(): array {
-        return $this->default;
-    }
-
     protected function bishops()
     {
         $keys = [];
