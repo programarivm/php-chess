@@ -15,7 +15,7 @@ class Board extends AbstractBoard implements RandomBoardInterface
 
     public function __construct(array $startPos = null, array $pieces = null, string $castlingAbility = '-')
     {
-        $this->startPos = $startPos ?? (new StartPosition())->getDefault();
+        $this->startPos = $startPos ?? (new StartPosition())->create();
         $this->castlingRule = new CastlingRule($this->startPos);
         $this->square = new Square();
         $this->move = new Move();
