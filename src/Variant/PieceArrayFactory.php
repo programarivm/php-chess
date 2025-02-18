@@ -2,6 +2,7 @@
 
 namespace Chess\Variant;
 
+use Chess\Variant\AbstractNotation;
 use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\PGN\Castle;
 use Chess\Variant\Classical\PGN\Color;
@@ -13,7 +14,7 @@ class PieceArrayFactory
 {
     public static function create(
         array $array, 
-        Square $square, 
+        AbstractNotation $square, 
         CastlingRule $castlingRule = null, 
         string $namespace
     ): array
