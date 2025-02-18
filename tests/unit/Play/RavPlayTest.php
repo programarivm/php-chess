@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Play;
 
-use Chess\FenToBoardFactory;
 use Chess\Play\RavPlay;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class RavPlayTest extends AbstractUnitTestCase
 {
