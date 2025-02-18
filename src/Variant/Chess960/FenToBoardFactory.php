@@ -18,15 +18,15 @@ class FenToBoardFactory
 {
     /**
      * @param string $string
-     * @param array $shuffle
      * @return \Chess\Variant\AbstractBoard
      */
-    public static function create(string $string, array $shuffle): AbstractBoard
+    public static function create(string $string): AbstractBoard
     {
         $fenStr = new Str();
         $string = $fenStr->validate($string);
         $fields = array_filter(explode(' ', $string));
         $namespace = 'Classical';
+        $shuffle = $string ? (new Shuffle())->extract($string) : (new Shuffle())->create();
         try {
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),

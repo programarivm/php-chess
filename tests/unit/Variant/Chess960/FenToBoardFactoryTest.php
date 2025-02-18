@@ -12,15 +12,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function RNBQKBNR_e4()
     {
-        $shuffle = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ];
-
-        $board = FenToBoardFactory::create(
-            'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1',
-            $shuffle
-        );
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
             6 => [ 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' ],
@@ -32,7 +23,9 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
         ];
 
-        $this->assertSame($expected, $array);
+        $board = FenToBoardFactory::create('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1');
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -40,15 +33,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function RNBQKBNR_e4_e5()
     {
-        $shuffle = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ];
-
-        $board = FenToBoardFactory::create(
-            'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2',
-            $shuffle
-        );
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
             6 => [ 'p', 'p', 'p', 'p', '.', 'p', 'p', 'p' ],
@@ -60,7 +44,9 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
         ];
 
-        $this->assertSame($expected, $array);
+        $board = FenToBoardFactory::create('rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2');
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -68,15 +54,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QNBRKBRN_e4_e5_Ng3_Nc6_Bc4_d6()
     {
-        $shuffle = ['Q', 'N', 'B', 'R', 'K', 'B', 'R', 'N' ];
-
-        $board = FenToBoardFactory::create(
-            'q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -',
-            $shuffle
-        );
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'q', '.', 'b', 'r', 'k', 'b', 'r', 'n' ],
             6 => [ 'p', 'p', 'p', '.', '.', 'p', 'p', 'p' ],
@@ -88,7 +65,9 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ 'Q', 'N', 'B', 'R', 'K', '.', 'R', '.' ],
         ];
 
-        $this->assertSame($expected, $array);
+        $board = FenToBoardFactory::create('q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -');
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -96,17 +75,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QNBRKBRN_e4_e5_Ng3_Nc6_Bc4_d6_O_O()
     {
-        $shuffle = ['Q', 'N', 'B', 'R', 'K', 'B', 'R', 'N' ];
-
-        $board = FenToBoardFactory::create(
-            'q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -',
-            $shuffle
-        );
-
-        $board->play('w', 'O-O');
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'q', '.', 'b', 'r', 'k', 'b', 'r', 'n' ],
             6 => [ 'p', 'p', 'p', '.', '.', 'p', 'p', 'p' ],
@@ -118,7 +86,10 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ 'Q', 'N', 'B', 'R', '.', 'R', 'K', '.' ],
         ];
 
-        $this->assertSame($expected, $array);
+        $board = FenToBoardFactory::create('q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -');        
+        $board->play('w', 'O-O');
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -126,15 +97,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function BNNBQRKR_e4_Nc6_d3_Nd6_c3_e6_Nd2_Bf6_Ne2_Qe7()
     {
-        $shuffle = ['B', 'N', 'N', 'B', 'Q', 'R', 'K', 'R' ];
-
-        $board = FenToBoardFactory::create(
-            'b4rkr/ppppqppp/2nnpb2/8/4P3/2PP4/PP1NNPPP/B2BQRKR w KQkq -',
-            $shuffle
-        );
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'b', '.', '.', '.', '.', 'r', 'k', 'r' ],
             6 => [ 'p', 'p', 'p', 'p', 'q', 'p', 'p', 'p' ],
@@ -146,7 +108,9 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ 'B', '.', '.', 'B', 'Q', 'R', 'K', 'R' ],
         ];
 
-        $this->assertSame($expected, $array);
+        $board = FenToBoardFactory::create('b4rkr/ppppqppp/2nnpb2/8/4P3/2PP4/PP1NNPPP/B2BQRKR w KQkq -');
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -154,21 +118,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QRKRNNBB_Bf2_Re8_Nd3_O_O_O_O_O()
     {
-        $shuffle = ['Q', 'R', 'K', 'R', 'N', 'N', 'B', 'B' ];
-
-        $board = FenToBoardFactory::create(
-            'qrkr1nbb/pppp2pp/3n1p2/4p3/4P3/4NP2/PPPP2PP/QRKRN1BB w KQkq -',
-            $shuffle
-        );
-
-        $board->play('w', 'Bf2');
-        $board->play('b', 'Re8');
-        $board->play('w', 'Nd3');
-        $board->play('b', 'O-O-O');
-        $board->play('w', 'O-O');
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'q', '.', 'k', 'r', 'r', 'n', 'b', 'b' ],
             6 => [ 'p', 'p', 'p', 'p', '.', '.', 'p', 'p' ],
@@ -180,7 +129,14 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ 'Q', 'R', '.', '.', '.', 'R', 'K', 'B' ],
         ];
 
-        $this->assertSame($expected, $array);
+        $board = FenToBoardFactory::create('qrkr1nbb/pppp2pp/3n1p2/4p3/4P3/4NP2/PPPP2PP/QRKRN1BB w KQkq -');
+        $board->play('w', 'Bf2');
+        $board->play('b', 'Re8');
+        $board->play('w', 'Nd3');
+        $board->play('b', 'O-O-O');
+        $board->play('w', 'O-O');
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -188,19 +144,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QNRNBKRB_O_O_undo()
     {
-        $shuffle = ['Q', 'N', 'R', 'N', 'B', 'K', 'R', 'B' ];
-
-        $board = FenToBoardFactory::create(
-            'qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -',
-            $shuffle
-        );
-
-        $board->play('w', 'O-O');
-
-        $board->undo();
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'q', 'n', 'r', 'n', 'b', 'k', 'r', 'b' ],
             6 => [ 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' ],
@@ -212,7 +155,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ 'Q', 'N', 'R', 'N', 'B', 'K', 'R', 'B' ],
         ];
 
-        $this->assertSame($expected, $array);
+        $board = FenToBoardFactory::create('qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -');        
+        $board->play('w', 'O-O');
+        $board->undo();
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -220,21 +167,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function QNRNBKRB_O_O_O_O_undo_undo()
     {
-        $shuffle = ['Q', 'N', 'R', 'N', 'B', 'K', 'R', 'B' ];
-
-        $board = FenToBoardFactory::create(
-            'qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -',
-            $shuffle
-        );
-
-        $board->play('w', 'O-O');
-        $board->play('b', 'O-O');
-
-        $board->undo();
-        $board->undo();
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'q', 'n', 'r', 'n', 'b', 'k', 'r', 'b' ],
             6 => [ 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' ],
@@ -246,7 +178,13 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             0 => [ 'Q', 'N', 'R', 'N', 'B', 'K', 'R', 'B' ],
         ];
 
-        $this->assertSame($expected, $array);
+        $board = FenToBoardFactory::create('qnrnbkrb/pppppppp/8/8/8/8/PPPPPPPP/QNRNBKRB w KQkq -');
+        $board->play('w', 'O-O');
+        $board->play('b', 'O-O');
+        $board->undo();
+        $board->undo();
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -254,16 +192,10 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function resume_RKNRQNBB_d5()
     {
-        $shuffle = ['R', 'K', 'N', 'R', 'Q', 'N', 'B', 'B' ];
-
-        $board = FenToBoardFactory::create(
-            'rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -',
-            $shuffle
-        );
-
-        $board->play('b', 'd5');
-
         $expected = '1...d5';
+
+        $board = FenToBoardFactory::create('rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -');
+        $board->play('b', 'd5');
 
         $this->assertEquals($expected, $board->movetext());
     }
@@ -273,17 +205,11 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function resume_RKNRQNBB_d5_Nd3()
     {
-        $shuffle = ['R', 'K', 'N', 'R', 'Q', 'N', 'B', 'B' ];
-
-        $board = FenToBoardFactory::create(
-            'rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -',
-            $shuffle
-        );
-
+        $expected = '1...d5 2.Nd3';
+        
+        $board = FenToBoardFactory::create('rknrqnbb/pppp1ppp/8/4p3/8/4N2P/PPPPPPP1/RKNRQ1BB b KQkq -');
         $board->play('b', 'd5');
         $board->play('w', 'Nd3');
-
-        $expected = '1...d5 2.Nd3';
 
         $this->assertEquals($expected, $board->movetext());
     }

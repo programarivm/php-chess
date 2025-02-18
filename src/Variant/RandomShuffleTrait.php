@@ -39,4 +39,12 @@ trait RandomShuffleTrait
 
         return preg_match('/^(.*)R(.*)K(.*)R(.*)$/', $str);
     }
+
+    public function extract(string $fen): array
+    {
+        $fields = array_filter(explode(' ', $fen));
+        $exploded = explode('/', $fields[0]);
+        
+        return str_split(mb_strtoupper($exploded[0]));
+    }
 }

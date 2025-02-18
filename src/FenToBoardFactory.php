@@ -27,9 +27,9 @@ class FenToBoardFactory
         if (is_a($board, CapablancaBoard::class)) {
             return CapablancaFenToBoardFactory::create($fen);
         } elseif (is_a($board, CapablancaFischerBoard::class)) {
-            return CapablancaFischerFenToBoardFactory::create($fen, $board->getShuffle());
+            return CapablancaFischerFenToBoardFactory::create($fen);
         } elseif (is_a($board, Chess960Board::class)) {
-            return Chess960FenToBoardFactory::create($fen, $board->getShuffle());
+            return Chess960FenToBoardFactory::create($fen);
         } elseif (is_a($board, DunsanyBoard::class)) {
             return DunsanyFenToBoardFactory::create($fen);
         } elseif (is_a($board, LosingBoard::class)) {

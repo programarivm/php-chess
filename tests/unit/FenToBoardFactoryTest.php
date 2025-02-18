@@ -77,32 +77,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function chess960_QNBRKBRN_e4_e5_Ng3_Nc6_Bc4_d6()
-    {
-        $board = FenToBoardFactory::create(
-            'q1brkbrn/ppp2ppp/2np4/4p3/2B1P3/6N1/PPPP1PPP/QNBRK1R1 w KQkq -',
-            new Chess960Board(['Q', 'N', 'B', 'R', 'K', 'B', 'R', 'N' ])
-        );
-
-        $array = $board->toArray();
-
-        $expected = [
-            7 => [ 'q', '.', 'b', 'r', 'k', 'b', 'r', 'n' ],
-            6 => [ 'p', 'p', 'p', '.', '.', 'p', 'p', 'p' ],
-            5 => [ '.', '.', 'n', 'p', '.', '.', '.', '.' ],
-            4 => [ '.', '.', '.', '.', 'p', '.', '.', '.' ],
-            3 => [ '.', '.', 'B', '.', 'P', '.', '.', '.' ],
-            2 => [ '.', '.', '.', '.', '.', '.', 'N', '.' ],
-            1 => [ 'P', 'P', 'P', 'P', '.', 'P', 'P', 'P' ],
-            0 => [ 'Q', 'N', 'B', 'R', 'K', '.', 'R', '.' ],
-        ];
-
-        $this->assertSame($expected, $array);
-    }
-
-    /**
-     * @test
-     */
     public function capablanca_e4_e5()
     {
         $board = FenToBoardFactory::create(
