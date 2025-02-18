@@ -6,7 +6,7 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Chess960\CastlingRule;
-use Chess\Variant\Chess960\StartPieces;
+use Chess\Variant\Chess960\RandomPieceArrayFactory;
 
 class Board extends AbstractBoard
 {
@@ -16,7 +16,7 @@ class Board extends AbstractBoard
         $this->square = new Square();
         $this->move = new Move();
         if (!$pieces) {
-            $pieces = (new StartPieces($shuffle))->pieces();
+            $pieces = RandomPieceArrayFactory::create($shuffle);
             $this->castlingAbility = CastlingRule::START;
         } else {
             $this->castlingAbility = $castlingAbility;
