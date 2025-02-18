@@ -10,6 +10,16 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function null_string()
+    {
+        $board = FenToBoardFactory::create();
+
+        $this->assertNotEmpty($board->toArray());
+    }
+
+    /**
+     * @test
+     */
     public function RNBQKBNR_e4()
     {
         $expected = [

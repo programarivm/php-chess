@@ -81,6 +81,27 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function null_string()
+    {
+        $expected = [
+            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
+            6 => [ 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' ],
+            5 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            1 => [ 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P' ],
+            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
+        ];
+
+        $board = FenToBoardFactory::create();
+
+        $this->assertSame($expected, $board->toArray());
+    }
+
+    /**
+     * @test
+     */
     public function e4()
     {
         $expected = [

@@ -10,17 +10,18 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function null_string()
+    {
+        $board = FenToBoardFactory::create();
+
+        $this->assertNotEmpty($board->toArray());
+    }
+
+    /**
+     * @test
+     */
     public function ARNBQKBNRC_e4()
     {
-        $shuffle = ['A', 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R', 'C' ];
-
-        $board = FenToBoardFactory::create(
-            'arnbqkbnrc/pppppppppp/10/10/5P4/10/PPPPP1PPPP/ARNBQKBNRC b KQkq e3 0 1',
-            $shuffle
-        );
-
-        $array = $board->toArray();
-
         $expected = [
             7 => [ 'a', 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r', 'c' ],
             6 => [ 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p' ],
@@ -31,7 +32,9 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             1 => [ 'P', 'P', 'P', 'P', 'P', '.', 'P', 'P', 'P', 'P' ],
             0 => [ 'A', 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R', 'C' ],
         ];
+        
+        $board = FenToBoardFactory::create('arnbqkbnrc/pppppppppp/10/10/5P4/10/PPPPP1PPPP/ARNBQKBNRC b KQkq e3 0 1');
 
-        $this->assertSame($expected, $array);
+        $this->assertSame($expected, $board->toArray());
     }
 }

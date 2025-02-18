@@ -17,16 +17,21 @@ use Chess\Variant\Classical\FenToBoardFactory as ClassicalFenToBoardFactory;
 class FenToBoardFactory
 {
     /**
-     * @param string $string
+     * @param string|null $string
      * @return \Chess\Variant\AbstractBoard
      */
-    public static function create(string $string): AbstractBoard
+    public static function create(string $string = null): AbstractBoard
     {
+        if (!$string) {
+            return new Board((new Shuffle())->create());
+        }
+
         $fenStr = new Str();
         $string = $fenStr->validate($string);
         $fields = array_filter(explode(' ', $string));
         $namespace = 'Capablanca';
-        $shuffle = $string ? (new Shuffle())->extract($string) : (new Shuffle())->create();
+        $shuffle = (new Shuffle())->extract($string);
+
         try {
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
