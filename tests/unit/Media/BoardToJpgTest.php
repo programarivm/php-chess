@@ -2,12 +2,12 @@
 
 namespace Chess\Tests\Unit\Media;
 
-use Chess\FenToBoardFactory;
 use Chess\Media\BoardToJpg;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\Board as ClassicalBoard;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class BoardToJpgTest extends AbstractUnitTestCase
 {
