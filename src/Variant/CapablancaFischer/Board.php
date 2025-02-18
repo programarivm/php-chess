@@ -16,7 +16,7 @@ class Board extends AbstractBoard
         $this->square = new Square();
         $this->move = new Move();
         if (!$pieces) {
-            $pieces = (new StartPieces($shuffle))->create();
+            $pieces = (new StartPieces($shuffle))->pieces();
             $this->castlingAbility = CastlingRule::START;
         } else {
             $this->castlingAbility = $castlingAbility;
