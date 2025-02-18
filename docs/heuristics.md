@@ -56,8 +56,8 @@ Evaluation functions allow to transform a FEN position to a normalized array of 
 The fast evaluation function is convenient to evaluate entire games while the complete evaluation function is intended for specific chess positions as shown in the following example.
 
 ```php
-use Chess\FenToBoardFactory;
 use Chess\Eval\CompleteFunction;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 $fen = 'rnbqkb1r/p1pp1ppp/1p2pn2/8/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq -';
 
