@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\PassedPawnEval;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class PassedPawnEvalTest extends AbstractUnitTestCase
 {

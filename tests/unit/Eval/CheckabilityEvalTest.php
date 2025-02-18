@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\CheckabilityEval;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class CheckabilityEvalTest extends AbstractUnitTestCase
 {

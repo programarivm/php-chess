@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\RelativeForkEval;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class RelativeForkEvalTest extends AbstractUnitTestCase
 {

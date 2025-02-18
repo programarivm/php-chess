@@ -2,10 +2,10 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\IsolatedPawnEval;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class IsolatedPawnEvalTest extends AbstractUnitTestCase
 {

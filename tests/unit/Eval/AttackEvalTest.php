@@ -2,11 +2,11 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\AttackEval;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class AttackEvalTest extends AbstractUnitTestCase
 {

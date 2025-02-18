@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\BadBishopEval;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class BadBishopEvalTest extends AbstractUnitTestCase
 {
