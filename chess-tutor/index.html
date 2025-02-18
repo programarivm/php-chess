@@ -109,9 +109,9 @@
 <h2 id="explain-a-fen-position">Explain a FEN Position</h2>
 <p>✨ Chess beginners often think they can checkmate the opponent's king quickly. However, there are so many different things to consider in order to understand a position.</p>
 <p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/FenEvaluationTest.php">Chess\Tutor\FenEvaluation</a> helps you improve your chess thinking process by evaluating a FEN position in terms of chess concepts like the example below.</p>
-<pre><code class="language-php">use Chess\FenToBoardFactory;
-use Chess\Eval\CompleteFunction;
+<pre><code class="language-php">use Chess\Eval\CompleteFunction;
 use Chess\Tutor\FenEvaluation;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 $f = new CompleteFunction();
 

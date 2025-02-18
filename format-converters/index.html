@@ -112,9 +112,8 @@
 <h1 id="format-converters">Format Converters</h1>
 <h2 id="fen-to-board">FEN to Board</h2>
 <p>✨ FEN stands for Forsyth-Edwards Notation and is the standard way for describing chess positions using text strings.</p>
-<p>At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenToBoardFactoryTest.php">Chess\FenToBoardFactory</a> class according to the variants supported.</p>
-<p>When a single parameter is passed into the factory's create method, it is assumed that you want to create a classical chess board object.</p>
-<pre><code class="language-php">use Chess\FenToBoardFactory;
+<p>The factory of chessboards allows to convert a FEN string into a chessboard object for further processing.</p>
+<pre><code class="language-php">use Chess\Variant\Classical\FenToBoardFactory;
 
 $board = FenToBoardFactory::create('rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -');
 
@@ -178,8 +177,8 @@ echo $lan;
 <h2 id="board-to-png-image">Board to PNG Image</h2>
 <p>✨ PNG stands for Portable Network Graphics and is a widely used format for image files. Not to be confused with PGN, the text-based file format to annotate chess games.</p>
 <p><a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Media/BoardToPngTest.php">Chess\Media\BoardToPng</a> converts a chess board object to a PNG image.</p>
-<pre><code class="language-php">use Chess\FenToBoardFactory;
-use Chess\Media\BoardToPng;
+<pre><code class="language-php">use Chess\Media\BoardToPng;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 $board = FenToBoardFactory::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
 

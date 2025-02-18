@@ -181,10 +181,10 @@ echo $board-&gt;movetext();
 </code></pre>
 <pre><code class="language-text">1.e4 Nf6
 </code></pre>
-<p>You may want to play against Stockfish starting from a particular FEN with the help of <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenToBoardFactoryTest.php">Chess\FenToBoardFactory</a>.</p>
-<pre><code class="language-php">use Chess\FenToBoardFactory;
-use Chess\UciEngine\UciEngine;
+<p>You may want to play against Stockfish starting from a particular FEN with the help of <a href="https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/FenToBoardFactoryTest.php">Chess\Variant\Classical\FenToBoardFactory</a>.</p>
+<pre><code class="language-php">use Chess\UciEngine\UciEngine;
 use Chess\UciEngine\Details\Limit;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 $board = FenToBoardFactory::create('4k2r/pp1b1pp1/8/3pPp1p/P2P1P2/1P3N2/1qr3PP/R3QR1K w k -');
 
