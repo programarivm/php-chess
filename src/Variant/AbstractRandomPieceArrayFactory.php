@@ -8,7 +8,7 @@ use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Piece;
 
-class AbstractRandomPieceArrayFactory
+abstract class AbstractRandomPieceArrayFactory
 {
     protected static function pieces(array $shuffle, string $namespace, AbstractNotation $square): array
     {
