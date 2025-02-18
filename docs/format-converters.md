@@ -4,12 +4,10 @@
 
 ✨ FEN stands for Forsyth-Edwards Notation and is the standard way for describing chess positions using text strings.
 
-At some point you'll definitely want to convert a FEN string into a chessboard object for further processing, and this can be done with the [Chess\FenToBoardFactory](https://github.com/chesslablab/php-chess/blob/main/tests/unit/FenToBoardFactoryTest.php) class according to the variants supported.
-
-When a single parameter is passed into the factory's create method, it is assumed that you want to create a classical chess board object.
+The factory of chessboards allows to convert a FEN string into a chessboard object for further processing.
 
 ```php
-use Chess\FenToBoardFactory;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 $board = FenToBoardFactory::create('rnbqkb1r/pp2pppp/3p1n2/8/3NP3/8/PPP2PPP/RNBQKB1R w KQkq -');
 
@@ -95,8 +93,8 @@ b8c6
 [Chess\Media\BoardToPng](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Media/BoardToPngTest.php) converts a chess board object to a PNG image.
 
 ```php
-use Chess\FenToBoardFactory;
 use Chess\Media\BoardToPng;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 $board = FenToBoardFactory::create('1rbq1rk1/p1b1nppp/1p2p3/8/1B1pN3/P2B4/1P3PPP/2RQ1R1K w - - bm Nf6+');
 
