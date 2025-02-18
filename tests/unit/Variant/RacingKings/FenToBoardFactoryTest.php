@@ -1,27 +1,17 @@
 <?php
 
-namespace Chess\Tests\Unit;
+namespace Chess\Tests\Unit\Variant\RacingKings;
 
-use Chess\FenToBoardFactory;
-use Chess\Exception\UnknownNotationException;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Capablanca\Board as CapablancaBoard;
-use Chess\Variant\Chess960\Board as Chess960Board;
-use Chess\Variant\Classical\Board as ClassicalBoard;
-use Chess\Variant\RacingKings\Board as RacingKingsBoard;
+use Chess\Variant\RacingKings\FenToBoardFactory;
 
 class FenToBoardFactoryTest extends AbstractUnitTestCase
 {
     /**
      * @test
      */
-    public function racing_kings_Rg8_Nxf2_Qd5()
+    public function Rg8_Nxf2_Qd5()
     {
-        $board = FenToBoardFactory::create(
-            '6R1/8/8/8/8/8/krbnNn1K/qrb1NBRQ w - -',
-            new RacingKingsBoard()
-        );
-
         $expected = [
             7 => [ '.', '.', '.', '.', '.', '.', 'R', '.' ],
             6 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
@@ -32,6 +22,8 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
             1 => [ 'k', 'r', 'b', 'n', 'N', 'n', '.', 'K' ],
             0 => [ 'q', 'r', 'b', '.', 'N', 'B', 'R', 'Q' ],
         ];
+
+        $board = FenToBoardFactory::create('6R1/8/8/8/8/8/krbnNn1K/qrb1NBRQ w - -');
 
         $this->assertSame($expected, $board->toArray());
     }
