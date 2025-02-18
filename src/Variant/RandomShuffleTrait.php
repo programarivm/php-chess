@@ -17,6 +17,14 @@ trait RandomShuffleTrait
         return $this->default;
     }
 
+    public function extract(string $fen): array
+    {
+        $fields = array_filter(explode(' ', $fen));
+        $exploded = explode('/', $fields[0]);
+        
+        return str_split(mb_strtoupper($exploded[0]));
+    }
+
     protected function bishops()
     {
         $keys = [];

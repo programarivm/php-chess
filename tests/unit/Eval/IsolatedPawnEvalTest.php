@@ -2,10 +2,10 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\IsolatedPawnEval;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Capablanca\Board as CapablancaBoard;
+use Chess\Variant\Capablanca\FenToBoardFactory as CapablancaFenToBoardFactory;
+use Chess\Variant\Classical\FenToBoardFactory as ClassicalFenToBoardFactory;
 
 class IsolatedPawnEvalTest extends AbstractUnitTestCase
 {
@@ -27,7 +27,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             "The following are isolated pawns: a7, d5.",
         ];
 
-        $board = FenToBoardFactory::create('r3k2r/pbn2ppp/8/1P1pP3/P1qP4/5B2/3Q1PPP/R3K2R w KQkq -');
+        $board = ClassicalFenToBoardFactory::create('r3k2r/pbn2ppp/8/1P1pP3/P1qP4/5B2/3Q1PPP/R3K2R w KQkq -');
         $isolatedPawnEval = new IsolatedPawnEval($board);
 
         $this->assertSame($expectedResult, $isolatedPawnEval->result);
@@ -51,7 +51,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             "The following are isolated pawns: d5, h2.",
         ];
 
-        $board = FenToBoardFactory::create('1r4k1/7p/5np1/3p3n/8/2NB4/7P/3N1RK1 w - -');
+        $board = ClassicalFenToBoardFactory::create('1r4k1/7p/5np1/3p3n/8/2NB4/7P/3N1RK1 w - -');
         $isolatedPawnEval = new IsolatedPawnEval($board);
 
         $this->assertSame($expectedResult, $isolatedPawnEval->result);
@@ -77,7 +77,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             "The following are isolated pawns: a7, a2, c2.",
         ];
 
-        $board = FenToBoardFactory::create('1r2r1k1/p4p1p/6pB/q7/8/3Q2P1/PbP2PKP/1R3R2 w - -');
+        $board = ClassicalFenToBoardFactory::create('1r2r1k1/p4p1p/6pB/q7/8/3Q2P1/PbP2PKP/1R3R2 w - -');
         $isolatedPawnEval = new IsolatedPawnEval($board);
 
         $this->assertSame($expectedResult, $isolatedPawnEval->result);
@@ -95,10 +95,7 @@ class IsolatedPawnEvalTest extends AbstractUnitTestCase
             'b' => [],
         ];
 
-        $board = FenToBoardFactory::create(
-            'rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3',
-            new CapablancaBoard()
-        );
+        $board = CapablancaFenToBoardFactory::create('rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3');
 
         $isolatedPawnEval = new IsolatedPawnEval($board);
 

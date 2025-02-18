@@ -2,12 +2,11 @@
 
 namespace Chess\Tests\Unit\Tutor;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\CompleteFunction;
 use Chess\Play\SanPlay;
 use Chess\Tutor\FenEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
-use Chess\Variant\Capablanca\Board as CapablancaBoard;
+use Chess\Variant\Capablanca\FenToBoardFactory;
 
 class FenEvaluationTest extends AbstractUnitTestCase
 {
@@ -77,10 +76,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
             "Overall, 3 evaluation features are favoring White.",
         ];
 
-        $board = FenToBoardFactory::create(
-            'rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3',
-            new CapablancaBoard()
-        );
+        $board = FenToBoardFactory::create('rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3');
 
         $paragraph = (new FenEvaluation(self::$f, $board))->paragraph;
 
@@ -102,10 +98,7 @@ class FenEvaluationTest extends AbstractUnitTestCase
             "Overall, 3 evaluation features will be favoring White.",
         ];
 
-        $board = FenToBoardFactory::create(
-            'rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3',
-            new CapablancaBoard()
-        );
+        $board = FenToBoardFactory::create('rnabqkbcnr/pppppppppp/10/10/5P4/10/PPPPP1PPPP/RNABQKBCNR b KQkq f3');
 
         $paragraph = (new FenEvaluation(self::$f, $board))->futurize();
 

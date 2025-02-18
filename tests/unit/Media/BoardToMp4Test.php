@@ -2,11 +2,11 @@
 
 namespace Chess\Tests\Unit\Media;
 
-use Chess\FenToBoardFactory;
 use Chess\Media\BoardToMp4;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Chess960\Board as Chess960Board;
 use Chess\Variant\Classical\Board as ClassicalBoard;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class BoardToMp4Test extends AbstractUnitTestCase
 {

@@ -2,10 +2,10 @@
 
 namespace Chess\Tests\Unit\Eval;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\FlightSquareEval;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class FlightSquareEvalTest extends AbstractUnitTestCase
 {

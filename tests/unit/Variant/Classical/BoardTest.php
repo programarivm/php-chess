@@ -2,7 +2,6 @@
 
 namespace Chess\Tests\Unit\Variant\Classical;
 
-use Chess\FenToBoardFactory;
 use Chess\Computer\RandomMove;
 use Chess\Movetext\SanMovetext;
 use Chess\Play\SanPlay;
@@ -15,7 +14,7 @@ use Chess\Variant\Classical\P;
 use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\Board;
-use Chess\Variant\Classical\CastlingRule;
+use Chess\Variant\Classical\FenToBoardFactory;
 use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Classical\PGN\Square;

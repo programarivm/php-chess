@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Variant\RacingKings;
 
-use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\RacingKings\Board;
+use Chess\Variant\RacingKings\FenToBoardFactory;
 
 class BoardTest extends AbstractUnitTestCase
 {
@@ -114,10 +114,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function w_wins()
     {
-        $board = FenToBoardFactory::create(
-            '8/1K4k1/8/8/8/8/8/8 w - - 0 1',
-            new Board()
-        );
+        $board = FenToBoardFactory::create('8/1K4k1/8/8/8/8/8/8 w - - 0 1');
 
         $expected = [
             7 => [ '.', 'K', '.', '.', '.', '.', '.', '.' ],
@@ -143,10 +140,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function b_wins()
     {
-        $board = FenToBoardFactory::create(
-            '8/1K4k1/8/8/8/8/8/8 w - - 0 1',
-            new Board()
-        );
+        $board = FenToBoardFactory::create('8/1K4k1/8/8/8/8/8/8 w - - 0 1');
 
         $expected = [
             7 => [ '.', '.', '.', '.', '.', '.', '.', 'k' ],
@@ -173,10 +167,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function draw()
     {
-        $board = FenToBoardFactory::create(
-            '8/1K4k1/8/8/8/8/8/8 w - - 0 1',
-            new Board()
-        );
+        $board = FenToBoardFactory::create('8/1K4k1/8/8/8/8/8/8 w - - 0 1');
 
         $expected = [
             7 => [ '.', 'K', '.', '.', '.', '.', 'k', '.' ],

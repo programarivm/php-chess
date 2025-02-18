@@ -2,12 +2,12 @@
 
 namespace Chess\Tests\Unit;
 
-use Chess\FenToBoardFactory;
 use Chess\SanPlotter;
 use Chess\Eval\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class SanPlotterTest extends AbstractUnitTestCase
 {

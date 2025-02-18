@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Function;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\FastFunction;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class FastFunctionTest extends AbstractUnitTestCase
 {

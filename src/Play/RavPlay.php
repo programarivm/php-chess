@@ -2,12 +2,12 @@
 
 namespace Chess\Play;
 
-use Chess\FenToBoardFactory;
 use Chess\Exception\UnknownNotationException;
 use Chess\Movetext\RavMovetext;
 use Chess\Movetext\SanMovetext;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class RavPlay extends AbstractPlay
 {

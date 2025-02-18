@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Play;
 
-use Chess\FenToBoardFactory;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class SanPlayTest extends AbstractUnitTestCase
 {

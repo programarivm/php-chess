@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Variant\Dunsany;
 
-use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Dunsany\Board;
+use Chess\Variant\Dunsany\FenToBoardFactory;
 
 class BoardTest extends AbstractUnitTestCase
 {

@@ -3,9 +3,9 @@
 namespace Chess\Tests\unit\Eval;
 
 use Chess\Eval\OverloadingEval;
-use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\Board;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class OverloadingEvalTest extends AbstractUnitTestCase
 {

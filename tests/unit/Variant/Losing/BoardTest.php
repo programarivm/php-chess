@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Variant\Losing;
 
-use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Losing\Board;
+use Chess\Variant\Losing\FenToBoardFactory;
 
 class BoardTest extends AbstractUnitTestCase
 {
@@ -155,10 +155,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function w_wins()
     {
-        $board = FenToBoardFactory::create(
-            '7r/8/8/8/8/1PB5/8/8 w - -',
-            new Board()
-        );
+        $board = FenToBoardFactory::create('7r/8/8/8/8/1PB5/8/8 w - -');
 
         $this->assertFalse($board->doesWin());
         $this->assertTrue($board->play('w', 'Bxh8'));
@@ -170,10 +167,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function b_wins()
     {
-        $board = FenToBoardFactory::create(
-            '8/r3P3/8/8/8/8/8/8 b - -',
-            new Board()
-        );
+        $board = FenToBoardFactory::create('8/r3P3/8/8/8/8/8/8 b - -');
 
         $this->assertFalse($board->doesWin());
         $this->assertTrue($board->play('b', 'Rxe7'));
@@ -185,10 +179,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function b_stalemates()
     {
-        $board = FenToBoardFactory::create(
-            'r7/4P3/8/8/8/8/8/8 b - -',
-            new Board()
-        );
+        $board = FenToBoardFactory::create('r7/4P3/8/8/8/8/8/8 b - -');
 
         $this->assertFalse($board->doesWin());
         $this->assertTrue($board->play('b', 'Re8'));

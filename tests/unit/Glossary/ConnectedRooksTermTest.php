@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\Tests\Unit\Eval;
+namespace Chess\Tests\Unit\Glossary;
 
-use Chess\FenToBoardFactory;
 use Chess\Glossary\ConnectedRooksTerm;
 use Chess\Tests\AbstractUnitTestCase;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class ConnectedRooksTermTest extends AbstractUnitTestCase
 {

@@ -2,13 +2,13 @@
 
 namespace Chess\Tests\Unit\Variant\Classical;
 
-use Chess\FenToBoardFactory;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\RType;
-use Chess\Variant\Classical\PGN\Square;
 use Chess\Variant\Classical\R;
+use Chess\Variant\Classical\FenToBoardFactory;
 use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Piece;
+use Chess\Variant\Classical\PGN\Square;
 
 class RTest extends AbstractUnitTestCase
 {
