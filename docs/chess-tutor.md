@@ -7,9 +7,9 @@
 [Chess\Tutor\FenEvaluation](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Tutor/FenEvaluationTest.php) helps you improve your chess thinking process by evaluating a FEN position in terms of chess concepts like the example below.
 
 ```php
-use Chess\FenToBoardFactory;
 use Chess\Eval\CompleteFunction;
 use Chess\Tutor\FenEvaluation;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 $f = new CompleteFunction();
 
