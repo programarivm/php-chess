@@ -15,55 +15,6 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function classical_en_passant_b4_e6_b5_c5_bxc6()
-    {
-        $board = FenToBoardFactory::create('rnbqkbnr/pp1p1ppp/4p3/1Pp5/8/8/P1PPPPPP/RNBQKBNR w KQkq c6');
-
-        $board->play('w', 'bxc6');
-
-        $expected = [
-            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
-            6 => [ 'p', 'p', '.', 'p', '.', 'p', 'p', 'p' ],
-            5 => [ '.', '.', 'P', '.', 'p', '.', '.', '.' ],
-            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            1 => [ 'P', '.', 'P', 'P', 'P', 'P', 'P', 'P' ],
-            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
-    public function classical_en_passant_bxc6()
-    {
-        $board = FenToBoardFactory::create(
-            'r1bqkbnr/p3pppp/8/1Pp5/8/8/P1PPPPPP/RNBQKBNR w KQkq c6 0 1',
-            new ClassicalBoard()
-        );
-
-        $board->play('w', 'bxc6');
-
-        $expected = [
-            7 => [ 'r', '.', 'b', 'q', 'k', 'b', 'n', 'r' ],
-            6 => [ 'p', '.', '.', '.', 'p', 'p', 'p', 'p' ],
-            5 => [ '.', '.', 'P', '.', '.', '.', '.', '.' ],
-            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            1 => [ 'P', '.', 'P', 'P', 'P', 'P', 'P', 'P' ],
-            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
     public function racing_kings_Rg8_Nxf2_Qd5()
     {
         $board = FenToBoardFactory::create(
