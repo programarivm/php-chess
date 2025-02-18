@@ -14,7 +14,6 @@ abstract class AbstractRandomPieceArrayFactory
     {
         $pieces = [];
         $longCastlingRook = null;
-
         foreach ($shuffle as $key => $val) {
             $wSq = chr(97 + $key) . '1';
             $bSq = chr(97 + $key) . $square::SIZE['ranks'];
@@ -31,7 +30,6 @@ abstract class AbstractRandomPieceArrayFactory
                 $pieces[] =  new $class(Color::B, $bSq, $square, RType::CASTLE_SHORT);
             }
         }
-
         for ($i = 0; $i < $square::SIZE['files']; $i++) {
             $wSq = chr(97 + $i) . 2;
             $bSq = chr(97 + $i) . $square::SIZE['ranks'] - 1;
