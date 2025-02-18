@@ -18,7 +18,6 @@
             <directory>tests/unit/Randomizer</directory>
             <directory>tests/unit/Tutor</directory>
             <directory>tests/unit/Variant</directory>
-            <file>tests/unit/FenToBoardFactoryTest.php</file>
             <file>tests/unit/SanExtractorTest.php</file>
             <file>tests/unit/SanPlotterTest.php</file>
             <file>tests/unit/SanSignalTest.php</file>
