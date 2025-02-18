@@ -12,7 +12,7 @@ class ShuffleTest extends AbstractUnitTestCase
      */
     public function create()
     {
-        $arr = (new Shuffle())->create();
+        $arr = (new Shuffle())->shuffle();
 
         $this->assertNotEmpty($arr);
     }

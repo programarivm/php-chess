@@ -23,7 +23,7 @@ class FenToBoardFactory
     public static function create(string $string = null): AbstractBoard
     {
         if (!$string) {
-            return new Board((new Shuffle())->create());
+            return new Board((new Shuffle())->shuffle());
         }
 
         $fenStr = new Str();

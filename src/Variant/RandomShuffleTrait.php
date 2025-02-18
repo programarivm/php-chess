@@ -8,7 +8,7 @@ trait RandomShuffleTrait
 {
     protected array $default = [];
 
-    public function create()
+    public function shuffle()
     {
         do {
             shuffle($this->default);

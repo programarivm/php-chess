@@ -13,7 +13,7 @@ class StartPiecesTest extends AbstractUnitTestCase
      */
     public function create()
     {
-        $shuffle = (new Shuffle())->create();
+        $shuffle = (new Shuffle())->shuffle();
         $pieces = (new StartPieces($shuffle))->create();
 
         $this->assertSame(40, count($pieces));

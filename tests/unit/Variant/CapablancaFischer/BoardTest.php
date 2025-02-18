@@ -16,7 +16,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function pieces()
     {
-        $shuffle = (new Shuffle())->create();
+        $shuffle = (new Shuffle())->shuffle();
         $board = new Board($shuffle);
         $pieces = $board->pieces();
 
