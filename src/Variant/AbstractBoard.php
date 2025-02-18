@@ -2,7 +2,6 @@
 
 namespace Chess\Variant;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\SpaceEval;
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\Classical\CastlingRule;
@@ -432,7 +431,9 @@ abstract class AbstractBoard extends \SplObjectStorage
         $startFen = count($this->history) > 1
             ? array_slice($this->history, -2)[0]['fen']
             : $this->startFen;
-        $board = FenToBoardFactory::create($startFen, $this);
+        $namespaceName = (new \ReflectionClass(get_class($this)))->getNamespaceName();
+        $className = "$namespaceName\FenToBoardFactory";
+        $board = $className::create($startFen, $this);
         $this->castlingAbility = $board->castlingAbility;
         array_pop($this->history);
         $this->rewind();
