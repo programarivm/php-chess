@@ -2,7 +2,6 @@
 
 namespace Chess\Variant\RacingKings;
 
-use Chess\FenToBoardFactory;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\RType;
 use Chess\Variant\Classical\B;
@@ -11,6 +10,7 @@ use Chess\Variant\Classical\N;
 use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\Board as ClassicalBoard;
+use Chess\Variant\Classical\FenToBoardFactory;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Square;

@@ -2,12 +2,12 @@
 
 namespace Chess\Tests\Unit\Tutor;
 
-use Chess\FenToBoardFactory;
 use Chess\Eval\CompleteFunction;
 use Chess\Play\SanPlay;
 use Chess\Tutor\FenEvaluation;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Capablanca\Board as CapablancaBoard;
+use Chess\Variant\Classical\FenToBoardFactory;
 
 class FenEvaluationTest extends AbstractUnitTestCase
 {
