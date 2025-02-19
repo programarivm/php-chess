@@ -50,7 +50,7 @@ class PgnParser
                     if (!array_diff($tag->mandatory(), array_keys($tags)) &&
                         $validMovetext = (new SanMovetext($move, $line))->validate()
                     ) {
-                        if ($this->handle($tags, $validMovetext)) {
+                        if ($this->handleValidation($tags, $validMovetext)) {
                             $this->result->valid++;
                         }
                     }
@@ -64,7 +64,7 @@ class PgnParser
                 } elseif ($this->line->endsMovetext($line)) {
                     $movetext .= ' ' . $line;
                     if ($validMovetext = (new SanMovetext($move, $movetext))->validate()) {
-                        if ($this->handle($tags, $validMovetext)) {
+                        if ($this->handleValidation($tags, $validMovetext)) {
                             $this->result->valid++;
                         }
                     }
@@ -83,7 +83,7 @@ class PgnParser
         $this->callback = $callback;
     }
 
-    protected function handle(array $tags, string $movetext): void
+    protected function handleValidation(array $tags, string $movetext): void
     {
         call_user_func($this->callback, $tags, $movetext);
     }
