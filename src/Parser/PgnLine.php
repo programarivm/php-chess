@@ -1,10 +1,10 @@
 <?php
 
-namespace Chess\PgnParser;
+namespace Chess\Parser;
 
 use Chess\Variant\Classical\PGN\Termination;
 
-class FileLine
+class PgnLine
 {
     public function isOneLinerMovetext(string $line): bool
     {

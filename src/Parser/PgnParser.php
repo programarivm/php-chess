@@ -1,33 +1,34 @@
 <?php
 
-namespace Chess\PgnParser;
+namespace Chess\Parser;
 
 use Chess\Exception\UnknownNotationException;
+use Chess\Movetext\SanMovetext;
+use Chess\Parser\PgnLine;
 use Chess\Variant\Classical\PGN\Tag;
 use Chess\Variant\Classical\PGN\Move;
-use Chess\Movetext\SanMovetext;
 
-abstract class AbstractParser
+class PgnParser
 {
-    protected $filepath;
+    protected string $filepath;
 
-    protected $line;
+    protected PgnLine $line;
 
-    protected $result;
+    protected object $result;
+
+    protected \Closure $callback;
 
     public function __construct(string $filepath)
     {
         $this->filepath = $filepath;
-
-        $this->line = new FileLine();
-
+        $this->line = new PgnLine();
         $this->result = (object) [
             'total' => 0,
             'valid' => 0,
         ];
     }
 
-    public function getResult()
+    public function getResult(): array
     {
         return $this->result;
     }
@@ -49,7 +50,7 @@ abstract class AbstractParser
                     if (!array_diff($tag->mandatory(), array_keys($tags)) &&
                         $validMovetext = (new SanMovetext($move, $line))->validate()
                     ) {
-                        if ($this->onValidate($tags, $validMovetext)) {
+                        if ($this->handle($tags, $validMovetext)) {
                             $this->result->valid++;
                         }
                     }
@@ -63,7 +64,7 @@ abstract class AbstractParser
                 } elseif ($this->line->endsMovetext($line)) {
                     $movetext .= ' ' . $line;
                     if ($validMovetext = (new SanMovetext($move, $movetext))->validate()) {
-                        if ($this->onValidate($tags, $validMovetext)) {
+                        if ($this->handle($tags, $validMovetext)) {
                             $this->result->valid++;
                         }
                     }
@@ -77,5 +78,13 @@ abstract class AbstractParser
         }
     }
 
-    abstract protected function onValidate(array $tags, string $movetext);
+    public function onValidate($callback): void
+    {
+        $this->callback = $callback;
+    }
+
+    protected function handle(array $tags, string $movetext): void
+    {
+        call_user_func($this->callback, $tags, $movetext);
+    }
 }
