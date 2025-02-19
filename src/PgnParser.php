@@ -4,9 +4,9 @@ namespace Chess;
 
 use Chess\Exception\UnknownNotationException;
 use Chess\Movetext\SanMovetext;
+use Chess\Variant\AbstractNotation;
 use Chess\Variant\Classical\PGN\Tag;
 use Chess\Variant\Classical\PGN\Termination;
-use Chess\Variant\Classical\PGN\Move;
 
 /**
  * PGN Parser
@@ -16,18 +16,18 @@ use Chess\Variant\Classical\PGN\Move;
 class PgnParser
 {
     /**
+     * The chess move in abstract notation.
+     *
+     * @var \Chess\Variant\AbstractNotation
+     */
+    private AbstractNotation $move;
+
+    /**
      * Filepath.
      *
      * @var string
      */
     private string $filepath;
-
-    /**
-     * Chess move.
-     *
-     * @var \Chess\Variant\Classical\PGN\Move
-     */
-    private Move $move;
 
     /**
      * Tag.
@@ -53,10 +53,10 @@ class PgnParser
     /**
      * @param string $filepath
      */
-    public function __construct(string $filepath)
+    public function __construct(AbstractNotation $move, string $filepath)
     {
+        $this->move = $move;
         $this->filepath = $filepath;
-        $this->move = new Move();
         $this->tag = new Tag();
         $this->result = [
             'total' => 0,
@@ -65,7 +65,7 @@ class PgnParser
     }
 
     /**
-     * Returns the result.
+     * Returns the result of the parsing.
      *
      * @return array
      */
