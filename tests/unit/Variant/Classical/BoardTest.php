@@ -2,9 +2,9 @@
 
 namespace Chess\Tests\Unit\Variant\Classical;
 
+use Chess\PgnParser;
 use Chess\Computer\RandomMove;
 use Chess\Movetext\SanMovetext;
-use Chess\Parser\PgnParser;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\RType;
