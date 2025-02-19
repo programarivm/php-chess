@@ -92,9 +92,8 @@ class PgnParser
                     if (!array_diff($this->tag->mandatory(), array_keys($tags)) &&
                         $validMovetext = (new SanMovetext($this->move, $line))->validate()
                     ) {
-                        if ($this->handleValidation($tags, $validMovetext)) {
-                            $this->result['valid'] += 1;
-                        }
+                        $this->handleValidation($tags, $validMovetext);
+                        $this->result['valid'] += 1;
                     }
                     $tags = [];
                     $movetext = '';
@@ -106,9 +105,8 @@ class PgnParser
                 } elseif ($this->endsMovetext($line)) {
                     $movetext .= ' ' . $line;
                     if ($validMovetext = (new SanMovetext($this->move, $movetext))->validate()) {
-                        if ($this->handleValidation($tags, $validMovetext)) {
-                            $this->result['valid'] += 1;
-                        }
+                        $this->handleValidation($tags, $validMovetext);
+                        $this->result['valid'] += 1;
                     }
                     $tags = [];
                     $movetext = '';

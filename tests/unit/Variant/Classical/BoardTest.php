@@ -35,6 +35,11 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function classical_customized()
     {
+        $expected = [
+            'total' => 50,
+            'valid' => 50,
+        ];
+
         $move = new Move();
         $parser = new PgnParser($move, self::DATA_FOLDER . "/classical/" . "customized.pgn");
 
@@ -46,6 +51,8 @@ class BoardTest extends AbstractUnitTestCase
         });
 
         $parser->parse();
+
+        $this->assertEquals($expected, $parser->getResult());
     }
 
     /**
