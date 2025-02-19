@@ -78,7 +78,7 @@ class PgnParser
         }
     }
 
-    public function onValidate(\Closure $callback): void
+    public function onValidation(\Closure $callback): void
     {
         $this->callback = $callback;
     }
