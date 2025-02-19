@@ -33,10 +33,10 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_games()
+    public function classical_customized()
     {
         $move = new Move();
-        $parser = new PgnParser(self::DATA_FOLDER . "/classical/" . "testing.pgn");
+        $parser = new PgnParser(self::DATA_FOLDER . "/classical/" . "customized.pgn");
 
         $parser->onValidate(function($tags, $movetext) use ($move) {
             $board = FenToBoardFactory::create();
