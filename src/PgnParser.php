@@ -20,26 +20,47 @@ class PgnParser
      *
      * @var string
      */
-    protected string $filepath;
+    private string $filepath;
 
-    protected object $result;
+    /**
+     * The result of the parsing.
+     *
+     * @var array
+     */
+    private array $result;
 
-    protected \Closure $handleValidationCallback;
+    /**
+     * Handle the validation.
+     *
+     * @var \Closure
+     */
+    private \Closure $handleValidationCallback;
 
+    /**
+     * @param string $filepath
+     */
     public function __construct(string $filepath)
     {
         $this->filepath = $filepath;
-        $this->result = (object) [
+        $this->result = [
             'total' => 0,
             'valid' => 0,
         ];
     }
 
+    /**
+     * Returns the result.
+     *
+     * @return array
+     */
     public function getResult(): array
     {
         return $this->result;
     }
 
+    /**
+     * Parsing.
+     */
     public function parse(): void
     {
         $tags = [];
@@ -58,12 +79,12 @@ class PgnParser
                         $validMovetext = (new SanMovetext($move, $line))->validate()
                     ) {
                         if ($this->handleValidation($tags, $validMovetext)) {
-                            $this->result->valid++;
+                            $this->result['valid'] += 1;
                         }
                     }
                     $tags = [];
                     $movetext = '';
-                    $this->result->total++;
+                    $this->result['total'] += 1;
                 } elseif ($this->startsMovetext($line)) {
                     if (!array_diff($tag->mandatory(), array_keys($tags))) {
                         $movetext .= ' ' . $line;
@@ -72,12 +93,12 @@ class PgnParser
                     $movetext .= ' ' . $line;
                     if ($validMovetext = (new SanMovetext($move, $movetext))->validate()) {
                         if ($this->handleValidation($tags, $validMovetext)) {
-                            $this->result->valid++;
+                            $this->result['valid'] += 1;
                         }
                     }
                     $tags = [];
                     $movetext = '';
-                    $this->result->total++;
+                    $this->result['total'] += 1;
                 } else {
                     $movetext .= ' ' . $line;
                 }
@@ -85,27 +106,56 @@ class PgnParser
         }
     }
 
+    /**
+     * Set the validation callback.
+     * 
+     * @param \Closure $handleValidationCallback
+     */
     public function onValidation(\Closure $handleValidationCallback): void
     {
         $this->handleValidationCallback = $handleValidationCallback;
     }
 
-    protected function handleValidation(array $tags, string $movetext): void
+    /**
+     * Handle the validation.
+     * 
+     * @param array $tags
+     * @param string $movetext
+     */
+    private function handleValidation(array $tags, string $movetext): void
     {
         call_user_func($this->handleValidationCallback, $tags, $movetext);
     }
 
-    protected function isOneLinerMovetext(string $line): bool
+    /**
+     * Returns true if the movetext contains one line.
+     * 
+     * @param string $line
+     * @return bool
+     */
+    private function isOneLinerMovetext(string $line): bool
     {
         return $this->startsMovetext($line) && $this->endsMovetext($line);
     }
 
-    protected function startsMovetext(string $line): bool
+    /**
+     * Returns true if it is the first line of the movetext.
+     * 
+     * @param string $line
+     * @return bool
+     */
+    private function startsMovetext(string $line): bool
     {
         return $this->startsWith($line, '1.');
     }
 
-    protected function endsMovetext(string $line): bool
+    /**
+     * Returns true if it is the last line of the movetext.
+     * 
+     * @param string $line
+     * @return bool
+     */
+    private function endsMovetext(string $line): bool
     {
         return $this->endsWith($line, Termination::WHITE_WINS) ||
             $this->endsWith($line, Termination::BLACK_WINS) ||
@@ -113,12 +163,26 @@ class PgnParser
             $this->endsWith($line, Termination::UNKNOWN);
     }
 
-    protected function startsWith(string $haystack, string $needle): bool
+    /**
+     * Returns true if the haystack starts with the needle.
+     * 
+     * @param string $haystack
+     * @param string $needle
+     * @return bool
+     */
+    private function startsWith(string $haystack, string $needle): bool
     {
         return strncmp($haystack, $needle, strlen($needle)) === 0;
     }
 
-    protected function endsWith(string $haystack, string $needle): bool
+    /**
+     * Returns true if the haystack ends with the needle.
+     * 
+     * @param string $haystack
+     * @param string $needle
+     * @return bool
+     */
+    private function endsWith(string $haystack, string $needle): bool
     {
         return substr($haystack, -strlen($needle)) === $needle;
     }
