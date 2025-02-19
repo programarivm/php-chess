@@ -240,10 +240,19 @@ abstract class AbstractPiece
     {
         if ($king = $this->board->piece($this->color, Piece::K)) {
             foreach ($king->attacking() as $piece) {
-                if ($this->move['to'] !== $piece->sq && 
-                    !in_array($this->move['to'], $this->board->square->line($piece->sq, $king->sq))
-                ) {
-                    return true;
+                if ($piece->id === Piece::P) {
+                    $rank = (int) substr($piece->sq, 1);
+                    $enPassantRank = $piece->color === Color::W ? $rank - 1 : $rank + 1;
+                    $xEnPassantSq = $piece->sq[0] . $enPassantRank;
+                    if ($this->move['to'] !== $piece->sq && $this->move['to'] !== $xEnPassantSq) {
+                        return true;
+                    }
+                } else {
+                    if ($this->move['to'] !== $piece->sq &&
+                        !in_array($this->move['to'], $this->board->square->line($piece->sq, $king->sq))
+                    ) {
+                        return true;
+                    }
                 }
             }
         }        

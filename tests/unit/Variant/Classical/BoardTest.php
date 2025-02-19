@@ -3001,4 +3001,15 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertEquals($expected, $board->legal('f5'));
         $this->assertFalse($board->play('w', 'fxe6'));
     }
+
+    /**
+     * @test
+     */
+    public function b5_cxb6()
+    {
+        $board = FenToBoardFactory::create('8/pp3B2/2b4p/2P3p1/k1K1p3/4P1P1/4P2P/8 b - -');
+
+        $this->assertTrue($board->play('b', 'b5'));
+        $this->assertTrue($board->play('w', 'cxb6'));
+    }
 }
