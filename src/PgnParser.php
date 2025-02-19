@@ -16,11 +16,25 @@ use Chess\Variant\Classical\PGN\Move;
 class PgnParser
 {
     /**
-     * The filepath.
+     * Filepath.
      *
      * @var string
      */
     private string $filepath;
+
+    /**
+     * Chess move.
+     *
+     * @var \Chess\Variant\Classical\PGN\Move
+     */
+    private Move $move;
+
+    /**
+     * Tag.
+     *
+     * @var \Chess\Variant\Classical\PGN\Tag
+     */
+    private Tag $tag;
 
     /**
      * The result of the parsing.
@@ -42,6 +56,8 @@ class PgnParser
     public function __construct(string $filepath)
     {
         $this->filepath = $filepath;
+        $this->move = new Move();
+        $this->tag = new Tag();
         $this->result = [
             'total' => 0,
             'valid' => 0,
@@ -66,17 +82,15 @@ class PgnParser
         $tags = [];
         $movetext = '';
         $file = new \SplFileObject($this->filepath);
-        $tag = new Tag();
-        $move = new Move();
         while (!$file->eof()) {
             $line = rtrim($file->fgets());
             try {
-                $valid = $tag->validate($line);
+                $valid = $this->tag->validate($line);
                 $tags[$valid['name']] = $valid['value'];
             } catch (UnknownNotationException $e) {
                 if ($this->isOneLinerMovetext($line)) {
-                    if (!array_diff($tag->mandatory(), array_keys($tags)) &&
-                        $validMovetext = (new SanMovetext($move, $line))->validate()
+                    if (!array_diff($this->tag->mandatory(), array_keys($tags)) &&
+                        $validMovetext = (new SanMovetext($this->move, $line))->validate()
                     ) {
                         if ($this->handleValidation($tags, $validMovetext)) {
                             $this->result['valid'] += 1;
@@ -86,12 +100,12 @@ class PgnParser
                     $movetext = '';
                     $this->result['total'] += 1;
                 } elseif ($this->startsMovetext($line)) {
-                    if (!array_diff($tag->mandatory(), array_keys($tags))) {
+                    if (!array_diff($this->tag->mandatory(), array_keys($tags))) {
                         $movetext .= ' ' . $line;
                     }
                 } elseif ($this->endsMovetext($line)) {
                     $movetext .= ' ' . $line;
-                    if ($validMovetext = (new SanMovetext($move, $movetext))->validate()) {
+                    if ($validMovetext = (new SanMovetext($this->move, $movetext))->validate()) {
                         if ($this->handleValidation($tags, $validMovetext)) {
                             $this->result['valid'] += 1;
                         }
