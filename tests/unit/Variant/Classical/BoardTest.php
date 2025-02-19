@@ -40,16 +40,12 @@ class BoardTest extends AbstractUnitTestCase
             'valid' => 51,
         ];
 
-        $move = new Move();
-        $parser = new PgnParser($move, self::DATA_FOLDER . "/classical/" . "customized.pgn");
+        $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/classical/" . "customized.pgn");
 
-        $parser->onValidation(function($tags, $movetext) use ($move) {
-            $board = FenToBoardFactory::create();
-            foreach ((new SanMovetext($move, $movetext))->moves as $val) {
-                $this->assertTrue($board->play($board->turn, $val));
-            }
+        $parser->onValidation(function($tags, $movetext) {
+            (new SanPlay($movetext))->validate();
         });
-
+        
         $parser->parse();
 
         $this->assertEquals($expected, $parser->getResult());
