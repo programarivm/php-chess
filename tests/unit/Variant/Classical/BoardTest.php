@@ -36,8 +36,8 @@ class BoardTest extends AbstractUnitTestCase
     public function classical_customized()
     {
         $expected = [
-            'total' => 50,
-            'valid' => 50,
+            'total' => 51,
+            'valid' => 51,
         ];
 
         $move = new Move();
