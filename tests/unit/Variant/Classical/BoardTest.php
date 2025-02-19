@@ -4,6 +4,7 @@ namespace Chess\Tests\Unit\Variant\Classical;
 
 use Chess\Computer\RandomMove;
 use Chess\Movetext\SanMovetext;
+use Chess\Parser\PgnParser;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\RType;
@@ -35,18 +36,16 @@ class BoardTest extends AbstractUnitTestCase
     public function play_games()
     {
         $move = new Move();
-        foreach (new \DirectoryIterator(self::DATA_FOLDER."/pgn/") as $fileInfo) {
-            if ($fileInfo->isDot()) continue;
-            $filename = $fileInfo->getFilename();
-            $movetext = file_get_contents(self::DATA_FOLDER."/pgn/$filename");
-            $san = new SanMovetext($move, $movetext);
-            if ($san->validate()) {
-                $board = FenToBoardFactory::create('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -');
-                foreach ($san->moves as $key => $val) {
-                    $this->assertTrue($board->play($board->turn, $val));
-                }
+        $parser = new PgnParser(self::DATA_FOLDER . "/classical/" . "testing.pgn");
+
+        $parser->onValidate(function($tags, $movetext) use ($move) {
+            $board = FenToBoardFactory::create();
+            foreach ((new SanMovetext($move, $movetext))->moves as $val) {
+                $this->assertTrue($board->play($board->turn, $val));
             }
-        }
+        });
+
+        $parser->parse();
     }
 
     /**
