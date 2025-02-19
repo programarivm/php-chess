@@ -16,7 +16,7 @@ class PgnParser
 
     protected object $result;
 
-    protected \Closure $callback;
+    protected \Closure $handleValidationCallback;
 
     public function __construct(string $filepath)
     {
@@ -78,13 +78,13 @@ class PgnParser
         }
     }
 
-    public function onValidation(\Closure $callback): void
+    public function onValidation(\Closure $handleValidationCallback): void
     {
-        $this->callback = $callback;
+        $this->handleValidationCallback = $handleValidationCallback;
     }
 
     protected function handleValidation(array $tags, string $movetext): void
     {
-        call_user_func($this->callback, $tags, $movetext);
+        call_user_func($this->handleValidationCallback, $tags, $movetext);
     }
 }
