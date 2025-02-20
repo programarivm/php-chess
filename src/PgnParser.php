@@ -11,7 +11,8 @@ use Chess\Variant\Classical\PGN\Termination;
 /**
  * PGN Parser
  *
- * Parses a text file containing multiple games including tag pairs.
+ * Syntax validation for text files containing multiple games including tag
+ * pairs.
  */
 class PgnParser
 {
@@ -75,7 +76,7 @@ class PgnParser
     }
 
     /**
-     * Parsing.
+     * Syntax validation.
      */
     public function parse(): void
     {
