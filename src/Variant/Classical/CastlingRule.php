@@ -77,6 +77,6 @@ class CastlingRule extends AbstractNotation
             return $value;
         }
 
-        throw new UnknownNotationExceptilongon();
+        throw new UnknownNotationException();
     }
 }
