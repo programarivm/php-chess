@@ -287,7 +287,7 @@ Sicilian Defense. (2023, July 2). In Wikipedia. [https://en.wikipedia.org/wiki/S
 
 The RAV reader above displays the variation levels in different shades of gray. It is a 2D scrollable HTML table where the main line is shown in a white background color. The deeper the level, the darker the background color.
 
-[Chess\Play\RavPlay](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Play/RavPlayTest.php) allows to play a RAV movetext.
+[Chess\Play\RavPlay](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Play/RavPlayTest.php) allows to play an RAV.
 
 ```php
 use Chess\Play\RavPlay;
@@ -403,7 +403,7 @@ echo $movetext;
 1.e4 c5 (2.Nf3 (2...Nc6) (2...e6) (2...d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 (5...a6) (5...g6) (5...Nc6) (5...e6)))
 ```
 
-And finally, as opposed to the start position, a RAV movetext can also be started from a particular FEN position if passing a chess board object into the constructor of the class. As you can see in the example below, [Chess\Variant\Classical\FenToBoardFactory](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/FenToBoardFactoryTest.php) is used for this purpose.
+An RAV can be started from a particular FEN if passing a chess board object into the constructor of the class. As you can see in the example below, [Chess\Variant\Classical\FenToBoardFactory](https://github.com/chesslablab/php-chess/blob/main/tests/unit/Variant/Classical/FenToBoardFactoryTest.php) is used for this purpose.
 
 ```php
 use Chess\Play\RavPlay;
