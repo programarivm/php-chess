@@ -10,6 +10,7 @@ use Chess\Variant\Classical\PGN\Color;
 use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Chess960\Board;
+use Chess\Variant\Chess960\FenToBoardFactory;
 use Chess\Variant\Chess960\Shuffle;
 
 class BoardTest extends AbstractUnitTestCase
@@ -27,7 +28,8 @@ class BoardTest extends AbstractUnitTestCase
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "chess960.pgn");
 
         $parser->onValidation(function($tags, $movetext) {
-            (new SanPlay($movetext))->validate();
+            $board = FenToBoardFactory::create($tags['FEN']);
+            (new SanPlay($movetext, $board))->validate();
         });
         
         $parser->parse();
