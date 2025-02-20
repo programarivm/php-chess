@@ -9,12 +9,17 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\FenToBoardFactory;
 
+/**
+ * RAV Play
+ *
+ * Semantic validation for games in Recursive Annotation Variation.
+ */
 class RavPlay extends AbstractPlay
 {
     /**
      * RAV movetext.
      *
-     * @var RavMovetext
+     * @var \Chess\Movetext\RavMovetext
      */
     public RavMovetext $ravMovetext;
 
@@ -29,7 +34,7 @@ class RavPlay extends AbstractPlay
      * Constructor.
      *
      * @param string $movetext
-     * @param Board $board
+     * @param \Chess\Variant\AbstractBoard $board
      */
     public function __construct(string $movetext, AbstractBoard $board = null)
     {
@@ -45,7 +50,7 @@ class RavPlay extends AbstractPlay
     }
 
     /**
-     * Makes the moves in the main variation of a RAV movetext.
+     * Semantic validation for the main variation.
      *
      * @throws \Chess\Exception\UnknownNotationException
      * @return \Chess\Play\RavPlay
