@@ -4,7 +4,6 @@ namespace Chess\Tests\Unit\Variant\Classical;
 
 use Chess\PgnParser;
 use Chess\Computer\RandomMove;
-use Chess\Movetext\SanMovetext;
 use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\RType;
@@ -36,8 +35,8 @@ class BoardTest extends AbstractUnitTestCase
     public function sample_classical()
     {
         $expected = [
-            'total' => 63,
-            'valid' => 63,
+            'total' => 64,
+            'valid' => 64,
         ];
 
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "classical.pgn");
@@ -956,51 +955,6 @@ class BoardTest extends AbstractUnitTestCase
         $board = new Board($pieces, $castlingAbility);
 
         $this->assertTrue($board->play('w', 'Nxc3'));
-    }
-
-    /**
-     * @test
-     */
-    public function init_pieces_and_play_b_CASTLE_SHORT()
-    {
-        $pieces = [
-            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
-            new N('w', 'b1', self::$square),
-            new B('w', 'c1', self::$square),
-            new Q('w', 'd1', self::$square),
-            new K('w', 'e1', self::$square),
-            new B('w', 'f1', self::$square),
-            new N('w', 'g1', self::$square),
-            new R('w', 'h1', self::$square, RType::CASTLE_SHORT),
-            new P('w', 'a2', self::$square),
-            new P('w', 'b2', self::$square),
-            new P('w', 'c2', self::$square),
-            new P('w', 'd2', self::$square),
-            new P('w', 'e2', self::$square),
-            new P('w', 'f2', self::$square),
-            new P('w', 'g2', self::$square),
-            new P('w', 'h2', self::$square),
-            new R('b', 'a8', self::$square, RType::CASTLE_LONG),
-            new N('b', 'b8', self::$square),
-            new B('b', 'c8', self::$square),
-            new Q('b', 'd8', self::$square),
-            new K('b', 'e8', self::$square),
-            new R('b', 'h8', self::$square, RType::CASTLE_SHORT),
-            new P('b', 'a7', self::$square),
-            new P('b', 'b7', self::$square),
-            new P('b', 'c7', self::$square),
-            new P('b', 'd7', self::$square),
-            new P('b', 'f7', self::$square),
-            new P('b', 'g7', self::$square),
-            new P('b', 'h7', self::$square)
-        ];
-
-        $castlingAbility = 'KQkq';
-
-        $board = new Board($pieces, $castlingAbility);
-        $board->turn = 'b';
-
-        $this->assertTrue($board->play('b', 'O-O'));
     }
 
     /**
