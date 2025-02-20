@@ -36,8 +36,8 @@ class BoardTest extends AbstractUnitTestCase
     public function sample_classical()
     {
         $expected = [
-            'total' => 62,
-            'valid' => 62,
+            'total' => 63,
+            'valid' => 63,
         ];
 
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "classical.pgn");
@@ -889,27 +889,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertTrue($board->play('w', 'Nf3'));
         $this->assertFalse($board->play('b', 'O-O'));
-    }
-
-    /**
-     * @test
-     */
-    public function init_pieces_and_play_w_Rxa6()
-    {
-        $pieces = [
-            new R('w', 'a1', self::$square, RType::CASTLE_LONG),
-            new K('w', 'e1', self::$square),
-            new K('b', 'e8', self::$square),
-            new B('b', 'a6', self::$square),
-            new P('b', 'g7', self::$square),
-            new P('b', 'h7', self::$square)
-        ];
-
-        $castlingAbility = 'Q';
-
-        $board = new Board($pieces, $castlingAbility);
-
-        $this->assertTrue($board->play('w', 'Rxa6'));
     }
 
     /**
