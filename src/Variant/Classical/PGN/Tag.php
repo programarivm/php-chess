@@ -73,6 +73,7 @@ class Tag extends AbstractNotation
     const PLY_COUNT = 'PlyCount';
     const WHITE_RD = 'WhiteRD';
     const BLACK_RD = 'BlackRD';
+    const VARIANT = 'Variant';
 
     public function validate(string $tag): array
     {
