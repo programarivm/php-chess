@@ -36,8 +36,8 @@ class BoardTest extends AbstractUnitTestCase
     public function sample_classical()
     {
         $expected = [
-            'total' => 58,
-            'valid' => 58,
+            'total' => 60,
+            'valid' => 60,
         ];
 
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "classical.pgn");
@@ -2055,35 +2055,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_d3_d6___Nd7_Nf3()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->play('w', 'd3'));
-        $this->assertTrue($board->play('b', 'd6'));
-        $this->assertTrue($board->play('w', 'e3'));
-        $this->assertTrue($board->play('b', 'e6'));
-        $this->assertTrue($board->play('w', 'Nd2'));
-        $this->assertTrue($board->play('b', 'Nd7'));
-        $this->assertTrue($board->play('w', 'Nd2f3'));
-
-        $expected = [
-            7 => [ 'r', '.', 'b', 'q', 'k', 'b', 'n', 'r' ],
-            6 => [ 'p', 'p', 'p', 'n', '.', 'p', 'p', 'p' ],
-            5 => [ '.', '.', '.', 'p', 'p', '.', '.', '.' ],
-            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            2 => [ '.', '.', '.', 'P', 'P', 'N', '.', '.' ],
-            1 => [ 'P', 'P', 'P', '.', '.', 'P', 'P', 'P' ],
-            0 => [ 'R', '.', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
     public function play_lan_d2d3_d7d6___b8d7_d2f3()
     {
         $board = new Board();
@@ -2108,25 +2079,6 @@ class BoardTest extends AbstractUnitTestCase
         ];
 
         $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
-    public function play_d4_d5___axb5_cxb5()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->play('w', 'd4'));
-        $this->assertTrue($board->play('b', 'd5'));
-        $this->assertTrue($board->play('w', 'c4'));
-        $this->assertTrue($board->play('b', 'dxc4'));
-        $this->assertTrue($board->play('w', 'Nf3'));
-        $this->assertTrue($board->play('b', 'b5'));
-        $this->assertTrue($board->play('w', 'a4'));
-        $this->assertTrue($board->play('b', 'c6'));
-        $this->assertTrue($board->play('w', 'axb5'));
-        $this->assertTrue($board->play('b', 'cxb5'));
     }
 
     /**
