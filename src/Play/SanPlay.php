@@ -8,10 +8,24 @@ use Chess\Variant\AbstractBoard;
 use Chess\Variant\Classical\Board;
 use Chess\Variant\Classical\PGN\Move;
 
+/**
+ * SAN Play
+ *
+ * Semantic validation for games in Standard Algebraic Notation.
+ */
 class SanPlay extends AbstractPlay
 {
+    /**
+     * SAN movetext.
+     *
+     * @var \Chess\Movetext\SanMovetext
+     */
     public SanMovetext $sanMovetext;
 
+    /**
+     * @param string $movetext
+     * @param \Chess\Variant\AbstractBoard $board
+     */
     public function __construct(string $movetext, AbstractBoard $board = null)
     {
         if ($board) {
@@ -25,6 +39,9 @@ class SanPlay extends AbstractPlay
         $this->sanMovetext = new SanMovetext($this->board->move, $movetext);
     }
 
+    /**
+     * Semantic validation.
+     */
     public function validate(): SanPlay
     {
         foreach ($this->sanMovetext->moves as $key => $val) {
