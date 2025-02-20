@@ -2,15 +2,39 @@
 
 namespace Chess\Tests\Unit\Variant\Chess960;
 
+use Chess\PgnParser;
+use Chess\Play\SanPlay;
 use Chess\Tests\AbstractUnitTestCase;
 use Chess\Variant\Classical\PGN\Castle;
 use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Chess960\Board;
 use Chess\Variant\Chess960\Shuffle;
 
 class BoardTest extends AbstractUnitTestCase
 {
+    /**
+     * @test
+     */
+    public function sample_chess960()
+    {
+        $expected = [
+            'total' => 52,
+            'valid' => 52,
+        ];
+
+        $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "chess960.pgn");
+
+        $parser->onValidation(function($tags, $movetext) {
+            (new SanPlay($movetext))->validate();
+        });
+        
+        $parser->parse();
+
+        $this->assertEquals($expected, $parser->getResult());
+    }
+
     /**
      * @test
      */
