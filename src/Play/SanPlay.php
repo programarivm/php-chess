@@ -41,6 +41,8 @@ class SanPlay extends AbstractPlay
 
     /**
      * Semantic validation.
+     * 
+     * @return \Chess\Play\SanPlay
      */
     public function validate(): SanPlay
     {
