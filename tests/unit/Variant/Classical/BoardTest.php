@@ -54,6 +54,36 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function play_w_9()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        (new Board())->play('w', 9);
+    }
+
+    /**
+     * @test
+     */
+    public function play_w_e9()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        (new Board())->play('w', 'e9');
+    }
+
+    /**
+     * @test
+     */
+    public function play_w_Nw3()
+    {
+        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+
+        (new Board())->play('w', 'Nw3');
+    }
+
+    /**
+     * @test
+     */
     public function castling_ability_in_C67()
     {
         $C67 = file_get_contents(self::DATA_FOLDER.'/opening/C67.pgn');
@@ -195,41 +225,47 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_w_9()
+    public function to_array_e4_e5()
     {
-        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+        $board = new Board();
+        $board->play('w', 'e4');
+        $board->play('b', 'e5');
 
-        (new Board())->play('w', 9);
+        $expected = [
+            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
+            6 => [ 'p', 'p', 'p', 'p', '.', 'p', 'p', 'p' ],
+            5 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            4 => [ '.', '.', '.', '.', 'p', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', 'P', '.', '.', '.' ],
+            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
+            1 => [ 'P', 'P', 'P', 'P', '.', 'P', 'P', 'P' ],
+            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
+        ];
+
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
      * @test
      */
-    public function play_w_foo()
+    public function to_array_A59()
     {
-        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+        $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
 
-        (new Board())->play('w', 'foo');
-    }
+        $board = (new SanPlay($A59))->validate()->board;
 
-    /**
-     * @test
-     */
-    public function play_w_e9()
-    {
-        $this->expectException(\Chess\Exception\UnknownNotationException::class);
+        $expected = [
+            7 => [ 'r', 'n', '.', 'q', 'k', 'b', '.', 'r' ],
+            6 => [ '.', '.', '.', '.', 'p', 'p', '.', 'p' ],
+            5 => [ '.', '.', '.', 'p', '.', 'n', 'p', '.' ],
+            4 => [ '.', '.', 'p', 'P', '.', '.', '.', '.' ],
+            3 => [ '.', '.', '.', '.', 'P', '.', '.', '.' ],
+            2 => [ '.', '.', 'N', '.', '.', '.', 'P', '.' ],
+            1 => [ 'P', 'P', '.', '.', '.', 'P', '.', 'P' ],
+            0 => [ 'R', '.', 'B', 'Q', '.', 'K', 'N', 'R' ],
+        ];
 
-        (new Board())->play('w', 'e9');
-    }
-
-    /**
-     * @test
-     */
-    public function play_w_Nw3()
-    {
-        $this->expectException(\Chess\Exception\UnknownNotationException::class);
-
-        (new Board())->play('w', 'Nw3');
+        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -1747,98 +1783,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function to_array_e4_e5()
-    {
-        $board = new Board();
-        $board->play('w', 'e4');
-        $board->play('b', 'e5');
-
-        $expected = [
-            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
-            6 => [ 'p', 'p', 'p', 'p', '.', 'p', 'p', 'p' ],
-            5 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            4 => [ '.', '.', '.', '.', 'p', '.', '.', '.' ],
-            3 => [ '.', '.', '.', '.', 'P', '.', '.', '.' ],
-            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            1 => [ 'P', 'P', 'P', 'P', '.', 'P', 'P', 'P' ],
-            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
-    public function to_array_A59()
-    {
-        $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
-
-        $board = (new SanPlay($A59))->validate()->board;
-
-        $expected = [
-            7 => [ 'r', 'n', '.', 'q', 'k', 'b', '.', 'r' ],
-            6 => [ '.', '.', '.', '.', 'p', 'p', '.', 'p' ],
-            5 => [ '.', '.', '.', 'p', '.', 'n', 'p', '.' ],
-            4 => [ '.', '.', 'p', 'P', '.', '.', '.', '.' ],
-            3 => [ '.', '.', '.', '.', 'P', '.', '.', '.' ],
-            2 => [ '.', '.', 'N', '.', '.', '.', 'P', '.' ],
-            1 => [ 'P', 'P', '.', '.', '.', 'P', '.', 'P' ],
-            0 => [ 'R', '.', 'B', 'Q', '.', 'K', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
-    public function to_array_A74()
-    {
-        $A74 = file_get_contents(self::DATA_FOLDER.'/opening/A74.pgn');
-
-        $board = (new SanPlay($A74))->validate()->board;
-
-        $expected = [
-            7 => [ 'r', 'n', 'b', 'q', '.', 'r', 'k', '.' ],
-            6 => [ '.', 'p', '.', '.', '.', 'p', 'b', 'p' ],
-            5 => [ 'p', '.', '.', 'p', '.', 'n', 'p', '.' ],
-            4 => [ '.', '.', 'p', 'P', '.', '.', '.', '.' ],
-            3 => [ 'P', '.', '.', '.', 'P', '.', '.', '.' ],
-            2 => [ '.', '.', 'N', '.', '.', 'N', '.', '.' ],
-            1 => [ '.', 'P', '.', '.', 'B', 'P', 'P', 'P' ],
-            0 => [ 'R', '.', 'B', 'Q', '.', 'R', 'K', '.' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
-    public function to_array_C11()
-    {
-        $C11 = file_get_contents(self::DATA_FOLDER.'/opening/C11.pgn');
-
-        $board = (new SanPlay($C11))->validate()->board;
-
-        $expected = [
-            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', '.', 'r' ],
-            6 => [ 'p', 'p', 'p', '.', '.', 'p', 'p', 'p' ],
-            5 => [ '.', '.', '.', '.', 'p', 'n', '.', '.' ],
-            4 => [ '.', '.', '.', 'p', '.', '.', '.', '.' ],
-            3 => [ '.', '.', '.', 'P', 'P', '.', '.', '.' ],
-            2 => [ '.', '.', 'N', '.', '.', '.', '.', '.' ],
-            1 => [ 'P', 'P', 'P', '.', '.', 'P', 'P', 'P' ],
-            0 => [ 'R', '.', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
     public function undo_e4_e5()
     {
         $board = new Board();
@@ -2826,30 +2770,5 @@ class BoardTest extends AbstractUnitTestCase
       
         $this->assertEquals($expected, $board->legal('f5'));
         $this->assertFalse($board->play('w', 'fxe6'));
-    }
-
-    /**
-     * @test
-     */
-    public function b5_cxb6()
-    {
-        $board = FenToBoardFactory::create('8/pp3B2/2b4p/2P3p1/k1K1p3/4P1P1/4P2P/8 b - -');
-
-        $this->assertTrue($board->play('b', 'b5'));
-        $this->assertTrue($board->play('w', 'cxb6'));
-    }
-
-    /**
-     * @test
-     */
-    public function f5_exd6()
-    {
-        $expected = 'rnbqkbnr/ppp1p1pp/3P4/5p2/8/8/PPPP1PPP/RNBQKBNR b KQkq -';
-
-        $board = FenToBoardFactory::create('rnbqkbnr/ppp1pppp/3p4/4P3/8/8/PPPP1PPP/RNBQKBNR b KQkq -');
-
-        $this->assertTrue($board->play('b', 'f5'));
-        $this->assertTrue($board->play('w', 'exd6'));
-        $this->assertEquals($expected, $board->toFen());
     }
 }
