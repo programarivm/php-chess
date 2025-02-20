@@ -54,6 +54,27 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function classical_capablanca()
+    {
+        $expected = [
+            'total' => 597,
+            'valid' => 597,
+        ];
+
+        $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/classical/" . "Capablanca.pgn");
+
+        $parser->onValidation(function($tags, $movetext) {
+            (new SanPlay($movetext))->validate();
+        });
+        
+        $parser->parse();
+
+        $this->assertEquals($expected, $parser->getResult());
+    }
+
+    /**
+     * @test
+     */
     public function castling_ability_in_C67()
     {
         $C67 = file_get_contents(self::DATA_FOLDER.'/sample/C67.pgn');
