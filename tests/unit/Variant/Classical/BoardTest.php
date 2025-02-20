@@ -54,6 +54,27 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
+    public function classical_anand()
+    {
+        $expected = [
+            'total' => 4144,
+            'valid' => 4144,
+        ];
+
+        $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/classical/" . "Anand.pgn");
+
+        $parser->onValidation(function($tags, $movetext) {
+            (new SanPlay($movetext))->validate();
+        });
+        
+        $parser->parse();
+
+        $this->assertEquals($expected, $parser->getResult());
+    }
+
+    /**
+     * @test
+     */
     public function classical_capablanca()
     {
         $expected = [
