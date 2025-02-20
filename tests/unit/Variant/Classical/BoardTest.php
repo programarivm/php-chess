@@ -235,7 +235,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_pick_a_nonexistent_piece()
+    public function init_pieces_and_pick_a_nonexistent_piece()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -328,7 +328,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kf4()
+    public function init_pieces_and_play_w_Kf4()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -355,7 +355,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kf4_in_check()
+    public function init_pieces_and_play_w_Kf4_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -382,7 +382,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kf2_in_check()
+    public function init_pieces_and_play_w_Kf2_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -409,7 +409,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Re7_in_check()
+    public function init_pieces_and_play_w_Re7_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -436,7 +436,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_a4_in_check()
+    public function init_pieces_and_play_w_a4_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -463,7 +463,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kxf2()
+    public function init_pieces_and_play_w_Kxf2()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -490,7 +490,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_SHORT()
+    public function init_pieces_and_play_w_CASTLE_SHORT()
     {
         $board = new Board();
 
@@ -505,7 +505,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_LONG()
+    public function init_pieces_and_play_w_CASTLE_LONG()
     {
         $board = new Board();
 
@@ -522,7 +522,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_SHORT_with_threats_on_f1()
+    public function init_pieces_and_play_w_CASTLE_SHORT_with_threats_on_f1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -554,7 +554,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_SHORT_with_threats_on_f1_g1()
+    public function init_pieces_and_play_w_CASTLE_SHORT_with_threats_on_f1_g1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -586,7 +586,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_SHORT_with_threats_on_g1()
+    public function init_pieces_and_play_w_CASTLE_SHORT_with_threats_on_g1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -617,7 +617,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_LONG_with_threats_on_c1()
+    public function init_pieces_and_play_w_CASTLE_LONG_with_threats_on_c1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -648,7 +648,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_castle_with_threats_on_d1_f1()
+    public function init_pieces_and_castle_with_threats_on_d1_f1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -680,7 +680,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_castle_with_threats_on_b1_f1()
+    public function init_pieces_and_castle_with_threats_on_b1_f1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -712,7 +712,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_LONG_with_threats_on_b1_d1()
+    public function init_pieces_and_play_w_CASTLE_LONG_with_threats_on_b1_d1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -743,7 +743,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_SHORT_after_Kf1()
+    public function init_pieces_and_play_w_CASTLE_SHORT_after_Kf1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -778,7 +778,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_CASTLE_SHORT_after_Rg1()
+    public function init_pieces_and_play_w_CASTLE_SHORT_after_Rg1()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -813,7 +813,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_b_CASTLE_SHORT_with_threats()
+    public function init_pieces_and_play_b_CASTLE_SHORT_with_threats()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -855,7 +855,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Ra6()
+    public function init_pieces_and_play_w_Ra6()
     {
         $pieces = [
             new R('w', 'a1', self::$square, RType::CASTLE_LONG),
@@ -899,7 +899,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Rxa6()
+    public function init_pieces_and_play_w_Rxa6()
     {
         $pieces = [
             new R('w', 'a1', self::$square, RType::CASTLE_LONG),
@@ -920,7 +920,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_b_h6()
+    public function init_pieces_and_play_b_h6()
     {
         $pieces = [
             new R('w', 'a1', self::$square, RType::CASTLE_LONG),
@@ -942,7 +942,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_b_hxg6()
+    public function init_pieces_and_play_b_hxg6()
     {
         $pieces = [
             new R('w', 'a1', self::$square, RType::CASTLE_LONG),
@@ -965,7 +965,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Nxc3()
+    public function init_pieces_and_play_w_Nxc3()
     {
         $pieces = [
             new N('w', 'b1', self::$square),
@@ -987,7 +987,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_b_CASTLE_SHORT()
+    public function init_pieces_and_play_b_CASTLE_SHORT()
     {
         $pieces = [
             new R('w', 'a1', self::$square, RType::CASTLE_LONG),
@@ -1032,7 +1032,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Ke4_in_check()
+    public function init_pieces_and_play_w_Ke4_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1059,7 +1059,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kg3_in_check()
+    public function init_pieces_and_play_w_Kg3_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1086,7 +1086,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kg2_in_check()
+    public function init_pieces_and_play_w_Kg2_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1113,7 +1113,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Ke2_in_check()
+    public function init_pieces_and_play_w_Ke2_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1140,7 +1140,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Ke3_in_check()
+    public function init_pieces_and_play_w_Ke3_in_check()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1167,7 +1167,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kg2()
+    public function init_pieces_and_play_w_Kg2()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1194,7 +1194,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kxh2()
+    public function init_pieces_and_play_w_Kxh2()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1221,7 +1221,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_Kxf3()
+    public function init_pieces_and_play_w_Kxf3()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1248,7 +1248,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_b_exf3()
+    public function init_pieces_and_play_b_exf3()
     {
         $pieces = [
             new P('w', 'e2', self::$square),
@@ -1276,7 +1276,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_exf6()
+    public function init_pieces_and_play_w_exf6()
     {
         $pieces = [
             new P('w', 'e5', self::$square),
@@ -1305,7 +1305,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_b_gxh3()
+    public function init_pieces_and_play_b_gxh3()
     {
         $pieces = [
             new P('w', 'e2', self::$square),
@@ -1333,7 +1333,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_b_hxg3()
+    public function init_pieces_and_play_b_hxg3()
     {
         $pieces = [
             new P('w', 'e2', self::$square),
@@ -1361,7 +1361,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_cxb6()
+    public function init_pieces_and_play_w_cxb6()
     {
         $pieces = [
             new P('w', 'a2', self::$square),
@@ -1388,7 +1388,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_h8_q()
+    public function init_pieces_and_play_w_h8_q()
     {
         $pieces = [
             new P('w', 'g2', self::$square),
@@ -1412,7 +1412,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_lan_w_h8_q()
+    public function init_pieces_and_play_lan_w_h8_q()
     {
         $pieces = [
             new P('w', 'g2', self::$square),
@@ -1436,7 +1436,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_h8_n()
+    public function init_pieces_and_play_w_h8_n()
     {
         $pieces = [
             new P('w', 'g2', self::$square),
@@ -1460,7 +1460,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_lan_w_h8_n()
+    public function init_pieces_and_play_lan_w_h8_n()
     {
         $pieces = [
             new P('w', 'g2', self::$square),
@@ -1486,7 +1486,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_h8_r()
+    public function init_pieces_and_play_w_h8_r()
     {
         $pieces = [
             new P('w', 'g2', self::$square),
@@ -1510,7 +1510,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_lan_w_h8_r()
+    public function init_pieces_and_play_lan_w_h8_r()
     {
         $pieces = [
             new P('w', 'g2', self::$square),
@@ -1536,7 +1536,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_w_h8_b()
+    public function init_pieces_and_play_w_h8_b()
     {
         $pieces = [
             new P('w', 'g2', self::$square),
@@ -1560,7 +1560,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_lan_w_h8_b()
+    public function init_pieces_and_play_lan_w_h8_b()
     {
         $pieces = [
             new P('w', 'g2', self::$square),
@@ -1586,7 +1586,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_play_lan_w_h8_z()
+    public function init_pieces_and_play_lan_w_h8_z()
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
@@ -1612,7 +1612,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_and_checkmate_w_Qd7()
+    public function init_pieces_and_checkmate_w_Qd7()
     {
         $pieces = [
             new P('w', 'd5', self::$square),
@@ -1662,7 +1662,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_stalemate_king_and_queen_vs_king()
+    public function init_pieces_stalemate_king_and_queen_vs_king()
     {
         $pieces = [
             new K('b', 'h1', self::$square),
@@ -1682,7 +1682,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_stalemate_king_and_pawn_vs_king()
+    public function init_pieces_stalemate_king_and_pawn_vs_king()
     {
         $pieces = [
             new K('w', 'f6', self::$square),
@@ -1702,7 +1702,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_stalemate_king_and_rook_vs_king_and_bishop()
+    public function init_pieces_stalemate_king_and_rook_vs_king_and_bishop()
     {
         $pieces = [
             new K('w', 'b6', self::$square),
@@ -1723,7 +1723,7 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function init_board_stalemate_endgame()
+    public function init_pieces_stalemate_endgame()
     {
         $pieces = [
             new K('w', 'g1', self::$square),
