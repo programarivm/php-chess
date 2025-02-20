@@ -673,4 +673,74 @@
 
 1.Kg2 *
 
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "8/7p/p3R3/1p4k1/2p5/P1Pn2K1/P6r/8 w - -"]
+
+1.Kxh2 *
+
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "8/7p/p3R3/1p4k1/2p5/P1Pn1rK1/P7/8 w - -"]
+
+1.Kxf3 *
+
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "4k2r/5ppp/8/8/4p3/8/4PPPP/4K2R w Kk -"]
+
+1.f4 exf3 *
+
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "4k2r/4pppp/8/4P3/8/8/5PPP/4K2R b Kk -"]
+
+1...f5 2.exf6 *
+
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "4k2r/4pp1p/8/8/6p1/8/4PPPP/4K2R w Kk -"]
+
+1.h4 gxh3 *
+
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "7r/ppp5/6k1/2P5/4K3/8/PP6/3R4 b - -"]
+
+1...b5 2.cxb6 *
+
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "4k3/2ppp2P/3b4/8/8/8/6P1/4K2R w K -"]
+
+1.h8=Q *
+
 
