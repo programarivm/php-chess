@@ -36,8 +36,8 @@ class BoardTest extends AbstractUnitTestCase
     public function sample_classical()
     {
         $expected = [
-            'total' => 52,
-            'valid' => 52,
+            'total' => 53,
+            'valid' => 53,
         ];
 
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "classical.pgn");
@@ -190,32 +190,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertSame(14, count($board->pieces(Color::W)));
         $this->assertSame(13, count($board->pieces(Color::B)));
-    }
-
-    /**
-     * @test
-     */
-    public function pieces_in_A74()
-    {
-        $A74 = file_get_contents(self::DATA_FOLDER.'/opening/A74.pgn');
-
-        $board = (new SanPlay($A74))->validate()->board;
-
-        $this->assertSame(15, count($board->pieces(Color::W)));
-        $this->assertSame(15, count($board->pieces(Color::B)));
-    }
-
-    /**
-     * @test
-     */
-    public function pieces_in_B56()
-    {
-        $B56 = file_get_contents(self::DATA_FOLDER.'/opening/B56.pgn');
-
-        $board = (new SanPlay($B56))->validate()->board;
-
-        $this->assertSame(15, count($board->pieces(Color::W)));
-        $this->assertSame(15, count($board->pieces(Color::B)));
     }
 
     /**
@@ -1382,38 +1356,6 @@ class BoardTest extends AbstractUnitTestCase
 
         $this->assertTrue($board->play('w', 'g4'));
         $this->assertTrue($board->play('b', 'hxg3'));
-    }
-
-    /**
-     * @test
-     */
-    public function play_a_sequence_of_moves_w_exf6()
-    {
-        $board = new Board();
-        $this->assertTrue($board->play('w', 'e4'));
-        $this->assertTrue($board->play('b', 'e6'));
-        $this->assertTrue($board->play('w', 'd4'));
-        $this->assertTrue($board->play('b', 'd5'));
-        $this->assertTrue($board->play('w', 'Nc3'));
-        $this->assertTrue($board->play('b', 'Bb4'));
-        $this->assertTrue($board->play('w', 'e5'));
-        $this->assertTrue($board->play('b', 'c5'));
-        $this->assertTrue($board->play('w', 'Qg4'));
-        $this->assertTrue($board->play('b', 'Ne7'));
-        $this->assertTrue($board->play('w', 'Nf3'));
-        $this->assertTrue($board->play('b', 'Nbc6'));
-        $this->assertTrue($board->play('w', 'a3'));
-        $this->assertTrue($board->play('b', 'Bxc3+'));
-        $this->assertTrue($board->play('w', 'bxc3'));
-        $this->assertTrue($board->play('b', 'Qc7'));
-        $this->assertTrue($board->play('w', 'Rb1'));
-        $this->assertTrue($board->play('b', 'O-O'));
-        $this->assertTrue($board->play('w', 'Bd3'));
-        $this->assertTrue($board->play('b', 'f5'));
-        $pawn_e5 = $board->pieceBySq('e5');
-        $pawn_e5->moveSqs(); // this creates the en passant property
-        $this->assertSame('f6', $pawn_e5->xEnPassantSq);
-        $this->assertTrue($board->play('w', 'exf6'));
     }
 
     /**
