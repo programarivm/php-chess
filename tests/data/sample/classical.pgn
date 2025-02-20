@@ -553,3 +553,13 @@
 
 1.exe4 exe5 *
 
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "rnbqkbnr/pppppppp/8/8/8/8/1PPPPPPP/R2QKBNR w KQkq -"]
+
+1.Ra6 *
+
