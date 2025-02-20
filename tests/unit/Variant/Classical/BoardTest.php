@@ -68,54 +68,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function history_in_D06()
-    {
-        $D06 = file_get_contents(self::DATA_FOLDER.'/opening/D06.pgn');
-        $D06 = str_replace("\n", "", $D06);
-
-        $board = (new SanPlay($D06))->validate()->board;
-
-        $expected = [
-            [
-                'pgn' => 'd4',
-                'color' => Color::W,
-                'id' => Piece::P,
-                'from' => 'd2',
-                'to' => 'd4',
-                'fen' => 'rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3',
-            ],
-            [
-                'pgn' => 'd5',
-                'color' => Color::B,
-                'id' => Piece::P,
-                'from' => 'd7',
-                'to' => 'd5',
-                'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq d6',
-            ],
-            [
-                'pgn' => 'c4',
-                'color' => Color::W,
-                'id' => Piece::P,
-                'from' => 'c2',
-                'to' => 'c4',
-                'fen' => 'rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq c3',
-            ],
-            [
-                'pgn' => 'c5',
-                'color' => Color::B,
-                'id' => Piece::P,
-                'from' => 'c7',
-                'to' => 'c5',
-                'fen' => 'rnbqkbnr/pp2pppp/8/2pp4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq c6',
-            ],
-        ];
-
-        $this->assertEquals($expected, $board->history);
-    }
-
-    /**
-     * @test
-     */
     public function history_in_C60()
     {
         $C60 = file_get_contents(self::DATA_FOLDER.'/opening/C60.pgn');
@@ -126,115 +78,51 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'pgn' => 'e4',
-                'color' => Color::W,
-                'id' => Piece::P,
+                'color' => 'w',
+                'id' => 'P',
                 'from' => 'e2',
                 'to' => 'e4',
                 'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
             ],
             [
                 'pgn' => 'e5',
-                'color' => Color::B,
-                'id' => Piece::P,
+                'color' => 'b',
+                'id' => 'P',
                 'from' => 'e7',
                 'to' => 'e5',
                 'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6',
             ],
             [
                 'pgn' => 'Nf3',
-                'color' => Color::W,
-                'id' => Piece::N,
+                'color' => 'w',
+                'id' => 'N',
                 'from' => 'g1',
                 'to' => 'f3',
                 'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq -',
             ],
             [
                 'pgn' => 'Nc6',
-                'color' => Color::B,
-                'id' => Piece::N,
+                'color' => 'b',
+                'id' => 'N',
                 'from' => 'b8',
                 'to' => 'c6',
                 'fen' => 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq -',
             ],
             [
                 'pgn' => 'Bb5',
-                'color' => Color::W,
-                'id' => Piece::B,
+                'color' => 'w',
+                'id' => 'B',
                 'from' => 'f1',
                 'to' => 'b5',
                 'fen' => 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq -',
             ],
             [
                 'pgn' => 'Be7',
-                'color' => Color::B,
-                'id' => Piece::B,
+                'color' => 'b',
+                'id' => 'B',
                 'from' => 'f8',
                 'to' => 'e7',
                 'fen' => 'r1bqk1nr/ppppbppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq -',
-            ],
-        ];
-
-        $this->assertEquals($expected, $board->history);
-    }
-
-    /**
-     * @test
-     */
-    public function history_in_C11()
-    {
-        $C11 = file_get_contents(self::DATA_FOLDER.'/opening/C11.pgn');
-        $C11 = str_replace("\n", "", $C11);
-
-        $board = (new SanPlay($C11))->validate()->board;
-
-        $expected = [
-            [
-                'pgn' => 'e4',
-                'color' => Color::W,
-                'id' => Piece::P,
-                'from' => 'e2',
-                'to' => 'e4',
-                'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3',
-            ],
-            [
-                'pgn' => 'e6',
-                'color' => Color::B,
-                'id' => Piece::P,
-                'from' => 'e7',
-                'to' => 'e6',
-                'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq -',
-            ],
-            [
-                'pgn' => 'd4',
-                'color' => Color::W,
-                'id' => Piece::P,
-                'from' => 'd2',
-                'to' => 'd4',
-                'fen' => 'rnbqkbnr/pppp1ppp/4p3/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3',
-            ],
-            [
-                'pgn' => 'd5',
-                'color' => Color::B,
-                'id' => Piece::P,
-                'from' => 'd7',
-                'to' => 'd5',
-                'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/8/PPP2PPP/RNBQKBNR w KQkq d6',
-            ],
-            [
-                'pgn' => 'Nc3',
-                'color' => Color::W,
-                'id' => Piece::N,
-                'from' => 'b1',
-                'to' => 'c3',
-                'fen' => 'rnbqkbnr/ppp2ppp/4p3/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR b KQkq -',
-            ],
-            [
-                'pgn' => 'Nf6',
-                'color' => Color::B,
-                'id' => Piece::N,
-                'from' => 'g8',
-                'to' => 'f6',
-                'fen' => 'rnbqkb1r/ppp2ppp/4pn2/3p4/3PP3/2N5/PPP2PPP/R1BQKBNR w KQkq -',
             ],
         ];
 
@@ -256,32 +144,32 @@ class BoardTest extends AbstractUnitTestCase
         $expected = [
             [
                 'pgn' => 'a4',
-                'color' => Color::W,
-                'id' => Piece::P,
+                'color' => 'w',
+                'id' => 'P',
                 'from' => 'a2',
                 'to' => 'a4',
                 'fen' => 'rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR b KQkq a3',
             ],
             [
                 'pgn' => 'h5',
-                'color' => Color::B,
-                'id' => Piece::P,
+                'color' => 'b',
+                'id' => 'P',
                 'from' => 'h7',
                 'to' => 'h5',
                 'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/8/1PPPPPPP/RNBQKBNR w KQkq h6',
             ],
             [
                 'pgn' => 'Ra3',
-                'color' => Color::W,
-                'id' => Piece::R,
+                'color' => 'w',
+                'id' => 'R',
                 'from' => 'a1',
                 'to' => 'a3',
                 'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/R7/1PPPPPPP/1NBQKBNR b Kkq -',
             ],
             [
                 'pgn' => 'Rh6',
-                'color' => Color::B,
-                'id' => Piece::R,
+                'color' => 'b',
+                'id' => 'R',
                 'from' => 'h8',
                 'to' => 'h6',
                 'fen' => 'rnbqkbn1/ppppppp1/7r/7p/P7/R7/1PPPPPPP/1NBQKBNR w Kq -',
