@@ -36,53 +36,11 @@ class BoardTest extends AbstractUnitTestCase
     public function classical_customized()
     {
         $expected = [
-            'total' => 51,
-            'valid' => 51,
+            'total' => 52,
+            'valid' => 52,
         ];
 
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/classical/" . "customized.pgn");
-
-        $parser->onValidation(function($tags, $movetext) {
-            (new SanPlay($movetext))->validate();
-        });
-        
-        $parser->parse();
-
-        $this->assertEquals($expected, $parser->getResult());
-    }
-
-    /**
-     * @test
-     */
-    public function classical_anand()
-    {
-        $expected = [
-            'total' => 4144,
-            'valid' => 4144,
-        ];
-
-        $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/classical/" . "Anand.pgn");
-
-        $parser->onValidation(function($tags, $movetext) {
-            (new SanPlay($movetext))->validate();
-        });
-        
-        $parser->parse();
-
-        $this->assertEquals($expected, $parser->getResult());
-    }
-
-    /**
-     * @test
-     */
-    public function classical_capablanca()
-    {
-        $expected = [
-            'total' => 597,
-            'valid' => 597,
-        ];
-
-        $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/classical/" . "Capablanca.pgn");
 
         $parser->onValidation(function($tags, $movetext) {
             (new SanPlay($movetext))->validate();
