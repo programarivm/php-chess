@@ -19,7 +19,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
+        $B25 = file_get_contents(self::DATA_FOLDER.'/opening/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
         $bishopPairEval = new BishopPairEval($board);
 
@@ -40,7 +40,7 @@ class BishopPairEvalTest extends AbstractUnitTestCase
             "Black has the bishop pair.",
         ];
 
-        $C68 = file_get_contents(self::DATA_FOLDER.'/sample/C68.pgn');
+        $C68 = file_get_contents(self::DATA_FOLDER.'/opening/C68.pgn');
         $board = (new SanPlay($C68))->validate()->board;
         $bishopPairEval = new BishopPairEval($board);
 

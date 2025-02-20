@@ -22,7 +22,7 @@ class BoardToMp4Test extends AbstractUnitTestCase
      */
     public function output_A74()
     {
-        $A74 = file_get_contents(self::DATA_FOLDER.'/sample/A74.pgn');
+        $A74 = file_get_contents(self::DATA_FOLDER.'/opening/A74.pgn');
 
         $board = new ClassicalBoard();
 

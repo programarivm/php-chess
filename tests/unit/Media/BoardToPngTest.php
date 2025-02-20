@@ -79,7 +79,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_A59()
     {
-        $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
+        $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
         $board = (new SanPlay($A59))->validate()->board;
         $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER);
 
@@ -94,7 +94,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_A59_flip()
     {
-        $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
+        $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
         $board = (new SanPlay($A59))->validate()->board;
         $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER);
 
@@ -109,7 +109,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_D06()
     {
-        $D06 = file_get_contents(self::DATA_FOLDER.'/sample/D06.pgn');
+        $D06 = file_get_contents(self::DATA_FOLDER.'/opening/D06.pgn');
         $board = (new SanPlay($D06))->validate()->board;
         $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER, 'D06');
 
@@ -124,7 +124,7 @@ class BoardToPngTest extends AbstractUnitTestCase
      */
     public function output_D06_flip()
     {
-        $D06 = file_get_contents(self::DATA_FOLDER.'/sample/D06.pgn');
+        $D06 = file_get_contents(self::DATA_FOLDER.'/opening/D06.pgn');
         $board = (new SanPlay($D06))->validate()->board;
         $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER, 'D06_flip');
 

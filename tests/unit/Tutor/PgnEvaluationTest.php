@@ -32,7 +32,7 @@ class PgnEvaluationTest extends AbstractUnitTestCase
             "Overall, 0 evaluation features are favoring either player.",
         ];
 
-        $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
+        $A08 = file_get_contents(self::DATA_FOLDER.'/opening/A08.pgn');
         $board = (new SanPlay($A08))->validate()->board;
 
         $paragraph = (new PgnEvaluation('d4', self::$f, $board))->paragraph;

@@ -130,7 +130,7 @@ class KTest extends AbstractUnitTestCase
      */
     public function legal_sqs_A59()
     {
-        $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
+        $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
 
         $board = (new SanPlay($A59))->validate()->board;
 

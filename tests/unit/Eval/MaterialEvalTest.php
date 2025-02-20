@@ -39,7 +39,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
             "White has a slight material advantage.",
         ];
 
-        $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
+        $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
         $board = (new SanPlay($A59))->validate()->board;
         $materialEval = new MaterialEval($board);
 
@@ -57,7 +57,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
             'b' => 40.06,
         ];
 
-        $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
+        $C60 = file_get_contents(self::DATA_FOLDER.'/opening/C60.pgn');
         $board = (new SanPlay($C60))->validate()->board;
         $result = (new MaterialEval($board))->result;
 
@@ -78,7 +78,7 @@ class MaterialEvalTest extends AbstractUnitTestCase
             "Black has a slight material advantage.",
         ];
 
-        $C00 = file_get_contents(self::DATA_FOLDER.'/sample/C00.pgn');
+        $C00 = file_get_contents(self::DATA_FOLDER.'/opening/C00.pgn');
         $board = (new SanPlay($C00))->validate()->board;
         $materialEval = new MaterialEval($board);
 

@@ -24,7 +24,7 @@ class CenterEvalTest extends AbstractUnitTestCase
             "Black has a slightly better control of the center.",
         ];
 
-        $A08 = file_get_contents(self::DATA_FOLDER.'/sample/A08.pgn');
+        $A08 = file_get_contents(self::DATA_FOLDER.'/opening/A08.pgn');
         $board = (new SanPlay($A08))->validate()->board;
         $centerEval = new CenterEval($board);
 
@@ -46,7 +46,7 @@ class CenterEvalTest extends AbstractUnitTestCase
             "White has a slightly better control of the center.",
         ];
 
-        $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
+        $B25 = file_get_contents(self::DATA_FOLDER.'/opening/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
         $centerEval = new CenterEval($board);
 
@@ -68,7 +68,7 @@ class CenterEvalTest extends AbstractUnitTestCase
             "White is totally controlling the center.",
         ];
 
-        $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
+        $B56 = file_get_contents(self::DATA_FOLDER.'/opening/B56.pgn');
         $board = (new SanPlay($B56))->validate()->board;
         $centerEval = new CenterEval($board);
 
@@ -90,7 +90,7 @@ class CenterEvalTest extends AbstractUnitTestCase
             "White has a slightly better control of the center.",
         ];
 
-        $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
+        $C60 = file_get_contents(self::DATA_FOLDER.'/opening/C60.pgn');
         $board = (new SanPlay($C60))->validate()->board;
         $centerEval = new CenterEval($board);
 

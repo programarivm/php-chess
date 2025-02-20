@@ -38,7 +38,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
             "The black pieces are timidly approaching the other side's king.",
         ];
 
-        $A00 = file_get_contents(self::DATA_FOLDER.'/sample/A00.pgn');
+        $A00 = file_get_contents(self::DATA_FOLDER.'/opening/A00.pgn');
         $board = (new SanPlay($A00))->validate()->board;
         $kingSafetyEval = new KingSafetyEval($board);
 
@@ -56,7 +56,7 @@ class KingSafetyEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
+        $B25 = file_get_contents(self::DATA_FOLDER.'/opening/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
         $result = (new KingSafetyEval($board))->result;
 

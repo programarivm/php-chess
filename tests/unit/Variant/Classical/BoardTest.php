@@ -33,14 +33,14 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function classical_customized()
+    public function sample_classical()
     {
         $expected = [
             'total' => 52,
             'valid' => 52,
         ];
 
-        $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/classical/" . "customized.pgn");
+        $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "classical.pgn");
 
         $parser->onValidation(function($tags, $movetext) {
             (new SanPlay($movetext))->validate();
@@ -56,7 +56,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function castling_ability_in_C67()
     {
-        $C67 = file_get_contents(self::DATA_FOLDER.'/sample/C67.pgn');
+        $C67 = file_get_contents(self::DATA_FOLDER.'/opening/C67.pgn');
 
         $board = (new SanPlay($C67))->validate()->board;
 
@@ -70,7 +70,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function history_in_D06()
     {
-        $D06 = file_get_contents(self::DATA_FOLDER.'/sample/D06.pgn');
+        $D06 = file_get_contents(self::DATA_FOLDER.'/opening/D06.pgn');
         $D06 = str_replace("\n", "", $D06);
 
         $board = (new SanPlay($D06))->validate()->board;
@@ -118,7 +118,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function history_in_C60()
     {
-        $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
+        $C60 = file_get_contents(self::DATA_FOLDER.'/opening/C60.pgn');
         $C60 = str_replace("\n", "", $C60);
 
         $board = (new SanPlay($C60))->validate()->board;
@@ -182,7 +182,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function history_in_C11()
     {
-        $C11 = file_get_contents(self::DATA_FOLDER.'/sample/C11.pgn');
+        $C11 = file_get_contents(self::DATA_FOLDER.'/opening/C11.pgn');
         $C11 = str_replace("\n", "", $C11);
 
         $board = (new SanPlay($C11))->validate()->board;
@@ -296,7 +296,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function pieces_in_A59()
     {
-        $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
+        $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
 
         $board = (new SanPlay($A59))->validate()->board;
 
@@ -309,7 +309,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function pieces_in_A74()
     {
-        $A74 = file_get_contents(self::DATA_FOLDER.'/sample/A74.pgn');
+        $A74 = file_get_contents(self::DATA_FOLDER.'/opening/A74.pgn');
 
         $board = (new SanPlay($A74))->validate()->board;
 
@@ -322,7 +322,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function pieces_in_B56()
     {
-        $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
+        $B56 = file_get_contents(self::DATA_FOLDER.'/opening/B56.pgn');
 
         $board = (new SanPlay($B56))->validate()->board;
 
@@ -1942,7 +1942,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function to_array_A59()
     {
-        $A59 = file_get_contents(self::DATA_FOLDER.'/sample/A59.pgn');
+        $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
 
         $board = (new SanPlay($A59))->validate()->board;
 
@@ -1965,7 +1965,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function to_array_A74()
     {
-        $A74 = file_get_contents(self::DATA_FOLDER.'/sample/A74.pgn');
+        $A74 = file_get_contents(self::DATA_FOLDER.'/opening/A74.pgn');
 
         $board = (new SanPlay($A74))->validate()->board;
 
@@ -1988,7 +1988,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function to_array_C11()
     {
-        $C11 = file_get_contents(self::DATA_FOLDER.'/sample/C11.pgn');
+        $C11 = file_get_contents(self::DATA_FOLDER.'/opening/C11.pgn');
 
         $board = (new SanPlay($C11))->validate()->board;
 
@@ -2573,7 +2573,7 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function is_fifty_move_draw_C68()
     {
-        $C68 = file_get_contents(self::DATA_FOLDER.'/sample/C68.pgn');
+        $C68 = file_get_contents(self::DATA_FOLDER.'/opening/C68.pgn');
 
         $board = (new SanPlay($C68))->validate()->board;
 

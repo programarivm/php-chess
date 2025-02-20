@@ -50,7 +50,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
             "White has a slight space advantage.",
         ];
 
-        $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
+        $B25 = file_get_contents(self::DATA_FOLDER.'/opening/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
         $spEval = new SpaceEval($board);
 
@@ -80,7 +80,7 @@ class SpaceEvalTest extends AbstractUnitTestCase
             "White has a moderate space advantage.",
         ];
 
-        $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
+        $B56 = file_get_contents(self::DATA_FOLDER.'/opening/B56.pgn');
         $board = (new SanPlay($B56))->validate()->board;
         $spEval = new SpaceEval($board);
 

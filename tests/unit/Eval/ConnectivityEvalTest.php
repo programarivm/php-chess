@@ -51,7 +51,7 @@ class ConnectivityEvalTest extends AbstractUnitTestCase
             "These pieces are hanging: The rook on a1, the rook on h1, the pawn on g2, the rook on a8, the rook on h8, the pawn on g7, the pawn on e4, the bishop on b5.",
         ];
 
-        $C60 = file_get_contents(self::DATA_FOLDER.'/sample/C60.pgn');
+        $C60 = file_get_contents(self::DATA_FOLDER.'/opening/C60.pgn');
         $board = (new SanPlay($C60))->validate()->board;
         $connectivityEval = new ConnectivityEval($board);
 

@@ -38,7 +38,7 @@ class PressureEvalTest extends AbstractUnitTestCase
             "The black player is pressuring more squares than its opponent.",
         ];
 
-        $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
+        $B25 = file_get_contents(self::DATA_FOLDER.'/opening/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
         $pressureEval = new PressureEval($board);
 
@@ -60,7 +60,7 @@ class PressureEvalTest extends AbstractUnitTestCase
             "The black player is pressuring more squares than its opponent.",
         ];
 
-        $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
+        $B56 = file_get_contents(self::DATA_FOLDER.'/opening/B56.pgn');
         $board = (new SanPlay($B56))->validate()->board;
         $pressureEval = new PressureEval($board);
 
@@ -78,7 +78,7 @@ class PressureEvalTest extends AbstractUnitTestCase
             'b' => ['d2', 'f2'],
         ];
 
-        $C67 = file_get_contents(self::DATA_FOLDER.'/sample/C67.pgn');
+        $C67 = file_get_contents(self::DATA_FOLDER.'/opening/C67.pgn');
         $board = (new SanPlay($C67))->validate()->board;
         $result = (new PressureEval($board))->result;
 

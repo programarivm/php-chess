@@ -64,7 +64,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $B56 = file_get_contents(self::DATA_FOLDER.'/sample/B56.pgn');
+        $B56 = file_get_contents(self::DATA_FOLDER.'/opening/B56.pgn');
         $board = (new SanPlay($B56))->validate()->board;
         $protectionEval = new ProtectionEval($board);
 
@@ -81,7 +81,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $B25 = file_get_contents(self::DATA_FOLDER.'/sample/B25.pgn');
+        $B25 = file_get_contents(self::DATA_FOLDER.'/opening/B25.pgn');
         $board = (new SanPlay($B25))->validate()->board;
         $protectionEval = new ProtectionEval($board);
 
@@ -168,7 +168,7 @@ class ProtectionEvalTest extends AbstractUnitTestCase
             'b' => 0,
         ];
 
-        $B56 = file_get_contents(self::DATA_FOLDER.'/sample/D07.pgn');
+        $B56 = file_get_contents(self::DATA_FOLDER.'/opening/D07.pgn');
         $board = (new SanPlay($B56))->validate()->board;
         $protectionEval = new ProtectionEval($board);
 

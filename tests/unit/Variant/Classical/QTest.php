@@ -61,7 +61,7 @@ class QTest extends AbstractUnitTestCase
      */
     public function legal_sqs_A74()
     {
-        $A74 = file_get_contents(self::DATA_FOLDER.'/sample/A74.pgn');
+        $A74 = file_get_contents(self::DATA_FOLDER.'/opening/A74.pgn');
 
         $board = (new SanPlay($A74))->validate()->board;
 
