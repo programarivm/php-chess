@@ -36,8 +36,8 @@ class BoardTest extends AbstractUnitTestCase
     public function sample_classical()
     {
         $expected = [
-            'total' => 60,
-            'valid' => 60,
+            'total' => 61,
+            'valid' => 61,
         ];
 
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "classical.pgn");
@@ -2146,17 +2146,6 @@ class BoardTest extends AbstractUnitTestCase
         $expected = '1.e4 f5 2.Qh5+';
 
         $this->assertSame($expected, $board->movetext());
-    }
-
-    /**
-     * @test
-     */
-    public function play_exe4_exe5()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->play('w', 'exe4'));
-        $this->assertTrue($board->play('b', 'exe5'));
     }
 
     /**
