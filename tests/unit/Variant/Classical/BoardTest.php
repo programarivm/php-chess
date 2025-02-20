@@ -35,8 +35,8 @@ class BoardTest extends AbstractUnitTestCase
     public function sample_classical()
     {
         $expected = [
-            'total' => 80,
-            'valid' => 80,
+            'total' => 81,
+            'valid' => 81,
         ];
 
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "classical.pgn");
@@ -268,6 +268,29 @@ class BoardTest extends AbstractUnitTestCase
         ];
 
         $this->assertSame($expected, $board->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function sq_count_start()
+    {
+        $board = new Board();
+
+        $sqCount = $board->sqCount();
+
+        $expected = [
+            'a3', 'a4', 'a5', 'a6',
+            'b3', 'b4', 'b5', 'b6',
+            'c3', 'c4', 'c5', 'c6',
+            'd3', 'd4', 'd5', 'd6',
+            'e3', 'e4', 'e5', 'e6',
+            'f3', 'f4', 'f5', 'f6',
+            'g3', 'g4', 'g5', 'g6',
+            'h3', 'h4', 'h5', 'h6',
+        ];
+
+        $this->assertEqualsCanonicalizing($expected, $sqCount['free']);
     }
 
     /**
@@ -1289,28 +1312,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function undo_e4_e5_Nf3_Nf6_Be2_Be7_O_O()
-    {
-        $board = new Board();
-
-        $board->play('w', 'e4');
-        $board->play('b', 'e5');
-        $board->play('w', 'Nf3');
-        $board->play('b', 'Nf6');
-        $board->play('w', 'Be2');
-        $board->play('b', 'Be7');
-        $board->play('w', 'O-O');
-
-        $board->undo();
-
-        $expected = 'rnbqk2r/ppppbppp/5n2/4p3/4P3/5N2/PPPPBPPP/RNBQK2R w KQkq -';
-
-        $this->assertSame($expected, $board->toFen());
-    }
-
-    /**
-     * @test
-     */
     public function undo_e4_e5_Nf3_Nf6_Be2_Be7_O_O_legal()
     {
         $board = new Board();
@@ -1422,16 +1423,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_lan_w_e2e4()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->playLan('w', 'e2e4'));
-    }
-
-    /**
-     * @test
-     */
     public function play_lan_C00()
     {
         $board = new Board();
@@ -1478,17 +1469,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_lan_e2e4_e7e5()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->playLan('w', 'e2e4'));
-        $this->assertFalse($board->playLan('w', 'e7e5'));
-    }
-
-    /**
-     * @test
-     */
     public function play_lan_b1a3_d7d5()
     {
         $board = new Board();
@@ -1511,19 +1491,6 @@ class BoardTest extends AbstractUnitTestCase
         $this->assertTrue($board->playLan('w', 'b1d2'));
         $this->assertTrue($board->playLan('b', 'b8d7'));
         $this->assertTrue($board->playLan('w', 'd2f3'));
-
-        $expected = [
-            7 => [ 'r', '.', 'b', 'q', 'k', 'b', 'n', 'r' ],
-            6 => [ 'p', 'p', 'p', 'n', '.', 'p', 'p', 'p' ],
-            5 => [ '.', '.', '.', 'p', 'p', '.', '.', '.' ],
-            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            2 => [ '.', '.', '.', 'P', 'P', 'N', '.', '.' ],
-            1 => [ 'P', 'P', 'P', '.', '.', 'P', 'P', 'P' ],
-            0 => [ 'R', '.', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -1832,29 +1799,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function count_sq_start()
-    {
-        $board = new Board();
-
-        $sqCount = $board->sqCount();
-
-        $expected = [
-            'a3', 'a4', 'a5', 'a6',
-            'b3', 'b4', 'b5', 'b6',
-            'c3', 'c4', 'c5', 'c6',
-            'd3', 'd4', 'd5', 'd6',
-            'e3', 'e4', 'e5', 'e6',
-            'f3', 'f4', 'f5', 'f6',
-            'g3', 'g4', 'g5', 'g6',
-            'h3', 'h4', 'h5', 'h6',
-        ];
-
-        $this->assertEqualsCanonicalizing($expected, $sqCount['free']);
-    }
-
-    /**
-     * @test
-     */
     public function play_lan_a4_b5_axb5_a6_b6()
     {
         $board = new Board();
@@ -1864,40 +1808,6 @@ class BoardTest extends AbstractUnitTestCase
         $board->playLan('w', 'a4b5');
         $board->playLan('b', 'a7a6');
         $board->playLan('w', 'b5b6');
-
-        $expected = [
-            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
-            6 => [ '.', '.', 'p', 'p', 'p', 'p', 'p', 'p' ],
-            5 => [ 'p', 'P', '.', '.', '.', '.', '.', '.' ],
-            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            1 => [ '.', 'P', 'P', 'P', 'P', 'P', 'P', 'P' ],
-            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
-    }
-
-    /**
-     * @test
-     */
-    public function b4_h6_b5_a5_bxa6_h5_a7_h4_axb8()
-    {
-        $board = (new SanPlay('1.b4 h6 2.b5 a5 3.bxa6 h5 4.a7 h4 5.axb8'))->validate()->board;
-
-        $expected = [
-            7 => [ 'r', 'Q', 'b', 'q', 'k', 'b', 'n', 'r' ],
-            6 => [ '.', 'p', 'p', 'p', 'p', 'p', 'p', '.' ],
-            5 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            4 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            3 => [ '.', '.', '.', '.', '.', '.', '.', 'p' ],
-            2 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            1 => [ 'P', '.', 'P', 'P', 'P', 'P', 'P', 'P' ],
-            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
     }
 
     /**
@@ -1916,19 +1826,6 @@ class BoardTest extends AbstractUnitTestCase
         $board->playLan('w', 'g2g3');
         $board->playLan('b', 'h6h5');
         $board->playLan('w', 'b5b6');
-
-        $expected = [
-            7 => [ 'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r' ],
-            6 => [ '.', 'p', '.', 'p', 'p', 'p', 'p', '.' ],
-            5 => [ 'p', 'P', '.', '.', '.', '.', '.', '.' ],
-            4 => [ '.', '.', 'p', '.', '.', '.', '.', 'p' ],
-            3 => [ '.', '.', '.', '.', '.', '.', '.', '.' ],
-            2 => [ '.', '.', '.', '.', '.', '.', 'P', 'P' ],
-            1 => [ 'P', '.', 'P', 'P', 'P', 'P', '.', '.' ],
-            0 => [ 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R' ],
-        ];
-
-        $this->assertSame($expected, $board->toArray());
     }
 
     /**

@@ -559,6 +559,15 @@
 [White "-"]
 [Black "-"]
 [Result "-"]
+
+1.b4 h6 2.b5 a5 3.bxa6 h5 4.a7 h4 5.axb8 *
+
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
 [FEN "rnbqkbnr/pppppppp/8/8/8/8/1PPPPPPP/R2QKBNR w KQkq -"]
 
 1.Ra6 *
