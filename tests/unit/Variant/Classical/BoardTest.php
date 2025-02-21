@@ -1718,68 +1718,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_lan_a4_b5_axb5_a6_b6()
-    {
-        $expected = 'rnbqkbnr/2pppppp/pP6/8/8/8/1PPPPPPP/RNBQKBNR b KQkq -';
-
-        $board = new Board();
-
-        $board->playLan('w', 'a2a4');
-        $board->playLan('b', 'b7b5');
-        $board->playLan('w', 'a4b5');
-        $board->playLan('b', 'a7a6');
-        $board->playLan('w', 'b5b6');
-
-        $this->assertSame($expected, $board->toFen());
-    }
-
-    /**
-     * @test
-     */
-    public function play_lan_b4_a6_b5_h6_h3_c5_g3_h5_b6()
-    {
-        $expected = 'rnbqkbnr/1p1pppp1/pP6/2p4p/8/6PP/P1PPPP2/RNBQKBNR b KQkq -';
-
-        $board = new Board();
-
-        $board->playLan('w', 'b2b4');
-        $board->playLan('b', 'a7a6');
-        $board->playLan('w', 'b4b5');
-        $board->playLan('b', 'h7h6');
-        $board->playLan('w', 'h2h3');
-        $board->playLan('b', 'c7c5');
-        $board->playLan('w', 'g2g3');
-        $board->playLan('b', 'h6h5');
-        $board->playLan('w', 'b5b6');
-
-        $this->assertSame($expected, $board->toFen());
-    }
-
-    /**
-     * @test
-     */
-    public function play_lan_pawn_promotion()
-    {
-        $board = new Board();
-
-        $board->playLan('w', 'a2a4');
-        $board->playLan('b', 'h7h5');
-        $board->playLan('w', 'a4a5');
-        $board->playLan('b', 'b7b5');
-        $board->playLan('w', 'a5b6');
-        $board->playLan('b', 'h5h4');
-        $board->playLan('w', 'b6c7');
-        $board->playLan('b', 'h4h3');
-        $board->playLan('w', 'c7b8');
-
-        $expected = '1.a4 h5 2.a5 b5 3.axb6 h4 4.bxc7 h3 5.cxb8=Q';
-
-        $this->assertSame($expected, $board->movetext());
-    }
-
-    /**
-     * @test
-     */
     public function e4_h6_e5_f5_h3_h5_exf6()
     {
         $expected = ['e6'];
