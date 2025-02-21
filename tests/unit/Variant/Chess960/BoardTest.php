@@ -21,8 +21,8 @@ class BoardTest extends AbstractUnitTestCase
     public function sample_chess960()
     {
         $expected = [
-            'total' => 45,
-            'valid' => 45,
+            'total' => 90,
+            'valid' => 90,
         ];
 
         $parser = new PgnParser(new Move(), self::DATA_FOLDER . "/sample/" . "chess960.pgn");

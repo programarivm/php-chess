@@ -5,8 +5,9 @@ namespace Chess\Variant\Chess960;
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArrayFactory;
-use Chess\Variant\Classical\FEN\Str;
+use Chess\Variant\Chess960\FEN\Str;
 use Chess\Variant\Classical\FenToBoardFactory as ClassicalFenToBoardFactory;
+use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Classical\PGN\Square;
 
 /**
@@ -31,22 +32,72 @@ class FenToBoardFactory
         $fields = array_filter(explode(' ', $string));
         $namespace = 'Classical';
         $shuffle = (new Shuffle())->extract($string);
+        $castlingRule = new CastlingRule($shuffle);
 
         try {
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
                 new Square(),
-                new CastlingRule($shuffle),
+                $castlingRule,
                 $namespace
             );
-            $board = new Board($shuffle, $pieces, $fields[2]);
+            $castlingAbility = self::replaceChars($fields[2], $castlingRule);
+            $board = new Board($shuffle, $pieces, $castlingAbility);
             $board->turn = $fields[1];
-            $board->startFen = $string;
+            $board->startFen = "{$fields[0]} {$fields[1]} {$castlingAbility} {$fields[3]}";
             ClassicalFenToBoardFactory::enPassant($fields, $board);
         } catch (\Throwable $e) {
             throw new UnknownNotationException();
         }
 
         return $board;
+    }
+
+    public static function replaceChars(string $castlingAbility, $castlingRule) 
+    {
+        $replaced = '';
+        foreach (str_split($castlingAbility) as $val) {
+            if (ctype_upper($val)) {
+                if ($val === 'K' || $val === 'Q') {
+                    $replaced .= $val;
+                } elseif (self::isLikeQ($val, $castlingRule)) {
+                    $replaced .= 'Q';
+                } elseif (self::isLikeK($val, $castlingRule)) {
+                    $replaced .= 'K';
+                }
+            } else {
+                if ($val === 'k' || $val === 'q') {
+                    $replaced .= $val;
+                } elseif (self::isLikeQ($val, $castlingRule)) {
+                    $replaced .= 'q';
+                } elseif (self::isLikeK($val, $castlingRule)) {
+                    $replaced .= 'k';
+                }
+            }
+        }
+  
+        return $replaced;
+    }
+
+    public static function isLikeQ(string $char, $castlingRule): bool
+    {
+        foreach ($castlingRule->startFiles as $key => $val) {
+            if ($val === Piece::K) {
+                return mb_strtolower($char) > $key;
+            }
+        }
+
+        return false;
+    }
+
+    public static function isLikeK(string $char, $castlingRule): bool
+    {
+        foreach ($castlingRule->startFiles as $key => $val) {
+            if ($val === Piece::K) {
+                return mb_strtolower($char) < $key;
+            }
+        }
+
+        return false;
     }
 }

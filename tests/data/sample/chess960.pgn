@@ -1198,3 +1198,1219 @@ Kd7 28. Re5 Re7 29. Rh5 Ne8 30. Rh6 Nd6 31. Nd5 Rf7 32. Nf6+ Kd8 33. Nd5 Nf5 34.
 Re6 Kd7 35. Re2 Kd6 36. Rf2 b5 37. Kf1 bxc4 38. bxc4 Ke5 39. Ke1 Nd6 40. Nf4 Rc7
 41. Re2+ Kf5 42. Nd5 Rb7 43. h3 Ne4 44. g4+ Ke5 45. Kf1 d3 46. Re1 Kd4 0-1
 
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "1.1"]
+[White "Nakamura, Hikaru"]
+[Black "So, Wesley"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2802"]
+[BlackElo "2751"]
+[WhiteFideId "2016192"]
+[BlackFideId "5202213"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "qrbknbrn/pppppppp/8/8/8/8/PPPPPPPP/QRBKNBRN w GBgb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. b3 b6 2. g4 g5 3. Bb2 Bg7 4. Bxg7 Nxg7 5. Ng3 f6 6. e3 Ng6 7. d4 d6 8. Be2 a5
+9. c4 Ba6 10. Qc3 b5 11. Qxa5 bxc4 12. Rc1 Bc8 13. Qxa8 Rxa8 14. Bxc4 Bxg4+ 15.
+f3 Be6 16. a4 Rb8 17. d5 Bf7 18. Nd3 c6 19. dxc6 Bxc4 20. Rxc4 Rxb3 21. Kc2 Rb6
+22. a5 Rb5 23. Ra1 Kc7 24. Ne2 Nf5 25. Kd2 Rd5 26. e4 Ne5 27. exd5 Nxc4+ 28. Kc3
+Ne5 29. f4 Nf3 30. Nb4 Ra8 31. Kd3 g4 32. Nc3 Nxh2 33. Nb5+ Kc8 34. a6 h5 35. a7
+g3 36. Na6 g2 37. Rb1 Kd8 38. Nbc7 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "1.2"]
+[White "Aronian, Levon"]
+[Black "Shankland, Sam"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2738"]
+[BlackElo "2677"]
+[WhiteFideId "13300474"]
+[BlackFideId "2004887"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "qrbknbrn/pppppppp/8/8/8/8/PPPPPPPP/QRBKNBRN w GBgb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. d4 d5 2. f3 Ng6 3. Nd3 Nf6 4. g4 e6 5. Ng3 b6 6. h4 Nxh4 7. Ne5 Ke8 8. e4 Bd6
+9. Bb5+ Kf8 10. g5 Bxe5 11. dxe5 Nxf3 12. exf6 dxe4 13. Bd2 Nxd2 14. O-O-O e3
+15. a4 Qd5 16. Qa3+ Qc5 17. Qd3 Bb7 18. Qxh7 Rd8 19. g6 Nb3+ 20. Kb1 Rxd1+ 21.
+Rxd1 Nd2+ 22. Kc1 Nb3+ 23. Kb1 Nd2+ 24. Kc1 Qg5 25. Nh5 Qxg6 26. fxg7+ Rxg7 27.
+Qxg7+ Qxg7 28. Nxg7 Kxg7 29. Re1 f5 30. Rxe3 Ne4 31. a5 f4 32. a6 Bd5 33. Rh3
+Ng5 34. Rh5 Kf6 35. Rh8 Nf7 36. Rb8 Nd6 37. Bf1 e5 38. c4 Bxc4 39. Bxc4 Nxc4 40.
+Ra8 f3 41. Rf8+ Ke6 42. Rxf3 Nd6 43. Rf8 Kd5 44. Kc2 Kc4 45. Ra8 Nb5 46. Re8
+Nd4+ 47. Kd2 c5 48. Re7 Nc6 49. Rc7 Kb5 50. Ke3 Nb4 51. Rxa7 Nxa6 52. Re7 Kc4
+53. Rxe5 Nb4 54. Kd2 Kb3 55. Re6 b5 56. Re5 Kc4 57. Re3 Nc6 58. Kc2 Nd4+ 59. Kd2
+Nc6 60. Kc2 Nd4+ 61. Kd2 Nc6 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "1.3"]
+[White "Caruana, Fabiano"]
+[Black "Oparin, Grigoriy"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2796"]
+[BlackElo "2662"]
+[WhiteFideId "2020009"]
+[BlackFideId "24125890"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "qrbknbrn/pppppppp/8/8/8/8/PPPPPPPP/QRBKNBRN w GBgb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. d4 d5 2. f3 b6 3. Nf2 Nd6 4. Ned3 g5 5. b3 g4 6. Ne5 gxf3 7. Qc3 Bb7 8. Qxf3
+O-O-O 9. g3 e6 10. Bh3 Bg7 11. Bf4 Kb8 12. O-O f5 13. Nfd3 Ng6 14. Qh5 Nxf4 15.
+Rxf4 a5 16. a4 Bf6 17. Bg2 Bg5 18. Rf3 Ne4 19. Nf7 Ka7 20. Nxg5 Rxg5 21. Qh6 Qc8
+22. Rc1 Rg6 23. Qe3 c5 24. Rf4 Rg7 25. c3 Rc7 26. Rff1 cxd4 27. cxd4 Nc3 28. Bf3
+Ba6 29. Ne5 Rg8 30. Rc2 Ne4 31. Rxc7+ Qxc7 32. Rc1 Qd6 33. Bxe4 dxe4 34. Rc6 Qd5
+35. Rc7+ Bb7 36. Rd7 f4 37. Qc3 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "1.4"]
+[White "Sevian, Samuel"]
+[Black "Robson, Ray"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2689"]
+[BlackElo "2693"]
+[WhiteFideId "2040506"]
+[BlackFideId "2023970"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "qrbknbrn/pppppppp/8/8/8/8/PPPPPPPP/QRBKNBRN w GBgb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. b4 Ng6 2. Nf3 h6 3. Ng3 b6 4. e4 Nf6 5. Bc4 e6 6. e5 Nd5 7. Bxd5 Qxd5 8. Rb3
+Ba6 9. d3 d6 10. Ra3 Bb7 11. Rxa7 dxe5 12. Bd2 f5 13. O-O Bd6 14. Qc1 O-O 15. c4
+Qc6 16. Re1 Qd7 17. c5 bxc5 18. bxc5 Bxf3 19. cxd6 Qxd6 20. gxf3 Nh4 21. Qxc7
+Nxf3+ 22. Kg2 Qxc7 23. Rxc7 Nxe1+ 24. Bxe1 Rfc8 25. Rc3 Rxc3 26. Bxc3 Ra8 27.
+Bxe5 Rxa2 28. h4 g6 29. Bf4 Kg7 30. d4 Rc2 31. Be3 Rc4 32. Ne2 Ra4 33. Kg3 Ra3
+34. Kg2 Ra4 35. Bf4 Ra3 36. Ng1 Rd3 37. Nf3 Rd1 38. Be3 Kh7 39. Bd2 Kg7 40. Kg3
+Rb1 41. Ne5 Rg1+ 42. Kh2 Rd1 43. Nf3 Rb1 44. Be3 Rd1 45. Kg3 Rb1 46. Bd2 Rd1 47.
+Kf4 Kf6 48. Ke3 Rb1 49. Ke2 Kg7 50. Ne5 Rh1 51. Nf3 Rb1 52. Be3 Rh1 53. Bf4 Rb1
+54. Ne1 Ra1 55. Kd2 Rb1 56. Be3 Ra1 57. Ng2 Rg1 58. Nf4 Kf7 59. Nd3 g5 60. Ne5+
+Kf6 61. hxg5+ hxg5 62. f3 Rg2+ 63. Kd3 f4 64. Bd2 Kf5 65. Be1 Ra2 66. Ng4 Ra1
+67. Ke2 Ra2+ 68. Bd2 Ra3 69. Be1 Ra2+ 70. Bd2 Ra3 71. Be1 Ra2+ 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "1.5"]
+[White "Dominguez Perez, Leinier"]
+[Black "Kasparov, Garry"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2741"]
+[BlackElo "2812"]
+[WhiteFideId "3503240"]
+[BlackFideId "4100018"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "qrbknbrn/pppppppp/8/8/8/8/PPPPPPPP/QRBKNBRN w GBgb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. d4 d5 2. Nd3 Nd6 3. b3 Ng6 4. f3 e6 5. Nhf2 b6 6. g3 Be7 7. Bg2 O-O 8. O-O
+Bb7 9. Re1 Rbc8 10. Bb2 Rfd8 11. e4 dxe4 12. fxe4 f5 13. d5 fxe4 14. Bh3 Bxd5
+15. c4 exd3 16. cxd5 Nf5 17. Bg2 Bc5 18. b4 Bxf2+ 19. Kxf2 c5 20. Kg1 exd5 21.
+Bh3 Rf8 22. Rf1 Nge7 23. bxc5 bxc5 24. Be5 Qc6 25. Qc3 c4 26. Qb4 Qh6 27. Bxf5
+Nxf5 28. Bf4 Qc6 29. Be5 d4 30. Qb7 Qxb7 31. Rxb7 Rc5 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "2.1"]
+[White "Shankland, Sam"]
+[Black "Caruana, Fabiano"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2677"]
+[BlackElo "2796"]
+[WhiteFideId "2004887"]
+[BlackFideId "2020009"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrkrbqnb/pppppppp/8/8/8/8/PPPPPPPP/NRKRBQNB w DBdb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. g3 g6 3. Nb3 d6 4. Nf3 Nf6 5. d3 c5 6. e4 fxe4 7. dxe4 Nxe4 8. Qh3+
+Bd7 9. Qxh7 Bf5 10. Nbd2 Nf6 11. Qh4 Nb6 12. Ng5 Qg8 13. a3 Ng4 14. Nde4 Bd4 15.
+Bc3 Be3+ 16. Bd2 d5 17. Bxe3 Nxe3 18. Nxc5 Nxd1 19. Kxd1 Nc4 20. Ke2 e5 21. g4
+Bd7 22. Rd1 e4 23. f5 gxf5 24. gxf5 Bxf5 25. Qf4 Rf8 26. b3 Nb6 27. Rg1 Qh8 28.
+Qd6 O-O-O 29. Qe7 Bd7 30. Nce6 Qxh2+ 31. Rg2 Qxh1 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "2.2"]
+[White "Oparin, Grigoriy"]
+[Black "Sevian, Samuel"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2662"]
+[BlackElo "2689"]
+[WhiteFideId "24125890"]
+[BlackFideId "2040506"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrkrbqnb/pppppppp/8/8/8/8/PPPPPPPP/NRKRBQNB w DBdb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. g3 g6 3. d3 e5 4. Bc3 d6 5. Nf3 Nb6 6. fxe5 Nd5 7. Bd2 dxe5 8. e4
+fxe4 9. dxe4 Nb4 10. Qc4 a5 11. O-O b5 12. Qe2 Qc5+ 13. Be3 Qc4 14. Qe1 Nf6 15.
+a3 Nc6 16. Nb3 Ng4 17. Bg2 Nxe3 18. Qxe3 Rb6 19. Rfd1 Nd4 20. Nxa5 Qxc2 21. Nxd4
+exd4 22. Qe1 d3 23. Rdc1 Bd4+ 24. Kh1 Qe2 25. Qxe2 dxe2 26. Re1 b4 27. Nc4 Rc6
+28. b3 bxa3 29. Nxa3 Ra6 30. Nc4 Ra2 31. Bf3 Bc6 32. Rbc1 Bf2 33. Kg2 Bxe1 34.
+Rxe1 Rd3 35. Ne5 Rd1 36. Rxe2 Rxe2+ 37. Bxe2 Bxe4+ 38. Kf2 Rb1 39. Ba6+ Bb7 40.
+Bc4 Rb2+ 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "2.3"]
+[White "So, Wesley"]
+[Black "Kasparov, Garry"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2751"]
+[BlackElo "2812"]
+[WhiteFideId "5202213"]
+[BlackFideId "4100018"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrkrbqnb/pppppppp/8/8/8/8/PPPPPPPP/NRKRBQNB w DBdb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. g4 g6 2. f4 f5 3. h3 Nb6 4. Nb3 d6 5. e4 fxe4 6. Bxe4 Nf6 7. Bf3 Nfd5 8. Bg3
+Nb4 9. Ra1 c5 10. d4 c4 11. Na5 Bb5 12. Qg2 d5 13. Ne2 Ba4 14. b3 Nc6 15. Nxc6
+Bxc6 16. O-O Rd7 17. a4 a5 18. Rad1 O-O-O 19. Be1 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "2.4"]
+[White "Nakamura, Hikaru"]
+[Black "Aronian, Levon"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2802"]
+[BlackElo "2738"]
+[WhiteFideId "2016192"]
+[BlackFideId "13300474"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrkrbqnb/pppppppp/8/8/8/8/PPPPPPPP/NRKRBQNB w DBdb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. g3 g6 3. Bf2 Nb6 4. e4 fxe4 5. Bxe4 e5 6. fxe5 Bxe5 7. Re1 d6 8. Nf3
+Bf6 9. Qh3+ Bd7 10. Qxh7 Ne7 11. Be3 Nc4 12. Bh6 Qh8 13. Qxh8 Rxh8 14. Bf4 O-O-O
+15. h4 d5 16. Bd3 Bg4 17. Nh2 Bf5 18. Bxf5+ Nxf5 19. c3 Rde8 20. Rxe8+ Rxe8 21.
+Kc2 Re2 22. Ng4 Be7 23. Nb3 Rg2 24. Re1 b6 25. Nh6 Bd6 26. Nxf5 gxf5 27. Rh1
+Bxf4 28. gxf4 Ne3+ 29. Kc1 Ng4 30. Nd4 Nf2 31. Rf1 Kd7 32. Nxf5 Ne4 33. Rh1 Ke6
+34. Nd4+ Kf7 35. h5 Kg8 36. Nf3 Ng3 37. Rh4 Nf5 38. Rh3 Rg4 39. h6 Rxf4 40. h7+
+Kh8 41. Ne5 Ne7 42. Rh6 d4 43. Kc2 dxc3 44. Re6 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "2.5"]
+[White "Robson, Ray"]
+[Black "Dominguez Perez, Leinier"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2693"]
+[BlackElo "2741"]
+[WhiteFideId "2023970"]
+[BlackFideId "3503240"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrkrbqnb/pppppppp/8/8/8/8/PPPPPPPP/NRKRBQNB w DBdb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. g4 g6 2. f4 f5 3. h3 d6 4. Nb3 Nb6 5. e4 fxe4 6. Bxe4 e5 7. Bh4 Rd7 8. f5 Qh6
+9. Bg3 Nf6 10. Bg2 gxf5 11. Qxf5 Bg6 12. Qf2 Rf7 13. Nf3 Nfd5 14. g5 Qh5 15. d3
+O-O-O 16. Rf1 Nf4 17. Bxf4 Rxf4 18. O-O-O Rdf8 19. Nbd2 Kb8 20. Qg3 Bg7 21. Kb1
+Nd5 22. Rfe1 Ne7 23. a3 Nf5 24. Qh2 h6 25. gxh6 Bxh6 26. Bh1 Be8 27. Qg2 Bc6 28.
+Ne4 a6 29. Qe2 Bxe4 30. dxe4 Ng3 31. Qc4 Nxh1 32. Nd2 Nf2 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "3.1"]
+[White "Dominguez Perez, Leinier"]
+[Black "Oparin, Grigoriy"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2741"]
+[BlackElo "2662"]
+[WhiteFideId "3503240"]
+[BlackFideId "24125890"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbknqrbn/pppppppp/8/8/8/8/PPPPPPPP/RBKNQRBN w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. c3 c6 3. Ng3 g6 4. Bd4 Bc4 5. d3 Ba6 6. Qd2 Ne6 7. Bxh8 Rxh8 8. e3
+d5 9. Nf2 Nf8 10. Re1 e5 11. d4 e4 12. Bc2 Ne6 13. Bd1 h5 14. h4 Qe7 15. Rh1 Bd6
+16. Nh3 c5 17. Ng5 O-O-O 18. Nxe6 Qxe6 19. Be2 c4 20. b4 b6 21. a4 Bb7 22. a5
+Bc7 23. axb6 axb6 24. Kb2 Kd7 25. Bd1 b5 26. Ne2 Ra8 27. Bc2 Rxa1 28. Rxa1 Ra8
+29. Rxa8 Bxa8 30. Ng1 Bd8 31. g3 Bc6 32. Nh3 Kc8 33. Ng5 Qd7 34. Qe1 Kb7 35. Bd1
+Kc8 36. Be2 Kb7 37. Qd1 Qe8 38. Qd2 Qd7 39. Qd1 Qe8 40. Qd2 Qd7 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "3.2"]
+[White "Kasparov, Garry"]
+[Black "Robson, Ray"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2812"]
+[BlackElo "2693"]
+[WhiteFideId "4100018"]
+[BlackFideId "2023970"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbknqrbn/pppppppp/8/8/8/8/PPPPPPPP/RBKNQRBN w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 e5 2. Ne3 Ng6 3. c3 Ne6 4. Bc2 a6 5. Ng3 Ba7 6. Ngf5 f6 7. O-O-O Ne7 8.
+Nxe7+ Qxe7 9. f3 Qe8 10. g3 O-O-O 11. Kb1 Kb8 12. f4 exf4 13. gxf4 g5 14. fxg5
+fxg5 15. d4 Nf4 16. h4 h6 17. hxg5 hxg5 18. Qg3 Qe6 19. d5 Qh3 20. Qe1 Rde8 21.
+Qd2 Bh7 22. d6 c6 23. Nc4 Bxg1 24. Rxg1 Bxe4 25. Rxg5 Bxc2+ 26. Qxc2 Re2 27. Qb3
+Nd5 28. a4 Rf1 29. Rxd5 cxd5 30. Na5 Rxd1+ 31. Ka2 Ra1+ 32. Kxa1 Qh1+ 33. Ka2 d4
+34. Qb6 dxc3 35. Qc7+ Ka8 36. Qc8+ Ka7 37. Qc5+ Ka8 38. Qc8+ Ka7 39. Qc5+ Ka8 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "3.3"]
+[White "Sevian, Samuel"]
+[Black "Shankland, Sam"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2689"]
+[BlackElo "2677"]
+[WhiteFideId "2040506"]
+[BlackFideId "2004887"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbknqrbn/pppppppp/8/8/8/8/PPPPPPPP/RBKNQRBN w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. Ng3 c6 3. c3 g6 4. Bd4 e5 5. Bxe5 Bxe5 6. fxe5 Qxe5 7. e4 f4 8. Ne2
+Ne6 9. Ng1 O-O-O 10. d4 Qc7 11. Nf3 g5 12. Nf2 h5 13. h3 Bh7 14. d5 Nc5 15. Nxg5
+Bg8 16. Qd2 Ng6 17. Nf3 Rde8 18. Qd4 d6 19. dxc6 Qxc6 20. Bc2 Ne5 21. b3 Rf6 22.
+O-O-O Rg6 23. Nh4 Rf6 24. Nf5 Kc7 25. Qd2 Rg6 26. Qxf4 Qa6 27. Kb1 Nc4 28. bxc4
+Bxc4 29. Ne3 Qxa2+ 30. Kc1 Nb3+ 31. Bxb3 Bxb3 32. Nd3 Rxg2 33. Rf2 Qa1+ 34. Kd2
+Qa2+ 35. Kc1 Qa1+ 36. Kd2 Qa2+ 37. Ke1 Rxf2 38. Nxf2 Bxd1 39. Kxd1 Qb3+ 40. Ke2
+a5 41. c4 Qb2+ 42. Kf3 Qe5 43. Nd5+ Kb8 44. Qf7 Ka7 45. Nc7 Re7 46. Nb5+ Kb6 47.
+Qf8 Re8 48. Qxd6+ Qxd6 49. Nxd6 Rf8+ 50. Ke3 a4 51. Nb5 Kc5 52. Nd3+ Kxc4 53.
+Nd6+ Kc3 54. e5 Rd8 55. Nb5+ Kc4 56. Nd6+ Kd5 57. Nb5 Kc4 58. Nd6+ Kd5 59. Nb5
+Kc4 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "3.4"]
+[White "Caruana, Fabiano"]
+[Black "Nakamura, Hikaru"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2796"]
+[BlackElo "2802"]
+[WhiteFideId "2020009"]
+[BlackFideId "2016192"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbknqrbn/pppppppp/8/8/8/8/PPPPPPPP/RBKNQRBN w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 e5 2. f3 f5 3. Ng3 f4 4. Ne2 c6 5. d4 g5 6. a4 Ng6 7. a5 Bc4 8. Ba2 Ba6 9.
+d5 d6 10. c4 Bc7 11. b4 b5 12. axb6 axb6 13. Bb3 c5 14. Nec3 Kb8 15. Rf2 Bb7 16.
+Rxa8+ Bxa8 17. Nb5 Rf6 18. Ra2 Bb7 19. Na7 Ne7 20. b5 Rg6 21. Nc6+ Kc8 22. g3
+Kd7 23. Nf2 Qf8 24. Bd1 Bc8 25. Nd3 Nexc6 26. bxc6+ Ke8 27. g4 Nf7 28. Ra8 Ke7
+29. Nb2 Qd8 30. Na4 h5 31. Nc3 b5 32. Nxb5 Bb6 33. h4 hxg4 34. fxg4 Rh6 35. Bf2
+Kf6 36. h5 Rh8 37. Qc3 Nh6 38. Qb2 Bc7 39. Na7 Qe7 40. Rxc8 Rxc8 41. Nxc8 Qd8
+42. Qb7 Ng8 43. Na7 Ba5 44. Nb5 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.28"]
+[Round "3.5"]
+[White "Aronian, Levon"]
+[Black "So, Wesley"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2738"]
+[BlackElo "2751"]
+[WhiteFideId "13300474"]
+[BlackFideId "5202213"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbknqrbn/pppppppp/8/8/8/8/PPPPPPPP/RBKNQRBN w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. c3 c6 3. Ng3 g6 4. Bd4 Bc4 5. d3 Ba6 6. Qd2 Ne6 7. Bg1 d5 8. b4 g5
+9. e3 Ng6 10. Ne2 Qd7 11. a4 b6 12. g3 Bc7 13. Nd4 Nxd4 14. exd4 gxf4 15. gxf4
+O-O-O 16. Be3 Qd6 17. Nb2 Rg8 18. a5 b5 19. Bc2 Nh4 20. O-O-O Ng2 21. Rf2 Qe6
+22. Rdf1 Qxe3 23. Rxg2 Qxd2+ 24. Rxd2 Rd6 25. Nd1 Rh6 26. Ne3 Kd8 27. Rf3 Rg1+
+28. Bd1 Bc8 29. Rdf2 Be6 30. Kd2 Rh4 31. Nf1 Bf7 32. Ke3 Rh1 33. Be2 Bh5 34. Rg3
+Bxe2 35. Kxe2 Bxf4 36. Rg8+ Kc7 37. Re8 Bd6 38. Rxf5 Rg4 39. Rh8 Rg2+ 40. Rf2
+Rg7 41. Ra8 Kb7 42. Rd8 Rhg1 43. Rdf8 Kc7 44. Ra8 Kb7 45. Raf8 R1g2 46. Rf5 Kc7
+47. Rh5 Rg1 48. Rhf5 R1g2 49. Rh5 R2g5 50. Rh6 e5 51. Nd2 exd4 52. Nf3 Re7+ 53.
+Kf1 Rg6 54. Rxg6 hxg6 55. Nxd4 Be5 56. Ne2 d4 57. Nxd4 Bxd4 58. cxd4 Re3 59.
+Rf7+ Kd6 60. d5 Rxd3 61. dxc6 Kxc6 62. Rxa7 Rd4 63. Ra6+ Kd5 64. Rxg6 Rxb4 65.
+Kg2 Ra4 66. a6 b4 67. h4 b3 68. h5 Kc5 69. Rg3 Ra2+ 70. Kg1 b2 71. Rb3 Ra1+ 72.
+Kg2 b1=Q 73. Rxb1 Rxb1 74. Kg3 Kd6 75. h6 Rb8 76. Kf4 Ke6 77. h7 Kf6 78. Ke4 Kg7 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "4.1"]
+[White "So, Wesley"]
+[Black "Robson, Ray"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2751"]
+[BlackElo "2693"]
+[WhiteFideId "5202213"]
+[BlackFideId "2023970"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbqnbknr/pppppppp/8/8/8/8/PPPPPPPP/RBQNBKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. d4 c5 2. d5 b5 3. c4 bxc4 4. e4 Nf6 5. Bc3 d6 6. Ne3 Bd7 7. h3 Bc7 8. a4 Qa6
+9. a5 Nb7 10. Ne2 e6 11. O-O O-O-O 12. Rd1 Rhe8 13. Ra3 exd5 14. Bxf6 gxf6 15.
+Nxd5 f5 16. Nf6 Re6 17. Nxd7 Rxd7 18. Nf4 fxe4 19. Nd5 Nxa5 20. Nxc7 Kxc7 21.
+Qc3 Kb6 22. Bc2 d5 23. Rda1 d4 24. Rxa5 dxc3 25. Rxa6+ Kb5 26. R6a2 Rd3 27. Kf1
+f5 28. bxc3 Rxc3 29. Ke2 Rb3 30. Rxa7 Rb6 31. R7a5+ Kb4 32. Bxb3 cxb3 33. R1a4+
+Kc3 34. Rxc5+ Kb2 35. Rxf5 Kb1 36. Rd5 b2 37. Rd1+ Kc2 38. Rc4+ Kb3 39. Rxe4 Rc6
+40. Re3+ Kb4 41. Rb1 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "4.2"]
+[White "Aronian, Levon"]
+[Black "Caruana, Fabiano"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2738"]
+[BlackElo "2796"]
+[WhiteFideId "13300474"]
+[BlackFideId "2020009"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbqnbknr/pppppppp/8/8/8/8/PPPPPPPP/RBQNBKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. d4 d5 2. c4 dxc4 3. Qxc4 Nf6 4. Nf3 Bc6 5. Nd2 Bxg2+ 6. Kxg2 Qg4+ 7. Kf1 Qh3+
+8. Kg1 Qg4+ 9. Kf1 Qh3+ 10. Kg1 Qg4+ 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "4.3"]
+[White "Oparin, Grigoriy"]
+[Black "Kasparov, Garry"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2662"]
+[BlackElo "2812"]
+[WhiteFideId "24125890"]
+[BlackFideId "4100018"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbqnbknr/pppppppp/8/8/8/8/PPPPPPPP/RBQNBKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. d4 d6 2. c4 e5 3. Nf3 c5 4. d5 f5 5. Nc3 Ne7 6. e4 f4 7. Bd3 Nf7 8. Nd2 g5 9.
+f3 h5 10. Qc2 Bc7 11. Bf2 Ba5 12. O-O-O Ng6 13. g3 Bd7 14. Rdg1 Bh3 15. Bf1 Ke7
+16. Ne2 Bxd2+ 17. Qxd2 b6 18. Qd3 Qd7 19. Be1 Rhg8 20. Bd2 Raf8 21. Nc3 Bxf1 22.
+Qxf1 g4 23. h3 Kd8 24. hxg4 hxg4 25. Rh7 Rh8 26. Rxh8 Rxh8 27. fxg4 Rf8 28. gxf4
+exf4 29. Bxf4 Nfe5 30. Bg5+ Kc8 31. Bf6 Nxg4 32. Qf5 Rxf6 33. Qxd7+ Kxd7 34.
+Rxg4 Ke7 35. b3 a6 36. Kd2 Ne5 37. Rg7+ Kf8 38. Rb7 Rf2+ 39. Kd1 Nd3 40. Ne2 b5
+41. cxb5 axb5 42. Rxb5 Ke7 43. a4 Kf6 44. Rb8 Rh2 45. a5 Nf2+ 46. Kd2 Nxe4+ 47.
+Ke3 Kf5 48. Rf8+ Nf6 49. a6 Rh7 50. Nc3 Ke5 51. Nb5 Nxd5+ 52. Kf3 Rh3+ 53. Ke2
+Rxb3 54. a7 Nb6 55. Nc7 Ra3 56. a8=Q Nxa8 57. Rxa8 Rxa8 58. Nxa8 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "4.4"]
+[White "Shankland, Sam"]
+[Black "Dominguez Perez, Leinier"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2677"]
+[BlackElo "2741"]
+[WhiteFideId "2004887"]
+[BlackFideId "3503240"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbqnbknr/pppppppp/8/8/8/8/PPPPPPPP/RBQNBKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. d4 d6 2. Nf3 c6 3. c4 Nf6 4. e4 e5 5. Bc3 Nd7 6. Ne3 Ne6 7. d5 cxd5 8. exd5
+Nec5 9. h4 Nf6 10. h5 Bd7 11. h6 g6 12. Ng5 O-O 13. O-O a5 14. f4 Qd8 15. f5 Ba7
+16. Kh2 Nfe4 17. Nh3 Qh4 18. Qe1 Qh5 19. Bxa5 gxf5 20. b4 Na4 21. Bc7 Nac3 22.
+Nxf5 Bxf5 23. Rxf5 Qxf5 24. Qxc3 Qg4 25. Bxe4 Bd4 26. Qe1 Ra3 27. Bf3 Qg6 28.
+Rd1 Bc3 29. Qh4 Bxb4 30. Rf1 Bc5 31. Be4 f5 32. Bxf5 Rxf5 33. Qd8+ Kf7 34. Qd7+
+Kg8 35. Qc8+ 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "4.5"]
+[White "Nakamura, Hikaru"]
+[Black "Sevian, Samuel"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2802"]
+[BlackElo "2689"]
+[WhiteFideId "2016192"]
+[BlackFideId "2040506"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rbqnbknr/pppppppp/8/8/8/8/PPPPPPPP/RBQNBKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. d4 d6 2. Nf3 c6 3. e4 e5 4. c4 Ne6 5. Bc3 f6 6. Ne3 c5 7. dxc5 dxc5 8. Nd5
+Ne7 9. O-O Nxd5 10. exd5 Nf4 11. Qe3 Bh5 12. Be4 O-O 13. Nh4 Ne2+ 14. Kh1 f5 15.
+Bf3 Bxf3 16. Nxf3 Nxc3 17. Qxc3 e4 18. Ng5 Rf6 19. Ne6 Qd7 20. Rae1 Rh6 21. g3
+Bd6 22. Kg2 Qe7 23. Re2 Re8 24. f3 Qf7 25. Kg1 exf3 26. Qxf3 Rf6 27. Qd3 Qh5 28.
+Ref2 g6 29. Qc3 Rf7 30. Kg2 Qh6 31. h3 b6 32. Rf3 Ree7 33. a3 Re8 34. b4 Bf8 35.
+bxc5 Bxc5 36. g4 f4 37. g5 Qh5 38. Qe5 Bf8 39. Rxf4 Rxf4 40. Qxf4 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "5.1"]
+[White "Sevian, Samuel"]
+[Black "Aronian, Levon"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2689"]
+[BlackElo "2738"]
+[WhiteFideId "2040506"]
+[BlackFideId "13300474"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "brkqrbnn/pppppppp/8/8/8/8/PPPPPPPP/BRKQRBNN w EBeb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 e5 2. d4 Qg5+ 3. Re3 Nf6 4. Nh3 Qh6 5. Ng3 exd4 6. Nf5 dxe3 7. Nxh6 gxh6
+8. f3 Ng6 9. Qd4 Bg7 10. Qxe3 b6 11. Ba6+ Bb7 12. Bxb7+ Kxb7 13. b3 d5 14. e5
+Rbd8 15. O-O-O c6 16. Nf2 Nd7 17. f4 Nc5 18. Qf3 a5 19. a4 Rd7 20. g3 Red8 21.
+h4 Bf8 22. f5 Ne7 23. Bd4 Ne4 24. Nxe4 dxe4 25. Qxe4 Nd5 26. Bb2 Bc5 27. Rd3 Re7
+28. c4 Nf6 29. Qf3 Nd7 30. Qd1 Kc7 31. Kb1 Bb4 32. Bc1 Ree8 33. Bf4 Kc8 34. Qf3
+Kb7 35. Qh5 Rf8 36. Kc2 Nc5 37. Rxd8 Rxd8 38. Qxf7+ Rd7 39. Qe8 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "5.2"]
+[White "Kasparov, Garry"]
+[Black "Shankland, Sam"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2812"]
+[BlackElo "2677"]
+[WhiteFideId "4100018"]
+[BlackFideId "2004887"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "brkqrbnn/pppppppp/8/8/8/8/PPPPPPPP/BRKQRBNN w EBeb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 e6 2. Nf3 f5 3. Nf2 Nf6 4. e4 b5 5. d3 Bc5 6. Qd2 Ng6 7. O-O-O Bxf2 8.
+Qxf2 fxe4 9. Ng5 e3 10. Qxe3 Nd5 11. Qg3 Qf6 12. Nxh7 Qxf4+ 13. Qxf4 Ndxf4 14.
+g3 Nd5 15. h4 Nge7 16. Bh3 b4 17. Kd2 Rb5 18. Rf1 Ra5 19. b3 Nf5 20. Bxf5 exf5
+21. Rde1 Rg8 22. Rxf5 Rxa2 23. Rf8+ Rxf8 24. Nxf8 a5 25. Bxg7 a4 26. Re8+ Kb7
+27. Nxd7 Nb6 28. Nc5+ Ka7 29. Bd4 Bd5 30. bxa4 b3 31. Nxb3 Bxb3 32. a5 Bxc2 33.
+axb6+ cxb6 34. Rd8 Kb7 35. Be5 Ba4+ 36. Ke3 Bd1 37. Kf4 b5 38. Kg5 Re2 39. d4
+Re4 40. Bf4 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "5.3"]
+[White "Dominguez Perez, Leinier"]
+[Black "Nakamura, Hikaru"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2741"]
+[BlackElo "2802"]
+[WhiteFideId "3503240"]
+[BlackFideId "2016192"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "brkqrbnn/pppppppp/8/8/8/8/PPPPPPPP/BRKQRBNN w EBeb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 d5 2. Nf3 e6 3. Ng3 Nf6 4. e5 Nd7 5. d4 c5 6. Qd2 Qc7 7. b3 Ng6 8. O-O-O
+c4 9. Bc3 b5 10. Ba5 Nb6 11. Bb4 Be7 12. Kb1 O-O 13. Rc1 Rfc8 14. c3 Nd7 15.
+Bxe7 Nxe7 16. b4 a5 17. a3 Bc6 18. Be2 Ra8 19. Kb2 Ra6 20. Ra1 Rca8 21. Ra2 axb4
+22. cxb4 Nb6 23. Rea1 Be8 24. Kc2 Nc6 25. Kc1 Qe7 26. Bd1 c3 27. Qc2 Nc4 28. Ne2
+Nxa3 29. Qxc3 Qxb4 30. Bc2 Qxc3 31. Nxc3 Nb4 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "5.4"]
+[White "Robson, Ray"]
+[Black "Oparin, Grigoriy"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2693"]
+[BlackElo "2662"]
+[WhiteFideId "2023970"]
+[BlackFideId "24125890"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "brkqrbnn/pppppppp/8/8/8/8/PPPPPPPP/BRKQRBNN w EBeb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 e5 2. Ng3 Bc5 3. Nh3 a5 4. a3 Qe7 5. c3 Nh6 6. d4 Ba7 7. Qa4 exd4 8. cxd4
+O-O 9. Bd3 b5 10. Bxb5 d5 11. Bd3 dxe4 12. Bxe4 Bxe4 13. Rxe4 Qf6 14. O-O-O Bb6
+15. Kb1 Ng6 16. b3 Qd6 17. d5 Rfd8 18. Nh5 f6 19. N3f4 Nxf4 20. Rxf4 Rf8 21. g4
+Rf7 22. h4 f5 23. gxf5 Nxf5 24. Bb2 Qg6 25. Nf6+ Rxf6 26. Rg4 Qf7 27. Bxf6 Qxf6
+28. Rf4 Bc5 29. Rc1 Bd6 30. Re4 Ne7 31. Rce1 h6 32. Re6 Qf5+ 33. Qe4 Qxf2 34.
+Re2 Qg1+ 35. Ka2 Qg3 36. Re3 Qf2+ 37. Re2 Qb6 38. Qc4 Nf5 39. Qd3 Rf8 40. Re8
+Nxh4 41. Rxf8+ Bxf8 42. Qc4 Qd6 43. Re6 Qxa3+ 44. Kb1 Qb4 45. Re8 Kf7 46. Rc8
+Bd6 47. Rxc7+ Bxc7 48. Qxc7+ Kf6 49. d6 Qxb3+ 50. Ka1 Qd1+ 51. Kb2 Qe2+ 52. Kb1
+Qe4+ 53. Ka2 Qe6+ 54. Kb1 Qe1+ 55. Ka2 Qe5 56. Qd8+ Kf7 57. d7 Qe6+ 58. Ka1 Qe1+
+59. Ka2 Qe2+ 60. Ka1 Qe5+ 61. Ka2 Nf5 62. Qc8 Nd6 63. Qc7 Qe6+ 64. Ka1 Qf6+ 65.
+Ka2 Qf2+ 66. Ka1 Qd4+ 67. Kb1 Qe4+ 68. Ka1 Nb5 69. Qc8 Qe1+ 70. Kb2 Qd2+ 71. Ka1
+Qd4+ 72. Kb1 Qd3+ 73. Ka1 Qd1+ 74. Kb2 Qe2+ 75. Kc1 Nd6 76. Qc7 Nb5 77. Qc8 Qe3+
+78. Kb1 Qe4+ 79. Kc1 Qf4+ 80. Kb1 Qe4+ 81. Kc1 Na7 82. d8=N+ Ke8 83. Qc7 Nb5 84.
+Qxa5 Qe3+ 85. Kb2 Qd4+ 86. Kc2 Qf2+ 87. Kd3 Qf3+ 88. Kd2 Qd5+ 89. Ke1 Qd7 90.
+Qb6 Qxd8 91. Qxb5+ Qd7 92. Qb8+ Kf7 93. Kf2 Qf5+ 94. Kg3 Qd3+ 95. Kg2 Qd5+ 96.
+Kg3 h5 97. Qc7+ Kg6 98. Qc2+ Kh6 99. Kh2 Qe5+ 100. Kh1 h4 101. Qf2 g5 102. Qf8+
+Kh5 103. Qf3+ Kg6 104. Qc6+ Qf6 105. Qe4+ Kh6 106. Qe8 g4 107. Qe3+ Kh5 108.
+Qc5+ Kg6 109. Qc2+ Qf5 110. Qc6+ Kg5 111. Qc1+ Kh5 112. Qe1 Qd5+ 113. Kg1 h3
+114. Qe8+ Kg5 115. Qe7+ Kf5 116. Qf8+ Ke4 117. Qe7+ Qe5 118. Qb7+ Kf4 119. Qf7+
+Ke3 120. Qb3+ Ke4 121. Qc2+ Kf4 122. Qc4+ Qe4 123. Qf7+ Qf5 124. Qc7+ Qe5 125.
+Qc4+ Kg5 126. Qg8+ Kh4 127. Qh7+ Kg5 128. Qg8+ Kf5 129. Qf7+ Qf6 130. Qd5+ Kg6
+131. Qg8+ Kh5 132. Qh7+ Kg5 133. Qg8+ Kf5 134. Qd5+ Kf4 135. Qc4+ Ke3 136. Qxg4
+Qf2+ 137. Kh1 Qg2+ 138. Qxg2 hxg2+ 139. Kxg2 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "5.5"]
+[White "Caruana, Fabiano"]
+[Black "So, Wesley"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2796"]
+[BlackElo "2751"]
+[WhiteFideId "2020009"]
+[BlackFideId "5202213"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "brkqrbnn/pppppppp/8/8/8/8/PPPPPPPP/BRKQRBNN w EBeb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 d5 2. Nf3 e6 3. Nf2 Ng6 4. e3 Nf6 5. Bb5 c6 6. Bd3 Bd6 7. Qe2 c5 8. b3 Qc7
+9. O-O b6 10. Bb5 Bc6 11. Bxc6 Qxc6 12. Ne5 Bxe5 13. fxe5 Nd7 14. Qh5 d4 15. Ng4
+dxe3 16. Nxe3 O-O 17. Rf3 Qe4 18. Ng4 Qxc2 19. Rbf1 Rbd8 20. Rh3 Ngxe5 21. d3 f6
+22. Bxe5 Nxe5 23. Qxh7+ 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "6.1"]
+[White "Nakamura, Hikaru"]
+[Black "Kasparov, Garry"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2802"]
+[BlackElo "2812"]
+[WhiteFideId "2016192"]
+[BlackFideId "4100018"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrqknbbr/pppppppp/8/8/8/8/PPPPPPPP/NRQKNBBR w HBhb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. b4 b5 3. a4 a6 4. a5 Nf6 5. Ba7 Rb7 6. Bd4 g6 7. g3 Bg7 8. Bg2 c6 9.
+Nb3 d6 10. Nf3 Bd5 11. O-O O-O 12. d3 Nc7 13. Bb6 Bxf3 14. Bxf3 Ncd5 15. c4 Nxb6
+16. axb6 bxc4 17. Qxc4+ d5 18. Qxa6 Qb8 19. Nc5 Rxb6 20. Qa4 Qd6 21. d4 Ng4 22.
+Rfd1 Ne3 23. Rd3 Nc4 24. Kf2 Rbb8 25. e3 Ra8 26. Qb3 Rfb8 27. Rc1 Ra3 28. Qxa3
+Nxa3 29. Rxa3 Rxb4 30. Ra8+ Kf7 31. Be2 Bf6 32. Ra6 Rxd4 33. exd4 Bxd4+ 34. Kg2
+Bxc5 35. Bf3 Kg7 36. Rc2 h6 37. Ra5 Bb6 38. Ra6 Bc5 39. Ra5 Bb6 40. Ra6 Bc5 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "6.2"]
+[White "Caruana, Fabiano"]
+[Black "Sevian, Samuel"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2796"]
+[BlackElo "2689"]
+[WhiteFideId "2020009"]
+[BlackFideId "2040506"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrqknbbr/pppppppp/8/8/8/8/PPPPPPPP/NRQKNBBR w HBhb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. b4 b5 3. Bxa7 Rb7 4. Bd4 Bxa2 5. Rb2 Bd5 6. e3 e6 7. Nd3 d6 8. Nf2
+c5 9. Bc3 c4 10. Bd4 Nb6 11. Bxb6+ Rxb6 12. Ra2 Be7 13. c3 Nf6 14. Nc2 e5 15.
+Rg1 O-O 16. g3 Qc6 17. Ne1 Ra8 18. Rxa8+ Qxa8 19. Bg2 Ra6 20. Bxd5+ Nxd5 21. Nc2
+Ra2 22. Re1 e4 23. Ke2 Bf6 24. Kf1 Qa4 25. Nd4 Bxd4 26. exd4 Rc2 27. Qd1 g6 28.
+Nxe4 fxe4 29. Qg4 Qa8 30. Qe6+ Kh8 31. Qxd6 e3 32. Qe5+ Kg8 33. Qe6+ Kg7 34.
+Qe5+ Nf6 35. Qxe3 Qh1+ 36. Ke2 Qxh2+ 37. Kd1 Ra2 38. Qe7+ Kh6 39. Qf8+ Kh5 40.
+Qc5+ Kh6 41. Qf8+ Kh5 42. Qc5+ Kh6 43. Qf8+ Kh5 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "6.3"]
+[White "Aronian, Levon"]
+[Black "Dominguez Perez, Leinier"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2738"]
+[BlackElo "2741"]
+[WhiteFideId "13300474"]
+[BlackFideId "3503240"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrqknbbr/pppppppp/8/8/8/8/PPPPPPPP/NRQKNBBR w HBhb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. b4 Nb6 3. Nb3 d6 4. d3 Nf6 5. c4 g6 6. Nf3 Bg7 7. g3 h6 8. Bg2 Bf7
+9. Bd4 O-O 10. O-O Re8 11. Na5 a6 12. c5 Nbd5 13. Re1 b6 14. Nc6 bxc5 15. Bxf6
+Nxf6 16. Nxb8 Qxb8 17. bxc5 Qa7 18. Nd4 Nd7 19. Nc6 Qxc5+ 20. Qxc5 Nxc5 21. d4
+Na4 22. Rec1 Nb6 23. a4 Nxa4 24. Rb7 Bf6 25. Rxc7 Nb6 26. e3 Nd5 27. Bxd5 Bxd5
+28. Nb4 Be6 29. Nxa6 Ra8 30. R7c6 Bd7 31. Rb6 Kf7 32. Rc7 Bb5 33. Nb4 Ra5 34.
+Rxd6 Ra1+ 35. Kf2 Rf1+ 36. Kg2 Rb1 37. Nd5 Bf1+ 38. Kf2 Kf8 39. Rb6 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "6.4"]
+[White "So, Wesley"]
+[Black "Oparin, Grigoriy"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2751"]
+[BlackElo "2662"]
+[WhiteFideId "5202213"]
+[BlackFideId "24125890"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrqknbbr/pppppppp/8/8/8/8/PPPPPPPP/NRQKNBBR w HBhb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. b4 b6 3. Nb3 Nf6 4. c4 e6 5. b5 c6 6. a4 a6 7. bxc6 Qxc6 8. Qc2 Bd6
+9. Nd4 Qe4 10. e3 Qxc2+ 11. Nexc2 Bf7 12. d3 O-O 13. Bf2 Ng4 14. Bh4 Bc5 15. Kd2
+Nc7 16. Be2 Nf6 17. Bxf6 gxf6 18. Rb2 a5 19. Nb3 Be7 20. d4 Na6 21. c5 Nc7 22.
+Rhb1 bxc5 23. Nxc5 Rxb2 24. Rxb2 Bxc5 25. dxc5 e5 26. Na3 exf4 27. exf4 Ne6 28.
+Rb5 Nd4 29. Kd3 Nxb5 30. axb5 Bd5 31. Kd4 Bxg2 32. Nc4 Re8 33. Bd3 a4 34. Bc2
+Kf8 35. Kc3 Bf1 36. Nd6 Re3+ 37. Kb4 a3 38. b6 Bg2 39. Bb3 Rh3 40. Nxf5 h5 41.
+Kxa3 Bd5 42. Nd4 Bb7 43. Nf5 Rxh2 44. Ba4 Rd2 45. Nd6 Rxd6 46. cxd6 Ke8 47. Bd1
+h4 48. Bg4 Kd8 49. Kb4 Kc8 50. Bh3 Bc6 51. Kc4 Be4 52. Kd4 f5 53. Kc4 Kb8 54.
+Kd4 Kb7 55. Ke5 Kxb6 56. Kf6 Kc5 57. Ke7 Kc6 58. Bf1 Bd5 59. Bh3 Be6 60. Bg2+
+Kc5 61. Kf6 Kd4 62. Kg5 Ke3 63. Bh3 Kf3 64. Kxh4 Kxf4 65. Bf1 Ke5 66. Kg5 Kxd6
+67. Kf4 Kd5 68. Ba6 d6 69. Bd3 Kd4 70. Bb1 Kc3 71. Kg5 Bc8 72. Ba2 Kd4 73. Kf4
+Bd7 74. Bb3 d5 75. Ba2 Kc5 76. Bb1 d4 77. Kf3 Kc4 78. Bc2 Bc6+ 79. Kf4 Be4 80.
+Ba4 Kc3 81. Ke5 Kd3 82. Kf4 Ke2 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.29"]
+[Round "6.5"]
+[White "Shankland, Sam"]
+[Black "Robson, Ray"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2677"]
+[BlackElo "2693"]
+[WhiteFideId "2004887"]
+[BlackFideId "2023970"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "nrqknbbr/pppppppp/8/8/8/8/PPPPPPPP/NRQKNBBR w HBhb - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. b4 b5 3. a4 a6 4. a5 Nf6 5. Nb3 g6 6. Ba7 Rb7 7. Bd4 Bg7 8. Nf3 Bd5
+9. e3 O-O 10. Nc5 Rb8 11. c4 Bxf3+ 12. gxf3 d6 13. Nxa6 Qxa6 14. cxb5 Qc8 15.
+Qc6 Nh5 16. Bc4+ Kh8 17. Bxg7+ Nxg7 18. O-O Ne6 19. Bd5 Nd8 20. Qc4 e6 21. Bc6
+d5 22. Qd3 Nxc6 23. bxc6 h6 24. Kh1 Kh7 25. b5 Qd8 26. Qd4 Rf7 27. Qe5 Qf6 28.
+Qxf6 Rxf6 29. Kg2 Kg7 30. Kf2 Kf7 31. Ke2 Ke7 32. Kd3 Kd6 33. h4 Rff8 34. Kd4
+Rg8 35. Rg1 Rbe8 36. d3 Rb8 37. e4 fxe4 38. fxe4 dxe4 39. dxe4 e5+ 40. fxe5+ Ke6
+41. Kc5 Kxe5 42. Rbd1 Kxe4 43. Rde1+ Kf5 44. Ref1+ Ke4 45. Rf6 g5 46. Rg4+ Ke3
+47. Rxh6 gxh4 48. Rhxh4 Rxg4 49. Rxg4 Rh8 50. Rg5 Kf4 51. Rd5 Ke4 52. Rd4+ Ke5
+53. Rd1 Ke6 54. Re1+ Kf6 55. Re4 Kf5 56. Re7 Kf6 57. Rd7 Ke6 58. Rd5 Rh1 59. Rd8
+Rc1+ 60. Kb4 Rb1+ 61. Kc3 Rxb5 62. Rxa8 Kd5 63. a6 Kxc6 64. a7 Ra5 65. Kb4 Ra1
+66. Kc4 Kb7 67. Rb8+ Kxa7 68. Rb2 Rc1+ 69. Kd5 Ka6 70. Kd4 c5+ 71. Kd3 Ka5 72.
+Rc2 Rd1+ 73. Kc4 Kb6 74. Rb2+ Kc6 75. Rb8 Rc1+ 76. Kd3 c4+ 77. Kd2 Rh1 78. Kc3
+Rc1+ 79. Kd2 Rh1 80. Kc3 Rc1+ 81. Kd2 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "7.1"]
+[White "Kasparov, Garry"]
+[Black "Aronian, Levon"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2812"]
+[BlackElo "2738"]
+[WhiteFideId "4100018"]
+[BlackFideId "13300474"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnnqkrbb/pppppppp/8/8/8/8/PPPPPPPP/RNNQKRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. g3 c6 2. e4 g6 3. d4 Qb6 4. Ne2 Qxb2 5. Nd2 f5 6. e5 f4 7. Rb1 Qxa2 8. Nxf4
+d6 9. Nd3 dxe5 10. dxe5 Nb6 11. f4 N8d7 12. Bf2 g5 13. Ra1 Qe6 14. Ra5 Qh3 15.
+fxg5 Nc4 16. Ra4 Ndxe5 17. Nxe5 Bxe5 18. Qe2 Nxd2 19. Kxd2 O-O-O+ 20. Kc1 Bd4
+21. Bxc6 Qe6 22. Be4 Rxf2 23. Rxf2 Qb6 24. Rxd4 Qxd4 25. c3 Qc5 26. Qf3 Kb8 27.
+Bxb7 Bb3 28. Be4 a5 29. Kb2 a4 30. Qf4+ e5 31. Qf6 Rc8 32. Rf3 Bc4 33. Qg7 a3+
+34. Kc2 Qb5 35. Qe7 Qb2+ 36. Kd1 Qe2+ 37. Kc1 Qe1+ 38. Kc2 Qxe4+ 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "7.2"]
+[White "Robson, Ray"]
+[Black "Nakamura, Hikaru"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2693"]
+[BlackElo "2802"]
+[WhiteFideId "2023970"]
+[BlackFideId "2016192"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnnqkrbb/pppppppp/8/8/8/8/PPPPPPPP/RNNQKRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. g3 Nc6 2. c4 g6 3. Nc3 f5 4. d3 e5 5. Bd5 Be6 6. f3 O-O 7. Nb3 b6 8. e4 Nd6
+9. Qd2 a5 10. a4 Rb8 11. O-O-O Nb4 12. Qe2 Qe7 13. g4 Bxd5 14. exd5 Rbe8 15.
+gxf5 Nxf5 16. Ne4 d6 17. Na1 Qd7 18. b3 c6 19. dxc6 Qxc6 20. Kb1 d5 21. cxd5
+Nxd5 22. Rc1 Qd7 23. Rc4 Bg7 24. Nc2 b5 25. axb5 Qxb5 26. Na1 Nd4 27. Qa2 Rb8
+28. Qa4 Qb7 29. Bxd4 exd4 30. Qc6 Ne3 31. Qe6+ Qf7 32. Qxf7+ Rxf7 33. Rf2 Nxc4
+34. dxc4 d3 35. c5 a4 36. Ra2 Rxf3 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "7.3"]
+[White "Sevian, Samuel"]
+[Black "So, Wesley"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2689"]
+[BlackElo "2751"]
+[WhiteFideId "2040506"]
+[BlackFideId "5202213"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnnqkrbb/pppppppp/8/8/8/8/PPPPPPPP/RNNQKRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. g3 c6 2. e4 g6 3. d4 Qb6 4. Nb3 a5 5. a4 f5 6. e5 Bc4 7. f4 Bxf1 8. Kxf1 d5
+9. Bf3 e6 10. Nc5 Ke7 11. Ra3 Qc7 12. c4 dxc4 13. Rc3 Nb6 14. b3 Nd5 15. Rxc4
+Na6 16. Nd3 Bg7 17. Nd2 Rad8 18. Rc1 Kf7 19. Nc4 Ndb4 20. Kg2 Rfe8 21. Bf2 Nxd3
+22. Qxd3 Bf8 23. Qe2 Nb4 24. h3 Kg8 25. Kh2 Nd5 26. Rc2 Bb4 27. Nb2 Be7 28. Nc4
+Bb4 29. Nb2 Be7 30. Nc4 g5 31. fxg5 Bxg5 32. h4 Be7 33. Rc1 Kh8 34. Bh5 Rf8 35.
+Bf3 Rg8 36. Bh5 Rg7 37. Qf3 Rdg8 38. Rc2 Qd8 39. Kh3 Rg4 40. Kh2 R4g7 41. Kh3
+Bb4 42. Rc1 Qf8 43. Kh2 Rd7 44. Rc2 Qh6 45. Ne3 Nc3 46. Ng2 Ne4 47. Be3 Qf8 48.
+g4 Nc3 49. g5 Nd5 50. Bc1 Qd8 51. Kh3 Nc7 52. Be3 Rxd4 53. Bxd4 Qxd4 54. Nf4 Kg7
+55. Re2 Rd8 56. Re3 Qa1 57. Rd3 Rxd3 58. Nxd3 Bc3 59. Be8 Nxe8 60. h5 Bxe5 61.
+Nc5 Nc7 62. h6+ Kg8 63. Nd7 Nd5 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "7.4"]
+[White "Dominguez Perez, Leinier"]
+[Black "Caruana, Fabiano"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2741"]
+[BlackElo "2796"]
+[WhiteFideId "3503240"]
+[BlackFideId "2020009"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnnqkrbb/pppppppp/8/8/8/8/PPPPPPPP/RNNQKRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. g3 c6 2. d4 f5 3. Nd2 g6 4. f4 Bd5 5. e4 fxe4 6. Nxe4 Qb6 7. b3 c5 8. Ne2
+Bxe4 9. Bxe4 Nd6 10. Bg2 Nc6 11. c3 cxd4 12. Nxd4 Nf5 13. Ne2 Ne3 14. Bxc6 Nxd1
+15. Bxd7+ Kxd7 16. Bxb6 Nxc3 17. Bd4 Bxd4 18. Nxd4 Rac8 19. Kd2 Rc5 20. Rfc1
+Rfc8 21. Kd3 a6 22. Rc2 b5 23. a3 Ne4 24. Rac1 Rxc2 25. Rxc2 Rxc2 26. Nxc2 Nc5+
+27. Kc3 Kc6 28. b4 Nd7 29. Kd4 Kd6 30. Ne3 e5+ 31. fxe5+ Nxe5 32. Ke4 Nf7 33. h4
+Ne5 34. g4 Ke6 35. g5 Kd6 36. Kf4 Ke6 37. Ke4 Kd6 38. Kf4 Nc6 39. Ng4 Ke6 40.
+Ke4 a5 41. bxa5 Nxa5 42. Nf6 Nc4 43. Nxh7 Nxa3 44. Nf6 Nc4 45. h5 gxh5 46. Nxh5
+Nd6+ 47. Kd4 Kf5 48. Ng3+ Kxg5 49. Ne4+ Nxe4 50. Kxe4 Kh6 51. Kd4 b4 52. Kc4 Kh7
+53. Kxb4 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "7.5"]
+[White "Oparin, Grigoriy"]
+[Black "Shankland, Sam"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2662"]
+[BlackElo "2677"]
+[WhiteFideId "24125890"]
+[BlackFideId "2004887"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnnqkrbb/pppppppp/8/8/8/8/PPPPPPPP/RNNQKRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. g3 d5 2. c4 f5 3. cxd5 Bxd5 4. Bxd5 Qxd5 5. Nc3 Qd7 6. Nd3 g6 7. f4 Na6 8.
+Qb3 Nb6 9. a4 O-O-O 10. a5 Nd5 11. Bxa7 Ndb4 12. Nxb4 Qxd2+ 13. Kf2 Bd4+ 14. Kg2
+Bxa7 15. Rad1 Qe3 16. Rf3 Qc5 17. Qe6+ Kb8 18. Nxa6+ bxa6 19. Qxa6 Rxd1 20. Nxd1
+Qg1+ 21. Kh3 Qxd1 22. Qb5+ Kc8 23. Qa6+ Kb8 24. Qb5+ Kc8 25. Qa6+ Kb8 26. Qb5+ 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "8.1"]
+[White "Sevian, Samuel"]
+[Black "Dominguez Perez, Leinier"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2689"]
+[BlackElo "2741"]
+[WhiteFideId "2040506"]
+[BlackFideId "3503240"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rqbbnknr/pppppppp/8/8/8/8/PPPPPPPP/RQBBNKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 e5 2. c3 c6 3. d4 exd4 4. cxd4 d5 5. e5 Ne7 6. Bc2 Bg4 7. h3 Be6 8. Ne2
+Qc8 9. O-O Bf5 10. Nd3 h5 11. Bg5 Nc7 12. Nc5 Bxc2 13. Qxc2 b6 14. Nd3 Ne6 15.
+Bxe7+ Bxe7 16. Rac1 c5 17. f4 g6 18. f5 gxf5 19. Rxf5 Kg8 20. Rcf1 cxd4 21. Qb1
+Rh7 22. Ndf4 h4 23. Kh1 Qd7 24. Nh5 Rf8 25. Nef4 Nc5 26. e6 Qd8 27. Nxd5 Kh8 28.
+exf7 Qd6 29. Nhf6 Bxf6 30. Nxf6 Rh6 31. Qc1 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "8.2"]
+[White "Nakamura, Hikaru"]
+[Black "Oparin, Grigoriy"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2802"]
+[BlackElo "2662"]
+[WhiteFideId "2016192"]
+[BlackFideId "24125890"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rqbbnknr/pppppppp/8/8/8/8/PPPPPPPP/RQBBNKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 c5 2. b4 b6 3. c3 e6 4. d4 Nef6 5. Bf3 d5 6. exd5 exd5 7. Ne2 cxb4 8.
+Qxb4+ Be7 9. Qb3 Ba6 10. Nc2 Bd6 11. Qa4 Bb7 12. Ba3 Ne7 13. Ne3 O-O 14. Bxd6
+Qxd6 15. O-O Rfc8 16. Rfe1 Rc7 17. Qb4 Rd8 18. a4 Ba6 19. Ng3 g6 20. a5 Qxb4 21.
+cxb4 Bb5 22. axb6 axb6 23. Be2 Bxe2 24. Nxe2 Nc6 25. Ra6 Rb7 26. b5 Na5 27. Nc3
+Kg7 28. g4 h6 29. h4 Nc4 30. f3 Nxe3 31. Rxe3 Rc8 32. Kf2 Rc4 33. Rd3 Rb4 34.
+Kg3 Ne8 35. Nxd5 Rxb5 36. Ne3 Ra5 37. Rxa5 bxa5 38. Nc4 a4 39. d5 Nf6 40. d6 Nd7
+41. g5 hxg5 42. hxg5 Rb3 43. Rd1 Rc3 44. Rd4 a3 45. Nd2 a2 46. Ra4 Nc5 47. Rxa2
+Rd3 48. Nc4 Ne4+ 49. Kg4 Nxd6 50. Ne5 Rd4+ 51. f4 Nc4 52. Nc6 Rd6 53. Ne7 Rd7
+54. Re2 f6 55. Nc6 fxg5 56. Kxg5 Rd5+ 57. Kg4 Rd6 58. Nb4 Kf6 59. Re4 Nd2 60.
+Re5 Nc4 61. Re1 Nb6 62. Na6 Rc6 63. Nb4 Rd6 64. Kf3 Nc4 65. Rc1 Nb6 66. Rc5 Nd7
+67. Ra5 Ke6 68. Nc2 Nf6 69. Ne3 Nd5 70. Nc4 Rc6 71. Ne5 Rc3+ 72. Kg4 Nf6+ 73.
+Kh4 Ne4 74. Nxg6 Rc5 75. Ra7 Kf5 76. Kh5 Ng3+ 77. Kh6 Kg4 78. Ne5+ Kh3 79. Ra3
+Kh4 80. Kg6 Rb5 81. Ra6 Ne2 82. Kf5 Ng3+ 83. Ke6 Nh5 84. Ra4 Kg3 85. Ng6 Kg4 86.
+Ne5+ Kg3 87. Kf5 Ng7+ 88. Kf6 Nh5+ 89. Kg5 Nxf4 90. Ra3+ Kf2 91. Kxf4 Rb4+ 92.
+Kf5 Ke2 93. Rh3 Ra4 94. Nc6 Rc4 95. Ne7 Ra4 96. Nd5 Kd2 97. Ke5 Rg4 98. Nc3 Rg8
+99. Nd5 Re8+ 100. Kd4 Rd8 101. Rh2+ Kd1 102. Ke4 Kc1 103. Ne3 Rd7 104. Nc4 Kd1
+105. Ke3 Re7+ 106. Kd3 Rd7+ 107. Kc3 Ke1 108. Ne5 Rd8 109. Nd3+ Kf1 110. Kd2 Re8
+111. Kc3 Rd8 112. Rd2 Kg1 113. Re2 Ra8 114. Ne5 Kf1 115. Rh2 Rd8 116. Ra2 Re8
+117. Kd4 Ke1 118. Nf3+ Kd1 119. Rh2 Re2 120. Rh3 Re8 121. Kd3 Kc1 122. Rh2 Rg8
+123. Nd4 Rg3+ 124. Kc4 Kd1 125. Ne2 Rg8 126. Nf4 Rd8 127. Ra2 Rd7 128. Rh2 Rd8
+129. Ne6 Re8 130. Nd4 Ke1 131. Kd3 Kf1 132. Nf5 Ke1 133. Nd6 Rd8 134. Ke3 Kd1
+135. Nb5 Rg8 136. Nd4 Rg3+ 137. Ke4 Ra3 138. Nc2 Rc3 139. Ne3+ Kc1 140. Rh1+ Kd2
+141. Rh3 Rc8 142. Rh2+ Ke1 143. Nc2+ Kd1 144. Kd3 Rd8+ 145. Nd4 Ke1 146. Ra2 Rd7
+147. Ke4 Re7+ 148. Kf4 Rf7+ 149. Nf5 Rf8 150. Kg4 Kd1 151. Ng3 Rd8 152. Ne4 Rf8
+153. Kg3 Rf7 154. Kg2 Rf8 155. Nf2+ Ke1 156. Rb2 Rf7 157. Ng4 Rf8 158. Ne5 Kd1
+159. Nf3 Rc8 160. Kf1 Rc2 161. Rb7 Rc8 162. Kf2 Kc2 163. Ne5 Kc3 164. Ke3 Re8
+165. Rc7+ Kb4 166. Ke4 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "8.3"]
+[White "Aronian, Levon"]
+[Black "Robson, Ray"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2738"]
+[BlackElo "2693"]
+[WhiteFideId "13300474"]
+[BlackFideId "2023970"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rqbbnknr/pppppppp/8/8/8/8/PPPPPPPP/RQBBNKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 c6 2. c4 e5 3. Ngf3 Ne7 4. d4 exd4 5. Nxd4 d5 6. cxd5 cxd5 7. exd5 Nxd5 8.
+Nef3 O-O 9. O-O Nef6 10. Bb3 Bg4 11. Bg5 Bb6 12. Bxd5 Nxd5 13. Qe4 Bxf3 14. Nxf3
+Nc7 15. Be7 Re8 16. Ng5 g6 17. Nxh7 Nd5 18. Qxd5 Rxe7 19. Nf6+ Kg7 20. Nd7 Qc7
+21. Rad1 Rae8 22. a4 a6 23. Nxb6 Qxb6 24. b3 Re2 25. a5 Qb4 26. Rd4 Qe7 27. b4
+Rb2 28. Qc4 Qe2 29. Qc3 Rc2 30. Qf3 Qxf3 31. gxf3 Rb2 32. Rf4 g5 33. Rg4 Kg6 34.
+h4 f6 35. hxg5 fxg5 36. Kg2 Re5 37. Rd4 Rb5 38. Rd6+ Kf5 39. Rh1 R2xb4 40. Rhh6
+Rh4 41. Rhg6 Rh8 42. Rgf6+ Ke5 43. Kg3 Rxa5 44. Kg4 Rd5 45. Rb6 Rh2 46. Rf5+ Kd4
+47. Rxd5+ Kxd5 48. Rxb7 Kc6 49. Rb2 Rg2+ 50. Kh3 Rg1 51. Rc2+ Kb6 52. Rb2+ Kc6
+53. Rc2+ Kb6 54. Rb2+ Kc6 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "8.4"]
+[White "So, Wesley"]
+[Black "Shankland, Sam"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2751"]
+[BlackElo "2677"]
+[WhiteFideId "5202213"]
+[BlackFideId "2004887"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rqbbnknr/pppppppp/8/8/8/8/PPPPPPPP/RQBBNKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 c6 2. d4 d5 3. c3 dxe4 4. Qxe4 Nef6 5. Qe2 Bf5 6. Ngf3 e6 7. Ne5 h5 8.
+N1f3 Bc7 9. Bb3 Ne7 10. Bg5 Qe8 11. O-O Ng4 12. Nd3 Nd5 13. Rfe1 f6 14. Bd2 Qf7
+15. c4 Nb6 16. Bb4+ Kg8 17. Ba5 g5 18. h3 Re8 19. d5 Nxd5 20. cxd5 Bxa5 21. dxe6
+Qc7 22. e7+ Kg7 23. Nc5 Bb6 24. hxg4 hxg4 25. Ne6+ Bxe6 26. Qxe6 gxf3 27. Qf7+
+Kh6 28. Qxf6+ Kh5 29. Bf7+ 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "8.5"]
+[White "Caruana, Fabiano"]
+[Black "Kasparov, Garry"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2796"]
+[BlackElo "2812"]
+[WhiteFideId "2020009"]
+[BlackFideId "4100018"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rqbbnknr/pppppppp/8/8/8/8/PPPPPPPP/RQBBNKNR w HAha - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 c5 2. Ngf3 Ngf6 3. c3 b6 4. Be2 Bb7 5. e5 Nd5 6. d4 cxd4 7. cxd4 e6 8. Nd3
+Be7 9. Bd2 f5 10. h4 Nec7 11. h5 Qd8 12. h6 g5 13. Qd1 O-O 14. Rc1 Kh8 15. Rh5
+g4 16. Nfe1 Rc8 17. Nc2 Qe8 18. Rh2 Qg6 19. g3 Bg5 20. Bxg5 Qxg5 21. Ke1 f4 22.
+Qd2 Qg6 23. gxf4 g3 24. Rg2 Qxh6 25. Rxg3 Nxf4 26. Nxf4 Rxf4 27. Ne3 Qh2 28. Bd3
+Rcf8 29. Nf1 Qh4 30. Rxc7 Rxf2 31. Qg5 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "9.1"]
+[White "Robson, Ray"]
+[Black "Caruana, Fabiano"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2693"]
+[BlackElo "2796"]
+[WhiteFideId "2023970"]
+[BlackFideId "2020009"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnknqrbb/pppppppp/8/8/8/8/PPPPPPPP/RNKNQRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. g3 g6 3. e4 fxe4 4. Qxe4 d5 5. Qe2 Nd7 6. d4 h6 7. Ne3 c6 8. c3 g5
+9. Nd2 gxf4 10. gxf4 Bh7 11. O-O-O e6 12. Rde1 Qg6 13. Rf3 Nf7 14. Bg2 O-O-O 15.
+Bh3 Nd6 16. Rg3 Qf7 17. Ng4 Nf5 18. Rf3 Qg6 19. Qd1 h5 20. Ne3 Nd6 21. Bf2 Rde8
+22. Rg1 Qf7 23. Bg3 Nf5 24. Nxf5 Bxf5 25. Bxf5 Qxf5 26. Re1 Bf6 27. Qc2 Bd8 28.
+Rfe3 h4 29. Qxf5 Rxf5 30. Bf2 Rxf4 31. Bg1 Rg4 32. h3 Rg2 33. R3e2 Rg3 34. Re3
+e5 35. dxe5 Rxe5 36. Rxe5 Nxe5 37. Kc2 Nd3 38. Rf1 Rxh3 39. Bxa7 Bg5 40. Rf8+
+Kd7 41. Nb3 Nf4 42. Nc5+ Ke7 43. Rf5 Bh6 44. Bb8 Rf3 45. Bxf4 Rxf4 46. Rh5 Bg7
+47. Rg5 Bf6 48. Rg2 h3 49. Re2+ Kf7 50. Nxb7 Rh4 51. Rh2 Be5 52. Rh1 Ke7 53. Nc5
+h2 54. Nd3 Bd6 55. Ne1 Rg4 56. Nf3 Rg2+ 57. Kb3 c5 58. a4 Kd7 59. a5 Kc6 60. Ra1
+Rf2 61. Nxh2 Rxh2 62. a6 c4+ 63. Ka4 Bc5 64. b4 cxb3 65. Kxb3 Ba7 66. Rf1 Rh8
+67. Rf6+ Kc5 68. Rf7 Bb6 69. Rf5 Rh1 70. Rg5 Rb1+ 71. Kc2 Rb5 72. Rh5 Ra5 73.
+Kb3 Kc6 74. Rh6+ Kb5 75. Rh5 Kxa6 76. Kc2 Kb7 77. c4 dxc4 78. Rh4 Rc5 79. Kc3
+Ba5+ 80. Kd4 Rc7 81. Rh5 Ka6 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "9.2"]
+[White "Dominguez Perez, Leinier"]
+[Black "So, Wesley"]
+[Result "1/2-1/2"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2741"]
+[BlackElo "2751"]
+[WhiteFideId "3503240"]
+[BlackFideId "5202213"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnknqrbb/pppppppp/8/8/8/8/PPPPPPPP/RNKNQRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. g3 g6 3. e4 fxe4 4. Qxe4 d5 5. Qe2 Nbc6 6. Nbc3 Qd7 7. Qg2 d4 8. Ne4
+Bd5 9. Nd6+ cxd6 10. Qxd5 e6 11. Qb3 a5 12. a4 Qc7 13. Nf2 Ra6 14. c3 dxc3 15.
+dxc3 Nd4 16. Qd1 Qc4 17. Ra3 Ne2+ 18. Kc2 d5 19. Qd3 Rc6 20. Qxc4 Rxc4 21. Nd3
+Nxg1 22. Rxg1 Nc6 23. Kd2 Kc7 24. Rc1 d4 25. cxd4 Rxc1 26. Kxc1 Bxd4 27. Kd2 Rd8
+28. Ke2 Bg7 29. Be4 b6 30. Ra1 Nd4+ 31. Kf2 Nb3 32. Ra3 Nd2 33. Bg2 Nc4 34. Rb3
+Nxb2 35. Nxb2 Rd2+ 36. Kf3 Bxb2 37. Bh3 e5 38. f5 Rxh2 39. fxg6 hxg6 40. Bf1 Bd4
+41. Bd3 Ra2 42. Bb5 Kd6 43. Ke4 Ra1 44. Be8 Re1+ 45. Kd3 g5 46. Kc4 Rc1+ 47. Kd3
+Rc8 48. Bg6 Rc1 49. Be8 Ke6 50. Ke4 Re1+ 51. Kd3 Bc5 52. Kd2 Ra1 53. Kd3 Rg1 54.
+Ke4 g4 55. Bc6 Rd1 56. Bb5 Rd4+ 57. Ke3 Rb4+ 58. Ke2 e4 59. Rxb4 axb4 60. Ba6
+Ke5 61. Bc8 Kd4 62. Bxg4 e3 63. Bf5 Bd6 64. g4 Bf4 65. Kd1 b3 66. Be6 Kd3 67.
+Bf5+ Kc3 68. Be6 Bg5 69. Bf7 Kb4 70. Be6 Kxa4 71. Bf7 Ka3 72. Bg6 Ka2 73. Bf7
+Kb2 74. Be6 b5 75. Bf7 b4 76. Be6 Bh6 77. Bf7 Bg5 78. Be6 Be7 79. Bf7 Bf6 80.
+Be6 Ka3 81. Bf5 Be7 82. Be4 Bg5 83. Bf5 Ka2 84. Be6 Be7 85. Bf7 Kb2 86. Be6 Kc3
+87. Bf5 Kd4 88. Ke2 Bg5 89. Bg6 Kc4 90. Kd1 Bh6 91. Bf5 Kc3 92. Bg6 Kb2 93. Bf7
+Bg5 94. Be6 Be7 95. Bf7 Ka3 96. Bg6 Ka2 97. Bf7 Kb2 98. Be6 e2+ 99. Kxe2 Kc2
+100. Bf5+ Kb2 101. Be6 Kc2 102. Bf5+ Kc1 103. Kd3 b2 104. Kc4 b1=R 105. Bxb1
+Kxb1 106. g5 Bxg5 107. Kxb4 Be7+ 108. Kb3 1/2-1/2
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "9.3"]
+[White "Shankland, Sam"]
+[Black "Nakamura, Hikaru"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2677"]
+[BlackElo "2802"]
+[WhiteFideId "2004887"]
+[BlackFideId "2016192"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnknqrbb/pppppppp/8/8/8/8/PPPPPPPP/RNKNQRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. f4 f5 2. g3 g6 3. Ndc3 e5 4. fxe5 Qxe5 5. d4 Qe7 6. Na3 a5 7. O-O-O Ra6 8. e4
+fxe4 9. Rxf8 Qxf8 10. Nxe4 Bd5 11. Nb5 Bxe4 12. Bxe4 c6 13. Qf1 Qh6+ 14. Kb1
+cxb5 15. Qxb5 Qh5 16. Qc4+ Rc6 17. Qd3 Re6 18. Rf1 Nbc6 19. c3 Rf6 20. Re1 d5
+21. Bg2 Ne6 22. a4 Nc7 23. Ka2 Qf5 24. Qd1 Qd7 25. Be3 Bg7 26. Bf4 Bf8 27. Qb3
+Bd6 28. Be3 Qf7 29. Re2 Kb8 30. Bg5 Rf5 31. Bc1 h5 32. Qc2 g5 33. Qd3 g4 34. h3
+Rf2 35. hxg4 hxg4 36. Be3 Qf5 0-1
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "9.4"]
+[White "Kasparov, Garry"]
+[Black "Sevian, Samuel"]
+[Result "1-0"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2812"]
+[BlackElo "2689"]
+[WhiteFideId "4100018"]
+[BlackFideId "2040506"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnknqrbb/pppppppp/8/8/8/8/PPPPPPPP/RNKNQRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 f5 2. exf5 Rxf5 3. Ne3 Rf8 4. f4 g6 5. c3 c5 6. g3 Ndc6 7. Qe2 Na6 8. Na3
+O-O-O 9. Nb5 d5 10. Nc2 e5 11. O-O-O exf4 12. Qxe8 Rfxe8 13. Rxf4 d4 14. cxd4
+Nab4 15. Nxb4 Nxb4 16. dxc5 Nd3+ 17. Kc2 Nxf4 18. gxf4 Kb8 19. Nd6 Re7 20. Be3
+b6 21. b4 Bxa2 22. f5 Rxe3 23. dxe3 gxf5 24. Bd5 Bxd5 25. Rxd5 a5 26. bxa5 bxc5
+27. Kb3 Be5 28. Rxe5 Rxd6 29. Kc4 Rh6 30. Kxc5 Rxh2 31. Rxf5 Kb7 32. e4 Ra2 33.
+Kd6 Ka6 34. Rh5 Rd2+ 35. Ke6 Re2 36. e5 Kxa5 37. Kd6 Rd2+ 38. Ke7 Kb6 39. e6 Kc6
+40. Rxh7 Ra2 41. Rh1 Rc2 42. Rf1 Ra2 43. Kf7 Rh2 44. e7 Rh7+ 45. Ke6 Rh6+ 46.
+Rf6 Rh8 47. Rf8 Rh6+ 1-0
+
+[Event "Champ Showdown 9LX 2024"]
+[Site "Saint Louis USA"]
+[Date "2024.10.30"]
+[Round "9.5"]
+[White "Oparin, Grigoriy"]
+[Black "Aronian, Levon"]
+[Result "0-1"]
+[WhiteTitle "GM"]
+[BlackTitle "GM"]
+[WhiteElo "2662"]
+[BlackElo "2738"]
+[WhiteFideId "24125890"]
+[BlackFideId "13300474"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "rnknqrbb/pppppppp/8/8/8/8/PPPPPPPP/RNKNQRBB w FAfa - 0 1"]
+[EventDate "2024.10.28"]
+
+1. e4 e5 2. g3 g6 3. f4 exf4 4. gxf4 f5 5. e5 Nbc6 6. d4 Bc4 7. d5 Bxf1 8. Qxf1
+Nxe5 9. fxe5 Qxe5 10. Nd2 Nf7 11. a4 O-O 12. Ra3 Nd6 13. Nc4 Qf6 14. Nxd6 cxd6
+15. Bf3 b6 16. Be2 Rae8 17. Bb5 Re7 18. Bf2 f4 19. Rf3 g5 20. h3 h5 21. Qg1 Qf5
+22. Be1 Bd4 23. Qf1 g4 24. hxg4 hxg4 25. Rd3 Bg7 26. Bh4 Ref7 27. Rd2 f3 28. Kb1
+Qf4 29. Qe1 Be5 30. Bd3 g3 31. Bxg3 Qxg3 32. Nf2 Rg7 33. Rd1 Bd4 34. Bh7+ Kh8
+35. Qe4 Qxf2 36. Bg6 Qg2 0-1

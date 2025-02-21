@@ -8,11 +8,11 @@ use Chess\Variant\Classical\PGN\Piece;
 
 trait RandomCastlingRuleTrait
 {
-    protected array $shuffle;
+    public array $shuffle;
 
-    protected array $startFiles;
+    public array $startFiles;
 
-    protected array $size;
+    public array $size;
 
     protected function sq()
     {
