@@ -223,4 +223,16 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
 
         $this->assertEquals($expected, $board->movetext());
     }
+
+    /**
+     * @test
+     */
+    public function castling_ability_QRBKNBRN()
+    {
+        $board = FenToBoardFactory::create('qrbknbrn/pppppppp/8/8/8/8/PPPPPPPP/QRBKNBRN w GBgb - 0 1');
+
+        // TODO
+
+        $this->assertTrue(false);
+    }
 }

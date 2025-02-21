@@ -5,7 +5,7 @@ namespace Chess\Variant\Chess960;
 use Chess\Exception\UnknownNotationException;
 use Chess\Variant\AbstractBoard;
 use Chess\Variant\PieceArrayFactory;
-use Chess\Variant\Classical\FEN\Str;
+use Chess\Variant\Chess960\FEN\Str;
 use Chess\Variant\Classical\FenToBoardFactory as ClassicalFenToBoardFactory;
 use Chess\Variant\Classical\PGN\Square;
 
