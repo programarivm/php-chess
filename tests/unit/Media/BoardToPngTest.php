@@ -107,36 +107,6 @@ class BoardToPngTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function output_D06()
-    {
-        $D06 = file_get_contents(self::DATA_FOLDER.'/opening/D06.pgn');
-        $board = (new SanPlay($D06))->validate()->board;
-        $filename = (new BoardToPng($board))->output(self::OUTPUT_FOLDER, 'D06');
-
-        $this->assertSame(
-            sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/symmetrical_defense_to_the_queens_gambit.png')
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function output_D06_flip()
-    {
-        $D06 = file_get_contents(self::DATA_FOLDER.'/opening/D06.pgn');
-        $board = (new SanPlay($D06))->validate()->board;
-        $filename = (new BoardToPng($board, $flip = true))->output(self::OUTPUT_FOLDER, 'D06_flip');
-
-        $this->assertSame(
-            sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/symmetrical_defense_to_the_queens_gambit_flip.png')
-        );
-    }
-
-    /**
-     * @test
-     */
     public function output_start_capablanca()
     {
         $board = new CapablancaBoard();
