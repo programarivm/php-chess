@@ -27,7 +27,7 @@ class Str extends ClassicalStr
 
         (new Color())->validate($fields[1]);
 
-        (new CastlingRule([]))->validate($fields[2]);
+        (new CastlingRule())->validate($fields[2]);
 
         if ('-' !== $fields[3]) {
             (new Square())->validate($fields[3]);
