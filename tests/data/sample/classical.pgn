@@ -752,4 +752,14 @@
 
 1.h8=Q *
 
+[Event "-"]
+[Site "-"]
+[Date "-"]
+[White "-"]
+[Black "-"]
+[Result "-"]
+[FEN "4k3/2ppp2P/3b4/8/8/8/6P1/4K2R w K -"]
+
+1.h8=N *
+
 
