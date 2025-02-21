@@ -60,7 +60,7 @@
   },
   "extra": {
     "drupal-core-vendor-hardening": {
-      "vendor/package": ["tests", "docs"]
+      "chesslablab/php-chess": ["tests", "docs"]
     }
   }
 }
