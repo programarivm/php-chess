@@ -69,12 +69,12 @@ class CastlingRule extends AbstractNotation
         ],
     ];
 
-    public function validate(string $value): string
+    public function validate(string $castlingAbility): string
     {
-        if ($value === self::NEITHER) {
-            return $value;
-        } elseif ($value && preg_match('/^K?Q?k?q?$/', $value)) {
-            return $value;
+        if ($castlingAbility === self::NEITHER) {
+            return $castlingAbility;
+        } elseif (preg_match('/^K?Q?k?q?$/', $castlingAbility)) {
+            return $castlingAbility;
         }
 
         throw new UnknownNotationException();
