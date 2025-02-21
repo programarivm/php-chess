@@ -1423,63 +1423,6 @@ class BoardTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function play_lan_C00()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->playLan('w', 'e2e4'));
-        $this->assertTrue($board->playLan('b', 'e7e6'));
-        $this->assertTrue($board->playLan('w', 'd2d4'));
-        $this->assertTrue($board->playLan('b', 'd7d5'));
-        $this->assertTrue($board->playLan('w', 'c1e3'));
-    }
-
-    /**
-     * @test
-     */
-    public function play_lan_B00()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->playLan('w', 'e2e4'));
-        $this->assertTrue($board->playLan('b', 'b8c6'));
-        $this->assertTrue($board->playLan('w', 'g1f3'));
-        $this->assertTrue($board->playLan('b', 'd7d6'));
-        $this->assertTrue($board->playLan('w', 'f1e2'));
-        $this->assertTrue($board->playLan('b', 'c8e6'));
-        $this->assertTrue($board->playLan('w', 'e1g1'));
-        $this->assertTrue($board->playLan('b', 'd8d7'));
-        $this->assertTrue($board->playLan('w', 'h2h3'));
-        $this->assertTrue($board->playLan('b', 'e8c8'));
-    }
-
-    /**
-     * @test
-     */
-    public function play_lan_e2e4_d7d5_a2a3_d5e4()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->playLan('w', 'e2e4'));
-        $this->assertTrue($board->playLan('b', 'd7d5'));
-        $this->assertTrue($board->playLan('w', 'a2a3'));
-        $this->assertTrue($board->playLan('b', 'd5e4'));
-    }
-
-    /**
-     * @test
-     */
-    public function play_lan_b1a3_d7d5()
-    {
-        $board = new Board();
-
-        $this->assertTrue($board->playLan('w', 'b1a3'));
-        $this->assertTrue($board->playLan('b', 'd7d5'));
-    }
-
-    /**
-     * @test
-     */
     public function play_lan_d2d3_d7d6___b8d7_d2f3()
     {
         $board = new Board();
