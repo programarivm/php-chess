@@ -1801,6 +1801,8 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_lan_a4_b5_axb5_a6_b6()
     {
+        $expected = 'rnbqkbnr/2pppppp/pP6/8/8/8/1PPPPPPP/RNBQKBNR b KQkq -';
+
         $board = new Board();
 
         $board->playLan('w', 'a2a4');
@@ -1808,6 +1810,8 @@ class BoardTest extends AbstractUnitTestCase
         $board->playLan('w', 'a4b5');
         $board->playLan('b', 'a7a6');
         $board->playLan('w', 'b5b6');
+
+        $this->assertSame($expected, $board->toFen());
     }
 
     /**
@@ -1815,6 +1819,8 @@ class BoardTest extends AbstractUnitTestCase
      */
     public function play_lan_b4_a6_b5_h6_h3_c5_g3_h5_b6()
     {
+        $expected = 'rnbqkbnr/1p1pppp1/pP6/2p4p/8/6PP/P1PPPP2/RNBQKBNR b KQkq -';
+
         $board = new Board();
 
         $board->playLan('w', 'b2b4');
@@ -1826,6 +1832,8 @@ class BoardTest extends AbstractUnitTestCase
         $board->playLan('w', 'g2g3');
         $board->playLan('b', 'h6h5');
         $board->playLan('w', 'b5b6');
+
+        $this->assertSame($expected, $board->toFen());
     }
 
     /**
