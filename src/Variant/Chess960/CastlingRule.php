@@ -11,7 +11,7 @@ class CastlingRule extends ClassicalCastlingRule
 {
     use RandomCastlingRuleTrait;
 
-    public function __construct(array $shuffle)
+    public function __construct(array $shuffle = [])
     {
         $this->shuffle = $shuffle;
 
