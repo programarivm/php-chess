@@ -14,8 +14,7 @@ class LanPlayTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        $movetext = 'foo';
-        $board = (new LanPlay($movetext))->validate()->board;
+        $board = (new LanPlay('foo'))->validate()->board;
     }
 
     /**
@@ -25,8 +24,7 @@ class LanPlayTest extends AbstractUnitTestCase
     {
         $this->expectException(\Chess\Exception\UnknownNotationException::class);
 
-        $movetext = 'e2e4 e2e4';
-        $board = (new LanPlay($movetext))->validate()->board;
+        $board = (new LanPlay('e2e4 e2e4'))->validate()->board;
     }
 
     /**
@@ -34,11 +32,9 @@ class LanPlayTest extends AbstractUnitTestCase
      */
     public function e2e4_e7e5()
     {
-        $movetext = 'e2e4 e7e5';
-
-        $board = (new LanPlay($movetext))->validate()->board;
-
         $expected = '1.e4 e5';
+        
+        $board = (new LanPlay('e2e4 e7e5'))->validate()->board;
 
         $this->assertSame($expected, $board->movetext());
     }
@@ -48,11 +44,9 @@ class LanPlayTest extends AbstractUnitTestCase
      */
     public function e2e4__e7e5()
     {
-        $movetext = 'e2e4  e7e5';
-
-        $board = (new LanPlay($movetext))->validate()->board;
-
         $expected = '1.e4 e5';
+        
+        $board = (new LanPlay('e2e4  e7e5'))->validate()->board;
 
         $this->assertSame($expected, $board->movetext());
     }
@@ -62,11 +56,9 @@ class LanPlayTest extends AbstractUnitTestCase
      */
     public function e2e4_e7e5_g1f3()
     {
-        $movetext = 'e2e4 e7e5 g1f3';
-
-        $board = (new LanPlay($movetext))->validate()->board;
-
         $expected = '1.e4 e5 2.Nf3';
+
+        $board = (new LanPlay('e2e4 e7e5 g1f3'))->validate()->board;
 
         $this->assertSame($expected, $board->movetext());
     }
@@ -76,11 +68,9 @@ class LanPlayTest extends AbstractUnitTestCase
      */
     public function e2e4_e7e5___g1f3()
     {
-        $movetext = 'e2e4 e7e5   g1f3';
-
-        $board = (new LanPlay($movetext))->validate()->board;
-
         $expected = '1.e4 e5 2.Nf3';
+
+        $board = (new LanPlay('e2e4 e7e5   g1f3'))->validate()->board;
 
         $this->assertSame($expected, $board->movetext());
     }
