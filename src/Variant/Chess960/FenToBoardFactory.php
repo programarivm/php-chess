@@ -58,7 +58,7 @@ class FenToBoardFactory
         $replaced = '';
         foreach (str_split($castlingAbility) as $val) {
             if (ctype_upper($val)) {
-                if ($val === 'Q' || $val === 'K') {
+                if ($val === 'K' || $val === 'Q') {
                     $replaced .= $val;
                 } elseif (self::isLikeQ($val, $castlingRule)) {
                     $replaced .= 'Q';
@@ -66,7 +66,7 @@ class FenToBoardFactory
                     $replaced .= 'K';
                 }
             } else {
-                if ($val === 'q' || $val === 'k') {
+                if ($val === 'k' || $val === 'q') {
                     $replaced .= $val;
                 } elseif (self::isLikeQ($val, $castlingRule)) {
                     $replaced .= 'q';
@@ -75,8 +75,6 @@ class FenToBoardFactory
                 }
             }
         }
-        $replaced = str_replace('QK', 'KQ', $replaced);
-        $replaced = str_replace('qk', 'kq', $replaced);
   
         return $replaced;
     }
