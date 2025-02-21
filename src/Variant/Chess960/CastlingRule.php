@@ -32,6 +32,8 @@ class CastlingRule extends ClassicalCastlingRule
             return $castlingAbility;
         } elseif (preg_match('/^K?Q?k?q?$/', $castlingAbility)) {
             return $castlingAbility;
+        } elseif (preg_match('/^[A-H]{0,1}[A-H]{0,1}[a-h]{0,1}[a-h]{0,1}$/', $castlingAbility)) {
+            return $castlingAbility;
         }
 
         throw new UnknownNotationException();
