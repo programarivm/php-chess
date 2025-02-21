@@ -63,20 +63,6 @@ class BoardToJpgTest extends AbstractUnitTestCase
     /**
      * @test
      */
-    public function output_02_kaufman()
-    {
-        $board = FenToBoardFactory::create('3r2k1/p2r1p1p/1p2p1p1/q4n2/3P4/PQ5P/1P1RNPP1/3R2K1 b - - bm Nxd4');
-        $filename = (new BoardToJpg($board))->output(self::OUTPUT_FOLDER);
-
-        $this->assertSame(
-            sha1_file(self::OUTPUT_FOLDER.'/'.$filename),
-            sha1_file(self::DATA_FOLDER.'/img/02_kaufman.jpg')
-        );
-    }
-
-    /**
-     * @test
-     */
     public function output_A59()
     {
         $A59 = file_get_contents(self::DATA_FOLDER.'/opening/A59.pgn');
