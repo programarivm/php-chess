@@ -27,14 +27,13 @@ class FenToBoardFactory
             return new Board((new Shuffle())->shuffle());
         }
 
-        $fenStr = new Str();
-        $string = $fenStr->validate($string);
-        $fields = array_filter(explode(' ', $string));
-        $namespace = 'Classical';
-        $shuffle = (new Shuffle())->extract($string);
-        $castlingRule = new CastlingRule($shuffle);
-
         try {
+            $fenStr = new Str();
+            $string = $fenStr->validate($string);
+            $fields = array_filter(explode(' ', $string));
+            $namespace = 'Classical';
+            $shuffle = (new Shuffle())->extract($string);
+            $castlingRule = new CastlingRule($shuffle);
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
                 new Square(),

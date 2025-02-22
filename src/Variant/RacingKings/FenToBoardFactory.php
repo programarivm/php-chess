@@ -25,13 +25,12 @@ class FenToBoardFactory
         if (!$string) {
             return new Board();
         }
-
-        $fenStr = new Str();
-        $string = $fenStr->validate($string);
-        $fields = array_filter(explode(' ', $string));
-        $namespace = 'RacingKings';
         
         try {
+            $fenStr = new Str();
+            $string = $fenStr->validate($string);
+            $fields = array_filter(explode(' ', $string));
+            $namespace = 'RacingKings';
             $pieces = PieceArrayFactory::create(
                 $fenStr->toArray($fields[0]),
                 new Square(),
