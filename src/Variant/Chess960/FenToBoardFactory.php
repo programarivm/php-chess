@@ -74,6 +74,8 @@ class FenToBoardFactory
                 }
             }
         }
+        $replaced = str_replace('QK', 'KQ', $replaced);
+        $replaced = str_replace('qk', 'kq', $replaced);
   
         return $replaced;
     }
