@@ -441,7 +441,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $namespace = (new \ReflectionClass(get_class($this)))->getNamespaceName();
         $board = "$namespace\FenToBoardFactory"::create($startFen, $this);
         $this->castlingAbility = $board->castlingAbility;
-        $this->halfMoveClock = explode(' ', $startFen)[4];
+        $this->halfMoveClock = explode(' ', $startFen)[4] ?? 0;
         array_pop($this->history);
         $this->rewind();
         while ($this->valid()) {
