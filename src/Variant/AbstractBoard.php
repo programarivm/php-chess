@@ -547,21 +547,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function isFiftyMoveDraw(): bool
     {
-        return count($this->history) >= 100;
-        foreach (array_reverse($this->history) as $key => $value) {
-            if ($key < 100) {
-                if (str_contains($value->move->case, 'x')) {
-                    return  false;
-                } elseif (
-                    $value->move->case === $this->move->case(Move::PAWN) ||
-                    $value->move->case === $this->move->case(Move::PAWN_PROMOTES)
-                ) {
-                    return  false;
-                }
-            }
-        }
-
-        return true;
+        return $this->halfMoveClock >= 100;
     }
 
     /**
