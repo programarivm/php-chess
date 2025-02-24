@@ -694,7 +694,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             $filtered = str_replace(str_repeat('.', $i), $i, $filtered);
         }
 
-        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()}";
+        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()} {$this->halfMoveClock}";
     }
 
     /**
