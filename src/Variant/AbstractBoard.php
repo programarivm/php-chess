@@ -80,6 +80,13 @@ abstract class AbstractBoard extends \SplObjectStorage
     public array $sqCount;
 
     /**
+     * Halfmove clock.
+     *
+     * @var int
+     */
+    public int $halfMoveClock = 0;
+
+    /**
      * Picks a piece from the board.
      *
      * @param array $move
