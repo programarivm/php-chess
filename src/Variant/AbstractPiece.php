@@ -9,6 +9,7 @@ use Chess\Variant\Classical\Q;
 use Chess\Variant\Classical\R;
 use Chess\Variant\Classical\PGN\Castle;
 use Chess\Variant\Classical\PGN\Color;
+use Chess\Variant\Classical\PGN\Move;
 use Chess\Variant\Classical\PGN\Piece;
 use Chess\Variant\Classical\CastlingRule;
 
@@ -286,6 +287,7 @@ abstract class AbstractPiece
         ));
         $this->promote();
         $this->updateCastle();
+        $this->updateHalfMoveClock();
         $this->pushHistory();
         $this->board->refresh();
 
@@ -385,6 +387,23 @@ abstract class AbstractPiece
         }
 
         return $this;
+    }
+
+    /**
+     * Updates the number of halfmoves since the last capture or pawn advance.
+     */
+    public function updateHalfMoveClock(): void
+    {
+        if (str_contains($this->move['case'], 'x')) {
+            $this->board->halfMoveClock = 0;
+        } elseif (
+            $this->move['case'] === $this->board->move->case(Move::PAWN) ||
+            $this->move['case'] === $this->board->move->case(Move::PAWN_PROMOTES)
+        ) {
+            $this->board->halfMoveClock = 0;
+        } else {
+            $this->board->halfMoveClock += 1;
+        }
     }
 
     /**

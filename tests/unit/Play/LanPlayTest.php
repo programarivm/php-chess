@@ -92,7 +92,7 @@ class LanPlayTest extends AbstractUnitTestCase
      */
     public function b4_a6_b5_h6_h3_c5_g3_h5_b6()
     {
-        $expected = 'rnbqkbnr/1p1pppp1/pP6/2p4p/8/6PP/P1PPPP2/RNBQKBNR b KQkq -';
+        $expected = 'rnbqkbnr/1p1pppp1/pP6/2p4p/8/6PP/P1PPPP2/RNBQKBNR b KQkq - 0';
 
         $board = (new LanPlay('b2b4 a7a6 b4b5 h7h6 h2h3 c7c5 g2g3 h6h5 b5b6'))->validate()->board;
 
@@ -104,7 +104,7 @@ class LanPlayTest extends AbstractUnitTestCase
      */
     public function a4_b5_axb5_a6_b6()
     {
-        $expected = 'rnbqkbnr/2pppppp/pP6/8/8/8/1PPPPPPP/RNBQKBNR b KQkq -';
+        $expected = 'rnbqkbnr/2pppppp/pP6/8/8/8/1PPPPPPP/RNBQKBNR b KQkq - 0';
 
         $board = (new LanPlay('a2a4 b7b5 a4b5 a7a6 b5b6'))->validate()->board;
 

@@ -230,7 +230,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function RQBBNKNR()
     {
-        $expected = 'r1r3k1/pb2nppp/1p1q1n2/3p4/Q2P4/2P1NB2/P3NPPP/R3R1K1 b - -';
+        $expected = 'r1r3k1/pb2nppp/1p1q1n2/3p4/Q2P4/2P1NB2/P3NPPP/R3R1K1 b - - 2';
 
         $movetext = '1.e4 c5 2.b4 b6 3.c3 e6 4.d4 Nef6 5.Bf3 d5 6.exd5 exd5 7.Ne2 cxb4 8.Qxb4+ Be7 9.Qb3 Ba6 10.Nc2 Bd6 11.Qa4 Bb7 12.Ba3 Ne7 13.Ne3 O-O 14.Bxd6 Qxd6 15.O-O Rfc8 16.Rfe1';
         

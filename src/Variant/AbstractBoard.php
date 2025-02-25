@@ -80,6 +80,13 @@ abstract class AbstractBoard extends \SplObjectStorage
     public array $sqCount;
 
     /**
+     * Halfmove clock.
+     *
+     * @var int
+     */
+    public int $halfMoveClock = 0;
+
+    /**
      * Picks a piece from the board.
      *
      * @param array $move
@@ -434,6 +441,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $namespace = (new \ReflectionClass(get_class($this)))->getNamespaceName();
         $board = "$namespace\FenToBoardFactory"::create($startFen, $this);
         $this->castlingAbility = $board->castlingAbility;
+        $this->halfMoveClock = explode(' ', $startFen)[4] ?? 0;
         array_pop($this->history);
         $this->rewind();
         while ($this->valid()) {
@@ -523,8 +531,11 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function isFivefoldRepetition(): bool
     {
-        $count = array_count_values(array_column($this->history, 'fen'));
-        foreach ($count as $key => $val) {
+        $piecePlacement = [];
+        foreach ($this->history as $val) {
+            $piecePlacement[] = explode(' ', $val['fen'])[0];
+        }
+        foreach (array_count_values($piecePlacement) as $key => $val) {
             if ($val >= 5) {
                 return true;
             }
@@ -540,21 +551,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function isFiftyMoveDraw(): bool
     {
-        return count($this->history) >= 100;
-        foreach (array_reverse($this->history) as $key => $value) {
-            if ($key < 100) {
-                if (str_contains($value->move->case, 'x')) {
-                    return  false;
-                } elseif (
-                    $value->move->case === $this->move->case(Move::PAWN) ||
-                    $value->move->case === $this->move->case(Move::PAWN_PROMOTES)
-                ) {
-                    return  false;
-                }
-            }
-        }
-
-        return true;
+        return $this->halfMoveClock >= 100;
     }
 
     /**
@@ -701,7 +698,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             $filtered = str_replace(str_repeat('.', $i), $i, $filtered);
         }
 
-        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()}";
+        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()} {$this->halfMoveClock}";
     }
 
     /**
