@@ -531,8 +531,11 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function isFivefoldRepetition(): bool
     {
-        $count = array_count_values(array_column($this->history, 'fen'));
-        foreach ($count as $key => $val) {
+        $piecePlacement = [];
+        foreach ($this->history as $val) {
+            $piecePlacement[] = explode(' ', $val['fen'])[0];
+        }
+        foreach (array_count_values($piecePlacement) as $key => $val) {
             if ($val >= 5) {
                 return true;
             }
