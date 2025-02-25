@@ -84,7 +84,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      *
      * @var int
      */
-    public int $halfMoveClock = 0;
+    public int $halfmoveClock = 0;
 
     /**
      * Picks a piece from the board.
@@ -441,7 +441,7 @@ abstract class AbstractBoard extends \SplObjectStorage
         $namespace = (new \ReflectionClass(get_class($this)))->getNamespaceName();
         $board = "$namespace\FenToBoardFactory"::create($startFen, $this);
         $this->castlingAbility = $board->castlingAbility;
-        $this->halfMoveClock = explode(' ', $startFen)[4] ?? 0;
+        $this->halfmoveClock = explode(' ', $startFen)[4] ?? 0;
         array_pop($this->history);
         $this->rewind();
         while ($this->valid()) {
@@ -551,7 +551,7 @@ abstract class AbstractBoard extends \SplObjectStorage
      */
     public function isFiftyMoveDraw(): bool
     {
-        return $this->halfMoveClock >= 100;
+        return $this->halfmoveClock >= 100;
     }
 
     /**
@@ -698,7 +698,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             $filtered = str_replace(str_repeat('.', $i), $i, $filtered);
         }
 
-        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()} {$this->halfMoveClock}";
+        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()} {$this->halfmoveClock}";
     }
 
     /**

@@ -395,14 +395,14 @@ abstract class AbstractPiece
     public function updateHalfMoveClock(): void
     {
         if (str_contains($this->move['case'], 'x')) {
-            $this->board->halfMoveClock = 0;
+            $this->board->halfmoveClock = 0;
         } elseif (
             $this->move['case'] === $this->board->move->case(Move::PAWN) ||
             $this->move['case'] === $this->board->move->case(Move::PAWN_PROMOTES)
         ) {
-            $this->board->halfMoveClock = 0;
+            $this->board->halfmoveClock = 0;
         } else {
-            $this->board->halfMoveClock += 1;
+            $this->board->halfmoveClock += 1;
         }
     }
 
