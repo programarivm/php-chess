@@ -286,7 +286,7 @@ abstract class AbstractPiece
             $this->id === Piece::R ? $this->type : null
         ));
         $this->promote();
-        $this->updateCastle();
+        $this->updateCastlingAbility();
         $this->updateHalfMoveClock();
         $this->pushHistory();
         $this->board->refresh();
@@ -369,7 +369,7 @@ abstract class AbstractPiece
      *
      * @return \Chess\Variant\AbstractPiece
      */
-    public function updateCastle(): AbstractPiece
+    public function updateCastlingAbility(): AbstractPiece
     {
         $search = '';
         if ($this->id === Piece::K) {

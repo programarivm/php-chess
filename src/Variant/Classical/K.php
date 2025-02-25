@@ -216,7 +216,7 @@ class K extends AbstractPiece
                     $rook->type
                 )
             );
-            $this->updateCastle();
+            $this->updateCastlingAbility();
             $this->pushHistory();
             $this->board->refresh();
             return true;
