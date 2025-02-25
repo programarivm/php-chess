@@ -460,7 +460,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function endgame_checkmate_play_undo_and_get_fen()
     {
-        $expected = '8/8/R7/3Q4/4K3/r7/1k6/8 b - - 3';
+        $expected = '8/8/R7/3Q4/4K3/r7/1k6/8 b - - 3 2';
 
         $board = FenToBoardFactory::create('8/8/R7/8/4Q3/rk3K2/8/8 w - -');
 
@@ -723,7 +723,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function resume_Qd1()
     {
-        $expected = 'R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3B1PBP/3Q2K1 b - - 1';
+        $expected = 'R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3B1PBP/3Q2K1 b - - 1 1';
 
         $board = FenToBoardFactory::create('R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3BQPBP/6K1 w - -');
         $board->play('w', 'Qd1');
@@ -736,7 +736,7 @@ class FenToBoardFactoryTest extends AbstractUnitTestCase
      */
     public function resume_e2d1()
     {
-        $expected = 'R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3B1PBP/3Q2K1 b - - 1';
+        $expected = 'R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3B1PBP/3Q2K1 b - - 1 1';
 
         $board = FenToBoardFactory::create('R1bq1rk1/1p6/2pp2np/4pp2/1PPnP1pP/2NP4/3BQPBP/6K1 w - -');
         $board->playLan('w', 'e2d1');

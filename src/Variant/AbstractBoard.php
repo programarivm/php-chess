@@ -638,6 +638,16 @@ abstract class AbstractBoard extends \SplObjectStorage
     }
 
     /**
+     * Returns the number of the full moves.
+     * 
+     * @return int
+     */
+    public function fullmoveNumber(): int
+    {
+        return floor(count($this->history) / 2) + 1;
+    }
+
+    /**
      * Returns an array representing the current position.
      *
      * @return array
@@ -698,7 +708,7 @@ abstract class AbstractBoard extends \SplObjectStorage
             $filtered = str_replace(str_repeat('.', $i), $i, $filtered);
         }
 
-        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()} {$this->halfmoveClock}";
+        return "{$filtered} {$this->turn} {$this->castlingAbility} {$this->enPassant()} {$this->halfmoveClock} {$this->fullmoveNumber()}";
     }
 
     /**

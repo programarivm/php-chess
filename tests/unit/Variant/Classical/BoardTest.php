@@ -114,7 +114,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'P',
                 'from' => 'e2',
                 'to' => 'e4',
-                'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0',
+                'fen' => 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1',
             ],
             [
                 'pgn' => 'e5',
@@ -122,7 +122,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'P',
                 'from' => 'e7',
                 'to' => 'e5',
-                'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0',
+                'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq e6 0 2',
             ],
             [
                 'pgn' => 'Nf3',
@@ -130,7 +130,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'N',
                 'from' => 'g1',
                 'to' => 'f3',
-                'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1',
+                'fen' => 'rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2',
             ],
             [
                 'pgn' => 'Nc6',
@@ -138,7 +138,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'N',
                 'from' => 'b8',
                 'to' => 'c6',
-                'fen' => 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2',
+                'fen' => 'r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq - 2 3',
             ],
             [
                 'pgn' => 'Bb5',
@@ -146,7 +146,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'B',
                 'from' => 'f1',
                 'to' => 'b5',
-                'fen' => 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3',
+                'fen' => 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 3 3',
             ],
             [
                 'pgn' => 'Be7',
@@ -154,7 +154,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'B',
                 'from' => 'f8',
                 'to' => 'e7',
-                'fen' => 'r1bqk1nr/ppppbppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4',
+                'fen' => 'r1bqk1nr/ppppbppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4',
             ],
         ];
 
@@ -180,7 +180,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'P',
                 'from' => 'a2',
                 'to' => 'a4',
-                'fen' => 'rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR b KQkq a3 0',
+                'fen' => 'rnbqkbnr/pppppppp/8/8/P7/8/1PPPPPPP/RNBQKBNR b KQkq a3 0 1',
             ],
             [
                 'pgn' => 'h5',
@@ -188,7 +188,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'P',
                 'from' => 'h7',
                 'to' => 'h5',
-                'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/8/1PPPPPPP/RNBQKBNR w KQkq h6 0',
+                'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/8/1PPPPPPP/RNBQKBNR w KQkq h6 0 2',
             ],
             [
                 'pgn' => 'Ra3',
@@ -196,7 +196,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'R',
                 'from' => 'a1',
                 'to' => 'a3',
-                'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/R7/1PPPPPPP/1NBQKBNR b Kkq - 1',
+                'fen' => 'rnbqkbnr/ppppppp1/8/7p/P7/R7/1PPPPPPP/1NBQKBNR b Kkq - 1 2',
             ],
             [
                 'pgn' => 'Rh6',
@@ -204,7 +204,7 @@ class BoardTest extends AbstractUnitTestCase
                 'id' => 'R',
                 'from' => 'h8',
                 'to' => 'h6',
-                'fen' => 'rnbqkbn1/ppppppp1/7r/7p/P7/R7/1PPPPPPP/1NBQKBNR w Kq - 2',
+                'fen' => 'rnbqkbn1/ppppppp1/7r/7p/P7/R7/1PPPPPPP/1NBQKBNR w Kq - 2 3',
             ],
         ];
 
@@ -1236,7 +1236,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $board->undo();
 
-        $expected = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0';
+        $expected = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1';
 
         $this->assertSame($expected, $board->toFen());
     }
@@ -1258,7 +1258,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $board->undo();
 
-        $expected = 'r2qkbnr/pbpppppp/1pn5/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4';
+        $expected = 'r2qkbnr/pbpppppp/1pn5/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4';
 
         $this->assertSame($expected, $board->toFen());
     }
@@ -1280,7 +1280,7 @@ class BoardTest extends AbstractUnitTestCase
 
         $board->undo();
 
-        $expected = 'r2qkbnr/pbpppppp/1pn5/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4';
+        $expected = 'r2qkbnr/pbpppppp/1pn5/8/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 4 4';
 
         $this->assertSame($expected, $board->toFen());
     }
